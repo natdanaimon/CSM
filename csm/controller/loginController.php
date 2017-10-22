@@ -25,50 +25,7 @@ switch ($info[func]) {
 
 class loginController {
 
-    public function forgot($info) {
-        include '../service/loginService.php';
-        include '../common/Utility.php';
-        $servic = new loginService();
-        $util = new Utility();
-        $util->setPathXML("../language/language_common.xml");
-        $util->LanguageConfig("en");
-        $util->setPathXML("../language/language_page.xml");
-        $util->LanguageConfig("th");
-
-        if ($util->isEmpty($info[email])) {
-            $return2099 = $_SESSION['cd_2099'];
-            $return2099 = eregi_replace("field", $_SESSION['email'], $return2099);
-            echo $return2099;
-        } else if (!filter_var($info[email], FILTER_VALIDATE_EMAIL)) {
-            echo $_SESSION['cd_2006'];
-        } else {
-            $_data = $servic->checkEmail($info);
-            if ($_data != NULL) {
-                include '../common/phpmailer.php';
-                $mail = new PHPMailer(TRUE);
-
-                foreach ($_data as $key => $value) {
-                    $util->CopyTemplatedMailForgot("../email/Email_Forgot.html", "../email/Email_Forgot_Temp.html", $_data[$key]['s_firstname'], $_data[$key]['s_lastname'], $_data[$key]['s_user'], $_data[$key]['s_pass']);
-                    $body = $mail->getFile('../email/Email_Forgot_Temp.html');
-
-                    $mail->Host = "cpanel03wh.bkk1.cloud.z.com";
-                    $mail->Hostname = "nagieos.com";
-                    $mail->Port = 587;
-                    $mail->CharSet = 'utf-8';
-                    $mail->From = "noreply@nagieos.com";
-                    $mail->FromName = "NAGIEOS";
-                    $mail->Subject = "NAGIEOS : FORGOT PASSWORD";
-                    $mail->MsgHTML($body);
-                    $mail->AddAddress($_data[$key]['s_email']);
-                    $mailcommit = $mail->Send();
-                }
-                echo $_SESSION['cd_0000'];
-            } else {
-                echo $_SESSION['cd_2009'];
-            }
-        }
-    }
-
+   
     public function login($info) {
         include '../service/loginService.php';
         include '../common/Utility.php';
