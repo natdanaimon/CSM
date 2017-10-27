@@ -64,7 +64,7 @@ $_SESSION[mode_lock] = TRUE;
                     </form>
                 </div>
             </div>
-            <div class="page-footer-custom"> Copyright © EXPWEBDESIGN 2017 All rights reserved.  </div>
+            <div class="page-footer-custom"> Copyright © NAGIEOS 2017   </div>
         </div>
         <!--[if lt IE 9]>
 <script src="../assets/global/plugins/respond.min.js"></script>

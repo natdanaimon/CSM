@@ -14,7 +14,7 @@ session_start();
         <title>BET SYSTEM MANAGEMENT</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta content="width=device-width, initial-scale=1" name="viewport" />
-        <meta content="Bet,bet system,BET SYSTEM"
+        <meta content="bet,nagieos,bet system,BET SYSTEM"
               name="description" />
         <meta content="" name="author" />
         <!-- BEGIN GLOBAL MANDATORY STYLES -->
@@ -111,7 +111,7 @@ session_start();
 
             <!-- END REGISTRATION FORM -->
         </div>
-        <div class="copyright"> Copyright © EXPWEBDESIGN 2017 All rights reserved. </div>
+        <div class="copyright"> Copyright © 2017 NAGIEOS All rights reserved. </div>
         <!--[if lt IE 9]>
 <script src="../assets/global/plugins/respond.min.js"></script>
 <script src="../assets/global/plugins/excanvas.min.js"></script> 

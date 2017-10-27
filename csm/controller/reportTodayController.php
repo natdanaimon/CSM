@@ -47,6 +47,11 @@ class reportTodayController {
 
     public function convertJson($_dataTable) {
         if ($_dataTable != NULL) {
+             foreach ($_dataTable as $key => $value) {
+                if($_dataTable[$key]['s_username']==""){
+                    $_dataTable[$key]['s_username'] = $_SESSION['rep_today_null'];
+                }
+            }
             return json_encode($_dataTable);
         } else {
             return "";

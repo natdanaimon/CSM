@@ -35,7 +35,7 @@
             m = checkTime(m);
             s = checkTime(s);
             document.getElementById('txt').innerHTML =
-                 "วันที่ "+   dd + "/" + (mm + 1) + "/" + yy + " " + h + ":" + m + ":" + s + " น.";
+                    "วันที่ " + dd + "/" + (mm + 1) + "/" + yy + " " + h + ":" + m + ":" + s + " น.";
             var t = setTimeout(currentTime, 500);
         }
         function checkTime(i) {
@@ -48,9 +48,9 @@
         currentTime();
 
 
-//        var sec = 3;
-//        notification();
-//        setInterval(notification, 1000 * sec);
+        var sec = 3;
+        notification();
+        setInterval(notification, 1000 * sec);
     });
     function reloadTime() {
         location.reload();

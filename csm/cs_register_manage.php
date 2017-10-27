@@ -207,7 +207,7 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                                                         </select>
                                                         <label for="form_control_1"><?= $_SESSION[label_status] ?></label>
                                                     </div>
-                                                    <div class="form-group form-md-line-input has-success" style="margin-bottom: 0px !important;display: none;">
+                                                    <div class="form-group form-md-line-input has-success" style="margin-bottom: 0px !important;">
                                                         <select class="form-control edited bold"  id="s_flg_email" name="s_flg_email" style="color:black;font-weight:bold;">
                                                             <option value="Y"><?= $_SESSION[lb_status_email_y] ?></option>
                                                             <option value="N"><?= $_SESSION[lb_status_email_n] ?></option>

@@ -242,7 +242,7 @@ class registerService {
         $strSql2 .= " f_special_bonus = $info[f_special_bonus], ";
         $strSql2 .= " i_bank = $info[i_bank_pay], ";
         $strSql2 .= " i_promotion = $info[i_promotion], ";
-
+        $strSql2 .= "  s_username = '$info[s_username]', ";
         $strSql2 .= " d_dp_date = '$info[d_date]', ";
         $strSql2 .= " d_dp_time = '$info[d_time]' ";
         $strSql2 .= " where s_ref_deposit = '$info[s_ref_deposit]' ";

@@ -406,7 +406,21 @@
         <th>ยอดเงินในบัญชีปัจจุบัน</th>
         <en>Game</en>
     </detail>
-    
+    <detail>
+        <variable>rmk_ui_01</variable>
+        <th>ขนาดภาพไม่ควรเกิน 4MB</th>
+        <en>Image size should not exceed 4MB. </en>
+    </detail>
+    <detail>
+        <variable>rmk_ui_02</variable>
+        <th>กรณีที่เป็นภาพปกควรมีขนาด 1500*230</th>
+        <en>The cover image is 1500x230px. </en>
+    </detail>
+    <detail>
+        <variable>rep_today_null</variable>
+        <th>ข้อมูลที่ยังไม่มี username </th>
+        <en>Info not username. </en>
+    </detail>
     <!--  Other -->
     
     
@@ -783,8 +797,8 @@
     </detail>
     <detail>
         <variable>slide</variable>
-        <th>สไลด์</th>
-        <en>Slide</en>
+        <th>สไลด์ - ภาพหน้าปก</th>
+        <en>Slide - CoverArt</en>
     </detail>
     <detail>
         <variable>gallery</variable>

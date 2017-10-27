@@ -8,6 +8,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 } else {
     $info = json_decode(preg_replace('/("\w+"):(\d+)/', '\\1:"\\2"', json_encode($_GET)), true);
 }
+//$info['month'] = '8/1/2017';
+//$info['func'] = 'search';
 
 $controller = new vipTodayController();
 switch ($info[func]) {
@@ -23,16 +25,21 @@ class vipTodayController {
         include '../common/ConnectDB.php';
         $service = new vipTodayService();
         $db = new ConnectDB();
-        $_dataTable = $service->search($db, $info);
+        $_dataTable = $service->searchAllUsers($db);
         if ($_dataTable != NULL) {
             $tmpReturn = array();
             foreach ($_dataTable as $key => $value) {
+//                if($_dataTable[$key]['s_user']=='zlwav01035'){
+//                    $a = "123";
+//                    
+//                }
+                $turnOver = $service->getTurnOver($db, $info[month], $_dataTable[$key]['s_user']);
                 $tmp = array(
                     'month' => $this->convertDate($info[month]),
                     'username' => $_dataTable[$key]['s_user'],
-                    'turnover' => $_dataTable[$key]['f_turnover'],
+                    'turnover' => $turnOver,
                     'pay' => $service->sumLevel1_2_Percen($db, $_dataTable[$key]['s_user'], $info[month]),
-                    'remark' => $this->checkRemark($_dataTable[$key]['f_turnover'])
+                    'remark' => $this->checkRemark($turnOver)
                 );
                 $tmpReturn[] = $tmp;
             }

@@ -5,19 +5,37 @@
 class vipTodayService {
 
     //($info, $date, $menu, $action, $user, $other);
-    function search($db, $info) {
+    function searchAllUsers($db) {
         $strSql = "";
         $strSql .= " select   ";
-        $strSql .= " s_date_range , ";
-        $strSql .= " s_user ,  ";
-        $strSql .= " IFNULL(sum(f_turnover),0) f_turnover  ";
+        $strSql .= " s_user  ";
         $strSql .= " from tb_cs_excel   ";
-        $strSql .= " where s_date_range = '$info[month]' ";
-        $strSql .= " group by s_date_range , s_user  ";
-        $strSql .= " order by s_date_range , s_user ";
+        $strSql .= " group by s_user  ";
+        $strSql .= " union";
+        $strSql .= " select   ";
+        $strSql .= " s_main s_user  ";
+        $strSql .= " from tb_cs_user_map   ";
+        $strSql .= " group by s_main  ";
+        $strSql .= " order by s_user ";
         $_data = $db->Search_Data_FormatJson($strSql);
         $db->close_conn();
         return $_data;
+    }
+    
+    function getTurnOver($db , $month , $user){
+        $strSql = "";
+        $strSql .= " select   ";
+        $strSql .= " IFNULL(sum(f_turnover),0) f_turnover  ";
+        $strSql .= " from tb_cs_excel   ";
+        $strSql .= " where s_date_range = '$month' ";
+        $strSql .= " and s_user = '$user' ";
+        $strSql .= " group by s_user  ";
+        $turnOver = $db->Search_Data_FormatJson($strSql);
+        if ($turnOver != "" && count($turnOver)>0) {
+            return $turnOver[0][f_turnover];
+        } else {
+            return 0;
+        }
     }
 
     function getSumLv1_Sports($db, $u, $month) {
@@ -31,7 +49,7 @@ class vipTodayService {
         $strSql .= "and m.s_main = '$u' ";
         $strSql .= ") and ex.s_date_range = '$month' ";
         $turnOver = $db->Search_Data_FormatJson($strSql);
-        if ($turnOver != "") {
+        if ($turnOver != "" && count($turnOver)>0) {
             return $turnOver[0][f_turnover];
         } else {
             return 0;
@@ -49,7 +67,7 @@ class vipTodayService {
         $strSql .= "and m.s_main = '$u' ";
         $strSql .= ") and ex.s_date_range = '$month' ";
         $turnOver = $db->Search_Data_FormatJson($strSql);
-        if ($turnOver != "") {
+        if ($turnOver != "" && count($turnOver)>0) {
             return $turnOver[0][f_gross];
         } else {
             return 0;
@@ -87,7 +105,7 @@ class vipTodayService {
         $strSql .= "  s.s_sub = ex.s_user ";
         $strSql .= ") and ex.s_date_range = '$month' ";
         $turnOver = $db->Search_Data_FormatJson($strSql);
-        if ($turnOver != "") {
+        if ($turnOver != "" && count($turnOver)>0) {
             return $turnOver[0][f_turnover];
         } else {
             return 0;
@@ -125,7 +143,7 @@ class vipTodayService {
         $strSql .= "  s.s_sub = ex.s_user ";
         $strSql .= ") and ex.s_date_range = '$month' ";
         $turnOver = $db->Search_Data_FormatJson($strSql);
-        if ($turnOver != "") {
+        if ($turnOver != "" && count($turnOver)>0) {
             return $turnOver[0][f_gross];
         } else {
             return 0;

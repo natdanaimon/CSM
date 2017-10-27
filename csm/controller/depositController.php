@@ -241,12 +241,12 @@ class depositController {
             $info[d_date] = $utils->DateSQL($info[d_date]);
 
             $valid = new commonCSService();
-            if (!$valid->ValidUserAndSecurity($db, $info[s_username], NULL)) {
+            if (!$valid->ValidUserAndSecurity($db, $info[s_username], NULL)&& $info[status]=="APPR") {
                 echo $_SESSION['cd_2223'];
                 return;
             }
 
-            if (!$valid->ValidUserAndSecurity($db, $info[s_username], $info[s_security])) {
+            if (!$valid->ValidUserAndSecurity($db, $info[s_username], $info[s_security])&& $info[status]=="APPR") {
                 echo $_SESSION['cd_2224'];
                 return;
             }

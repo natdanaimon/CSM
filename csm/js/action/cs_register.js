@@ -105,6 +105,8 @@ function colorStatusCS(status) {
         return "warning";
     } else if (status == "REJ") {
         return "danger";
+    }else if (status == "PROC") {
+        return "info";
     }
 }
 
@@ -114,6 +116,8 @@ function sortHidden(status) {
     } else if (status == "PEND") {
         return "<span style='display:none;'>1</span>";
     } else if (status == "REJ") {
+        return "<span style='display:none;'>4</span>";
+    }else if (status == "PROC") {
         return "<span style='display:none;'>3</span>";
     }
 }

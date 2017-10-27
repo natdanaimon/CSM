@@ -1,6 +1,7 @@
 <?php
 
 @session_start();
+header('Access-Control-Allow-Origin: *');
 error_reporting(E_ERROR | E_PARSE);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -9,6 +10,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $info = json_decode(preg_replace('/("\w+"):(\d+)/', '\\1:"\\2"', json_encode($_GET)), true);
 }
 
+//$info['month'] = '8/1/2017';
+//$info['func'] = 'getTreeView';
+//$info['user'] = 'zlwav01010';
 
 //$func = ($info[func]!=null?$info[func]:$info[func2]);
 
@@ -35,9 +39,65 @@ switch ($info[func]) {
     case "getInfo":
         echo $controller->getInfo($info[id]);
         break;
+    case "getTreeView":
+        echo $controller->getTreeView($info);
+        break;
 }
 
 class vipController {
+
+    public function getTreeView($info) {
+        header('Content-Type: application/json');
+        include '../service/vipService.php';
+        include '../common/ConnectDB.php';
+        $service = new vipService();
+        $db = new ConnectDB();
+        $tmpMain = array();
+        $tmpNull = array();
+        $_dataTableS1 = $service->searchUserSub($db, $info[user]);
+        if ($_dataTableS1 != NULL) {
+            $tmpS1 = array();
+            foreach ($_dataTableS1 as $key => $value) {
+                $turnOverS1 = number_format($service->getTurnOver($db, $info[month], $_dataTableS1[$key]['s_sub']),2);
+
+                $_dataTableS2 = $service->searchUserSub($db, $_dataTableS1[$key]['s_sub']);
+                if ($_dataTableS2 != NULL) {
+                    $tmpS2 = array();
+                    foreach ($_dataTableS2 as $key2 => $value) {
+                        $turnOverS2 = number_format($service->getTurnOver($db, $info[month], $_dataTableS2[$key2]['s_sub']),2);
+                        $tmp = array(
+                            'name' => $this->replaceString($_dataTableS2[$key2]['s_sub']),
+                            'turnOver' => $turnOverS2
+                        );
+                        $tmpS2[] = $tmp;
+                    }
+                }
+
+                $tmp = array(
+                    'name' => $this->replaceString($_dataTableS1[$key]['s_sub']),
+                    'turnOver' => $turnOverS1,
+                    'children' => (array_values($tmpS2)==NULL?$tmpNull:array_values($tmpS2))
+                );
+                $tmpS1[] = $tmp;
+                $tmpS2 = null;
+            }
+
+            $tmpMain = $tmp = array(
+                'name' => $this->replaceString($info[user]),
+                'turnOver' => number_format($service->getTurnOver($db, $info[month], $info[user]),2),
+                'children' => (array_values($tmpS1)==NULL?$tmpNull:array_values($tmpS1))
+            );
+            $tmpS1 = null;
+            return json_encode($tmpMain);
+        } else {
+            $tmpMain = $tmp = array(
+                'name' => $this->replaceString($info[user]),
+                'turnOver' => number_format($service->getTurnOver($db, $info[month], $info[user]),2),
+                'children' => (array_values($tmpS1)==NULL?$tmpNull:array_values($tmpS1))
+            );
+            return json_encode($tmpMain);
+        }
+    }
 
     public function dataTable() {
         include '../service/vipService.php';
@@ -277,6 +337,11 @@ class vipController {
 
     public function getCountSubValid($info) {
         return count($info);
+    }
+    
+    public function replaceString($user){
+        $tmb = str_replace("zlw","",$user);
+        return $tmb;
     }
 
 }

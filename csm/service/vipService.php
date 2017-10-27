@@ -13,6 +13,30 @@ class vipService {
         $db->close_conn();
         return $_data;
     }
+    
+    public function searchUserSub($db , $user){
+        $strSql = "";
+        $strSql .= "select s_sub from tb_cs_user_map where s_main = '$user' order by s_sub ";
+        $_data = $db->Search_Data_FormatJson($strSql);
+        $db->close_conn();
+        return $_data;
+    }
+    
+    function getTurnOver($db , $month , $user){
+        $strSql = "";
+        $strSql .= " select   ";
+        $strSql .= " IFNULL(sum(f_turnover),0) f_turnover  ";
+        $strSql .= " from tb_cs_excel   ";
+        $strSql .= " where s_date_range = '$month' ";
+        $strSql .= " and s_user = '$user' ";
+        $strSql .= " group by s_user  ";
+        $turnOver = $db->Search_Data_FormatJson($strSql);
+        if ($turnOver != "" && count($turnOver)>0) {
+            return $turnOver[0][f_turnover];
+        } else {
+            return 0;
+        }
+    }
 
     public function getInfo($seq) {
         require_once('../common/ConnectDB.php');

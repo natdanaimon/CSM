@@ -25,7 +25,7 @@ function initialDataTable(first) {
                 var col_website = item.s_website;
                 var col_game = item.s_game;
                 var col_username = (item.s_username != "" ? item.s_username : "-");
-                var col_bank = '';
+//                var col_bank = '';
                 var col_amount = number_format(item.f_amount, 2);
                 var col_datetime = item.d_create;
                 var col_status = "";
@@ -42,11 +42,11 @@ function initialDataTable(first) {
                 col_checkbox += '</span>';
 
 
-                var tooltip = item.s_account_name + " : " + item.s_account_no;
-
-                col_bank = '<span data-toggle="tooltip" data-placement="top" title="' + tooltip + '" > ';
-                col_bank += '<img  src="images/bank/' + item.s_img_bank + '" width="40px" height="25px" />';
-                col_bank += '</span>';
+//                var tooltip = item.s_account_name + " : " + item.s_account_no;
+//
+//                col_bank = '<span data-toggle="tooltip" data-placement="top" title="' + tooltip + '" > ';
+//                col_bank += '<img  src="images/bank/' + item.s_img_bank + '" width="40px" height="25px" />';
+//                col_bank += '</span>';
 
 
                 col_status = '';
@@ -70,7 +70,7 @@ function initialDataTable(first) {
                     col_website,
                     col_game,
                     col_username,
-                    col_bank,
+//                    col_bank,
                     col_amount,
                     col_datetime,
                     col_status,
@@ -84,7 +84,7 @@ function initialDataTable(first) {
             if (first == "TRUE") {
                 $datatable.dataTable({
                     data: JsonData,
-                    order: [[5, 'asc'], [3, 'desc']],
+                    order: [[6, 'asc'],[5, 'desc']],
                     columnDefs: [
                         {"orderable": false, "targets": 0}
                     ]
@@ -116,6 +116,8 @@ function colorStatusCS(status) {
         return "warning";
     } else if (status == "REJ") {
         return "danger";
+    } else if (status == "PROC") {
+        return "info";
     }
 }
 
@@ -125,10 +127,11 @@ function sortHidden(status) {
     } else if (status == "PEND") {
         return "<span style='display:none;'>1</span>";
     } else if (status == "REJ") {
+        return "<span style='display:none;'>4</span>";
+    } else if (status == "PROC") {
         return "<span style='display:none;'>3</span>";
     }
 }
-
 
 $('#checkbox14').click(function () {
     var checkboxes = $('input[name$=checkboxItem]');

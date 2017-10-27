@@ -1,4 +1,5 @@
 <?php
+@session_start();
 //
 //  A simple PHP CAPTCHA script
 //
@@ -112,7 +113,7 @@ if( !function_exists('hex2rgb') ) {
 // Draw the image
 if( isset($_GET['_CAPTCHA']) ) {
 
-    session_start();
+//    session_start();
 
     $captcha_config = unserialize($_SESSION['_CAPTCHA']['config']);
     if( !$captcha_config ) exit();
@@ -172,9 +173,9 @@ if( isset($_GET['_CAPTCHA']) ) {
 
 }
 
-//
+
 //$_SESSION = array();
-//
-//
 //$_SESSION['captcha'] = simple_php_captcha();
 //echo $_SESSION['captcha'][code];
+//echo "<br/>";
+//echo $_SESSION['captcha'][image_src];

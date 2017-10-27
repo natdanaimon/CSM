@@ -129,17 +129,17 @@ class withdrawController {
             $service = new withdrawService();
 
             $valid = new commonCSService();
-            if (!$valid->ValidUserAndSecurity($db, $info[s_username], NULL)) {
+            if (!$valid->ValidUserAndSecurity($db, $info[s_username], NULL) && $info[status]=="APPR") {
                 echo $_SESSION['cd_2223'];
                 return;
             }
 
-            if (!$valid->ValidUserAndSecurity($db, $info[s_username], $info[s_security])) {
+            if (!$valid->ValidUserAndSecurity($db, $info[s_username], $info[s_security]) && $info[status]=="APPR") {
                 echo $_SESSION['cd_2224'];
                 return;
             }
 
-            if ($service->validBankAccount($db, $info)) {
+            if ($service->validBankAccount($db, $info) && $info[status]=="APPR") {
                 echo $_SESSION['cd_2225'];
                 return;
             }
@@ -166,17 +166,17 @@ class withdrawController {
             $service = new withdrawService();
 
             $valid = new commonCSService();
-            if (!$valid->ValidUserAndSecurity($db, $info[s_username], NULL)) {
+            if (!$valid->ValidUserAndSecurity($db, $info[s_username], NULL) && $info[status]=="APPR") {
                 echo $_SESSION['cd_2223'];
                 return;
             }
 
-            if (!$valid->ValidUserAndSecurity($db, $info[s_username], $info[s_security])) {
+            if (!$valid->ValidUserAndSecurity($db, $info[s_username], $info[s_security]) && $info[status]=="APPR") {
                 echo $_SESSION['cd_2224'];
                 return;
             }
-            
-            if ($service->validBankAccount($db, $info)) {
+
+            if ($service->validBankAccount($db, $info) && $info[status]=="APPR") {
                 echo $_SESSION['cd_2225'];
                 return;
             }
@@ -201,7 +201,10 @@ class withdrawController {
 
         include '../common/Utility.php';
         $util = new Utility();
-        if ($util->isEmpty($info[s_username])) {
+        if ($util->isEmpty($info[i_bank_adm]) || $info[i_bank_adm] == 0) {
+            $return2099 = eregi_replace("field", $_SESSION['lb_cs_bank_adm'], $return2099);
+            echo $return2099;
+        } else if ($util->isEmpty($info[s_username])) {
             $return2099 = eregi_replace("field", $_SESSION['lb_cs_username'], $return2099);
             echo $return2099;
         } else if ($util->isEmpty($info[s_security])) {

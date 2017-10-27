@@ -10,7 +10,7 @@ class dashboardCSService {
         $strSql = "";
         $strSql .= "select  ";
         $strSql .= "(select sum(f_amount) from tb_cs_dp where s_status = 'APPR' ) dp_appr  , ";
-        $strSql .= "(select count(*) from tb_cs_dp where s_status = 'PEND' ) dp_pend  , ";
+        $strSql .= "(select count(*) from tb_cs_dp where s_status = 'PEND' and s_first_deposit = 'N'  ) dp_pend  , ";
         $strSql .= "(select sum(f_amount) from tb_cs_wd where s_status = 'APPR' ) wd_appr  , ";
         $strSql .= "(select count(*) from tb_cs_wd where s_status = 'PEND' ) wd_pend , ";
         $strSql .= "(select count(*) from tb_cs_user where s_status = 'APPR' ) user_appr  , ";

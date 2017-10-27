@@ -22,10 +22,9 @@ function initialDataTable(first) {
             $.each(res, function (i, item) {
 
                 var col_checkbox = "";
- 
                 var col_website = item.s_website;
-                var col_index = item.i_index;;
-          
+                var col_index = item.i_index;
+                
                 var col_status = "";
                 var col_edit = "";
                 var col_delete = "";
@@ -41,24 +40,24 @@ function initialDataTable(first) {
                 col_checkbox += '    <span class="check"></span>';
                 col_checkbox += '    <span class="box"></span> </label>';
                 col_checkbox += '</span>';
-
-
-
-
-
                 col_status = '';
                 col_status += '<span class="badge badge-' + colorStatusNormal(item.s_status) + '">' + sortHiddenNormal(item.s_status) + (language == "th" ? item.status_th : item.status_en) + '</span>';
                 col_status += '';
-
-
-                col_edit += '<a href="' + (disable != "" ? '#' : "cs_website_manage.php?func=edit&id=" + item.i_web) + '" style="width:33px;height:33px" class="btn btn-circle btn-icon-only blue" ' + disable + '>';
-                col_edit += ' <i class="fa fa-edit"></i>';
-                col_edit += '</a>';
-
-                col_delete += '<a href="' + (disable != "" ? '#' : 'javascript:Confirm(\'' + item.i_web + '\',\'delete\');') + '" style="width:33px;height:33px" class="btn btn-circle btn-icon-only red" ' + disable + '>';
-                col_delete += ' <i class="fa fa-trash-o"></i>';
-                col_delete += '</a>';
-
+                if (item.i_web == "1") {
+                    col_edit += '<a href="#" style="width:33px;height:33px" class="btn btn-circle btn-icon-only blue" disabled>';
+                    col_edit += ' <i class="fa fa-edit"></i>';
+                    col_edit += '</a>';
+                    col_delete += '<a href="#" style="width:33px;height:33px" class="btn btn-circle btn-icon-only red" disabled>';
+                    col_delete += ' <i class="fa fa-trash-o"></i>';
+                    col_delete += '</a>';
+                } else {
+                    col_edit += '<a href="' + (disable != "" ? '#' : "cs_website_manage.php?func=edit&id=" + item.i_web) + '" style="width:33px;height:33px" class="btn btn-circle btn-icon-only blue" ' + disable + '>';
+                    col_edit += ' <i class="fa fa-edit"></i>';
+                    col_edit += '</a>';
+                    col_delete += '<a href="' + (disable != "" ? '#' : 'javascript:Confirm(\'' + item.i_web + '\',\'delete\');') + '" style="width:33px;height:33px" class="btn btn-circle btn-icon-only red" ' + disable + '>';
+                    col_delete += ' <i class="fa fa-trash-o"></i>';
+                    col_delete += '</a>';
+                }
 
 
                 var addRow = [
@@ -71,12 +70,11 @@ function initialDataTable(first) {
                 ]
 
                 JsonData.push(addRow);
-
             });
             if (first == "TRUE") {
                 $datatable.dataTable({
                     data: JsonData,
-                    order: [[3, 'asc'],[2, 'asc']],
+                    order: [[3, 'asc'], [2, 'asc']],
                     columnDefs: [
                         {"orderable": false, "targets": 0}
                     ]
@@ -92,7 +90,6 @@ function initialDataTable(first) {
             notification();
             $('[data-toggle="tooltip"]').tooltip();
             $('#se-pre-con').delay(100).fadeOut();
-
         },
         error: function (data) {
 
@@ -140,12 +137,10 @@ $('#checkbox14').click(function () {
         });
     }
 });
-
 function remove_select_all(id) {
     var selected = [];
     if ($("#" + id).is(':checked')) {
         $('input:checkbox[id=' + id + ']').attr('checked', true);
-
         //set element select all selected
         var array = [];
         $('input[name$="checkboxItem"]').each(function () {
@@ -185,7 +180,6 @@ function deleteAll() {
                 "</div>" +
                 "</div>"
     });
-
     $.notify({
         title: title,
         button: 'Confirm'
@@ -194,7 +188,6 @@ function deleteAll() {
         autoHide: false,
         clickToHide: false
     });
-
 }
 $(document).on('click', '.notifyjs-foo-base .notify-all-no', function () {
     $('#se-pre-con').delay(100).fadeOut();
@@ -213,11 +206,9 @@ $(document).on('click', '.notifyjs-foo-base .notify-all-yes', function () {
         if ($("#" + value).is(':checked')) {
             //alert($("#" + value).val());
             selected.push($("#" + value).val());
-
         }
     });
     var jsonData = selected;
-
     $.ajax({
         type: 'GET',
         url: 'controller/websiteCSController.php',
@@ -235,7 +226,6 @@ $(document).on('click', '.notifyjs-foo-base .notify-all-yes', function () {
             } else {
                 var errCode = "Code (" + res[0] + ") : " + res[1];
                 $.notify(errCode, "error");
-
             }
             $('#se-pre-con').delay(100).fadeOut();
             initialDataTable("FALSE");
@@ -245,10 +235,7 @@ $(document).on('click', '.notifyjs-foo-base .notify-all-yes', function () {
         }
 
     });
-
 });
-
-
 function fontColor(base, current) {
     if (base < current) {
         return 'style=color:green;font-weight:bold;';
@@ -284,7 +271,6 @@ function Confirm(txt, func) {
                 "</div>" +
                 "</div>"
     });
-
     $.notify({
         title: title,
         button: 'Confirm'
@@ -293,7 +279,6 @@ function Confirm(txt, func) {
         autoHide: false,
         clickToHide: false
     });
-
 }
 $(document).on('click', '.notifyjs-foo-base .notify-no', function () {
     $('#se-pre-con').delay(100).fadeOut();
@@ -303,7 +288,6 @@ $(document).on('click', '.notifyjs-foo-base .notify-yes', function () {
     $(this).trigger('notify-hide');
     var id = $("#id").val();
     var func = $("#func").val();
-
     $.ajax({
         type: 'GET',
         url: 'controller/websiteCSController.php?func=' + func + '&id=' + id,
@@ -320,7 +304,6 @@ $(document).on('click', '.notifyjs-foo-base .notify-yes', function () {
             } else {
                 var errCode = "Code (" + res[0] + ") : " + res[1];
                 $.notify(errCode, "error");
-
             }
             $('#se-pre-con').delay(100).fadeOut();
             initialDataTable("FALSE");
@@ -330,7 +313,6 @@ $(document).on('click', '.notifyjs-foo-base .notify-yes', function () {
         }
 
     });
-
 });
 
 

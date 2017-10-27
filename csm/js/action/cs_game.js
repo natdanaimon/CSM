@@ -22,7 +22,7 @@ function initialDataTable(first) {
             $.each(res, function (i, item) {
 
                 var col_checkbox = "";
- 
+
                 var col_game = item.s_game;
                 var col_base = number_format(item.f_amount_base, 2);
                 var col_current = "<span " + fontColor(item.f_amount_base, item.f_amount_current) + "   >" + number_format(item.f_amount_current, 2) + "</span>";
@@ -52,14 +52,24 @@ function initialDataTable(first) {
                 col_status += '';
 
 
-                col_edit += '<a href="' + (disable != "" ? '#' : "cs_game_manage.php?func=edit&id=" + item.i_game) + '" style="width:33px;height:33px" class="btn btn-circle btn-icon-only blue" ' + disable + '>';
-                col_edit += ' <i class="fa fa-edit"></i>';
-                col_edit += '</a>';
+                if (item.i_game == "1") {
 
-                col_delete += '<a href="' + (disable != "" ? '#' : 'javascript:Confirm(\'' + item.i_game + '\',\'delete\');') + '" style="width:33px;height:33px" class="btn btn-circle btn-icon-only red" ' + disable + '>';
-                col_delete += ' <i class="fa fa-trash-o"></i>';
-                col_delete += '</a>';
+                    col_edit += '<a href="#" style="width:33px;height:33px" class="btn btn-circle btn-icon-only blue" disabled>';
+                    col_edit += ' <i class="fa fa-edit"></i>';
+                    col_edit += '</a>';
 
+                    col_delete += '<a href="#" style="width:33px;height:33px" class="btn btn-circle btn-icon-only red" disabled>';
+                    col_delete += ' <i class="fa fa-trash-o"></i>';
+                    col_delete += '</a>';
+                } else {
+                    col_edit += '<a href="' + (disable != "" ? '#' : "cs_game_manage.php?func=edit&id=" + item.i_game) + '" style="width:33px;height:33px" class="btn btn-circle btn-icon-only blue" ' + disable + '>';
+                    col_edit += ' <i class="fa fa-edit"></i>';
+                    col_edit += '</a>';
+
+                    col_delete += '<a href="' + (disable != "" ? '#' : 'javascript:Confirm(\'' + item.i_game + '\',\'delete\');') + '" style="width:33px;height:33px" class="btn btn-circle btn-icon-only red" ' + disable + '>';
+                    col_delete += ' <i class="fa fa-trash-o"></i>';
+                    col_delete += '</a>';
+                }
 
 
                 var addRow = [

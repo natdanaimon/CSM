@@ -1,7 +1,5 @@
 <?php
 
-namespace Common;
-
 class ConnectDB {
 
     protected $_host = "localhost";
