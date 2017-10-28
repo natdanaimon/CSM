@@ -5,7 +5,7 @@ class ConnectDB {
     protected $_host = "localhost";
     protected $_user = "root";
     protected $_pass = "";
-    protected $_dbname = "admin_root";
+    protected $_dbname = "db_csm";
 //    protected $_user = "cp724538_bet";
 //    protected $_pass = "Na12345678";
 //    protected $_dbname = "cp724538_bet";

@@ -1,7 +1,6 @@
 <?php
 @session_start();
-$_SESSION[mode_lock] = TRUE;
-
+$_SESSION['mode_lock'] = TRUE;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,11 +36,11 @@ $_SESSION[mode_lock] = TRUE;
     <body class="">
         <div class="page-lock">
             <div class="page-logo">
-<!--                <a class="brand" href="index.php">
-                    <img src="images/logo/logo_002.jpg" alt="logo" /> </a>-->
+                <!--                <a class="brand" href="index.php">
+                                    <img src="images/logo/logo_002.jpg" alt="logo" /> </a>-->
             </div>
             <div class="page-body">
-                <img class="page-lock-img" src="images/profile/<?= $_SESSION[img_profile]?>" alt="">
+                <img class="page-lock-img" src="images/profile/<?= $_SESSION[img_profile] ?>" alt="">
                 <div class="page-lock-info">
                     <h1><?= $_SESSION[full_name] ?></h1>
                     <span class="email"> <?= $_SESSION[user_email] ?> </span>
@@ -49,6 +48,7 @@ $_SESSION[mode_lock] = TRUE;
                     <form id="form-login" class="login-form" name="form-login"  method="post">
                         <div class="input-group input-medium">
                             <input type="hidden" id="func" name="func" value="login" />
+                            <input type="hidden" id="mode" name="mode" value="lock" />
                             <input type="hidden" id="username" name="username" value="<?= $_SESSION[username] ?>" />
                             <input type="password" class="form-control" placeholder="Password" name="password" id="password">
                             <span class="input-group-btn">
@@ -64,7 +64,7 @@ $_SESSION[mode_lock] = TRUE;
                     </form>
                 </div>
             </div>
-            <div class="page-footer-custom"> Copyright © NAGIEOS 2017   </div>
+            <div class="page-footer-custom"> Copyright © 2017 HORGARAGE All rights reserved.   </div>
         </div>
         <!--[if lt IE 9]>
 <script src="../assets/global/plugins/respond.min.js"></script>

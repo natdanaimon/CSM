@@ -104,7 +104,7 @@ class loginController {
             return;
         }
 
-        if (strtoupper($info[captcha]) != strtoupper($_SESSION[captcha][code])) {
+        if (strtoupper($info[captcha]) != strtoupper($_SESSION[captcha][code]) && $_SESSION[mode]=="signin") {
             echo $_SESSION['cd_4004'];
             return;
         }

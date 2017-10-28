@@ -3,9 +3,9 @@
 error_reporting(E_ERROR | E_PARSE);
 include './common/Permission.php';
 include './common/FunctionCheckActive.php';
-include './controller/dashboardCSController.php';
-include './service/dashboardCSService.php';
-require_once('./common/ConnectDB.php');
+//include './controller/dashboardCSController.php';
+//include './service/dashboardCSService.php';
+//require_once('./common/ConnectDB.php');
 ACTIVEPAGES(0);
 ?>
 <!DOCTYPE html>
@@ -89,211 +89,6 @@ ACTIVEPAGES(0);
                         </div>
 
 
-                        <?php
-                        $controller = new dashboardCSController();
-                        $_dataTable = $controller->BlockMenu();
-                        foreach ($_dataTable as $key => $value) {
-                            $total_appr = $_dataTable[$key]['total_appr'];
-                            $total_pend = $_dataTable[$key]['total_pend'];
-
-                            $dp_appr = $_dataTable[$key]['dp_appr'];
-                            $dp_pend = $_dataTable[$key]['dp_pend'];
-
-                            $wd_appr = $_dataTable[$key]['wd_appr'];
-                            $wd_pend = $_dataTable[$key]['wd_pend'];
-
-                            $user_appr = $_dataTable[$key]['user_appr'];
-                            $user_pend = $_dataTable[$key]['user_pend'];
-                        }
-                        ?>
-
-                        <div class="row">
-                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                                <div class="dashboard-stat2 " style="background-color: #e9edef">
-                                    <div class="display">
-                                        <div class="number">
-                                            <h3 class="font-green-sharp" style="font-size: 18px !important; ">
-                                                <small class="font-green-sharp">฿</small>
-                                                <span data-counter="counterup" id="total_appr" data-value="<?= number_format($total_appr, 2) ?>">0</span>
-
-                                            </h3>
-                                            <small><?= $_SESSION[lb_cs_dash_profit] ?></small>
-                                        </div>
-                                        <div class="icon">
-                                            <i class="icon-pie-chart"></i>
-                                        </div>
-                                    </div>
-                                    <div class="progress-info">
-                                        <div class="progress">
-                                            <span style="width: 100%;" class="progress-bar progress-bar-success green-sharp">
-
-                                            </span>
-                                        </div>
-                                        <div class="status">
-                                            <div class="status-title"> <?= $_SESSION[pending] ?> </div>
-                                            <div class="status-number"> <?= $total_pend ?> <?= $_SESSION[cs_list] ?> </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <a href="cs_deposit.php">
-                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                                    <div class="dashboard-stat2 " style="background-color: #e9edef">
-                                        <div class="display">
-                                            <div class="number">
-                                                <h3 class="font-blue-sharp" style="font-size: 18px !important; ">
-                                                    <small class="font-blue-sharp">฿</small>
-                                                    <span data-counter="counterup" data-value="<?= number_format($dp_appr, 2) ?>">0</span>
-
-                                                </h3>
-                                                <small><?= $_SESSION[deposit] ?></small>
-                                            </div>
-                                            <div class="icon">
-                                                <i class="fa fa-arrow-circle-right"></i>
-                                            </div>
-                                        </div>
-                                        <div class="progress-info">
-                                            <div class="progress">
-                                                <span style="width: 100%;" class="progress-bar progress-bar-success blue-sharp">
-
-                                                </span>
-                                            </div>
-                                            <div class="status">
-                                                <div class="status-title">  <?= $_SESSION[pending] ?> </div>
-                                                <div class="status-number"> <?= $dp_pend ?>  <?= $_SESSION[cs_list] ?> </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-
-                            <a href="cs_withdraw.php">
-                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                                    <div class="dashboard-stat2 "style="background-color: #e9edef">
-                                        <div class="display">
-                                            <div class="number">
-                                                <h3 class="font-red-haze" style="font-size: 18px !important; ">
-                                                    <small class="font-red-haze" >฿</small>
-                                                    <span data-counter="counterup" data-value="<?= number_format($wd_appr, 2) ?>">0</span>
-
-                                                </h3>
-                                                <small><?= $_SESSION[withdraw] ?></small>
-                                            </div>
-                                            <div class="icon">
-                                                <i class="fa fa-arrow-circle-left"></i>
-                                            </div>
-                                        </div>
-                                        <div class="progress-info">
-                                            <div class="progress">
-                                                <span style="width: 100%;" class="progress-bar progress-bar-success red-haze">
-
-                                                </span>
-                                            </div>
-                                            <div class="status">
-                                                <div class="status-title">  <?= $_SESSION[pending] ?> </div>
-                                                <div class="status-number"> <?= $wd_pend ?> <?= $_SESSION[cs_list] ?> </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </a>  
-
-                            <a href="cs_register.php">
-                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                                    <div class="dashboard-stat2 "style="background-color: #e9edef">
-                                        <div class="display">
-                                            <div class="number">
-                                                <h3 class="font-purple-soft" style="font-size: 18px !important; ">
-                                                    <span data-counter="counterup" data-value="<?= $user_appr ?>">0</span>
-                                                </h3>
-                                                <small><?= $_SESSION[register] ?></small>
-                                            </div>
-                                            <div class="icon">
-                                                <i class="icon-user"></i>
-                                            </div>
-
-                                        </div>
-                                        <div class="progress-info">
-                                            <div class="progress">
-                                                <span style="width: 100%;" class="progress-bar progress-bar-success purple-soft">
-                                                </span>
-                                            </div>
-                                            <div class="status">
-                                                <div class="status-title">  <?= $_SESSION[pending] ?> </div>
-                                                <div class="status-number"> <?= $user_pend ?> <?= $_SESSION[cs_list] ?> </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-
-
-                        </div>
-
-
-
-                        <div class="row">
-
-                            <div class="col-lg-6 col-xs-12 col-sm-12">
-                                <div class="portlet light ">
-                                    <div class="portlet-title">
-                                        <div class="caption">
-                                            <!--<span class="caption-subject bold uppercase font-dark">SBOBETSEXY</span>-->
-                                            <span class="caption-helper"><?= $_SESSION[tt_chart_one] ?></span>
-                                        </div>
-                                    </div>
-                                    <div class="portlet-body">
-                                        <!--<div id="dashboard_amchart_1" class="CSSAnimationChart"></div>-->
-                                        <div id="dashboard_amchart_1" class="CSSAnimationChart"></div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-
-
-
-
-
-
-                            <div class="col-lg-6 col-xs-12 col-sm-12">
-                                <div class="portlet light ">
-                                    <div class="portlet-title">
-                                        <div class="caption ">
-                                            <!--<span class="caption-subject font-dark bold uppercase">SBOBETSEXY</span>-->
-                                            <span class="caption-helper"><?= $_SESSION[tt_chart_two] ?></span>
-                                        </div>
-                                    </div>
-                                    <div class="portlet-body">
-                                        <div id="dashboard_amchart_3" class="CSSAnimationChart"></div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                        </div>
 
                     </div>
                     <!-- END CONTENT BODY -->
@@ -382,8 +177,8 @@ ACTIVEPAGES(0);
 
         <script>
             $(document).ready(function () {
-                chart_03();
-                chart_01();
+//                chart_03();
+//                chart_01();
                 unloading();
             });
         </script>

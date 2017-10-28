@@ -58,7 +58,7 @@ $actual_link = "$_SERVER[REQUEST_URI]";
         <a  href="javascript:;" class="menu-toggler responsive-toggler"  data-toggle="collapse" data-target=".navbar-collapse">
             <span></span>
         </a>
-        <img src="images/logo/logoIndex.png"/>
+        <!--<img src="images/logo/logoIndex.png"/>-->
         <!-- END RESPONSIVE MENU TOGGLER -->
         <!-- BEGIN TOP NAVIGATION MENU -->
         <div class="top-menu">

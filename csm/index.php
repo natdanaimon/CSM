@@ -11,7 +11,7 @@ session_start();
 
     <head>
         <meta charset="utf-8" />
-        <title>BET SYSTEM MANAGEMENT</title>
+        <title>CSM</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <meta content="bet,nagieos,bet system,BET SYSTEM"
@@ -44,7 +44,7 @@ session_start();
         <!-- BEGIN LOGO -->
         <div class="logo">
             <a href="index.php">
-                <img src="images/logo/logoIndex.png" alt="" />
+                <!--<img src="images/logo/logoIndex.png" alt="" />-->
             </a>
         </div>
         <!-- END LOGO -->
@@ -53,6 +53,7 @@ session_start();
             <!-- BEGIN LOGIN FORM -->
 
             <form  id="form-login" class="login-form" name="form-login"  method="post">
+                <input type="hidden" id="mode" name="mode" value="signin" />
                 <input type="hidden" id="func" name="func" value="login" />
                 <h3 class="form-title font-green">
                     <!--Expwebdesign.com-->
@@ -72,7 +73,7 @@ session_start();
                 </div>
                 <div class="form-group">
                     <img src="captcha/backgrounds/45-degree-fabric.png" id="captcha"/>
-                    
+
                     <a href="javascript:captcha();">
                         <img src="captcha/icon-reload.png" width="35" height="35" />
                     </a>
@@ -111,7 +112,7 @@ session_start();
 
             <!-- END REGISTRATION FORM -->
         </div>
-        <div class="copyright"> Copyright © 2017 NAGIEOS All rights reserved. </div>
+        <div class="copyright"> Copyright © 2017 HORGARAGE All rights reserved. </div>
         <!--[if lt IE 9]>
 <script src="../assets/global/plugins/respond.min.js"></script>
 <script src="../assets/global/plugins/excanvas.min.js"></script> 

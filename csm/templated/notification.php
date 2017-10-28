@@ -48,9 +48,9 @@
         currentTime();
 
 
-        var sec = 3;
-        notification();
-        setInterval(notification, 1000 * sec);
+//        var sec = 3;
+//        notification();
+//        setInterval(notification, 1000 * sec);
     });
     function reloadTime() {
         location.reload();
