@@ -89,7 +89,7 @@ session_start();
                         <input type="checkbox" name="remember" value="1" />Remember
                         <span></span>
                     </label>
-                    <!--<a href="javascript:;" id="forget-password" class="forget-password">Forgot Password?</a>-->
+                    <a href="javascript:;" id="forget-password" class="forget-password">Forgot Password?</a>
                 </div>
             </form>
 

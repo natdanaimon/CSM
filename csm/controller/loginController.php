@@ -51,13 +51,13 @@ class loginController {
                     $util->CopyTemplatedMailForgot("../email/Email_Forgot.html", "../email/Email_Forgot_Temp.html", $_data[$key]['s_firstname'], $_data[$key]['s_lastname'], $_data[$key]['s_user'], $_data[$key]['s_pass']);
                     $body = $mail->getFile('../email/Email_Forgot_Temp.html');
 
-                    $mail->Host = "cpanel03wh.bkk1.cloud.z.com";
-                    $mail->Hostname = "nagieos.com";
-                    $mail->Port = 587;
+                    $mail->Host = "cpanel06wh.bkk1.cloud.z.com";
+                    $mail->Hostname = "horgarage.com";
+                    $mail->Port = 465;
                     $mail->CharSet = 'utf-8';
-                    $mail->From = "noreply@nagieos.com";
-                    $mail->FromName = "NAGIEOS";
-                    $mail->Subject = "NAGIEOS : FORGOT PASSWORD";
+                    $mail->From = "noreply@horgarage.com";
+                    $mail->FromName = "HORGARAGE";
+                    $mail->Subject = "HORGARAGE : FORGOT PASSWORD";
                     $mail->MsgHTML($body);
                     $mail->AddAddress($_data[$key]['s_email']);
                     $mailcommit = $mail->Send();
@@ -82,13 +82,6 @@ class loginController {
         $_SESSION["selected_lan_pic"] = "th.png";
         $_SESSION["selected_lan_name"] = "TH";
 
-//        $util->setPathXML("../language/language_common.xml");
-//        $util->LanguageConfig("en");
-//        $util->setPathXML("../language/language_page.xml");
-//        $util->LanguageConfig("en");
-//        $_SESSION["lan"] = "en";
-//        $_SESSION["selected_lan_pic"] = "us.png";
-//        $_SESSION["selected_lan_name"] = "US";
 
         $flgUser = $util->isEmptyReg($info[username]);
 
