@@ -39,11 +39,11 @@ class partnerController {
         include '../../common/Utility.php';
         include '../../common/Logs.php';
         include '../../common/upload.php';
-        include '../../service/setting/compPartnerService.php';
+        include '../../service/setting/partnerService.php';
     }
 
     public function dataTable() {
-        $service = new compPartnerService();
+        $service = new partnerService();
         $_dataTable = $service->dataTable();
         if ($_dataTable != NULL) {
             return json_encode($_dataTable);
@@ -55,7 +55,7 @@ class partnerController {
     public function delete($seq) {
         $db = new ConnectDB();
         $db->conn();
-        $service = new compPartnerService();
+        $service = new partnerService();
         if ($service->delete($db, $seq)) {
             $db->commit();
             echo $_SESSION['cd_0000'];
@@ -72,7 +72,7 @@ class partnerController {
             $util = new Utility();
             $db = new ConnectDB();
             $db->conn();
-            $service = new compPartnerService();
+            $service = new partnerService();
             $query = $util->arr2strQuery($info[data], "I");
             if ($service->deleteAll($db, $query)) {
                 $db->commit();
@@ -85,7 +85,7 @@ class partnerController {
     }
 
     public function getInfo($seq) {
-        $service = new compPartnerService();
+        $service = new partnerService();
         $_dataTable = $service->getInfo($seq);
         if ($_dataTable != NULL) {
             return json_encode($_dataTable);
@@ -98,7 +98,7 @@ class partnerController {
         if ($this->isValid($info)) {
             $db = new ConnectDB();
             $db->conn();
-            $service = new compPartnerService();
+            $service = new partnerService();
             if ($service->edit($db, $info)) {
                 $db->commit();
                 echo $_SESSION['cd_0000'];
@@ -113,7 +113,7 @@ class partnerController {
         if ($this->isValid($info)) {
             $db = new ConnectDB();
             $db->conn();
-            $service = new compPartnerService();
+            $service = new partnerService();
             if ($service->add($db, $info)) {
                 $db->commit();
                 echo $_SESSION['cd_0000'];
