@@ -266,7 +266,9 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
         <script>
             $(document).ready(function () {
                 getDDLStatus();
-                unloading();
+                if (keyEdit == "") {
+                    unloading();
+                }
             });
         </script>
 

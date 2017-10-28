@@ -842,6 +842,21 @@
          <th>บริษัทคู่ค้า</th>
          <en>Partner Company</en>
     </detail>
+	<detail>
+        <variable>tb_co_itemcode</variable>
+         <th>รหัสสินค้า</th>
+         <en>Item Code</en>
+    </detail>
+	<detail>
+        <variable>tb_co_itemname</variable>
+         <th>ชื่อสินค้า</th>
+         <en>Item Name</en>
+    </detail>
+	<detail>
+        <variable>tb_co_insurance_name</variable>
+         <th>ชื่อ</th>
+         <en>Item Name</en>
+    </detail>
     <!--  table  --> 
         
     <!--  Title Header  --> 
@@ -950,6 +965,16 @@
         <th>จัดการข้อมูลบริษัทคู่ค้า</th>
         <en>MANAGE PARTNER COMPANY</en>
     </detail>
+	  <detail>
+        <variable>tt_mg_item</variable>
+        <th>จัดการข้อมูลสินค้า</th>
+        <en>MANAGE ITEM</en>
+    </detail>
+	 <detail>
+        <variable>tt_mg_comp_insurance</variable>
+        <th>จัดการข้อมูลบริษัทประกันภัย</th>
+        <en>MANAGE INSURANCE COMPANY</en>
+    </detail>
     <!--  Title Header  --> 
         
         
@@ -1019,7 +1044,16 @@
         <th>cd_2009,ไม่พบ E-Mail นี้ในระบบ</th>
         <en>cd_2009,No Email address in System.</en> 
     </detail>
-    
+    <detail>
+        <variable>cd_2010</variable>
+        <th>cd_2010,รหัสสินค้านี้มีอยู่แล้วในระบบ</th>
+        <en>cd_2010,Item Code already exists in the system.</en> 
+    </detail>
+	
+	
+	
+	
+	
     <detail>
         <variable>cd_2099</variable>
         <th>2099,กรุณาระบุข้อมูล field ด้วยค่ะ</th>
@@ -1214,69 +1248,7 @@
         <en>4004,Captcha Invalid.</en> 
     </detail>
 	
-    <detail>
-        <variable>con_0000</variable>
-        <th>CON0000,ข้อความของคุณถูกส่งไปเรียบร้อย เราจะตอบคุณโดยเร็วที่สุดเท่าที่เป็นไปได้ ขอบคุณค่ะ</th>
-        <en>CON0000,Thank you. Your message has been successfully sent. We will reply you as soon as possible.</en> 
-    </detail>
-    <detail>
-        <variable>con_3001</variable>
-        <th>CON3001,คุณทำรายการไม่สำเร็จ กรุณารองทำใหม่อีกครั้งค่ะ</th>
-        <en>CON3001,Transaction not succeed Please make a new bargain again.</en> 
-    </detail>
     
-    <detail>
-        <variable>con_3002</variable>
-        <th>CON3002,กรุณาระบุข้อมูล field ด้วยค่ะ</th>
-        <en>CON3002,Please write your field required.</en> 
-    </detail>
-    <detail>
-        <variable>con_3003</variable>
-        <th>CON3003,กรุณาระบุข้อมูล E-Mail ให้ถูกต้องค่ะ</th>
-        <en>CON3003,Please write a valid email address.</en> 
-    </detail>
-    <detail>
-        <variable>con_3004</variable>
-        <th>CON3004,กรุณาระบุข้อมูล field ให้ถูกต้อง โดยห้ามใช้อักขระพิเศษด้วยค่ะ</th>
-        <en>CON3004,Please write your field by prohibiting the use of special characters.</en> 
-    </detail>
-    
-    <detail>
-        <variable>newsletter_3102</variable>
-        <th>NEWS3102,กรุณาระบุข้อมูล field ด้วยค่ะ</th>
-        <en>NEWS3102,Please write your field required.</en> 
-    </detail>
-    <detail>
-        <variable>newsletter_3103</variable>
-        <th>NEWS3103,กรุณาระบุข้อมูล E-Mail ให้ถูกต้องค่ะ</th>
-        <en>NEWS3103,Please write a valid email address.</en> 
-    </detail>
-    <detail>
-        <variable>newsletter_3105</variable>
-        <th>NEWS3105,กรุณาระบุข้อมูล E-Mail  และ  E-Mail ์ยืนยันให้เหมือนกันค่ะ</th>
-        <en>NEWS3105,Email address not match email confirm.</en> 
-    </detail>
-    <detail>
-        <variable>newsletter_3104</variable>
-        <th>NEWS3104,กรุณาระบุข้อมูล field ให้ถูกต้อง โดยห้ามใช้อักขระพิเศษด้วยค่ะ</th>
-        <en>NEWS3104,Please write your field by prohibiting the use of special characters.</en> 
-    </detail>
-    <detail>
-        <variable>news_3106</variable>
-        <th>NEWS3106,คุณได้เคยทำการสมัครรับข้อมูลข่าวสารจากทางเราแล้วค่ะ หากต้องการเปลี่ยนหมวดหมู่รับข่าวสารกรุณาติดต่อเจ้าหน้าที่ค่ะ</th>
-        <en>NEWS3106,You've had your subscription to our newsletter here. To change the category for news, please contact me.</en> 
-    </detail>
-    
-    <detail>
-        <variable>news_0000</variable>
-        <th>NEWS0000,ข้อมูลของคุณถูกส่งไปเป็นที่เรียบร้อย ขอขอบคุณที่ให้ความสนใจในบริการของเรา ขอบคุณค่ะ</th>
-        <en>NEWS0000,Your information has been successfully sent. Thank you for your interest in our service.</en> 
-    </detail>
-    <detail>
-        <variable>news_3101</variable>
-        <th>NEWS3101,คุณทำรายการไม่สำเร็จ กรุณารองทำใหม่อีกครั้งค่ะ</th>
-        <en>NEWS3101,Transaction not succeed Please make a new bargain again.</en> 
-    </detail>
     
     <detail>
         <variable>cd_4101</variable>

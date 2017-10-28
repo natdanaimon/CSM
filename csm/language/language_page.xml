@@ -98,12 +98,41 @@
      <!--  comp partner --> 
 	 <detail>
         <variable>lb_setPart_th</variable>
-        <th>บริษัทคู่ค้า</th>
+        <th>คู่ค้า</th>
         <en>Partner Company</en>
     </detail>  
-	 <!--  comp partner -->        
-         
-        
+	 <!--  comp partner -->      
+	 
+     <!--  Item --> 
+	 <detail>
+        <variable>lb_setItem_code</variable>
+        <th>รหัสสินค้า</th>
+        <en>Item Code</en>
+    </detail>  
+	 <detail>
+        <variable>lb_setItem_th</variable>
+        <th>ชื่อสินค้า</th>
+        <en>Item Name</en>
+    </detail>  
+	 <detail>
+        <variable>lb_setItem_image</variable>
+        <th>รูปภาพสินค้า</th>
+        <en>Item Image</en>
+    </detail>  
+	 <!--  Item -->   
+     
+     <!--  comp Insurance --> 
+	 <detail>
+        <variable>lb_setInsurance_th</variable>
+        <th>ชื่อบริษัทประกันภัย</th>
+        <en>Insurance Company</en>
+    </detail>  
+	 <detail>
+        <variable>lb_setInsurance_image</variable>
+        <th>รูปภาพบริษัทประกันภัย</th>
+        <en>Insurance Image</en>
+    </detail>  
+	 <!--  comp Insurance -->            
       
     
     
