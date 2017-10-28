@@ -11,18 +11,18 @@
     <!--  Title -->
     <detail>
         <variable>title</variable>
-        <th>BET SYSTEM MANAGEMENT</th>
-        <en>BET SYSTEM MANAGEMENT</en>
+        <th>CSM</th>
+        <en>CSM</en>
     </detail>
     <detail>
         <variable>title_icon</variable>
-        <th>images/favicon.ico</th>
-        <en>images/favicon.ico</en>
+        <th>favicon.ico</th>
+        <en>favicon.ico</en>
     </detail>
     <detail>
         <variable>title_content</variable>
-        <th>bet,expwebdesign,bet system,BET SYSTEM</th>
-        <en>bet,expwebdesign,bet system,BET SYSTEM</en>
+        <th>CSM , Car System Management</th>
+        <en>CSM , Car System Management</en>
     </detail>
     
    
@@ -31,22 +31,6 @@
     
     
     <!--  Notification -->
-    <detail>
-        <variable>noti_reg</variable>
-        <th>ลูกค้าสมัครสมาชิกใหม่</th>
-        <en>New customer registered.</en>
-    </detail>	
-    <detail>
-        <variable>noti_dp</variable>
-        <th>ลูกค้าแจ้งฝากเงิน</th>
-        <en>New customer Deposit.</en>
-    </detail>
-    <detail>
-        <variable>noti_wd</variable>
-        <th>ลูกค้าแจ้งถอนเงิน</th>
-        <en>New customer Withdraw.</en>
-    </detail>
-    
     <detail>
         <variable>ago_day</variable>
         <th>วัน</th>
@@ -238,12 +222,7 @@
         <th>ยอดจ่าย</th>
         <en>Pay</en>
     </detail>
-    <detail>
-        <variable>turnover</variable>
-        <th>TurnOver (ยอดได้-เสีย)</th>
-        <en>TurnOver</en>
-    </detail>
-    
+
     <detail>
         <variable>in</variable>
         <th>ในวันที่</th>
@@ -314,53 +293,6 @@
         <th>แฮชแท็ก</th>
         <en>Hashtag</en>
     </detail>	
-    <detail>
-        <variable>lb_vip_today_tb</variable>
-        <th>ข้อมูลสรุปยอดเงินประจำเดือน </th>
-        <en>Monthly Balance Summary </en>
-    </detail>
-    <detail>
-        <variable>lb_vip_remark_turnover</variable>
-        <th>TurnOver ไม่ถึง 30,000 บาท </th>
-        <en>TurnOver less than 30,000 baht. </en>
-    </detail>	
-    <detail>
-        <variable>lb_report_today_rg_sum</variable>
-        <th>จำนวนการสมัคสมาชิกทั้งหมด </th>
-        <en>Summary Register </en>
-    </detail>	
-    <detail>
-        <variable>lb_report_today_dp_sum</variable>
-        <th>จำนวนการแจ้งฝากเงินทั้งหมด </th>
-        <en>Summary Deposit </en>
-    </detail>	
-    <detail>
-        <variable>lb_report_today_wd_sum</variable>
-        <th>จำนวนการแจ้งถอนเงินทั้งหมด </th>
-        <en>Summary Withdraw </en>
-    </detail>	
-        
-    <detail>
-        <variable>lb_image_profile</variable>
-        <th>รูปภาพโปรไฟล์</th>
-        <en>Image Profile</en>
-    </detail>
-    <detail>
-        <variable>lb_login_system</variable>
-        <th>การเข้าใช้งานรบบ</th>
-        <en>Login System</en>
-    </detail>
-    <detail>
-        <variable>lb_remark_today</variable>
-        <th>หมายเหตุ : จำนวนการแจ้งฝากเงินจะนับในส่วนของการฝากแรกเข้าด้วย ซึ่งรายการฝากแรกเข้านั้นจะไม่แสดงในเมนู แจ้งฝาก </th>
-        <en>Note: The amount deposited with the bank is not included in the certificate.</en>
-    </detail>
-    <detail>
-        <variable>lb_vip_remark_today</variable>
-        <th>หมายเหตุ : (ยอดจ่าย หรือ Pay ) คือยอด TurnOver รวม Level 1-2 แล้วคิดเป็น % ออกมาแล้ว </th>
-        <en>Note: Pay is TurnOver Total Level 1-2, then% is out.</en>
-    </detail>
-    
     <detail>
         <variable>insert</variable>
         <th>เพิ่มข้อมูล</th>
@@ -652,178 +584,66 @@
         <th>หน้าหลัก</th>
         <en>Dashboard</en>
     </detail>
-    <detail>
-        <variable>nagieos_bet</variable>
-        <th>NAGIEOS BET</th>
-        <en>NAGIEOS BET</en>
-    </detail>
-    <detail>
-        <variable>app_nagieos_bet</variable>
-        <th>ระบบพนักงาน</th>
-        <en>System Staff</en>
-    </detail>
-    
-    <detail>
-        <variable>home</variable>
-        <th>หน้าหลัก</th>
-        <en>Dashboard</en>
-    </detail>
-    <detail>
-        <variable>deposit</variable>
-        <th>แจ้งฝาก</th>
-        <en>Deposit</en>
-    </detail>
-    <detail>
-        <variable>withdraw</variable>
-        <th>แจ้งถอน</th>
-        <en>Withdraw</en>
-    </detail>
-    <detail>
-        <variable>register</variable>
-        <th>สมัครสมาชิก</th>
-        <en>Register</en>
-    </detail>
-    <detail>
-        <variable>register_adm</variable>
-        <th>สร้างบัญชีพนักงาน</th>
-        <en>Create Staff</en>
-    </detail>
-    <detail>
-        <variable>bank</variable>
-        <th>บัญชีธนาคาร</th>
-        <en>Bank</en>
-    </detail>
-    <detail>
-        <variable>website</variable>
-        <th>เว็บไซต์</th>
-        <en>Website</en>
-    </detail>
-    <detail>
-        <variable>find_bank_auto</variable>
-        <th>กดเพื่อดึงข้อมูลบัญชีธนาคารอัตโนมัติ</th>
-        <en>Click for Bank auto</en>
-    </detail>
-    
-    <detail>
-        <variable>report</variable>
-        <th>ข้อมูลแจ้ง ฝาก-ถอน</th>
-        <en>Info Deposit-Withdraw</en>
-    </detail>
-    <detail>
-        <variable>report_user</variable>
-        <th>ข้อมูลแจ้ง ฝาก-ถอน ตามผู้ใช้งาน</th>
-        <en>Info Deposit-Withdraw User</en>
-    </detail>
-    <detail>
-        <variable>report_log</variable>
-        <th>ประวัติข้อมูล</th>
-        <en>History</en>
-    </detail>
-    <detail>
-        <variable>report_today</variable>
-        <th>รายงานสรุปภายในวัน</th>
-        <en>Report Today</en>
-    </detail>
-    <detail>
-        <variable>promotion</variable>
-        <th>โปรโมชัน</th>
-        <en>Promotion</en>
-    </detail>
-    <detail>
-        <variable>promotion_rg</variable>
-        <th>โปรโมชันสมัครสมาชิก</th>
-        <en>Promotion Register</en>
-    </detail>
-    <detail>
-        <variable>promotion_dp</variable>
-        <th>โปรโมชัน</th>
-        <en>Promotion</en>
-    </detail>
-    <detail>
-        <variable>nagieos_post</variable>
-        <th>NAGIEOS POST</th>
-        <en>NAGIEOS POST</en>
-    </detail>
-    <detail>
-        <variable>app_nagieos_post</variable>
-        <th>ระบบผู้ดูแล</th>
-        <en>System Admin</en>
-    </detail>
-    <detail>
-        <variable>picture</variable>
-        <th>รูปภาพ</th>
-        <en>Picture</en>
-    </detail>
-    <detail>
-        <variable>video</variable>
-        <th>วิดีโอ</th>
-        <en>Video</en>
-    </detail>
-    <detail>
-        <variable>news</variable>
-        <th>ข่าว</th>
-        <en>News</en>
-    </detail>
-    <detail>
-        <variable>email</variable>
-        <th> E-Mail </th>
-        <en>Email</en>
-    </detail>
-    <detail>
-        <variable>live_youtube</variable>
-        <th>ไลฟ์ยูทูป</th>
-        <en>Live Youtube</en>
-    </detail>
-    <detail>
-        <variable>popup_promotion</variable>
-        <th>โปรโมชัน แจ้งเตือน</th>
-        <en>Promotion Alerts</en>
-    </detail>
-    <detail>
-        <variable>nagieos_ui</variable>
-        <th>NAGIEOS UI</th>
-        <en>NAGIEOS UI</en>
-    </detail>
-    <detail>
+	
+	 <detail>
         <variable>app_nagieos_ui</variable>
         <th>ปรับแต่งหน้าจอ</th>
         <en>APP NAGIEOS UI</en>
     </detail>
     
-    <detail>
-        <variable>home</variable>
-        <th>หน้าหลัก</th>
-        <en>Dashboard</en>
-    </detail>
+
     <detail>
         <variable>slide</variable>
         <th>สไลด์ - ภาพหน้าปก</th>
         <en>Slide - CoverArt</en>
     </detail>
-    <detail>
-        <variable>gallery</variable>
-        <th>แกลลอรี่</th>
-        <en>Gallery</en>
+	
+	
+	<detail>
+        <variable>setting</variable>
+        <th>ตั้งค่า</th>
+        <en>Setting</en>
     </detail>
-    
-    <detail>
-        <variable>vip</variable>
-        <th>เครือข่ายผู้ใช้งาน</th>
-        <en>User network</en>
+	<detail>
+        <variable>vat</variable>
+        <th>ภาษี</th>
+        <en>Vat</en>
+    </detail>
+	<detail>
+        <variable>autoassessment</variable>
+        <th>ประเมินวันอัตโนมัติ</th>
+        <en>Auto Assessment</en>
+    </detail>
+   <detail>
+        <variable>level_dmg</variable>
+        <th>ระดับความเสียหาย</th>
+        <en>Level Damage</en>
+    </detail>
+	<detail>
+        <variable>daily_record</variable>
+        <th>รายการบันทึกประจำวัน</th>
+        <en>Daily record</en>
     </detail>
     <detail>
-        <variable>vip_pass</variable>
-        <th>รหัสผ่านเครือข่ายผู้ใช้งาน</th>
-        <en>Password User network</en>
+        <variable>item</variable>
+        <th>สินค้า</th>
+        <en>Item</en>
     </detail>
     <detail>
-        <variable>vip_today</variable>
-        <th>สรุปยอด</th>
-        <en>Result</en>
+        <variable>comp_insurance</variable>
+        <th>บริษัทประกันภัย</th>
+        <en>Insurance Company</en>
     </detail>
-    
-    
-    
+    <detail>
+        <variable>comp_partner</variable>
+        <th>บริษัทคู่ค้า</th>
+        <en>Partner Company</en>
+    </detail>
+	<detail>
+        <variable>department</variable>
+        <th>แผนกงาน</th>
+        <en>Department</en>
+    </detail>
     <!--  Menu -->
     
     
@@ -987,21 +807,44 @@
         <th>รหัสถอนเงิน</th>
         <en>Security Code</en>
     </detail>
-    
-    
+    <detail>
+        <variable>tb_co_vat</variable>
+        <th>หน่วยภาษีที่คำนวน</th>
+        <en>Calculated tax unit</en>
+    </detail>
+    <detail>
+        <variable>tb_co_dupdate</variable>
+        <th>วันที่แก้ไขล่าสุด</th>
+        <en>Update Date</en>
+    </detail>
+	<detail>
+        <variable>tb_co_dcreate</variable>
+        <th>วันที่สร้าง</th>
+        <en>Create Date</en>
+    </detail>
+	<detail>
+        <variable>tb_co_dept_th</variable>
+        <th>แผนกงาน</th>
+        <en>Department (TH)</en>
+    </detail>
+	<detail>
+        <variable>tb_co_dept_en</variable>
+         <th>แผนกงาน (อังกฤษ)</th>
+        <en>Department (EN)</en>
+    </detail>
+	<detail>
+        <variable>tb_co_dmg</variable>
+         <th>ระดับความเสียหาย</th>
+         <en>Level Damage</en>
+    </detail>
+	<detail>
+        <variable>tb_co_partner</variable>
+         <th>บริษัทคู่ค้า</th>
+         <en>Partner Company</en>
+    </detail>
     <!--  table  --> 
         
     <!--  Title Header  --> 
-    <detail>
-        <variable>tt_register</variable>
-        <th>จัดการข้อมูลการสมัครสมาชิก</th>
-        <en>MANAGED REGISTER</en>
-    </detail>
-    <detail>
-        <variable>tt_register_adm</variable>
-        <th>จัดการข้อมูลการสมัครสมาชิกพนักงาน</th>
-        <en>MANAGED REGISTER ADMIN</en>
-    </detail>
     <detail>
         <variable>tt_detail</variable>
         <th>รายละเอียด</th>
@@ -1013,79 +856,10 @@
         <en>USERNAME</en>
     </detail>
     <detail>
-        <variable>tt_user_deposit</variable>
-        <th>ข้อมูลฝากแรกเข้า</th>
-        <en>Info Deposit First</en>
-    </detail>
-    
-    <detail>
-        <variable>tt_mg_dp</variable>
-        <th>จัดการข้อมูลแจ้งฝากเงิน</th>
-        <en>MANAGED DEPOSIT</en>
-    </detail>
-    <detail>
-        <variable>tt_mg_wd</variable>
-        <th>จัดการข้อมูลแจ้งถอนเงิน</th>
-        <en>MANAGED WITHDRAW</en>
-    </detail>
-    <detail>
-        <variable>tt_mg_promotion_rg</variable>
-        <th>จัดการข้อมูลโปรโมชันสมัครสมาชิก</th>
-        <en>MANAGED PROMOTION REGISTER</en>
-    </detail>
-    <detail>
-        <variable>tt_mg_promotion_dp</variable>
-        <th>จัดการข้อมูลโปรโมชัน</th>
-        <en>MANAGED PROMOTION DEPOSIT</en>
-    </detail>
-    <detail>
-        <variable>tt_mg_bank</variable>
-        <th>จัดการข้อมูลบัญชีธนาคาร</th>
-        <en>MANAGED BANK</en>
-    </detail>
-    <detail>
-        <variable>tt_mg_game</variable>
-        <th>จัดการข้อมูลเกมเดิมพัน</th>
-        <en>MANAGED GAME</en>
-    </detail>
-    <detail>
-        <variable>tt_mg_website</variable>
-        <th>จัดการข้อมูลเว็บไซต์</th>
-        <en>MANAGED WEBSITE</en>
-    </detail>
-    <detail>
-        <variable>tt_mg_report</variable>
-        <th>ค้นหาข้อมูล แจ้งฝาก - แจ้งถอน</th>
-        <en>SEARCH INFOMATION DEPOSIT - WITHDRAW</en>
-    </detail>
-    <detail>
-        <variable>tt_mg_report_user</variable>
-        <th>ค้นหาข้อมูล แจ้งฝาก - แจ้งถอน ตามผู้ใช้งาน</th>
-        <en>SEARCH INFOMATION DEPOSIT - WITHDRAW BY USER</en>
-    </detail>
-    <detail>
         <variable>tt_mg_report_log</variable>
         <th>ค้นหา ประวัติข้อมูล</th>
         <en>SEARCH INFOMATION HISTORY</en>
     </detail>
-    
-    <detail>
-        <variable>tt_mg_report_today</variable>
-        <th>ค้นหาข้อมูล รายงานสรุปภายในวัน</th>
-        <en>SEARCH INFOMATION REPORT TODAY</en>
-    </detail>
-    
-    <detail>
-        <variable>tt_chart_one</variable>
-        <th>สถิติการ แจ้งฝาก - แจ้งถอน เงินของเว็บไซต์ แบบกราฟ</th>
-        <en>Statistical indicators deposit - withdrawal of the website on graph.</en>
-    </detail>
-    <detail>
-        <variable>tt_chart_two</variable>
-        <th>สถิติการ แจ้งฝาก - แจ้งถอน เงินของเว็บไซต์ แบบแผนภูมิแท่ง</th>
-        <en>Statistical indicators deposit - withdrawal of the website on barchart.</en>
-    </detail>
-    
     <detail>
         <variable>tt_mg_slide</variable>
         <th>จัดการข้อมูลสไลด์</th>
@@ -1156,9 +930,26 @@
         <th>ประวัติข้อมูล</th>
         <en>HISTORY</en>
     </detail>
-
-    
-    
+    <detail>
+        <variable>tt_mg_vat</variable>
+        <th>จัดการข้อมูลภาษี</th>
+        <en>MANAGE VAT</en>
+    </detail>
+    <detail>
+        <variable>tt_mg_dept</variable>
+        <th>จัดการข้อมูลแผนกงาน</th>
+        <en>MANAGE DEPARTMENT</en>
+    </detail>
+	  <detail>
+        <variable>tt_mg_dmg</variable>
+        <th>จัดการข้อมูลระดับความเสียหาย</th>
+        <en>MANAGE DAMAGE</en>
+    </detail>
+	  <detail>
+        <variable>tt_mg_comp_partner</variable>
+        <th>จัดการข้อมูลบริษัทคู่ค้า</th>
+        <en>MANAGE PARTNER COMPANY</en>
+    </detail>
     <!--  Title Header  --> 
         
         

@@ -139,15 +139,15 @@ class profileController {
             $return2099 = eregi_replace("field", $_SESSION['lb_pf_lastname'], $return2099);
             echo $return2099;
         } else if ($util->isEmpty($info[s_email])) {
-            $return2099 = eregi_replace("field", $_SESSION['lb_cs_email'], $return2099);
+            $return2099 = eregi_replace("field", $_SESSION['lb_pf_email'], $return2099);
             echo $return2099;
         } else if (!filter_var($info[s_email], FILTER_VALIDATE_EMAIL)) {
             echo $_SESSION['cd_2008'];
         } else if ($util->isEmpty($info[s_phone])) {
-            $return2099 = eregi_replace("field", $_SESSION['lb_cs_phone'], $return2099);
+            $return2099 = eregi_replace("field", $_SESSION['lb_pf_phone'], $return2099);
             echo $return2099;
         } else if (!$util->isPhoneNumber($info[s_phone])) {
-            $return2097 = eregi_replace("field", $_SESSION['lb_cs_phone'], $return2097);
+            $return2097 = eregi_replace("field", $_SESSION['lb_pf_phone'], $return2097);
             echo $return2097;
         } else {
             $intReturn = TRUE;

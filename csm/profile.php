@@ -153,11 +153,11 @@ ACTIVEPAGES(0);
                                                                 </div>
                                                                 <div class="form-group form-md-line-input has-success ">
                                                                     <input type="text" class="form-control bold" id="s_email" name="s_email" >
-                                                                    <label for="form_control_1"><?= $_SESSION[lb_cs_email] ?> <span class="required">*</span></label>          
+                                                                    <label for="form_control_1"><?= $_SESSION[lb_pf_email] ?> <span class="required">*</span></label>          
                                                                 </div>
                                                                 <div class="form-group form-md-line-input has-success ">
                                                                     <input type="text" class="form-control bold" id="s_phone" name="s_phone" >
-                                                                    <label for="form_control_1"><?= $_SESSION[lb_cs_phone] ?> <span class="required">*</span></label>          
+                                                                    <label for="form_control_1"><?= $_SESSION[lb_pf_phone] ?> <span class="required">*</span></label>          
                                                                 </div>
                                                             </form>
                                                             <div class="margiv-top-10">

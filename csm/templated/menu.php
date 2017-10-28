@@ -37,14 +37,14 @@
                     </a>
                 </li>
 
-                                                    <!--            <li class="nav-item  <?= $_SESSION["cs_nav_sub_promotion_rg"] ?>">
-                                                                    <a href="cs_promotion_rg.php" class="nav-link ">
+                                                                        <!--            <li class="nav-item  <?= $_SESSION["cs_nav_sub_promotion_rg"] ?>">
+                                                                                        <a href="cs_promotion_rg.php" class="nav-link ">
 
-                                                                        <span class="title"><?= $_SESSION[promotion_rg] ?></span>
-                                                                        <span class="selected"></span>
-                                                                        <span class="badge badge-success" ></span>
-                                                                    </a>
-                                                                </li>-->
+                                                                                            <span class="title"><?= $_SESSION[promotion_rg] ?></span>
+                                                                                            <span class="selected"></span>
+                                                                                            <span class="badge badge-success" ></span>
+                                                                                        </a>
+                                                                                    </li>-->
                 <li class="nav-item  <?= $_SESSION["cs_nav_sub_promotion_dp"] ?>">
                     <a href="cs_promotion.php" class="nav-link ">
 
@@ -85,6 +85,98 @@
 
             </ul>
         </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <li class="nav-item <?= $_SESSION["nav_main_setting"] ?>">
+            <a href="javascript:;" class="nav-link nav-toggle">
+                <i class="fa fa-cog"></i>
+                <span class="title"><?= $_SESSION[setting] ?></span>
+                <span class="selected"></span>
+            </a>
+            <ul class="sub-menu">
+                <li class="nav-item  <?= $_SESSION["nav_sub_set_vat"] ?>">
+                    <a href="set_vat.php" class="nav-link ">
+
+                        <span class="title"><?= $_SESSION[vat] ?></span>
+                        <span class="selected"></span>
+                        <span class="badge badge-success" ></span>
+                    </a>
+                </li>
+                <li class="nav-item  <?= $_SESSION["nav_sub_set_autoassessment"] ?>">
+                    <a href="set_auto.php" class="nav-link ">
+
+                        <span class="title"><?= $_SESSION[autoassessment] ?></span>
+                        <span class="selected"></span>
+                        <span class="badge badge-success" ></span>
+                    </a>
+                </li>
+                <li class="nav-item  <?= $_SESSION["nav_sub_set_dmg"] ?>">
+                    <a href="set_dmg.php" class="nav-link ">
+
+                        <span class="title"><?= $_SESSION[level_dmg] ?></span>
+                        <span class="selected"></span>
+                    </a>
+                </li>
+                <li class="nav-item  <?= $_SESSION["nav_sub_set_daily"] ?>">
+                    <a href="set_daily.php" class="nav-link ">
+
+                        <span class="title"><?= $_SESSION[daily_record] ?></span>
+                        <span class="selected"></span>
+                    </a>
+                </li> 
+                <li class="nav-item  <?= $_SESSION["nav_sub_set_item"] ?>">
+                    <a href="set_item.php" class="nav-link ">
+
+                        <span class="title"><?= $_SESSION[item] ?></span>
+                        <span class="selected"></span>
+                    </a>
+                </li>
+                <li class="nav-item  <?= $_SESSION["nav_sub_set_comp_insurance"] ?>">
+                    <a href="set_compInsurance.php" class="nav-link ">
+
+                        <span class="title"><?= $_SESSION[comp_insurance] ?></span>
+                        <span class="selected"></span>
+                    </a>
+                </li>
+                <li class="nav-item  <?= $_SESSION["nav_sub_set_comp_partner"] ?>">
+                    <a href="set_compPartner.php" class="nav-link ">
+
+                        <span class="title"><?= $_SESSION[comp_partner] ?></span>
+                        <span class="selected"></span>
+                    </a>
+                </li>
+                <li class="nav-item  <?= $_SESSION["nav_sub_set_department"] ?>">
+                    <a href="set_department.php" class="nav-link ">
+
+                        <span class="title"><?= $_SESSION[department] ?></span>
+                        <span class="selected"></span>
+                    </a>
+                </li>
+
+
+            </ul>
+        </li>
+
+
+
+
 
 
 

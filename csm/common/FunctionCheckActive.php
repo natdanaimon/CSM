@@ -8,6 +8,12 @@ function ACTIVEPAGES($page, $sub) {
     $_SESSION["post_nav_main_dashboard"] = "";
     $_SESSION["ui_nav_main_dashboard"] = "";
 
+    //csm
+    $_SESSION["nav_main_setting"] = "";
+
+
+
+
 
     // sub admin
     $_SESSION["cs_nav_sub_register_adm"] = "";
@@ -18,7 +24,15 @@ function ACTIVEPAGES($page, $sub) {
     $_SESSION["post_nav_sub_game"] = "";
     $_SESSION["cs_nav_sub_website"] = "";
 
-
+    //csm setting
+    $_SESSION["nav_sub_set_vat"] = "";
+    $_SESSION["nav_sub_set_autoassessment"] = "";
+    $_SESSION["nav_sub_set_dmg"] = "";
+    $_SESSION["nav_sub_set_daily"] = "";
+    $_SESSION["nav_sub_set_item"] = "";
+    $_SESSION["nav_sub_set_comp_insurance"] = "";
+    $_SESSION["nav_sub_set_comp_partner"] = "";
+    $_SESSION["nav_sub_set_department"] = "";
 
 
     // sub staff
@@ -46,31 +60,6 @@ function ACTIVEPAGES($page, $sub) {
     $_SESSION["post_nav_sub_picture"] = "";
 
 
-
-
-//    // sub nagieos bet
-//    $_SESSION["cs_nav_sub_dashboard"] = "";
-//    $_SESSION["cs_nav_sub_deposit"] = "";
-//    $_SESSION["cs_nav_sub_withdraw"] = "";
-//    $_SESSION["cs_nav_sub_register"] = "";
-//    $_SESSION["cs_nav_sub_promotion"] = "";
-//    $_SESSION["cs_nav_sub_bank"] = "";
-//    $_SESSION["cs_nav_sub_report"] = "";
-//    $_SESSION["cs_nav_sub_vip"] = "";
-//
-//    // sub nagieos post
-//    $_SESSION["post_nav_sub_dashboard"] = "";
-//    $_SESSION["post_nav_sub_picture"] = "";
-//    $_SESSION["post_nav_sub_video"] = "";
-//    $_SESSION["post_nav_sub_news"] = "";
-//    $_SESSION["post_nav_sub_email"] = "";
-//    $_SESSION["post_nav_sub_youtube"] = "";
-//    $_SESSION["post_nav_sub_popup"] = "";
-//
-//    // sub nagieos ui
-//    $_SESSION["ui_nav_sub_dashboard"] = "";
-//    $_SESSION["ui_nav_sub_slide"] = "";
-//    $_SESSION["ui_nav_sub_gallery"] = "";
 
 
 
@@ -132,7 +121,29 @@ function ACTIVEPAGES($page, $sub) {
         } else if ($sub == 6) {
             $_SESSION["post_nav_sub_picture"] = " active open";
         }
+    } else if ($page == 99) {
+        $_SESSION["nav_main_setting"] = " active open";
+        if ($sub == 1) {
+            $_SESSION["nav_sub_set_vat"] = " active open";
+        } else if ($sub == 2) {
+            $_SESSION["nav_sub_set_autoassessment"] = " active open";
+        } else if ($sub == 3) {
+            $_SESSION["nav_sub_set_dmg"] = " active open";
+        } else if ($sub == 4) {
+            $_SESSION["nav_sub_set_daily"] = " active open";
+        } else if ($sub == 5) {
+            $_SESSION["nav_sub_set_item"] = " active open";
+        } else if ($sub == 6) {
+            $_SESSION["nav_sub_set_comp_insurance"] = " active open";
+        }else if ($sub == 7) {
+            $_SESSION["nav_sub_set_comp_partner"] = " active open";
+        }else if ($sub == 8) {
+            $_SESSION["nav_sub_set_department"] = " active open";
+        }
     }
+    
+    
+    
 }
 
 function ACTIVEPAGES_DEMO($page, $sub) {
