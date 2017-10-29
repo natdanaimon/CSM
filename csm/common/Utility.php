@@ -20,7 +20,7 @@ class Utility {
     protected $_locationRedirectPremissionUser = "index.php";
     protected $_locationRedirectPremissionAdmin = "index.php";
     protected $_limitPaging = 16;
-    protected $_email = "info@expwebdesign.com";
+    protected $_email = "info@horgarage.com";
 
     function getEmail() {
         return $this->_email;
@@ -247,11 +247,11 @@ class Utility {
         $txt = fread($templatedMail, filesize($filemain));
         fclose($templatedMail);
         $txt = eregi_replace("&detail;", $msg, $txt);
-        $txt = eregi_replace("http://localhost/expwebdesign/app/exp/email/", "../email/", $txt);
-        $txt = eregi_replace("http://nagieos.com/Bet/email/", "../email/", $txt);
-        $txt = eregi_replace("https://nagieos.com/Bet/email/", "../email/", $txt);
-        $txt = eregi_replace("http://www.nagieos.com/Bet/email/", "../email/", $txt);
-        $txt = eregi_replace("https://www.nagieos.com/Bet/email/", "../email/", $txt);
+        $txt = eregi_replace("http://localhost/CSM/csm/email/", "../email/", $txt);
+        $txt = eregi_replace("https://www.horgarage.com//csm/email/", "../email/", $txt);
+        $txt = eregi_replace("https://www.horgarage.com/csm/email/", "../email/", $txt);
+        $txt = eregi_replace("https://www.horgarage.com/csm/email/", "../email/", $txt);
+        $txt = eregi_replace("https://www.horgarage.com/csm/email/", "../email/", $txt);
 
         $temp = fopen($filecopy, "w") or die("Unable to open file!");
         fwrite($temp, $txt);
@@ -265,11 +265,11 @@ class Utility {
         $txt = eregi_replace("&to;", $name . " " . $lastname, $txt);
         $txt = eregi_replace("&username;", $user, $txt);
         $txt = eregi_replace("&password;", $password, $txt);
-        $txt = eregi_replace("http://localhost/expwebdesign/app/exp/email/", "../email/", $txt);
-        $txt = eregi_replace("http://nagieos.com/Bet/email/", "../email/", $txt);
-        $txt = eregi_replace("https://nagieos.com/Bet/email/", "../email/", $txt);
-        $txt = eregi_replace("http://www.nagieos.com/Bet/email/", "../email/", $txt);
-        $txt = eregi_replace("https://www.nagieos.com/Bet/email/", "../email/", $txt);
+        $txt = eregi_replace("http://localhost/CSM/csm/email/", "../email/", $txt);
+        $txt = eregi_replace("https://www.horgarage.com//csm/email/", "../email/", $txt);
+        $txt = eregi_replace("https://www.horgarage.com/csm/email/", "../email/", $txt);
+        $txt = eregi_replace("https://www.horgarage.com/csm/email/", "../email/", $txt);
+        $txt = eregi_replace("https://www.horgarage.com/csm/email/", "../email/", $txt);
 
         $temp = fopen($filecopy, "w") or die("Unable to open file!");
         fwrite($temp, $txt);
@@ -398,7 +398,7 @@ class Utility {
 
     function range_month_key($i) {
         $date = date_create(date("Y-m", new DateTimeZone('Asia/Bangkok')), new DateTimeZone('Asia/Bangkok'));
-        return date_format(date_add($date, date_interval_create_from_date_string('-' . $i . ' months')), 'n/'.'1'.'/Y');
+        return date_format(date_add($date, date_interval_create_from_date_string('-' . $i . ' months')), 'n/' . '1' . '/Y');
     }
 
     function range_month_value($i) {

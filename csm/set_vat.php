@@ -108,13 +108,13 @@ ACTIVEPAGES(99, 1);
                                             <thead>
                                                 <tr>
                                                     <th style="padding-left: 0px;width: 20px" class="no-sort">
-                                                        <span class="md-checkbox has-success">
+<!--                                                        <span class="md-checkbox has-success">
                                                             <input type="checkbox" id="checkbox14" name="checkbox14" class="md-check">
                                                             <label for="checkbox14">
                                                                 <span class="inc"></span>
                                                                 <span class="check"></span>
                                                                 <span class="box"></span> </label>
-                                                        </span>
+                                                        </span>-->
                                                     </th>
 
                                                     <th>  <?= $_SESSION[tb_co_vat] ?> </th>
