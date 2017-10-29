@@ -353,6 +353,27 @@
         <th>ข้อมูลที่ยังไม่มี username </th>
         <en>Info not username. </en>
     </detail>
+	
+	<detail>
+        <variable>province</variable>
+        <th>จังหวัด</th>
+        <en>Province</en>
+    </detail>
+	<detail>
+        <variable>amphure</variable>
+        <th>อำเภอ</th>
+        <en>Amphure</en>
+    </detail>
+	<detail>
+        <variable>district</variable>
+        <th>ตำบล</th>
+        <en>District</en>
+    </detail>
+	<detail>
+        <variable>zipcode</variable>
+        <th>รหัสไปรษณีย์</th>
+        <en>Zipcode</en>
+    </detail>
     <!--  Other -->
     
     
@@ -647,7 +668,7 @@
 	
 	<detail>
         <variable>emp_manage</variable>
-        <th>บริหารจัดการพนักงาน</th>
+        <th>บริหารจัดการข้อมูลพนักงาน</th>
         <en>Emp. Management</en>
     </detail>
 	<detail>
@@ -661,8 +682,16 @@
         <en>Employee Info</en>
     </detail>
 	
-	
-	
+	<detail>
+        <variable>cus_mcustomer</variable>
+        <th>บริหารจัดการข้อมูลลูกค้า</th>
+        <en>Cus. Management</en>
+    </detail>
+		<detail>
+        <variable>cus_customer</variable>
+        <th>ข้อมูลลูกค้า</th>
+        <en>Customer</en>
+    </detail>
 	
 	
 	
@@ -1041,6 +1070,11 @@
         <variable>tt_mg_employee</variable>
         <th>จัดการข้อมูลพนักงาน</th>
         <en>MANAGE EMPLOYEE</en>
+    </detail>
+	<detail>
+        <variable>tt_mg_customer</variable>
+        <th>จัดการข้อมูลลูกค้า</th>
+        <en>MANAGE CUSTOMER</en>
     </detail>
     <!--  Title Header  --> 
         

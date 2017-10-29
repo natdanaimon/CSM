@@ -1,7 +1,7 @@
 var FormInputMask = function () {
-    
+
     var handleInputMasks = function () {
-        
+
 
 //        $("#mask_date").inputmask("d/m/y", {
 //            autoUnmask: true
@@ -14,25 +14,31 @@ var FormInputMask = function () {
 //        }); //multi-char placeholder
         $("#s_phone").inputmask("mask", {
             "mask": "(999) 999-9999"
-        }); 
+        });
+        $("#s_phone_1").inputmask("mask", {
+            "mask": "(999) 999-9999"
+        });
+        $("#s_phone_2").inputmask("mask", {
+            "mask": "(999) 999-9999"
+        });
         $("#s_security").inputmask("mask", {
             "mask": "9999"
-        });  
+        });
         $("#s_account_no").inputmask("mask", {
             "mask": "9-999-99999-9"
-        }); 
+        });
         $("#s_bank_no").inputmask("mask", {
             "mask": "9-999-99999-9"
-        }); 
+        });
         $("#s_account_no2").inputmask("mask", {
             "mask": "9-999-99999-9"
-        }); 
+        });
 //         $("#f_amount").inputmask('999,999,999', {
 //             placeholder: " ",
 //            numericInput: true,
 //            clearMaskOnLostFocus: true
 //        });
-        
+
 //        $("#mask_tin").inputmask({
 //            "mask": "99-9999999",
 //            placeholder: "" // remove underscores from the input mask
@@ -77,8 +83,8 @@ var FormInputMask = function () {
 
 }();
 
-if (App.isAngularJsApp() === false) { 
-    jQuery(document).ready(function() {
+if (App.isAngularJsApp() === false) {
+    jQuery(document).ready(function () {
         FormInputMask.init(); // init metronic core componets
     });
 }

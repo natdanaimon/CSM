@@ -37,14 +37,6 @@
                     </a>
                 </li>
 
-                                                                                <!--            <li class="nav-item  <?= $_SESSION["cs_nav_sub_promotion_rg"] ?>">
-                                                                                                <a href="cs_promotion_rg.php" class="nav-link ">
-
-                                                                                                    <span class="title"><?= $_SESSION[promotion_rg] ?></span>
-                                                                                                    <span class="selected"></span>
-                                                                                                    <span class="badge badge-success" ></span>
-                                                                                                </a>
-                                                                                            </li>-->
                 <li class="nav-item  <?= $_SESSION["cs_nav_sub_promotion_dp"] ?>">
                     <a href="cs_promotion.php" class="nav-link ">
 
@@ -95,6 +87,29 @@
 
 
 
+
+
+
+
+        <!--R2 บริหารจัดการข้อมูลลูกค้า-->
+        <li class="nav-item <?= $_SESSION["nav_main_cus"] ?>">
+            <a href="javascript:;" class="nav-link nav-toggle">
+                <i class="fa fa-user"></i>
+                <span class="title">R2. <?= $_SESSION[cus_mcustomer] ?></span>
+                <span class="selected"></span>
+            </a>
+            <ul class="sub-menu">
+                <li class="nav-item  <?= $_SESSION["nav_sub_cus_customer"] ?>">
+                    <a href="cus_customer.php" class="nav-link ">
+
+                        <span class="title"><?= $_SESSION[cus_customer] ?></span>
+                        <span class="selected"></span>
+                        <span class="badge badge-success" ></span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <!--R2 บริหารจัดการข้อมูลลูกค้า-->
 
 
 
@@ -174,7 +189,7 @@
         </li>
         <!--R8 ตั้งค่า-->
 
-        <!--R9 บริหารจัดการพนักงาน-->
+        <!--R9 บริหารจัดการข้อมูลพนักงาน-->
         <li class="nav-item <?= $_SESSION["nav_main_emp"] ?>">
             <a href="javascript:;" class="nav-link nav-toggle">
                 <i class="fa fa-users"></i>
@@ -198,11 +213,11 @@
                     </a>
                 </li>
 
-               
+
 
             </ul>
         </li>
-        <!--R9 บริหารจัดการพนักงาน-->
+        <!--R9 บริหารจัดการข้อมูลพนักงาน-->
 
 
 

@@ -24,6 +24,18 @@ switch ($info[func]) {
     case "ValidSecurity":
         echo $controller->ValidSecurity($info);
         break;
+    case "DDLProvince":
+        echo $controller->DDLProvince($info);
+        break;
+    case "DDLAmphures":
+        echo $controller->DDLAmphures($info);
+        break;
+    case "DDLDistricts":
+        echo $controller->DDLDistricts($info);
+        break;
+    case "DDLZipcode":
+        echo $controller->DDLZipcode($info);
+        break;
 }
 
 class commonController {
@@ -59,6 +71,46 @@ class commonController {
     public function DDLDepartment() {
         $service = new commonService();
         $_dataTable = $service->DDLDepartment();
+        if ($_dataTable != NULL) {
+            return json_encode($_dataTable);
+        } else {
+            return NULL;
+        }
+    }
+
+    public function DDLProvince($info) {
+        $service = new commonService();
+        $_dataTable = $service->DDLProvince($info);
+        if ($_dataTable != NULL) {
+            return json_encode($_dataTable);
+        } else {
+            return NULL;
+        }
+    }
+
+    public function DDLAmphures($info) {
+        $service = new commonService();
+        $_dataTable = $service->DDLAmphures($info);
+        if ($_dataTable != NULL) {
+            return json_encode($_dataTable);
+        } else {
+            return NULL;
+        }
+    }
+
+    public function DDLDistricts($info) {
+        $service = new commonService();
+        $_dataTable = $service->DDLDistricts($info);
+        if ($_dataTable != NULL) {
+            return json_encode($_dataTable);
+        } else {
+            return NULL;
+        }
+    }
+
+    public function DDLZipcode($info) {
+        $service = new commonService();
+        $_dataTable = $service->DDLZipcode($info);
         if ($_dataTable != NULL) {
             return json_encode($_dataTable);
         } else {

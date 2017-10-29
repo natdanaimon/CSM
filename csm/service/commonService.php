@@ -29,4 +29,30 @@ class commonService {
         return $_data;
     }
 
+    function DDLProvince($info) {
+        $db = new ConnectDB();
+        $strSql = "select * from tb_provinces ";
+        $_data = $db->Search_Data_FormatJson($strSql);
+        $db->close_conn();
+        return $_data;
+    }
+    
+    function DDLAmphures($info) {
+        $db = new ConnectDB();
+        $strSql = "select * from tb_amphures where i_province = $info[i_province] order by i_amphure asc ";
+        $_data = $db->Search_Data_FormatJson($strSql);
+        $db->close_conn();
+        return $_data;
+    }
+    
+    function DDLDisAndZip($info) {
+        $db = new ConnectDB();
+        $strSql = "select * from tb_districts where i_amphure =  $info[i_amphure] order by i_district asc";
+        $_data = $db->Search_Data_FormatJson($strSql);
+        $db->close_conn();
+        return $_data;
+    }
+    
+
+    
 }

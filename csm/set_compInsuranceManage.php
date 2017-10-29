@@ -108,7 +108,7 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                                     <div class="portlet light bordered">
                                         <div class="portlet-title">
                                             <div class="caption font-green">
-                                                <i class="icon-user font-green"></i>
+                                                <i class="icon-cog font-green"></i>
                                                 <span class="caption-subject bold uppercase"> <?= $_SESSION[tt_detail] ?></span>
                                             </div>
                                         </div>

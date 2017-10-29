@@ -231,5 +231,45 @@
         <en>Department</en>
     </detail> 
 	 <!--  employee -->
+	 
+	 
+	  <!--  customer --> 
+	  <detail>
+        <variable>lb_setCus_title</variable>
+        <th>คำนำหน้าชื่อ</th>
+        <en>Titlename</en>
+    </detail>
+	 <detail>
+        <variable>lb_setCus_fname</variable>
+        <th>ชื่อ</th>
+        <en>Firstname</en>
+    </detail>
+	<detail>
+        <variable>lb_setCus_lname</variable>
+        <th>นามสกุล</th>
+        <en>Lastname</en>
+    </detail>  	
+	<detail>
+        <variable>lb_setCus_phone1</variable>
+        <th>เบอร์โทรศัพท์</th>
+        <en>Phone 1</en>
+    </detail> 
+	<detail>
+        <variable>lb_setCus_phone2</variable>
+        <th>เบอร์โทรศัพท์สำรอง</th>
+        <en>Phone 2</en>
+    </detail> 
+	<detail>
+        <variable>lb_setCus_email</variable>
+        <th>อีเมล</th>
+        <en>E-Mail</en>
+    </detail> 
+	<detail>
+        <variable>lb_setCus_line</variable>
+        <th>ไลน์ไอดี</th>
+        <en>Line ID</en>
+    </detail> 
+
+	 <!--  customer -->
     
 </language>
