@@ -154,5 +154,51 @@
         <en>Days for automatic date assessment</en>
     </detail>  
 	 <!--  auto --> 
+	 
+	 
+	 <!--  user --> 
+	 <detail>
+        <variable>lb_setUser_fname</variable>
+        <th>ชื่อ</th>
+        <en>Firstname</en>
+    </detail>
+	<detail>
+        <variable>lb_setUser_lname</variable>
+        <th>นามสกุล</th>
+        <en>Lastname</en>
+    </detail>  	
+	<detail>
+        <variable>lb_setUser_phone</variable>
+        <th>เบอร์โทรศัพท์</th>
+        <en>Phone</en>
+    </detail> 
+	<detail>
+        <variable>lb_setUser_email</variable>
+        <th>อีเมล</th>
+        <en>E-Mail</en>
+    </detail> 
+	<detail>
+        <variable>lb_setUser_line</variable>
+        <th>ไลน์ไอดี</th>
+        <en>Line ID</en>
+    </detail> 
+	<detail>
+        <variable>lb_setUser_type</variable>
+        <th>ประเภทผู้ใช้งาน</th>
+        <en>User Type</en>
+    </detail> 
+	<detail>
+        <variable>lb_setUser_username</variable>
+        <th>ชื่อผู้ใช้งาน (Username)</th>
+        <en>Username</en>
+    </detail> 
+	<detail>
+        <variable>lb_setUser_password</variable>
+        <th>รหัสผ่าน (Password)</th>
+        <en>Password</en>
+    </detail> 
+	 <!--  user --> 
+	 
+	 
     
 </language>

@@ -37,14 +37,14 @@
                     </a>
                 </li>
 
-                                                                            <!--            <li class="nav-item  <?= $_SESSION["cs_nav_sub_promotion_rg"] ?>">
-                                                                                            <a href="cs_promotion_rg.php" class="nav-link ">
+                                                                                <!--            <li class="nav-item  <?= $_SESSION["cs_nav_sub_promotion_rg"] ?>">
+                                                                                                <a href="cs_promotion_rg.php" class="nav-link ">
 
-                                                                                                <span class="title"><?= $_SESSION[promotion_rg] ?></span>
-                                                                                                <span class="selected"></span>
-                                                                                                <span class="badge badge-success" ></span>
-                                                                                            </a>
-                                                                                        </li>-->
+                                                                                                    <span class="title"><?= $_SESSION[promotion_rg] ?></span>
+                                                                                                    <span class="selected"></span>
+                                                                                                    <span class="badge badge-success" ></span>
+                                                                                                </a>
+                                                                                            </li>-->
                 <li class="nav-item  <?= $_SESSION["cs_nav_sub_promotion_dp"] ?>">
                     <a href="cs_promotion.php" class="nav-link ">
 
@@ -103,11 +103,11 @@
 
 
 
-
+        <!--R8 ตั้งค่า-->
         <li class="nav-item <?= $_SESSION["nav_main_setting"] ?>">
             <a href="javascript:;" class="nav-link nav-toggle">
                 <i class="fa fa-cog"></i>
-                <span class="title"><?= $_SESSION[setting] ?></span>
+                <span class="title">R8. <?= $_SESSION[setting] ?></span>
                 <span class="selected"></span>
             </a>
             <ul class="sub-menu">
@@ -172,8 +172,37 @@
 
             </ul>
         </li>
+        <!--R8 ตั้งค่า-->
 
+        <!--R9 บริหารจัดการพนักงาน-->
+        <li class="nav-item <?= $_SESSION["nav_main_emp"] ?>">
+            <a href="javascript:;" class="nav-link nav-toggle">
+                <i class="fa fa-users"></i>
+                <span class="title">R9. <?= $_SESSION[emp_manage] ?></span>
+                <span class="selected"></span>
+            </a>
+            <ul class="sub-menu">
+                <li class="nav-item  <?= $_SESSION["nav_sub_emp_user"] ?>">
+                    <a href="emp_user.php" class="nav-link ">
 
+                        <span class="title"><?= $_SESSION[emp_user] ?></span>
+                        <span class="selected"></span>
+                        <span class="badge badge-success" ></span>
+                    </a>
+                </li>
+                <li class="nav-item  <?= $_SESSION["nav_sub_emp_employee"] ?>">
+                    <a href="emp_employee.php" class="nav-link ">
+
+                        <span class="title"><?= $_SESSION[emp_employee] ?></span>
+                        <span class="selected"></span>
+                    </a>
+                </li>
+
+               
+
+            </ul>
+        </li>
+        <!--R9 บริหารจัดการพนักงาน-->
 
 
 

@@ -3,13 +3,13 @@
 include './common/Permission.php';
 include './common/PermissionADM.php';
 include './common/FunctionCheckActive.php';
-ACTIVEPAGES(99, 5);
+ACTIVEPAGES(9, 1);
 
 if ($_GET[func] != NULL) {
     $tt_header = ($_GET[func] == "add" ? $_SESSION[add_info] : $_SESSION[edit_info]);
 }
 if ($_GET[id] == NULL && $_GET[func] != "add") {
-    echo header("Location: set_item.php");
+    echo header("Location: emp_user.php");
 }
 ?>
 <!DOCTYPE html>
@@ -33,8 +33,11 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
         <link href="../assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" type="text/css" />
         <link href="../assets/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
         <link href="../assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" />
-        <link href="../assets/global/plugins/bootstrap-colorpicker/css/colorpicker.css" rel="stylesheet" type="text/css" />
-        <link href="../assets/global/plugins/jquery-minicolors/jquery.minicolors.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/global/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/global/plugins/clockface/css/clockface.css" rel="stylesheet" type="text/css" />
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL STYLES -->
         <link href="../assets/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
@@ -80,11 +83,11 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                         <div class="page-bar">
                             <ul class="page-breadcrumb">
                                 <li>
-                                    <span><?= $_SESSION[setting] ?></span>
+                                    <span><?= $_SESSION[emp_manage] ?></span>
                                     <i class="fa fa-circle" style="color:  #00FF00;"></i>
                                 </li>
                                 <li>
-                                    <a href="set_item.php"><?= $_SESSION[item] ?></a>
+                                    <a href="emp_user.php"><?= $_SESSION[emp_user] ?></a>
                                     <i class="fa fa-circle" style="color:  #00FF00;"></i>
                                 </li>
                                 <li>
@@ -115,18 +118,48 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                                         <div class="portlet-body form">
 
                                             <div class="form-body">
-
-
-
-
-                                                <div class="form-group form-md-line-input has-success" >
-                                                    <input type="text" class="form-control bold" id="s_code" name="s_code">
-                                                    <label for="form_control_1"><?= $_SESSION[lb_setItem_code] ?> <span class="required">*</span></label>          
+                                                <div class="form-group form-md-line-input has-success">
+                                                    <input type="text" class="form-control bold" id="s_firstname" name="s_firstname">
+                                                    <label for="form_control_1"><?= $_SESSION[lb_setUser_fname] ?> <span class="required">*</span></label>          
                                                 </div>
                                                 <div class="form-group form-md-line-input has-success">
-                                                    <input type="text" class="form-control bold" id="s_item_th" name="s_item_th" >
-                                                    <label for="form_control_1"><?= $_SESSION[lb_setItem_th] ?> <span class="required">*</span></label>          
+                                                    <input type="text" class="form-control bold" id="s_lastname"  name="s_lastname">
+                                                    <label  for="form_control_1"><?= $_SESSION[lb_setUser_lname] ?> <span class="required">*</span>
+                                                        <span id="class_val_username" class="" >
+                                                            <i id="icon_val_username" class=""></i>
+                                                            <span id="lb_val_username"></span>
+                                                        </span>
+                                                    </label>          
                                                 </div>
+                                                <div class="form-group form-md-line-input has-success">
+                                                    <input type="text" class="form-control bold" id="s_phone" name="s_phone">
+                                                    <label for="form_control_1"><?= $_SESSION[lb_setUser_phone] ?> <span class="required">*</span>
+                                                        <span id="class_val_phone" class="" >
+                                                            <i id="icon_val_phone" class=""></i>
+                                                            <span id="lb_val_phone"></span>
+                                                        </span>
+                                                    </label>          
+                                                </div>
+                                                <div class="form-group form-md-line-input has-success" >
+                                                    <input type="text" class="form-control bold" id="s_email" name="s_email">
+                                                    <label for="form_control_1"><?= $_SESSION[lb_setUser_email] ?> <span class="required">*</span>
+                                                        <span id="class_val_secu" class="" >
+                                                            <i id="icon_val_secu" class=""></i>
+                                                            <span id="lb_val_secu"></span>
+                                                        </span>
+                                                    </label>          
+                                                </div>
+
+                                                <div class="form-group form-md-line-input has-success">
+                                                    <input type="text" class="form-control bold" id="s_line" name="s_line">
+                                                    <label for="form_control_1"><?= $_SESSION[lb_setUser_line] ?> <span class="required"></span>
+                                                        <span id="class_val_phone" class="" >
+                                                            <i id="icon_val_phone" class=""></i>
+                                                            <span id="lb_val_phone"></span>
+                                                        </span>
+                                                    </label>          
+                                                </div>
+
 
                                             </div>
 
@@ -149,11 +182,52 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                                             <div class="portlet-body form">
 
                                                 <div class="form-body">
+
                                                     <div class="form-group form-md-line-input has-success " style="margin-bottom: 0px !important;">
                                                         <select class="form-control edited bold" id="status" name="status" style="color:black;font-weight:bold;">
                                                             <option value="-1"></option>
                                                         </select>
                                                         <label for="form_control_1"><?= $_SESSION[label_status] ?></label>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-12">
+                                        <div class="portlet light bordered">
+                                            <div class="portlet-title">
+                                                <div class="caption font-green">
+                                                    <i class="fa fa-expeditedssl font-green"></i>
+                                                    <span class="caption-subject bold uppercase"> <?= $_SESSION[tt_system_login] ?></span>
+                                                </div>
+                                            </div>
+                                            <div class="portlet-body form">
+
+                                                <div class="form-body">
+                                                    <div class="form-body">
+
+                                                        <div class="form-group form-md-line-input has-success " style="margin-bottom: 0px !important;">
+                                                            <select class="form-control edited bold" id="s_type" name="s_type" style="color:black;font-weight:bold;">
+                                                                <option value="A"><?= $_SESSION[type_admin] ?></option>
+                                                                <option value="U"><?= $_SESSION[type_user] ?></option>
+                                                            </select>
+                                                            <label for="form_control_1"><?= $_SESSION[lb_setUser_type] ?></label>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group form-md-line-input has-success">
+                                                        <input type="text" class="form-control bold" id="s_user"  name="s_user" <?= ($_GET[func] == "edit" ? "readonly" : "") ?>>
+                                                        <label  for="form_control_1"><?= $_SESSION[lb_setUser_username] ?> <span class="required">*</span>
+                                                        </label>          
+                                                    </div>
+                                                    <div class="form-group form-md-line-input has-success">
+                                                        <input type="text" class="form-control bold" id="s_pass"  name="s_pass">
+                                                        <label  for="form_control_1"><?= $_SESSION[lb_setUser_password] ?> <span class="required">*</span>
+                                                        </label>          
                                                     </div>
 
                                                 </div>
@@ -164,33 +238,51 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                                     </div>
 
 
-                                    <input type="hidden" name="tmp_image" id="tmp_image">
-                                    <div class="col-md-12" id="div-img1" >
-                                        <div class="portlet light bordered" >
+
+                                    <div class="col-md-12">
+                                        <div class="portlet light bordered" id="div-img">
                                             <div class="portlet-title">
                                                 <div class="caption font-green">
                                                     <i class="fa fa-image font-green"></i>
-                                                    <span class="caption-subject bold uppercase"> <?= $_SESSION[lb_setItem_image] ?> </span>
+                                                    <span class="caption-subject bold uppercase"> <?= $_SESSION[tt_profile_img] ?></span>
                                                 </div>
                                             </div>
-                                            <div class="fileinput fileinput-new" data-provides="fileinput">
-                                                <div class="fileinput-new thumbnail"  style="max-width: 200px; max-height: 150px;">
-                                                    <img id="img1" src="images/no-image.png" alt="" style="max-width: 200px; max-height: 150px;"/> </div>
-                                                <div class="fileinput-preview fileinput-exists thumbnail"> </div>
-                                                <div>
-                                                    <span class="btn default btn-file">
-                                                        <span class="fileinput-new"> <?= $_SESSION[btn_select_img] ?> </span>
-                                                        <span class="fileinput-exists"> <?= $_SESSION[btn_change] ?> </span>
-                                                        <input type="file" name="s_image" id="s_image"> </span>
+                                            <!--<div class="portlet-body form">-->
 
-                                                    <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> <?= $_SESSION[btn_remove] ?> </a>
+                                            <?php if ($_GET[func] == "edit") { ?>
+                                                <input type="hidden" name="tmp_s_img" id="tmp_s_img"/>
+                                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                    <div class="fileinput-new thumbnail"   style="max-width: 190px; max-height: 190px;">
+                                                        <img id="img1" src="" alt="" style="height: 100%; width: 100%; display: block;" /> </div>
+                                                    <div class="fileinput-preview fileinput-exists thumbnail"> </div>
+                                                    <div>
+                                                        <span class="btn default btn-file">
+                                                            <span class="fileinput-new"> <?= $_SESSION[btn_select_img] ?> </span>
+                                                            <span class="fileinput-exists"> <?= $_SESSION[btn_change] ?> </span>
+                                                            <input type="file" name="s_img" id="s_img"> </span>
+
+                                                        <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> <?= $_SESSION[btn_remove] ?> </a>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            <?php } else { ?>
+                                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                    <div class="fileinput-new thumbnail"   style="max-width: 190px; max-height: 190px;">
+                                                        <img id="img1" src="images/no-image.png" alt="" style="height: 100%; width: 100%; display: block;" /> </div>
+                                                    <div class="fileinput-preview fileinput-exists thumbnail"> </div>
+                                                    <div>
+                                                        <span class="btn default btn-file">
+                                                            <span class="fileinput-new"> <?= $_SESSION[btn_select_img] ?> </span>
+                                                            <span class="fileinput-exists"> <?= $_SESSION[btn_change] ?> </span>
+                                                            <input type="file" name="s_img" id="s_img"> </span>
 
+                                                        <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> <?= $_SESSION[btn_remove] ?> </a>
+                                                    </div>
+                                                </div>
+
+                                            <?php } ?>
+                                            <!--</div>-->
                                         </div>
                                     </div>
-
-
 
 
                                     <!-- END EXAMPLE TABLE PORTLET-->
@@ -199,7 +291,7 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                                     <div class="col-md-12">
                                         <div class="portlet-body form">
                                             <div class="form-actions noborder">
-                                                <a href="set_item.php"> <button type="button" class="btn default"><?= $_SESSION[btn_cancel] ?></button></a>
+                                                <a href="emp_user.php"> <button type="button" class="btn default"><?= $_SESSION[btn_cancel] ?></button></a>
                                                 <button type="submit"  class="btn blue" ><?= $_SESSION[btn_submit] ?></button>
                                             </div>
                                         </div>
@@ -261,14 +353,21 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
         <script src="../assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
         <script src="../assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
         <script src="../assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
-        <script src="../assets/global/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js" type="text/javascript"></script>
-        <script src="../assets/global/plugins/jquery-minicolors/jquery.minicolors.min.js" type="text/javascript"></script>
+
+        <script src="../assets/global/plugins/moment.min.js" type="text/javascript"></script>
+        <script src="../assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js" type="text/javascript"></script>
+        <script src="../assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+        <script src="../assets/global/plugins/bootstrap-timepicker/js/bootstrap-timepicker.js" type="text/javascript"></script>
+        <script src="../assets/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js" type="text/javascript"></script>
+        <script src="../assets/global/plugins/clockface/js/clockface.js" type="text/javascript"></script>
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL SCRIPTS -->
         <script src="../assets/global/scripts/app.min.js" type="text/javascript"></script>
+        <script src="../assets/global/plugins/jquery-inputmask/jquery.inputmask.bundle.min.js" type="text/javascript"></script>
+        <script src="js/common/markPattern.js" type="text/javascript"></script>
         <!-- END THEME GLOBAL SCRIPTS -->
         <!-- BEGIN PAGE LEVEL SCRIPTS -->
-        <script src="../assets/pages/scripts/components-color-pickers.min.js" type="text/javascript"></script><!-- END PAGE LEVEL SCRIPTS -->
+        <script src="../assets/pages/scripts/components-date-time-pickers.js" type="text/javascript"></script>
         <!-- END PAGE LEVEL SCRIPTS -->
         <!-- BEGIN THEME LAYOUT SCRIPTS -->
         <script src="../assets/layouts/layout/scripts/layout.min.js" type="text/javascript"></script>
@@ -287,7 +386,7 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
         <!-- END SELECT 2 SCRIPTS -->
         <link href="outbound/lightbox/css/lightbox.css" rel="stylesheet" type="text/css" />
         <script src="outbound/lightbox/js/lightbox.js" type="text/javascript"></script>
-        <script src="js/action/setting/itemManage.js" type="text/javascript"></script>
+        <script src="js/action/employee/emp_userManage.js" type="text/javascript"></script>
         <script>
             var keyEdit = "<?= $_GET[id] ?>";
         </script>
@@ -298,6 +397,7 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                 if (keyEdit == "") {
                     unloading();
                 }
+
             });
         </script>
 

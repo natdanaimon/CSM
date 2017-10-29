@@ -1,11 +1,15 @@
 <?php
 @session_start();
 include './common/Permission.php';
+include './common/PermissionADM.php';
 include './common/FunctionCheckActive.php';
 ACTIVEPAGES(99, 6);
 
 if ($_GET[func] != NULL) {
     $tt_header = ($_GET[func] == "add" ? $_SESSION[add_info] : $_SESSION[edit_info]);
+}
+if ($_GET[id] == NULL && $_GET[func] != "add") {
+    echo header("Location: set_compInsurance.php");
 }
 ?>
 <!DOCTYPE html>

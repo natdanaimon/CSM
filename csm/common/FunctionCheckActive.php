@@ -10,7 +10,7 @@ function ACTIVEPAGES($page, $sub) {
 
     //csm
     $_SESSION["nav_main_setting"] = "";
-
+    $_SESSION["nav_main_emp"] = "";
 
 
 
@@ -34,6 +34,9 @@ function ACTIVEPAGES($page, $sub) {
     $_SESSION["nav_sub_set_comp_partner"] = "";
     $_SESSION["nav_sub_set_department"] = "";
 
+    //csm employee
+    $_SESSION["nav_sub_emp_user"] = "";
+    $_SESSION["nav_sub_emp_employee"] = "";
 
     // sub staff
     $_SESSION["cs_nav_sub_register"] = "";
@@ -121,6 +124,13 @@ function ACTIVEPAGES($page, $sub) {
         } else if ($sub == 6) {
             $_SESSION["post_nav_sub_picture"] = " active open";
         }
+    } else if ($page == 9) {
+        $_SESSION["nav_main_emp"] = " active open";
+        if ($sub == 1) {
+            $_SESSION["nav_sub_emp_user"] = " active open";
+        } else if ($sub == 2) {
+            $_SESSION["nav_sub_emp_employee"] = " active open";
+        }
     } else if ($page == 99) {
         $_SESSION["nav_main_setting"] = " active open";
         if ($sub == 1) {
@@ -135,15 +145,12 @@ function ACTIVEPAGES($page, $sub) {
             $_SESSION["nav_sub_set_item"] = " active open";
         } else if ($sub == 6) {
             $_SESSION["nav_sub_set_comp_insurance"] = " active open";
-        }else if ($sub == 7) {
+        } else if ($sub == 7) {
             $_SESSION["nav_sub_set_comp_partner"] = " active open";
-        }else if ($sub == 8) {
+        } else if ($sub == 8) {
             $_SESSION["nav_sub_set_department"] = " active open";
         }
     }
-    
-    
-    
 }
 
 function ACTIVEPAGES_DEMO($page, $sub) {

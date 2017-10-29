@@ -1,6 +1,7 @@
 <?php
 @session_start();
 include './common/Permission.php';
+include './common/PermissionADM.php';
 include './common/FunctionCheckActive.php';
 ACTIVEPAGES(99, 1);
 

@@ -644,6 +644,28 @@
         <th>แผนกงาน</th>
         <en>Department</en>
     </detail>
+	
+	<detail>
+        <variable>emp_manage</variable>
+        <th>บริหารจัดการพนักงาน</th>
+        <en>Emp. Management</en>
+    </detail>
+	<detail>
+        <variable>emp_user</variable>
+        <th>บัญชีเข้าใช้งานระบบ</th>
+        <en>User login</en>
+    </detail>
+	<detail>
+        <variable>emp_employee</variable>
+        <th>ข้อมูลพนักงาน</th>
+        <en>Employee Info</en>
+    </detail>
+	
+	
+	
+	
+	
+	
     <!--  Menu -->
     
     
@@ -867,6 +889,11 @@
         <th>จำนวนวันสำหรับประเมินวันอัตโนมัติ</th>
         <en>Days for automatic date assessment</en>
     </detail> 
+	 <detail>
+        <variable>tb_co_profile</variable>
+        <th>รูปภาพโปรไฟล์</th>
+        <en>Profile</en>
+    </detail> 
     <!--  table  --> 
         
     <!--  Title Header  --> 
@@ -950,6 +977,16 @@
         <th>ผู้ใช้รอง</th>
         <en>SUB USER</en>
     </detail>
+	 <detail>
+        <variable>tt_system_login</variable>
+        <th>การเข้าใช้งานระบบ</th>
+        <en>System Login</en>
+    </detail>
+	 <detail>
+        <variable>tt_profile_img</variable>
+        <th>รูปภาพโปรไฟล์</th>
+        <en>Profile Image</en>
+    </detail>
     <detail>
         <variable>tt_view_log</variable>
         <th>ประวัติข้อมูล</th>
@@ -994,6 +1031,16 @@
         <variable>tt_mg_autoday</variable>
         <th>จัดการข้อมูลประเมินวันอัตโนมัติ</th>
         <en>MANAGE AUTO ASSESSMENT</en>
+    </detail>
+	<detail>
+        <variable>tt_mg_user</variable>
+        <th>จัดการข้อมูลบัญชีเข้าใช้งานระบบ</th>
+        <en>MANAGE USER LOGIN</en>
+    </detail>
+	<detail>
+        <variable>tt_mg_employee</variable>
+        <th>จัดการข้อมูลพนักงาน</th>
+        <en>MANAGE EMPLOYEE</en>
     </detail>
     <!--  Title Header  --> 
         
