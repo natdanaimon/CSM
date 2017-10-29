@@ -68,4 +68,5 @@
     var lb_fullname_header = "<?= $_SESSION["full_name"] ?>";
     var disable = "<?= $disable ?>";
     var hidden = "<?= $hidden ?>";
+    var pleaseSelect = "<?= $_SESSION[lb_please_select] ?>";
 </script>

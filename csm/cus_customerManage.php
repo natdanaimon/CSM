@@ -198,14 +198,24 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
 
                                                 <div class="row">
                                                     <div class="col-md-12">
-
+                                                        <div class="form-group form-md-line-input has-success">
+                                                            <input type="text" class="form-control bold" id="s_address" name="s_address">
+                                                            <label for="form_control_1"><?= $_SESSION[lb_setCus_address] ?> <span class="required">*</span>
+                                                                <span id="class_val_phone" class="" >
+                                                                    <i id="icon_val_phone" class=""></i>
+                                                                    <span id="lb_val_phone"></span>
+                                                                </span>
+                                                            </label>          
+                                                        </div>
                                                     </div>
                                                 </div>
 
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group form-md-line-input has-success">
-                                                            <select class="form-control edited bold" id="i_province" name="i_province" style="color:black;font-weight:bold;">
+                                                            <select class="form-control edited bold" id="i_province" name="i_province" 
+                                                                    onchange="getDDLAmphure();"
+                                                                    style="color:black;font-weight:bold;">
                                                                 <option value="">กรุณาเลือกข้อมูล</option>
                                                             </select>
                                                             <label for="form_control_1"><?= $_SESSION[province] ?> <span class="required">*</span></label>          
@@ -213,7 +223,9 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group form-md-line-input has-success">
-                                                            <select class="form-control edited bold" id="i_amphure" name="i_amphure" style="color:black;font-weight:bold;">
+                                                            <select class="form-control edited bold" id="i_amphure" name="i_amphure" 
+                                                                    onchange="getDDLDistrict()"
+                                                                    style="color:black;font-weight:bold;">
                                                                 <option value="">กรุณาเลือกข้อมูล</option>
                                                             </select>
                                                             <label for="form_control_1"><?= $_SESSION[amphure] ?> <span class="required">*</span></label>          
@@ -223,7 +235,9 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group form-md-line-input has-success">
-                                                            <select class="form-control edited bold" id="i_district" name="i_district" style="color:black;font-weight:bold;">
+                                                            <select class="form-control edited bold" id="i_district" name="i_district" 
+                                                                    onchange="getDDLZipcode()"
+                                                                    style="color:black;font-weight:bold;">
                                                                 <option value="">กรุณาเลือกข้อมูล</option>
                                                             </select>
                                                             <label for="form_control_1"><?= $_SESSION[district] ?> <span class="required">*</span></label>          
@@ -432,9 +446,11 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
         <!-- END SELECT 2 SCRIPTS -->
         <link href="outbound/lightbox/css/lightbox.css" rel="stylesheet" type="text/css" />
         <script src="outbound/lightbox/js/lightbox.js" type="text/javascript"></script>
+
+
         <script src="js/action/customer/cus_customerManage.js" type="text/javascript"></script>
         <script>
-            var keyEdit = "<?= $_GET[id] ?>";
+                                                                        var keyEdit = "<?= $_GET[id] ?>";
         </script>
         <script>
             $(document).ready(function () {

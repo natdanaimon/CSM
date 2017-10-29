@@ -269,7 +269,11 @@
         <th>ไลน์ไอดี</th>
         <en>Line ID</en>
     </detail> 
-
+	<detail>
+        <variable>lb_setCus_address</variable>
+        <th>ที่อยู่</th>
+        <en>Address</en>
+    </detail> 
 	 <!--  customer -->
     
 </language>

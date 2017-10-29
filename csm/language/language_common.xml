@@ -374,6 +374,13 @@
         <th>รหัสไปรษณีย์</th>
         <en>Zipcode</en>
     </detail>
+	<detail>
+        <variable>lb_please_select</variable>
+        <th>กรุณาเลือกข้อมูล</th>
+        <en>Please Selected</en>
+    </detail>
+	
+	
     <!--  Other -->
     
     

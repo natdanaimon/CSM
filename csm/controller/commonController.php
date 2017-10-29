@@ -27,11 +27,11 @@ switch ($info[func]) {
     case "DDLProvince":
         echo $controller->DDLProvince($info);
         break;
-    case "DDLAmphures":
-        echo $controller->DDLAmphures($info);
+    case "DDLAmphure":
+        echo $controller->DDLAmphure($info);
         break;
-    case "DDLDistricts":
-        echo $controller->DDLDistricts($info);
+    case "DDLDistrict":
+        echo $controller->DDLDistrict($info);
         break;
     case "DDLZipcode":
         echo $controller->DDLZipcode($info);
@@ -88,9 +88,9 @@ class commonController {
         }
     }
 
-    public function DDLAmphures($info) {
+    public function DDLAmphure($info) {
         $service = new commonService();
-        $_dataTable = $service->DDLAmphures($info);
+        $_dataTable = $service->DDLAmphure($info);
         if ($_dataTable != NULL) {
             return json_encode($_dataTable);
         } else {
@@ -98,9 +98,9 @@ class commonController {
         }
     }
 
-    public function DDLDistricts($info) {
+    public function DDLDistrict($info) {
         $service = new commonService();
-        $_dataTable = $service->DDLDistricts($info);
+        $_dataTable = $service->DDLDistrict($info);
         if ($_dataTable != NULL) {
             return json_encode($_dataTable);
         } else {

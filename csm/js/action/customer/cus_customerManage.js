@@ -14,10 +14,8 @@ function getDDLStatus() {
                 htmlOption += "<option value='" + item.s_status + "'>" + txt_status + "</option>";
             });
             $("#status").html(htmlOption);
-        
-            if (keyEdit != "") {
-                edit();
-            }
+
+            getDDLProvince();
 
         },
         error: function (data) {
@@ -27,22 +25,29 @@ function getDDLStatus() {
     });
 }
 
-function getDDLDepartment() {
+function getDDLProvince() {
     $.ajax({
         type: 'GET',
-        url: 'controller/commonController.php?func=DDLDepartment',
+        url: 'controller/commonController.php?func=DDLProvince',
         beforeSend: function ()
         {
             //$('#se-pre-con').fadeIn(100);
         },
         success: function (data) {
+            if (data == "") {
+                htmlOption += "<option value=''>" + pleaseSelect + "</option>";
+                $("#i_province").html(htmlOption);
+                return;
+            }
             var htmlOption = "";
             var res = JSON.parse(data);
+            htmlOption += "<option value=''>" + pleaseSelect + "</option>";
             $.each(res, function (i, item) {
-                var txt_status = (language == "th" ? item.s_dept_th : item.s_dept_en);
-                htmlOption += "<option value='" + item.i_dept + "'>" + txt_status + "</option>";
+                var txt_status = (language == "th" ? item.s_name_th : item.s_name_en);
+                htmlOption += "<option value='" + item.i_province + "'>" + txt_status + "</option>";
             });
-            $("#i_dept").html(htmlOption);
+            $("#i_province").html(htmlOption);
+            getDDLAmphure();
             if (keyEdit != "") {
                 edit();
             }
@@ -55,10 +60,100 @@ function getDDLDepartment() {
     });
 }
 
+function getDDLAmphure() {
+    $.ajax({
+        type: 'GET',
+        url: 'controller/commonController.php?func=DDLAmphure&i_province=' + $("#i_province").val(),
+        beforeSend: function ()
+        {
+            //$('#se-pre-con').fadeIn(100);
+        },
+        success: function (data) {
+            if (data == "") {
+                htmlOption += "<option value=''>" + pleaseSelect + "</option>";
+                $("#i_amphure").html(htmlOption);
+                getDDLDistrict();
+                return;
+            }
+            var htmlOption = "";
+            var res = JSON.parse(data);
+            htmlOption += "<option value=''>" + pleaseSelect + "</option>";
+            $.each(res, function (i, item) {
+                var txt_status = (language == "th" ? item.s_name_th : item.s_name_en);
+                htmlOption += "<option value='" + item.i_amphure + "'>" + txt_status + "</option>";
+            });
+            $("#i_amphure").html(htmlOption);
+            getDDLDistrict();
+        },
+        error: function (data) {
+            edit();
+        }
 
+    });
+}
 
+function getDDLDistrict() {
+    $.ajax({
+        type: 'GET',
+        url: 'controller/commonController.php?func=DDLDistrict&i_amphure=' + $("#i_amphure").val(),
+        beforeSend: function ()
+        {
+            //$('#se-pre-con').fadeIn(100);
+        },
+        success: function (data) {
+            if (data == "") {
+                htmlOption += "<option value=''>" + pleaseSelect + "</option>";
+                $("#i_district").html(htmlOption);
+                getDDLZipcode();
+                return;
+            }
+            var htmlOption = "";
+            var res = JSON.parse(data);
+            htmlOption += "<option value=''>" + pleaseSelect + "</option>";
+            $.each(res, function (i, item) {
+                var txt_status = (language == "th" ? item.s_name_th : item.s_name_en);
+                htmlOption += "<option value='" + item.i_district + "'>" + txt_status + "</option>";
+            });
+            $("#i_district").html(htmlOption);
+            getDDLZipcode();
+        },
+        error: function (data) {
+            edit();
+        }
 
+    });
+}
 
+function getDDLZipcode() {
+    $.ajax({
+        type: 'GET',
+        url: 'controller/commonController.php?func=DDLZipcode&i_district=' + $("#i_district").val(),
+        beforeSend: function ()
+        {
+            //$('#se-pre-con').fadeIn(100);
+        },
+        success: function (data) {
+            if (data == "") {
+                htmlOption += "<option value=''>" + pleaseSelect + "</option>";
+                $("#i_zipcode").html(htmlOption);
+                return;
+            }
+            var htmlOption = "";
+            var res = JSON.parse(data);
+            htmlOption += "<option value=''>" + pleaseSelect + "</option>";
+            $.each(res, function (i, item) {
+                var txt_status = (language == "th" ? item.i_zipcode : item.i_zipcode);
+                htmlOption += "<option value='" + item.i_zipcode + "'>" + txt_status + "</option>";
+            });
+            $("#i_zipcode").html(htmlOption);
+
+        },
+        error: function (data) {
+            edit();
+        }
+
+    });
+}
 
 
 function edit() {
