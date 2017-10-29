@@ -37,14 +37,14 @@
                     </a>
                 </li>
 
-                                                                        <!--            <li class="nav-item  <?= $_SESSION["cs_nav_sub_promotion_rg"] ?>">
-                                                                                        <a href="cs_promotion_rg.php" class="nav-link ">
+                                                                            <!--            <li class="nav-item  <?= $_SESSION["cs_nav_sub_promotion_rg"] ?>">
+                                                                                            <a href="cs_promotion_rg.php" class="nav-link ">
 
-                                                                                            <span class="title"><?= $_SESSION[promotion_rg] ?></span>
-                                                                                            <span class="selected"></span>
-                                                                                            <span class="badge badge-success" ></span>
-                                                                                        </a>
-                                                                                    </li>-->
+                                                                                                <span class="title"><?= $_SESSION[promotion_rg] ?></span>
+                                                                                                <span class="selected"></span>
+                                                                                                <span class="badge badge-success" ></span>
+                                                                                            </a>
+                                                                                        </li>-->
                 <li class="nav-item  <?= $_SESSION["cs_nav_sub_promotion_dp"] ?>">
                     <a href="cs_promotion.php" class="nav-link ">
 
@@ -119,14 +119,6 @@
                         <span class="badge badge-success" ></span>
                     </a>
                 </li>
-                <li class="nav-item  <?= $_SESSION["nav_sub_set_autoassessment"] ?>">
-                    <a href="set_auto.php" class="nav-link ">
-
-                        <span class="title"><?= $_SESSION[autoassessment] ?></span>
-                        <span class="selected"></span>
-                        <span class="badge badge-success" ></span>
-                    </a>
-                </li>
                 <li class="nav-item  <?= $_SESSION["nav_sub_set_dmg"] ?>">
                     <a href="set_dmg.php" class="nav-link ">
 
@@ -169,7 +161,14 @@
                         <span class="selected"></span>
                     </a>
                 </li>
+                <li class="nav-item  <?= $_SESSION["nav_sub_set_autoassessment"] ?>">
+                    <a href="set_auto.php" class="nav-link ">
 
+                        <span class="title"><?= $_SESSION[autoassessment] ?></span>
+                        <span class="selected"></span>
+                        <span class="badge badge-success" ></span>
+                    </a>
+                </li>
 
             </ul>
         </li>

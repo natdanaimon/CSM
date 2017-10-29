@@ -141,5 +141,18 @@
         <en>Daily Record Name</en>
     </detail>  
 	 <!--  daily -->     
+	 
+	 <!--  auto --> 
+	 <detail>
+        <variable>lb_setAuto_dept</variable>
+        <th>ชื่อแผนกงาน</th>
+        <en>Department Name</en>
+    </detail>  
+	 <detail>
+        <variable>lb_setAuto_day</variable>
+        <th>จำนวนวันสำหรับประเมินวันอัตโนมัติ</th>
+        <en>Days for automatic date assessment</en>
+    </detail>  
+	 <!--  auto --> 
     
 </language>

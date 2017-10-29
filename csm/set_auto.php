@@ -2,7 +2,7 @@
 @session_start();
 include './common/Permission.php';
 include './common/FunctionCheckActive.php';
-ACTIVEPAGES(99, 1);
+ACTIVEPAGES(99, 2);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -69,11 +69,11 @@ ACTIVEPAGES(99, 1);
                         <div class="page-bar">
                             <ul class="page-breadcrumb">
                                 <li>
-                                    <span><?= $_SESSION[app_nagieos_post] ?></span>
+                                    <span><?= $_SESSION[setting] ?></span>
                                     <i class="fa fa-circle" style="color:  #00FF00;"></i>
                                 </li>
                                 <li>
-                                    <a href="cs_website.php"><?= $_SESSION[lb_cs_website] ?></a>
+                                    <a href="set_auto.php"><?= $_SESSION[autoassessment] ?></a>
                                 </li>
                             </ul>
 
@@ -91,7 +91,7 @@ ACTIVEPAGES(99, 1);
                                     <div class="portlet-title">
                                         <div class="caption font-dark">
                                             <i class="icon-settings font-dark"></i>
-                                            <span class="caption-subject bold uppercase"><?= $_SESSION[tt_mg_website] ?></span>
+                                            <span class="caption-subject bold uppercase"><?= $_SESSION[tt_mg_autoday] ?></span>
                                         </div>
                                         <div class="actions">
 
@@ -103,7 +103,7 @@ ACTIVEPAGES(99, 1);
                                                 <!--                                                <div class="col-md-6">
                                                 
                                                                                                 </div>-->
-                                                <div class="col-md-6" align="left"  <?= $hidden ?>>
+<!--                                                <div class="col-md-6" align="left"  <?= $hidden ?>>
                                                     <div class="btn-group">
                                                         <a href="cs_website_manage.php?func=add">
                                                             <button id="sample_editable_1_new" class="btn sbold green"> <?= $_SESSION[btn_add] ?>
@@ -112,10 +112,10 @@ ACTIVEPAGES(99, 1);
                                                     </div>
                                                     <div class="btn-group">
                                                         <button id="sample_editable_1_new" class="btn sbold red" onclick="deleteAll()"> <?= $_SESSION[btn_delete_all] ?>
-<!--                                                            <i class="fa fa-minus"></i>-->
+                                                            <i class="fa fa-minus"></i>
                                                         </button>
                                                     </div>
-                                                </div>
+                                                </div>-->
 
                                             </div>
                                         </div>
@@ -128,16 +128,16 @@ ACTIVEPAGES(99, 1);
                                                                                                                     <span></span>
                                                                                                                 </label>-->
                                                         <span class="md-checkbox has-success">
-                                                            <input type="checkbox" id="checkbox14" name="checkbox14" class="md-check">
+<!--                                                            <input type="checkbox" id="checkbox14" name="checkbox14" class="md-check">
                                                             <label for="checkbox14">
                                                                 <span class="inc"></span>
                                                                 <span class="check"></span>
-                                                                <span class="box"></span> </label>
+                                                                <span class="box"></span> </label>-->
                                                         </span>
                                                     </th>
-                                     
-                                                    <th>  <?= $_SESSION[lb_cs_website] ?> </th>
-                                                    <th>  <?= $_SESSION[tb_co_index] ?> </th>
+
+                                                    <th>  <?= $_SESSION[tb_co_dept_th] ?> </th>
+                                                    <th>  <?= $_SESSION[tb_co_autoday] ?> </th>
                                                     <th>  <?= $_SESSION[tb_co_status] ?> </th>
                                                     <th style="width: 40px"> <?= $_SESSION[tb_co_edit] ?> </th>
                                                     <th style="width: 40px"> <?= $_SESSION[tb_co_delete] ?></th>
@@ -206,15 +206,14 @@ ACTIVEPAGES(99, 1);
         <script src="js/common/notify.js" type="text/javascript"></script>
         <script src="js/common/utility.js" type="text/javascript"></script>
         <link href="css/notify.css" rel="stylesheet" type="text/css" />
-        <script src="js/action/cs_website.js" type="text/javascript"></script>
         <link href="outbound/lightbox/css/lightbox.css" rel="stylesheet" type="text/css" />
         <script src="outbound/lightbox/js/lightbox.js" type="text/javascript"></script>
-
+        <script src="js/action/setting/auto.js" type="text/javascript"></script>
         <script>
-                                                            $(document).ready(function () {
-                                                                initialDataTable("TRUE");
-                                                                unloading();
-                                                            });
+            $(document).ready(function () {
+                initialDataTable("TRUE");
+                unloading();
+            });
         </script>
     </body>
 

@@ -862,6 +862,11 @@
          <th>ชื่อรายการบันทึกประจำวัน</th>
          <en>Daily Record Name</en>
     </detail>
+	 <detail>
+        <variable>tb_co_autoday</variable>
+        <th>จำนวนวันสำหรับประเมินวันอัตโนมัติ</th>
+        <en>Days for automatic date assessment</en>
+    </detail> 
     <!--  table  --> 
         
     <!--  Title Header  --> 
@@ -984,6 +989,11 @@
         <variable>tt_mg_daily_record</variable>
         <th>จัดการข้อมูลรายการบันทึกประจำวัน</th>
         <en>MANAGE DAILY RECORD</en>
+    </detail>
+	 <detail>
+        <variable>tt_mg_autoday</variable>
+        <th>จัดการข้อมูลประเมินวันอัตโนมัติ</th>
+        <en>MANAGE AUTO ASSESSMENT</en>
     </detail>
     <!--  Title Header  --> 
         
