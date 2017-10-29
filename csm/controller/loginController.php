@@ -31,7 +31,7 @@ class loginController {
         $servic = new loginService();
         $util = new Utility();
         $util->setPathXML("../language/language_common.xml");
-        $util->LanguageConfig("en");
+        $util->LanguageConfig("th");
         $util->setPathXML("../language/language_page.xml");
         $util->LanguageConfig("th");
 
@@ -97,7 +97,7 @@ class loginController {
             return;
         }
 
-        if (strtoupper($info[captcha]) != strtoupper($_SESSION[captcha][code]) && $_SESSION[mode]=="signin") {
+        if (strtoupper($info[captcha]) != strtoupper($_SESSION[captcha][code]) && $_SESSION[mode] == "signin") {
             echo $_SESSION['cd_4004'];
             return;
         }

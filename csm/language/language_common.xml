@@ -1108,8 +1108,8 @@
     </detail>
     <detail>
         <variable>cd_2009</variable>
-        <th>cd_2009,ไม่พบ E-Mail นี้ในระบบ</th>
-        <en>cd_2009,No Email address in System.</en> 
+        <th>2009,ไม่พบ E-Mail นี้ในระบบ</th>
+        <en>2009,No Email address in System.</en> 
     </detail>
     <detail>
         <variable>cd_2010</variable>
