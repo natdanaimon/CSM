@@ -854,8 +854,8 @@
     </detail>
 	<detail>
         <variable>tb_co_insurance_name</variable>
-         <th>ชื่อ</th>
-         <en>Item Name</en>
+         <th>ชื่อบริษัทประกันภัย</th>
+         <en>Insurance Company</en>
     </detail>
     <!--  table  --> 
         
