@@ -18,6 +18,9 @@ switch ($info[func]) {
     case "DDLStatusActive":
         echo $controller->DDLStatusActive();
         break;
+    case "DDLDepartment":
+        echo $controller->DDLDepartment();
+        break;
     case "ValidSecurity":
         echo $controller->ValidSecurity($info);
         break;
@@ -46,6 +49,16 @@ class commonController {
     public function DDLStatusActive() {
         $service = new commonService();
         $_dataTable = $service->DDLStatusActive();
+        if ($_dataTable != NULL) {
+            return json_encode($_dataTable);
+        } else {
+            return NULL;
+        }
+    }
+
+    public function DDLDepartment() {
+        $service = new commonService();
+        $_dataTable = $service->DDLDepartment();
         if ($_dataTable != NULL) {
             return json_encode($_dataTable);
         } else {

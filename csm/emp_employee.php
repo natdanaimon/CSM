@@ -137,9 +137,9 @@ ACTIVEPAGES(9, 2);
                                                         </span>
                                                     </th>
                                                     <th>  <?= $_SESSION[tb_co_profile] ?> </th>
+                                                    <th>  <?= $_SESSION[tb_co_dept_th] ?> </th>
                                                     <th>  <?= $_SESSION[tb_co_fullname] ?> </th>
-                                                    <th>  <?= $_SESSION[tb_co_username] ?> </th>
-                                                    <th>  <?= $_SESSION[tb_co_type] ?> </th>
+                                                    <th>  <?= $_SESSION[tb_co_phone] ?> </th>
                                                     <th>  <?= $_SESSION[tb_co_status] ?> </th>
                                                     <th style="width: 40px"> <?= $_SESSION[tb_co_edit] ?> </th>
                                                     <th style="width: 40px"> <?= $_SESSION[tb_co_delete] ?></th>
@@ -208,10 +208,9 @@ ACTIVEPAGES(9, 2);
         <script src="js/common/notify.js" type="text/javascript"></script>
         <script src="js/common/utility.js" type="text/javascript"></script>
         <link href="css/notify.css" rel="stylesheet" type="text/css" />
-        <script src="js/action/cs_register_adm.js" type="text/javascript"></script>
         <link href="outbound/lightbox/css/lightbox.css" rel="stylesheet" type="text/css" />
         <script src="outbound/lightbox/js/lightbox.js" type="text/javascript"></script>
-
+        <script src="js/action/employee/emp_employee.js" type="text/javascript"></script>
         <script>
                                                             $(document).ready(function () {
                                                                 initialDataTable("TRUE");

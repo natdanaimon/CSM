@@ -21,6 +21,12 @@ class commonService {
         return $_data;
     }
 
-   
+    function DDLDepartment() {
+        $db = new ConnectDB();
+        $strSql = "select * from tb_department where s_status = 'A' order by i_index asc , s_dept_th asc ";
+        $_data = $db->Search_Data_FormatJson($strSql);
+        $db->close_conn();
+        return $_data;
+    }
 
 }

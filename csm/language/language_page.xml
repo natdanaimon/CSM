@@ -199,6 +199,37 @@
     </detail> 
 	 <!--  user --> 
 	 
-	 
+	  <!--  employee --> 
+	 <detail>
+        <variable>lb_setEmployee_fname</variable>
+        <th>ชื่อ</th>
+        <en>Firstname</en>
+    </detail>
+	<detail>
+        <variable>lb_setEmployee_lname</variable>
+        <th>นามสกุล</th>
+        <en>Lastname</en>
+    </detail>  	
+	<detail>
+        <variable>lb_setEmployee_phone</variable>
+        <th>เบอร์โทรศัพท์</th>
+        <en>Phone</en>
+    </detail> 
+	<detail>
+        <variable>lb_setEmployee_email</variable>
+        <th>อีเมล</th>
+        <en>E-Mail</en>
+    </detail> 
+	<detail>
+        <variable>lb_setEmployee_line</variable>
+        <th>ไลน์ไอดี</th>
+        <en>Line ID</en>
+    </detail> 
+	<detail>
+        <variable>lb_setEmployee_dept</variable>
+        <th>แผนกงาน</th>
+        <en>Department</en>
+    </detail> 
+	 <!--  employee -->
     
 </language>

@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 
-$controller = new userController();
+$controller = new employeeController();
 switch ($info[func]) {
     case "dataTable":
         echo $controller->dataTable();
@@ -32,42 +32,35 @@ switch ($info[func]) {
         break;
 }
 
-class userController {
+class employeeController {
 
     public function __construct() {
         include '../../common/ConnectDB.php';
         include '../../common/Utility.php';
         include '../../common/Logs.php';
         include '../../common/upload.php';
-        include '../../service/employee/userService.php';
+        include '../../service/employee/employeeService.php';
     }
 
     public function dataTable() {
-        $service = new userService();
+        $service = new employeeService();
         $_dataTable = $service->dataTable();
         if ($_dataTable != NULL) {
-            foreach ($_dataTable as $key => $value) {
-                if ($_dataTable[$key]['s_type'] == "A") {
-                    $_dataTable[$key]['s_type'] = $_SESSION[lb_type_admin];
-                } else {
-                    $_dataTable[$key]['s_type'] = $_SESSION[lb_stype_staff];
-                }
-            }
             return json_encode($_dataTable);
         } else {
             return NULL;
         }
     }
-
+    
     public function delete($seq) {
         $db = new ConnectDB();
         $db->conn();
-        $service = new userService();
+        $service = new employeeService();
         $arr_img = $service->SelectById($db, $seq);
         if ($service->delete($db, $seq)) {
             $upload = new upload();
             $upload->Initial_and_Clear();
-            $upload->set_path("../../images/profile/");
+            $upload->set_path("../../upload/employee/");
             foreach ($arr_img as $key => $value) {
                 if ($arr_img[$key]['s_image'] != NULL && $arr_img[$key]['s_image'] != "") {
                     if ($arr_img[$key]['s_image'] != "default.png") {
@@ -95,13 +88,13 @@ class userController {
             $util = new Utility();
             $db = new ConnectDB();
             $db->conn();
-            $service = new userService();
+            $service = new employeeService();
             $query = $util->arr2strQuery($info[data], "I");
             $arr_img = $service->SelectByArray($db, $query);
             if ($service->deleteAll($db, $query)) {
                 $upload = new upload();
                 $upload->Initial_and_Clear();
-                $upload->set_path("../../images/profile/");
+                $upload->set_path("../../upload/employee/");
                 foreach ($arr_img as $key => $value) {
                     if ($arr_img[$key]['s_image'] != NULL && $arr_img[$key]['s_image'] != "") {
                         if ($arr_img[$key]['s_image'] != "default.png") {
@@ -124,7 +117,7 @@ class userController {
     }
 
     public function getInfo($seq) {
-        $service = new userService();
+        $service = new employeeService();
         $_dataTable = $service->getInfo($seq);
         if ($_dataTable != NULL) {
             return json_encode($_dataTable);
@@ -136,10 +129,10 @@ class userController {
     public function add($info) {
         if ($this->isValid($info)) {
             $doc = new upload();
-            $doc->set_path("../../images/profile/");
+            $doc->set_path("../../upload/employee/");
             $db = new ConnectDB();
             $db->conn();
-            $service = new userService();
+            $service = new employeeService();
             $valid = $service->validUser($db, $info);
 
             if ($valid[0][cnt] != "0") {
@@ -179,10 +172,10 @@ class userController {
     public function edit($info) {
         if ($this->isValid($info)) {
             $doc = new upload();
-            $doc->set_path("../../images/profile/");
+            $doc->set_path("../../upload/employee/");
             $db = new ConnectDB();
             $db->conn();
-            $service = new userService();
+            $service = new employeeService();
             $valid = $service->validUser($db, $info);
 
             if ($valid[0][cnt] != "0") {
@@ -199,13 +192,12 @@ class userController {
                     if ($service->edit($db, $info, $tmpDoc[0])) {
                         if ($info[tmp_s_img] != "default.png") {
                             $doc->Initial_and_Clear();
-                            $doc->set_path("../../images/profile/");
+                            $doc->set_path("../../upload/employee/");
                             $doc->add_FileName($info[tmp_s_img]);
 
                             if ($doc->deleteFile()) {
                                 $db->commit();
                                 echo $_SESSION['cd_0000'];
-                                $this->setMainSessionCurrent($info, $tmpDoc[0]);
                             } else {
                                 $db->rollback();
                                 echo $_SESSION['cd_2001'];
@@ -213,7 +205,7 @@ class userController {
                         } else {
                             $db->commit();
                             echo $_SESSION['cd_0000'];
-                            $this->setMainSessionCurrent($info, NULL);
+
                         }
                     } else {
                         $db->rollback();
@@ -227,23 +219,11 @@ class userController {
                 if ($service->edit($db, $info, NULL)) {
                     $db->commit();
                     echo $_SESSION['cd_0000'];
-                    $this->setMainSessionCurrent($info, NULL);
                 } else {
                     $db->rollback();
                     echo $_SESSION['cd_2001'];
                 }
             }
-        }
-    }
-
-    public function setMainSessionCurrent($info, $img) {
-        if ($info[s_user] == $_SESSION["username"]) {
-            $_SESSION["password"] = $info[s_pass];
-            if ($img != NULL) {
-                $_SESSION["img_profile"] = $img;
-            }
-            $_SESSION["full_name"] = $info['s_firstname'] . " " . $info['s_lastname'];
-            $_SESSION["perm"] = $info['s_type'];
         }
     }
 
@@ -254,33 +234,21 @@ class userController {
         $return2097 = $_SESSION['cd_2097'];
         $util = new Utility();
         if ($util->isEmpty($info[s_firstname])) {
-            $return2099 = eregi_replace("field", $_SESSION['lb_setUser_fname'], $return2099);
+            $return2099 = eregi_replace("field", $_SESSION['lb_setEmployee_fname'], $return2099);
             echo $return2099;
         } else if ($util->isEmpty($info[s_lastname])) {
-            $return2099 = eregi_replace("field", $_SESSION['lb_setUser_lname'], $return2099);
+            $return2099 = eregi_replace("field", $_SESSION['lb_setEmployee_lname'], $return2099);
             echo $return2099;
         } else if ($util->isEmpty($info[s_phone])) {
-            $return2099 = eregi_replace("field", $_SESSION['lb_setUser_phone'], $return2099);
+            $return2099 = eregi_replace("field", $_SESSION['lb_setEmployee_phone'], $return2099);
             echo $return2099;
         } else if (!$util->isPhoneNumber($info[s_phone])) {
-            $return2097 = eregi_replace("field", $_SESSION['lb_setUser_phone'], $return2097);
+            $return2097 = eregi_replace("field", $_SESSION['lb_setEmployee_phone'], $return2097);
             echo $return2097;
-        } else if ($util->isEmpty($info[s_email])) {
-            $return2099 = eregi_replace("field", $_SESSION['lb_setUser_email'], $return2099);
-            echo $return2099;
-        } else if (!filter_var($info[s_email], FILTER_VALIDATE_EMAIL)) {
+        } else if (!filter_var($info[s_email], FILTER_VALIDATE_EMAIL) && !$util->isEmpty($info[s_email])) {
             echo $_SESSION['cd_2006'];
-//        } else if ($util->isEmpty($info[s_line])) {
-//            $return2099 = eregi_replace("field", $_SESSION['lb_cs_line'], $return2099);
-//            echo $return2099;
         } else if ($util->isEmpty($info[status])) {
             $return2099 = eregi_replace("field", $_SESSION['label_status'], $return2099);
-            echo $return2099;
-        } else if ($util->isEmptyReg($info[s_user]) && $info[func] != "edit") {
-            $return2099 = eregi_replace("field", $_SESSION['lb_setUser_username'], $return2099);
-            echo $return2099;
-        } else if ($util->isEmptyReg($info[s_pass])) {
-            $return2099 = eregi_replace("field", $_SESSION['lb_setUser_password'], $return2099);
             echo $return2099;
         } else {
             $intReturn = TRUE;
