@@ -857,6 +857,11 @@
          <th>ชื่อบริษัทประกันภัย</th>
          <en>Insurance Company</en>
     </detail>
+	<detail>
+        <variable>tb_co_dailyrecord_name</variable>
+         <th>ชื่อรายการบันทึกประจำวัน</th>
+         <en>Daily Record Name</en>
+    </detail>
     <!--  table  --> 
         
     <!--  Title Header  --> 
@@ -974,6 +979,11 @@
         <variable>tt_mg_comp_insurance</variable>
         <th>จัดการข้อมูลบริษัทประกันภัย</th>
         <en>MANAGE INSURANCE COMPANY</en>
+    </detail>
+	 <detail>
+        <variable>tt_mg_daily_record</variable>
+        <th>จัดการข้อมูลรายการบันทึกประจำวัน</th>
+        <en>MANAGE DAILY RECORD</en>
     </detail>
     <!--  Title Header  --> 
         

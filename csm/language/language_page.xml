@@ -134,6 +134,12 @@
     </detail>  
 	 <!--  comp Insurance -->            
       
-    
+     <!--  daily --> 
+	 <detail>
+        <variable>lb_setDaily_th</variable>
+        <th>ชื่อรายการบันทึกประจำวัน</th>
+        <en>Daily Record Name</en>
+    </detail>  
+	 <!--  daily -->     
     
 </language>

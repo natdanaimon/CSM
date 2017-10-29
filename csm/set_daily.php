@@ -69,11 +69,11 @@ ACTIVEPAGES(99, 4);
                         <div class="page-bar">
                             <ul class="page-breadcrumb">
                                 <li>
-                                    <span><?= $_SESSION[app_nagieos_post] ?></span>
+                                    <span><?= $_SESSION[setting] ?></span>
                                     <i class="fa fa-circle" style="color:  #00FF00;"></i>
                                 </li>
                                 <li>
-                                    <a href="cs_website.php"><?= $_SESSION[lb_cs_website] ?></a>
+                                    <a href="set_daily.php"><?= $_SESSION[daily_record] ?></a>
                                 </li>
                             </ul>
 
@@ -91,7 +91,7 @@ ACTIVEPAGES(99, 4);
                                     <div class="portlet-title">
                                         <div class="caption font-dark">
                                             <i class="icon-settings font-dark"></i>
-                                            <span class="caption-subject bold uppercase"><?= $_SESSION[tt_mg_website] ?></span>
+                                            <span class="caption-subject bold uppercase"><?= $_SESSION[tt_mg_daily_record] ?></span>
                                         </div>
                                         <div class="actions">
 
@@ -105,7 +105,7 @@ ACTIVEPAGES(99, 4);
                                                                                                 </div>-->
                                                 <div class="col-md-6" align="left"  <?= $hidden ?>>
                                                     <div class="btn-group">
-                                                        <a href="cs_website_manage.php?func=add">
+                                                        <a href="set_dailyManage.php?func=add">
                                                             <button id="sample_editable_1_new" class="btn sbold green"> <?= $_SESSION[btn_add] ?>
                                                             </button>
                                                         </a>
@@ -135,8 +135,8 @@ ACTIVEPAGES(99, 4);
                                                                 <span class="box"></span> </label>
                                                         </span>
                                                     </th>
-                                     
-                                                    <th>  <?= $_SESSION[lb_cs_website] ?> </th>
+
+                                                    <th>  <?= $_SESSION[tb_co_dailyrecord_name] ?> </th>
                                                     <th>  <?= $_SESSION[tb_co_index] ?> </th>
                                                     <th>  <?= $_SESSION[tb_co_status] ?> </th>
                                                     <th style="width: 40px"> <?= $_SESSION[tb_co_edit] ?> </th>
@@ -206,10 +206,9 @@ ACTIVEPAGES(99, 4);
         <script src="js/common/notify.js" type="text/javascript"></script>
         <script src="js/common/utility.js" type="text/javascript"></script>
         <link href="css/notify.css" rel="stylesheet" type="text/css" />
-        <script src="js/action/cs_website.js" type="text/javascript"></script>
         <link href="outbound/lightbox/css/lightbox.css" rel="stylesheet" type="text/css" />
         <script src="outbound/lightbox/js/lightbox.js" type="text/javascript"></script>
-
+        <script src="js/action/setting/daily.js" type="text/javascript"></script>
         <script>
                                                             $(document).ready(function () {
                                                                 initialDataTable("TRUE");
