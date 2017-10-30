@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.7.0
+-- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Oct 29, 2017 at 02:25 PM
--- Server version: 10.1.9-MariaDB
--- PHP Version: 5.5.30
+-- Host: localhost
+-- Generation Time: Oct 30, 2017 at 06:34 PM
+-- Server version: 10.1.25-MariaDB
+-- PHP Version: 5.6.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -1060,10 +1062,11 @@ CREATE TABLE `tb_customer` (
   `s_phone_1` varchar(100) NOT NULL,
   `s_phone_2` varchar(100) NOT NULL,
   `s_email` varchar(100) NOT NULL,
+  `s_line` varchar(50) NOT NULL,
   `s_image` varchar(100) NOT NULL,
   `s_address` varchar(200) NOT NULL,
-  `i_tumbon` int(11) NOT NULL,
-  `i_aumphur` int(11) NOT NULL,
+  `i_district` int(11) NOT NULL,
+  `i_amphure` int(11) NOT NULL,
   `i_province` int(11) NOT NULL,
   `i_zipcode` int(11) NOT NULL,
   `d_create` datetime NOT NULL,
@@ -1072,6 +1075,13 @@ CREATE TABLE `tb_customer` (
   `s_update_by` varchar(50) NOT NULL,
   `s_status` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tb_customer`
+--
+
+INSERT INTO `tb_customer` (`i_customer`, `i_title`, `s_firstname`, `s_lastname`, `s_phone_1`, `s_phone_2`, `s_email`, `s_line`, `s_image`, `s_address`, `i_district`, `i_amphure`, `i_province`, `i_zipcode`, `d_create`, `d_update`, `s_create_by`, `s_update_by`, `s_status`) VALUES
+(4, 1, 'ณัฐดนัย', 'มั่นคง', '(086) 361-9979', '(213) 212-1321', 'natdanaimon@gmail.com', 'nagie', 'default.png', '99/99 ม.3 ', 200403, 139, 11, 20150, '2017-10-30 23:27:10', '2017-10-31 00:33:04', 'admin', 'admin', 'A');
 
 -- --------------------------------------------------------
 
@@ -10317,6 +10327,28 @@ INSERT INTO `tb_status` (`s_status`, `s_type`, `s_detail_th`, `s_detail_en`) VAL
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tb_title`
+--
+
+CREATE TABLE `tb_title` (
+  `i_title` int(11) NOT NULL,
+  `s_title_th` varchar(50) NOT NULL,
+  `s_title_en` varchar(40) NOT NULL,
+  `s_status` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tb_title`
+--
+
+INSERT INTO `tb_title` (`i_title`, `s_title_th`, `s_title_en`, `s_status`) VALUES
+(1, 'นาย', 'Mr.', 'A'),
+(2, 'นางสาว', 'Ms', 'A'),
+(3, 'นาง', 'Mrs.', 'A');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tb_type_daily`
 --
 
@@ -10395,7 +10427,7 @@ INSERT INTO `tb_vat` (`i_vat`, `f_vat`, `d_create`, `d_update`, `s_create_by`, `
 --
 ALTER TABLE `tb_customer`
   ADD PRIMARY KEY (`i_customer`),
-  ADD KEY `index_address` (`i_tumbon`,`i_aumphur`,`i_province`,`i_zipcode`),
+  ADD KEY `index_address` (`i_district`,`i_amphure`,`i_province`,`i_zipcode`),
   ADD KEY `index_customer_search` (`s_status`);
 
 --
@@ -10449,6 +10481,12 @@ ALTER TABLE `tb_status`
   ADD KEY `index_status` (`s_type`);
 
 --
+-- Indexes for table `tb_title`
+--
+ALTER TABLE `tb_title`
+  ADD PRIMARY KEY (`i_title`);
+
+--
 -- Indexes for table `tb_type_daily`
 --
 ALTER TABLE `tb_type_daily`
@@ -10478,7 +10516,7 @@ ALTER TABLE `tb_vat`
 -- AUTO_INCREMENT for table `tb_customer`
 --
 ALTER TABLE `tb_customer`
-  MODIFY `i_customer` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `i_customer` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `tb_damage`
 --
@@ -10510,6 +10548,11 @@ ALTER TABLE `tb_item`
 ALTER TABLE `tb_partner_comp`
   MODIFY `i_part_comp` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `tb_title`
+--
+ALTER TABLE `tb_title`
+  MODIFY `i_title` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
 -- AUTO_INCREMENT for table `tb_type_daily`
 --
 ALTER TABLE `tb_type_daily`
@@ -10523,7 +10566,8 @@ ALTER TABLE `tb_user`
 -- AUTO_INCREMENT for table `tb_vat`
 --
 ALTER TABLE `tb_vat`
-  MODIFY `i_vat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `i_vat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

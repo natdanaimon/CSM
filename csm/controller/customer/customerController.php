@@ -60,7 +60,7 @@ class customerController {
         if ($service->delete($db, $seq)) {
             $upload = new upload();
             $upload->Initial_and_Clear();
-            $upload->set_path("../../upload/employee/");
+            $upload->set_path("../../upload/customer/");
             foreach ($arr_img as $key => $value) {
                 if ($arr_img[$key]['s_image'] != NULL && $arr_img[$key]['s_image'] != "") {
                     if ($arr_img[$key]['s_image'] != "default.png") {
@@ -94,7 +94,7 @@ class customerController {
             if ($service->deleteAll($db, $query)) {
                 $upload = new upload();
                 $upload->Initial_and_Clear();
-                $upload->set_path("../../upload/employee/");
+                $upload->set_path("../../upload/customer/");
                 foreach ($arr_img as $key => $value) {
                     if ($arr_img[$key]['s_image'] != NULL && $arr_img[$key]['s_image'] != "") {
                         if ($arr_img[$key]['s_image'] != "default.png") {
@@ -129,7 +129,7 @@ class customerController {
     public function add($info) {
         if ($this->isValid($info)) {
             $doc = new upload();
-            $doc->set_path("../../upload/employee/");
+            $doc->set_path("../../upload/customer/");
             $db = new ConnectDB();
             $db->conn();
             $service = new customerService();
@@ -172,7 +172,7 @@ class customerController {
     public function edit($info) {
         if ($this->isValid($info)) {
             $doc = new upload();
-            $doc->set_path("../../upload/employee/");
+            $doc->set_path("../../upload/customer/");
             $db = new ConnectDB();
             $db->conn();
             $service = new customerService();
@@ -192,7 +192,7 @@ class customerController {
                     if ($service->edit($db, $info, $tmpDoc[0])) {
                         if ($info[tmp_s_img] != "default.png") {
                             $doc->Initial_and_Clear();
-                            $doc->set_path("../../upload/employee/");
+                            $doc->set_path("../../upload/customer/");
                             $doc->add_FileName($info[tmp_s_img]);
 
                             if ($doc->deleteFile()) {

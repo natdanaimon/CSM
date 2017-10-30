@@ -6,10 +6,11 @@ class customerService {
 
     function dataTable() {
         $db = new ConnectDB();
-        $strSql = " select u.*,s.s_detail_th status_th, s.s_detail_en status_en ";
-        $strSql .= "from tb_customer u , tb_status s  ";
+        $strSql = " select u.*,s.s_detail_th status_th, s.s_detail_en status_en,t.s_title_th , t.s_title_en ";
+        $strSql .= "from tb_customer u , tb_status s ,tb_title t ";
         $strSql .= "where u.s_status = s.s_status ";
         $strSql .= "and s.s_type = 'ACTIVE' ";
+        $strSql .= "and u.i_title = t.i_title ";
         $strSql .= "order by u.d_create desc , u.s_status desc ";
         $_data = $db->Search_Data_FormatJson($strSql);
         $db->close_conn();
@@ -72,12 +73,19 @@ class customerService {
         $strSql .= "INSERT ";
         $strSql .= "INTO ";
         $strSql .= "  tb_customer ( ";
+        $strSql .= "    i_title, ";
         $strSql .= "    s_firstname, ";
         $strSql .= "    s_lastname, ";
         $strSql .= "    s_phone_1, ";
         $strSql .= "    s_phone_2, ";
         $strSql .= "    s_email, ";
         $strSql .= "    s_line, ";
+
+        $strSql .= "    s_address, ";
+        $strSql .= "    i_province, ";
+        $strSql .= "    i_amphure, ";
+        $strSql .= "    i_district, ";
+        $strSql .= "    i_zipcode, ";
 
 
 
@@ -92,12 +100,21 @@ class customerService {
         $strSql .= "    s_status ";
         $strSql .= "  ) ";
         $strSql .= "VALUES( ";
+        $strSql .= "  $info[i_title], ";
         $strSql .= "  '$info[s_firstname]', ";
         $strSql .= "  '$info[s_lastname]', ";
         $strSql .= "  '$info[s_phone_1]', ";
         $strSql .= "  '$info[s_phone_2]', ";
         $strSql .= "  '$info[s_email]', ";
         $strSql .= "  '$info[s_line]', ";
+
+        $strSql .= "  '$info[s_address]', ";
+        $strSql .= "  $info[i_province], ";
+        $strSql .= "  $info[i_amphure], ";
+        $strSql .= "  $info[i_district], ";
+        $strSql .= "  $info[i_zipcode], ";
+
+
 
         $strSql .= "  '$imgProfile', ";
 
@@ -119,6 +136,7 @@ class customerService {
         $strSql = "";
         $strSql .= "update tb_customer ";
         $strSql .= "set  ";
+        $strSql .= "i_title = $info[i_title], ";
         $strSql .= "s_firstname = '$info[s_firstname]', ";
         $strSql .= "s_lastname = '$info[s_lastname]', ";
         $strSql .= "s_phone_1 = '$info[s_phone_1]', ";
@@ -126,6 +144,11 @@ class customerService {
         $strSql .= "s_email = '$info[s_email]', ";
         $strSql .= "s_line = '$info[s_line]', ";
 
+        $strSql .= "s_address = '$info[s_address]', ";
+        $strSql .= "i_province = $info[i_province], ";
+        $strSql .= "i_amphure = $info[i_amphure], ";
+        $strSql .= "i_district = $info[i_district], ";
+        $strSql .= "i_zipcode = $info[i_zipcode], ";
 
 
 

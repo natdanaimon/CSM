@@ -136,7 +136,7 @@ ACTIVEPAGES(2, 1);
                                                                 <span class="box"></span> </label>
                                                         </span>
                                                     </th>
-                                                    <th>  <?= $_SESSION[tb_co_profile] ?> </th>
+                                                    <th style="width: 100px" class="no-sort">  <?= $_SESSION[tb_co_profile] ?> </th>
                                                     <th>  <?= $_SESSION[tb_co_fullname] ?> </th>
                                                     <th>  <?= $_SESSION[tb_co_phone] ?> </th>
                                                     <th>  <?= $_SESSION[tb_co_status] ?> </th>
