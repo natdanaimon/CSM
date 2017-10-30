@@ -15,11 +15,38 @@ function getDDLStatus() {
             });
             $("#status").html(htmlOption);
 
+            getDDLTitle();
+
+        },
+        error: function (data) {
+            getDDLTitle();
+        }
+
+    });
+}
+
+function getDDLTitle() {
+    $.ajax({
+        type: 'GET',
+        url: 'controller/commonController.php?func=DDLTitle',
+        beforeSend: function ()
+        {
+            //$('#se-pre-con').fadeIn(100);
+        },
+        success: function (data) {
+            var htmlOption = "";
+            var res = JSON.parse(data);
+            $.each(res, function (i, item) {
+                var txt_status = (language == "th" ? item.s_title_th : item.s_title_en);
+                htmlOption += "<option value='" + item.i_title + "'>" + txt_status + "</option>";
+            });
+            $("#i_title").html(htmlOption);
+
             getDDLProvince();
 
         },
         error: function (data) {
-            getDDLDepartment();
+            getDDLProvince();
         }
 
     });
@@ -86,7 +113,7 @@ function getDDLAmphure() {
             getDDLDistrict();
         },
         error: function (data) {
-            edit();
+            getDDLDistrict();
         }
 
     });
@@ -118,7 +145,7 @@ function getDDLDistrict() {
             getDDLZipcode();
         },
         error: function (data) {
-            edit();
+            getDDLZipcode();
         }
 
     });
@@ -149,7 +176,7 @@ function getDDLZipcode() {
 
         },
         error: function (data) {
-            edit();
+            
         }
 
     });

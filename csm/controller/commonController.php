@@ -36,6 +36,9 @@ switch ($info[func]) {
     case "DDLZipcode":
         echo $controller->DDLZipcode($info);
         break;
+    case "DDLTitle":
+        echo $controller->DDLTitle();
+        break;
 }
 
 class commonController {
@@ -111,6 +114,16 @@ class commonController {
     public function DDLZipcode($info) {
         $service = new commonService();
         $_dataTable = $service->DDLZipcode($info);
+        if ($_dataTable != NULL) {
+            return json_encode($_dataTable);
+        } else {
+            return NULL;
+        }
+    }
+    
+     public function DDLTitle() {
+        $service = new commonService();
+        $_dataTable = $service->DDLTitle();
         if ($_dataTable != NULL) {
             return json_encode($_dataTable);
         } else {

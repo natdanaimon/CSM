@@ -61,4 +61,12 @@ class commonService {
         return $_data;
     }
 
+     function DDLTitle() {
+        $db = new ConnectDB();
+        $strSql = "select * from tb_title ";
+        $_data = $db->Search_Data_FormatJson($strSql);
+        $db->close_conn();
+        return $_data;
+    }
+    
 }
