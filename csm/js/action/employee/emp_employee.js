@@ -69,8 +69,8 @@ function initialDataTable(first) {
 
                 var addRow = [
                     col_checkbox,
-                    col_dept,
                     col_picture,
+                    col_dept,
                     col_name,
                     col_phone,
                     col_status,
