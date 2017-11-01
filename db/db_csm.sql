@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 30, 2017 at 06:34 PM
+-- Generation Time: Nov 01, 2017 at 07:43 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
@@ -1047,6 +1047,122 @@ INSERT INTO `tb_amphures` (`i_amphure`, `s_code`, `s_name_th`, `s_name_en`, `i_p
 (1000, '3802', 'เซกา', 'Seka', 77),
 (999, '3801', 'เมืองบึงกาฬ', 'Mueang Bueng Kan', 77),
 (1006, '3808', 'บุ่งคล้า', 'Bung Khla', 77);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_car_brand`
+--
+
+CREATE TABLE `tb_car_brand` (
+  `i_brand` int(11) NOT NULL,
+  `s_brand_name` varchar(50) NOT NULL,
+  `d_create` int(11) NOT NULL,
+  `d_update` int(11) NOT NULL,
+  `s_create_by` varchar(50) NOT NULL,
+  `s_update_by` varchar(50) NOT NULL,
+  `s_status` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_car_generation`
+--
+
+CREATE TABLE `tb_car_generation` (
+  `i_gen` int(11) NOT NULL,
+  `s_gen_name` int(50) NOT NULL,
+  `d_create` int(11) NOT NULL,
+  `d_update` int(11) NOT NULL,
+  `s_create_by` varchar(50) NOT NULL,
+  `s_update_by` varchar(50) NOT NULL,
+  `s_status` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_car_map`
+--
+
+CREATE TABLE `tb_car_map` (
+  `i_car` int(11) NOT NULL,
+  `i_year` int(11) NOT NULL,
+  `i_brand` int(11) NOT NULL,
+  `i_gen` int(11) NOT NULL,
+  `i_sub` int(11) NOT NULL,
+  `d_create` int(11) NOT NULL,
+  `d_update` int(11) NOT NULL,
+  `s_create_by` varchar(50) NOT NULL,
+  `s_update_by` varchar(50) NOT NULL,
+  `s_status` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_car_sub`
+--
+
+CREATE TABLE `tb_car_sub` (
+  `i_sub` int(11) NOT NULL,
+  `s_sub_name` int(100) NOT NULL,
+  `d_create` datetime NOT NULL,
+  `d_update` datetime NOT NULL,
+  `s_create_by` varchar(50) NOT NULL,
+  `s_update_by` varchar(50) NOT NULL,
+  `s_status` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_car_year`
+--
+
+CREATE TABLE `tb_car_year` (
+  `i_year` int(11) NOT NULL,
+  `d_create` datetime NOT NULL,
+  `d_update` datetime NOT NULL,
+  `s_create_by` varchar(50) NOT NULL,
+  `s_update_by` varchar(50) NOT NULL,
+  `s_status` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tb_car_year`
+--
+
+INSERT INTO `tb_car_year` (`i_year`, `d_create`, `d_update`, `s_create_by`, `s_update_by`, `s_status`) VALUES
+(1990, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A'),
+(1991, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A'),
+(1992, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A'),
+(1993, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A'),
+(1994, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A'),
+(1995, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A'),
+(1996, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A'),
+(1997, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A'),
+(1998, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A'),
+(1999, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A'),
+(2000, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A'),
+(2001, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A'),
+(2002, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A'),
+(2003, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A'),
+(2004, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A'),
+(2005, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A'),
+(2006, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A'),
+(2007, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A'),
+(2008, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A'),
+(2009, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A'),
+(2010, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A'),
+(2011, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A'),
+(2012, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A'),
+(2013, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A'),
+(2014, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A'),
+(2015, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A'),
+(2016, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A'),
+(2017, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A');
 
 -- --------------------------------------------------------
 
@@ -10133,6 +10249,30 @@ INSERT INTO `tb_geographies` (`i_geography`, `s_name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tb_insurance`
+--
+
+CREATE TABLE `tb_insurance` (
+  `i_insurance` int(11) NOT NULL,
+  `i_car` int(11) NOT NULL,
+  `i_ins_comp` int(11) NOT NULL,
+  `i_ins_type` int(11) NOT NULL,
+  `i_insurance_detail` int(11) NOT NULL,
+  `i_ins_promotion` int(11) NOT NULL,
+  `s_insurance_htext` text NOT NULL,
+  `f_price` float NOT NULL,
+  `f_discount` float NOT NULL,
+  `f_point` float NOT NULL,
+  `d_create` datetime NOT NULL,
+  `d_update` datetime NOT NULL,
+  `s_create_by` varchar(50) NOT NULL,
+  `s_update_by` varchar(50) NOT NULL,
+  `s_status` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tb_insurance_comp`
 --
 
@@ -10167,6 +10307,131 @@ INSERT INTO `tb_insurance_comp` (`i_ins_comp`, `s_comp_th`, `s_comp_en`, `s_imag
 (12, 'บริษัท บางกอกสหประกันภัย จำกัด (มหาชน)', 'บริษัท บางกอกสหประกันภัย จำกัด (มหาชน)', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'ADM', 'ADM', 'A'),
 (13, 'บริษัท ประกันภัยไทยวิวัฒน์ จำกัด (มหาชน)', 'บริษัท ประกันภัยไทยวิวัฒน์ จำกัด (มหาชน)', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'ADM', 'ADM', 'A'),
 (14, 'บริษัท ไดเร็ค เอเชีย (ประเทศไทย) จำกัด', 'บริษัท ไดเร็ค เอเชีย (ประเทศไทย) จำกัด', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'ADM', 'ADM', 'A');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_insurance_detail`
+--
+
+CREATE TABLE `tb_insurance_detail` (
+  `i_insurance_detail` int(11) NOT NULL,
+  `i_insurance` int(11) NOT NULL,
+  `s_prcar_base` varchar(50) NOT NULL COMMENT 'มูลค่าความคุ้มครองสูงสุด สำหรับรถยนต์เอาประกัน',
+  `s_prcar_fire` varchar(50) NOT NULL COMMENT 'คุ้มครองรถเอาประกันกรณีถูกโจรกรรมหรือไฟไหม้ ทั้งที่เป็นการไหม้โดยตัวของมันเอง หรือสืบเนื่องจากสาเหตุอื่น',
+  `s_prcar_water` varchar(50) NOT NULL COMMENT 'คุ้มครองรถเอาประกัน อันมีสาเหตุมาจากน้ำท่วม หรือภัยธรรมชาติต่างๆ ต่อรถยนต์',
+  `s_prcar_repair` varchar(50) NOT NULL COMMENT 'จำนวนเงินค่าใช้จ่าย ที่ผู้เอาประกันต้องจ่าย กรณีมีการเคลมประกันที่คุณเป็นฝ่ายที่ต้องรับผิด',
+  `i_prcar_repair_type` int(11) NOT NULL COMMENT 'อู่ หมายถึง สถานที่ซ่อมรถยนต์ในเครือของบริษัทประกัน   ห้าง หมายถึง สถานที่ซ่อมรถยนต์ของบริษัทผู้จำหน่ายรถยนต์ หรือ สถานที่ซ่อมอื่นๆนอกเครือของบริษัทประกันที่คุณพอใจ',
+  `s_prperson_per` text NOT NULL COMMENT 'คุ้มครองการชดใช้ค่าสินไหมทดแทนเพื่อความเสียหายต่อชีวิต ร่างกาย หรืออนามัย ของบุคคลภายนอก ตามความเสียหายที่แท้จริงที่ผู้เอาประกันภัยจะต้องรับผิดชอบตามกฎหมายต่อบุคคลภายนอก เนื่องจากอุบัติเหตุอันเกิดจากรถยนต์ที่ใช้',
+  `s_prperson_pertimes` text NOT NULL COMMENT 'คุ้มครองการชดใช้ค่าสินไหมทดแทนเพื่อความเสียหายต่อชีวิต ร่างกาย หรืออนามัย ของบุคคลภายนอก ตามความเสียหายที่แท้จริงที่ผู้เอาประกันภัยจะต้องรับผิดชอบตามกฎหมายต่อบุคคลภายนอก เนื่องจากอุบัติเหตุอันเกิดจากรถยนต์ที่ใช้',
+  `s_prperson_outsider` text NOT NULL COMMENT 'คุ้มครองการชดใช้ค่าสินไหมทดแทนเพื่อความเสียหายต่อทรัพย์สินของบุคคลภายนอก ซึ่งผู้เอาประกันภัยจะต้องรับผิดชอบตามกฎหมาย',
+  `s_prother_persona` text NOT NULL COMMENT 'บริษัทประกันภัยชดใช้การเอาประกันภัยเพิ่มของผู้ขับขี่หรือผู้โดยสาร สำหรับการเสียชีวิต การสูญเสียมือ เท้า สายตา ถาวรสิ้นเชิงและการทุพพลภาพถาวร',
+  `s_prother_insurance` text NOT NULL COMMENT 'บริษัทประกันภัยจะประกันตัวผู้เอาประกันภัยหรือผู้ขับขี่ที่ได้รับความยินยอมจากผู้เอาประกันภัย ในกรณีรถยนต์ที่ทำประกันประสบอุบัติเหตุ เป็นเหตุให้บุคคลอื่นได้รับบาดเจ็บหรือเสียชีวิต และตำรวจ',
+  `s_prother_medical` text NOT NULL COMMENT 'คุ้มครองค่ารักษาพยาบาลกรณีบาดเจ็บ ค่าสินไหมกรณีทุพพลภาพถาวร และค่าปลงศพกรณีเสียชีวิต สำหรับผู้ประสบภัยจากรถทุกคน',
+  `d_create` datetime NOT NULL,
+  `d_update` datetime NOT NULL,
+  `s_create_by` varchar(50) NOT NULL,
+  `s_update_by` varchar(50) NOT NULL,
+  `s_status` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_insurance_promotion`
+--
+
+CREATE TABLE `tb_insurance_promotion` (
+  `i_ins_promotion` int(11) NOT NULL,
+  `s_promotion` varchar(100) NOT NULL,
+  `d_create` datetime NOT NULL,
+  `d_update` datetime NOT NULL,
+  `s_create_by` varchar(50) NOT NULL,
+  `s_update_by` varchar(50) NOT NULL,
+  `s_status` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tb_insurance_promotion`
+--
+
+INSERT INTO `tb_insurance_promotion` (`i_ins_promotion`, `s_promotion`, `d_create`, `d_update`, `s_create_by`, `s_update_by`, `s_status`) VALUES
+(1, 'ไม่มีโปรโมชั่น', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'ADM', 'ADM', 'A'),
+(2, 'รับสิทธิ์ผ่อน 0% สูงสุด 3 เดือน', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'ADM', 'ADM', 'A'),
+(3, 'รับสิทธิ์ผ่อน 0% สูงสุด 4 เดือน', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'ADM', 'ADM', 'A'),
+(4, 'รับสิทธิ์ผ่อน 0% สูงสุด 5 เดือน', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'ADM', 'ADM', 'A'),
+(5, 'รับสิทธิ์ผ่อน 0% สูงสุด 6 เดือน', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'ADM', 'ADM', 'A'),
+(6, 'รับสิทธิ์ผ่อน 0% สูงสุด 12 เดือน', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'ADM', 'ADM', 'A');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_insurance_repair_type`
+--
+
+CREATE TABLE `tb_insurance_repair_type` (
+  `i_repair` int(11) NOT NULL,
+  `s_name` text NOT NULL,
+  `d_create` datetime NOT NULL,
+  `d_update` datetime NOT NULL,
+  `s_create_by` varchar(50) NOT NULL,
+  `s_update_by` varchar(50) NOT NULL,
+  `s_status` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tb_insurance_repair_type`
+--
+
+INSERT INTO `tb_insurance_repair_type` (`i_repair`, `s_name`, `d_create`, `d_update`, `s_create_by`, `s_update_by`, `s_status`) VALUES
+(1, 'ซ่อมห้าง', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'ADM', 'ADM', 'A'),
+(2, 'ซ่อมอู่', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'ADM', 'ADM', 'A');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_insurance_trans`
+--
+
+CREATE TABLE `tb_insurance_trans` (
+  `i_ins_trans` int(11) NOT NULL,
+  `i_insurance` int(11) NOT NULL,
+  `s_firstname` varchar(100) NOT NULL,
+  `s_lastname` varchar(100) NOT NULL,
+  `s_phone` varchar(50) NOT NULL,
+  `s_email` varchar(100) NOT NULL,
+  `d_create` int(11) NOT NULL,
+  `d_update` int(11) NOT NULL,
+  `s_create_by` varchar(50) NOT NULL,
+  `s_update_by` varchar(50) NOT NULL,
+  `s_status` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_insurance_type`
+--
+
+CREATE TABLE `tb_insurance_type` (
+  `i_ins_type` int(11) NOT NULL,
+  `s_name` varchar(100) NOT NULL,
+  `d_create` datetime NOT NULL,
+  `d_update` datetime NOT NULL,
+  `s_create_by` varchar(50) NOT NULL,
+  `s_update_by` varchar(50) NOT NULL,
+  `s_status` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tb_insurance_type`
+--
+
+INSERT INTO `tb_insurance_type` (`i_ins_type`, `s_name`, `d_create`, `d_update`, `s_create_by`, `s_update_by`, `s_status`) VALUES
+(1, 'ประกันชั้น 1', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'ADM', 'ADM', 'A'),
+(2, 'ประกันชั้น 2+', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'ADM', 'ADM', 'A'),
+(3, 'ประกันชั้น 3+', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'ADM', 'ADM', 'A'),
+(4, 'ประกันชั้น 3', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'ADM', 'ADM', 'A');
 
 -- --------------------------------------------------------
 
@@ -10423,6 +10688,37 @@ INSERT INTO `tb_vat` (`i_vat`, `f_vat`, `d_create`, `d_update`, `s_create_by`, `
 --
 
 --
+-- Indexes for table `tb_car_brand`
+--
+ALTER TABLE `tb_car_brand`
+  ADD PRIMARY KEY (`i_brand`);
+
+--
+-- Indexes for table `tb_car_generation`
+--
+ALTER TABLE `tb_car_generation`
+  ADD PRIMARY KEY (`i_gen`);
+
+--
+-- Indexes for table `tb_car_map`
+--
+ALTER TABLE `tb_car_map`
+  ADD PRIMARY KEY (`i_car`),
+  ADD KEY `index_car_map` (`i_year`,`i_brand`,`i_gen`,`i_sub`);
+
+--
+-- Indexes for table `tb_car_sub`
+--
+ALTER TABLE `tb_car_sub`
+  ADD PRIMARY KEY (`i_sub`);
+
+--
+-- Indexes for table `tb_car_year`
+--
+ALTER TABLE `tb_car_year`
+  ADD PRIMARY KEY (`i_year`);
+
+--
 -- Indexes for table `tb_customer`
 --
 ALTER TABLE `tb_customer`
@@ -10452,11 +10748,47 @@ ALTER TABLE `tb_employee`
   ADD KEY `index_employee_search` (`s_status`,`i_dept`);
 
 --
+-- Indexes for table `tb_insurance`
+--
+ALTER TABLE `tb_insurance`
+  ADD PRIMARY KEY (`i_insurance`);
+
+--
 -- Indexes for table `tb_insurance_comp`
 --
 ALTER TABLE `tb_insurance_comp`
   ADD PRIMARY KEY (`i_ins_comp`),
   ADD KEY `index_insurance_comp` (`s_status`);
+
+--
+-- Indexes for table `tb_insurance_detail`
+--
+ALTER TABLE `tb_insurance_detail`
+  ADD PRIMARY KEY (`i_insurance_detail`);
+
+--
+-- Indexes for table `tb_insurance_promotion`
+--
+ALTER TABLE `tb_insurance_promotion`
+  ADD PRIMARY KEY (`i_ins_promotion`);
+
+--
+-- Indexes for table `tb_insurance_repair_type`
+--
+ALTER TABLE `tb_insurance_repair_type`
+  ADD PRIMARY KEY (`i_repair`);
+
+--
+-- Indexes for table `tb_insurance_trans`
+--
+ALTER TABLE `tb_insurance_trans`
+  ADD PRIMARY KEY (`i_ins_trans`);
+
+--
+-- Indexes for table `tb_insurance_type`
+--
+ALTER TABLE `tb_insurance_type`
+  ADD PRIMARY KEY (`i_ins_type`);
 
 --
 -- Indexes for table `tb_item`
@@ -10513,10 +10845,35 @@ ALTER TABLE `tb_vat`
 --
 
 --
+-- AUTO_INCREMENT for table `tb_car_brand`
+--
+ALTER TABLE `tb_car_brand`
+  MODIFY `i_brand` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `tb_car_generation`
+--
+ALTER TABLE `tb_car_generation`
+  MODIFY `i_gen` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `tb_car_map`
+--
+ALTER TABLE `tb_car_map`
+  MODIFY `i_car` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `tb_car_sub`
+--
+ALTER TABLE `tb_car_sub`
+  MODIFY `i_sub` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `tb_car_year`
+--
+ALTER TABLE `tb_car_year`
+  MODIFY `i_year` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2018;
+--
 -- AUTO_INCREMENT for table `tb_customer`
 --
 ALTER TABLE `tb_customer`
-  MODIFY `i_customer` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `i_customer` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `tb_damage`
 --
@@ -10533,10 +10890,40 @@ ALTER TABLE `tb_department`
 ALTER TABLE `tb_employee`
   MODIFY `i_emp` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `tb_insurance`
+--
+ALTER TABLE `tb_insurance`
+  MODIFY `i_insurance` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `tb_insurance_comp`
 --
 ALTER TABLE `tb_insurance_comp`
   MODIFY `i_ins_comp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+--
+-- AUTO_INCREMENT for table `tb_insurance_detail`
+--
+ALTER TABLE `tb_insurance_detail`
+  MODIFY `i_insurance_detail` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `tb_insurance_promotion`
+--
+ALTER TABLE `tb_insurance_promotion`
+  MODIFY `i_ins_promotion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT for table `tb_insurance_repair_type`
+--
+ALTER TABLE `tb_insurance_repair_type`
+  MODIFY `i_repair` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `tb_insurance_trans`
+--
+ALTER TABLE `tb_insurance_trans`
+  MODIFY `i_ins_trans` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `tb_insurance_type`
+--
+ALTER TABLE `tb_insurance_type`
+  MODIFY `i_ins_type` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `tb_item`
 --
