@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Nov 01, 2017 at 07:43 PM
--- Server version: 10.1.25-MariaDB
--- PHP Version: 5.6.31
+-- Host: 127.0.0.1
+-- Generation Time: Nov 04, 2017 at 12:01 AM
+-- Server version: 10.1.9-MariaDB
+-- PHP Version: 5.5.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -1056,13 +1054,25 @@ INSERT INTO `tb_amphures` (`i_amphure`, `s_code`, `s_name_th`, `s_name_en`, `i_p
 
 CREATE TABLE `tb_car_brand` (
   `i_brand` int(11) NOT NULL,
+  `s_brand_code` varchar(50) NOT NULL,
   `s_brand_name` varchar(50) NOT NULL,
-  `d_create` int(11) NOT NULL,
-  `d_update` int(11) NOT NULL,
+  `s_image` varchar(100) NOT NULL,
+  `d_create` datetime NOT NULL,
+  `d_update` datetime NOT NULL,
   `s_create_by` varchar(50) NOT NULL,
   `s_update_by` varchar(50) NOT NULL,
   `s_status` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tb_car_brand`
+--
+
+INSERT INTO `tb_car_brand` (`i_brand`, `s_brand_code`, `s_brand_name`, `s_image`, `d_create`, `d_update`, `s_create_by`, `s_update_by`, `s_status`) VALUES
+(4, 'H01', 'HONDA', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'admin', 'admin', 'A'),
+(5, 'T01', 'TOYOTA', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'admin', 'admin', 'A'),
+(6, 'HD', 'HONDA', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'admin', 'admin', 'A'),
+(7, 'TO', 'TOYOTA', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'admin', 'admin', 'A');
 
 -- --------------------------------------------------------
 
@@ -1072,13 +1082,22 @@ CREATE TABLE `tb_car_brand` (
 
 CREATE TABLE `tb_car_generation` (
   `i_gen` int(11) NOT NULL,
-  `s_gen_name` int(50) NOT NULL,
+  `s_gen_code` varchar(50) NOT NULL,
+  `s_gen_name` varchar(50) NOT NULL,
   `d_create` int(11) NOT NULL,
   `d_update` int(11) NOT NULL,
   `s_create_by` varchar(50) NOT NULL,
   `s_update_by` varchar(50) NOT NULL,
   `s_status` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tb_car_generation`
+--
+
+INSERT INTO `tb_car_generation` (`i_gen`, `s_gen_code`, `s_gen_name`, `d_create`, `d_update`, `s_create_by`, `s_update_by`, `s_status`) VALUES
+(6, 'H01-01', 'CIVIC', 2147483647, 2147483647, 'admin', 'admin', 'A'),
+(8, 'HD-01', 'CITY', 2147483647, 2147483647, 'admin', 'admin', 'A');
 
 -- --------------------------------------------------------
 
@@ -1089,15 +1108,33 @@ CREATE TABLE `tb_car_generation` (
 CREATE TABLE `tb_car_map` (
   `i_car` int(11) NOT NULL,
   `i_year` int(11) NOT NULL,
-  `i_brand` int(11) NOT NULL,
-  `i_gen` int(11) NOT NULL,
-  `i_sub` int(11) NOT NULL,
-  `d_create` int(11) NOT NULL,
-  `d_update` int(11) NOT NULL,
+  `s_brand_code` varchar(50) NOT NULL,
+  `s_gen_code` varchar(50) NOT NULL,
+  `s_sub_code` varchar(50) NOT NULL,
+  `d_create` datetime NOT NULL,
+  `d_update` datetime NOT NULL,
   `s_create_by` varchar(50) NOT NULL,
   `s_update_by` varchar(50) NOT NULL,
   `s_status` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tb_car_map`
+--
+
+INSERT INTO `tb_car_map` (`i_car`, `i_year`, `s_brand_code`, `s_gen_code`, `s_sub_code`, `d_create`, `d_update`, `s_create_by`, `s_update_by`, `s_status`) VALUES
+(3, 0, 'BRAND CODE', 'GENERATION CODE', 'SUB CODE', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'admin', 'admin', 'A'),
+(5, 0, 'BRAND CODE', 'GENERATION CODE', 'SUB CODE', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'admin', 'admin', 'A'),
+(7, 0, 'BRAND CODE', 'GENERATION CODE', 'SUB CODE', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'admin', 'admin', 'A'),
+(9, 0, 'BRAND CODE', 'GENERATION CODE', 'SUB CODE', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'admin', 'admin', 'A'),
+(11, 0, 'BRAND CODE', 'GENERATION CODE', 'SUB CODE', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'admin', 'admin', 'A'),
+(13, 0, 'BRAND CODE', 'GENERATION CODE', 'SUB CODE', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'admin', 'admin', 'A'),
+(15, 0, 'BRAND CODE', 'GENERATION CODE', 'SUB CODE', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'admin', 'admin', 'A'),
+(16, 0, 'BRAND CODE', 'GENERATION CODE', 'SUB CODE', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'admin', 'admin', 'A'),
+(17, 0, 'BRAND CODE', 'GENERATION CODE', 'SUB CODE', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'admin', 'admin', 'A'),
+(18, 0, 'BRAND CODE', 'GENERATION CODE', 'SUB CODE', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'admin', 'admin', 'A'),
+(19, 0, 'BRAND CODE', 'GENERATION CODE', 'SUB CODE', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'admin', 'admin', 'A'),
+(20, 2015, 'H01', 'H01-01', 'CC1200', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'admin', 'admin', 'A');
 
 -- --------------------------------------------------------
 
@@ -1107,13 +1144,24 @@ CREATE TABLE `tb_car_map` (
 
 CREATE TABLE `tb_car_sub` (
   `i_sub` int(11) NOT NULL,
-  `s_sub_name` int(100) NOT NULL,
+  `s_sub_code` varchar(50) NOT NULL,
+  `s_sub_name` varchar(100) NOT NULL,
   `d_create` datetime NOT NULL,
   `d_update` datetime NOT NULL,
   `s_create_by` varchar(50) NOT NULL,
   `s_update_by` varchar(50) NOT NULL,
   `s_status` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tb_car_sub`
+--
+
+INSERT INTO `tb_car_sub` (`i_sub`, `s_sub_code`, `s_sub_name`, `d_create`, `d_update`, `s_create_by`, `s_update_by`, `s_status`) VALUES
+(4, 'CC1200', '1200 CC', '2017-11-03 17:19:50', '2017-11-03 17:19:50', 'admin', 'admin', 'A'),
+(5, 'CC1500', '1500 CC', '2017-11-03 17:19:58', '2017-11-03 17:19:58', 'admin', 'admin', 'A'),
+(6, 'CC1800', '1800 CC', '2017-11-03 17:20:08', '2017-11-03 17:20:08', 'admin', 'admin', 'A'),
+(7, 'CC2000', '2000 CC', '2017-11-03 17:20:14', '2017-11-03 17:20:14', 'admin', 'admin', 'A');
 
 -- --------------------------------------------------------
 
@@ -1135,7 +1183,6 @@ CREATE TABLE `tb_car_year` (
 --
 
 INSERT INTO `tb_car_year` (`i_year`, `d_create`, `d_update`, `s_create_by`, `s_update_by`, `s_status`) VALUES
-(1990, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A'),
 (1991, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A'),
 (1992, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A'),
 (1993, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A'),
@@ -1162,7 +1209,8 @@ INSERT INTO `tb_car_year` (`i_year`, `d_create`, `d_update`, `s_create_by`, `s_u
 (2014, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A'),
 (2015, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A'),
 (2016, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A'),
-(2017, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A');
+(2017, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A'),
+(2018, '2017-11-03 14:47:13', '2017-11-03 14:47:13', 'admin', 'admin', 'A');
 
 -- --------------------------------------------------------
 
@@ -10704,7 +10752,7 @@ ALTER TABLE `tb_car_generation`
 --
 ALTER TABLE `tb_car_map`
   ADD PRIMARY KEY (`i_car`),
-  ADD KEY `index_car_map` (`i_year`,`i_brand`,`i_gen`,`i_sub`);
+  ADD KEY `index_car_map` (`i_year`,`s_brand_code`,`s_gen_code`,`s_sub_code`);
 
 --
 -- Indexes for table `tb_car_sub`
@@ -10848,27 +10896,22 @@ ALTER TABLE `tb_vat`
 -- AUTO_INCREMENT for table `tb_car_brand`
 --
 ALTER TABLE `tb_car_brand`
-  MODIFY `i_brand` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `i_brand` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `tb_car_generation`
 --
 ALTER TABLE `tb_car_generation`
-  MODIFY `i_gen` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `i_gen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `tb_car_map`
 --
 ALTER TABLE `tb_car_map`
-  MODIFY `i_car` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `i_car` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `tb_car_sub`
 --
 ALTER TABLE `tb_car_sub`
-  MODIFY `i_sub` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `tb_car_year`
---
-ALTER TABLE `tb_car_year`
-  MODIFY `i_year` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2018;
+  MODIFY `i_sub` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `tb_customer`
 --
@@ -10953,8 +10996,7 @@ ALTER TABLE `tb_user`
 -- AUTO_INCREMENT for table `tb_vat`
 --
 ALTER TABLE `tb_vat`
-  MODIFY `i_vat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;COMMIT;
-
+  MODIFY `i_vat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
