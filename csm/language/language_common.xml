@@ -1165,7 +1165,11 @@
         <en>MANAGE CAR SUB</en>
     </detail>
     
-    
+    <detail>
+        <variable>tt_mg_carmapping</variable>
+        <th>จัดการข้อมูลผูกรายการรถ</th>
+        <en>MANAGE CAR MAPPING</en>
+    </detail>
     
     
     

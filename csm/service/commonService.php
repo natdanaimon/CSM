@@ -61,12 +61,44 @@ class commonService {
         return $_data;
     }
 
-     function DDLTitle() {
+    function DDLTitle() {
         $db = new ConnectDB();
         $strSql = "select * from tb_title ";
         $_data = $db->Search_Data_FormatJson($strSql);
         $db->close_conn();
         return $_data;
     }
-    
+
+    function DDLYear() {
+        $db = new ConnectDB();
+        $strSql = "select * from tb_car_year where s_status = 'A' order by i_year desc ";
+        $_data = $db->Search_Data_FormatJson($strSql);
+        $db->close_conn();
+        return $_data;
+    }
+
+    function DDLBrand() {
+        $db = new ConnectDB();
+        $strSql = "select * from tb_car_brand where s_status = 'A' order by s_brand_code asc ";
+        $_data = $db->Search_Data_FormatJson($strSql);
+        $db->close_conn();
+        return $_data;
+    }
+
+    function DDLGeneration() {
+        $db = new ConnectDB();
+        $strSql = "select * from tb_car_generation where s_status = 'A' order by s_gen_code asc ";
+        $_data = $db->Search_Data_FormatJson($strSql);
+        $db->close_conn();
+        return $_data;
+    }
+
+    function DDLSub() {
+        $db = new ConnectDB();
+        $strSql = "select * from tb_car_sub where s_status = 'A' order by s_sub_code asc ";
+        $_data = $db->Search_Data_FormatJson($strSql);
+        $db->close_conn();
+        return $_data;
+    }
+
 }

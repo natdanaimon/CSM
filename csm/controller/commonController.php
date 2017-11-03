@@ -39,6 +39,18 @@ switch ($info[func]) {
     case "DDLTitle":
         echo $controller->DDLTitle();
         break;
+    case "DDLYear":
+        echo $controller->DDLYear();
+        break;
+    case "DDLBrand":
+        echo $controller->DDLBrand();
+        break;
+    case "DDLGeneration":
+        echo $controller->DDLGeneration();
+        break;
+    case "DDLSub":
+        echo $controller->DDLSub();
+        break;
 }
 
 class commonController {
@@ -120,12 +132,89 @@ class commonController {
             return NULL;
         }
     }
-    
-     public function DDLTitle() {
+
+    public function DDLTitle() {
         $service = new commonService();
         $_dataTable = $service->DDLTitle();
         if ($_dataTable != NULL) {
             return json_encode($_dataTable);
+        } else {
+            return NULL;
+        }
+    }
+
+    public function DDLYear() {
+        $service = new commonService();
+        $_dataTable = $service->DDLYear();
+        if ($_dataTable != NULL) {
+            $tmpReturn = array();
+            foreach ($_dataTable as $key => $value) {
+                $tmp = array(
+                    'id' => $_dataTable[$key]['i_year'],
+                    'text' => $_dataTable[$key]['i_year']
+                );
+                $tmpReturn[] = $tmp;
+            }
+
+            return json_encode(array_values($tmpReturn));
+        } else {
+            return NULL;
+        }
+    }
+
+    public function DDLBrand() {
+        $service = new commonService();
+        $_dataTable = $service->DDLBrand();
+        if ($_dataTable != NULL) {
+            $tmpReturn = array();
+            foreach ($_dataTable as $key => $value) {
+                $tmp = array(
+                    'id' => $_dataTable[$key]['s_brand_code'],
+                    'text' =>  $_dataTable[$key]['s_brand_name'],
+                    'img' => $_dataTable[$key]['s_image']
+                );
+                $tmpReturn[] = $tmp;
+            }
+
+            return json_encode(array_values($tmpReturn));
+        } else {
+            return NULL;
+        }
+    }
+
+    public function DDLGeneration() {
+        $service = new commonService();
+        $_dataTable = $service->DDLGeneration();
+        if ($_dataTable != NULL) {
+            $tmpReturn = array();
+            foreach ($_dataTable as $key => $value) {
+                $tmp = array(
+                    'id' => $_dataTable[$key]['s_gen_code'],
+                    'text' => $_dataTable[$key]['s_gen_name']
+                );
+                $tmpReturn[] = $tmp;
+            }
+
+            return json_encode(array_values($tmpReturn));
+        } else {
+            return NULL;
+        }
+    }
+
+    public function DDLSub() {
+        $service = new commonService();
+        $_dataTable = $service->DDLSub();
+        if ($_dataTable != NULL) {
+            $tmpReturn = array();
+            foreach ($_dataTable as $key => $value) {
+                $tmp = array(
+                    'id' => $_dataTable[$key]['s_sub_code'],
+                    'text' => $_dataTable[$key]['s_sub_name']
+                );
+                $tmpReturn[] = $tmp;
+            }
+
+            return json_encode(array_values($tmpReturn));
         } else {
             return NULL;
         }
