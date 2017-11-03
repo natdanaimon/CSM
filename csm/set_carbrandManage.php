@@ -118,12 +118,15 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
 
 
 
-
+                                                <div class="form-group form-md-line-input has-success" >
+                                                    <input type="text" class="form-control bold" id="s_brand_code" name="s_brand_code">
+                                                    <label for="form_control_1"><?= $_SESSION[lb_setBrand_code] ?> <span class="required">*</span></label>          
+                                                </div>
                                                 <div class="form-group form-md-line-input has-success" >
                                                     <input type="text" class="form-control bold" id="s_brand_name" name="s_brand_name">
                                                     <label for="form_control_1"><?= $_SESSION[lb_setBrand_name] ?> <span class="required">*</span></label>          
                                                 </div>
-                                     
+
 
                                             </div>
 

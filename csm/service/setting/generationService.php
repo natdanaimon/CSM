@@ -54,17 +54,12 @@ class generationService {
         return $_data;
     }
 
- 
-    
-     function isDupplicate($db, $info) {
-        $strSql = "SELECT count(*) cnt FROM tb_car_generation WHERE s_gen_name = '" . $info[s_gen_name] . "' ";
-        $strSql .= ($info[func]=='edit'?" and i_gen <> $info[id] ":"");
+    function isDupplicate($db, $info) {
+        $strSql = "SELECT count(*) cnt FROM tb_car_generation WHERE s_gen_code = '" . $info[s_gen_code] . "' ";
+        $strSql .= ($info[func] == 'edit' ? " and i_gen <> $info[id] " : "");
         $_data = $db->Search_Data_FormatJson($strSql);
-        return ($_data[0]['cnt']==0?FALSE:TRUE);
+        return ($_data[0]['cnt'] == 0 ? FALSE : TRUE);
     }
-            
-            
-            
 
     function SelectByArray($db, $query) {
         $strSql = "SELECT * FROM tb_car_generation  WHERE i_gen in ($query) ";
@@ -77,6 +72,7 @@ class generationService {
         $strSql = "";
         $strSql .= "update tb_car_generation ";
         $strSql .= "set  ";
+        $strSql .= "    s_gen_code='$info[s_gen_code]', ";
         $strSql .= "    s_gen_name='$info[s_gen_name]', ";
         $strSql .= "d_update = " . $db->Sysdate(TRUE) . ", ";
         $strSql .= "s_update_by = '$_SESSION[username]', ";
@@ -96,6 +92,7 @@ class generationService {
         $strSql .= "INSERT ";
         $strSql .= "INTO ";
         $strSql .= "  tb_car_generation( ";
+        $strSql .= "    s_gen_code, ";
         $strSql .= "    s_gen_name, ";
 
         $strSql .= "    d_create, ";
@@ -105,9 +102,9 @@ class generationService {
         $strSql .= "    s_status ";
         $strSql .= "  ) ";
         $strSql .= "VALUES( ";
-
+        $strSql .= "  '$info[s_gen_code]', ";
         $strSql .= "  '$info[s_gen_name]', ";
- 
+
 
         $strSql .= "  " . $db->Sysdate(TRUE) . ", ";
         $strSql .= " " . $db->Sysdate(TRUE) . ", ";

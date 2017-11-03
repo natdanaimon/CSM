@@ -138,7 +138,10 @@ class subController {
         $return2003 = $_SESSION['cd_2003'];
         $return2097 = $_SESSION['cd_2097'];
         $util = new Utility();
-        if ($util->isEmpty($info[s_sub_name])) {
+        if ($util->isEmpty($info[s_sub_code])) {
+            $return2099 = eregi_replace("field", $_SESSION['lb_setSub_code'], $return2099);
+            echo $return2099;
+        } else if ($util->isEmpty($info[s_sub_name])) {
             $return2099 = eregi_replace("field", $_SESSION['lb_setSub_name'], $return2099);
             echo $return2099;
         } else {

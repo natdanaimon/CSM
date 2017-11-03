@@ -114,6 +114,10 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
 
                                         <div class="portlet-body form">
                                             <div class="form-body">
+                                                 <div class="form-group form-md-line-input has-success">
+                                                    <input type="text" class="form-control bold" id="s_sub_code" name="s_sub_code">
+                                                    <label for="form_control_1"><?= $_SESSION[lb_setSub_code] ?> <span class="required">*</span></label>          
+                                                </div>
                                                 <div class="form-group form-md-line-input has-success">
                                                     <input type="text" class="form-control bold" id="s_sub_name" name="s_sub_name">
                                                     <label for="form_control_1"><?= $_SESSION[lb_setSub_name] ?> <span class="required">*</span></label>          

@@ -293,12 +293,22 @@
     
     <!--  brand --> 
     <detail>
+        <variable>lb_setBrand_code</variable>
+        <th>รหัสแบรนด์รถ</th>
+        <en>Car year code</en>
+    </detail> 
+    <detail>
         <variable>lb_setBrand_name</variable>
         <th>แบรนด์รถ</th>
         <en>Car year</en>
     </detail>  
     <!--  brand --> 
     <!--  generation --> 
+     <detail>
+        <variable>lb_setGen_code</variable>
+        <th>รหัสรุ่นรถ</th>
+        <en>Car generation code</en>
+    </detail>  
     <detail>
         <variable>lb_setGen_name</variable>
         <th>รุ่นรถ</th>
@@ -306,6 +316,11 @@
     </detail>  
     <!--  generation --> 
     <!--  sub --> 
+     <detail>
+        <variable>lb_setSub_code</variable>
+        <th>รหัสรุ่นเครื่องยนต์</th>
+        <en>Car sub code</en>
+    </detail>  
     <detail>
         <variable>lb_setSub_name</variable>
         <th>รุ่นเครื่องยนต์</th>

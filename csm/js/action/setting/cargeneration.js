@@ -22,7 +22,7 @@ function initialDataTable(first) {
             $.each(res, function (i, item) {
 
                 var col_checkbox = "";
-                var col_code = item.i_gen;
+                var col_code = item.s_gen_code;
                 var col_gen = (language == "th" ? item.s_gen_name : item.s_gen_name);
 
 

@@ -38,6 +38,7 @@ function edit() {
             var res = JSON.parse(data);
             $.each(res, function (i, item) {
                 debugger;
+                $("#s_gen_code").val(item.s_gen_code);
                 $("#s_gen_name").val(item.s_gen_name);
 //                $("#i_index").val(item.i_index);
                 $("#status").val(item.s_status);

@@ -115,6 +115,10 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                                         <div class="portlet-body form">
                                             <div class="form-body">
                                                 <div class="form-group form-md-line-input has-success">
+                                                    <input type="text" class="form-control bold" id="s_gen_code" name="s_gen_code">
+                                                    <label for="form_control_1"><?= $_SESSION[lb_setGen_code] ?> <span class="required">*</span></label>          
+                                                </div>
+                                                <div class="form-group form-md-line-input has-success">
                                                     <input type="text" class="form-control bold" id="s_gen_name" name="s_gen_name">
                                                     <label for="form_control_1"><?= $_SESSION[lb_setGen_name] ?> <span class="required">*</span></label>          
                                                 </div>
@@ -124,7 +128,7 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
 
 
                                         </div>
-                                     
+
                                     </div>
 
                                     <!-- END EXAMPLE TABLE PORTLET-->

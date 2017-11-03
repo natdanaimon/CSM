@@ -237,17 +237,21 @@ class brandController {
         $return2099 = $_SESSION['cd_2099'];
         $return2003 = $_SESSION['cd_2003'];
         $util = new Utility();
-
-        if ($util->isEmpty($info[s_brand_name])) {
-            $return2099 = eregi_replace("field", $_SESSION['lb_setBrand_name'], $return2099);
+        if ($util->isEmpty($info[s_brand_code])) {
+            $return2099 = eregi_replace("field", $_SESSION['lb_setBrand_code'], $return2099);
             echo $return2099;
+        } else {
+            if ($util->isEmpty($info[s_brand_name])) {
+                $return2099 = eregi_replace("field", $_SESSION['lb_setBrand_name'], $return2099);
+                echo $return2099;
 //        } else if (($_FILES["s_image"]["error"] == 4 || $_FILES["s_image"] == NULL ) && $info[func] == "add") {
 //            echo $_SESSION['cd_2207'];
-        } else {
-            $intReturn = TRUE;
-        }
+            } else {
+                $intReturn = TRUE;
+            }
 
-        return $intReturn;
+            return $intReturn;
+        }
     }
 
     public function deleteTempFile($db) {

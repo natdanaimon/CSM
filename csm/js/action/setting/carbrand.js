@@ -23,7 +23,7 @@ function initialDataTable(first) {
 
                 var col_checkbox = "";
                 var col_picture = "";
-                var col_code = item.i_brand;
+                var col_code = item.s_brand_code;
                 var col_brand = (language == "th" ? item.s_brand_name : item.s_brand_name);
 
 

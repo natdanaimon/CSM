@@ -55,8 +55,8 @@ class brandService {
     }
 
     function isDupplicate($db, $info) {
-        $strSql = "SELECT * FROM tb_car_brand WHERE s_brand_name = '" . $info[s_brand_name] . "' ";
-        $strSql .= ($info[func]=='edit'?" and i_brand <> $info[id] ":"");
+        $strSql = "SELECT * FROM tb_car_brand WHERE s_brand_code = '" . $info[s_brand_code] . "' ";
+        $strSql .= ($info[func] == 'edit' ? " and i_brand <> $info[id] " : "");
         $_data = $db->Search_Data_FormatJson($strSql);
         if ($_data != NULL) {
             return TRUE;
@@ -79,6 +79,7 @@ class brandService {
         $strSql = "";
         $strSql .= "update tb_car_brand ";
         $strSql .= "set  ";
+        $strSql .= "    s_brand_code='$info[s_brand_code]', ";
         $strSql .= "    s_brand_name='$info[s_brand_name]', ";
         $strSql .= "    s_image='$img1', ";
         $strSql .= "d_update = " . $db->Sysdate(TRUE) . ", ";
@@ -102,6 +103,7 @@ class brandService {
         $strSql .= "INSERT ";
         $strSql .= "INTO ";
         $strSql .= "  tb_car_brand( ";
+        $strSql .= "    s_brand_code, ";
         $strSql .= "    s_brand_name, ";
         $strSql .= "    s_image, ";
 
@@ -112,6 +114,7 @@ class brandService {
         $strSql .= "    s_status ";
         $strSql .= "  ) ";
         $strSql .= "VALUES( ";
+        $strSql .= "  '$info[s_brand_code]', ";
 
         $strSql .= "  '$info[s_brand_name]', ";
         $strSql .= "  '$img1', ";

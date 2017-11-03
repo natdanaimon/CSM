@@ -45,7 +45,7 @@ function edit() {
 
 
 
-//                $("#s_code").val(item.s_code);
+                $("#s_brand_code").val(item.s_brand_code);
                 $("#s_brand_name").val(item.s_brand_name);
 
 

@@ -55,7 +55,7 @@ class subService {
     }
 
     function isDupplicate($db, $info) {
-        $strSql = "SELECT count(*) cnt FROM tb_car_sub WHERE s_sub_name = '" . $info[s_sub_name] . "' ";
+        $strSql = "SELECT count(*) cnt FROM tb_car_sub WHERE s_sub_code = '" . $info[s_sub_code] . "' ";
         $strSql .= ($info[func] == 'edit' ? " and i_sub != $info[id] " : "");
         $_data = $db->Search_Data_FormatJson($strSql);
         return ($_data[0]['cnt'] == 0 ? FALSE : TRUE);
@@ -72,6 +72,7 @@ class subService {
         $strSql = "";
         $strSql .= "update tb_car_sub ";
         $strSql .= "set  ";
+        $strSql .= "    s_sub_code='$info[s_sub_code]', ";
         $strSql .= "    s_sub_name='$info[s_sub_name]', ";
         $strSql .= "d_update = " . $db->Sysdate(TRUE) . ", ";
         $strSql .= "s_update_by = '$_SESSION[username]', ";
@@ -91,6 +92,7 @@ class subService {
         $strSql .= "INSERT ";
         $strSql .= "INTO ";
         $strSql .= "  tb_car_sub( ";
+        $strSql .= "    s_sub_code, ";
         $strSql .= "    s_sub_name, ";
 
         $strSql .= "    d_create, ";
@@ -100,9 +102,9 @@ class subService {
         $strSql .= "    s_status ";
         $strSql .= "  ) ";
         $strSql .= "VALUES( ";
-
+        $strSql .= "  '$info[s_sub_code]', ";
         $strSql .= "  '$info[s_sub_name]', ";
- 
+
 
         $strSql .= "  " . $db->Sysdate(TRUE) . ", ";
         $strSql .= " " . $db->Sysdate(TRUE) . ", ";

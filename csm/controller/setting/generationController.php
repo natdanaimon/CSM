@@ -98,7 +98,7 @@ class generationController {
         if ($this->isValid($info)) {
             $db = new ConnectDB();
             $db->conn();
-            
+
             $service = new generationService();
             if ($service->isDupplicate($db, $info)) {
                 echo $_SESSION[cd_2011];
@@ -119,7 +119,7 @@ class generationController {
             $db = new ConnectDB();
             $db->conn();
             $service = new generationService();
-            
+
             if ($service->isDupplicate($db, $info)) {
                 echo $_SESSION[cd_2011];
                 return;
@@ -140,7 +140,10 @@ class generationController {
         $return2003 = $_SESSION['cd_2003'];
         $return2097 = $_SESSION['cd_2097'];
         $util = new Utility();
-        if ($util->isEmpty($info[s_gen_name])) {
+        if ($util->isEmpty($info[s_gen_code])) {
+            $return2099 = eregi_replace("field", $_SESSION['lb_setGen_code'], $return2099);
+            echo $return2099;
+        } else if ($util->isEmpty($info[s_gen_name])) {
             $return2099 = eregi_replace("field", $_SESSION['lb_setGen_name'], $return2099);
             echo $return2099;
         } else {
