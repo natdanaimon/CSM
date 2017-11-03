@@ -15,8 +15,8 @@ class generationService {
         $db->close_conn();
         return $_data;
     }
-    
-     function dataTableEx() {
+
+    function dataTableEx() {
         $db = new ConnectDB();
         $strSql = "select b.s_gen_code s_code , b.s_gen_name s_name";
         $strSql .= " from   tb_car_generation b , tb_status s  ";
@@ -129,6 +129,78 @@ class generationService {
         );
         $reslut = $db->insert_for_upadte($arr);
         return $reslut;
+    }
+
+    function import($db, $fileImport) {
+        $myfile = fopen("../../logs/logImportGen.txt", "w");
+        $txt = "";
+        $txt .= "=================== START =======================\r\n";
+        $txt .= date("Y-m-d h:i:s") . "\r\n";
+        $txt .= "Import File : " . $fileImport['name'] . "\r\n";
+        $errorLog = array();
+        $arrSQL = array();
+        $xlsx = new SimpleXLSX($fileImport['tmp_name']);
+
+        $datestamp = "";
+        $i = 1;
+        $tp = "";
+        foreach ($xlsx->rows() as $k => $r) {
+            $col0 = ( (isset($r[0])) ? $r[0] : NULL );
+            $col1 = ( (isset($r[1])) ? $r[1] : NULL );
+            $col2 = ( (isset($r[2])) ? $r[2] : NULL );
+
+            if ($k == 0) {
+                if ($col0 != NULL && $col1 != NULL && $col2 != NULL) {
+                    if ($col0 == "NO" && $col1 == "GENERATION CODE" && $col2 == "GENERATION NAME") {
+                        continue;
+                    }
+                }
+            }
+
+            if ($col0 != NULL && $col1 != NULL && $col2 != NULL) {
+
+
+                if ($this->isDupplicateExcel($db, $col1)) {
+                    $txt .= "No=" . $col0 . "|Desc= [Generation:$col1] Data Dupplicate.\r\n";
+                    continue;
+                }
+
+                if (trim($col0) == "") {
+                    continue;
+                }
+
+                $state = $this->createStatement($db, $col1, $col2);
+                array_push($arrSQL, $state);
+            }
+        }
+        $reslut = FALSE;
+        if (count($arrSQL) > 0) {
+            $reslut = $db->insert_for_upadte($arrSQL);
+        } else {
+            $txt .= "List Data:0\r\n";
+        }
+
+        $txt .= date("Y-m-d h:i:s") . "\r\n";
+        $txt .= "===================== END =======================";
+        fwrite($myfile, $txt);
+        fclose($myfile);
+
+
+        return $reslut;
+    }
+
+    function isDupplicateExcel($db, $gen) {
+        $strSql = "SELECT count(*) cnt FROM tb_car_generation WHERE 1=1 ";
+        $strSql .= "and s_gen_code = '" . $gen . "' ";
+        $_data = $db->Search_Data_FormatJson($strSql);
+        return ($_data[0]['cnt'] == 0 ? FALSE : TRUE);
+    }
+
+    function createStatement($db, $col1, $col2, $col3, $col4) {
+        $sql = " insert into tb_car_generation ( s_gen_code , s_gen_name, d_create , d_update , s_create_by , s_update_by ,s_status) ";
+        $sql .= " values ";
+        $sql .= " ('$col1' , '$col2' ," . $db->Sysdate(TRUE) . " ," . $db->Sysdate(TRUE) . " ,'$_SESSION[username]','$_SESSION[username]','A' ) ";
+        return array("query" => "$sql");
     }
 
 }

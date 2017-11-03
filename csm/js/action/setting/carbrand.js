@@ -49,9 +49,9 @@ function initialDataTable(first) {
                     col_picture = '<a title="' + item.s_image + '" class="example-image-link" href="upload/brand/' + item.s_image + '" data-lightbox="example-' + item.i_brand + '">';
                     col_picture += '<img class="example-image" src="upload/brand/' + item.s_image + '" width="50px" height="50px"  />';
                     col_picture += '</a>';
-                }else{
+                } else {
                     col_picture += '<img class="example-image" src="images/noImage.jpeg" width="50px" height="50px"  />';
-                    
+
                 }
 
 
@@ -85,7 +85,7 @@ function initialDataTable(first) {
             if (first == "TRUE") {
                 $datatable.dataTable({
                     data: JsonData,
-                    order: [[4, 'asc'],[2, 'asc'] ],
+                    order: [[4, 'asc'], [2, 'asc']],
                     columnDefs: [
                         {"orderable": false, "targets": 0}
                     ]
@@ -337,4 +337,61 @@ $(document).on('click', '.notifyjs-foo-base .notify-yes', function () {
 
 
 
+function openLogs() {
+    var myWindow = window.open("logs/logImportBrand.txt", "", "width=400,height=400");
+}
+
+
+function clickFile() {
+//    document.getElementById('file').click();
+    $("#file").click();
+}
+
+$("#file").on('change', function () {
+//    console.log(this.files);
+    $("#upfile").submit();
+}).click();
+
+
+
+$('#upfile').submit(function (e) {
+    //alert(e);
+    e.preventDefault();
+//    console.log($(this).serialize());
+    var formData = new FormData($("upfile")[0]);
+    formData.append('func', 'import');
+    formData.append('file', $('input[type=file]')[0].files[0]);
+    $.ajax({
+        type: 'POST',
+        url: 'controller/setting/brandController.php?func=import',
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false,
+        beforeSend: function ()
+        {
+            $('#se-pre-con').fadeIn(100);
+        },
+        success: function (data) {
+            $("#file").val("");
+            var res = data.split(",");
+            if (res[0] == "0000") {
+                var errCode = "Code (" + res[0] + ") : " + res[1];
+                $.notify(errCode, "success");
+            } else {
+                var errCode = "Code (" + res[0] + ") : " + res[1];
+                $.notify(errCode, "error");
+                //fix
+                $('#se-pre-con').delay(100).fadeOut();
+                return;
+            }
+//            notification();
+            $('#upfile').each(function () {
+                setTimeout(reloadTime, 1000);
+            });
+        }, error: function (data) {
+            $("#file").val("");
+        }
+    });
+});
 

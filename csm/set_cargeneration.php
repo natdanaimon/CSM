@@ -118,6 +118,38 @@ ACTIVEPAGES(99, 11);
                                                     </div>
                                                 </div>
 
+                                                <div class="col-md-6" align="right"  <?= $hidden ?>>
+                                                    <div class="btn-group">
+                                                        <a href="javascript:clickFile()" >
+                                                            <button id="sample_editable_1_new" class="btn sbold blue" >
+                                                                <i class="fa fa-cloud-upload"></i>
+                                                                <?= $_SESSION[btn_import] ?>
+                                                            </button>
+                                                        </a>
+                                                        <form method="post"  id="upfile" enctype="multipart/form-data">
+                                                            <input type="file" style="display:none;" id="file" name="file"/>
+                                                            <!--<input type="submit" style="display:none;" id="submitfile" name="submit"/>-->
+                                                        </form>
+
+                                                    </div> 
+                                                    <div class="btn-group">
+                                                        <a href="excel/templated gen.xlsx" >
+                                                            <button id="sample_editable_1_new" class="btn sbold green">
+                                                                <i class="fa fa-file-excel-o"></i>
+                                                                <?= $_SESSION[btn_export_excel_temp] ?>
+                                                            </button>
+                                                        </a>
+                                                    </div>
+                                                    <div class="btn-group">
+                                                        <a href="javascript:openLogs()" target="_blank">
+                                                            <button id="sample_editable_1_new" class="btn sbold red">
+                                                                <i class="fa fa-warning"></i>
+                                                                <?= $_SESSION[btn_logs_error] ?>
+                                                            </button>
+                                                        </a>
+                                                    </div>
+                                                </div>
+
                                             </div>
                                         </div>
                                         <table class="table table-striped table-bordered table-hover table-checkable order-column" id="datatable">

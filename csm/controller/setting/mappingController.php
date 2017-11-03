@@ -75,14 +75,7 @@ class mappingController {
         }
     }
 
-    public function genTextError($error) {
-        $txt = "<br/>";
-        for ($i = 0; i < count($error); $i++) {
-            $txt .= "No=" . $error[$i][0] . "|Desc=" . $error[$i][1];
-            $txt .= "<br/>";
-        }
-        return $txt;
-    }
+
 
     public function export() {
         header("Content-Type: application/vnd.ms-excel");

@@ -148,7 +148,7 @@ class mappingService {
     }
 
     function import($db, $fileImport) {
-        $myfile = fopen("../../logs/logImport.txt", "w");
+        $myfile = fopen("../../logs/logImportMap.txt", "w");
         $txt = "";
         $txt .= "=================== START =======================\r\n";
         $txt .= date("Y-m-d h:i:s") . "\r\n";
@@ -200,6 +200,11 @@ class mappingService {
                     $txt .= "No=" . $col0 . "|Desc= [Year:$col1|Brand:$col2|Generation:$col3|Sub:$col4] Data Dupplicate.\r\n";
                     continue;
                 }
+
+                if (trim($col0) == "") {
+                    continue;
+                }
+
                 $state = $this->createStatement($db, $col1, $col2, $col3, $col4);
                 array_push($arrSQL, $state);
             }

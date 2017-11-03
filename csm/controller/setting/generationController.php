@@ -30,6 +30,9 @@ switch ($info[func]) {
     case "add":
         echo $controller->add($info);
         break;
+    case "import":
+        echo $controller->import($info);
+        break;
 }
 
 class generationController {
@@ -39,6 +42,7 @@ class generationController {
         include '../../common/Utility.php';
         include '../../common/Logs.php';
         include '../../common/upload.php';
+        include '../../common/excel.php';
         include '../../service/setting/generationService.php';
     }
 
@@ -150,6 +154,48 @@ class generationController {
             $intReturn = TRUE;
         }
         return $intReturn;
+    }
+
+    public function import($info) {
+
+        if ($this->isValidImport($info)) {
+            $db = new ConnectDB();
+            $db->conn();
+            $service = new generationService();
+            if ($service->import($db, $_FILES["file"])) {
+                $db->commit();
+                echo $_SESSION['cd_0000'];
+            } else {
+                $db->rollback();
+                echo $_SESSION['cd_2001'];
+            }
+        }
+    }
+
+    public function isValidImport($info) {
+        $intReturn = FALSE;
+        $return2099 = $_SESSION['cd_2099'];
+        $return2003 = $_SESSION['cd_2003'];
+        $util = new Utility();
+        if (($_FILES["file"]["error"] == 4 || $_FILES["file"] == NULL)) {
+            echo $_SESSION['cd_2214'];
+        } else if (!$this->typeFile($_FILES["file"]["name"])) {
+            echo $_SESSION['cd_2012'];
+        } else {
+            $intReturn = TRUE;
+        }
+        return $intReturn;
+    }
+
+    function typeFile($filename) {
+        $arrFile = explode(".", $filename);
+        $cnt = count($arrFile);
+        if ($cnt > 1) {
+            if ($arrFile[$cnt - 1] == "xlsx") {
+                return TRUE;
+            }
+        }
+        return FALSE;
     }
 
 }
