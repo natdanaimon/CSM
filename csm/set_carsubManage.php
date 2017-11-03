@@ -105,6 +105,9 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                                 <div class="col-md-8">
                                     <!-- BEGIN EXAMPLE TABLE PORTLET-->
                                     <div class="portlet light bordered">
+                                        
+                                        
+                                        
                                         <div class="portlet-title">
                                             <div class="caption font-green">
                                                 <i class="fa fa-cog font-green"></i>
