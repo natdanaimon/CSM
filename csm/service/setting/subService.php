@@ -16,6 +16,18 @@ class subService {
         return $_data;
     }
 
+    function dataTableEx() {
+        $db = new ConnectDB();
+        $strSql = "select b.s_sub_code s_code , b.s_sub_name s_name ";
+        $strSql .= " from   tb_car_sub b , tb_status s  ";
+        $strSql .= " where    b.s_status =  s.s_status ";
+        $strSql .= " and    s.s_type   =  'ACTIVE' ";
+        $strSql .= " order by b.s_sub_name asc";
+        $_data = $db->Search_Data_FormatJson($strSql);
+        $db->close_conn();
+        return $_data;
+    }
+
     function getInfo($seq) {
         $db = new ConnectDB();
         $strSql = " select * from tb_car_sub where i_sub =" . $seq;

@@ -1,0 +1,10 @@
+=================== START =======================
+2017-11-04 04:54:13
+Import File : templated car.xlsx
+No=1|Desc= [Year:2015|Brand:H01|Generation:H01-01|Sub:CC1200] Data Dupplicate.
+No=fasdf|Desc= Year [fsdaf] data is Dupplicate.
+No=2|Desc= Brand [H] data is Dupplicate.
+No=2|Desc= Brand [H] data is Dupplicate.
+List Data:0
+2017-11-04 04:54:13
+===================== END =======================

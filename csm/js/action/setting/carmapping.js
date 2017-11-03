@@ -335,7 +335,60 @@ $(document).on('click', '.notifyjs-foo-base .notify-yes', function () {
 
 });
 
+function openLogs() {
+    var myWindow = window.open("logs/logImport.txt", "", "width=400,height=400");
+}
+
+
+function clickFile() {
+//    document.getElementById('file').click();
+    $("#file").click();
+}
+
+$("#file").on('change', function () {
+//    console.log(this.files);
+    $("#upfile").submit();
+}).click();
 
 
 
-
+$('#upfile').submit(function (e) {
+    //alert(e);
+    e.preventDefault();
+//    console.log($(this).serialize());
+    var formData = new FormData($("upfile")[0]);
+    formData.append('func', 'import');
+    formData.append('file', $('input[type=file]')[0].files[0]);
+    $.ajax({
+        type: 'POST',
+        url: 'controller/setting/mappingController.php?func=import',
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false,
+        beforeSend: function ()
+        {
+            $('#se-pre-con').fadeIn(100);
+        },
+        success: function (data) {
+            $("#file").val("");
+            var res = data.split(",");
+            if (res[0] == "0000") {
+                var errCode = "Code (" + res[0] + ") : " + res[1];
+                $.notify(errCode, "success");
+            } else {
+                var errCode = "Code (" + res[0] + ") : " + res[1];
+                $.notify(errCode, "error");
+                //fix
+                $('#se-pre-con').delay(100).fadeOut();
+                return;
+            }
+//            notification();
+            $('#upfile').each(function () {
+                setTimeout(reloadTime, 1000);
+            });
+        }, error: function (data) {
+            $("#file").val("");
+        }
+    });
+});

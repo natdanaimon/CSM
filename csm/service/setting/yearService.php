@@ -10,7 +10,18 @@ class yearService {
         $strSql .= " from   tb_car_year b , tb_status s  ";
         $strSql .= " where  b.s_status =  s.s_status ";
         $strSql .= " and    s.s_type   =  'ACTIVE' ";
-//        $strSql .= " and    s.s_status = 'A' ";
+        $_data = $db->Search_Data_FormatJson($strSql);
+        $db->close_conn();
+        return $_data;
+    }
+    
+    function dataTableEx() {
+        $db = new ConnectDB();
+        $strSql = "select b.i_year s_code , b.i_year s_name ";
+        $strSql .= " from   tb_car_year b , tb_status s  ";
+        $strSql .= " where  b.s_status =  s.s_status ";
+        $strSql .= " and    s.s_type   =  'ACTIVE' ";
+        $strSql .= " order by b.i_year desc ";
         $_data = $db->Search_Data_FormatJson($strSql);
         $db->close_conn();
         return $_data;

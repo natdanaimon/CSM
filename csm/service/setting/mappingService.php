@@ -137,4 +137,122 @@ class mappingService {
         return $reslut;
     }
 
+    function isDupplicateExcel($db, $year, $brand, $gen, $sub) {
+        $strSql = "SELECT count(*) cnt FROM tb_car_map WHERE 1=1 ";
+        $strSql .= "and i_year = " . $year . " ";
+        $strSql .= "and s_brand_code = '" . $brand . "' ";
+        $strSql .= "and s_gen_code = '" . $gen . "' ";
+        $strSql .= "and s_sub_code = '" . $sub . "' ";
+        $_data = $db->Search_Data_FormatJson($strSql);
+        return ($_data[0]['cnt'] == 0 ? FALSE : TRUE);
+    }
+
+    function import($db, $fileImport) {
+        $myfile = fopen("../../logs/logImport.txt", "w");
+        $txt = "";
+        $txt .= "=================== START =======================\r\n";
+        $txt .= date("Y-m-d h:i:s") . "\r\n";
+        $txt .= "Import File : " . $fileImport['name'] . "\r\n";
+        $errorLog = array();
+        $arrSQL = array();
+        $xlsx = new SimpleXLSX($fileImport['tmp_name']);
+
+        $datestamp = "";
+        $i = 1;
+        $tp = "";
+        foreach ($xlsx->rows() as $k => $r) {
+            $col0 = ( (isset($r[0])) ? $r[0] : NULL );
+            $col1 = ( (isset($r[1])) ? $r[1] : NULL );
+            $col2 = ( (isset($r[2])) ? $r[2] : NULL );
+            $col3 = ( (isset($r[3])) ? $r[3] : NULL );
+            $col4 = ( (isset($r[4])) ? $r[4] : NULL );
+            if ($k == 0) {
+                if ($col0 != NULL && $col1 != NULL && $col2 != NULL && $col3 != NULL && $col4 != NULL) {
+                    if ($col1 == "YEAR" && $col2 == "BRAND CODE" && $col3 == "GENERATION CODE" && $col4 == "SUB CODE") {
+                        continue;
+                    }
+                }
+            }
+
+            if ($col0 != NULL && $col1 != NULL && $col2 != NULL && $col3 != NULL && $col4 != NULL) {
+
+                if ($this->isNotMsYear($db, $col1)) {
+                    $txt .= "No=" . $col0 . "|Desc= Year [" . $col1 . "] data is Dupplicate.\r\n";
+                    continue;
+                }
+                if ($this->isNotMsBrand($db, $col2)) {
+                    $txt .= "No=" . $col0 . "|Desc= Brand [" . $col2 . "] data is Dupplicate.\r\n";
+                    continue;
+                }
+                if ($this->isNotMsGen($db, $col3)) {
+                    $txt .= "No=" . $col0 . "|Desc= Generation [" . $col3 . "] data is Dupplicate.\r\n";
+                    continue;
+                }
+                if ($this->isNotMsSub($db, $col4)) {
+                    $txt .= "No=" . $col0 . "|Desc= Sub [" . $col4 . "] data is Dupplicate.\r\n";
+                    continue;
+                }
+
+
+
+
+                if ($this->isDupplicateExcel($db, $col1, $col2, $col3, $col4)) {
+                    $txt .= "No=" . $col0 . "|Desc= [Year:$col1|Brand:$col2|Generation:$col3|Sub:$col4] Data Dupplicate.\r\n";
+                    continue;
+                }
+                $state = $this->createStatement($db, $col1, $col2, $col3, $col4);
+                array_push($arrSQL, $state);
+            }
+        }
+        $reslut = FALSE;
+        if (count($arrSQL) > 0) {
+            $reslut = $db->insert_for_upadte($arrSQL);
+        } else {
+            $txt .= "List Data:0\r\n";
+        }
+
+        $txt .= date("Y-m-d h:i:s") . "\r\n";
+        $txt .= "===================== END =======================";
+        fwrite($myfile, $txt);
+        fclose($myfile);
+
+
+        return $reslut;
+    }
+
+    function createStatement($db, $col1, $col2, $col3, $col4) {
+        $sql = " insert into tb_car_map (i_year , s_brand_code , s_gen_code , s_sub_code , d_create , d_update , s_create_by , s_update_by ,s_status) ";
+        $sql .= " values ";
+        $sql .= " ('$col1' , '$col2' , '$col3' , '$col4' ," . $db->Sysdate(TRUE) . " ," . $db->Sysdate(TRUE) . " ,'$_SESSION[username]','$_SESSION[username]','A' ) ";
+        return array("query" => "$sql");
+    }
+
+    function isNotMsYear($db, $year) {
+        $strSql = "SELECT count(*) cnt FROM tb_car_year WHERE 1=1 ";
+        $strSql .= "and i_year = " . $year . " ";
+        $_data = $db->Search_Data_FormatJson($strSql);
+        return ($_data[0]['cnt'] == 0 ? TRUE : FALSE);
+    }
+
+    function isNotMsBrand($db, $brand) {
+        $strSql = "SELECT count(*) cnt FROM tb_car_brand WHERE 1=1 ";
+        $strSql .= "and s_brand_code = '" . $brand . "' ";
+        $_data = $db->Search_Data_FormatJson($strSql);
+        return ($_data[0]['cnt'] == 0 ? TRUE : FALSE);
+    }
+
+    function isNotMsGen($db, $gen) {
+        $strSql = "SELECT count(*) cnt FROM tb_car_generation WHERE 1=1 ";
+        $strSql .= "and s_gen_code = '" . $gen . "' ";
+        $_data = $db->Search_Data_FormatJson($strSql);
+        return ($_data[0]['cnt'] == 0 ? TRUE : FALSE);
+    }
+
+    function isNotMsSub($db, $sub) {
+        $strSql = "SELECT count(*) cnt FROM tb_car_sub WHERE 1=1 ";
+        $strSql .= "and s_sub_code = '" . $sub . "' ";
+        $_data = $db->Search_Data_FormatJson($strSql);
+        return ($_data[0]['cnt'] == 0 ? TRUE : FALSE);
+    }
+
 }

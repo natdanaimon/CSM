@@ -117,6 +117,45 @@ ACTIVEPAGES(99, 13);
                                                         </button>
                                                     </div>
                                                 </div>
+                                                <div class="col-md-6" align="right"  <?= $hidden ?>>
+                                                    <div class="btn-group">
+                                                        <a href="javascript:clickFile()" >
+                                                            <button id="sample_editable_1_new" class="btn sbold blue" >
+                                                                <i class="fa fa-cloud-upload"></i>
+                                                                <?= $_SESSION[btn_import] ?>
+                                                            </button>
+                                                        </a>
+                                                        <form method="post"  id="upfile" enctype="multipart/form-data">
+                                                            <input type="file" style="display:none;" id="file" name="file"/>
+                                                            <!--<input type="submit" style="display:none;" id="submitfile" name="submit"/>-->
+                                                        </form>
+
+                                                    </div>
+                                                    <div class="btn-group">
+                                                        <a href="controller/setting/mappingController.php?func=export" target="_blank">
+                                                            <button id="sample_editable_1_new" class="btn sbold yellow" style="background: #ffcc00">
+                                                                <i class="fa fa-file-excel-o"></i>
+                                                                <?= $_SESSION[btn_export_excel_ng] ?>
+                                                            </button>
+                                                        </a>
+                                                    </div>
+                                                    <div class="btn-group">
+                                                        <a href="excel/templated car.xlsx" >
+                                                            <button id="sample_editable_1_new" class="btn sbold green">
+                                                                <i class="fa fa-file-excel-o"></i>
+                                                                <?= $_SESSION[btn_export_excel_temp] ?>
+                                                            </button>
+                                                        </a>
+                                                    </div>
+                                                    <div class="btn-group">
+                                                        <a href="javascript:openLogs()" target="_blank">
+                                                            <button id="sample_editable_1_new" class="btn sbold red">
+                                                                <i class="fa fa-warning"></i>
+                                                                <?= $_SESSION[btn_logs_error] ?>
+                                                            </button>
+                                                        </a>
+                                                    </div>
+                                                </div>
 
                                             </div>
                                         </div>
@@ -124,10 +163,7 @@ ACTIVEPAGES(99, 13);
                                             <thead>
                                                 <tr>
                                                     <th style="padding-left: 0px;width: 20px" class="no-sort">
-                                                        <!--                                                        <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-                                                                                                                    <input type="checkbox" class="group-checkable" data-set="#datatable .checkboxes" id="select_all" />
-                                                                                                                    <span></span>
-                                                                                                                </label>-->
+
                                                         <span class="md-checkbox has-success">
                                                             <input type="checkbox" id="checkbox14" name="checkbox14" class="md-check">
                                                             <label for="checkbox14">

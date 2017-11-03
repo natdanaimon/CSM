@@ -15,6 +15,18 @@ class brandService {
         $db->close_conn();
         return $_data;
     }
+    
+    function dataTableEx() {
+        $db = new ConnectDB();
+        $strSql = "select b.s_brand_code s_code , b.s_brand_name s_name ";
+        $strSql .= " from   tb_car_brand b , tb_status s  ";
+        $strSql .= " where    b.s_status =  s.s_status ";
+        $strSql .= " and    s.s_type   =  'ACTIVE' ";
+        $strSql .= " order by b.s_brand_name asc ";
+        $_data = $db->Search_Data_FormatJson($strSql);
+        $db->close_conn();
+        return $_data;
+    }
 
     function getInfo($seq) {
         $db = new ConnectDB();

@@ -431,6 +431,26 @@
         <en>Export PDF</en>
     </detail>
     <detail>
+        <variable>btn_export_excel_ng</variable>
+        <th>ข้อมูล Master Data สำหรับสร้างไฟล์</th>
+        <en>Export Excel</en>
+    </detail>
+    <detail>
+        <variable>btn_import_excel_car</variable>
+        <th>Import Excel (.xlsx)</th>
+        <en>Import Excel (.xlsx)</en>
+    </detail>
+    <detail>
+        <variable>btn_export_excel_temp</variable>
+        <th>ไฟล์ตัวอย่างสำหรับ Import </th>
+        <en>Example file Import</en>
+    </detail>
+    <detail>
+        <variable>btn_logs_error</variable>
+        <th>Logs Error</th>
+        <en>Logs Error</en>
+    </detail>
+    <detail>
         <variable>btn_send_confirm</variable>
         <th>ส่ง E-Mail สมัครงานใช้งานสำเร็จ</th>
         <en>Send us an email.</en>
@@ -1253,8 +1273,16 @@
         <th>2011,รายการข้อมูลนี้มีอยู่แล้วในระบบ</th>
         <en>2011,Transaction already exists in the system.</en> 
     </detail>
-	
-	
+    <detail>
+        <variable>cd_2012</variable>
+        <th>2012,กรุณา อัพโหลดไฟล์ข้อมูลนามสกุล .xlsx </th>
+        <en>2012,Please Upload Excel .xlsx</en> 
+    </detail>
+    <detail>
+        <variable>cd_2013</variable>
+        <th>2013,ทำรายการไม่สำเร็จ กรุณาตรวจสอบ error </th>
+        <en>2013,Transaction Not Success</en> 
+    </detail>
 	
 	
     <detail>
