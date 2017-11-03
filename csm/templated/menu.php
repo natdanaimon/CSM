@@ -185,6 +185,45 @@
                     </a>
                 </li>
 
+                <li class="heading">
+                    <h3 class="uppercase"></h3>
+                </li>
+                <li class="nav-item  <?= $_SESSION["nav_sub_set_year"] ?>">
+                    <a href="set_caryear.php" class="nav-link ">
+                        <span class="title"><?= $_SESSION[set_year] ?></span>
+                        <span class="selected"></span>
+                        <span class="badge badge-success" ></span>
+                    </a>
+                </li>
+                <li class="nav-item  <?= $_SESSION["nav_sub_set_brand"] ?>">
+                    <a href="set_carbrand.php" class="nav-link ">
+                        <span class="title"><?= $_SESSION[set_brand] ?></span>
+                        <span class="selected"></span>
+                        <span class="badge badge-success" ></span>
+                    </a>
+                </li>
+                <li class="nav-item  <?= $_SESSION["nav_sub_set_gen"] ?>">
+                    <a href="set_cargeneration.php" class="nav-link ">
+                        <span class="title"><?= $_SESSION[set_generation] ?></span>
+                        <span class="selected"></span>
+                        <span class="badge badge-success" ></span>
+                    </a>
+                </li>
+                <li class="nav-item  <?= $_SESSION["nav_sub_set_sub"] ?>">
+                    <a href="set_carsub.php" class="nav-link ">
+                        <span class="title"><?= $_SESSION[set_sub] ?></span>
+                        <span class="selected"></span>
+                        <span class="badge badge-success" ></span>
+                    </a>
+                </li>
+                <li class="nav-item  <?= $_SESSION["nav_sub_set_map"] ?>">
+                    <a href="set_carmapping.php" class="nav-link ">
+                        <span class="title"><?= $_SESSION[set_mapping] ?></span>
+                        <span class="selected"></span>
+                        <span class="badge badge-success" ></span>
+                    </a>
+                </li>
+
             </ul>
         </li>
         <!--R8 ตั้งค่า-->

@@ -354,27 +354,27 @@
         <en>Info not username. </en>
     </detail>
 	
-	<detail>
+    <detail>
         <variable>province</variable>
         <th>จังหวัด</th>
         <en>Province</en>
     </detail>
-	<detail>
+    <detail>
         <variable>amphure</variable>
         <th>อำเภอ</th>
         <en>Amphure</en>
     </detail>
-	<detail>
+    <detail>
         <variable>district</variable>
         <th>ตำบล</th>
         <en>District</en>
     </detail>
-	<detail>
+    <detail>
         <variable>zipcode</variable>
         <th>รหัสไปรษณีย์</th>
         <en>Zipcode</en>
     </detail>
-	<detail>
+    <detail>
         <variable>lb_please_select</variable>
         <th>กรุณาเลือกข้อมูล</th>
         <en>Please Selected</en>
@@ -613,7 +613,7 @@
         <en>Dashboard</en>
     </detail>
 	
-	 <detail>
+    <detail>
         <variable>app_nagieos_ui</variable>
         <th>ปรับแต่งหน้าจอ</th>
         <en>APP NAGIEOS UI</en>
@@ -627,27 +627,27 @@
     </detail>
 	
 	
-	<detail>
+    <detail>
         <variable>setting</variable>
         <th>ตั้งค่า</th>
         <en>Setting</en>
     </detail>
-	<detail>
+    <detail>
         <variable>vat</variable>
         <th>ภาษี</th>
         <en>Vat</en>
     </detail>
-	<detail>
+    <detail>
         <variable>autoassessment</variable>
         <th>ประเมินวันอัตโนมัติ</th>
         <en>Auto Assessment</en>
     </detail>
-   <detail>
+    <detail>
         <variable>level_dmg</variable>
         <th>ระดับความเสียหาย</th>
         <en>Level Damage</en>
     </detail>
-	<detail>
+    <detail>
         <variable>daily_record</variable>
         <th>รายการบันทึกประจำวัน</th>
         <en>Daily record</en>
@@ -667,37 +667,65 @@
         <th>บริษัทคู่ค้า</th>
         <en>Partner Company</en>
     </detail>
-	<detail>
+    <detail>
         <variable>department</variable>
         <th>แผนกงาน</th>
         <en>Department</en>
     </detail>
 	
-	<detail>
+    <detail>
         <variable>emp_manage</variable>
         <th>บริหารจัดการข้อมูลพนักงาน</th>
         <en>Emp. Management</en>
     </detail>
-	<detail>
+    <detail>
         <variable>emp_user</variable>
         <th>บัญชีเข้าใช้งานระบบ</th>
         <en>User login</en>
     </detail>
-	<detail>
+    <detail>
         <variable>emp_employee</variable>
         <th>ข้อมูลพนักงาน</th>
         <en>Employee Info</en>
     </detail>
 	
-	<detail>
+    <detail>
         <variable>cus_mcustomer</variable>
         <th>บริหารจัดการข้อมูลลูกค้า</th>
         <en>Cus. Management</en>
     </detail>
-		<detail>
+    <detail>
         <variable>cus_customer</variable>
         <th>ข้อมูลลูกค้า</th>
         <en>Customer</en>
+    </detail>
+    
+    
+    
+    <detail>
+        <variable>set_year</variable>
+        <th>ข้อมูลปีรถ</th>
+        <en>Car Year</en>
+    </detail>
+    <detail>
+        <variable>set_brand</variable>
+        <th>ข้อมูลแบรนด์รถ</th>
+        <en>Car Brand</en>
+    </detail>
+    <detail>
+        <variable>set_generation</variable>
+        <th>ข้อมูลรุ่นรถ</th>
+        <en>Car Generation</en>
+    </detail>
+    <detail>
+        <variable>set_sub</variable>
+        <th>ข้อมูลรุ่นเครื่องยนต์</th>
+        <en>Car Sub</en>
+    </detail>
+    <detail>
+        <variable>set_mapping</variable>
+        <th>ผูกรายการข้อมูลรถ</th>
+        <en>Car Mapping</en>
     </detail>
 	
 	
@@ -875,61 +903,92 @@
         <th>วันที่แก้ไขล่าสุด</th>
         <en>Update Date</en>
     </detail>
-	<detail>
+    <detail>
         <variable>tb_co_dcreate</variable>
         <th>วันที่สร้าง</th>
         <en>Create Date</en>
     </detail>
-	<detail>
+    <detail>
         <variable>tb_co_dept_th</variable>
         <th>แผนกงาน</th>
         <en>Department (TH)</en>
     </detail>
-	<detail>
+    <detail>
         <variable>tb_co_dept_en</variable>
-         <th>แผนกงาน (อังกฤษ)</th>
+        <th>แผนกงาน (อังกฤษ)</th>
         <en>Department (EN)</en>
     </detail>
-	<detail>
+    <detail>
         <variable>tb_co_dmg</variable>
-         <th>ระดับความเสียหาย</th>
-         <en>Level Damage</en>
+        <th>ระดับความเสียหาย</th>
+        <en>Level Damage</en>
     </detail>
-	<detail>
+    <detail>
         <variable>tb_co_partner</variable>
-         <th>บริษัทคู่ค้า</th>
-         <en>Partner Company</en>
+        <th>บริษัทคู่ค้า</th>
+        <en>Partner Company</en>
     </detail>
-	<detail>
+    <detail>
         <variable>tb_co_itemcode</variable>
-         <th>รหัสสินค้า</th>
-         <en>Item Code</en>
+        <th>รหัสสินค้า</th>
+        <en>Item Code</en>
     </detail>
-	<detail>
+    <detail>
         <variable>tb_co_itemname</variable>
-         <th>ชื่อสินค้า</th>
-         <en>Item Name</en>
+        <th>ชื่อสินค้า</th>
+        <en>Item Name</en>
     </detail>
-	<detail>
+    <detail>
         <variable>tb_co_insurance_name</variable>
-         <th>ชื่อบริษัทประกันภัย</th>
-         <en>Insurance Company</en>
+        <th>ชื่อบริษัทประกันภัย</th>
+        <en>Insurance Company</en>
     </detail>
-	<detail>
+    <detail>
         <variable>tb_co_dailyrecord_name</variable>
-         <th>ชื่อรายการบันทึกประจำวัน</th>
-         <en>Daily Record Name</en>
+        <th>ชื่อรายการบันทึกประจำวัน</th>
+        <en>Daily Record Name</en>
     </detail>
-	 <detail>
+    <detail>
         <variable>tb_co_autoday</variable>
         <th>จำนวนวันสำหรับประเมินวันอัตโนมัติ</th>
         <en>Days for automatic date assessment</en>
     </detail> 
-	 <detail>
+    <detail>
         <variable>tb_co_profile</variable>
         <th>รูปภาพโปรไฟล์</th>
         <en>Profile</en>
     </detail> 
+    
+    
+    
+    <detail>
+        <variable>tb_co_code</variable>
+        <th>รหัส</th>
+        <en>Code</en>
+    </detail> 
+    <detail>
+        <variable>tb_co_caryear</variable>
+        <th>ปีรถ</th>
+        <en>Car year</en>
+    </detail> 
+    <detail>
+        <variable>tb_co_carbrand</variable>
+        <th>แบรนด์รถ</th>
+        <en>Car brand</en>
+    </detail>
+    <detail>
+        <variable>tb_co_cargeneration</variable>
+        <th>รุ่นรถ</th>
+        <en>Car generation</en>
+    </detail>
+    <detail>
+        <variable>tb_co_carsub</variable>
+        <th>รุ่นเครื่องยนต์</th>
+        <en>Car sub</en>
+    </detail>
+    
+    
+    
     <!--  table  --> 
         
     <!--  Title Header  --> 
@@ -1013,12 +1072,12 @@
         <th>ผู้ใช้รอง</th>
         <en>SUB USER</en>
     </detail>
-	 <detail>
+    <detail>
         <variable>tt_system_login</variable>
         <th>การเข้าใช้งานระบบ</th>
         <en>System Login</en>
     </detail>
-	 <detail>
+    <detail>
         <variable>tt_profile_img</variable>
         <th>รูปภาพโปรไฟล์</th>
         <en>Profile Image</en>
@@ -1038,51 +1097,79 @@
         <th>จัดการข้อมูลแผนกงาน</th>
         <en>MANAGE DEPARTMENT</en>
     </detail>
-	  <detail>
+    <detail>
         <variable>tt_mg_dmg</variable>
         <th>จัดการข้อมูลระดับความเสียหาย</th>
         <en>MANAGE DAMAGE</en>
     </detail>
-	  <detail>
+    <detail>
         <variable>tt_mg_comp_partner</variable>
         <th>จัดการข้อมูลบริษัทคู่ค้า</th>
         <en>MANAGE PARTNER COMPANY</en>
     </detail>
-	  <detail>
+    <detail>
         <variable>tt_mg_item</variable>
         <th>จัดการข้อมูลสินค้า</th>
         <en>MANAGE ITEM</en>
     </detail>
-	 <detail>
+    <detail>
         <variable>tt_mg_comp_insurance</variable>
         <th>จัดการข้อมูลบริษัทประกันภัย</th>
         <en>MANAGE INSURANCE COMPANY</en>
     </detail>
-	 <detail>
+    <detail>
         <variable>tt_mg_daily_record</variable>
         <th>จัดการข้อมูลรายการบันทึกประจำวัน</th>
         <en>MANAGE DAILY RECORD</en>
     </detail>
-	 <detail>
+    <detail>
         <variable>tt_mg_autoday</variable>
         <th>จัดการข้อมูลประเมินวันอัตโนมัติ</th>
         <en>MANAGE AUTO ASSESSMENT</en>
     </detail>
-	<detail>
+    <detail>
         <variable>tt_mg_user</variable>
         <th>จัดการข้อมูลบัญชีเข้าใช้งานระบบ</th>
         <en>MANAGE USER LOGIN</en>
     </detail>
-	<detail>
+    <detail>
         <variable>tt_mg_employee</variable>
         <th>จัดการข้อมูลพนักงาน</th>
         <en>MANAGE EMPLOYEE</en>
     </detail>
-	<detail>
+    <detail>
         <variable>tt_mg_customer</variable>
         <th>จัดการข้อมูลลูกค้า</th>
         <en>MANAGE CUSTOMER</en>
     </detail>
+    
+    
+    <detail>
+        <variable>tt_mg_caryear</variable>
+        <th>จัดการข้อมูลปีรถ</th>
+        <en>MANAGE CAR YEAR</en>
+    </detail>
+    <detail>
+        <variable>tt_mg_carbrand</variable>
+        <th>จัดการข้อมูลแบรนด์รถ</th>
+        <en>MANAGE CAR BRAND</en>
+    </detail>
+    <detail>
+        <variable>tt_mg_cargeneration</variable>
+        <th>จัดการข้อมูลรุ่นรถ</th>
+        <en>MANAGE CAR GENERATION</en>
+    </detail>
+    <detail>
+        <variable>tt_mg_carsub</variable>
+        <th>จัดการข้อมูลรุ่นเครื่องยนต์</th>
+        <en>MANAGE CAR SUB</en>
+    </detail>
+    
+    
+    
+    
+    
+    
     <!--  Title Header  --> 
         
         
@@ -1154,10 +1241,14 @@
     </detail>
     <detail>
         <variable>cd_2010</variable>
-        <th>cd_2010,รหัสสินค้านี้มีอยู่แล้วในระบบ</th>
-        <en>cd_2010,Item Code already exists in the system.</en> 
+        <th>2010,รหัสสินค้านี้มีอยู่แล้วในระบบ</th>
+        <en>2010,Item Code already exists in the system.</en> 
     </detail>
-	
+    <detail>
+        <variable>cd_2011</variable>
+        <th>2011,รายการข้อมูลนี้มีอยู่แล้วในระบบ</th>
+        <en>2011,Transaction already exists in the system.</en> 
+    </detail>
 	
 	
 	

@@ -8,7 +8,7 @@ function ACTIVEPAGES($page, $sub) {
     $_SESSION["nav_main_setting"] = "";
     $_SESSION["nav_main_emp"] = "";
     $_SESSION["nav_main_cus"] = "";
-
+    $_SESSION["nav_main_cus"] = "";
 
     //csm setting
     $_SESSION["nav_sub_set_vat"] = "";
@@ -19,6 +19,15 @@ function ACTIVEPAGES($page, $sub) {
     $_SESSION["nav_sub_set_comp_insurance"] = "";
     $_SESSION["nav_sub_set_comp_partner"] = "";
     $_SESSION["nav_sub_set_department"] = "";
+
+    $_SESSION["nav_sub_set_year"] = "";
+    $_SESSION["nav_sub_set_brand"] = "";
+    $_SESSION["nav_sub_set_gen"] = "";
+    $_SESSION["nav_sub_set_sub"] = "";
+    $_SESSION["nav_sub_set_map"] = "";
+
+
+
 
     //csm employee
     $_SESSION["nav_sub_emp_user"] = "";
@@ -76,7 +85,18 @@ function ACTIVEPAGES($page, $sub) {
             $_SESSION["nav_sub_set_comp_partner"] = " active open";
         } else if ($sub == 8) {
             $_SESSION["nav_sub_set_department"] = " active open";
+        } else if ($sub == 9) {
+            $_SESSION["nav_sub_set_year"] = " active open";
+        } else if ($sub == 10) {
+            $_SESSION["nav_sub_set_brand"] = " active open";
+        } else if ($sub == 11) {
+            $_SESSION["nav_sub_set_gen"] = " active open";
+        } else if ($sub == 12) {
+            $_SESSION["nav_sub_set_sub"] = " active open";
+        } else if ($sub == 13) {
+            $_SESSION["nav_sub_set_map"] = " active open";
         }
+
     }
 }
 

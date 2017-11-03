@@ -72,208 +72,245 @@
     <!--  profile -->    
         
        
-	 <!--  vat --> 
-	 <detail>
+    <!--  vat --> 
+    <detail>
         <variable>lb_setVat_vat</variable>
         <th>หน่วยภาษีที่คำนวน</th>
         <en>Calculated tax unit</en>
     </detail>  
-	 <!--  vat --> 
+    <!--  vat --> 
 	
     <!--  department --> 
-	 <detail>
+    <detail>
         <variable>lb_setDetp_th</variable>
         <th>แผนกงาน</th>
         <en>Department</en>
     </detail>  
-	 <!--  department --> 
+    <!--  department --> 
 	 
-     <!--  damage --> 
-	 <detail>
+    <!--  damage --> 
+    <detail>
         <variable>lb_setDmg_th</variable>
         <th>ระดับความเสียหาย</th>
         <en>Level Damage</en>
     </detail>  
-	 <!--  damage -->        
-     <!--  comp partner --> 
-	 <detail>
+    <!--  damage -->        
+    <!--  comp partner --> 
+    <detail>
         <variable>lb_setPart_th</variable>
         <th>คู่ค้า</th>
         <en>Partner Company</en>
     </detail>  
-	 <!--  comp partner -->      
+    <!--  comp partner -->      
 	 
-     <!--  Item --> 
-	 <detail>
+    <!--  Item --> 
+    <detail>
         <variable>lb_setItem_code</variable>
         <th>รหัสสินค้า</th>
         <en>Item Code</en>
     </detail>  
-	 <detail>
+    <detail>
         <variable>lb_setItem_th</variable>
         <th>ชื่อสินค้า</th>
         <en>Item Name</en>
     </detail>  
-	 <detail>
+    <detail>
         <variable>lb_setItem_image</variable>
         <th>รูปภาพสินค้า</th>
         <en>Item Image</en>
     </detail>  
-	 <!--  Item -->   
+    <!--  Item -->   
      
-     <!--  comp Insurance --> 
-	 <detail>
+    <!--  comp Insurance --> 
+    <detail>
         <variable>lb_setInsurance_th</variable>
         <th>ชื่อบริษัทประกันภัย</th>
         <en>Insurance Company</en>
     </detail>  
-	 <detail>
+    <detail>
         <variable>lb_setInsurance_image</variable>
         <th>รูปภาพบริษัทประกันภัย</th>
         <en>Insurance Image</en>
     </detail>  
-	 <!--  comp Insurance -->            
+    <!--  comp Insurance -->            
       
-     <!--  daily --> 
-	 <detail>
+    <!--  daily --> 
+    <detail>
         <variable>lb_setDaily_th</variable>
         <th>ชื่อรายการบันทึกประจำวัน</th>
         <en>Daily Record Name</en>
     </detail>  
-	 <!--  daily -->     
+    <!--  daily -->     
 	 
-	 <!--  auto --> 
-	 <detail>
+    <!--  auto --> 
+    <detail>
         <variable>lb_setAuto_dept</variable>
         <th>ชื่อแผนกงาน</th>
         <en>Department Name</en>
     </detail>  
-	 <detail>
+    <detail>
         <variable>lb_setAuto_day</variable>
         <th>จำนวนวันสำหรับประเมินวันอัตโนมัติ</th>
         <en>Days for automatic date assessment</en>
     </detail>  
-	 <!--  auto --> 
+    <!--  auto --> 
 	 
 	 
-	 <!--  user --> 
-	 <detail>
+    <!--  user --> 
+    <detail>
         <variable>lb_setUser_fname</variable>
         <th>ชื่อ</th>
         <en>Firstname</en>
     </detail>
-	<detail>
+    <detail>
         <variable>lb_setUser_lname</variable>
         <th>นามสกุล</th>
         <en>Lastname</en>
     </detail>  	
-	<detail>
+    <detail>
         <variable>lb_setUser_phone</variable>
         <th>เบอร์โทรศัพท์</th>
         <en>Phone</en>
     </detail> 
-	<detail>
+    <detail>
         <variable>lb_setUser_email</variable>
         <th>อีเมล</th>
         <en>E-Mail</en>
     </detail> 
-	<detail>
+    <detail>
         <variable>lb_setUser_line</variable>
         <th>ไลน์ไอดี</th>
         <en>Line ID</en>
     </detail> 
-	<detail>
+    <detail>
         <variable>lb_setUser_type</variable>
         <th>ประเภทผู้ใช้งาน</th>
         <en>User Type</en>
     </detail> 
-	<detail>
+    <detail>
         <variable>lb_setUser_username</variable>
         <th>ชื่อผู้ใช้งาน (Username)</th>
         <en>Username</en>
     </detail> 
-	<detail>
+    <detail>
         <variable>lb_setUser_password</variable>
         <th>รหัสผ่าน (Password)</th>
         <en>Password</en>
     </detail> 
-	 <!--  user --> 
+    <!--  user --> 
 	 
-	  <!--  employee --> 
-	 <detail>
+    <!--  employee --> 
+    <detail>
         <variable>lb_setEmployee_fname</variable>
         <th>ชื่อ</th>
         <en>Firstname</en>
     </detail>
-	<detail>
+    <detail>
         <variable>lb_setEmployee_lname</variable>
         <th>นามสกุล</th>
         <en>Lastname</en>
     </detail>  	
-	<detail>
+    <detail>
         <variable>lb_setEmployee_phone</variable>
         <th>เบอร์โทรศัพท์</th>
         <en>Phone</en>
     </detail> 
-	<detail>
+    <detail>
         <variable>lb_setEmployee_email</variable>
         <th>อีเมล</th>
         <en>E-Mail</en>
     </detail> 
-	<detail>
+    <detail>
         <variable>lb_setEmployee_line</variable>
         <th>ไลน์ไอดี</th>
         <en>Line ID</en>
     </detail> 
-	<detail>
+    <detail>
         <variable>lb_setEmployee_dept</variable>
         <th>แผนกงาน</th>
         <en>Department</en>
     </detail> 
-	 <!--  employee -->
+    <!--  employee -->
 	 
 	 
-	  <!--  customer --> 
-	  <detail>
+    <!--  customer --> 
+    <detail>
         <variable>lb_setCus_title</variable>
         <th>คำนำหน้าชื่อ</th>
         <en>Titlename</en>
     </detail>
-	 <detail>
+    <detail>
         <variable>lb_setCus_fname</variable>
         <th>ชื่อ</th>
         <en>Firstname</en>
     </detail>
-	<detail>
+    <detail>
         <variable>lb_setCus_lname</variable>
         <th>นามสกุล</th>
         <en>Lastname</en>
     </detail>  	
-	<detail>
+    <detail>
         <variable>lb_setCus_phone1</variable>
         <th>เบอร์โทรศัพท์</th>
         <en>Phone 1</en>
     </detail> 
-	<detail>
+    <detail>
         <variable>lb_setCus_phone2</variable>
         <th>เบอร์โทรศัพท์สำรอง</th>
         <en>Phone 2</en>
     </detail> 
-	<detail>
+    <detail>
         <variable>lb_setCus_email</variable>
         <th>อีเมล</th>
         <en>E-Mail</en>
     </detail> 
-	<detail>
+    <detail>
         <variable>lb_setCus_line</variable>
         <th>ไลน์ไอดี</th>
         <en>Line ID</en>
     </detail> 
-	<detail>
+    <detail>
         <variable>lb_setCus_address</variable>
         <th>ที่อยู่</th>
         <en>Address</en>
     </detail> 
-	 <!--  customer -->
+    <!--  customer -->
+    
+    
+    
+    <!--  year --> 
+    <detail>
+        <variable>lb_setYear_year</variable>
+        <th>ปีรถ</th>
+        <en>Car year</en>
+    </detail>  
+    <detail>
+        <variable>lb_setAuto_day</variable>
+        <th>จำนวนวันสำหรับประเมินวันอัตโนมัติ</th>
+        <en>Days for automatic date assessment</en>
+    </detail>  
+    <!--  year --> 
+    
+    <!--  brand --> 
+    <detail>
+        <variable>lb_setBrand_name</variable>
+        <th>แบรนด์รถ</th>
+        <en>Car year</en>
+    </detail>  
+    <!--  brand --> 
+    <!--  generation --> 
+    <detail>
+        <variable>lb_setGen_name</variable>
+        <th>รุ่นรถ</th>
+        <en>Car generation</en>
+    </detail>  
+    <!--  generation --> 
+    <!--  sub --> 
+    <detail>
+        <variable>lb_setSub_name</variable>
+        <th>รุ่นเครื่องยนต์</th>
+        <en>Car sub</en>
+    </detail>  
+    <!--  sub --> 
     
 </language>
