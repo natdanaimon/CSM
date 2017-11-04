@@ -1,8 +1,5 @@
 =================== START =======================
-2017-11-04 05:34:11
+2017-11-05 12:57:54
 Import File : templated car.xlsx
-No=fasdf|Desc= Year [fsdaf] data is Dupplicate.
-No=2|Desc= Brand [H] data is Dupplicate.
-No=2|Desc= Brand [H] data is Dupplicate.
-2017-11-04 05:34:11
+2017-11-05 12:57:54
 ===================== END =======================

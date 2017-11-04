@@ -268,6 +268,46 @@
 
 
 
+
+
+
+
+        <!--R13 บริหารจัดการข้อมูลพนักงาน-->
+        <li class="nav-item <?= $_SESSION["nav_main_insurance"] ?>">
+            <a href="javascript:;" class="nav-link nav-toggle">
+                <i class="fa fa-automobile"></i>
+                <span class="title">R13. <?= $_SESSION[ins_manage] ?></span>
+                <span class="selected"></span>
+            </a>
+            <ul class="sub-menu">
+                <li class="nav-item  <?= $_SESSION["nav_sub_ins_prd"] ?>">
+                    <a href="ins_product.php" class="nav-link ">
+
+                        <span class="title"><?= $_SESSION[ins_product] ?></span>
+                        <span class="selected"></span>
+                        <span class="badge badge-success" ></span>
+                    </a>
+                </li>
+                <li class="nav-item  <?= $_SESSION["nav_sub_ins_tran"] ?>">
+                    <a href="ins_transaction.php" class="nav-link ">
+
+                        <span class="title"><?= $_SESSION[ins_transaction] ?></span>
+                        <span class="selected"></span>
+                    </a>
+                </li>
+
+
+
+            </ul>
+        </li>
+        <!--R13 บริหารจัดการข้อมูลพนักงาน-->
+
+
+
+
+
+
+
     <?php } ?>
 
 

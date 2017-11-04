@@ -3,7 +3,7 @@ var $datatable = $('#datatable');
 function initialDataTable(first) {
     $.ajax({
         type: 'GET',
-        url: 'controller/setting/mappingController.php?func=dataTable',
+        url: 'controller/insurance/productController.php?func=dataTable',
         beforeSend: function ()
         {
             $('#se-pre-con').fadeIn(100);
@@ -22,7 +22,6 @@ function initialDataTable(first) {
             $.each(res, function (i, item) {
 
                 var col_checkbox = "";
-                var col_code = item.s_car_code;
                 var col_year = item.i_year;
                 var col_brand = "";
                 var col_gen = (language == "th" ? item.s_gen_name : item.s_gen_name);
@@ -72,7 +71,6 @@ function initialDataTable(first) {
 
                 var addRow = [
                     col_checkbox,
-                    col_code,
                     col_year,
                     col_brand,
                     col_gen,
@@ -88,7 +86,7 @@ function initialDataTable(first) {
             if (first == "TRUE") {
                 $datatable.dataTable({
                     data: JsonData,
-                    order: [[6, 'asc'], [1, 'asc']],
+                    order: [[4, 'asc'], [2, 'asc']],
                     columnDefs: [
                         {"orderable": false, "targets": 0}
                     ]
@@ -232,7 +230,7 @@ $(document).on('click', '.notifyjs-foo-base .notify-all-yes', function () {
 
     $.ajax({
         type: 'GET',
-        url: 'controller/setting/mappingController.php',
+        url: 'controller/insurance/productController.php',
         data: {data: jsonData, func: "deleteAll"},
         beforeSend: function ()
         {
@@ -310,7 +308,7 @@ $(document).on('click', '.notifyjs-foo-base .notify-yes', function () {
 
     $.ajax({
         type: 'GET',
-        url: 'controller/setting/mappingController.php?func=' + func + '&id=' + id,
+        url: 'controller/insurance/productController.php?func=' + func + '&id=' + id,
         beforeSend: function ()
         {
             $('#se-pre-con').fadeIn(100);
@@ -363,7 +361,7 @@ $('#upfile').submit(function (e) {
     formData.append('file', $('input[type=file]')[0].files[0]);
     $.ajax({
         type: 'POST',
-        url: 'controller/setting/mappingController.php?func=import',
+        url: 'controller/insurance/productController.php?func=import',
         data: formData,
         cache: false,
         contentType: false,

@@ -747,7 +747,21 @@
         <th>ผูกรายการข้อมูลรถ</th>
         <en>Car Mapping</en>
     </detail>
-	
+    <detail>
+        <variable>ins_manage</variable>
+        <th>บริหารจัดการข้อมูลประกันภัย</th>
+        <en>Insurance Management</en>
+    </detail>
+    <detail>
+        <variable>ins_product</variable>
+        <th>ข้อมูลประกันภัย</th>
+        <en>Insurance Product</en>
+    </detail>
+    <detail>
+        <variable>ins_transaction</variable>
+        <th>ข้อมูลรายการสมัคประกันภัย</th>
+        <en>Insurance Transaction</en>
+    </detail>
 	
 	
     <!--  Menu -->
@@ -1191,6 +1205,18 @@
         <en>MANAGE CAR MAPPING</en>
     </detail>
     
+    <detail>
+        <variable>tt_mg_insprd</variable>
+        <th>จัดการข้อมูลประกันภัย</th>
+        <en>MANAGE INSURANCE PRODUCT</en>
+    </detail>
+    
+    
+    <detail>
+        <variable>tt_mg_instransaction</variable>
+        <th>จัดการข้อมูลรายการสมัคประกันภัย</th>
+        <en>MANAGE INSURANCE TRANSACTION</en>
+    </detail>
     
     
     
@@ -1280,10 +1306,14 @@
     </detail>
     <detail>
         <variable>cd_2013</variable>
-        <th>2013,ทำรายการไม่สำเร็จ กรุณาตรวจสอบ error </th>
+        <th>2013,ทำรายการไม่สำเร็จ กรุณาตรวจสอบ </th>
         <en>2013,Transaction Not Success</en> 
     </detail>
-	
+    <detail>
+        <variable>cd_2014</variable>
+        <th>2014,รายการข้อมูลรหัสรถนี้มีอยู่แล้วในระบบ</th>
+        <en>2014,Car Code already exists in the system.</en> 
+    </detail>
 	
     <detail>
         <variable>cd_2099</variable>

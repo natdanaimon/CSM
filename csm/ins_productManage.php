@@ -3,13 +3,13 @@
 include './common/Permission.php';
 include './common/PermissionADM.php';
 include './common/FunctionCheckActive.php';
-ACTIVEPAGES(99, 13);
+ACTIVEPAGES(13, 1);
 
 if ($_GET[func] != NULL) {
     $tt_header = ($_GET[func] == "add" ? $_SESSION[add_info] : $_SESSION[edit_info]);
 }
 if ($_GET[id] == NULL && $_GET[func] != "add") {
-    echo header("Location: set_carmapping.php");
+    echo header("Location: ins_product.php");
 }
 ?>
 <!DOCTYPE html>
@@ -77,11 +77,11 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                         <div class="page-bar">
                             <ul class="page-breadcrumb">
                                 <li>
-                                    <span><?= $_SESSION[setting] ?></span>
+                                    <span><?= $_SESSION[ins_manage] ?></span>
                                     <i class="fa fa-circle" style="color:  #00FF00;"></i>
                                 </li>
                                 <li>
-                                    <a href="set_carmappingManage.php"><?= $_SESSION[set_mapping] ?></a>
+                                    <a href="ins_product.php"><?= $_SESSION[ins_product] ?></a>
                                     <i class="fa fa-circle" style="color:  #00FF00;"></i>
                                 </li>
                                 <li>
@@ -105,46 +105,48 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                                     <div class="portlet light bordered">
                                         <div class="portlet-title">
                                             <div class="caption font-green">
-                                                <i class="fa fa-cog font-green"></i>
+                                                <i class="fa fa-automobile font-green"></i>
                                                 <span class="caption-subject bold uppercase"> <?= $_SESSION[tt_detail] ?></span>
                                             </div>
                                         </div>
 
                                         <div class="portlet-body form">
-
-                                            <div class="form-group form-md-line-input has-success">
-                                                <input type="text" class="form-control bold" id="s_car_code" name="s_car_code">
-                                                <label for="form_control_1"><?= $_SESSION[lb_setCar_code] ?> <span class="required">*</span></label>          
+                                            
+                                             <div class="form-group form-md-line-input has-success" style="height: 80px">
+                                                <select class="form-control edited bold" id="s_car_code" name="s_car_code">
+                                                    <!--<option value="-1"></option>-->
+                                                </select>
+                                                <label for="form_control_1"><?= $_SESSION[lb_setPrd_car] ?></label>
                                             </div>
-
+                                            
                                             <div class="form-group form-md-line-input has-success">
                                                 <select class="form-control edited bold" id="i_year" name="i_year">
                                                     <!--<option value="-1"></option>-->
                                                 </select>
                                                 <label for="form_control_1"><?= $_SESSION[lb_setYear_year] ?></label>
                                             </div>
-
+                                            
                                             <div class="form-group form-md-line-input has-success" style="height: 80px">
                                                 <select class="form-control edited bold" id="s_brand_code" name="s_brand_code">
                                                     <!--<option value="-1"></option>-->
                                                 </select>
                                                 <label for="form_control_1"><?= $_SESSION[lb_setBrand_name] ?></label>
                                             </div>
-
+                                            
                                             <div class="form-group form-md-line-input has-success">
                                                 <select class="form-control edited bold" id="s_gen_code" name="s_gen_code">
                                                     <!--<option value="-1"></option>-->
                                                 </select>
                                                 <label for="form_control_1"><?= $_SESSION[lb_setGen_name] ?></label>
                                             </div>
-
+                                            
                                             <div class="form-group form-md-line-input has-success">
                                                 <select class="form-control edited bold" id="s_sub_code" name="s_sub_code">
                                                     <!--<option value="-1"></option>-->
                                                 </select>
                                                 <label for="form_control_1"><?= $_SESSION[lb_setSub_name] ?></label>
                                             </div>
-
+                                            
 
 
                                         </div>
@@ -264,7 +266,7 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
 
         <script src="js/common/notify.js" type="text/javascript"></script>
         <link href="css/notify.css" rel="stylesheet" type="text/css" />
-        <script src="js/action/setting/carmappingManage.js" type="text/javascript"></script>
+        <script src="js/action/insurance/productManage.js" type="text/javascript"></script>
 
         <!-- BEGIS SELECT 2 SCRIPTS -->
         <link href="css/select2.min.css" rel="stylesheet" />

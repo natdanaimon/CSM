@@ -101,4 +101,23 @@ class commonService {
         return $_data;
     }
 
+    function DDLCar() {
+        $db = new ConnectDB();
+        $strSql = "";
+        $strSql .= "        SELECT    ";
+        $strSql .= "        m.s_car_code s_code , CONCAT(b.s_brand_name,' : ',y.i_year,' : ',g.s_gen_name,' : ',s.s_sub_name ) as s_name , b.s_image ";
+        $strSql .= "        FROM    ";
+        $strSql .= "        tb_car_map m , tb_car_year y , tb_car_brand b , tb_car_generation g , tb_car_sub s , tb_status st   ";
+        $strSql .= "        WHERE 1=1   ";
+        $strSql .= "        AND m.i_year = y.i_year   ";
+        $strSql .= "        AND m.s_brand_code = b.s_brand_code   ";
+        $strSql .= "        AND m.s_gen_code = g.s_gen_code   ";
+        $strSql .= "        AND m.s_sub_code = s.s_sub_code   ";
+        $strSql .= "        AND m.s_status = st.s_status   ";
+        $strSql .= "        AND st.s_type   =  'ACTIVE'   ";
+        $_data = $db->Search_Data_FormatJson($strSql);
+        $db->close_conn();
+        return $_data;
+    }
+
 }

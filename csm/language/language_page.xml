@@ -304,7 +304,7 @@
     </detail>  
     <!--  brand --> 
     <!--  generation --> 
-     <detail>
+    <detail>
         <variable>lb_setGen_code</variable>
         <th>รหัสรุ่นรถ</th>
         <en>Car generation code</en>
@@ -316,7 +316,7 @@
     </detail>  
     <!--  generation --> 
     <!--  sub --> 
-     <detail>
+    <detail>
         <variable>lb_setSub_code</variable>
         <th>รหัสรุ่นเครื่องยนต์</th>
         <en>Car sub code</en>
@@ -327,5 +327,53 @@
         <en>Car sub</en>
     </detail>  
     <!--  sub --> 
-    
+    <!--  car mapping --> 
+    <detail>
+        <variable>lb_setCar_code</variable>
+        <th>รหัสข้อมูลรถ</th>
+        <en>Car code</en>
+    </detail>  
+    <!--  car mapping -->  
+    <!--  insurance product--> 
+    <detail>
+        <variable>lb_setIns_htext</variable>
+        <th>แคมเปญ ประกันภัย</th>
+        <en>Type</en>
+    </detail>
+    <detail>
+        <variable>lb_setIns_code</variable>
+        <th>ข้อมูลรถ</th>
+        <en>Car info</en>
+    </detail>  
+    <detail>
+        <variable>lb_setIns_comp</variable>
+        <th>บริษัทประกันภัย</th>
+        <en>Insurance Company</en>
+    </detail>  
+    <detail>
+        <variable>lb_setIns_type</variable>
+        <th>ประเภทประกันภัย</th>
+        <en>Type Insurance</en>
+    </detail>  
+    <detail>
+        <variable>lb_setIns_repaitr</variable>
+        <th>ประเภทการซ่อม</th>
+        <en>Type Repair</en>
+    </detail>  
+    <detail>
+        <variable>lb_setIns_price</variable>
+        <th>ราคาเบี้ยประกันภัย</th>
+        <en>Price</en>
+    </detail>  
+    <detail>
+        <variable>lb_setIns_discount</variable>
+        <th>ส่วนลด</th>
+        <en>Discount</en>
+    </detail> 
+    <detail>
+        <variable>lb_setIns_point</variable>
+        <th>คะแนน</th>
+        <en>Point</en>
+    </detail>  
+    <!--  insurance product-->  
 </language>

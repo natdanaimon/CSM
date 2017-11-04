@@ -166,7 +166,13 @@ class brandService {
                 if ($col0 != NULL && $col1 != NULL && $col2 != NULL) {
                     if ($col0 == "NO" && $col1 == "BRAND CODE" && $col2 == "BRAND NAME") {
                         continue;
+                    } else {
+                        $txt .= "Header format not found.\r\n";
+                        break;
                     }
+                } else {
+                    $txt .= "Header format not found.\r\n";
+                    break;
                 }
             }
 

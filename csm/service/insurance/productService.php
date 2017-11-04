@@ -2,7 +2,7 @@
 
 @session_start();
 
-class mappingService {
+class productService {
 
     function dataTable() {
         $db = new ConnectDB();
@@ -26,15 +26,25 @@ class mappingService {
 
     function dataTableEx() {
         $db = new ConnectDB();
-        $strSql = "select b.s_car_code s_code , b.s_car_code s_name ";
-        $strSql .= " from   tb_car_map b , tb_status s  ";
-        $strSql .= " where  b.s_status =  s.s_status ";
-        $strSql .= " and    s.s_type   =  'ACTIVE' ";
-        $strSql .= " order by b.s_car_code asc ";
+        $strSql = "";
+        $strSql .= "        SELECT    ";
+        $strSql .= "        m.s_car_code s_code , CONCAT(b.s_brand_name,' : ',y.i_year,' : ',g.s_gen_name,' : ',s.s_sub_name ) as s_name ";
+        $strSql .= "        FROM    ";
+        $strSql .= "        tb_car_map m , tb_car_year y , tb_car_brand b , tb_car_generation g , tb_car_sub s , tb_status st   ";
+        $strSql .= "        WHERE 1=1   ";
+        $strSql .= "        AND m.i_year = y.i_year   ";
+        $strSql .= "        AND m.s_brand_code = b.s_brand_code   ";
+        $strSql .= "        AND m.s_gen_code = g.s_gen_code   ";
+        $strSql .= "        AND m.s_sub_code = s.s_sub_code   ";
+        $strSql .= "        AND m.s_status = st.s_status   ";
+        $strSql .= "        AND st.s_type   =  'ACTIVE'   ";
+//        $strSql .= " and    s.s_status = 'A' ";
         $_data = $db->Search_Data_FormatJson($strSql);
         $db->close_conn();
         return $_data;
     }
+    
+    
 
     function getInfo($seq) {
         $db = new ConnectDB();
@@ -76,19 +86,10 @@ class mappingService {
 
     function isDupplicate($db, $info) {
         $strSql = "SELECT count(*) cnt FROM tb_car_map WHERE 1=1 ";
-        $strSql .= "and s_car_code = '" . $info[s_car_code] . "' ";
         $strSql .= "and i_year = " . $info[i_year] . " ";
         $strSql .= "and s_brand_code = '" . $info[s_brand_code] . "' ";
         $strSql .= "and s_gen_code = '" . $info[s_gen_code] . "' ";
         $strSql .= "and s_sub_code = '" . $info[s_sub_code] . "' ";
-        $strSql .= ($info[func] == 'edit' ? " and i_car != $info[id] " : "");
-        $_data = $db->Search_Data_FormatJson($strSql);
-        return ($_data[0]['cnt'] == 0 ? FALSE : TRUE);
-    }
-
-    function isDuppCarCode($db, $info) {
-        $strSql = "SELECT count(*) cnt FROM tb_car_map WHERE 1=1 ";
-        $strSql .= "and s_car_code = '" . $info[s_car_code] . "' ";
         $strSql .= ($info[func] == 'edit' ? " and i_car != $info[id] " : "");
         $_data = $db->Search_Data_FormatJson($strSql);
         return ($_data[0]['cnt'] == 0 ? FALSE : TRUE);
@@ -105,7 +106,6 @@ class mappingService {
         $strSql = "";
         $strSql .= "update tb_car_map ";
         $strSql .= "set  ";
-        $strSql .= "    s_car_code='$info[s_car_code]', ";
         $strSql .= "    i_year=$info[i_year], ";
         $strSql .= "    s_brand_code='$info[s_brand_code]', ";
         $strSql .= "    s_gen_code='$info[s_gen_code]', ";
@@ -128,7 +128,6 @@ class mappingService {
         $strSql .= "INSERT ";
         $strSql .= "INTO ";
         $strSql .= "  tb_car_map( ";
-        $strSql .= "    s_car_code, ";
         $strSql .= "    i_year, ";
         $strSql .= "    s_brand_code, ";
         $strSql .= "    s_gen_code, ";
@@ -141,7 +140,6 @@ class mappingService {
         $strSql .= "    s_status ";
         $strSql .= "  ) ";
         $strSql .= "VALUES( ";
-        $strSql .= "  '$info[s_car_code]', ";
         $strSql .= "  $info[i_year], ";
         $strSql .= "  '$info[s_brand_code]', ";
         $strSql .= "  '$info[s_gen_code]', ";
@@ -161,9 +159,8 @@ class mappingService {
         return $reslut;
     }
 
-    function isDupplicateExcel($db, $code, $year, $brand, $gen, $sub) {
+    function isDupplicateExcel($db, $year, $brand, $gen, $sub) {
         $strSql = "SELECT count(*) cnt FROM tb_car_map WHERE 1=1 ";
-        $strSql .= "and s_car_code = '" . $code . "' ";
         $strSql .= "and i_year = " . $year . " ";
         $strSql .= "and s_brand_code = '" . $brand . "' ";
         $strSql .= "and s_gen_code = '" . $gen . "' ";
@@ -191,50 +188,38 @@ class mappingService {
             $col2 = ( (isset($r[2])) ? $r[2] : NULL );
             $col3 = ( (isset($r[3])) ? $r[3] : NULL );
             $col4 = ( (isset($r[4])) ? $r[4] : NULL );
-            $col5 = ( (isset($r[5])) ? $r[5] : NULL );
             if ($k == 0) {
-                if ($col0 != NULL && $col1 != NULL && $col2 != NULL && $col3 != NULL && $col4 != NULL && $col5 != NULL) {
-                    if ($col1 == "CAR CODE" && $col2 == "YEAR" && $col3 == "BRAND CODE" && $col4 == "GENERATION CODE" && $col5 == "SUB CODE") {
+                if ($col0 != NULL && $col1 != NULL && $col2 != NULL && $col3 != NULL && $col4 != NULL) {
+                    if ($col1 == "YEAR" && $col2 == "BRAND CODE" && $col3 == "GENERATION CODE" && $col4 == "SUB CODE") {
                         continue;
-                    } else {
-                        $txt .= "Header format not found.\r\n";
-                        break;
                     }
-                } else {
-                    $txt .= "Header format not found.\r\n";
-                    break;
                 }
             }
 
-            if ($col0 != NULL && $col1 != NULL && $col2 != NULL && $col3 != NULL && $col4 != NULL && $col5 != NULL) {
+            if ($col0 != NULL && $col1 != NULL && $col2 != NULL && $col3 != NULL && $col4 != NULL) {
 
-                if ($this->isDuppCarCode($db, $col1)) {
-                    $txt .= "No=" . $col0 . "|Desc= Code [" . $col1 . "] is not master data.\r\n";
+                if ($this->isNotMsYear($db, $col1)) {
+                    $txt .= "No=" . $col0 . "|Desc= Year [" . $col1 . "] data is Dupplicate.\r\n";
                     continue;
                 }
-
-                if ($this->isNotMsYear($db, $col2)) {
-                    $txt .= "No=" . $col0 . "|Desc= Year [" . $col2 . "] is not master data.\r\n";
+                if ($this->isNotMsBrand($db, $col2)) {
+                    $txt .= "No=" . $col0 . "|Desc= Brand [" . $col2 . "] data is Dupplicate.\r\n";
                     continue;
                 }
-                if ($this->isNotMsBrand($db, $col3)) {
-                    $txt .= "No=" . $col0 . "|Desc= Brand [" . $col3 . "] is not master data.\r\n";
+                if ($this->isNotMsGen($db, $col3)) {
+                    $txt .= "No=" . $col0 . "|Desc= Generation [" . $col3 . "] data is Dupplicate.\r\n";
                     continue;
                 }
-                if ($this->isNotMsGen($db, $col4)) {
-                    $txt .= "No=" . $col0 . "|Desc= Generation [" . $col4 . "] is not master data.\r\n";
-                    continue;
-                }
-                if ($this->isNotMsSub($db, $col5)) {
-                    $txt .= "No=" . $col0 . "|Desc= Sub [" . $col5 . "] is not master data.\r\n";
+                if ($this->isNotMsSub($db, $col4)) {
+                    $txt .= "No=" . $col0 . "|Desc= Sub [" . $col4 . "] data is Dupplicate.\r\n";
                     continue;
                 }
 
 
 
 
-                if ($this->isDupplicateExcel($db, $col1, $col2, $col3, $col4, $col5)) {
-                    $txt .= "No=" . $col0 . "|Desc= [Code:$col1|Year:$col2|Brand:$col3|Generation:$col4|Sub:$col5] Data Dupplicate.\r\n";
+                if ($this->isDupplicateExcel($db, $col1, $col2, $col3, $col4)) {
+                    $txt .= "No=" . $col0 . "|Desc= [Year:$col1|Brand:$col2|Generation:$col3|Sub:$col4] Data Dupplicate.\r\n";
                     continue;
                 }
 
@@ -242,7 +227,7 @@ class mappingService {
                     continue;
                 }
 
-                $state = $this->createStatement($db, $col1, $col2, $col3, $col4, $col5);
+                $state = $this->createStatement($db, $col1, $col2, $col3, $col4);
                 array_push($arrSQL, $state);
             }
         }
@@ -262,10 +247,10 @@ class mappingService {
         return $reslut;
     }
 
-    function createStatement($db, $col1, $col2, $col3, $col4, $col5) {
-        $sql = " insert into tb_car_map (s_car_code , i_year , s_brand_code , s_gen_code , s_sub_code , d_create , d_update , s_create_by , s_update_by ,s_status) ";
+    function createStatement($db, $col1, $col2, $col3, $col4) {
+        $sql = " insert into tb_car_map (i_year , s_brand_code , s_gen_code , s_sub_code , d_create , d_update , s_create_by , s_update_by ,s_status) ";
         $sql .= " values ";
-        $sql .= " ('$col1' , '$col2' , '$col3' , '$col4' , '$col5' ," . $db->Sysdate(TRUE) . " ," . $db->Sysdate(TRUE) . " ,'$_SESSION[username]','$_SESSION[username]','A' ) ";
+        $sql .= " ('$col1' , '$col2' , '$col3' , '$col4' ," . $db->Sysdate(TRUE) . " ," . $db->Sysdate(TRUE) . " ,'$_SESSION[username]','$_SESSION[username]','A' ) ";
         return array("query" => "$sql");
     }
 

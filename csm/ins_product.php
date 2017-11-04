@@ -3,7 +3,7 @@
 include './common/Permission.php';
 include './common/PermissionADM.php';
 include './common/FunctionCheckActive.php';
-ACTIVEPAGES(99, 13);
+ACTIVEPAGES(13, 1);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -70,11 +70,11 @@ ACTIVEPAGES(99, 13);
                         <div class="page-bar">
                             <ul class="page-breadcrumb">
                                 <li>
-                                    <span><?= $_SESSION[setting] ?></span>
+                                    <span><?= $_SESSION[ins_manage] ?></span>
                                     <i class="fa fa-circle" style="color:  #00FF00;"></i>
                                 </li>
                                 <li>
-                                    <a href="set_carmapping.php"><?= $_SESSION[set_mapping] ?></a>
+                                    <a href="ins_product.php"><?= $_SESSION[ins_product] ?></a>
                                 </li>
                             </ul>
 
@@ -91,8 +91,8 @@ ACTIVEPAGES(99, 13);
                                 <div class="portlet light bordered">
                                     <div class="portlet-title">
                                         <div class="caption font-dark">
-                                            <i class="icon-settings font-dark"></i>
-                                            <span class="caption-subject bold uppercase"><?= $_SESSION[tt_mg_carmapping] ?></span>
+                                            <i class="fa fa-automobile font-dark"></i>
+                                            <span class="caption-subject bold uppercase"><?= $_SESSION[tt_mg_insprd] ?></span>
                                         </div>
                                         <div class="actions">
 
@@ -106,7 +106,7 @@ ACTIVEPAGES(99, 13);
                                                                                                 </div>-->
                                                 <div class="col-md-6" align="left"  <?= $hidden ?>>
                                                     <div class="btn-group">
-                                                        <a href="set_carmappingManage.php?func=add">
+                                                        <a href="ins_productManage.php?func=add">
                                                             <button id="sample_editable_1_new" class="btn sbold green"> <?= $_SESSION[btn_add] ?>
                                                             </button>
                                                         </a>
@@ -172,7 +172,6 @@ ACTIVEPAGES(99, 13);
                                                                 <span class="box"></span> </label>
                                                         </span>
                                                     </th>
-                                                    <th>  <?= $_SESSION[tb_co_code] ?> </th>
                                                     <th>  <?= $_SESSION[tb_co_caryear] ?> </th>
                                                     <th>  <?= $_SESSION[tb_co_carbrand] ?> </th>
                                                     <th>  <?= $_SESSION[tb_co_cargeneration] ?> </th>
@@ -247,7 +246,7 @@ ACTIVEPAGES(99, 13);
         <link href="css/notify.css" rel="stylesheet" type="text/css" />
         <link href="outbound/lightbox/css/lightbox.css" rel="stylesheet" type="text/css" />
         <script src="outbound/lightbox/js/lightbox.js" type="text/javascript"></script>
-        <script src="js/action/setting/carmapping.js" type="text/javascript"></script>
+        <script src="js/action/insurance/product.js" type="text/javascript"></script>
         <script>
                                                             $(document).ready(function () {
                                                                 initialDataTable("TRUE");

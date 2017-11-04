@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 
-$controller = new mappingController();
+$controller = new productController();
 switch ($info[func]) {
     case "dataTable":
         echo $controller->dataTable();
@@ -38,7 +38,7 @@ switch ($info[func]) {
         break;
 }
 
-class mappingController {
+class productController {
 
     public function __construct() {
         include '../../common/ConnectDB.php';
@@ -46,11 +46,11 @@ class mappingController {
         include '../../common/Logs.php';
         include '../../common/upload.php';
         include '../../common/excel.php';
-        include '../../service/setting/mappingService.php';
+        include '../../service/insurance/productService.php';
     }
 
     public function dataTable() {
-        $service = new mappingService();
+        $service = new productService();
         $_dataTable = $service->dataTable();
         if ($_dataTable != NULL) {
             return json_encode($_dataTable);
@@ -64,40 +64,29 @@ class mappingController {
         if ($this->isValidImport($info)) {
             $db = new ConnectDB();
             $db->conn();
-            $service = new mappingService();
+            $service = new productService();  
             if ($service->import($db, $_FILES["file"])) {
                 $db->commit();
                 echo $_SESSION['cd_0000'];
             } else {
                 $db->rollback();
-                echo $_SESSION['cd_2001'];
+                echo $_SESSION['cd_2001'];  
             }
         }
     }
 
+
+
     public function export() {
         header("Content-Type: application/vnd.ms-excel");
-        header('Content-Disposition: attachment; filename="MasterData.xls"');
-        include '../../service/setting/yearService.php';
-        include '../../service/setting/brandService.php';
-        include '../../service/setting/generationService.php';
-        include '../../service/setting/subService.php';
+        header('Content-Disposition: attachment; filename="MasterDataInsurance.xls"');
 
-        $year = new yearService();
-        $brand = new brandService();
-        $gen = new generationService();
-        $sub = new subService();
+        $prd = new productService();
+        $_prd = $prd->dataTableEx();
 
-        $_year = $year->dataTableEx();
-        $_brand = $brand->dataTableEx();
-        $_gen = $gen->dataTableEx();
-        $_sub = $sub->dataTableEx();
 
         $html = "";
-//        $html .= $this->getTableExcel("MASTER CAR YEAR", $_year);
-//        $html .= $this->getTableExcel("MASTER CAR BRAND", $_brand);
-//        $html .= $this->getTableExcel("MASTER CAR GENERATION", $_gen);
-//        $html .= $this->getTableExcel("MASTER CAR SUB", $_sub);
+
 
         $head = array();
         $head[0] = "MASTER CAR YEAR";
@@ -282,7 +271,7 @@ class mappingController {
     public function delete($seq) {
         $db = new ConnectDB();
         $db->conn();
-        $service = new mappingService();
+        $service = new productService();
         if ($service->delete($db, $seq)) {
             $db->commit();
             echo $_SESSION['cd_0000'];
@@ -299,7 +288,7 @@ class mappingController {
             $util = new Utility();
             $db = new ConnectDB();
             $db->conn();
-            $service = new mappingService();
+            $service = new productService();
             $query = $util->arr2strQuery($info[data], "I");
             if ($service->deleteAll($db, $query)) {
                 $db->commit();
@@ -312,7 +301,7 @@ class mappingController {
     }
 
     public function getInfo($seq) {
-        $service = new mappingService();
+        $service = new productService();
         $_dataTable = $service->getInfo($seq);
         if ($_dataTable != NULL) {
             return json_encode($_dataTable);
@@ -325,15 +314,9 @@ class mappingController {
         if ($this->isValid($info)) {
             $db = new ConnectDB();
             $db->conn();
-            $service = new mappingService();
-
-
+            $service = new productService();
             if ($service->isDupplicate($db, $info)) {
                 echo $_SESSION[cd_2011];
-                return;
-            }
-            if ($service->isDuppCarCode($db, $info)) {
-                echo $_SESSION[cd_2014];
                 return;
             }
             if ($service->edit($db, $info)) {
@@ -350,13 +333,9 @@ class mappingController {
         if ($this->isValid($info)) {
             $db = new ConnectDB();
             $db->conn();
-            $service = new mappingService();
+            $service = new productService();
             if ($service->isDupplicate($db, $info)) {
                 echo $_SESSION[cd_2011];
-                return;
-            }
-            if ($service->isDuppCarCode($db, $info)) {
-                echo $_SESSION[cd_2014];
                 return;
             }
             if ($service->add($db, $info)) {
@@ -375,10 +354,7 @@ class mappingController {
         $return2003 = $_SESSION['cd_2003'];
         $return2097 = $_SESSION['cd_2097'];
         $util = new Utility();
-        if ($util->isEmpty($info[s_car_code])) {
-            $return2099 = eregi_replace("field", $_SESSION['lb_setCar_code'], $return2099);
-            echo $return2099;
-        } else if ($util->isEmpty($info[i_year])) {
+        if ($util->isEmpty($info[i_year])) {
             $return2099 = eregi_replace("field", $_SESSION['lb_setYear_year'], $return2099);
             echo $return2099;
         } else if ($util->isEmpty($info[s_brand_code])) {

@@ -51,6 +51,9 @@ switch ($info[func]) {
     case "DDLSub":
         echo $controller->DDLSub();
         break;
+    case "DDLCar":
+        echo $controller->DDLCar();
+        break;
 }
 
 class commonController {
@@ -170,7 +173,7 @@ class commonController {
             foreach ($_dataTable as $key => $value) {
                 $tmp = array(
                     'id' => $_dataTable[$key]['s_brand_code'],
-                    'text' =>  $_dataTable[$key]['s_brand_name'],
+                    'text' => $_dataTable[$key]['s_brand_name'],
                     'img' => $_dataTable[$key]['s_image']
                 );
                 $tmpReturn[] = $tmp;
@@ -210,6 +213,26 @@ class commonController {
                 $tmp = array(
                     'id' => $_dataTable[$key]['s_sub_code'],
                     'text' => $_dataTable[$key]['s_sub_name']
+                );
+                $tmpReturn[] = $tmp;
+            }
+
+            return json_encode(array_values($tmpReturn));
+        } else {
+            return NULL;
+        }
+    }
+
+    public function DDLCar() {
+        $service = new commonService();
+        $_dataTable = $service->DDLCar();
+        if ($_dataTable != NULL) {
+            $tmpReturn = array();
+            foreach ($_dataTable as $key => $value) {
+                $tmp = array(
+                    'id' => $_dataTable[$key]['s_code'],
+                    'text' => $_dataTable[$key]['s_name'],
+                    'img' => $_dataTable[$key]['s_image']
                 );
                 $tmpReturn[] = $tmp;
             }
