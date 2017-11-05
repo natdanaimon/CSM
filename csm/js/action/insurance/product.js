@@ -22,10 +22,10 @@ function initialDataTable(first) {
             $.each(res, function (i, item) {
 
                 var col_checkbox = "";
-                var col_year = item.i_year;
-                var col_brand = "";
-                var col_gen = (language == "th" ? item.s_gen_name : item.s_gen_name);
-                var col_sub = (language == "th" ? item.s_sub_name : item.s_sub_name);
+                var col_htext = item.s_insurance_htext;
+                var col_comp = "";
+                var col_type = item.s_type_name;
+                var col_price = item.f_price;
 
 
 
@@ -36,7 +36,7 @@ function initialDataTable(first) {
 
                 col_checkbox = '<span class="md-checkbox has-success" style="padding-right: 0px;">';
                 col_checkbox += '  <input type="checkbox" id="checkbox_' + i + '" name="checkboxItem" class="md-check"';
-                col_checkbox += '  value="' + item.i_car + '" onclick=remove_select_all("checkbox_' + i + '")>';
+                col_checkbox += '  value="' + item.i_insurance + '" onclick=remove_select_all("checkbox_' + i + '")>';
                 col_checkbox += '  <label for="checkbox_' + i + '">';
                 col_checkbox += '    <span class="inc"></span>';
                 col_checkbox += '    <span class="check"></span>';
@@ -46,11 +46,11 @@ function initialDataTable(first) {
 
 
                 if (item.s_image != "") {
-                    col_brand = '<a title="' + item.s_image + '" class="example-image-link" href="upload/brand/' + item.s_image + '" data-lightbox="example-' + item.i_car + '">';
-                    col_brand += '<img class="example-image" src="upload/brand/' + item.s_image + '" width="50px" height="50px"  /> ' + item.s_brand_name;
-                    col_brand += '</a>';
+                    col_comp  = '<a title="' + item.s_image + '" class="example-image-link" href="upload/brand/' + item.s_image + '" data-lightbox="example-' + item.i_insurance + '">';
+                    col_comp  += '<img class="example-image" src="upload/compInsurance/' + item.s_image + '" width="50px" height="50px"  /> ' + item.s_comp_th;
+                    col_comp  += '</a>';
                 } else {
-                    col_brand += '<img class="example-image" src="images/noCar.png" width="50px" height="50px"  /> ' + item.s_brand_name;
+                    col_comp  += '<img class="example-image" src="images/noImage.jpeg" width="50px" height="50px"  /> ' + item.s_comp_th;
 
                 }
 
@@ -60,25 +60,30 @@ function initialDataTable(first) {
                 col_status += '';
 
 
-                col_edit += '<a href="set_carmappingManage.php?func=edit&id=' + item.i_car + '" class="btn btn-circle btn-icon-only blue">';
+                col_edit += '<a href="ins_productManage.php?func=edit&id=' + item.i_insurance + '" class="btn btn-circle btn-icon-only blue">';
                 col_edit += ' <i class="fa fa-edit"></i>';
                 col_edit += '</a>';
 
 
-                col_delete += '<a href="' + (disable != "" ? '#' : 'javascript:Confirm(\'' + item.i_car + '\',\'delete\');') + '" class="btn btn-circle btn-icon-only red" ' + disable + '>';
+                col_delete += '<a href="' + (disable != "" ? '#' : 'javascript:Confirm(\'' + item.i_insurance + '\',\'delete\');') + '" class="btn btn-circle btn-icon-only red" ' + disable + '>';
                 col_delete += ' <i class="fa fa-trash-o"></i>';
                 col_delete += '</a>';
 
                 var addRow = [
                     col_checkbox,
-                    col_year,
-                    col_brand,
-                    col_gen,
-                    col_sub,
+                    col_htext,
+                    col_comp,
+                    col_type,
+                    col_price,
                     col_status,
                     col_edit,
                     col_delete
                 ]
+         
+                
+                
+                
+                
 
                 JsonData.push(addRow);
 

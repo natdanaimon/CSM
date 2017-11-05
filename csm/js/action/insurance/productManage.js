@@ -14,7 +14,7 @@ function getDDLStatus() {
                 htmlOption += "<option value='" + item.s_status + "'>" + txt_status + "</option>";
             });
             $("#status").html(htmlOption);
-            getDDLCar();
+            getDDLInsurance();
         },
         error: function (data) {
 
@@ -22,6 +22,128 @@ function getDDLStatus() {
 
     });
 }
+
+
+function formatStateComp(state) {
+    if (!state.id) {
+        return state.text;
+    }
+    var pathImg = "";
+    if (state.img == "") {
+        pathImg = "images/noImage.jpeg";
+    } else {
+        pathImg = "upload/brand/" + state.img;
+    }
+
+
+    var $state = $(
+            '<span><img src="' + pathImg + '" width="50px" height="50px" class="img-flag" Style="margin-bottom: 5px;"/><span style="color:black;font-weight:bold;"> ' + state.text + '</span></span>'
+            );
+    return $state;
+}
+function getDDLInsurance() {
+    $.ajax({
+        type: 'GET',
+        url: 'controller/commonController.php?func=DDLInsurance',
+        beforeSend: function ()
+        {},
+        success: function (ddl) {
+            var res = JSON.parse(ddl);
+            $("#i_ins_comp").select2({
+                data: res,
+                templateResult: formatStateComp,
+                templateSelection: formatStateComp
+
+            });
+
+            getDDLInsuranceType();
+
+        },
+        error: function (ddl) {
+
+        }
+
+
+
+    });
+}
+
+
+
+
+function getDDLInsuranceType() {
+    $.ajax({
+        type: 'GET',
+        url: 'controller/commonController.php?func=DDLInsuranceType',
+        beforeSend: function ()
+        {}
+        ,
+        success: function (ddl) {
+            var res = JSON.parse(ddl);
+            var html = "";
+            $.each(res, function (i, item) {
+                var checked = (i == 0 ? "checked" : "");
+                html += '<div class="md-radio">';
+                html += '<input type="radio" id="i_ins_type' + i + '" value="' + item.i_ins_type + '" name="i_ins_type" class="md-radiobtn"  ' + checked + ' />';
+                html += '<label for="i_ins_type' + i + '">';
+                html += '<span></span>';
+                html += '<span class="check"></span>';
+                html += '<span class="box"></span> ' + item.s_name + ' </label>';
+                html += '</div>';
+
+            });
+            $("#insurance_type").html(html);
+            getDDLInsurancePro();
+        },
+        error: function (ddl) {
+
+        }
+
+
+
+    });
+}
+
+function formatStatePro(state) {
+    if (!state.id) {
+        return state.text;
+    }
+    var $state = $(
+            '<span><span style="color:black;font-weight:bold;"> ' + state.text + '</span></span>'
+            );
+    return $state;
+}
+function getDDLInsurancePro() {
+    $.ajax({
+        type: 'GET',
+        url: 'controller/commonController.php?func=DDLInsurancePromotion',
+        beforeSend: function ()
+        {}
+        ,
+        success: function (ddl) {
+            var res = JSON.parse(ddl);
+            $("#i_ins_promotion").select2({
+                data: res,
+                templateResult: formatStatePro,
+                templateSelection: formatStatePro
+
+            });
+
+            getDDLCar();
+        },
+        error: function (ddl) {
+
+        }
+
+
+
+    });
+}
+
+
+
+
+
 
 
 
@@ -38,7 +160,7 @@ function formatStateCar(state) {
 
 
     var $state = $(
-            '<span><img src="'+ pathImg + '" width="50px" height="50px" class="img-flag" Style="margin-bottom: 5px;"/><span style="color:black;font-weight:bold;"> ' + state.text + '</span></span>'
+            '<span><img src="' + pathImg + '" width="50px" height="50px" class="img-flag" Style="margin-bottom: 5px;"/><span style="color:black;font-weight:bold;"> ' + state.text + '</span></span>'
             );
     return $state;
 }
@@ -56,7 +178,7 @@ function getDDLCar() {
                 templateSelection: formatStateCar
 
             });
-             if (keyEdit != "") {
+            if (keyEdit != "") {
                 edit();
             }
 
@@ -76,7 +198,7 @@ function getDDLCar() {
 function edit() {
     $.ajax({
         type: 'GET',
-        url: 'controller/setting/mappingController.php?func=getInfo&id=' + keyEdit,
+        url: 'controller/insurance/productController.php?func=getInfo&id=' + keyEdit,
         beforeSend: function ()
         {
             //$('#se-pre-con').fadeIn(100);
@@ -85,10 +207,34 @@ function edit() {
             var res = JSON.parse(data);
             $.each(res, function (i, item) {
                 debugger;
-                $("#i_year").val(item.i_year).trigger('change');
-                $("#s_brand_code").val(item.s_brand_code).trigger('change');
-                $("#s_gen_code").val(item.s_gen_code).trigger('change');
-                $("#s_sub_code").val(item.s_sub_code).trigger('change');
+                $("#s_insurance_htext").val(item.s_insurance_htext);
+                $("#i_ins_comp").val(item.i_ins_comp).trigger('change');
+                //radio
+                $("#s_car_code").val(item.s_car_code).trigger('change');
+
+                $("#i_ins_promotion").val(item.i_ins_promotion).trigger('change');
+                $("#f_price").val(item.f_price);
+                $("#f_discount").val(item.f_discount);
+                $("#f_point").val(item.f_point);
+
+                //3-1
+                $("#s_prcar_base").val(item.s_prcar_base);
+                $("#s_prcar_fire").val(item.s_prcar_fire);
+                $("#s_prcar_water").val(item.s_prcar_water);
+                $("#s_prcar_repair").val(item.s_prcar_repair);
+                $("#i_prcar_repair_type").val(item.i_prcar_repair_type);
+
+                //3-2
+                $("#s_prperson_per").val(item.s_prperson_per);
+                $("#s_prperson_pertimes").val(item.s_prperson_pertimes);
+                $("#s_prperson_outsider").val(item.s_prperson_outsider);
+
+                //3-3
+                $("#s_prother_personal").val(item.s_prother_personal);
+                $("#s_prother_insurance").val(item.s_prother_insurance);
+                $("#s_prother_medical").val(item.s_prother_medical);
+
+
                 $("#status").val(item.s_status);
 
                 $("#lb_create").text(item.s_create_by + " ( " + item.d_create + " )");
@@ -115,7 +261,7 @@ function save() {
     debugger;
     $.ajax({
         type: 'POST',
-        url: 'controller/setting/mappingController.php',
+        url: 'controller/insurance/productController.php',
         data: Jsdata,
         beforeSend: function ()
         {

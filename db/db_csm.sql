@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 05, 2017 at 03:07 AM
+-- Generation Time: Nov 05, 2017 at 07:45 PM
 -- Server version: 10.1.9-MariaDB
 -- PHP Version: 5.5.30
 
@@ -1127,8 +1127,7 @@ INSERT INTO `tb_car_map` (`i_car`, `s_car_code`, `i_year`, `s_brand_code`, `s_ge
 (24, 'HON001', 2015, 'H01', 'H01-01', 'CC1200', '2017-11-05 00:09:56', '2017-11-05 00:09:56', 'admin', 'admin', 'A'),
 (25, 'TOY001', 2015, 'T01', 'H01-01', 'CC1200', '2017-11-05 00:09:56', '2017-11-05 00:09:56', 'admin', 'admin', 'A'),
 (43, 'HON001', 2015, 'H01', 'HD-01', 'CC1200', '2017-11-05 00:57:54', '2017-11-05 00:57:54', 'admin', 'admin', 'A'),
-(44, 'TOY001', 2015, 'T01', 'TO-01', 'CC1200', '2017-11-05 00:57:54', '2017-11-05 00:57:54', 'admin', 'admin', 'A'),
-(45, 'TOY002', 2015, 'TO', 'TO-01', 'CC1200', '2017-11-05 00:57:54', '2017-11-05 00:57:54', 'admin', 'admin', 'A');
+(44, 'TOY001', 2015, 'T01', 'TO-01', 'CC1200', '2017-11-05 00:57:54', '2017-11-05 00:57:54', 'admin', 'admin', 'A');
 
 -- --------------------------------------------------------
 
@@ -10296,15 +10295,25 @@ INSERT INTO `tb_geographies` (`i_geography`, `s_name`) VALUES
 
 CREATE TABLE `tb_insurance` (
   `i_insurance` int(11) NOT NULL,
-  `s_car_code` varchar(50) NOT NULL,
+  `s_insurance_htext` text NOT NULL,
   `i_ins_comp` int(11) NOT NULL,
   `i_ins_type` int(11) NOT NULL,
-  `i_insurance_detail` int(11) NOT NULL,
+  `s_car_code` varchar(50) NOT NULL,
   `i_ins_promotion` int(11) NOT NULL,
-  `s_insurance_htext` text NOT NULL,
   `f_price` float NOT NULL,
   `f_discount` float NOT NULL,
   `f_point` float NOT NULL,
+  `s_prcar_base` varchar(50) NOT NULL,
+  `s_prcar_fire` varchar(50) NOT NULL,
+  `s_prcar_water` varchar(50) NOT NULL,
+  `s_prcar_repair` varchar(50) NOT NULL,
+  `i_prcar_repair_type` int(11) NOT NULL,
+  `s_prperson_per` varchar(50) NOT NULL,
+  `s_prperson_pertimes` varchar(50) NOT NULL,
+  `s_prperson_outsider` varchar(50) NOT NULL,
+  `s_prother_personal` varchar(50) NOT NULL,
+  `s_prother_insurance` varchar(50) NOT NULL,
+  `s_prother_medical` varchar(50) NOT NULL,
   `d_create` datetime NOT NULL,
   `d_update` datetime NOT NULL,
   `s_create_by` varchar(50) NOT NULL,
@@ -10349,33 +10358,6 @@ INSERT INTO `tb_insurance_comp` (`i_ins_comp`, `s_comp_th`, `s_comp_en`, `s_imag
 (12, 'บริษัท บางกอกสหประกันภัย จำกัด (มหาชน)', 'บริษัท บางกอกสหประกันภัย จำกัด (มหาชน)', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'ADM', 'ADM', 'A'),
 (13, 'บริษัท ประกันภัยไทยวิวัฒน์ จำกัด (มหาชน)', 'บริษัท ประกันภัยไทยวิวัฒน์ จำกัด (มหาชน)', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'ADM', 'ADM', 'A'),
 (14, 'บริษัท ไดเร็ค เอเชีย (ประเทศไทย) จำกัด', 'บริษัท ไดเร็ค เอเชีย (ประเทศไทย) จำกัด', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'ADM', 'ADM', 'A');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tb_insurance_detail`
---
-
-CREATE TABLE `tb_insurance_detail` (
-  `i_insurance_detail` int(11) NOT NULL,
-  `i_insurance` int(11) NOT NULL,
-  `s_prcar_base` varchar(50) NOT NULL COMMENT 'มูลค่าความคุ้มครองสูงสุด สำหรับรถยนต์เอาประกัน',
-  `s_prcar_fire` varchar(50) NOT NULL COMMENT 'คุ้มครองรถเอาประกันกรณีถูกโจรกรรมหรือไฟไหม้ ทั้งที่เป็นการไหม้โดยตัวของมันเอง หรือสืบเนื่องจากสาเหตุอื่น',
-  `s_prcar_water` varchar(50) NOT NULL COMMENT 'คุ้มครองรถเอาประกัน อันมีสาเหตุมาจากน้ำท่วม หรือภัยธรรมชาติต่างๆ ต่อรถยนต์',
-  `s_prcar_repair` varchar(50) NOT NULL COMMENT 'จำนวนเงินค่าใช้จ่าย ที่ผู้เอาประกันต้องจ่าย กรณีมีการเคลมประกันที่คุณเป็นฝ่ายที่ต้องรับผิด',
-  `i_prcar_repair_type` int(11) NOT NULL COMMENT 'อู่ หมายถึง สถานที่ซ่อมรถยนต์ในเครือของบริษัทประกัน   ห้าง หมายถึง สถานที่ซ่อมรถยนต์ของบริษัทผู้จำหน่ายรถยนต์ หรือ สถานที่ซ่อมอื่นๆนอกเครือของบริษัทประกันที่คุณพอใจ',
-  `s_prperson_per` text NOT NULL COMMENT 'คุ้มครองการชดใช้ค่าสินไหมทดแทนเพื่อความเสียหายต่อชีวิต ร่างกาย หรืออนามัย ของบุคคลภายนอก ตามความเสียหายที่แท้จริงที่ผู้เอาประกันภัยจะต้องรับผิดชอบตามกฎหมายต่อบุคคลภายนอก เนื่องจากอุบัติเหตุอันเกิดจากรถยนต์ที่ใช้',
-  `s_prperson_pertimes` text NOT NULL COMMENT 'คุ้มครองการชดใช้ค่าสินไหมทดแทนเพื่อความเสียหายต่อชีวิต ร่างกาย หรืออนามัย ของบุคคลภายนอก ตามความเสียหายที่แท้จริงที่ผู้เอาประกันภัยจะต้องรับผิดชอบตามกฎหมายต่อบุคคลภายนอก เนื่องจากอุบัติเหตุอันเกิดจากรถยนต์ที่ใช้',
-  `s_prperson_outsider` text NOT NULL COMMENT 'คุ้มครองการชดใช้ค่าสินไหมทดแทนเพื่อความเสียหายต่อทรัพย์สินของบุคคลภายนอก ซึ่งผู้เอาประกันภัยจะต้องรับผิดชอบตามกฎหมาย',
-  `s_prother_persona` text NOT NULL COMMENT 'บริษัทประกันภัยชดใช้การเอาประกันภัยเพิ่มของผู้ขับขี่หรือผู้โดยสาร สำหรับการเสียชีวิต การสูญเสียมือ เท้า สายตา ถาวรสิ้นเชิงและการทุพพลภาพถาวร',
-  `s_prother_insurance` text NOT NULL COMMENT 'บริษัทประกันภัยจะประกันตัวผู้เอาประกันภัยหรือผู้ขับขี่ที่ได้รับความยินยอมจากผู้เอาประกันภัย ในกรณีรถยนต์ที่ทำประกันประสบอุบัติเหตุ เป็นเหตุให้บุคคลอื่นได้รับบาดเจ็บหรือเสียชีวิต และตำรวจ',
-  `s_prother_medical` text NOT NULL COMMENT 'คุ้มครองค่ารักษาพยาบาลกรณีบาดเจ็บ ค่าสินไหมกรณีทุพพลภาพถาวร และค่าปลงศพกรณีเสียชีวิต สำหรับผู้ประสบภัยจากรถทุกคน',
-  `d_create` datetime NOT NULL,
-  `d_update` datetime NOT NULL,
-  `s_create_by` varchar(50) NOT NULL,
-  `s_update_by` varchar(50) NOT NULL,
-  `s_status` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -10493,6 +10475,13 @@ CREATE TABLE `tb_item` (
   `s_update_by` varchar(50) NOT NULL,
   `s_status` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tb_item`
+--
+
+INSERT INTO `tb_item` (`i_item`, `s_code`, `s_item_th`, `s_item_en`, `s_image`, `d_create`, `d_update`, `s_create_by`, `s_update_by`, `s_status`) VALUES
+(1, 'fasdfdas', 'fasfasf', '', '', '2017-11-05 19:02:27', '2017-11-05 19:02:27', 'admin', 'admin', 'A');
 
 -- --------------------------------------------------------
 
@@ -10803,12 +10792,6 @@ ALTER TABLE `tb_insurance_comp`
   ADD KEY `index_insurance_comp` (`s_status`);
 
 --
--- Indexes for table `tb_insurance_detail`
---
-ALTER TABLE `tb_insurance_detail`
-  ADD PRIMARY KEY (`i_insurance_detail`);
-
---
 -- Indexes for table `tb_insurance_promotion`
 --
 ALTER TABLE `tb_insurance_promotion`
@@ -10930,17 +10913,12 @@ ALTER TABLE `tb_employee`
 -- AUTO_INCREMENT for table `tb_insurance`
 --
 ALTER TABLE `tb_insurance`
-  MODIFY `i_insurance` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `i_insurance` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `tb_insurance_comp`
 --
 ALTER TABLE `tb_insurance_comp`
   MODIFY `i_ins_comp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
---
--- AUTO_INCREMENT for table `tb_insurance_detail`
---
-ALTER TABLE `tb_insurance_detail`
-  MODIFY `i_insurance_detail` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `tb_insurance_promotion`
 --
@@ -10965,7 +10943,7 @@ ALTER TABLE `tb_insurance_type`
 -- AUTO_INCREMENT for table `tb_item`
 --
 ALTER TABLE `tb_item`
-  MODIFY `i_item` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `i_item` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `tb_partner_comp`
 --

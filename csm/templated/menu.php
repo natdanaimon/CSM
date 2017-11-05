@@ -21,7 +21,7 @@
         </a>
     </li>
     <?php if ($_SESSION["perm"] == "A") { ?>
-        <li class="nav-item <?= $_SESSION["post_nav_main_dashboard"] ?>">
+<!--        <li class="nav-item <?= $_SESSION["post_nav_main_dashboard"] ?>">
             <a href="javascript:;" class="nav-link nav-toggle">
                 <i class="fa fa-newspaper-o"></i>
                 <span class="title"><?= $_SESSION[app_nagieos_post] ?></span>
@@ -66,17 +66,17 @@
                         <span class="selected"></span>
                     </a>
                 </li>
-    <!--                <li class="nav-item  <?= $_SESSION["post_nav_sub_email"] ?>">
+                    <li class="nav-item  <?= $_SESSION["post_nav_sub_email"] ?>">
                     <a href="po_email.php" class="nav-link ">
 
                         <span class="title"><?= $_SESSION[email] ?></span>
                         <span class="selected"></span>
                     </a>
-                </li>-->
+                </li>
 
 
             </ul>
-        </li>
+        </li>-->
 
 
 
@@ -313,12 +313,12 @@
 
 
 
-    <li class="nav-item <?= $_SESSION["cs_nav_main_dashboard"] ?>">
+<!--    <li class="nav-item <?= $_SESSION["cs_nav_main_dashboard"] ?>">
         <a href="javascript:;" class="nav-link nav-toggle">
             <i class="icon-game-controller"></i>
             <span class="title"><?= $_SESSION[app_nagieos_bet] ?></span>
             <span class="selected"></span>
-            <!--<span class="badge badge-danger" id="noti-nagieos-bet"></span>-->
+            <span class="badge badge-danger" id="noti-nagieos-bet"></span>
         </a>
         <ul class="sub-menu">
             <li class="nav-item  <?= $_SESSION["cs_nav_sub_register"] ?>">
@@ -469,7 +469,7 @@
 
 
         </ul>
-    </li>
+    </li>-->
 
 
 

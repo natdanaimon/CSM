@@ -96,11 +96,12 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                         </div>
 
                         <!------------ CONTENT ------------>
-                        <div class="row">
-                            <form id="form-action">
+                        <form id="form-action">
+                            <div class="row">
+
                                 <input type="hidden" id="func" name="func" value="<?= $_GET[func] ?>"/>
                                 <input type="hidden" id="id" name="id" value="<?= $_GET[id] ?>"/>
-                                <div class="col-md-8">
+                                <div class="col-md-9">
                                     <!-- BEGIN EXAMPLE TABLE PORTLET-->
                                     <div class="portlet light bordered">
                                         <div class="portlet-title">
@@ -111,50 +112,79 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                                         </div>
 
                                         <div class="portlet-body form">
-                                            
-                                             <div class="form-group form-md-line-input has-success" style="height: 80px">
-                                                <select class="form-control edited bold" id="s_car_code" name="s_car_code">
-                                                    <!--<option value="-1"></option>-->
-                                                </select>
-                                                <label for="form_control_1"><?= $_SESSION[lb_setPrd_car] ?></label>
-                                            </div>
-                                            
+
+
                                             <div class="form-group form-md-line-input has-success">
-                                                <select class="form-control edited bold" id="i_year" name="i_year">
-                                                    <!--<option value="-1"></option>-->
-                                                </select>
-                                                <label for="form_control_1"><?= $_SESSION[lb_setYear_year] ?></label>
-                                            </div>
-                                            
+                                                <input type="text" class="form-control bold" id="s_insurance_htext" name="s_insurance_htext">
+                                                <label for="form_control_1"><?= $_SESSION[lb_setIns_htext] ?> <span class="required">*</span></label>          
+                                            </div> 
                                             <div class="form-group form-md-line-input has-success" style="height: 80px">
-                                                <select class="form-control edited bold" id="s_brand_code" name="s_brand_code">
+                                                <select class="form-control edited bold" id="i_ins_comp" name="i_ins_comp">
                                                     <!--<option value="-1"></option>-->
                                                 </select>
-                                                <label for="form_control_1"><?= $_SESSION[lb_setBrand_name] ?></label>
+                                                <label for="form_control_1"><?= $_SESSION[lb_setIns_comp] ?></label>
                                             </div>
-                                            
-                                            <div class="form-group form-md-line-input has-success">
-                                                <select class="form-control edited bold" id="s_gen_code" name="s_gen_code">
-                                                    <!--<option value="-1"></option>-->
+
+                                            <div class="form-group form-md-line-input has-success" >
+                                                <div class="md-radio-inline">
+                                                    <div id="insurance_type"></div>
+
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group form-md-line-input has-success" style="height: 80px">
+                                                <select class="form-control edited bold" id="s_car_code" name="s_car_code">
                                                 </select>
-                                                <label for="form_control_1"><?= $_SESSION[lb_setGen_name] ?></label>
+                                                <label for="form_control_1"><?= $_SESSION[lb_setIns_code] ?></label>
                                             </div>
-                                            
-                                            <div class="form-group form-md-line-input has-success">
-                                                <select class="form-control edited bold" id="s_sub_code" name="s_sub_code">
-                                                    <!--<option value="-1"></option>-->
-                                                </select>
-                                                <label for="form_control_1"><?= $_SESSION[lb_setSub_name] ?></label>
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group form-md-line-input has-success" >
+                                                        <select class="form-control edited bold" id="i_ins_promotion" name="i_ins_promotion">
+                                                        </select>
+                                                        <label for="form_control_1"><?= $_SESSION[lb_setIns_promotion] ?></label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group form-md-line-input has-success">
+                                                        <input type="text" class="form-control bold" id="f_price" name="f_price">
+                                                        <label for="form_control_1"><?= $_SESSION[lb_setIns_price] ?> <span class="required">*</span></label>          
+                                                    </div>
+                                                </div>
                                             </div>
-                                            
+
+
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group form-md-line-input has-success">
+                                                        <input type="text" class="form-control bold" id="f_discount" name="f_discount">
+                                                        <label for="form_control_1"><?= $_SESSION[lb_setIns_discount] ?> <span class="required">*</span></label>          
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group form-md-line-input has-success">
+                                                        <input type="text" class="form-control bold" id="f_point" name="f_point">
+                                                        <label for="form_control_1"><?= $_SESSION[lb_setIns_point] ?> <span class="required">*</span></label>          
+                                                    </div>
+                                                </div>
+                                            </div>
 
 
                                         </div>
                                     </div>
 
+
                                     <!-- END EXAMPLE TABLE PORTLET-->
                                 </div>
-                                <div class="col-md-4">
+
+
+
+
+
+                                <div class="col-md-3">
                                     <!-- BEGIN EXAMPLE TABLE PORTLET-->
                                     <div class="col-md-12">
                                         <div class="portlet light bordered">
@@ -183,30 +213,124 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
 
                                     <!-- END EXAMPLE TABLE PORTLET-->
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="portlet-body form">
-                                            <div class="form-actions noborder">
-                                                <a href="set_carmapping.php"> <button type="button" class="btn default"><?= $_SESSION[btn_cancel] ?></button></a>
-                                                <button type="button" class="btn blue" onclick="save()"><?= $_SESSION[btn_submit] ?></button>
+
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="portlet light bordered">
+                                        <div class="portlet-title">
+                                            <div class="caption font-green">
+                                                <i class="fa fa-file font-green"></i>
+                                                <span class="caption-subject bold uppercase"> <?= $_SESSION[tt_mg_protec_1] ?></span>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group form-md-line-input has-success">
+                                                    <input type="text" class="form-control bold" id="s_prcar_base" name="s_prcar_base">
+                                                    <label for="form_control_1"><?= $_SESSION[lb_setIns_base] ?> <span class="required">*</span></label>          
+                                                </div> 
+                                                <div class="form-group form-md-line-input has-success">
+                                                    <input type="text" class="form-control bold" id="s_prcar_fire" name="s_prcar_fire">
+                                                    <label for="form_control_1"><?= $_SESSION[lb_setIns_fire] ?> <span class="required">*</span></label>          
+                                                </div> 
+                                                <div class="form-group form-md-line-input has-success">
+                                                    <input type="text" class="form-control bold" id="s_prcar_water" name="s_prcar_water">
+                                                    <label for="form_control_1"><?= $_SESSION[lb_setIns_water] ?> <span class="required">*</span></label>          
+                                                </div> 
+                                                <div class="form-group form-md-line-input has-success">
+                                                    <input type="text" class="form-control bold" id="s_prcar_repair" name="s_prcar_repair">
+                                                    <label for="form_control_1"><?= $_SESSION[lb_setIns_repair] ?> <span class="required">*</span></label>          
+                                                </div> 
+                                                <div class="form-group form-md-line-input has-success">
+                                                    <select class="form-control edited bold" id="i_prcar_repair_type" name="i_prcar_repair_type">
+                                                        <option value="1">ซ่อมอู่</option>
+                                                        <option value="2">ซ่อมห้าง</option>
+                                                    </select>
+                                                    <label for="form_control_1"><?= $_SESSION[lb_setIns_repair_type] ?><span class="required">*</span></label>      
+                                                </div> 
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row" style="font-size: 12px; color: red;">
-                                    <div class="col-md-12">
-                                        <div class="portlet-body form">
-                                            <div class="col-md-6" align="left">
-                                                <span><?= $_SESSION[lb_create] ?> : <span id="lb_create"></span></span>
+                                <div class="col-md-3">
+                                    <div class="portlet light bordered">
+                                        <div class="portlet-title">
+                                            <div class="caption font-green">
+                                                <i class="fa fa-file font-green"></i>
+                                                <span class="caption-subject bold uppercase"> <?= $_SESSION[tt_mg_protec_2] ?></span>
                                             </div>
-                                            <div class="col-md-6" align="right">
-                                                <span><?= $_SESSION[lb_edit] ?> : <span id="lb_edit"></span></span>
+
+                                            <div class="col-md-12">
+                                                <div class="form-group form-md-line-input has-success">
+                                                    <input type="text" class="form-control bold" id="s_prperson_per" name="s_prperson_per">
+                                                    <label for="form_control_1"><?= $_SESSION[lb_setIns_per] ?> <span class="required">*</span></label>          
+                                                </div> 
+                                                <div class="form-group form-md-line-input has-success">
+                                                    <input type="text" class="form-control bold" id="s_prperson_pertimes" name="s_prperson_pertimes">
+                                                    <label for="form_control_1"><?= $_SESSION[lb_setIns_pertimes] ?> <span class="required">*</span></label>          
+                                                </div> 
+                                                <div class="form-group form-md-line-input has-success">
+                                                    <input type="text" class="form-control bold" id="s_prperson_outsider" name="s_prperson_outsider">
+                                                    <label for="form_control_1"><?= $_SESSION[lb_setIns_outside] ?> <span class="required">*</span></label>          
+                                                </div> 
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </form>
-                        </div>
+                                <div class="col-md-3">
+                                    <div class="portlet light bordered">
+                                        <div class="portlet-title">
+                                            <div class="caption font-green">
+                                                <i class="fa fa-file font-green"></i>
+                                                <span class="caption-subject bold uppercase"> <?= $_SESSION[tt_mg_protec_3] ?></span>
+                                            </div>
+
+
+                                            <div class="col-md-12">
+                                                <div class="form-group form-md-line-input has-success">
+                                                    <input type="text" class="form-control bold" id="s_prother_personal" name="s_prother_personal">
+                                                    <label for="form_control_1"><?= $_SESSION[lb_setIns_personal] ?> <span class="required">*</span></label>          
+                                                </div> 
+                                                <div class="form-group form-md-line-input has-success">
+                                                    <input type="text" class="form-control bold" id="s_prother_insurance" name="s_prother_insurance">
+                                                    <label for="form_control_1"><?= $_SESSION[lb_setIns_insurance] ?> <span class="required">*</span></label>          
+                                                </div> 
+                                                <div class="form-group form-md-line-input has-success">
+                                                    <input type="text" class="form-control bold" id="s_prother_medical" name="s_prother_medical">
+                                                    <label for="form_control_1"><?= $_SESSION[lb_setIns_medical] ?> <span class="required">*</span></label>          
+                                                </div> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="portlet-body form">
+                                        <div class="form-actions noborder">
+                                            <a href="set_carmapping.php"> <button type="button" class="btn default"><?= $_SESSION[btn_cancel] ?></button></a>
+                                            <button type="button" class="btn blue" onclick="save()"><?= $_SESSION[btn_submit] ?></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" style="font-size: 12px; color: red;">
+                                <div class="col-md-12">
+                                    <div class="portlet-body form">
+                                        <div class="col-md-6" align="left">
+                                            <span><?= $_SESSION[lb_create] ?> : <span id="lb_create"></span></span>
+                                        </div>
+                                        <div class="col-md-6" align="right">
+                                            <span><?= $_SESSION[lb_edit] ?> : <span id="lb_edit"></span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                         <!------------ CONTENT ------------>
 
 
@@ -276,7 +400,7 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
         <script src="outbound/lightbox/js/lightbox.js" type="text/javascript"></script>
 
         <script>
-                                                    var keyEdit = "<?= $_GET[id] ?>";
+                                                var keyEdit = "<?= $_GET[id] ?>";
         </script>
         <script>
             $(document).ready(function () {

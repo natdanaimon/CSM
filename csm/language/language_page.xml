@@ -338,7 +338,7 @@
     <detail>
         <variable>lb_setIns_htext</variable>
         <th>แคมเปญ ประกันภัย</th>
-        <en>Type</en>
+        <en>Campaign</en>
     </detail>
     <detail>
         <variable>lb_setIns_code</variable>
@@ -356,7 +356,12 @@
         <en>Type Insurance</en>
     </detail>  
     <detail>
-        <variable>lb_setIns_repaitr</variable>
+        <variable>lb_setIns_promotion</variable>
+        <th>โปรโมชัน</th>
+        <en>Promotion</en>
+    </detail>  
+    <detail>
+        <variable>lb_setIns_repait</variable>
         <th>ประเภทการซ่อม</th>
         <en>Type Repair</en>
     </detail>  
@@ -375,5 +380,69 @@
         <th>คะแนน</th>
         <en>Point</en>
     </detail>  
+    
+    
+    
+    <detail>
+        <variable>lb_setIns_base</variable>
+        <th>ทุนประกัน (บาท)</th>
+        <en>Insurance Base</en>
+    </detail>  
+    <detail>
+        <variable>lb_setIns_fire</variable>
+        <th>คุ้มครองไฟไหม้ และ โจรกรรม (บาท)</th>
+        <en>Protec fire</en>
+    </detail>  
+    <detail>
+        <variable>lb_setIns_water</variable>
+        <th>คุ้มครองน้ำท่วม (บาท)</th>
+        <en>Protec Water</en>
+    </detail>  
+    <detail>
+        <variable>lb_setIns_repair</variable>
+        <th>ค่าเสียหายส่วนแรก (บาท)</th>
+        <en>Repair</en>
+    </detail>  
+    <detail>
+        <variable>lb_setIns_repair_type</variable>
+        <th>ซ่อม</th>
+        <en>Repair Type</en>
+    </detail>   
+    
+    <detail>
+        <variable>lb_setIns_per</variable>
+        <th>ชีวิตบุคคลภายนอกต่อคน (บาท)</th>
+        <en>Protec Person / Per</en>
+    </detail>  
+    <detail>
+        <variable>lb_setIns_pertimes</variable>
+        <th>ชีวิตบุคคลภายนอกต่อครั้ง (บาท)</th>
+        <en>Protec Pertimes</en>
+    </detail>  
+    <detail>
+        <variable>lb_setIns_outside</variable>
+        <th>ทรัพย์สินบุคคลภายนอก (บาท)</th>
+        <en>Protec Outside</en>
+    </detail>  
+    
+    
+    
+    <detail>
+        <variable>lb_setIns_personal</variable>
+        <th>อุบัติเหตุส่วนบุคคล (บาท)</th>
+        <en>Protec Personal</en>
+    </detail>  
+    <detail>
+        <variable>lb_setIns_insurance</variable>
+        <th>ประกันตัวผู้ขับขี่ (บาท)</th>
+        <en>Protec insirance</en>
+    </detail>  
+    <detail>
+        <variable>lb_setIns_medical</variable>
+        <th>ค่ารักษาพยาบาล (บาท)</th>
+        <en>Protec Medical</en>
+    </detail>  
+    
+    
     <!--  insurance product-->  
 </language>

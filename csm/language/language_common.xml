@@ -432,7 +432,7 @@
     </detail>
     <detail>
         <variable>btn_export_excel_ng</variable>
-        <th>ข้อมูล Master Data สำหรับสร้างไฟล์</th>
+        <th>ข้อมูล Master Data</th>
         <en>Export Excel</en>
     </detail>
     <detail>
@@ -1021,7 +1021,21 @@
         <en>Car sub</en>
     </detail>
     
-    
+    <detail>
+        <variable>tb_co_htext</variable>
+        <th>แคมเปญ ประกันภัย</th>
+        <en>Campaign</en>
+    </detail>
+    <detail>
+        <variable>tb_co_price</variable>
+        <th>ราคา</th>
+        <en>Price</en>
+    </detail>
+    <detail>
+        <variable>tb_co_insurance_type</variable>
+        <th>ประเภทประกันภัย</th>
+        <en>Insurance Type</en>
+    </detail>
     
     <!--  table  --> 
         
@@ -1219,6 +1233,23 @@
     </detail>
     
     
+    
+    
+    <detail>
+        <variable>tt_mg_protec_1</variable>
+        <th>ความคุ้มครองรถยนต์เอาประกัน</th>
+        <en>Insured car insurance</en>
+    </detail>
+    <detail>
+        <variable>tt_mg_protec_2</variable>
+        <th>ความคุ้มครองบุคคลภายนอก</th>
+        <en>Third Party Protection</en>
+    </detail>
+    <detail>
+        <variable>tt_mg_protec_3</variable>
+        <th>ความคุ้มครองเพิ่มเติม</th>
+        <en>Additional coverage</en>
+    </detail>
     
     <!--  Title Header  --> 
         

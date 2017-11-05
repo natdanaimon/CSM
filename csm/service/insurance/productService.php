@@ -8,14 +8,12 @@ class productService {
         $db = new ConnectDB();
         $strSql = "";
         $strSql .= "SELECT  ";
-        $strSql .= "m.*, st.s_detail_th status_th, st.s_detail_en status_en , b.s_brand_name,b.s_image , g.s_gen_name , s.s_sub_name ";
-        $strSql .= "FROM  ";
-        $strSql .= "tb_car_map m , tb_car_year y , tb_car_brand b , tb_car_generation g , tb_car_sub s , tb_status st ";
+        $strSql .= "m.*, st.s_detail_th status_th, st.s_detail_en status_en , c.s_comp_th , c.s_image , t.s_name s_type_name";
+        $strSql .= " FROM  ";
+        $strSql .= "tb_insurance m  , tb_insurance_comp c , tb_insurance_type t, tb_status st ";
         $strSql .= "WHERE 1=1 ";
-        $strSql .= "AND m.i_year = y.i_year ";
-        $strSql .= "AND m.s_brand_code = b.s_brand_code ";
-        $strSql .= "AND m.s_gen_code = g.s_gen_code ";
-        $strSql .= "AND m.s_sub_code = s.s_sub_code ";
+        $strSql .= "AND m.i_ins_comp = c.i_ins_comp ";
+        $strSql .= "AND m.i_ins_type = t.i_ins_type ";
         $strSql .= "AND m.s_status = st.s_status ";
         $strSql .= "AND st.s_type   =  'ACTIVE' ";
 //        $strSql .= " and    s.s_status = 'A' ";
@@ -30,7 +28,7 @@ class productService {
         $strSql .= "        SELECT    ";
         $strSql .= "        m.s_car_code s_code , CONCAT(b.s_brand_name,' : ',y.i_year,' : ',g.s_gen_name,' : ',s.s_sub_name ) as s_name ";
         $strSql .= "        FROM    ";
-        $strSql .= "        tb_car_map m , tb_car_year y , tb_car_brand b , tb_car_generation g , tb_car_sub s , tb_status st   ";
+        $strSql .= "        tb_insurance m , tb_car_year y , tb_car_brand b , tb_car_generation g , tb_car_sub s , tb_status st   ";
         $strSql .= "        WHERE 1=1   ";
         $strSql .= "        AND m.i_year = y.i_year   ";
         $strSql .= "        AND m.s_brand_code = b.s_brand_code   ";
@@ -43,25 +41,23 @@ class productService {
         $db->close_conn();
         return $_data;
     }
-    
-    
 
     function getInfo($seq) {
         $db = new ConnectDB();
-        $strSql = " select * from tb_car_map where i_car =" . $seq;
+        $strSql = " select * from tb_insurance where i_insurance =" . $seq;
         $_data = $db->Search_Data_FormatJson($strSql);
         $db->close_conn();
         return $_data;
     }
 
     function getInfoFile($db) {
-        $strSql = "select s_image from tb_car_map ";
+        $strSql = "select s_image from tb_insurance ";
         $_data = $db->Search_Data_FormatJson($strSql);
         return $_data;
     }
 
     function delete($db, $seq) {
-        $strSQL = "DELETE FROM tb_car_map WHERE i_car = '" . $seq . "' ";
+        $strSQL = "DELETE FROM tb_insurance WHERE i_insurance = '" . $seq . "' ";
         $arr = array(
             array("query" => "$strSQL")
         );
@@ -70,7 +66,7 @@ class productService {
     }
 
     function deleteAll($db, $query) {
-        $strSQL = "DELETE FROM tb_car_map WHERE i_car in ($query) ";
+        $strSQL = "DELETE FROM tb_insurance WHERE i_insurance in ($query) ";
         $arr = array(
             array("query" => "$strSQL")
         );
@@ -79,24 +75,24 @@ class productService {
     }
 
     function SelectById($db, $seq) {
-        $strSql = "SELECT * FROM tb_car_map WHERE i_car = '" . $seq . "' ";
+        $strSql = "SELECT * FROM tb_insurance WHERE i_insurance = '" . $seq . "' ";
         $_data = $db->Search_Data_FormatJson($strSql);
         return $_data;
     }
 
     function isDupplicate($db, $info) {
-        $strSql = "SELECT count(*) cnt FROM tb_car_map WHERE 1=1 ";
+        $strSql = "SELECT count(*) cnt FROM tb_insurance WHERE 1=1 ";
         $strSql .= "and i_year = " . $info[i_year] . " ";
         $strSql .= "and s_brand_code = '" . $info[s_brand_code] . "' ";
         $strSql .= "and s_gen_code = '" . $info[s_gen_code] . "' ";
         $strSql .= "and s_sub_code = '" . $info[s_sub_code] . "' ";
-        $strSql .= ($info[func] == 'edit' ? " and i_car != $info[id] " : "");
+        $strSql .= ($info[func] == 'edit' ? " and i_insurance != $info[id] " : "");
         $_data = $db->Search_Data_FormatJson($strSql);
         return ($_data[0]['cnt'] == 0 ? FALSE : TRUE);
     }
 
     function SelectByArray($db, $query) {
-        $strSql = "SELECT * FROM tb_car_map  WHERE i_car in ($query) ";
+        $strSql = "SELECT * FROM tb_insurance  WHERE i_insurance in ($query) ";
         $_data = $db->Search_Data_FormatJson($strSql);
         return $_data;
     }
@@ -104,16 +100,39 @@ class productService {
     function edit($db, $info) {
 
         $strSql = "";
-        $strSql .= "update tb_car_map ";
+        $strSql .= "update tb_insurance ";
         $strSql .= "set  ";
-        $strSql .= "    i_year=$info[i_year], ";
-        $strSql .= "    s_brand_code='$info[s_brand_code]', ";
-        $strSql .= "    s_gen_code='$info[s_gen_code]', ";
-        $strSql .= "    s_sub_code='$info[s_sub_code]', ";
+
+        $strSql .= "    s_insurance_htext='$info[s_insurance_htext]', ";
+        $strSql .= "    i_ins_comp=$info[i_ins_comp], ";
+        $strSql .= "    i_ins_type=$info[i_ins_type], ";
+        $strSql .= "    s_car_code='$info[s_car_code]', ";
+        $strSql .= "    i_ins_promotion=$info[i_ins_promotion], ";
+        $strSql .= "    f_price=$info[f_price], ";
+        $strSql .= "    f_discount=$info[f_discount], ";
+        $strSql .= "    f_point=$info[f_point], ";
+
+
+        $strSql .= "    s_prcar_base='$info[s_prcar_base]', ";
+        $strSql .= "    s_prcar_fire='$info[s_prcar_fire]', ";
+        $strSql .= "    s_prcar_water='$info[s_prcar_water]', ";
+        $strSql .= "    s_prcar_repair='$info[s_prcar_repair]', ";
+        $strSql .= "    i_prcar_repair_type=$info[i_prcar_repair_type], ";
+
+        $strSql .= "    s_prperson_per='$info[s_prperson_per]', ";
+        $strSql .= "    s_prperson_pertimes='$info[s_prperson_pertimes]', ";
+        $strSql .= "    s_prperson_outsider='$info[s_prperson_outsider]', ";
+
+        $strSql .= "    s_prother_personal='$info[s_prother_personal]', ";
+        $strSql .= "    s_prother_insurance='$info[s_prother_insurance]', ";
+        $strSql .= "    s_prother_medical='$info[s_prother_medical]', ";
+
+
+
         $strSql .= "d_update = " . $db->Sysdate(TRUE) . ", ";
         $strSql .= "s_update_by = '$_SESSION[username]', ";
         $strSql .= "s_status = '$info[status]' ";
-        $strSql .= "where i_car = $info[id] ";
+        $strSql .= "where i_insurance = $info[id] ";
         $arr = array(
             array("query" => "$strSql")
         );
@@ -127,11 +146,31 @@ class productService {
         $strSql = "";
         $strSql .= "INSERT ";
         $strSql .= "INTO ";
-        $strSql .= "  tb_car_map( ";
-        $strSql .= "    i_year, ";
-        $strSql .= "    s_brand_code, ";
-        $strSql .= "    s_gen_code, ";
-        $strSql .= "    s_sub_code, ";
+        $strSql .= "  tb_insurance( ";
+        $strSql .= "    s_insurance_htext, ";
+        $strSql .= "    i_ins_comp, ";
+        $strSql .= "    i_ins_type, ";
+        $strSql .= "    s_car_code, ";
+        $strSql .= "    i_ins_promotion, ";
+        $strSql .= "    f_price, ";
+        $strSql .= "    f_discount, ";
+        $strSql .= "    f_point, ";
+
+
+        $strSql .= "    s_prcar_base, ";
+        $strSql .= "    s_prcar_fire, ";
+        $strSql .= "    s_prcar_water, ";
+        $strSql .= "    s_prcar_repair, ";
+        $strSql .= "    i_prcar_repair_type, ";
+
+        $strSql .= "    s_prperson_per, ";
+        $strSql .= "    s_prperson_pertimes, ";
+        $strSql .= "    s_prperson_outsider, ";
+
+        $strSql .= "    s_prother_personal, ";
+        $strSql .= "    s_prother_insurance, ";
+        $strSql .= "    s_prother_medical, ";
+
 
         $strSql .= "    d_create, ";
         $strSql .= "    d_update, ";
@@ -140,10 +179,28 @@ class productService {
         $strSql .= "    s_status ";
         $strSql .= "  ) ";
         $strSql .= "VALUES( ";
-        $strSql .= "  $info[i_year], ";
-        $strSql .= "  '$info[s_brand_code]', ";
-        $strSql .= "  '$info[s_gen_code]', ";
-        $strSql .= "  '$info[s_sub_code]', ";
+        $strSql .= "  '$info[s_insurance_htext]', ";
+        $strSql .= "   $info[i_ins_comp], ";
+        $strSql .= "   $info[i_ins_type], ";
+        $strSql .= "  '$info[s_car_code]', ";
+        $strSql .= "   $info[i_ins_promotion], ";
+        $strSql .= "   $info[f_price], ";
+        $strSql .= "   $info[f_discount], ";
+        $strSql .= "   $info[f_point], ";
+
+        $strSql .= "  '$info[s_prcar_base]', ";
+        $strSql .= "  '$info[s_prcar_fire]', ";
+        $strSql .= "  '$info[s_prcar_water]', ";
+        $strSql .= "  '$info[s_prcar_repair]', ";
+        $strSql .= "   $info[i_prcar_repair_type], ";
+
+        $strSql .= "  '$info[s_prperson_per]', ";
+        $strSql .= "  '$info[s_prperson_pertimes]', ";
+        $strSql .= "  '$info[s_prperson_outsider]', ";
+
+        $strSql .= "  '$info[s_prother_personal]', ";
+        $strSql .= "  '$info[s_prother_insurance]', ";
+        $strSql .= "  '$info[s_prother_medical]', ";
 
 
         $strSql .= "  " . $db->Sysdate(TRUE) . ", ";
@@ -160,7 +217,7 @@ class productService {
     }
 
     function isDupplicateExcel($db, $year, $brand, $gen, $sub) {
-        $strSql = "SELECT count(*) cnt FROM tb_car_map WHERE 1=1 ";
+        $strSql = "SELECT count(*) cnt FROM tb_insurance WHERE 1=1 ";
         $strSql .= "and i_year = " . $year . " ";
         $strSql .= "and s_brand_code = '" . $brand . "' ";
         $strSql .= "and s_gen_code = '" . $gen . "' ";
@@ -248,7 +305,7 @@ class productService {
     }
 
     function createStatement($db, $col1, $col2, $col3, $col4) {
-        $sql = " insert into tb_car_map (i_year , s_brand_code , s_gen_code , s_sub_code , d_create , d_update , s_create_by , s_update_by ,s_status) ";
+        $sql = " insert into tb_insurance (i_year , s_brand_code , s_gen_code , s_sub_code , d_create , d_update , s_create_by , s_update_by ,s_status) ";
         $sql .= " values ";
         $sql .= " ('$col1' , '$col2' , '$col3' , '$col4' ," . $db->Sysdate(TRUE) . " ," . $db->Sysdate(TRUE) . " ,'$_SESSION[username]','$_SESSION[username]','A' ) ";
         return array("query" => "$sql");

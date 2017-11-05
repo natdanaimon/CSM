@@ -64,18 +64,16 @@ class productController {
         if ($this->isValidImport($info)) {
             $db = new ConnectDB();
             $db->conn();
-            $service = new productService();  
+            $service = new productService();
             if ($service->import($db, $_FILES["file"])) {
                 $db->commit();
                 echo $_SESSION['cd_0000'];
             } else {
                 $db->rollback();
-                echo $_SESSION['cd_2001'];  
+                echo $_SESSION['cd_2001'];
             }
         }
     }
-
-
 
     public function export() {
         header("Content-Type: application/vnd.ms-excel");
@@ -315,10 +313,6 @@ class productController {
             $db = new ConnectDB();
             $db->conn();
             $service = new productService();
-            if ($service->isDupplicate($db, $info)) {
-                echo $_SESSION[cd_2011];
-                return;
-            }
             if ($service->edit($db, $info)) {
                 $db->commit();
                 echo $_SESSION['cd_0000'];
@@ -334,10 +328,7 @@ class productController {
             $db = new ConnectDB();
             $db->conn();
             $service = new productService();
-            if ($service->isDupplicate($db, $info)) {
-                echo $_SESSION[cd_2011];
-                return;
-            }
+
             if ($service->add($db, $info)) {
                 $db->commit();
                 echo $_SESSION['cd_0000'];
@@ -354,18 +345,108 @@ class productController {
         $return2003 = $_SESSION['cd_2003'];
         $return2097 = $_SESSION['cd_2097'];
         $util = new Utility();
-        if ($util->isEmpty($info[i_year])) {
-            $return2099 = eregi_replace("field", $_SESSION['lb_setYear_year'], $return2099);
+        if ($util->isEmpty($info[s_insurance_htext])) {
+            $return2099 = eregi_replace("field", $_SESSION['lb_setIns_htext'], $return2099);
             echo $return2099;
-        } else if ($util->isEmpty($info[s_brand_code])) {
-            $return2099 = eregi_replace("field", $_SESSION['lb_setBrand_code'], $return2099);
+        } else if ($util->isEmpty($info[i_ins_comp])) {
+            $return2099 = eregi_replace("field", $_SESSION['lb_setIns_comp'], $return2099);
             echo $return2099;
-        } else if ($util->isEmpty($info[s_gen_code])) {
-            $return2099 = eregi_replace("field", $_SESSION['lb_setGen_name'], $return2099);
+        } else if ($util->isEmpty($info[s_car_code])) {
+            $return2099 = eregi_replace("field", $_SESSION['lb_setIns_code'], $return2099);
             echo $return2099;
-        } else if ($util->isEmpty($info[s_sub_code])) {
-            $return2099 = eregi_replace("field", $_SESSION['lb_setSub_code'], $return2099);
+        } else if ($util->isEmpty($info[i_ins_promotion])) {
+            $return2099 = eregi_replace("field", $_SESSION['lb_setIns_promotion'], $return2099);
             echo $return2099;
+        } else if ($util->isEmpty($info[f_price])) {
+            $return2099 = eregi_replace("field", $_SESSION['lb_setIns_price'], $return2099);
+            echo $return2099;
+        } else if (!is_numeric($info[f_price])) {
+            $return2003 = eregi_replace("field", $_SESSION['lb_setIns_price'], $return2003);
+            echo $return2003;
+        } else if ($util->isEmpty($info[f_discount])) {
+            $return2099 = eregi_replace("field", $_SESSION['lb_setIns_discount'], $return2099);
+            echo $return2099;
+        } else if (!is_numeric($info[f_discount])) {
+            $return2003 = eregi_replace("field", $_SESSION['lb_setIns_discount'], $return2003);
+            echo $return2003;
+        } else if ($util->isEmpty($info[f_point])) {
+            $return2099 = eregi_replace("field", $_SESSION['lb_setIns_point'], $return2099);
+            echo $return2099;
+        } else if (!is_numeric($info[f_point])) {
+            $return2003 = eregi_replace("field", $_SESSION['lb_setIns_point'], $return2003);
+            echo $return2003;
+            
+            
+            
+            
+        } else if ($util->isEmpty($info[s_prcar_base])) {
+            $return2099 = eregi_replace("field", $_SESSION['lb_setIns_base'], $return2099);
+            echo $return2099;
+        } else if (!is_numeric($info[s_prcar_base])) {
+            $return2003 = eregi_replace("field", $_SESSION['lb_setIns_base'], $return2003);
+            echo $return2003;
+        } else if ($util->isEmpty($info[s_prcar_fire])) {
+            $return2099 = eregi_replace("field", $_SESSION['lb_setIns_fire'], $return2099);
+            echo $return2099;
+        } else if (!is_numeric($info[s_prcar_fire])) {
+            $return2003 = eregi_replace("field", $_SESSION['lb_setIns_fire'], $return2003);
+            echo $return2003;
+        } else if ($util->isEmpty($info[s_prcar_water])) {
+            $return2099 = eregi_replace("field", $_SESSION['lb_setIns_water'], $return2099);
+            echo $return2099;
+        } else if (!is_numeric($info[s_prcar_water])) {
+            $return2003 = eregi_replace("field", $_SESSION['lb_setIns_water'], $return2003);
+            echo $return2003;    
+        } else if ($util->isEmpty($info[s_prcar_repair])) {
+            $return2099 = eregi_replace("field", $_SESSION['lb_setIns_repair'], $return2099);
+            echo $return2099;
+        } else if (!is_numeric($info[s_prcar_repair])) {
+            $return2003 = eregi_replace("field", $_SESSION['lb_setIns_repair'], $return2003);
+            echo $return2003;    
+        
+            
+            
+            
+            
+        } else if ($util->isEmpty($info[s_prperson_per])) {
+            $return2099 = eregi_replace("field", $_SESSION['lb_setIns_per'], $return2099);
+            echo $return2099;
+        } else if (!is_numeric($info[s_prperson_per])) {
+            $return2003 = eregi_replace("field", $_SESSION['lb_setIns_per'], $return2003);
+            echo $return2003; 
+        } else if ($util->isEmpty($info[s_prperson_pertimes])) {
+            $return2099 = eregi_replace("field", $_SESSION['lb_setIns_pertimes'], $return2099);
+            echo $return2099;
+        } else if (!is_numeric($info[s_prperson_pertimes])) {
+            $return2003 = eregi_replace("field", $_SESSION['lb_setIns_pertimes'], $return2003);
+            echo $return2003; 
+        } else if ($util->isEmpty($info[s_prperson_outsider])) {
+            $return2099 = eregi_replace("field", $_SESSION['lb_setIns_outside'], $return2099);
+            echo $return2099;
+        } else if (!is_numeric($info[s_prperson_outsider])) {
+            $return2003 = eregi_replace("field", $_SESSION['lb_setIns_outside'], $return2003);
+            echo $return2003; 
+            
+          
+        } else if ($util->isEmpty($info[s_prother_personal])) {
+            $return2099 = eregi_replace("field", $_SESSION['lb_setIns_personal'], $return2099);
+            echo $return2099;
+        } else if (!is_numeric($info[s_prother_personal])) {
+            $return2003 = eregi_replace("field", $_SESSION['lb_setIns_personal'], $return2003);
+            echo $return2003; 
+        } else if ($util->isEmpty($info[s_prother_insurance])) {
+            $return2099 = eregi_replace("field", $_SESSION['lb_setIns_insurance'], $return2099);
+            echo $return2099;
+        } else if (!is_numeric($info[s_prother_insurance])) {
+            $return2003 = eregi_replace("field", $_SESSION['lb_setIns_insurance'], $return2003);
+            echo $return2003; 
+        } else if ($util->isEmpty($info[s_prother_medical])) {
+            $return2099 = eregi_replace("field", $_SESSION['lb_setIns_medical'], $return2099);
+            echo $return2099;
+        } else if (!is_numeric($info[s_prother_medical])) {
+            $return2003 = eregi_replace("field", $_SESSION['lb_setIns_medical'], $return2003);
+            echo $return2003;     
+            
         } else {
             $intReturn = TRUE;
         }

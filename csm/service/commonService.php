@@ -120,4 +120,28 @@ class commonService {
         return $_data;
     }
 
+    function DDLInsurance() {
+        $db = new ConnectDB();
+        $strSql = "select * from tb_insurance_comp where s_status = 'A' order by i_ins_comp asc ";
+        $_data = $db->Search_Data_FormatJson($strSql);
+        $db->close_conn();
+        return $_data;
+    }
+
+    function DDLInsuranceType() {
+        $db = new ConnectDB();
+        $strSql = "select * from tb_insurance_type where s_status = 'A' order by i_ins_type asc ";
+        $_data = $db->Search_Data_FormatJson($strSql);
+        $db->close_conn();
+        return $_data;
+    }
+    
+     function DDLInsurancePromotion() {
+        $db = new ConnectDB();
+        $strSql = "select * from tb_insurance_promotion where s_status = 'A' order by i_ins_promotion asc ";
+        $_data = $db->Search_Data_FormatJson($strSql);
+        $db->close_conn();
+        return $_data;
+    }
+
 }

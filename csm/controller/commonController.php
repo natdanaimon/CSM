@@ -54,6 +54,15 @@ switch ($info[func]) {
     case "DDLCar":
         echo $controller->DDLCar();
         break;
+    case "DDLInsurance":
+        echo $controller->DDLInsurance();
+        break;
+    case "DDLInsuranceType":
+        echo $controller->DDLInsuranceType();
+        break;
+    case "DDLInsurancePromotion" :
+        echo $controller->DDLInsurancePromotion();
+        break;
 }
 
 class commonController {
@@ -233,6 +242,55 @@ class commonController {
                     'id' => $_dataTable[$key]['s_code'],
                     'text' => $_dataTable[$key]['s_name'],
                     'img' => $_dataTable[$key]['s_image']
+                );
+                $tmpReturn[] = $tmp;
+            }
+
+            return json_encode(array_values($tmpReturn));
+        } else {
+            return NULL;
+        }
+    }
+
+    public function DDLInsurance() {
+        $service = new commonService();
+        $_dataTable = $service->DDLInsurance();
+        if ($_dataTable != NULL) {
+            $tmpReturn = array();
+            foreach ($_dataTable as $key => $value) {
+                $tmp = array(
+                    'id' => $_dataTable[$key]['i_ins_comp'],
+                    'text' => $_dataTable[$key]['s_comp_th'],
+                    'img' => $_dataTable[$key]['s_image']
+                );
+                $tmpReturn[] = $tmp;
+            }
+
+            return json_encode(array_values($tmpReturn));
+        } else {
+            return NULL;
+        }
+    }
+
+    public function DDLInsuranceType() {
+        $service = new commonService();
+        $_dataTable = $service->DDLInsuranceType();
+        if ($_dataTable != NULL) {
+            return json_encode($_dataTable);
+        } else {
+            return NULL;
+        }
+    }
+
+    public function DDLInsurancePromotion() {
+        $service = new commonService();
+        $_dataTable = $service->DDLInsurancePromotion();
+        if ($_dataTable != NULL) {
+            $tmpReturn = array();
+            foreach ($_dataTable as $key => $value) {
+                $tmp = array(
+                    'id' => $_dataTable[$key]['i_ins_promotion'],
+                    'text' => $_dataTable[$key]['s_promotion']
                 );
                 $tmpReturn[] = $tmp;
             }
