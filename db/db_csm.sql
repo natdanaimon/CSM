@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 04, 2017 at 12:01 AM
+-- Generation Time: Nov 05, 2017 at 03:07 AM
 -- Server version: 10.1.9-MariaDB
 -- PHP Version: 5.5.30
 
@@ -1096,8 +1096,8 @@ CREATE TABLE `tb_car_generation` (
 --
 
 INSERT INTO `tb_car_generation` (`i_gen`, `s_gen_code`, `s_gen_name`, `d_create`, `d_update`, `s_create_by`, `s_update_by`, `s_status`) VALUES
-(6, 'H01-01', 'CIVIC', 2147483647, 2147483647, 'admin', 'admin', 'A'),
-(8, 'HD-01', 'CITY', 2147483647, 2147483647, 'admin', 'admin', 'A');
+(13, 'HD-01', 'CITY', 2147483647, 2147483647, 'admin', 'admin', 'A'),
+(14, 'TO-01', 'ALTIS', 2147483647, 2147483647, 'admin', 'admin', 'A');
 
 -- --------------------------------------------------------
 
@@ -1107,6 +1107,7 @@ INSERT INTO `tb_car_generation` (`i_gen`, `s_gen_code`, `s_gen_name`, `d_create`
 
 CREATE TABLE `tb_car_map` (
   `i_car` int(11) NOT NULL,
+  `s_car_code` varchar(50) NOT NULL,
   `i_year` int(11) NOT NULL,
   `s_brand_code` varchar(50) NOT NULL,
   `s_gen_code` varchar(50) NOT NULL,
@@ -1122,19 +1123,12 @@ CREATE TABLE `tb_car_map` (
 -- Dumping data for table `tb_car_map`
 --
 
-INSERT INTO `tb_car_map` (`i_car`, `i_year`, `s_brand_code`, `s_gen_code`, `s_sub_code`, `d_create`, `d_update`, `s_create_by`, `s_update_by`, `s_status`) VALUES
-(3, 0, 'BRAND CODE', 'GENERATION CODE', 'SUB CODE', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'admin', 'admin', 'A'),
-(5, 0, 'BRAND CODE', 'GENERATION CODE', 'SUB CODE', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'admin', 'admin', 'A'),
-(7, 0, 'BRAND CODE', 'GENERATION CODE', 'SUB CODE', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'admin', 'admin', 'A'),
-(9, 0, 'BRAND CODE', 'GENERATION CODE', 'SUB CODE', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'admin', 'admin', 'A'),
-(11, 0, 'BRAND CODE', 'GENERATION CODE', 'SUB CODE', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'admin', 'admin', 'A'),
-(13, 0, 'BRAND CODE', 'GENERATION CODE', 'SUB CODE', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'admin', 'admin', 'A'),
-(15, 0, 'BRAND CODE', 'GENERATION CODE', 'SUB CODE', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'admin', 'admin', 'A'),
-(16, 0, 'BRAND CODE', 'GENERATION CODE', 'SUB CODE', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'admin', 'admin', 'A'),
-(17, 0, 'BRAND CODE', 'GENERATION CODE', 'SUB CODE', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'admin', 'admin', 'A'),
-(18, 0, 'BRAND CODE', 'GENERATION CODE', 'SUB CODE', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'admin', 'admin', 'A'),
-(19, 0, 'BRAND CODE', 'GENERATION CODE', 'SUB CODE', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'admin', 'admin', 'A'),
-(20, 2015, 'H01', 'H01-01', 'CC1200', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'admin', 'admin', 'A');
+INSERT INTO `tb_car_map` (`i_car`, `s_car_code`, `i_year`, `s_brand_code`, `s_gen_code`, `s_sub_code`, `d_create`, `d_update`, `s_create_by`, `s_update_by`, `s_status`) VALUES
+(24, 'HON001', 2015, 'H01', 'H01-01', 'CC1200', '2017-11-05 00:09:56', '2017-11-05 00:09:56', 'admin', 'admin', 'A'),
+(25, 'TOY001', 2015, 'T01', 'H01-01', 'CC1200', '2017-11-05 00:09:56', '2017-11-05 00:09:56', 'admin', 'admin', 'A'),
+(43, 'HON001', 2015, 'H01', 'HD-01', 'CC1200', '2017-11-05 00:57:54', '2017-11-05 00:57:54', 'admin', 'admin', 'A'),
+(44, 'TOY001', 2015, 'T01', 'TO-01', 'CC1200', '2017-11-05 00:57:54', '2017-11-05 00:57:54', 'admin', 'admin', 'A'),
+(45, 'TOY002', 2015, 'TO', 'TO-01', 'CC1200', '2017-11-05 00:57:54', '2017-11-05 00:57:54', 'admin', 'admin', 'A');
 
 -- --------------------------------------------------------
 
@@ -10302,7 +10296,7 @@ INSERT INTO `tb_geographies` (`i_geography`, `s_name`) VALUES
 
 CREATE TABLE `tb_insurance` (
   `i_insurance` int(11) NOT NULL,
-  `i_car` int(11) NOT NULL,
+  `s_car_code` varchar(50) NOT NULL,
   `i_ins_comp` int(11) NOT NULL,
   `i_ins_type` int(11) NOT NULL,
   `i_insurance_detail` int(11) NOT NULL,
@@ -10901,12 +10895,12 @@ ALTER TABLE `tb_car_brand`
 -- AUTO_INCREMENT for table `tb_car_generation`
 --
 ALTER TABLE `tb_car_generation`
-  MODIFY `i_gen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `i_gen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `tb_car_map`
 --
 ALTER TABLE `tb_car_map`
-  MODIFY `i_car` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `i_car` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 --
 -- AUTO_INCREMENT for table `tb_car_sub`
 --
