@@ -159,10 +159,10 @@ ACTIVEPAGES(13, 1);
 
                                             </div>
                                         </div>
-                                        <table class="table table-striped table-bordered table-hover table-checkable order-column" id="datatable">
+                                        <table class="table table-striped table-bordered table-hover table-checkable order-column dt-responsive" id="datatable">
                                             <thead>
                                                 <tr>
-                                                    <th style="padding-left: 0px;width: 20px" class="no-sort">
+                                                    <th style="padding-left: 30px;width: 30px" class="no-sort">
 
                                                         <span class="md-checkbox has-success">
                                                             <input type="checkbox" id="checkbox14" name="checkbox14" class="md-check">
@@ -172,13 +172,13 @@ ACTIVEPAGES(13, 1);
                                                                 <span class="box"></span> </label>
                                                         </span>
                                                     </th>
-                                                    <th>  <?= $_SESSION[tb_co_htext] ?> </th>
-                                                    <th>  <?= $_SESSION[tb_co_insurance_name] ?> </th>
-                                                    <th>  <?= $_SESSION[tb_co_insurance_type] ?> </th>
-                                                    <th>  <?= $_SESSION[tb_co_price] ?> </th>
-                                                    <th>  <?= $_SESSION[tb_co_status] ?> </th>
-                                                    <th style="width: 40px"> <?= $_SESSION[tb_co_edit] ?> </th>
-                                                    <th style="width: 40px"> <?= $_SESSION[tb_co_delete] ?></th>
+                                                    <th class="all">  <?= $_SESSION[tb_co_htext] ?> </th>
+                                                    <th class="all">  <?= $_SESSION[tb_co_insurance_name] ?> </th>
+                                                    <th class="none"> <span style="color:red"><?= $_SESSION[tb_co_insurance_type] ?></span> </th>
+                                                    <th class="none">  <span style="color:red"><?= $_SESSION[tb_co_price] ?> </span></th>
+                                                    <th class="all">  <?= $_SESSION[tb_co_status] ?></th>
+                                                    <th class="all" style="width: 40px"> <?= $_SESSION[tb_co_edit] ?> </th>
+                                                    <th class="all" style="width: 40px"> <?= $_SESSION[tb_co_delete] ?></th>
                                             </thead>
                                             <tbody>
 
@@ -244,6 +244,7 @@ ACTIVEPAGES(13, 1);
         <script src="js/common/notify.js" type="text/javascript"></script>
         <script src="js/common/utility.js" type="text/javascript"></script>
         <link href="css/notify.css" rel="stylesheet" type="text/css" />
+        <link href="css/custom.css" rel="stylesheet" type="text/css" />
         <link href="outbound/lightbox/css/lightbox.css" rel="stylesheet" type="text/css" />
         <script src="outbound/lightbox/js/lightbox.js" type="text/javascript"></script>
         <script src="js/action/insurance/product.js" type="text/javascript"></script>

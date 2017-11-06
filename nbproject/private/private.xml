@@ -3,19 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/CSM/csm/cus_customerManage.php</file>
-            <file>file:/C:/xampp/htdocs/CSM/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css</file>
-            <file>file:/C:/xampp/htdocs/CSM/csm/js/action/employee/emp_employee.js</file>
-            <file>file:/C:/xampp/htdocs/CSM/assets/pages/scripts/table-datatables-fixedheader.js</file>
-            <file>file:/C:/xampp/htdocs/CSM/csm/js/action/employee/emp_user.js</file>
-            <file>file:/C:/xampp/htdocs/CSM/assets/global/css/plugins.css</file>
-            <file>file:/C:/xampp/htdocs/CSM/csm/templated/menu.php</file>
-            <file>file:/C:/xampp/htdocs/CSM/csm/service/commonService.php</file>
-            <file>file:/C:/xampp/htdocs/CSM/csm/js/action/customer/cus_customerManage.js</file>
-            <file>file:/C:/xampp/htdocs/CSM/csm/controller/commonController.php</file>
-            <file>file:/C:/xampp/htdocs/CSM/assets/pages/scripts/table-datatables-responsive.js</file>
-            <file>file:/C:/xampp/htdocs/CSM/csm/table_datatables_responsive.html</file>
-            <file>file:/C:/xampp/htdocs/CSM/csm/dtb.php</file>
+            <file>file:/Applications/XAMPP/xamppfiles/htdocs/CSM/csm/controller/commonController.php</file>
+            <file>file:/Applications/XAMPP/xamppfiles/htdocs/CSM/csm/service/commonService.php</file>
+            <file>file:/Applications/XAMPP/xamppfiles/htdocs/CSM/csm/ins_productManage.php</file>
+            <file>file:/Applications/XAMPP/xamppfiles/htdocs/CSM/assets/global/plugins/datatables/datatables.all.min.js</file>
+            <file>file:/Applications/XAMPP/xamppfiles/htdocs/CSM/assets/global/plugins/datatables/datatables.min.js</file>
+            <file>file:/Applications/XAMPP/xamppfiles/htdocs/CSM/csm/js/action/insurance/productManage.js</file>
+            <file>file:/Applications/XAMPP/xamppfiles/htdocs/CSM/csm/service/insurance/productService.php</file>
         </group>
     </open-files>
 </project-private>
