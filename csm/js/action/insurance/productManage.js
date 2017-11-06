@@ -1,3 +1,5 @@
+
+
 function getDDLStatus() {
     $.ajax({
         type: 'GET',
@@ -82,10 +84,13 @@ function getDDLInsuranceType() {
             var res = JSON.parse(ddl);
             var html = "";
             $.each(res, function (i, item) {
-                var checked = (i == 0 ? "checked" : "");
+                var checked = "";
+                if(keyEdit == ""){
+                checked = (i == 0 ? "checked" : "");
+                }
                 html += '<div class="md-radio">';
-                html += '<input type="radio" id="i_ins_type' + i + '" value="' + item.i_ins_type + '" name="i_ins_type" class="md-radiobtn"  ' + checked + ' />';
-                html += '<label for="i_ins_type' + i + '">';
+                html += '<input type="radio" id="i_ins_type' + item.i_ins_type + '" onchange="setRadio(\''+item.i_ins_type+'\')"   value="' + item.i_ins_type + '" name="tmp_i_ins_type" class="md-radiobtn"  ' + checked + ' />';
+                html += '<label for="i_ins_type' + item.i_ins_type + '">';
                 html += '<span></span>';
                 html += '<span class="check"></span>';
                 html += '<span class="box"></span> ' + item.s_name + ' </label>';
@@ -178,9 +183,7 @@ function getDDLCar() {
                 templateSelection: formatStateCar
 
             });
-            if (keyEdit != "") {
-                edit();
-            }
+            getDDLInsuranceRepair();
 
         },
         error: function (ddl) {
@@ -192,6 +195,45 @@ function getDDLCar() {
     });
 }
 
+function formatStateRepair(state) {
+    if (!state.id) {
+        return state.text;
+    }
+    var $state = $(
+            '<span><span style="color:black;font-weight:bold;"> ' + state.text + '</span></span>'
+            );
+    return $state;
+}
+function getDDLInsuranceRepair() {
+    $.ajax({
+        type: 'GET',
+        url: 'controller/commonController.php?func=DDLInsuranceRepair',
+        beforeSend: function ()
+        {}
+        ,
+        success: function (ddl) {
+            var res = JSON.parse(ddl);
+            $("#i_prcar_repair_type").select2({
+                data: res,
+                templateResult: formatStateRepair,
+                templateSelection: formatStateRepair
+
+            });
+
+            if (keyEdit != "") {
+                edit();
+            }
+
+
+        },
+        error: function (ddl) {
+
+        }
+
+
+
+    });
+}
 
 
 
@@ -210,6 +252,7 @@ function edit() {
                 $("#s_insurance_htext").val(item.s_insurance_htext);
                 $("#i_ins_comp").val(item.i_ins_comp).trigger('change');
                 //radio
+                radio_type(item.i_ins_type);
                 $("#s_car_code").val(item.s_car_code).trigger('change');
 
                 $("#i_ins_promotion").val(item.i_ins_promotion).trigger('change');
@@ -222,7 +265,7 @@ function edit() {
                 $("#s_prcar_fire").val(item.s_prcar_fire);
                 $("#s_prcar_water").val(item.s_prcar_water);
                 $("#s_prcar_repair").val(item.s_prcar_repair);
-                $("#i_prcar_repair_type").val(item.i_prcar_repair_type);
+                $("#i_prcar_repair_type").val(item.i_prcar_repair_type).trigger('change');
 
                 //3-2
                 $("#s_prperson_per").val(item.s_prperson_per);
@@ -292,4 +335,18 @@ function save() {
         }
 
     });
+}
+
+
+function radio_type(setSelected) {
+    var radios = $("input[type='radio']");
+    for (i = 0; i < radios.length; i++) {
+        radios[i].removeAttribute('checked')
+    }
+    $("#i_ins_type" + setSelected).attr('checked', 'checked');
+}
+
+
+function setRadio(i){
+     $("#i_ins_type").val(i);
 }

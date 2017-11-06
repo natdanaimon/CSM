@@ -143,5 +143,13 @@ class commonService {
         $db->close_conn();
         return $_data;
     }
+    
+    function DDLInsuranceRepair(){
+         $db = new ConnectDB();
+        $strSql = "select * from tb_insurance_repair_type where s_status = 'A' order by i_repair asc ";
+        $_data = $db->Search_Data_FormatJson($strSql);
+        $db->close_conn();
+        return $_data;
+    }
 
 }

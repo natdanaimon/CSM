@@ -130,6 +130,7 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                                                     <div id="insurance_type"></div>
 
                                                 </div>
+                                                <input type="hidden" id="i_ins_type" name="i_ins_type" />
                                             </div>
 
 
@@ -243,8 +244,6 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                                                 </div> 
                                                 <div class="form-group form-md-line-input has-success">
                                                     <select class="form-control edited bold" id="i_prcar_repair_type" name="i_prcar_repair_type">
-                                                        <option value="1">ซ่อมอู่</option>
-                                                        <option value="2">ซ่อมห้าง</option>
                                                     </select>
                                                     <label for="form_control_1"><?= $_SESSION[lb_setIns_repair_type] ?><span class="required">*</span></label>      
                                                 </div> 

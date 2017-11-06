@@ -63,6 +63,9 @@ switch ($info[func]) {
     case "DDLInsurancePromotion" :
         echo $controller->DDLInsurancePromotion();
         break;
+    case "DDLInsuranceRepair" :
+        echo $controller->DDLInsuranceRepair();
+        break;
 }
 
 class commonController {
@@ -291,6 +294,25 @@ class commonController {
                 $tmp = array(
                     'id' => $_dataTable[$key]['i_ins_promotion'],
                     'text' => $_dataTable[$key]['s_promotion']
+                );
+                $tmpReturn[] = $tmp;
+            }
+
+            return json_encode(array_values($tmpReturn));
+        } else {
+            return NULL;
+        }
+    }
+    
+    public function DDLInsuranceRepair() {
+        $service = new commonService();
+        $_dataTable = $service->DDLInsuranceRepair();
+        if ($_dataTable != NULL) {
+            $tmpReturn = array();
+            foreach ($_dataTable as $key => $value) {
+                $tmp = array(
+                    'id' => $_dataTable[$key]['i_repair'],
+                    'text' => $_dataTable[$key]['s_name']
                 );
                 $tmpReturn[] = $tmp;
             }
