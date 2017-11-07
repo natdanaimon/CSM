@@ -445,4 +445,74 @@
     
     
     <!--  insurance product-->  
+
+
+    <!--  Promotion-->  
+    <detail>
+        <variable>lb_setPromo_subject</variable>
+        <th>หัวข้อโปรโมชั่น</th>
+        <en>Promotion Subject</en>
+    </detail>
+    <detail>
+        <variable>lb_setPromo_detail</variable>
+        <th>รายละเอียดโปรโมชั่น</th>
+        <en>Promotion Detail</en>
+    </detail>
+    <!--  Promotion-->  
+
+
+    <!--  news-->  
+    <detail>
+        <variable>lb_setNews_subject</variable>
+        <th>หัวข้อข่าว</th>
+        <en>News Subject</en>
+    </detail>
+    <detail>
+        <variable>lb_setNews_detail</variable>
+        <th>รายละเอียดข่าว</th>
+        <en>News Detail</en>
+    </detail>
+    <!--  news-->  
+
+
+    <!--  popup-->  
+    <detail>
+        <variable>lb_setPop_startend</variable>
+        <th>วันที่เริ่ม - วันที่สิ้นสุด</th>
+        <en>Start Date - End Date</en>
+    </detail>
+    <detail>
+        <variable>lb_setPop_link</variable>
+        <th>ลิงค์สำหรับรูปภาพ</th>
+        <en>Link Image</en>
+    </detail>
+    <!--  popup--> 
+
+
+    <!--  slide-->  
+     <detail>
+        <variable>lb_setSlide_hl</variable>
+        <th>ข้อความไฮไลฟ์</th>
+        <en>Height Light Text</en>
+    </detail>
+    <detail>
+        <variable>lb_setSlide_nm</variable>
+        <th>ข้อความธรรมดา</th>
+        <en>Normal Text</en>
+    </detail>
+    <!--  slide--> 
+    
+    <!--  knowledge-->  
+    <detail>
+        <variable>lb_setKnow_subject</variable>
+        <th>หัวข้อคลังความรู้</th>
+        <en>Knowledge Subject</en>
+    </detail>
+    <detail>
+        <variable>lb_setKnow_detail</variable>
+        <th>รายละเอียดคลังความรู้</th>
+        <en>Knowledge Detail</en>
+    </detail>
+    <!--  knowledge--> 
+
 </language>

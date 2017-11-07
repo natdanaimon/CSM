@@ -1,8 +1,9 @@
 <?php
 @session_start();
 include './common/Permission.php';
+include './common/PermissionADM.php';
 include './common/FunctionCheckActive.php';
-ACTIVEPAGES(14, 1);
+ACTIVEPAGES(14, 4);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -70,10 +71,10 @@ ACTIVEPAGES(14, 1);
                             <ul class="page-breadcrumb">
                                 <li>
                                     <span><?= $_SESSION[ui_management] ?></span>
-                                    <i class="fa fa-circle" style="color: #00FF00;"></i>
+                                    <i class="fa fa-circle" style="color:  #00FF00;"></i>
                                 </li>
                                 <li>
-                                    <a href="ui_slide.php"><?= $_SESSION[ui_slide] ?></a>
+                                    <a href="ui_promotionManage.php"><?= $_SESSION[ui_promotion] ?></a>
                                 </li>
                             </ul>
 
@@ -91,7 +92,7 @@ ACTIVEPAGES(14, 1);
                                     <div class="portlet-title">
                                         <div class="caption font-dark">
                                             <i class="fa fa-television font-dark"></i>
-                                            <span class="caption-subject bold uppercase"> <?= $_SESSION[tt_mg_slide] ?></span>
+                                            <span class="caption-subject bold uppercase"><?= $_SESSION[tt_mg_promotion] ?></span>
                                         </div>
                                         <div class="actions">
 
@@ -100,12 +101,12 @@ ACTIVEPAGES(14, 1);
                                     <div class="portlet-body">
                                         <div class="table-toolbar">
                                             <div class="row">
-<!--                                                <div class="col-md-6">
-
-                                                </div>-->
-                                                <div class="col-md-12" align="left" <?= $hidden ?>>
+                                                <!--                                                <div class="col-md-6">
+                                                
+                                                                                                </div>-->
+                                                <div class="col-md-6" align="left"  <?= $hidden ?>>
                                                     <div class="btn-group">
-                                                        <a href="ui_slideManage.php?func=add">
+                                                        <a href="ui_promotionManage.php?func=add">
                                                             <button id="sample_editable_1_new" class="btn sbold green"> <?= $_SESSION[btn_add] ?>
                                                             </button>
                                                         </a>
@@ -136,9 +137,8 @@ ACTIVEPAGES(14, 1);
                                                         </span>
                                                     </th>
                                                     <th>  <?= $_SESSION[tb_co_image] ?> </th>
-                                                    <th> <?= $_SESSION[tb_co_hl] ?> </th>
-                                                    <th> <?= $_SESSION[tb_co_nm] ?> </th>
-                                                    <th> <?= $_SESSION[tb_co_index] ?> </th>
+                                                    <th>  <?= $_SESSION[tb_co_subject] ?> </th>
+                                                    <th>  <?= $_SESSION[tb_co_index] ?> </th>
                                                     <th>  <?= $_SESSION[tb_co_status] ?> </th>
                                                     <th style="width: 40px"> <?= $_SESSION[tb_co_edit] ?> </th>
                                                     <th style="width: 40px"> <?= $_SESSION[tb_co_delete] ?></th>
@@ -153,9 +153,6 @@ ACTIVEPAGES(14, 1);
                             </div>
                         </div>
                         <!------------ CONTENT ------------>
-
-
-
                     </div>
                     <!-- END CONTENT BODY -->
                 </div>
@@ -181,11 +178,6 @@ ACTIVEPAGES(14, 1);
 
 
 
-        <!--[if lt IE 9]>
-<script src="../assets/global/plugins/respond.min.js"></script>
-<script src="../assets/global/plugins/excanvas.min.js"></script> 
-<script src="../assets/global/plugins/ie8.fix.min.js"></script> 
-<![endif]-->
         <!-- BEGIN CORE PLUGINS -->
         <script src="../assets/global/plugins/jquery.min.js" type="text/javascript"></script>
         <script src="../assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
@@ -203,7 +195,7 @@ ACTIVEPAGES(14, 1);
         <script src="../assets/global/scripts/app.min.js" type="text/javascript"></script>
         <!-- END THEME GLOBAL SCRIPTS -->
         <!-- BEGIN PAGE LEVEL SCRIPTS -->
-        <script src="../assets/pages/scripts/table-datatables-managed.min.js" type="text/javascript"></script>
+<!--        <script src="../assets/pages/scripts/table-datatables-managed.min.js" type="text/javascript"></script>-->
         <!-- END PAGE LEVEL SCRIPTS -->
         <!-- BEGIN THEME LAYOUT SCRIPTS -->
         <script src="../assets/layouts/layout/scripts/layout.min.js" type="text/javascript"></script>
@@ -215,8 +207,8 @@ ACTIVEPAGES(14, 1);
         <script src="js/common/notify.js" type="text/javascript"></script>
         <script src="js/common/utility.js" type="text/javascript"></script>
         <link href="css/notify.css" rel="stylesheet" type="text/css" />
-        <script src="js/action/ui/slide.js" type="text/javascript"></script>
-         <link href="outbound/lightbox/css/lightbox.css" rel="stylesheet" type="text/css" />
+        <script src="js/action/ui/promotion.js" type="text/javascript"></script>
+        <link href="outbound/lightbox/css/lightbox.css" rel="stylesheet" type="text/css" />
         <script src="outbound/lightbox/js/lightbox.js" type="text/javascript"></script>
 
         <script>

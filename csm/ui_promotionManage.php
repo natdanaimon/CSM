@@ -2,10 +2,13 @@
 @session_start();
 include './common/Permission.php';
 include './common/FunctionCheckActive.php';
-ACTIVEPAGES(3, 5);
+ACTIVEPAGES(14, 4);
 
 if ($_GET[func] != NULL) {
     $tt_header = ($_GET[func] == "add" ? $_SESSION[add_info] : $_SESSION[edit_info]);
+}
+if ($_GET[id] == NULL && $_GET[func] != "add") {
+    echo header("Location: ui_promotion.php");
 }
 ?>
 <!DOCTYPE html>
@@ -76,11 +79,11 @@ if ($_GET[func] != NULL) {
                         <div class="page-bar">
                             <ul class="page-breadcrumb">
                                 <li>
-                                    <span><?= $_SESSION[app_nagieos_ui] ?></span>
+                                    <span><?= $_SESSION[ui_management] ?></span>
                                     <i class="fa fa-circle" style="color:  #00FF00;"></i>
                                 </li>
                                 <li>
-                                    <a href="po_news.php"><?= $_SESSION[news] ?></a>
+                                    <a href="ui_promotion.php"><?= $_SESSION[ui_promotion] ?></a>
                                     <i class="fa fa-circle" style="color:  #00FF00;"></i>
                                 </li>
                                 <li>
@@ -104,7 +107,7 @@ if ($_GET[func] != NULL) {
                                     <div class="portlet light bordered">
                                         <div class="portlet-title">
                                             <div class="caption font-green">
-                                                <i class="icon-user font-green"></i>
+                                                <i class="fa fa-television font-green"></i>
                                                 <span class="caption-subject bold uppercase"> <?= $_SESSION[tt_detail] ?></span>
                                             </div>
                                         </div>
@@ -112,51 +115,33 @@ if ($_GET[func] != NULL) {
 
                                             <div class="form-body">
 
-                                                <div class="form-group form-md-line-input has-success">
-                                                    <select class="form-control edited bold" id="i_pointion" name="i_pointion">
-                                                        <option value=""></option>
-                                                    </select>
-                                                    <label for="form_control_1"><?= $_SESSION[lb_po_pointion] ?> <span class="required">*</span></label>
+
+                                                <div class="form-group form-md-line-input has-success" id="div-sv-src">
+                                                    <input type="text" class="form-control bold" id="s_subject" name="s_subject">
+                                                    <label for="form_control_1"><?= $_SESSION[lb_setPromo_subject] ?> <span class="required">*</span></label>          
                                                 </div>
-                                                <div class="form-group form-md-line-input has-success">
+                                                
+                                                 <div class="form-group form-md-line-input has-success">
                                                     <input type="number" class="form-control bold" id="i_index" name="i_index" value="1" min="1">
-                                                    <label for="form_control_1"><?= $_SESSION[lb_po_index] ?> <span class="required">*</span></label>          
+                                                    <label for="form_control_1"><?= $_SESSION[index] ?> <span class="required">*</span></label>          
                                                 </div>
                                                 <div class="form-group form-md-line-input has-success">
                                                     <input type="number" class="form-control bold" id="i_view" name="i_view" value="0" min="0">
-                                                    <label for="form_control_1"><?= $_SESSION[lb_po_view] ?> <span class="required">*</span></label>          
+                                                    <label for="form_control_1"><?= $_SESSION[view_count] ?> <span class="required">*</span></label>          
                                                 </div>
                                                 <div class="form-group form-md-line-input has-success">
                                                     <input type="number" class="form-control bold" id="i_vote" name="i_vote" value="0" min="0">
-                                                    <label for="form_control_1"><?= $_SESSION[lb_po_vote] ?> <span class="required">*</span></label>          
-                                                </div>
-                                                <div class="form-group form-md-line-input has-success" >
-                                                    <input type="text" class="form-control bold" id="s_hashtag" name="s_hashtag">
-                                                    <label for="form_control_1"><?= $_SESSION[lb_hashtag] ?> <span class="required">*</span></label>          
-                                                </div>
-                                                <div class="form-group form-md-line-input has-success" >
-                                                    <label for="form_control_1"><?= $_SESSION[lb_ui_code_color] ?> <span class="required">*</span></label> 
-                                                    <input type="text" id="s_color" class="form-control demo" name="s_color" data-position="top right" value="#000000">
+                                                    <label for="form_control_1"><?= $_SESSION[vote_count] ?> <span class="required">*</span></label>          
                                                 </div>
 
-                                                <div class="form-group form-md-line-input has-success" id="div-sv-src">
-                                                    <input type="text" class="form-control bold" id="s_subject_th" name="s_subject_th">
-                                                    <label for="form_control_1"><?= $_SESSION[lb_po_subject_th] ?> <span class="required">*</span></label>          
-                                                </div>
-                                                <div class="form-group form-md-line-input has-success" id="div-sv-src">
-                                                    <input type="text" class="form-control bold" id="s_subject_en" name="s_subject_en">
-                                                    <label for="form_control_1"><?= $_SESSION[lb_po_subject_en] ?> <span class="required">*</span></label>          
-                                                </div>
                                                 <div class="form-group form-md-line-input has-success" >
-                                                    <textarea class="form-control bold" name="s_detail_th" id="s_detail_th" ></textarea>
-                                                    <label for="form_control_1"><?= $_SESSION[lb_po_desc_th] ?> <span class="required">*</span>
+                                                    <textarea class="form-control bold" name="s_detail" id="s_detail" ></textarea>
+                                                    <label for="form_control_1"><?= $_SESSION[lb_setPromo_detail] ?> <span class="required">*</span>
                                                     </label>          
                                                 </div>
-                                                <div class="form-group form-md-line-input has-success" >
-                                                    <textarea class="form-control bold" name="s_detail_en" id="s_detail_en" ></textarea>
-                                                    <label for="form_control_1"><?= $_SESSION[lb_po_desc_en] ?> <span class="required">*</span>
-                                                    </label>          
-                                                </div>
+                                                
+                                               
+                                        
 
 
                                             </div>
@@ -201,7 +186,7 @@ if ($_GET[func] != NULL) {
                                             <div class="portlet-title">
                                                 <div class="caption font-green">
                                                     <i class="fa fa-image font-green"></i>
-                                                    <span class="caption-subject bold uppercase"> <?= $_SESSION[lb_po_img_1] ?></span>
+                                                    <span class="caption-subject bold uppercase"> <?= $_SESSION[image_h] ?></span>
                                                 </div>
                                             </div>
                                             <div class="fileinput fileinput-new" data-provides="fileinput">
@@ -220,10 +205,7 @@ if ($_GET[func] != NULL) {
 
                                             </div>
 
-                                            <div class="form-group form-md-line-input has-success" id="div-sv-src">
-                                                <input type="text" class="form-control bold" id="s_link" name="s_link">
-                                                <label for="form_control_1"><?= $_SESSION[lb_po_img_url] ?> </label>          
-                                            </div>
+                                            
                                         </div>
 
                                     </div>
@@ -234,7 +216,7 @@ if ($_GET[func] != NULL) {
                                             <div class="portlet-title">
                                                 <div class="caption font-green">
                                                     <i class="fa fa-image font-green"></i>
-                                                    <span class="caption-subject bold uppercase"> <?= $_SESSION[lb_po_img_2] ?></span>
+                                                    <span class="caption-subject bold uppercase"> <?= $_SESSION[image_d] ?></span>
                                                 </div>
                                             </div>
                                             <div class="fileinput fileinput-new" data-provides="fileinput">
@@ -263,7 +245,7 @@ if ($_GET[func] != NULL) {
                                     <div class="col-md-12">
                                         <div class="portlet-body form">
                                             <div class="form-actions noborder">
-                                                <a href="po_news.php"> <button type="button" class="btn default"><?= $_SESSION[btn_cancel] ?></button></a>
+                                                <a href="ui_promotion.php"> <button type="button" class="btn default"><?= $_SESSION[btn_cancel] ?></button></a>
                                                 <button type="submit"  class="btn blue" ><?= $_SESSION[btn_submit] ?></button>
                                             </div>
                                         </div>
@@ -311,10 +293,9 @@ if ($_GET[func] != NULL) {
         <!-- END QUICK NAV -->
 
         <script src="ckeditor/ckeditor.js"></script>
-        <?php $_SESSION["folder_upload"] = "ckpostnews" ?>
+        <?php $_SESSION["folder_upload"] = "promotionDetail" ?>
         <script>
-            CKEDITOR.replace('s_detail_th', {"filebrowserImageUploadUrl": "iaupload_all.php"});
-            CKEDITOR.replace('s_detail_en', {"filebrowserImageUploadUrl": "iaupload_all.php"});
+            CKEDITOR.replace('s_detail', {"filebrowserImageUploadUrl": "iaupload_all.php"});
         </script>
 
         <!-- BEGIN CORE PLUGINS -->
@@ -349,7 +330,7 @@ if ($_GET[func] != NULL) {
 
         <script src="js/common/notify.js" type="text/javascript"></script>
         <link href="css/notify.css" rel="stylesheet" type="text/css" />
-        <script src="js/action/po_news_manage.js" type="text/javascript"></script>
+        <script src="js/action/ui/promotionManage.js" type="text/javascript"></script>
 
         <!-- BEGIS SELECT 2 SCRIPTS -->
         <link href="css/select2.min.css" rel="stylesheet" />

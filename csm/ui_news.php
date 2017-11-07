@@ -2,7 +2,7 @@
 @session_start();
 include './common/Permission.php';
 include './common/FunctionCheckActive.php';
-ACTIVEPAGES(3, 5);
+ACTIVEPAGES(14, 2);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -69,11 +69,11 @@ ACTIVEPAGES(3, 5);
                         <div class="page-bar">
                             <ul class="page-breadcrumb">
                                 <li>
-                                    <span><?= $_SESSION[app_nagieos_ui] ?></span>
+                                    <span><?= $_SESSION[ui_management] ?></span>
                                     <i class="fa fa-circle" style="color: #00FF00;"></i>
                                 </li>
                                 <li>
-                                    <a href="po_picture.php"><?= $_SESSION[news] ?></a>
+                                    <a href="ui_news.php"><?= $_SESSION[ui_news] ?></a>
                                 </li>
                             </ul>
 
@@ -90,7 +90,7 @@ ACTIVEPAGES(3, 5);
                                 <div class="portlet light bordered">
                                     <div class="portlet-title">
                                         <div class="caption font-dark">
-                                            <i class="icon-settings font-dark"></i>
+                                            <i class="fa fa-television font-dark"></i>
                                             <span class="caption-subject bold uppercase"><?= $_SESSION[tt_mg_news] ?></span>
                                         </div>
                                         <div class="actions">
@@ -100,12 +100,12 @@ ACTIVEPAGES(3, 5);
                                     <div class="portlet-body">
                                         <div class="table-toolbar">
                                             <div class="row">
-                                                <div class="col-md-6">
+<!--                                                <div class="col-md-6">
 
-                                                </div>
-                                                <div class="col-md-6" align="right" <?= $hidden ?>>
+                                                </div>-->
+                                                <div class="col-md-12" align="left" <?= $hidden ?>>
                                                     <div class="btn-group">
-                                                        <a href="po_news_manage.php?func=add">
+                                                        <a href="ui_newsManage.php?func=add">
                                                             <button id="sample_editable_1_new" class="btn sbold green"> <?= $_SESSION[btn_add] ?>
                                                             </button>
                                                         </a>
@@ -134,8 +134,7 @@ ACTIVEPAGES(3, 5);
                                                     </th>
                                                     
                                                     <th>  <?= $_SESSION[tb_co_image] ?> </th>
-                                                    <th>  <?= $_SESSION[tb_co_sub_pic] ?> </th>
-                                                    <th>  <?= $_SESSION[tb_co_pointion] ?> </th>
+                                                    <th>  <?= $_SESSION[tb_co_subject] ?> </th>
                                                     <th>  <?= $_SESSION[tb_co_index] ?> </th>
                                                     <th>  <?= $_SESSION[tb_co_status] ?> </th>
                                                     <th style="width: 40px"> <?= $_SESSION[tb_co_edit] ?> </th>
@@ -210,7 +209,7 @@ ACTIVEPAGES(3, 5);
         <script src="js/common/notify.js" type="text/javascript"></script>
         <script src="js/common/utility.js" type="text/javascript"></script>
         <link href="css/notify.css" rel="stylesheet" type="text/css" />
-        <script src="js/action/po_news.js" type="text/javascript"></script>
+        <script src="js/action/ui/news.js" type="text/javascript"></script>
         <link href="outbound/lightbox/css/lightbox.css" rel="stylesheet" type="text/css" />
         <script src="outbound/lightbox/js/lightbox.js" type="text/javascript"></script>
 

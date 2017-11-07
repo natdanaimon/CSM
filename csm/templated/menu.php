@@ -304,7 +304,56 @@
 
 
 
+        <!--R14 บริหารจัดการหน้าจอเว็บไซต์-->
+        <li class="nav-item <?= $_SESSION["nav_main_ui"] ?>">
+            <a href="javascript:;" class="nav-link nav-toggle">
+                <i class="fa fa-television"></i>
+                <span class="title">R14. <?= $_SESSION[ui_management] ?></span>
+                <span class="selected"></span>
+            </a>
+            <ul class="sub-menu">
+                <li class="nav-item  <?= $_SESSION["nav_sub_ui_slide"] ?>">
+                    <a href="ui_slide.php" class="nav-link ">
 
+                        <span class="title"><?= $_SESSION[ui_slide] ?></span>
+                        <span class="selected"></span>
+                        <span class="badge badge-success" ></span>
+                    </a>
+                </li>
+                <li class="nav-item  <?= $_SESSION["nav_sub_ui_news"] ?>">
+                    <a href="ui_news.php" class="nav-link ">
+
+                        <span class="title"><?= $_SESSION[ui_news] ?></span>
+                        <span class="selected"></span>
+                    </a>
+                </li>
+                <li class="nav-item  <?= $_SESSION["nav_sub_ui_knowledge"] ?>">
+                    <a href="ui_knowledge.php" class="nav-link ">
+
+                        <span class="title"><?= $_SESSION[ui_knowledge] ?></span>
+                        <span class="selected"></span>
+                    </a>
+                </li>
+                <li class="nav-item  <?= $_SESSION["nav_sub_ui_promotion"] ?>">
+                    <a href="ui_promotion.php" class="nav-link ">
+
+                        <span class="title"><?= $_SESSION[ui_promotion] ?></span>
+                        <span class="selected"></span>
+                    </a>
+                </li>
+                <li class="nav-item  <?= $_SESSION["nav_sub_ui_popup"] ?>">
+                    <a href="ui_popup.php" class="nav-link ">
+
+                        <span class="title"><?= $_SESSION[ui_popup] ?></span>
+                        <span class="selected"></span>
+                    </a>
+                </li>
+
+
+
+            </ul>
+        </li>
+        <!--R14 บริหารจัดการหน้าจอเว็บไซต์-->
 
 
 

@@ -2,10 +2,13 @@
 @session_start();
 include './common/Permission.php';
 include './common/FunctionCheckActive.php';
-ACTIVEPAGES(3, 1);
+ACTIVEPAGES(14, 2);
 
 if ($_GET[func] != NULL) {
     $tt_header = ($_GET[func] == "add" ? $_SESSION[add_info] : $_SESSION[edit_info]);
+}
+if ($_GET[id] == NULL && $_GET[func] != "add") {
+    echo header("Location: ui_news.php");
 }
 ?>
 <!DOCTYPE html>
@@ -30,8 +33,7 @@ if ($_GET[func] != NULL) {
         <link href="../assets/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
         <link href="../assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" />
         <link href="../assets/global/plugins/bootstrap-colorpicker/css/colorpicker.css" rel="stylesheet" type="text/css" />
-        <link href="../assets/global/plugins/jquery-minicolors/jquery.minicolors.css" rel="stylesheet" type="text/css" /><!-- END PAGE LEVEL PLUGINS -->
-
+        <link href="../assets/global/plugins/jquery-minicolors/jquery.minicolors.css" rel="stylesheet" type="text/css" />
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL STYLES -->
         <link href="../assets/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
@@ -77,11 +79,11 @@ if ($_GET[func] != NULL) {
                         <div class="page-bar">
                             <ul class="page-breadcrumb">
                                 <li>
-                                    <span><?= $_SESSION[app_nagieos_ui] ?></span>
+                                    <span><?= $_SESSION[ui_management] ?></span>
                                     <i class="fa fa-circle" style="color:  #00FF00;"></i>
                                 </li>
                                 <li>
-                                    <a href="ui_slide.php"><?= $_SESSION[slide] ?></a>
+                                    <a href="ui_news.php"><?= $_SESSION[ui_news] ?></a>
                                     <i class="fa fa-circle" style="color:  #00FF00;"></i>
                                 </li>
                                 <li>
@@ -105,7 +107,7 @@ if ($_GET[func] != NULL) {
                                     <div class="portlet light bordered">
                                         <div class="portlet-title">
                                             <div class="caption font-green">
-                                                <i class="icon-user font-green"></i>
+                                                <i class="fa fa-television font-green"></i>
                                                 <span class="caption-subject bold uppercase"> <?= $_SESSION[tt_detail] ?></span>
                                             </div>
                                         </div>
@@ -113,56 +115,42 @@ if ($_GET[func] != NULL) {
 
                                             <div class="form-body">
 
-                                                <div class="form-group form-md-line-input has-success">
-                                                    <select class="form-control edited bold" id="i_pointion" name="i_pointion">
-                                                        <option value=""></option>
-                                                    </select>
-                                                    <label for="form_control_1"><?= $_SESSION[lb_ui_pointion] ?> <span class="required">*</span></label>
+
+                                                <div class="form-group form-md-line-input has-success" id="div-sv-src">
+                                                    <input type="text" class="form-control bold" id="s_subject" name="s_subject">
+                                                    <label for="form_control_1"><?= $_SESSION[lb_setNews_subject] ?> <span class="required">*</span></label>          
+                                                </div>
+                                                
+                                                 <div class="form-group form-md-line-input has-success">
+                                                    <input type="number" class="form-control bold" id="i_index" name="i_index" value="1" min="1">
+                                                    <label for="form_control_1"><?= $_SESSION[index] ?> <span class="required">*</span></label>          
                                                 </div>
                                                 <div class="form-group form-md-line-input has-success">
-                                                    <input type="hidden" id="old_i_type" name="old_i_type"/>
-                                                    <select class="form-control edited bold" id="i_type" name="i_type" onchange="changeConditon();">
-                                                        <option value=""></option>
-                                                    </select>
-                                                    <label for="form_control_1"><?= $_SESSION[lb_ui_type] ?> <span class="required">*</span></label>
+                                                    <input type="number" class="form-control bold" id="i_view" name="i_view" value="0" min="0">
+                                                    <label for="form_control_1"><?= $_SESSION[view_count] ?> <span class="required">*</span></label>          
+                                                </div>
+                                                <div class="form-group form-md-line-input has-success">
+                                                    <input type="number" class="form-control bold" id="i_vote" name="i_vote" value="0" min="0">
+                                                    <label for="form_control_1"><?= $_SESSION[vote_count] ?> <span class="required">*</span></label>          
                                                 </div>
 
-                                                <div class="form-group form-md-line-input has-success" id="div-sv">
-                                                    <select class="form-control edited bold" id="i_sv_media" name="i_sv_media" style="width: 100%">
-                                                    </select>
-                                                    <label for="form_control_1"><?= $_SESSION[lb_ui_sv] ?> <span class="required">*</span></label>
-                                                </div>
-                                                <div class="form-group form-md-line-input has-success" id="div-sv-src">
-                                                    <input type="text" class="form-control bold" id="s_src_media" name="s_src_media">
-                                                    <label for="form_control_1"><?= $_SESSION[lb_ui_sv_src] ?> <span class="required">*</span></label>          
-                                                </div>
-                                                <div class="form-group form-md-line-input has-success">
-                                                    <input type="number" class="form-control bold" id="i_index" name="i_index" value="1" min="1">
-                                                    <label for="form_control_1"><?= $_SESSION[lb_ui_index] ?> <span class="required">*</span></label>          
-                                                </div>
                                                 <div class="form-group form-md-line-input has-success" >
-                                                    <input type="text" class="form-control bold" id="s_desc_th" name="s_desc_th">
-                                                    <label for="form_control_1"><?= $_SESSION[lb_ui_desc_th] ?> <span class="required">*</span></label>          
+                                                    <textarea class="form-control bold" name="s_detail" id="s_detail" ></textarea>
+                                                    <label for="form_control_1"><?= $_SESSION[lb_setNews_detail] ?> <span class="required">*</span>
+                                                    </label>          
                                                 </div>
-                                                <div class="form-group form-md-line-input has-success" >
-                                                    <input type="text" class="form-control bold" id="s_desc_en" name="s_desc_en">
-                                                    <label for="form_control_1"><?= $_SESSION[lb_ui_desc_en] ?> <span class="required">*</span></label>          
-                                                </div>
-                                                <div class="form-group form-md-line-input has-success" >
-                                                    <input type="text" class="form-control bold" id="s_hashtag" name="s_hashtag">
-                                                    <label for="form_control_1"><?= $_SESSION[lb_hashtag] ?> <span class="required">*</span></label>          
-                                                </div>
-                                                <div class="form-group form-md-line-input has-success" >
-                                                    <label for="form_control_1"><?= $_SESSION[lb_ui_code_color] ?> <span class="required">*</span></label> 
-                                                    <input type="text" id="s_color" class="form-control demo" name="s_color" data-position="top right" value="#000000">
-                                                </div>
+                                                
+                                               
+                                        
+
+
                                             </div>
 
 
                                         </div>
                                     </div>
 
-                                    <!-- END EXAMPLE TABLE PORTLET-->
+                                    <!-- END EXAMPLE TABLE PORETLT-->
                                 </div>
                                 <div class="col-md-4">
                                     <!-- BEGIN EXAMPLE TABLE PORTLET-->
@@ -193,18 +181,18 @@ if ($_GET[func] != NULL) {
 
 
                                     <input type="hidden" name="tmp_img_p1" id="tmp_img_p1">
-                                    <div class="col-md-12" id="div-img1" style="display:none">
+                                    <div class="col-md-12" id="div-img1" >
                                         <div class="portlet light bordered" >
                                             <div class="portlet-title">
                                                 <div class="caption font-green">
                                                     <i class="fa fa-image font-green"></i>
-                                                    <span class="caption-subject bold uppercase"> <?= $_SESSION[lb_ui_img_1] ?></span>
+                                                    <span class="caption-subject bold uppercase"> <?= $_SESSION[image_h] ?></span>
                                                 </div>
                                             </div>
                                             <div class="fileinput fileinput-new" data-provides="fileinput">
-                                                <div class="fileinput-new thumbnail" style="max-width: 200px; max-height: 150px;">
+                                                <div class="fileinput-new thumbnail"  style="max-width: 200px; max-height: 150px;">
                                                     <img id="img1" src="images/no-image.png" alt="" style="max-width: 200px; max-height: 150px;"/> </div>
-                                                <div class="fileinput-preview fileinput-exists thumbnail" > </div>
+                                                <div class="fileinput-preview fileinput-exists thumbnail"> </div>
                                                 <div>
                                                     <span class="btn default btn-file">
                                                         <span class="fileinput-new"> <?= $_SESSION[btn_select_img] ?> </span>
@@ -213,32 +201,28 @@ if ($_GET[func] != NULL) {
 
                                                     <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> <?= $_SESSION[btn_remove] ?> </a>
                                                 </div>
+                                                <br/><br/>
+
                                             </div>
 
+                                            
                                         </div>
+
                                     </div>
-                                    <div class="col-md-12" id="div-img1" >
-                                     <span style="color: red"><?= $_SESSION[rmk_ui_01]?></span>
-                                     <br/>
-                                    <span style="color: red"><?= $_SESSION[rmk_ui_02]?></span>
-                                    </div>
-
-
-
 
                                     <input type="hidden" name="tmp_img_p2" id="tmp_img_p2">
-                                    <div class="col-md-12" id="div-img2" style="display:none">
+                                    <div class="col-md-12" id="div-img2" >
                                         <div class="portlet light bordered" >
                                             <div class="portlet-title">
                                                 <div class="caption font-green">
                                                     <i class="fa fa-image font-green"></i>
-                                                    <span class="caption-subject bold uppercase"> <?= $_SESSION[lb_ui_img_2] ?></span>
+                                                    <span class="caption-subject bold uppercase"> <?= $_SESSION[image_d] ?></span>
                                                 </div>
                                             </div>
                                             <div class="fileinput fileinput-new" data-provides="fileinput">
-                                                <div class="fileinput-new thumbnail" style="max-width: 200px; max-height: 150px;">
+                                                <div class="fileinput-new thumbnail"  style="max-width: 200px; max-height: 150px;">
                                                     <img id="img2" src="images/no-image.png" alt="" style="max-width: 200px; max-height: 150px;"/> </div>
-                                                <div class="fileinput-preview fileinput-exists thumbnail" > </div>
+                                                <div class="fileinput-preview fileinput-exists thumbnail"> </div>
                                                 <div>
                                                     <span class="btn default btn-file">
                                                         <span class="fileinput-new"> <?= $_SESSION[btn_select_img] ?> </span>
@@ -247,36 +231,12 @@ if ($_GET[func] != NULL) {
 
                                                     <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> <?= $_SESSION[btn_remove] ?> </a>
                                                 </div>
+                                                <br/><br/>
+
                                             </div>
 
                                         </div>
-                                    </div>
 
-                                    <input type="hidden" name="tmp_img_p3" id="tmp_img_p3">
-                                    <div class="col-md-12" id="div-img3" style="display:none">
-                                        <div class="portlet light bordered" >
-                                            <div class="portlet-title">
-                                                <div class="caption font-green">
-                                                    <i class="fa fa-image font-green"></i>
-                                                    <span class="caption-subject bold uppercase"> <?= $_SESSION[lb_ui_img_video] ?></span>
-                                                </div>
-                                            </div>
-                                            <div class="fileinput fileinput-new" data-provides="fileinput">
-                                                <div class="fileinput-new thumbnail" style="max-width: 200px; max-height: 150px;">
-                                                    <img id="img3" src="images/no-image.png" alt="" style="max-width: 200px; max-height: 150px;"/> </div>
-                                                <div class="fileinput-preview fileinput-exists thumbnail" > </div>
-                                                <div>
-                                                    <span class="btn default btn-file">
-                                                        <span class="fileinput-new"> <?= $_SESSION[btn_select_img] ?> </span>
-                                                        <span class="fileinput-exists"> <?= $_SESSION[btn_change] ?> </span>
-                                                        <input type="file" name="s_img_video" id="s_img_video"> </span>
-
-                                                    <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> <?= $_SESSION[btn_remove] ?> </a>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        
                                     </div>
 
                                     <!-- END EXAMPLE TABLE PORTLET-->
@@ -285,7 +245,7 @@ if ($_GET[func] != NULL) {
                                     <div class="col-md-12">
                                         <div class="portlet-body form">
                                             <div class="form-actions noborder">
-                                                <a href="ui_slide.php"> <button type="button" class="btn default"><?= $_SESSION[btn_cancel] ?></button></a>
+                                                <a href="ui_news.php"> <button type="button" class="btn default"><?= $_SESSION[btn_cancel] ?></button></a>
                                                 <button type="submit"  class="btn blue" ><?= $_SESSION[btn_submit] ?></button>
                                             </div>
                                         </div>
@@ -332,7 +292,11 @@ if ($_GET[func] != NULL) {
         <?php include './templated/quick_nav.php'; ?>
         <!-- END QUICK NAV -->
 
-
+        <script src="ckeditor/ckeditor.js"></script>
+        <?php $_SESSION["folder_upload"] = "newsDetail" ?>
+        <script>
+            CKEDITOR.replace('s_detail', {"filebrowserImageUploadUrl": "iaupload_all.php"});
+        </script>
 
         <!-- BEGIN CORE PLUGINS -->
         <script src="../assets/global/plugins/jquery.min.js" type="text/javascript"></script>
@@ -349,13 +313,14 @@ if ($_GET[func] != NULL) {
         <script src="../assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
         <script src="../assets/global/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js" type="text/javascript"></script>
         <script src="../assets/global/plugins/jquery-minicolors/jquery.minicolors.min.js" type="text/javascript"></script>
-
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL SCRIPTS -->
         <script src="../assets/global/scripts/app.min.js" type="text/javascript"></script>
         <!-- END THEME GLOBAL SCRIPTS -->
         <!-- BEGIN PAGE LEVEL SCRIPTS -->
         <script src="../assets/pages/scripts/components-color-pickers.min.js" type="text/javascript"></script><!-- END PAGE LEVEL SCRIPTS -->
+        <!-- END PAGE LEVEL SCRIPTS -->
+        <!-- BEGIN THEME LAYOUT SCRIPTS -->
         <!-- BEGIN THEME LAYOUT SCRIPTS -->
         <script src="../assets/layouts/layout/scripts/layout.min.js" type="text/javascript"></script>
         <script src="../assets/layouts/layout/scripts/demo.min.js" type="text/javascript"></script>
@@ -365,7 +330,7 @@ if ($_GET[func] != NULL) {
 
         <script src="js/common/notify.js" type="text/javascript"></script>
         <link href="css/notify.css" rel="stylesheet" type="text/css" />
-        <script src="js/action/ui_slide_manage.js" type="text/javascript"></script>
+        <script src="js/action/ui/newsManage.js" type="text/javascript"></script>
 
         <!-- BEGIS SELECT 2 SCRIPTS -->
         <link href="css/select2.min.css" rel="stylesheet" />
@@ -374,14 +339,17 @@ if ($_GET[func] != NULL) {
         <link href="outbound/lightbox/css/lightbox.css" rel="stylesheet" type="text/css" />
         <script src="outbound/lightbox/js/lightbox.js" type="text/javascript"></script>
 
+
+
+
         <script>
-                                                        var keyEdit = "<?= $_GET[id] ?>";
+            var keyEdit = "<?= $_GET[id] ?>";
         </script>
         <script>
             $(document).ready(function () {
                 getDDLStatus();
                 save();
-                unloading();
+//                unloading();
             });
         </script>
 

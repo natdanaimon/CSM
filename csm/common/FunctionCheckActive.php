@@ -9,6 +9,7 @@ function ACTIVEPAGES($page, $sub) {
     $_SESSION["nav_main_emp"] = "";
     $_SESSION["nav_main_cus"] = "";
     $_SESSION["nav_main_insurance"] = "";
+    $_SESSION["nav_main_ui"] = "";
 
     //csm setting
     $_SESSION["nav_sub_set_vat"] = "";
@@ -42,8 +43,13 @@ function ACTIVEPAGES($page, $sub) {
     $_SESSION["nav_sub_ins_prd"] = "";
     $_SESSION["nav_sub_ins_tran"] = "";
 
-
-
+    
+    //csm ui
+    $_SESSION["nav_sub_ui_slide"] = "";
+    $_SESSION["nav_sub_ui_news"] = "";
+    $_SESSION["nav_sub_ui_knowledge"] = "";
+    $_SESSION["nav_sub_ui_promotion"] = "";
+    $_SESSION["nav_sub_ui_popup"] = "";
 
 
 
@@ -76,6 +82,19 @@ function ACTIVEPAGES($page, $sub) {
         } else if ($sub == 2) {
             $_SESSION["nav_sub_ins_tran"] = " active open";
         }
+    } else if ($page == 14) {
+        $_SESSION["nav_main_ui"] = " active open";
+        if ($sub == 1) {
+            $_SESSION["nav_sub_ui_slide"] = " active open";
+        } else if ($sub == 2) {
+            $_SESSION["nav_sub_ui_news"] = " active open";
+        }else if ($sub == 3) {
+            $_SESSION["nav_sub_ui_knowledge"] = " active open";
+        }else if ($sub == 4) {
+            $_SESSION["nav_sub_ui_promotion"] = " active open";
+        }else if ($sub == 5) {
+            $_SESSION["nav_sub_ui_popup"] = " active open";
+        }
     } else if ($page == 99) {
         $_SESSION["nav_main_setting"] = " active open";
         if ($sub == 1) {
@@ -107,89 +126,3 @@ function ACTIVEPAGES($page, $sub) {
         }
     }
 }
-
-function ACTIVEPAGES_DEMO($page, $sub) {
-
-    // main
-
-    $_SESSION["cs_nav_main_dashboard"] = "";
-
-
-
-    // sub nagieos bet
-    $_SESSION["cs_nav_sub_deposit"] = "";
-    $_SESSION["cs_nav_sub_withdraw"] = "";
-    $_SESSION["cs_nav_sub_register"] = "";
-
-
-
-
-
-
-    if ($page == 0) {
-        $_SESSION["nav_main_dashboard"] = " active open";
-    } else if ($page == 1) {
-        $_SESSION["cs_nav_main_dashboard"] = " active open";
-        if ($sub == 1) {
-            $_SESSION["cs_nav_sub_dashboard"] = " active open";
-        } else if ($sub == 2) {
-            $_SESSION["cs_nav_sub_deposit"] = " active open";
-        } else if ($sub == 3) {
-            $_SESSION["cs_nav_sub_withdraw"] = " active open";
-        } else if ($sub == 4) {
-            $_SESSION["cs_nav_sub_bank"] = " active open";
-        } else if ($sub == 5) {
-            $_SESSION["cs_nav_sub_report"] = " active open";
-        } else if ($sub == 6) {
-            $_SESSION["cs_nav_sub_register"] = " active open";
-        } else if ($sub == 7) {
-            $_SESSION["cs_nav_sub_promotion"] = " active open";
-        } else if ($sub == 8) {
-            $_SESSION["cs_nav_sub_vip"] = " active open";
-        }
-    }
-}
-
-function ACTIVEPAGES_SUB($main, $sub) {
-    if ($main == 2) {
-        if ($sub == 1) {
-            $_SESSION["active_slide"] = "current-page";
-        }
-    } else if ($main == 3) {
-        if ($sub == 1) {
-            $_SESSION["active_partner_group"] = "current-page";
-        } else if ($sub == 2) {
-            $_SESSION["active_partner_company"] = "current-page";
-        }
-    } else if ($main == 4) {
-        if ($sub == 1) {
-            $_SESSION["active_newsletter"] = "current-page";
-        } else if ($sub == 2) {
-            $_SESSION["active_news_post"] = "current-page";
-        }
-    } else if ($main == 5) {
-        if ($sub == 1) {
-            $_SESSION["active_price_football"] = "current-page";
-        } else if ($sub == 2) {
-            $_SESSION["active_price_snooker"] = "current-page";
-        } else if ($sub == 3) {
-            $_SESSION["active_promotion"] = "current-page";
-        }
-    } else if ($main == 7) {
-        if ($sub == 1) {
-            $_SESSION["active_game"] = "current-page";
-        } else if ($sub == 2) {
-            $_SESSION["active_team"] = "current-page";
-        }
-    } else if ($main == 9) {
-        if ($sub == 1) {
-            $_SESSION["active_league"] = "current-page";
-        } else if ($sub == 2) {
-            $_SESSION["active_fa"] = "current-page";
-        } else if ($sub == 3) {
-            $_SESSION["active_champion"] = "current-page";
-        }
-    }
-}
-
-?>

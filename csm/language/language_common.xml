@@ -51,6 +51,21 @@
         <th>เมื่อครู่นี้</th>
         <en>just now</en>
     </detail>
+    <detail>
+        <variable>image</variable>
+        <th>รูปภาพ</th>
+        <en>Image</en>
+    </detail>
+    <detail>
+        <variable>image_h</variable>
+        <th>รูปภาพปก</th>
+        <en>Image Main</en>
+    </detail>
+     <detail>
+        <variable>image_d</variable>
+        <th>รูปภาพรายละเอียด</th>
+        <en>Image Detail</en>
+    </detail>
     <!--  Notification -->
 
     <!--  Other -->
@@ -379,7 +394,16 @@
         <th>กรุณาเลือกข้อมูล</th>
         <en>Please Selected</en>
     </detail>
-	
+	<detail>
+        <variable>view_count</variable>
+        <th>จำนวนคนเข้าดู</th>
+        <en>View Count</en>
+    </detail>
+    <detail>
+        <variable>vote_count</variable>
+        <th>จำนวนคนกดโหวต</th>
+        <en>Vote Count</en>
+    </detail>
 	
     <!--  Other -->
     
@@ -763,6 +787,39 @@
         <en>Insurance Transaction</en>
     </detail>
 	
+
+    <detail>
+        <variable>ui_management</variable>
+        <th>บริหารจัดการหน้าจอเว็บไซต์</th>
+        <en>UI Management</en>
+    </detail>
+    <detail>
+        <variable>ui_slide</variable>
+        <th>จัดการข้อมูลสไลด์</th>
+        <en>Slide Management</en>
+    </detail>
+    <detail>
+        <variable>ui_news</variable>
+        <th>จัดการข้อมูลข่าว</th>
+        <en>News Management</en>
+    </detail>
+    <detail>
+        <variable>ui_knowledge</variable>
+        <th>จัดการข้อมูลคลังความรู้</th>
+        <en>Knowledge Management</en>
+    </detail>
+     <detail>
+        <variable>ui_promotion</variable>
+        <th>จัดการข้อมูลโปรโมชั่น</th>
+        <en>Promotion Management</en>
+    </detail>
+     <detail>
+        <variable>ui_popup</variable>
+        <th>จัดการข้อมูลโปรโมชั่นแจ้งเตือน</th>
+        <en>Popup Manangement</en>
+    </detail>
+      
+
 	
     <!--  Menu -->
     
@@ -1037,6 +1094,21 @@
         <en>Insurance Type</en>
     </detail>
     
+    <detail>
+        <variable>tb_co_hl</variable>
+        <th>ไฮไลฟ์</th>
+        <en>Height Light</en>
+    </detail>
+    <detail>
+        <variable>tb_co_nm</variable>
+        <th>ข้อความ</th>
+        <en>Text</en>
+    </detail> 
+    <detail>
+        <variable>tb_co_subject</variable>
+        <th>หัวข้อ</th>
+        <en>Subject</en>
+    </detail>
     <!--  table  --> 
         
     <!--  Title Header  --> 
@@ -1249,6 +1321,31 @@
         <variable>tt_mg_protec_3</variable>
         <th>ความคุ้มครองเพิ่มเติม</th>
         <en>Additional coverage</en>
+    </detail>
+    <detail>
+        <variable>tt_mg_popup</variable>
+        <th>จัดการข้อมูลโปรโมชั่นแจ้งเตือน</th>
+        <en>MANAGE PROMOTION POPUP</en>
+    </detail>
+    <detail>
+        <variable>tt_mg_slide</variable>
+        <th>จัดการข้อมูลสไลด์</th>
+        <en>MANAGE SLIDE</en>
+    </detail>
+    <detail>
+        <variable>tt_mg_news</variable>
+        <th>จัดการข้อมูลข่าว</th>
+        <en>MANAGE NEWS</en>
+    </detail>
+    <detail>
+        <variable>tt_mg_promotion</variable>
+        <th>จัดการข้อมูลโปรโมชั่น</th>
+        <en>MANAGE PROMOTION</en>
+    </detail>
+    <detail>
+        <variable>tt_mg_knowledge</variable>
+        <th>จัดการข้อมูลคลังความรู้</th>
+        <en>MANAGE KNOWLEDGE</en>
     </detail>
     
     <!--  Title Header  --> 
