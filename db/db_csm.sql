@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 07, 2017 at 04:41 AM
+-- Generation Time: Nov 07, 2017 at 11:11 AM
 -- Server version: 10.1.9-MariaDB
 -- PHP Version: 5.5.30
 
@@ -10486,6 +10486,28 @@ INSERT INTO `tb_item` (`i_item`, `s_code`, `s_item_th`, `s_item_en`, `s_image`, 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tb_knowledge`
+--
+
+CREATE TABLE `tb_knowledge` (
+  `i_know` int(10) NOT NULL,
+  `s_img_p1` varchar(100) NOT NULL,
+  `s_img_p2` varchar(100) NOT NULL,
+  `i_index` int(11) NOT NULL,
+  `s_subject` text NOT NULL,
+  `s_detail` text NOT NULL,
+  `i_view` int(10) NOT NULL,
+  `i_vote` int(10) NOT NULL,
+  `d_create` datetime NOT NULL,
+  `d_update` datetime NOT NULL,
+  `s_create_by` varchar(50) NOT NULL,
+  `s_update_by` varchar(50) NOT NULL,
+  `s_status` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tb_news`
 --
 
@@ -10493,7 +10515,6 @@ CREATE TABLE `tb_news` (
   `i_news` int(10) NOT NULL,
   `s_img_p1` varchar(100) NOT NULL,
   `s_img_p2` varchar(100) NOT NULL,
-  `s_link` varchar(100) NOT NULL,
   `i_index` int(11) NOT NULL,
   `s_subject` text NOT NULL,
   `s_detail` text NOT NULL,
@@ -10542,6 +10563,13 @@ CREATE TABLE `tb_popup` (
   `s_status` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `tb_popup`
+--
+
+INSERT INTO `tb_popup` (`s_key`, `s_image`, `s_url`, `d_start`, `d_end`, `d_update`, `s_update_by`, `s_status`) VALUES
+('POPUP', '201711071456301.png', '#', '2017-11-25', '2017-11-30', '2017-11-07 14:57:29', 'admin', 'A');
+
 -- --------------------------------------------------------
 
 --
@@ -10552,7 +10580,6 @@ CREATE TABLE `tb_promotion` (
   `i_promotion` int(10) NOT NULL,
   `s_img_p1` varchar(100) NOT NULL,
   `s_img_p2` varchar(100) NOT NULL,
-  `s_link` varchar(100) NOT NULL,
   `i_index` int(11) NOT NULL,
   `s_subject` text NOT NULL,
   `s_detail` text NOT NULL,
@@ -10906,6 +10933,13 @@ ALTER TABLE `tb_item`
   ADD KEY `index_item_code` (`s_code`);
 
 --
+-- Indexes for table `tb_knowledge`
+--
+ALTER TABLE `tb_knowledge`
+  ADD PRIMARY KEY (`i_know`),
+  ADD KEY `index_tb_knowledge` (`i_vote`,`i_view`,`s_status`);
+
+--
 -- Indexes for table `tb_news`
 --
 ALTER TABLE `tb_news`
@@ -11053,6 +11087,16 @@ ALTER TABLE `tb_insurance_type`
 ALTER TABLE `tb_item`
   MODIFY `i_item` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
+-- AUTO_INCREMENT for table `tb_knowledge`
+--
+ALTER TABLE `tb_knowledge`
+  MODIFY `i_know` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `tb_news`
+--
+ALTER TABLE `tb_news`
+  MODIFY `i_news` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
 -- AUTO_INCREMENT for table `tb_partner_comp`
 --
 ALTER TABLE `tb_partner_comp`
@@ -11061,7 +11105,12 @@ ALTER TABLE `tb_partner_comp`
 -- AUTO_INCREMENT for table `tb_promotion`
 --
 ALTER TABLE `tb_promotion`
-  MODIFY `i_promotion` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `i_promotion` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `tb_slide`
+--
+ALTER TABLE `tb_slide`
+  MODIFY `i_slide` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `tb_title`
 --
