@@ -6,8 +6,8 @@ $folder = $_SESSION["folder_upload"];
 // HERE SET THE PATH TO THE FOLDERS FOR IMAGES AND AUDIO ON YOUR SERVER (RELATIVE TO THE ROOT OF YOUR WEBSITE ON SERVER)
 // 'img'=> '/biotec/manage/bio/templatedEmail/tmp_img/',
 $upload_dir = array(
-//    'img' => '/csm/upload/' . $folder . '/',
-    'img' => '/CSM/csm/upload/' . $folder . '/',
+    'img' => '/csm/upload/' . $folder . '/',
+//    'img' => '/CSM/csm/upload/' . $folder . '/',
     'audio' => '/audio/'
 );
 
