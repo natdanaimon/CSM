@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 05, 2017 at 07:45 PM
+-- Generation Time: Nov 07, 2017 at 04:41 AM
 -- Server version: 10.1.9-MariaDB
 -- PHP Version: 5.5.30
 
@@ -10486,6 +10486,29 @@ INSERT INTO `tb_item` (`i_item`, `s_code`, `s_item_th`, `s_item_en`, `s_image`, 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tb_news`
+--
+
+CREATE TABLE `tb_news` (
+  `i_news` int(10) NOT NULL,
+  `s_img_p1` varchar(100) NOT NULL,
+  `s_img_p2` varchar(100) NOT NULL,
+  `s_link` varchar(100) NOT NULL,
+  `i_index` int(11) NOT NULL,
+  `s_subject` text NOT NULL,
+  `s_detail` text NOT NULL,
+  `i_view` int(10) NOT NULL,
+  `i_vote` int(10) NOT NULL,
+  `d_create` datetime NOT NULL,
+  `d_update` datetime NOT NULL,
+  `s_create_by` varchar(50) NOT NULL,
+  `s_update_by` varchar(50) NOT NULL,
+  `s_status` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tb_partner_comp`
 --
 
@@ -10495,6 +10518,46 @@ CREATE TABLE `tb_partner_comp` (
   `s_comp_en` varchar(100) NOT NULL,
   `i_index` int(11) NOT NULL,
   `s_image` varchar(100) NOT NULL,
+  `d_create` datetime NOT NULL,
+  `d_update` datetime NOT NULL,
+  `s_create_by` varchar(50) NOT NULL,
+  `s_update_by` varchar(50) NOT NULL,
+  `s_status` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_popup`
+--
+
+CREATE TABLE `tb_popup` (
+  `s_key` varchar(10) NOT NULL,
+  `s_image` varchar(100) NOT NULL,
+  `s_url` varchar(100) NOT NULL,
+  `d_start` date NOT NULL,
+  `d_end` date NOT NULL,
+  `d_update` datetime NOT NULL,
+  `s_update_by` varchar(100) NOT NULL,
+  `s_status` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_promotion`
+--
+
+CREATE TABLE `tb_promotion` (
+  `i_promotion` int(10) NOT NULL,
+  `s_img_p1` varchar(100) NOT NULL,
+  `s_img_p2` varchar(100) NOT NULL,
+  `s_link` varchar(100) NOT NULL,
+  `i_index` int(11) NOT NULL,
+  `s_subject` text NOT NULL,
+  `s_detail` text NOT NULL,
+  `i_view` int(10) NOT NULL,
+  `i_vote` int(10) NOT NULL,
   `d_create` datetime NOT NULL,
   `d_update` datetime NOT NULL,
   `s_create_by` varchar(50) NOT NULL,
@@ -10598,6 +10661,25 @@ INSERT INTO `tb_provinces` (`i_province`, `s_code`, `s_name_th`, `s_name_en`, `i
 (75, '95', 'ยะลา', 'Yala', 6),
 (76, '96', 'นราธิวาส', 'Narathiwat', 6),
 (77, '97', 'บึงกาฬ', 'buogkan', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_slide`
+--
+
+CREATE TABLE `tb_slide` (
+  `i_slide` int(10) NOT NULL,
+  `i_index` int(11) NOT NULL,
+  `s_desc_hl` varchar(150) NOT NULL,
+  `s_desc_nm` varchar(150) NOT NULL,
+  `s_image` varchar(100) NOT NULL,
+  `d_create` datetime NOT NULL,
+  `d_update` datetime NOT NULL,
+  `s_create_by` varchar(50) NOT NULL,
+  `s_update_by` varchar(50) NOT NULL,
+  `s_status` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -10824,11 +10906,37 @@ ALTER TABLE `tb_item`
   ADD KEY `index_item_code` (`s_code`);
 
 --
+-- Indexes for table `tb_news`
+--
+ALTER TABLE `tb_news`
+  ADD PRIMARY KEY (`i_news`),
+  ADD KEY `index_tb_news` (`i_vote`,`i_view`,`s_status`);
+
+--
 -- Indexes for table `tb_partner_comp`
 --
 ALTER TABLE `tb_partner_comp`
   ADD PRIMARY KEY (`i_part_comp`),
   ADD KEY `index_part_comp` (`s_status`);
+
+--
+-- Indexes for table `tb_popup`
+--
+ALTER TABLE `tb_popup`
+  ADD PRIMARY KEY (`s_key`);
+
+--
+-- Indexes for table `tb_promotion`
+--
+ALTER TABLE `tb_promotion`
+  ADD PRIMARY KEY (`i_promotion`),
+  ADD KEY `index_tb_promotion` (`i_vote`,`i_view`,`s_status`);
+
+--
+-- Indexes for table `tb_slide`
+--
+ALTER TABLE `tb_slide`
+  ADD PRIMARY KEY (`i_slide`);
 
 --
 -- Indexes for table `tb_status`
@@ -10949,6 +11057,11 @@ ALTER TABLE `tb_item`
 --
 ALTER TABLE `tb_partner_comp`
   MODIFY `i_part_comp` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `tb_promotion`
+--
+ALTER TABLE `tb_promotion`
+  MODIFY `i_promotion` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `tb_title`
 --
