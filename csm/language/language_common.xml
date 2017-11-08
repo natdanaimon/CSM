@@ -1109,6 +1109,35 @@
         <th>หัวข้อ</th>
         <en>Subject</en>
     </detail>
+
+    <detail>
+        <variable>tb_co_dPrice</variable>
+        <th>ราคาเบี้ยประกันภัย</th>
+        <en>Price</en>
+    </detail>
+
+    <detail>
+        <variable>tb_co_dPromotion</variable>
+        <th>โปรโมชั่น</th>
+        <en>Promotion</en>
+    </detail>
+     <detail>
+        <variable>tb_co_dDiscount</variable>
+        <th>ส่วนลด</th>
+        <en>Discount</en>
+    </detail>
+     <detail>
+        <variable>tb_co_dBase</variable>
+        <th>ทุนประกัน</th>
+        <en>Insurance Base</en>
+    </detail>
+     <detail>
+        <variable>tb_co_dRepair</variable>
+        <th>ซ่อม</th>
+        <en>Repair Type</en>
+    </detail>
+
+
     <!--  table  --> 
         
     <!--  Title Header  --> 

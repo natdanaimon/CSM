@@ -1,14 +1,13 @@
-
 var $datatable = $('#datatable');
+
 function initialDataTable(first) {
     $.ajax({
         type: 'GET',
         url: 'controller/insurance/productController.php?func=dataTable',
-        beforeSend: function ()
-        {
+        beforeSend: function() {
             $('#se-pre-con').fadeIn(100);
         },
-        success: function (data) {
+        success: function(data) {
             if (data == '') {
                 var datatable = $datatable.dataTable().api();
                 $('.dataTables_empty').remove();
@@ -19,13 +18,18 @@ function initialDataTable(first) {
             }
             var res = JSON.parse(data);
             var JsonData = [];
-            $.each(res, function (i, item) {
-
+            $.each(res, function(i, item) {
+                var bath = " บาท.";
                 var col_checkbox = "";
                 var col_htext = item.s_insurance_htext;
                 var col_comp = "";
                 var col_type = item.s_type_name;
-                var col_price = item.f_price;
+                var col_price = item.f_price + bath;
+
+                var col_pro = item.s_promotion;
+                var col_dis = item.f_discount + bath;
+                var col_base = item.s_prcar_base + bath;
+                var col_repair = item.s_repair_type;
 
 
 
@@ -46,11 +50,11 @@ function initialDataTable(first) {
 
 
                 if (item.s_image != "") {
-                    col_comp  = '<a title="' + item.s_image + '" class="example-image-link" href="upload/brand/' + item.s_image + '" data-lightbox="example-' + item.i_insurance + '">';
-                    col_comp  += '<img class="example-image" src="upload/compInsurance/' + item.s_image + '" width="50px" height="50px"  /> ' + item.s_comp_th;
-                    col_comp  += '</a>';
+                    col_comp = '<a title="' + item.s_image + '" class="example-image-link" href="upload/brand/' + item.s_image + '" data-lightbox="example-' + item.i_insurance + '">';
+                    col_comp += '<img class="example-image" src="upload/compInsurance/' + item.s_image + '" width="50px" height="50px"  /> ' + item.s_comp_th;
+                    col_comp += '</a>';
                 } else {
-                    col_comp  += '<img class="example-image" src="images/noImage.jpeg" width="50px" height="50px"  /> ' + item.s_comp_th;
+                    col_comp += '<img class="example-image" src="images/noImage.jpeg" width="50px" height="50px"  /> ' + item.s_comp_th;
 
                 }
 
@@ -75,15 +79,19 @@ function initialDataTable(first) {
                     col_comp,
                     col_type,
                     col_price,
+                    col_pro,
+                    col_dis,
+                    col_base,
+                    col_repair,
                     col_status,
                     col_edit,
                     col_delete
                 ]
-         
-                
-                
-                
-                
+
+
+
+
+
 
                 JsonData.push(addRow);
 
@@ -91,9 +99,12 @@ function initialDataTable(first) {
             if (first == "TRUE") {
                 $datatable.dataTable({
                     data: JsonData,
-                    order: [[4, 'asc'], [2, 'asc']],
+                    order: [
+                        [4, 'asc'],
+                        [2, 'asc']
+                    ],
                     columnDefs: [
-                        {"orderable": false, "targets": 0}
+                        { "orderable": false, "targets": 0 }
                     ]
                 });
             } else {
@@ -109,7 +120,7 @@ function initialDataTable(first) {
             $('#se-pre-con').delay(100).fadeOut();
 
         },
-        error: function (data) {
+        error: function(data) {
 
         }
 
@@ -133,24 +144,24 @@ function sortHidden(status) {
 }
 
 
-$('#checkbox14').click(function () {
+$('#checkbox14').click(function() {
     var checkboxes = $('input[name$=checkboxItem]');
     var array = [];
-    $('input[name$="checkboxItem"]').each(function () {
+    $('input[name$="checkboxItem"]').each(function() {
         array.push($(this).attr('id'));
     });
     if ($(this).is(':checked')) {
         checkboxes.prop('checked', true);
         var names = [];
         names = jQuery.unique(array);
-        $.each(names, function (key, value) {
+        $.each(names, function(key, value) {
             $('input:checkbox[id=' + value + ']').attr('checked', true);
         });
     } else {
         checkboxes.prop('checked', false);
         var names = [];
         names = jQuery.unique(array);
-        $.each(names, function (key, value) {
+        $.each(names, function(key, value) {
             $('input:checkbox[id=' + value + ']').attr('checked', false);
         });
     }
@@ -163,12 +174,12 @@ function remove_select_all(id) {
 
         //set element select all selected
         var array = [];
-        $('input[name$="checkboxItem"]').each(function () {
+        $('input[name$="checkboxItem"]').each(function() {
             array.push($(this).attr('id'));
         });
         var names = [];
         names = jQuery.unique(array);
-        $.each(names, function (key, value) {
+        $.each(names, function(key, value) {
             if ($("#" + value).is(':checked')) {
                 selected.push($("#" + value).val());
             }
@@ -189,16 +200,15 @@ function remove_select_all(id) {
 function deleteAll() {
     $('#se-pre-con').fadeIn(100);
     $.notify.addStyle('foo', {
-        html:
-                "<div>" +
-                "<div class='clearfix'>" +
-                "<div class='title' data-notify-html='title'/>" +
-                "<div class='buttons'>" +
-                "<button class='notify-all-no btn red'>" + cancel + "</button>" +
-                "<button class='notify-all-yes btn green'>" + yes + "</button>" +
-                "</div>" +
-                "</div>" +
-                "</div>"
+        html: "<div>" +
+            "<div class='clearfix'>" +
+            "<div class='title' data-notify-html='title'/>" +
+            "<div class='buttons'>" +
+            "<button class='notify-all-no btn red'>" + cancel + "</button>" +
+            "<button class='notify-all-yes btn green'>" + yes + "</button>" +
+            "</div>" +
+            "</div>" +
+            "</div>"
     });
 
     $.notify({
@@ -211,20 +221,20 @@ function deleteAll() {
     });
 
 }
-$(document).on('click', '.notifyjs-foo-base .notify-all-no', function () {
+$(document).on('click', '.notifyjs-foo-base .notify-all-no', function() {
     $('#se-pre-con').delay(100).fadeOut();
     $(this).trigger('notify-hide');
 });
-$(document).on('click', '.notifyjs-foo-base .notify-all-yes', function () {
+$(document).on('click', '.notifyjs-foo-base .notify-all-yes', function() {
     $(this).trigger('notify-hide');
     var selected = [];
     var array = [];
-    $('input[name$="checkboxItem"]').each(function () {
+    $('input[name$="checkboxItem"]').each(function() {
         array.push($(this).attr('id'));
     });
     var names = [];
     names = jQuery.unique(array);
-    $.each(names, function (key, value) {
+    $.each(names, function(key, value) {
         if ($("#" + value).is(':checked')) {
             //alert($("#" + value).val());
             selected.push($("#" + value).val());
@@ -236,12 +246,11 @@ $(document).on('click', '.notifyjs-foo-base .notify-all-yes', function () {
     $.ajax({
         type: 'GET',
         url: 'controller/insurance/productController.php',
-        data: {data: jsonData, func: "deleteAll"},
-        beforeSend: function ()
-        {
+        data: { data: jsonData, func: "deleteAll" },
+        beforeSend: function() {
             $('#se-pre-con').fadeIn(100);
         },
-        success: function (data) {
+        success: function(data) {
 
             var res = data.split(",");
             if (res[0] == "0000") {
@@ -255,7 +264,7 @@ $(document).on('click', '.notifyjs-foo-base .notify-all-yes', function () {
             $('#se-pre-con').delay(100).fadeOut();
             initialDataTable("FALSE");
         },
-        error: function (data) {
+        error: function(data) {
 
         }
 
@@ -278,18 +287,17 @@ $(document).on('click', '.notifyjs-foo-base .notify-all-yes', function () {
 function Confirm(txt, func) {
     $('#se-pre-con').fadeIn(100);
     $.notify.addStyle('foo', {
-        html:
-                "<div>" +
-                "<div class='clearfix'>" +
-                "<div class='title' data-notify-html='title'/>" +
-                "<div class='buttons'>" +
-                "<input type='hidden' id='id' value='" + txt + "' />" +
-                "<input type='hidden' id='func' value='" + func + "' />" +
-                "<button class='notify-no btn red'>" + cancel + "</button>" +
-                "<button class='notify-yes btn green'>" + yes + "</button>" +
-                "</div>" +
-                "</div>" +
-                "</div>"
+        html: "<div>" +
+            "<div class='clearfix'>" +
+            "<div class='title' data-notify-html='title'/>" +
+            "<div class='buttons'>" +
+            "<input type='hidden' id='id' value='" + txt + "' />" +
+            "<input type='hidden' id='func' value='" + func + "' />" +
+            "<button class='notify-no btn red'>" + cancel + "</button>" +
+            "<button class='notify-yes btn green'>" + yes + "</button>" +
+            "</div>" +
+            "</div>" +
+            "</div>"
     });
 
     $.notify({
@@ -302,11 +310,11 @@ function Confirm(txt, func) {
     });
 
 }
-$(document).on('click', '.notifyjs-foo-base .notify-no', function () {
+$(document).on('click', '.notifyjs-foo-base .notify-no', function() {
     $('#se-pre-con').delay(100).fadeOut();
     $(this).trigger('notify-hide');
 });
-$(document).on('click', '.notifyjs-foo-base .notify-yes', function () {
+$(document).on('click', '.notifyjs-foo-base .notify-yes', function() {
     $(this).trigger('notify-hide');
     var id = $("#id").val();
     var func = $("#func").val();
@@ -314,11 +322,10 @@ $(document).on('click', '.notifyjs-foo-base .notify-yes', function () {
     $.ajax({
         type: 'GET',
         url: 'controller/insurance/productController.php?func=' + func + '&id=' + id,
-        beforeSend: function ()
-        {
+        beforeSend: function() {
             $('#se-pre-con').fadeIn(100);
         },
-        success: function (data) {
+        success: function(data) {
 
             var res = data.split(",");
             if (res[0] == "0000") {
@@ -332,7 +339,7 @@ $(document).on('click', '.notifyjs-foo-base .notify-yes', function () {
             $('#se-pre-con').delay(100).fadeOut();
             initialDataTable("FALSE");
         },
-        error: function (data) {
+        error: function(data) {
 
         }
 
@@ -346,21 +353,21 @@ function openLogs() {
 
 
 function clickFile() {
-//    document.getElementById('file').click();
+    //    document.getElementById('file').click();
     $("#file").click();
 }
 
-$("#file").on('change', function () {
-//    console.log(this.files);
+$("#file").on('change', function() {
+    //    console.log(this.files);
     $("#upfile").submit();
 }).click();
 
 
 
-$('#upfile').submit(function (e) {
+$('#upfile').submit(function(e) {
     //alert(e);
     e.preventDefault();
-//    console.log($(this).serialize());
+    //    console.log($(this).serialize());
     var formData = new FormData($("upfile")[0]);
     formData.append('func', 'import');
     formData.append('file', $('input[type=file]')[0].files[0]);
@@ -371,11 +378,10 @@ $('#upfile').submit(function (e) {
         cache: false,
         contentType: false,
         processData: false,
-        beforeSend: function ()
-        {
+        beforeSend: function() {
             $('#se-pre-con').fadeIn(100);
         },
-        success: function (data) {
+        success: function(data) {
             $("#file").val("");
             var res = data.split(",");
             if (res[0] == "0000") {
@@ -388,11 +394,12 @@ $('#upfile').submit(function (e) {
                 $('#se-pre-con').delay(100).fadeOut();
                 return;
             }
-//            notification();
-            $('#upfile').each(function () {
+            //            notification();
+            $('#upfile').each(function() {
                 setTimeout(reloadTime, 1000);
             });
-        }, error: function (data) {
+        },
+        error: function(data) {
             $("#file").val("");
         }
     });

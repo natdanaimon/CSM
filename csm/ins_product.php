@@ -175,7 +175,13 @@ ACTIVEPAGES(13, 1);
                                                     <th class="all">  <?= $_SESSION[tb_co_htext] ?> </th>
                                                     <th class="all">  <?= $_SESSION[tb_co_insurance_name] ?> </th>
                                                     <th class="none"> <span style="color:red"><?= $_SESSION[tb_co_insurance_type] ?></span> </th>
-                                                    <th class="none">  <span style="color:red"><?= $_SESSION[tb_co_price] ?> </span></th>
+                                                    <th class="none"> <span style="color:red"><?= $_SESSION[tb_co_price] ?> </span></th>
+
+                                                    <th class="none"> <span style="color:red"><?= $_SESSION[tb_co_dPromotion] ?> </span></th>
+                                                    <th class="none"> <span style="color:red"><?= $_SESSION[tb_co_dDiscount] ?> </span></th>
+                                                    <th class="none"> <span style="color:red"><?= $_SESSION[tb_co_dBase] ?> </span></th>
+                                                    <th class="none"> <span style="color:red"><?= $_SESSION[tb_co_dRepair] ?> </span></th>
+                                                    
                                                     <th class="all">  <?= $_SESSION[tb_co_status] ?></th>
                                                     <th class="all" style="width: 40px"> <?= $_SESSION[tb_co_edit] ?> </th>
                                                     <th class="all" style="width: 40px"> <?= $_SESSION[tb_co_delete] ?></th>
