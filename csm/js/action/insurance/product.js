@@ -50,9 +50,9 @@ function initialDataTable(first) {
 
 
                 if (item.s_image != "") {
-                    col_comp = '<a title="' + item.s_image + '" class="example-image-link" href="upload/brand/' + item.s_image + '" data-lightbox="example-' + item.i_insurance + '">';
+                    // col_comp = '<a title="' + item.s_image + '" class="example-image-link" href="upload/brand/' + item.s_image + '" data-lightbox="example-' + item.i_insurance + '">';
                     col_comp += '<img class="example-image" src="upload/compInsurance/' + item.s_image + '" width="50px" height="50px"  /> ' + item.s_comp_th;
-                    col_comp += '</a>';
+                    //col_comp += '</a>';
                 } else {
                     col_comp += '<img class="example-image" src="images/noImage.jpeg" width="50px" height="50px"  /> ' + item.s_comp_th;
 
