@@ -1,1 +1,8 @@
-
+=================== START =======================
+2017-11-09 12:22:13
+Import File : templated insurance.xlsx
+No=1|Desc Column 13 = [fsdf] is not number.
+No=1|Desc Column 14 = [fdsf] is not number.
+List Data:0
+2017-11-09 12:22:13
+===================== END =======================

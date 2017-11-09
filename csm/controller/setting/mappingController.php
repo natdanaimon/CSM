@@ -139,7 +139,7 @@ class mappingController {
         $table .= "<th colspan = '2' style='background:#f5f5f0;'>$head[0]</th>";
         $table .= "</tr>";
         $table .= "<tr>";
-        $table .= "<th style='background:#e0e0d1;'>CODE</th>";
+        $table .= "<th style='background:yellow;'>CODE</th>";
         $table .= "<th style='background:#e0e0d1;'>VALUE</th>";
         $table .= "</tr>";
 
@@ -161,7 +161,7 @@ class mappingController {
         $table .= "<th colspan = '2' style='background:#f5f5f0;'>$head[1]</th>";
         $table .= "</tr>";
         $table .= "<tr>";
-        $table .= "<th style='background:#e0e0d1;'>CODE</th>";
+        $table .= "<th style='background:yellow;'>CODE</th>";
         $table .= "<th style='background:#e0e0d1;'>VALUE</th>";
         $table .= "</tr>";
 
@@ -184,7 +184,7 @@ class mappingController {
         $table .= "<th colspan = '2' style='background:#f5f5f0;'>$head[2]</th>";
         $table .= "</tr>";
         $table .= "<tr>";
-        $table .= "<th style='background:#e0e0d1;'>CODE</th>";
+        $table .= "<th style='background:yellow;'>CODE</th>";
         $table .= "<th style='background:#e0e0d1;'>VALUE</th>";
         $table .= "</tr>";
 
@@ -207,7 +207,7 @@ class mappingController {
         $table .= "<th colspan = '2' style='background:#f5f5f0;'>$head[3]</th>";
         $table .= "</tr>";
         $table .= "<tr>";
-        $table .= "<th style='background:#e0e0d1;'>CODE</th>";
+        $table .= "<th style='background:yellow;'>CODE</th>";
         $table .= "<th style='background:#e0e0d1;'>VALUE</th>";
         $table .= "</tr>";
 

@@ -80,23 +80,29 @@ class productController {
         header('Content-Disposition: attachment; filename="MasterDataInsurance.xls"');
 
         $prd = new productService();
-        $_prd = $prd->dataTableEx();
+        $_comp = $prd->MsInsurance(); // บริษัทประกันภัย
+        $_insType = $prd->MsInsuranceType(); //ประเภทประกันภัย
+        $_car = $prd->MsCar(); // ข้อมูลรถ
+        $_promotion = $prd->MsInsurancePromotion(); //โปรโมชั่น
+        $_repair = $prd->MsInsuranceRepair(); //ประเภทการซ่อม
 
 
         $html = "";
 
 
         $head = array();
-        $head[0] = "MASTER CAR YEAR";
-        $head[1] = "MASTER CAR BRAND";
-        $head[2] = "MASTER CAR GENERATION";
-        $head[3] = "MASTER CAR SUB";
+        $head[0] = "บริษัทประกันภัย";
+        $head[1] = "ประเภทประกันภัย";
+        $head[2] = "ข้อมูลรถ";
+        $head[3] = "โปรโมชั่น";
+        $head[4] = "ประเภทการซ่อม";
 
         $_data = array();
-        $_data[0] = $_year;
-        $_data[1] = $_brand;
-        $_data[2] = $_gen;
-        $_data[3] = $_sub;
+        $_data[0] = $_comp;
+        $_data[1] = $_insType;
+        $_data[2] = $_car;
+        $_data[3] = $_promotion;
+        $_data[4] = $_repair;
         $html .= $this->getTableExcel($head, $_data);
 
 
@@ -106,11 +112,11 @@ class productController {
     }
 
     public function getTableExcel($head, $_data) {
-        $years = $_data[0];
-        $brands = $_data[1];
-        $gens = $_data[2];
-        $subs = $_data[3];
-
+        $comp = $_data[0];
+        $insType = $_data[1];
+        $car = $_data[2];
+        $promotion = $_data[3];
+        $repair = $_data[4];
 
 
 
@@ -126,14 +132,14 @@ class productController {
         $table .= "<th colspan = '2' style='background:#f5f5f0;'>$head[0]</th>";
         $table .= "</tr>";
         $table .= "<tr>";
-        $table .= "<th style='background:#e0e0d1;'>CODE</th>";
+        $table .= "<th style='background:yellow;'>CODE</th>";
         $table .= "<th style='background:#e0e0d1;'>VALUE</th>";
         $table .= "</tr>";
 
-        foreach ($years as $key => $value) {
+        foreach ($comp as $key => $value) {
             $table .= "<tr>";
-            $table .= "<td>" . $years[$key]['s_code'] . "</td>";
-            $table .= "<td>" . $years[$key]['s_name'] . "</td>";
+            $table .= "<td>" . $comp[$key]['i_ins_comp'] . "</td>";
+            $table .= "<td>" . $comp[$key]['s_comp_th'] . "</td>";
             $table .= "</tr>";
         }
         $table .= "</table>";
@@ -148,14 +154,14 @@ class productController {
         $table .= "<th colspan = '2' style='background:#f5f5f0;'>$head[1]</th>";
         $table .= "</tr>";
         $table .= "<tr>";
-        $table .= "<th style='background:#e0e0d1;'>CODE</th>";
+        $table .= "<th style='background:yellow;'>CODE</th>";
         $table .= "<th style='background:#e0e0d1;'>VALUE</th>";
         $table .= "</tr>";
 
-        foreach ($brands as $key => $value) {
+        foreach ($insType as $key => $value) {
             $table .= "<tr>";
-            $table .= "<td>" . $brands[$key]['s_code'] . "</td>";
-            $table .= "<td>" . $brands[$key]['s_name'] . "</td>";
+            $table .= "<td>" . $insType[$key]['i_ins_type'] . "</td>";
+            $table .= "<td>" . $insType[$key]['s_name'] . "</td>";
             $table .= "</tr>";
         }
         $table .= "</table>";
@@ -168,17 +174,23 @@ class productController {
         $table .= "<td>";
         $table .= "<table border='1'>";
         $table .= "<tr>";
-        $table .= "<th colspan = '2' style='background:#f5f5f0;'>$head[2]</th>";
+        $table .= "<th colspan = '5' style='background:#f5f5f0;'>$head[2]</th>";
         $table .= "</tr>";
         $table .= "<tr>";
-        $table .= "<th style='background:#e0e0d1;'>CODE</th>";
-        $table .= "<th style='background:#e0e0d1;'>VALUE</th>";
+        $table .= "<th style='background:yellow;'>CODE</th>";
+        $table .= "<th style='background:#e0e0d1;'>BRAND</th>";
+        $table .= "<th style='background:#e0e0d1;'>YEAR</th>";
+        $table .= "<th style='background:#e0e0d1;'>GENERATION</th>";
+        $table .= "<th style='background:#e0e0d1;'>SUB GENERATION</th>";
         $table .= "</tr>";
 
-        foreach ($gens as $key => $value) {
+        foreach ($car as $key => $value) {
             $table .= "<tr>";
-            $table .= "<td>" . $gens[$key]['s_code'] . "</td>";
-            $table .= "<td>" . $gens[$key]['s_name'] . "</td>";
+            $table .= "<td>" . $car[$key]['s_code'] . "</td>";
+            $table .= "<td>" . $car[$key]['s_brand_name'] . "</td>";
+            $table .= "<td>" . $car[$key]['i_year'] . "</td>";
+            $table .= "<td>" . $car[$key]['s_gen_name'] . "</td>";
+            $table .= "<td>" . $car[$key]['s_sub_name'] . "</td>";
             $table .= "</tr>";
         }
         $table .= "</table>";
@@ -194,14 +206,37 @@ class productController {
         $table .= "<th colspan = '2' style='background:#f5f5f0;'>$head[3]</th>";
         $table .= "</tr>";
         $table .= "<tr>";
-        $table .= "<th style='background:#e0e0d1;'>CODE</th>";
+        $table .= "<th style='background:yellow;'>CODE</th>";
         $table .= "<th style='background:#e0e0d1;'>VALUE</th>";
         $table .= "</tr>";
 
-        foreach ($subs as $key => $value) {
+        foreach ($promotion as $key => $value) {
             $table .= "<tr>";
-            $table .= "<td>" . $subs[$key]['s_code'] . "</td>";
-            $table .= "<td>" . $subs[$key]['s_name'] . "</td>";
+            $table .= "<td>" . $promotion[$key]['i_ins_promotion'] . "</td>";
+            $table .= "<td>" . $promotion[$key]['s_promotion'] . "</td>";
+            $table .= "</tr>";
+        }
+        $table .= "</table>";
+        $table .= "</td>";
+
+
+        $table .= "<td>&nbsp;</td>";
+
+
+        $table .= "<td>";
+        $table .= "<table border='1'>";
+        $table .= "<tr>";
+        $table .= "<th colspan = '2' style='background:#f5f5f0;'>$head[4]</th>";
+        $table .= "</tr>";
+        $table .= "<tr>";
+        $table .= "<th style='background:yellow;'>CODE</th>";
+        $table .= "<th style='background:#e0e0d1;'>VALUE</th>";
+        $table .= "</tr>";
+
+        foreach ($repair as $key => $value) {
+            $table .= "<tr>";
+            $table .= "<td>" . $repair[$key]['i_repair'] . "</td>";
+            $table .= "<td>" . $repair[$key]['s_name'] . "</td>";
             $table .= "</tr>";
         }
         $table .= "</table>";
@@ -210,35 +245,11 @@ class productController {
 
 
 
-
-
-
         $table .= "</tr>";
         $table .= "</table>";
         return $table;
     }
 
-    public function getTableExcelBK($header, $_data) {
-        $table = "";
-        $table .= "<table border='1'>";
-        $table .= "<tr>";
-        $table .= "<th colspan = '2' style='background:#e0e0d1;'>$header</th>";
-        $table .= "</tr>";
-        $table .= "<tr>";
-        $table .= "<th style='background:#e0e0d1;'>CODE</th>";
-        $table .= "<th style='background:#e0e0d1;'>VALUE</th>";
-        $table .= "</tr>";
-
-        foreach ($_data as $key => $value) {
-            $table .= "<tr>";
-            $table .= "<td>" . $_data[$key]['s_code'] . "</td>";
-            $table .= "<td>" . $_data[$key]['s_name'] . "</td>";
-            $table .= "</tr>";
-        }
-        $table .= "</table><br/>";
-
-        return $table;
-    }
 
     public function isValidImport($info) {
         $intReturn = FALSE;
@@ -375,10 +386,6 @@ class productController {
         } else if (!is_numeric($info[f_point])) {
             $return2003 = eregi_replace("field", $_SESSION['lb_setIns_point'], $return2003);
             echo $return2003;
-            
-            
-            
-            
         } else if ($util->isEmpty($info[s_prcar_base])) {
             $return2099 = eregi_replace("field", $_SESSION['lb_setIns_base'], $return2099);
             echo $return2099;
@@ -396,57 +403,49 @@ class productController {
             echo $return2099;
         } else if (!is_numeric($info[s_prcar_water])) {
             $return2003 = eregi_replace("field", $_SESSION['lb_setIns_water'], $return2003);
-            echo $return2003;    
+            echo $return2003;
         } else if ($util->isEmpty($info[s_prcar_repair])) {
             $return2099 = eregi_replace("field", $_SESSION['lb_setIns_repair'], $return2099);
             echo $return2099;
         } else if (!is_numeric($info[s_prcar_repair])) {
             $return2003 = eregi_replace("field", $_SESSION['lb_setIns_repair'], $return2003);
-            echo $return2003;    
-        
-            
-            
-            
-            
+            echo $return2003;
         } else if ($util->isEmpty($info[s_prperson_per])) {
             $return2099 = eregi_replace("field", $_SESSION['lb_setIns_per'], $return2099);
             echo $return2099;
         } else if (!is_numeric($info[s_prperson_per])) {
             $return2003 = eregi_replace("field", $_SESSION['lb_setIns_per'], $return2003);
-            echo $return2003; 
+            echo $return2003;
         } else if ($util->isEmpty($info[s_prperson_pertimes])) {
             $return2099 = eregi_replace("field", $_SESSION['lb_setIns_pertimes'], $return2099);
             echo $return2099;
         } else if (!is_numeric($info[s_prperson_pertimes])) {
             $return2003 = eregi_replace("field", $_SESSION['lb_setIns_pertimes'], $return2003);
-            echo $return2003; 
+            echo $return2003;
         } else if ($util->isEmpty($info[s_prperson_outsider])) {
             $return2099 = eregi_replace("field", $_SESSION['lb_setIns_outside'], $return2099);
             echo $return2099;
         } else if (!is_numeric($info[s_prperson_outsider])) {
             $return2003 = eregi_replace("field", $_SESSION['lb_setIns_outside'], $return2003);
-            echo $return2003; 
-            
-          
+            echo $return2003;
         } else if ($util->isEmpty($info[s_prother_personal])) {
             $return2099 = eregi_replace("field", $_SESSION['lb_setIns_personal'], $return2099);
             echo $return2099;
         } else if (!is_numeric($info[s_prother_personal])) {
             $return2003 = eregi_replace("field", $_SESSION['lb_setIns_personal'], $return2003);
-            echo $return2003; 
+            echo $return2003;
         } else if ($util->isEmpty($info[s_prother_insurance])) {
             $return2099 = eregi_replace("field", $_SESSION['lb_setIns_insurance'], $return2099);
             echo $return2099;
         } else if (!is_numeric($info[s_prother_insurance])) {
             $return2003 = eregi_replace("field", $_SESSION['lb_setIns_insurance'], $return2003);
-            echo $return2003; 
+            echo $return2003;
         } else if ($util->isEmpty($info[s_prother_medical])) {
             $return2099 = eregi_replace("field", $_SESSION['lb_setIns_medical'], $return2099);
             echo $return2099;
         } else if (!is_numeric($info[s_prother_medical])) {
             $return2003 = eregi_replace("field", $_SESSION['lb_setIns_medical'], $return2003);
-            echo $return2003;     
-            
+            echo $return2003;
         } else {
             $intReturn = TRUE;
         }

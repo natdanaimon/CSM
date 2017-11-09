@@ -118,43 +118,43 @@ ACTIVEPAGES(13, 1);
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6" align="right"  <?= $hidden ?>>
-                                                    <!--                                                    <div class="btn-group">
-                                                                                                            <a href="javascript:clickFile()" >
-                                                                                                                <button id="sample_editable_1_new" class="btn sbold blue" >
-                                                                                                                    <i class="fa fa-cloud-upload"></i>
-                                                    <?= $_SESSION[btn_import] ?>
-                                                                                                                </button>
-                                                                                                            </a>
-                                                                                                            <form method="post"  id="upfile" enctype="multipart/form-data">
-                                                                                                                <input type="file" style="display:none;" id="file" name="file"/>
-                                                                                                                <input type="submit" style="display:none;" id="submitfile" name="submit"/>
-                                                                                                            </form>
-                                                    
-                                                                                                        </div>
-                                                                                                        <div class="btn-group">
-                                                                                                            <a href="controller/setting/mappingController.php?func=export" target="_blank">
-                                                                                                                <button id="sample_editable_1_new" class="btn sbold yellow" style="background: #ffcc00">
-                                                                                                                    <i class="fa fa-file-excel-o"></i>
-                                                    <?= $_SESSION[btn_export_excel_ng] ?>
-                                                                                                                </button>
-                                                                                                            </a>
-                                                                                                        </div>
-                                                                                                        <div class="btn-group">
-                                                                                                            <a href="excel/templated car.xlsx" >
-                                                                                                                <button id="sample_editable_1_new" class="btn sbold green">
-                                                                                                                    <i class="fa fa-file-excel-o"></i>
-                                                    <?= $_SESSION[btn_export_excel_temp] ?>
-                                                                                                                </button>
-                                                                                                            </a>
-                                                                                                        </div>
-                                                                                                        <div class="btn-group">
-                                                                                                            <a href="javascript:openLogs()" target="_blank">
-                                                                                                                <button id="sample_editable_1_new" class="btn sbold red">
-                                                                                                                    <i class="fa fa-warning"></i>
-                                                    <?= $_SESSION[btn_logs_error] ?>
-                                                                                                                </button>
-                                                                                                            </a>
-                                                                                                        </div>-->
+                                                    <div class="btn-group">
+                                                        <a href="javascript:clickFile()" >
+                                                            <button id="sample_editable_1_new" class="btn sbold blue" >
+                                                                <i class="fa fa-cloud-upload"></i>
+                                                                <?= $_SESSION[btn_import] ?>
+                                                            </button>
+                                                        </a>
+                                                        <form method="post"  id="upfile" enctype="multipart/form-data">
+                                                            <input type="file" style="display:none;" id="file" name="file"/>
+                                                            <input type="submit" style="display:none;" id="submitfile" name="submit"/>
+                                                        </form>
+
+                                                    </div>
+                                                    <div class="btn-group">
+                                                        <a href="controller/insurance/productController.php?func=export" target="_blank">
+                                                            <button id="sample_editable_1_new" class="btn sbold yellow" style="background: #ffcc00">
+                                                                <i class="fa fa-file-excel-o"></i>
+                                                                <?= $_SESSION[btn_export_excel_ng] ?>
+                                                            </button>
+                                                        </a>
+                                                    </div>
+                                                    <div class="btn-group">
+                                                        <a href="excel/templated insurance.xlsx" >
+                                                            <button id="sample_editable_1_new" class="btn sbold green">
+                                                                <i class="fa fa-file-excel-o"></i>
+                                                                <?= $_SESSION[btn_export_excel_temp] ?>
+                                                            </button>
+                                                        </a>
+                                                    </div>
+                                                    <div class="btn-group">
+                                                        <a href="javascript:openLogs()" target="_blank">
+                                                            <button id="sample_editable_1_new" class="btn sbold red">
+                                                                <i class="fa fa-warning"></i>
+                                                                <?= $_SESSION[btn_logs_error] ?>
+                                                            </button>
+                                                        </a>
+                                                    </div>
                                                 </div>
 
                                             </div>
@@ -181,7 +181,7 @@ ACTIVEPAGES(13, 1);
                                                     <th class="none"> <span style="color:red"><?= $_SESSION[tb_co_dDiscount] ?> </span></th>
                                                     <th class="none"> <span style="color:red"><?= $_SESSION[tb_co_dBase] ?> </span></th>
                                                     <th class="none"> <span style="color:red"><?= $_SESSION[tb_co_dRepair] ?> </span></th>
-                                                    
+
                                                     <th class="all">  <?= $_SESSION[tb_co_status] ?></th>
                                                     <th class="all" style="width: 40px"> <?= $_SESSION[tb_co_edit] ?> </th>
                                                     <th class="all" style="width: 40px"> <?= $_SESSION[tb_co_delete] ?></th>

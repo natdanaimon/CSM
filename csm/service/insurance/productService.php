@@ -229,7 +229,8 @@ class productService {
     }
 
     function import($db, $fileImport) {
-        $myfile = fopen("../../logs/logImportMap.txt", "w");
+
+        $myfile = fopen("../../logs/logImportInsurance.txt", "w");
         $txt = "";
         $txt .= "=================== START =======================\r\n";
         $txt .= date("Y-m-d h:i:s") . "\r\n";
@@ -241,52 +242,101 @@ class productService {
         $datestamp = "";
         $i = 1;
         $tp = "";
+        $hcol = $this->setHeadCol();
         foreach ($xlsx->rows() as $k => $r) {
-            $col0 = ( (isset($r[0])) ? $r[0] : NULL );
-            $col1 = ( (isset($r[1])) ? $r[1] : NULL );
-            $col2 = ( (isset($r[2])) ? $r[2] : NULL );
-            $col3 = ( (isset($r[3])) ? $r[3] : NULL );
-            $col4 = ( (isset($r[4])) ? $r[4] : NULL );
+            $col[] = array();
+            $col[0] = ( (isset($r[0])) ? $r[0] : NULL );
+            $col[1] = ( (isset($r[1])) ? $r[1] : NULL );
+            $col[2] = ( (isset($r[2])) ? $r[2] : NULL );
+            $col[3] = ( (isset($r[3])) ? $r[3] : NULL );
+            $col[4] = ( (isset($r[4])) ? $r[4] : NULL );
+            $col[5] = ( (isset($r[5])) ? $r[5] : NULL );
+            $col[6] = ( (isset($r[6])) ? $r[6] : NULL );
+            $col[7] = ( (isset($r[7])) ? $r[7] : NULL );
+            $col[8] = ( (isset($r[8])) ? $r[8] : NULL );
+            $col[9] = ( (isset($r[9])) ? $r[9] : NULL );
+            $col[10] = ( (isset($r[10])) ? $r[10] : NULL );
+            $col[11] = ( (isset($r[11])) ? $r[11] : NULL );
+            $col[12] = ( (isset($r[12])) ? $r[12] : NULL );
+            $col[13] = ( (isset($r[13])) ? $r[13] : NULL );
+            $col[14] = ( (isset($r[14])) ? $r[14] : NULL );
+            $col[15] = ( (isset($r[15])) ? $r[15] : NULL );
+            $col[16] = ( (isset($r[16])) ? $r[16] : NULL );
+            $col[17] = ( (isset($r[17])) ? $r[17] : NULL );
+            $col[18] = ( (isset($r[18])) ? $r[18] : NULL );
+            $col[19] = ( (isset($r[19])) ? $r[19] : NULL );
+
             if ($k == 0) {
-                if ($col0 != NULL && $col1 != NULL && $col2 != NULL && $col3 != NULL && $col4 != NULL) {
-                    if ($col1 == "YEAR" && $col2 == "BRAND CODE" && $col3 == "GENERATION CODE" && $col4 == "SUB CODE") {
-                        continue;
+                $flgContinue = FALSE;
+                $flgContinue = (count($col) == 20 ? FALSE : TRUE);
+                if ($flgContinue) {
+                    $txt .= "Header format not found.\r\n";
+                    break;
+                }
+
+                $flgCheckColNotMatch = FALSE;
+                for ($l = 0; $l < count($col); $l++) {
+                    if ($col[$l] != $hcol[$l]) {
+                        $flgCheckColNotMatch = TRUE;
                     }
+                }
+                if ($flgCheckColNotMatch) {
+                    $txt .= "Header format not found.\r\n";
+                    break;
+                } else {
+                    continue;
                 }
             }
 
-            if ($col0 != NULL && $col1 != NULL && $col2 != NULL && $col3 != NULL && $col4 != NULL) {
+            $ronNotNull = TRUE;
+            for ($l = 0; $l < 20; $l++) {
+                if ($col[$l] == NULL || $col[$l] == "") {
+                    $ronNotNull = FALSE;
+                }
+            }
 
-                if ($this->isNotMsYear($db, $col1)) {
-                    $txt .= "No=" . $col0 . "|Desc= Year [" . $col1 . "] data is Dupplicate.\r\n";
+            if ($ronNotNull) {
+
+
+                if ($this->isNotMsComp($db, $col[2])) {
+                    $txt .= "No=" . $col[0] . "|Desc Column 2 =  Insurance Company [" . $col[2] . "] is not master data.\r\n";
                     continue;
                 }
-                if ($this->isNotMsBrand($db, $col2)) {
-                    $txt .= "No=" . $col0 . "|Desc= Brand [" . $col2 . "] data is Dupplicate.\r\n";
+                if ($this->isNotMsType($db, $col[3])) {
+                    $txt .= "No=" . $col[0] . "|Desc Column 3 = Insurance Type [" . $col[3] . "] is not master data.\r\n";
                     continue;
                 }
-                if ($this->isNotMsGen($db, $col3)) {
-                    $txt .= "No=" . $col0 . "|Desc= Generation [" . $col3 . "] data is Dupplicate.\r\n";
+                if ($this->isNotMsCar($db, $col[4])) {
+                    $txt .= "No=" . $col[0] . "|Desc Column 4 = Car Info [" . $col[4] . "] is not master data.\r\n";
                     continue;
                 }
-                if ($this->isNotMsSub($db, $col4)) {
-                    $txt .= "No=" . $col0 . "|Desc= Sub [" . $col4 . "] data is Dupplicate.\r\n";
+                if ($this->isNotMsPromotion($db, $col[5])) {
+                    $txt .= "No=" . $col[0] . "|Desc Column 5 = Promotion [" . $col[5] . "] is not master data.\r\n";
                     continue;
                 }
-
-
-
-
-                if ($this->isDupplicateExcel($db, $col1, $col2, $col3, $col4)) {
-                    $txt .= "No=" . $col0 . "|Desc= [Year:$col1|Brand:$col2|Generation:$col3|Sub:$col4] Data Dupplicate.\r\n";
+                if ($this->isNotMsRepair($db, $col[6])) {
+                    $txt .= "No=" . $col[0] . "|Desc Column 6 = Repair Type [" . $col[6] . "] is not master data.\r\n";
                     continue;
                 }
 
-                if (trim($col0) == "") {
+                $isNumber = TRUE;
+                for ($l = 7; $l < 20; $l++) {
+                    if (!is_numeric($col[$l])) {
+                        $txt .= "No=" . $col[0] . "|Desc Column ".($l+1)." = [" . $col[$l] . "] is not number.\r\n";
+                        $isNumber = FALSE;
+                    }
+                }
+
+                if (!$isNumber) {
                     continue;
                 }
 
-                $state = $this->createStatement($db, $col1, $col2, $col3, $col4);
+
+                if (trim($col[0]) == "") {
+                    continue;
+                }
+
+                $state = $this->createStatement($db, $col);
                 array_push($arrSQL, $state);
             }
         }
@@ -299,46 +349,193 @@ class productService {
 
         $txt .= date("Y-m-d h:i:s") . "\r\n";
         $txt .= "===================== END =======================";
-        fwrite($myfile, $txt);
+        fwrite($myfile, utf8_encode($txt));
         fclose($myfile);
 
 
         return $reslut;
     }
 
-    function createStatement($db, $col1, $col2, $col3, $col4) {
-        $sql = " insert into tb_insurance (i_year , s_brand_code , s_gen_code , s_sub_code , d_create , d_update , s_create_by , s_update_by ,s_status) ";
-        $sql .= " values ";
-        $sql .= " ('$col1' , '$col2' , '$col3' , '$col4' ," . $db->Sysdate(TRUE) . " ," . $db->Sysdate(TRUE) . " ,'$_SESSION[username]','$_SESSION[username]','A' ) ";
-        return array("query" => "$sql");
+    function createStatement($db, $col) {
+        $strSql = "";
+        $strSql .= "INSERT ";
+        $strSql .= "INTO ";
+        $strSql .= "  tb_insurance( ";
+        $strSql .= "    s_insurance_htext, ";
+        $strSql .= "    i_ins_comp, ";
+        $strSql .= "    i_ins_type, ";
+        $strSql .= "    s_car_code, ";
+        $strSql .= "    i_ins_promotion, ";
+        $strSql .= "    f_price, ";
+        $strSql .= "    f_discount, ";
+        $strSql .= "    f_point, ";
+        $strSql .= "    s_prcar_base, ";
+        $strSql .= "    s_prcar_fire, ";
+        $strSql .= "    s_prcar_water, ";
+        $strSql .= "    s_prcar_repair, ";
+        $strSql .= "    i_prcar_repair_type, ";
+        $strSql .= "    s_prperson_per, ";
+        $strSql .= "    s_prperson_pertimes, ";
+        $strSql .= "    s_prperson_outsider, ";
+        $strSql .= "    s_prother_personal, ";
+        $strSql .= "    s_prother_insurance, ";
+        $strSql .= "    s_prother_medical, ";
+        $strSql .= "    d_create, ";
+        $strSql .= "    d_update, ";
+        $strSql .= "    s_create_by, ";
+        $strSql .= "    s_update_by, ";
+        $strSql .= "    s_status ";
+        $strSql .= "  ) ";
+        $strSql .= "VALUES( ";
+        $strSql .= "  '$col[1]', ";
+        $strSql .= "   $col[2], ";
+        $strSql .= "   $col[3], ";
+        $strSql .= "  '$col[4]', ";
+        $strSql .= "   $col[5], ";
+        $strSql .= "   $col[7], ";
+        $strSql .= "   $col[8], ";
+        $strSql .= "   $col[9], ";
+
+        $strSql .= "  '$col[10]', ";
+        $strSql .= "  '$col[11]', ";
+        $strSql .= "  '$col[12]', ";
+        $strSql .= "  '$col[13]', ";
+        $strSql .= "   $col[6], ";
+
+        $strSql .= "  '$col[14]', ";
+        $strSql .= "  '$col[15]', ";
+        $strSql .= "  '$col[16]', ";
+
+        $strSql .= "  '$col[17]', ";
+        $strSql .= "  '$col[18]', ";
+        $strSql .= "  '$col[19]', ";
+
+
+        $strSql .= "  " . $db->Sysdate(TRUE) . ", ";
+        $strSql .= " " . $db->Sysdate(TRUE) . ", ";
+        $strSql .= "  '$_SESSION[username]', ";
+        $strSql .= "  '$_SESSION[username]', ";
+        $strSql .= "  'A' ";
+        $strSql .= ") ";
+        return array("query" => "$strSql");
     }
 
-    function isNotMsYear($db, $year) {
-        $strSql = "SELECT count(*) cnt FROM tb_car_year WHERE 1=1 ";
-        $strSql .= "and i_year = " . $year . " ";
+    //------------------------------------------ isNot Master ----------------------------------------
+    function isNotMsCar($db, $s_car_code) {
+        $strSql = "SELECT count(*) cnt FROM tb_car_map WHERE 1=1 ";
+        $strSql .= "and s_car_code = '" . $s_car_code . "' ";
         $_data = $db->Search_Data_FormatJson($strSql);
         return ($_data[0]['cnt'] == 0 ? TRUE : FALSE);
     }
 
-    function isNotMsBrand($db, $brand) {
-        $strSql = "SELECT count(*) cnt FROM tb_car_brand WHERE 1=1 ";
-        $strSql .= "and s_brand_code = '" . $brand . "' ";
+    function isNotMsComp($db, $i_ins_comp) {
+        $strSql = "SELECT count(*) cnt FROM tb_insurance_comp WHERE 1=1 ";
+        $strSql .= "and i_ins_comp = " . $i_ins_comp . " ";
         $_data = $db->Search_Data_FormatJson($strSql);
         return ($_data[0]['cnt'] == 0 ? TRUE : FALSE);
     }
 
-    function isNotMsGen($db, $gen) {
-        $strSql = "SELECT count(*) cnt FROM tb_car_generation WHERE 1=1 ";
-        $strSql .= "and s_gen_code = '" . $gen . "' ";
+    function isNotMsType($db, $i_ins_type) {
+        $strSql = "SELECT count(*) cnt FROM tb_insurance_type WHERE 1=1 ";
+        $strSql .= "and i_ins_type = " . $i_ins_type . " ";
         $_data = $db->Search_Data_FormatJson($strSql);
         return ($_data[0]['cnt'] == 0 ? TRUE : FALSE);
     }
 
-    function isNotMsSub($db, $sub) {
-        $strSql = "SELECT count(*) cnt FROM tb_car_sub WHERE 1=1 ";
-        $strSql .= "and s_sub_code = '" . $sub . "' ";
+    function isNotMsPromotion($db, $i_ins_promotion) {
+        $strSql = "SELECT count(*) cnt FROM tb_insurance_promotion WHERE 1=1 ";
+        $strSql .= "and i_ins_promotion = '" . $i_ins_promotion . "' ";
         $_data = $db->Search_Data_FormatJson($strSql);
         return ($_data[0]['cnt'] == 0 ? TRUE : FALSE);
+    }
+
+    function isNotMsRepair($db, $i_repair) {
+        $strSql = "SELECT count(*) cnt FROM tb_insurance_repair_type WHERE 1=1 ";
+        $strSql .= "and i_repair = '" . $i_repair . "' ";
+        $_data = $db->Search_Data_FormatJson($strSql);
+        return ($_data[0]['cnt'] == 0 ? TRUE : FALSE);
+    }
+
+    //--------------------------------------- Export Master ---------------------------------------
+
+    function MsCar() {
+        $db = new ConnectDB();
+        $strSql = "";
+        $strSql .= "        SELECT    ";
+        $strSql .= "        m.s_car_code s_code , b.s_brand_name, y.i_year,g.s_gen_name,s.s_sub_name  ";
+        $strSql .= "        FROM    ";
+        $strSql .= "        tb_car_map m , tb_car_year y , tb_car_brand b , tb_car_generation g , tb_car_sub s , tb_status st   ";
+        $strSql .= "        WHERE 1=1   ";
+        $strSql .= "        AND m.i_year = y.i_year   ";
+        $strSql .= "        AND m.s_brand_code = b.s_brand_code   ";
+        $strSql .= "        AND m.s_gen_code = g.s_gen_code   ";
+        $strSql .= "        AND m.s_sub_code = s.s_sub_code   ";
+        $strSql .= "        AND m.s_status = st.s_status   ";
+        $strSql .= "        AND st.s_type   =  'ACTIVE'   ";
+        $strSql .= "        order by  m.s_car_code  ";
+        $_data = $db->Search_Data_FormatJson($strSql);
+        $db->close_conn();
+        return $_data;
+    }
+
+    function MsInsurance() {
+        $db = new ConnectDB();
+        $strSql = "select * from tb_insurance_comp where s_status = 'A' order by i_ins_comp asc ";
+        $_data = $db->Search_Data_FormatJson($strSql);
+        $db->close_conn();
+        return $_data;
+    }
+
+    function MsInsuranceType() {
+        $db = new ConnectDB();
+        $strSql = "select * from tb_insurance_type where s_status = 'A' order by i_ins_type asc ";
+        $_data = $db->Search_Data_FormatJson($strSql);
+        $db->close_conn();
+        return $_data;
+    }
+
+    function MsInsurancePromotion() {
+        $db = new ConnectDB();
+        $strSql = "select * from tb_insurance_promotion where s_status = 'A' order by i_ins_promotion asc ";
+        $_data = $db->Search_Data_FormatJson($strSql);
+        $db->close_conn();
+        return $_data;
+    }
+
+    function MsInsuranceRepair() {
+        $db = new ConnectDB();
+        $strSql = "select * from tb_insurance_repair_type where s_status = 'A' order by i_repair asc ";
+        $_data = $db->Search_Data_FormatJson($strSql);
+        $db->close_conn();
+        return $_data;
+    }
+
+    //--------------------------------------- Export Master ---------------------------------------
+
+
+    function setHeadCol() {
+        $head = array();
+        $head[0] = "ลำดับ";
+        $head[1] = "แคมเปญ";
+        $head[2] = "บริษัทประกันภัย";
+        $head[3] = "ประเภทประกันภัย";
+        $head[4] = "ข้อมูลรถ";
+        $head[5] = "โปรโมชั่น";
+        $head[6] = "ประเภทการซ่อม";
+        $head[7] = "ราคา";
+        $head[8] = "ส่วนลด";
+        $head[9] = "คะแนน";
+        $head[10] = "ทุนประกัน";
+        $head[11] = "คุ้มครองไฟไหม้";
+        $head[12] = "คุ้มครองน้ำท่วม";
+        $head[13] = "ค่าเสียหายส่วนแรก";
+        $head[14] = "ชีวิตบุคคลภายนอก/คน";
+        $head[15] = "ชีวิตบุคคลภายนอก/ครั้ง";
+        $head[16] = "ทรัพย์สินบุคคลภายนอก";
+        $head[17] = "อุบัติเหตุส่วนบุคคล";
+        $head[18] = "ประกันตัวผู้ขับขี่";
+        $head[19] = "ค่ารักษาพยาบาล";
+        return $head;
     }
 
 }
