@@ -188,7 +188,8 @@ function edit() {
         success: function(data) {
             var res = JSON.parse(data);
             $.each(res, function(i, item) {
-                debugger;
+
+                $("#s_car_code").val(item.s_car_code);
                 $("#i_year").val(item.i_year).trigger('change');
                 $("#s_brand_code").val(item.s_brand_code).trigger('change');
                 $("#s_gen_code").val(item.s_gen_code).trigger('change');
