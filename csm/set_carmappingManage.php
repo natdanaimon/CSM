@@ -124,7 +124,7 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                                                 <label for="form_control_1"><?= $_SESSION[lb_setYear_year] ?></label>
                                             </div>
 
-                                            <div class="form-group form-md-line-input has-success" style="height: 80px">
+                                            <div class="form-group form-md-line-input has-success" style="height: 60px">
                                                 <select class="form-control edited bold" id="s_brand_code" name="s_brand_code">
                                                     <!--<option value="-1"></option>-->
                                                 </select>

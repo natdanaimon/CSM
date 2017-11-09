@@ -134,7 +134,7 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                                             </div>
 
 
-                                            <div class="form-group form-md-line-input has-success" style="height: 80px">
+                                            <div class="form-group form-md-line-input has-success" style="height: 60px">
                                                 <select class="form-control edited bold" id="s_car_code" name="s_car_code">
                                                 </select>
                                                 <label for="form_control_1"><?= $_SESSION[lb_setIns_code] ?></label>

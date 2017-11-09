@@ -2,21 +2,20 @@ function getDDLStatus() {
     $.ajax({
         type: 'GET',
         url: 'controller/commonController.php?func=DDLStatusActive',
-        beforeSend: function ()
-        {
+        beforeSend: function() {
             //$('#se-pre-con').fadeIn(100);
         },
-        success: function (data) {
+        success: function(data) {
             var htmlOption = "";
             var res = JSON.parse(data);
-            $.each(res, function (i, item) {
+            $.each(res, function(i, item) {
                 var txt_status = (language == "th" ? item.s_detail_th : item.s_detail_en);
                 htmlOption += "<option value='" + item.s_status + "'>" + txt_status + "</option>";
             });
             $("#status").html(htmlOption);
             getDDLYear();
         },
-        error: function (data) {
+        error: function(data) {
 
         }
 
@@ -29,17 +28,17 @@ function formatStateYear(state) {
         return state.text;
     }
     var $state = $(
-            '<span><span style="color:black;font-weight:bold;"> ' + state.text + '</span></span>'
-            );
+        '<span><span style="color:black;font-weight:bold;"> ' + state.text + '</span></span>'
+    );
     return $state;
 }
+
 function getDDLYear() {
     $.ajax({
         type: 'GET',
         url: 'controller/commonController.php?func=DDLYear',
-        beforeSend: function ()
-        {},
-        success: function (ddl) {
+        beforeSend: function() {},
+        success: function(ddl) {
             var res = JSON.parse(ddl);
             $("#i_year").select2({
                 data: res,
@@ -50,7 +49,7 @@ function getDDLYear() {
             getDDLBrand();
 
         },
-        error: function (ddl) {
+        error: function(ddl) {
 
         }
 
@@ -73,17 +72,17 @@ function formatStateBrand(state) {
 
 
     var $state = $(
-            '<span><img src="'+ pathImg + '" width="50px" height="50px" class="img-flag" Style="margin-bottom: 5px;"/><span style="color:black;font-weight:bold;"> ' + state.text + '</span></span>'
-            );
+        '<span><img src="' + pathImg + '" width="30px" height="30px" class="img-flag" Style="margin-bottom: 5px;"/><span style="color:black;font-weight:bold;"> ' + state.text + '</span></span>'
+    );
     return $state;
 }
+
 function getDDLBrand() {
     $.ajax({
         type: 'GET',
         url: 'controller/commonController.php?func=DDLBrand',
-        beforeSend: function ()
-        {},
-        success: function (ddl) {
+        beforeSend: function() {},
+        success: function(ddl) {
             var res = JSON.parse(ddl);
             $("#s_brand_code").select2({
                 data: res,
@@ -94,7 +93,7 @@ function getDDLBrand() {
             getDDLGeneration();
 
         },
-        error: function (ddl) {
+        error: function(ddl) {
 
         }
 
@@ -109,17 +108,17 @@ function formatStateGeneration(state) {
         return state.text;
     }
     var $state = $(
-            '<span><span style="color:black;font-weight:bold;"> ' + state.text + '</span></span>'
-            );
+        '<span><span style="color:black;font-weight:bold;"> ' + state.text + '</span></span>'
+    );
     return $state;
 }
+
 function getDDLGeneration() {
     $.ajax({
         type: 'GET',
         url: 'controller/commonController.php?func=DDLGeneration',
-        beforeSend: function ()
-        {},
-        success: function (ddl) {
+        beforeSend: function() {},
+        success: function(ddl) {
             var res = JSON.parse(ddl);
             $("#s_gen_code").select2({
                 data: res,
@@ -130,7 +129,7 @@ function getDDLGeneration() {
             getDDLSub();
 
         },
-        error: function (ddl) {
+        error: function(ddl) {
 
         }
 
@@ -145,17 +144,17 @@ function formatStateSub(state) {
         return state.text;
     }
     var $state = $(
-            '<span><span style="color:black;font-weight:bold;"> ' + state.text + '</span></span>'
-            );
+        '<span><span style="color:black;font-weight:bold;"> ' + state.text + '</span></span>'
+    );
     return $state;
 }
+
 function getDDLSub() {
     $.ajax({
         type: 'GET',
         url: 'controller/commonController.php?func=DDLSub',
-        beforeSend: function ()
-        {},
-        success: function (ddl) {
+        beforeSend: function() {},
+        success: function(ddl) {
             var res = JSON.parse(ddl);
             $("#s_sub_code").select2({
                 data: res,
@@ -168,7 +167,7 @@ function getDDLSub() {
             }
 
         },
-        error: function (ddl) {
+        error: function(ddl) {
 
         }
 
@@ -183,13 +182,12 @@ function edit() {
     $.ajax({
         type: 'GET',
         url: 'controller/setting/mappingController.php?func=getInfo&id=' + keyEdit,
-        beforeSend: function ()
-        {
+        beforeSend: function() {
             //$('#se-pre-con').fadeIn(100);
         },
-        success: function (data) {
+        success: function(data) {
             var res = JSON.parse(data);
-            $.each(res, function (i, item) {
+            $.each(res, function(i, item) {
                 debugger;
                 $("#i_year").val(item.i_year).trigger('change');
                 $("#s_brand_code").val(item.s_brand_code).trigger('change');
@@ -205,7 +203,7 @@ function edit() {
             $('#se-pre-con').delay(100).fadeOut();
 
         },
-        error: function (data) {
+        error: function(data) {
 
         }
 
@@ -223,11 +221,10 @@ function save() {
         type: 'POST',
         url: 'controller/setting/mappingController.php',
         data: Jsdata,
-        beforeSend: function ()
-        {
+        beforeSend: function() {
             $('#se-pre-con').fadeIn(100);
         },
-        success: function (data) {
+        success: function(data) {
 
             var res = data.split(",");
             if (res[0] == "0000") {
@@ -241,13 +238,13 @@ function save() {
             }
             $('#se-pre-con').delay(100).fadeOut();
             notification();
-            $('#form-action').each(function () {
+            $('#form-action').each(function() {
                 getDDLStatus();
                 this.reset();
             });
-//            location.reload();
+            //            location.reload();
         },
-        error: function (data) {
+        error: function(data) {
 
         }
 
