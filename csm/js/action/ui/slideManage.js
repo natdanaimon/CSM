@@ -14,9 +14,7 @@ function getDDLStatus() {
                 htmlOption += "<option value='" + item.s_status + "'>" + txt_status + "</option>";
             });
             $("#status").html(htmlOption);
-            if (keyEdit != "") {
-                edit();
-            } 
+            getDDLPosition();
         },
         error: function (data) {
 
@@ -25,7 +23,31 @@ function getDDLStatus() {
     });
 }
 
+function getDDLPosition() {
+    $.ajax({
+        type: 'GET',
+        url: 'controller/commonController.php?func=DDLPosition',
+        beforeSend: function ()
+        {
+            //$('#se-pre-con').fadeIn(100);
+        },
+        success: function (data) {
+            var htmlOption = "";
+            var res = JSON.parse(data);
+            $.each(res, function (i, item) {
+                htmlOption += "<option value='" + item.i_position + "'>" + item.s_detail + "</option>";
+            });
+            $("#i_position").html(htmlOption);
+            if (keyEdit != "") {
+                edit();
+            }
+        },
+        error: function (data) {
 
+        }
+
+    });
+}
 
 
 function edit() {
@@ -44,6 +66,7 @@ function edit() {
                 debugger;
 
                 $("#i_index").val(item.i_index);
+                $("#i_position").val(item.i_position);
                 $("#s_desc_hl").val(item.s_desc_hl);
                 $("#s_desc_nm").val(item.s_desc_nm);
 

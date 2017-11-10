@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 09, 2017 at 09:37 PM
+-- Generation Time: Nov 10, 2017 at 11:06 AM
 -- Server version: 5.6.37
 -- PHP Version: 5.6.30
 
@@ -10745,6 +10745,26 @@ CREATE TABLE `tb_portfolio` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tb_position`
+--
+
+CREATE TABLE `tb_position` (
+  `i_position` int(10) NOT NULL,
+  `s_detail` varchar(100) NOT NULL,
+  `s_status` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tb_position`
+--
+
+INSERT INTO `tb_position` (`i_position`, `s_detail`, `s_status`) VALUES
+(1, 'สไลด์หน้าแรก', 'A'),
+(2, 'สไลด์หน้าอยากซ่อมอู่', 'A');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tb_promotion`
 --
 
@@ -10925,6 +10945,7 @@ INSERT INTO `tb_provinces` (`i_province`, `s_code`, `s_name_th`, `s_name_en`, `i
 CREATE TABLE `tb_slide` (
   `i_slide` int(10) NOT NULL,
   `i_index` int(11) NOT NULL,
+  `i_position` int(11) NOT NULL,
   `s_desc_hl` varchar(150) NOT NULL,
   `s_desc_nm` varchar(150) NOT NULL,
   `s_image` varchar(100) NOT NULL,
@@ -10939,10 +10960,10 @@ CREATE TABLE `tb_slide` (
 -- Dumping data for table `tb_slide`
 --
 
-INSERT INTO `tb_slide` (`i_slide`, `i_index`, `s_desc_hl`, `s_desc_nm`, `s_image`, `d_create`, `d_update`, `s_create_by`, `s_update_by`, `s_status`) VALUES
-(4, 1, 'Horgarage', 'Slide 01', '201711071751271.jpg', '2017-11-07 17:51:27', '2017-11-07 17:51:27', 'admin', 'admin', 'A'),
-(5, 2, 'Horgarage', 'Slide 02', '201711071751411.jpg', '2017-11-07 17:51:41', '2017-11-07 17:58:42', 'admin', 'admin', 'C'),
-(6, 3, 'Horgarage', 'Slide 03', '201711071751561.jpg', '2017-11-07 17:51:56', '2017-11-07 17:51:56', 'admin', 'admin', 'A');
+INSERT INTO `tb_slide` (`i_slide`, `i_index`, `i_position`, `s_desc_hl`, `s_desc_nm`, `s_image`, `d_create`, `d_update`, `s_create_by`, `s_update_by`, `s_status`) VALUES
+(4, 1, 0, 'Horgarage', 'Slide 01', '201711071751271.jpg', '2017-11-07 17:51:27', '2017-11-07 17:51:27', 'admin', 'admin', 'A'),
+(5, 2, 0, 'Horgarage', 'Slide 02', '201711071751411.jpg', '2017-11-07 17:51:41', '2017-11-07 17:58:42', 'admin', 'admin', 'C'),
+(6, 3, 0, 'Horgarage', 'Slide 03', '201711071751561.jpg', '2017-11-07 17:51:56', '2017-11-07 17:51:56', 'admin', 'admin', 'A');
 
 -- --------------------------------------------------------
 
@@ -11203,6 +11224,13 @@ ALTER TABLE `tb_portfolio`
   ADD KEY `index_tb_portfolio` (`i_vote`,`i_view`,`s_status`);
 
 --
+-- Indexes for table `tb_position`
+--
+ALTER TABLE `tb_position`
+  ADD PRIMARY KEY (`i_position`),
+  ADD KEY `index_tb_position` (`s_status`);
+
+--
 -- Indexes for table `tb_promotion`
 --
 ALTER TABLE `tb_promotion`
@@ -11349,6 +11377,11 @@ ALTER TABLE `tb_partner_comp`
 --
 ALTER TABLE `tb_portfolio`
   MODIFY `i_portf` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `tb_position`
+--
+ALTER TABLE `tb_position`
+  MODIFY `i_position` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `tb_promotion`
 --

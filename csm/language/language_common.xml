@@ -61,7 +61,7 @@
         <th>รูปภาพปก</th>
         <en>Image Main</en>
     </detail>
-     <detail>
+    <detail>
         <variable>image_d</variable>
         <th>รูปภาพรายละเอียด</th>
         <en>Image Detail</en>
@@ -394,7 +394,7 @@
         <th>กรุณาเลือกข้อมูล</th>
         <en>Please Selected</en>
     </detail>
-	<detail>
+    <detail>
         <variable>view_count</variable>
         <th>จำนวนคนเข้าดู</th>
         <en>View Count</en>
@@ -404,7 +404,11 @@
         <th>จำนวนคนกดโหวต</th>
         <en>Vote Count</en>
     </detail>
-	
+    <detail>
+        <variable>position</variable>
+        <th>ตำแหน่ง</th>
+        <en>Position</en>
+    </detail>
     <!--  Other -->
     
     
@@ -808,12 +812,12 @@
         <th>จัดการข้อมูลคลังความรู้</th>
         <en>Knowledge Management</en>
     </detail>
-     <detail>
+    <detail>
         <variable>ui_promotion</variable>
         <th>จัดการข้อมูลโปรโมชั่น</th>
         <en>Promotion Management</en>
     </detail>
-     <detail>
+    <detail>
         <variable>ui_popup</variable>
         <th>จัดการข้อมูลโปรโมชั่นแจ้งเตือน</th>
         <en>Popup Manangement</en>
@@ -940,6 +944,11 @@
     
     <detail>
         <variable>tb_co_pointion</variable>
+        <th>ตำแหน่ง</th>
+        <en>Position</en>
+    </detail>
+    <detail>
+        <variable>tb_co_position</variable>
         <th>ตำแหน่ง</th>
         <en>Position</en>
     </detail>
@@ -1121,17 +1130,17 @@
         <th>โปรโมชั่น</th>
         <en>Promotion</en>
     </detail>
-     <detail>
+    <detail>
         <variable>tb_co_dDiscount</variable>
         <th>ส่วนลด</th>
         <en>Discount</en>
     </detail>
-     <detail>
+    <detail>
         <variable>tb_co_dBase</variable>
         <th>ทุนประกัน</th>
         <en>Insurance Base</en>
     </detail>
-     <detail>
+    <detail>
         <variable>tb_co_dRepair</variable>
         <th>ซ่อม</th>
         <en>Repair Type</en>

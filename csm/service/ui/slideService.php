@@ -5,18 +5,21 @@
 class slideService {
 
     function dataTable() {
-      
+
         $db = new ConnectDB();
         $strSql = "";
         $strSql .= "SELECT ";
         $strSql .= "  sl.*, ";
+        $strSql .= " p.s_detail s_position, ";
         $strSql .= "  s.s_detail_th status_th, ";
         $strSql .= "  s.s_detail_en status_en ";
         $strSql .= "FROM ";
         $strSql .= "  tb_slide sl, ";
+        $strSql .= "  tb_position p , ";
         $strSql .= "  tb_status s ";
         $strSql .= "WHERE ";
         $strSql .= "   sl.s_status = s.s_status ";
+        $strSql .= "  AND p.i_position = sl.i_position ";
         $strSql .= "  AND s.s_type = 'ACTIVE' ";
         $_data = $db->Search_Data_FormatJson($strSql);
         $db->close_conn();
@@ -79,6 +82,7 @@ class slideService {
         $strSql .= "update tb_slide ";
         $strSql .= "set  ";
         $strSql .= "    i_index=$info[i_index], ";
+        $strSql .= "    i_position=$info[i_position], ";
         $strSql .= "    s_desc_hl='$info[s_desc_hl]', ";
         $strSql .= "    s_desc_nm='$info[s_desc_nm]', ";
 
@@ -112,6 +116,7 @@ class slideService {
         $strSql .= "  tb_slide( ";
 
         $strSql .= "    i_index, ";
+        $strSql .= "    i_position, ";
         $strSql .= "    s_desc_hl, ";
         $strSql .= "    s_desc_nm, ";
 
@@ -130,6 +135,7 @@ class slideService {
         $strSql .= "VALUES( ";
 
         $strSql .= "  '$info[i_index]', ";
+        $strSql .= "  '$info[i_position]', ";
         $strSql .= "  '$info[s_desc_hl]', ";
         $strSql .= "  '$info[s_desc_nm]', ";
 

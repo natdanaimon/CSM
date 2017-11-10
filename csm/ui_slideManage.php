@@ -119,7 +119,11 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
 
 
 
-
+                                                <div class="form-group form-md-line-input has-success " >
+                                                    <select class="form-control edited bold" id="i_position" name="i_position" >
+                                                    </select>
+                                                    <label for="form_control_1"><?= $_SESSION[position] ?></label>
+                                                </div>
 
 
                                                 <div class="form-group form-md-line-input has-success" >
@@ -198,7 +202,7 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                                     <div class="col-md-12" id="div-img1" >
                                         <span style="color: red">* <?= $_SESSION[rmk_ui_01] ?></span>
                                         <br/>
-                                          <br/>
+                                        <br/>
                                     </div>
                                     <br/>
 

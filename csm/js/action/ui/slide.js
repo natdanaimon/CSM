@@ -22,6 +22,7 @@ function initialDataTable(first) {
 
                 var col_checkbox = "";
                 var col_picture = "";
+                var col_pos = item.s_position;
                 var col_hl = item.s_desc_hl;
                 var col_nm = item.s_desc_nm;
                 var col_index = item.i_index;
@@ -70,6 +71,7 @@ function initialDataTable(first) {
                 var addRow = [
                     col_checkbox,
                     col_picture,
+                    col_pos,
                     col_hl,
                     col_nm,
                     col_index,
@@ -84,7 +86,7 @@ function initialDataTable(first) {
             if (first == "TRUE") {
                 $datatable.dataTable({
                     data: JsonData,
-                    order: [[5, 'asc'], [4, 'asc']],
+                    order: [[6, 'asc'], [5, 'asc'],[2, 'asc']],
                     columnDefs: [
                         {"orderable": false, "targets": 0}
                     ]

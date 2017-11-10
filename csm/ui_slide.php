@@ -100,9 +100,9 @@ ACTIVEPAGES(14, 1);
                                     <div class="portlet-body">
                                         <div class="table-toolbar">
                                             <div class="row">
-<!--                                                <div class="col-md-6">
-
-                                                </div>-->
+                                                <!--                                                <div class="col-md-6">
+                                                
+                                                                                                </div>-->
                                                 <div class="col-md-12" align="left" <?= $hidden ?>>
                                                     <div class="btn-group">
                                                         <a href="ui_slideManage.php?func=add">
@@ -136,6 +136,7 @@ ACTIVEPAGES(14, 1);
                                                         </span>
                                                     </th>
                                                     <th>  <?= $_SESSION[tb_co_image] ?> </th>
+                                                    <th> <?= $_SESSION[tb_co_pointion] ?> </th>
                                                     <th> <?= $_SESSION[tb_co_hl] ?> </th>
                                                     <th> <?= $_SESSION[tb_co_nm] ?> </th>
                                                     <th> <?= $_SESSION[tb_co_index] ?> </th>
@@ -216,7 +217,7 @@ ACTIVEPAGES(14, 1);
         <script src="js/common/utility.js" type="text/javascript"></script>
         <link href="css/notify.css" rel="stylesheet" type="text/css" />
         <script src="js/action/ui/slide.js" type="text/javascript"></script>
-         <link href="outbound/lightbox/css/lightbox.css" rel="stylesheet" type="text/css" />
+        <link href="outbound/lightbox/css/lightbox.css" rel="stylesheet" type="text/css" />
         <script src="outbound/lightbox/js/lightbox.js" type="text/javascript"></script>
 
         <script>

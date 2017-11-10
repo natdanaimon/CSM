@@ -69,6 +69,14 @@ class commonService {
         return $_data;
     }
 
+    function DDLPosition(){
+         $db = new ConnectDB();
+        $strSql = "select * from tb_position ";
+        $_data = $db->Search_Data_FormatJson($strSql);
+        $db->close_conn();
+        return $_data;
+    }
+    
     function DDLYear() {
         $db = new ConnectDB();
         $strSql = "select * from tb_car_year where s_status = 'A' order by i_year desc ";
@@ -76,6 +84,7 @@ class commonService {
         $db->close_conn();
         return $_data;
     }
+    
 
     function DDLBrand() {
         $db = new ConnectDB();
