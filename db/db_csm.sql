@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Nov 09, 2017 at 03:32 PM
--- Server version: 10.1.25-MariaDB
--- PHP Version: 5.6.31
+-- Host: 127.0.0.1
+-- Generation Time: Nov 10, 2017 at 06:23 AM
+-- Server version: 10.1.9-MariaDB
+-- PHP Version: 5.5.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -1071,10 +1069,22 @@ CREATE TABLE `tb_car_brand` (
 --
 
 INSERT INTO `tb_car_brand` (`i_brand`, `s_brand_code`, `s_brand_name`, `s_image`, `d_create`, `d_update`, `s_create_by`, `s_update_by`, `s_status`) VALUES
-(4, 'H01', 'HONDA', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'admin', 'admin', 'A'),
-(5, 'T01', 'TOYOTA', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'admin', 'admin', 'A'),
-(6, 'HD', 'HONDA', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'admin', 'admin', 'A'),
-(7, 'TO', 'TOYOTA', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'admin', 'admin', 'A');
+(4, 'HO', 'HONDA', '201711091918481.png', '0000-00-00 00:00:00', '2017-11-09 19:20:26', 'admin', 'admin', 'A'),
+(7, 'TO', 'TOYOTA', '201711091919211.png', '0000-00-00 00:00:00', '2017-11-09 19:19:21', 'admin', 'admin', 'A'),
+(8, 'SU', 'SUZUKI', '201711091944061.png', '2017-11-09 19:44:06', '2017-11-09 19:44:06', 'admin', 'admin', 'A'),
+(9, 'BMW', 'BMW', '201711091944471.png', '2017-11-09 19:44:47', '2017-11-09 19:44:47', 'admin', 'admin', 'A'),
+(10, 'BENZ', 'MERCEDES-BENZ', '201711091945191.png', '2017-11-09 19:45:19', '2017-11-09 19:52:42', 'admin', 'admin', 'A'),
+(11, 'NIS', 'NISSAN', '201711091945381.png', '2017-11-09 19:45:38', '2017-11-09 19:45:38', 'admin', 'admin', 'A'),
+(12, 'MIT', 'MITSUBISHI', '201711091950341.png', '2017-11-09 19:50:34', '2017-11-09 19:50:34', 'admin', 'admin', 'A'),
+(13, 'MAZ', 'MAZDA', '201711091950501.png', '2017-11-09 19:50:50', '2017-11-09 19:50:50', 'admin', 'admin', 'A'),
+(14, 'FORD', 'FORD', '201711091951411.png', '2017-11-09 19:51:41', '2017-11-09 19:51:41', 'admin', 'admin', 'A'),
+(15, 'CHEV', 'CHEVROLET', '201711091954371.png', '2017-11-09 19:54:37', '2017-11-09 19:54:37', 'admin', 'admin', 'A'),
+(16, 'ISU', 'ISUZU', '201711091955261.png', '2017-11-09 19:55:26', '2017-11-09 19:55:26', 'admin', 'admin', 'A'),
+(17, 'HYU', 'HYUNDAI', '201711091956321.png', '2017-11-09 19:56:32', '2017-11-09 19:56:32', 'admin', 'admin', 'A'),
+(18, 'MG', 'MG', '201711091957271.png', '2017-11-09 19:57:27', '2017-11-09 19:57:27', 'admin', 'admin', 'A'),
+(19, 'LEX', 'LEXUS', '201711091958501.png', '2017-11-09 19:58:50', '2017-11-09 19:58:50', 'admin', 'admin', 'A'),
+(20, 'SUBU', 'SUBURU', '201711092000551.png', '2017-11-09 20:00:10', '2017-11-09 20:00:55', 'admin', 'admin', 'A'),
+(21, 'AUDI', 'AUDI', '201711092002021.png', '2017-11-09 20:02:02', '2017-11-09 20:02:02', 'admin', 'admin', 'A');
 
 -- --------------------------------------------------------
 
@@ -1098,8 +1108,9 @@ CREATE TABLE `tb_car_generation` (
 --
 
 INSERT INTO `tb_car_generation` (`i_gen`, `s_gen_code`, `s_gen_name`, `d_create`, `d_update`, `s_create_by`, `s_update_by`, `s_status`) VALUES
-(13, 'HD-01', 'CITY', 2147483647, 2147483647, 'admin', 'admin', 'A'),
-(14, 'TO-01', 'ALTIS', 2147483647, 2147483647, 'admin', 'admin', 'A');
+(15, 'CIVIC', 'CIVIC', 2147483647, 2147483647, 'admin', 'admin', 'A'),
+(17, 'CITY', 'CITY', 2147483647, 2147483647, 'admin', 'admin', 'A'),
+(19, 'ACCORD', 'ACCORD', 2147483647, 2147483647, 'admin', 'admin', 'A');
 
 -- --------------------------------------------------------
 
@@ -1129,7 +1140,11 @@ INSERT INTO `tb_car_map` (`i_car`, `s_car_code`, `i_year`, `s_brand_code`, `s_ge
 (24, 'HON001', 2015, 'H01', 'H01-01', 'CC1200', '2017-11-05 00:09:56', '2017-11-05 00:09:56', 'admin', 'admin', 'A'),
 (25, 'TOY001', 2015, 'T01', 'H01-01', 'CC1200', '2017-11-05 00:09:56', '2017-11-05 00:09:56', 'admin', 'admin', 'A'),
 (43, 'HON001', 2015, 'H01', 'HD-01', 'CC1200', '2017-11-05 00:57:54', '2017-11-05 00:57:54', 'admin', 'admin', 'A'),
-(44, 'TOY001', 2015, 'T01', 'TO-01', 'CC1200', '2017-11-05 00:57:54', '2017-11-05 00:57:54', 'admin', 'admin', 'A');
+(44, 'TOY001', 2015, 'T01', 'TO-01', 'CC1200', '2017-11-05 00:57:54', '2017-11-05 00:57:54', 'admin', 'admin', 'A'),
+(46, 'HO18CIVIC15', 2018, 'HO', 'CIVIC', 'CC1500', '2017-11-09 20:10:44', '2017-11-09 20:15:01', 'admin', 'admin', 'A'),
+(47, 'HO15CIVIC18', 2015, 'HO', 'CIVIC', 'CC1800', '2017-11-09 20:11:39', '2017-11-09 20:11:39', 'admin', 'admin', 'A'),
+(48, 'HO15ACC20', 2015, 'HO', 'ACCORD', 'CC2000', '2017-11-09 20:16:34', '2017-11-09 20:16:34', 'admin', 'admin', 'A'),
+(49, 'HO16CI12', 2016, 'HO', 'CITY', 'CC1200', '2017-11-09 20:17:21', '2017-11-09 20:17:32', 'admin', 'admin', 'A');
 
 -- --------------------------------------------------------
 
@@ -10328,7 +10343,9 @@ CREATE TABLE `tb_insurance` (
 --
 
 INSERT INTO `tb_insurance` (`i_insurance`, `s_insurance_htext`, `i_ins_comp`, `i_ins_type`, `s_car_code`, `i_ins_promotion`, `f_price`, `f_discount`, `f_point`, `s_prcar_base`, `s_prcar_fire`, `s_prcar_water`, `s_prcar_repair`, `i_prcar_repair_type`, `s_prperson_per`, `s_prperson_pertimes`, `s_prperson_outsider`, `s_prother_personal`, `s_prother_insurance`, `s_prother_medical`, `d_create`, `d_update`, `s_create_by`, `s_update_by`, `s_status`) VALUES
-(3, 'ttt', 1, 3, 'HON001', 1, 1, 1, 1, '1', '1', '1', '1', 1, '1', '1', '1', '1', '1', '1', '2017-11-08 22:39:23', '2017-11-08 22:39:23', 'admin', 'admin', 'A');
+(6, 'ประกันสุขใจ 1', 1, 1, 'HO18CIVIC15', 5, 20000, 600, 8, '800000', '800000', '800000', '800000', 1, '800000', '800000', '800000', '800000', '800000', '800000', '2017-11-09 20:49:33', '2017-11-09 20:49:33', 'admin', 'admin', 'A'),
+(7, 'มิตรแท้ชั้น 1', 8, 1, 'HO18CIVIC15', 1, 18000, 2000, 9, '850000', '850000', '850000', '850000', 1, '850000', '850000', '850000', '850000', '850000', '850000', '2017-11-09 20:54:02', '2017-11-09 20:54:02', 'admin', 'admin', 'A'),
+(8, 'ประกันไทยวิวัฒน์สั่งได้ 1', 13, 1, 'HO18CIVIC15', 1, 15000, 300, 7, '600000', '600000', '600000', '600000', 1, '600000', '600000', '600000', '600000', '600000', '600000', '2017-11-09 20:56:02', '2017-11-09 20:56:02', 'admin', 'admin', 'A');
 
 -- --------------------------------------------------------
 
@@ -10353,20 +10370,20 @@ CREATE TABLE `tb_insurance_comp` (
 --
 
 INSERT INTO `tb_insurance_comp` (`i_ins_comp`, `s_comp_th`, `s_comp_en`, `s_image`, `d_create`, `d_update`, `s_create_by`, `s_update_by`, `s_status`) VALUES
-(1, 'บริษัท ธนชาตประกันภัย จำกัด (มหาชน)', 'บริษัท ธนชาตประกันภัย จำกัด (มหาชน)', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'ADM', 'ADM', 'A'),
-(2, 'บริษัท เทเวศประกันภัย จำกัด (มหาชน)', 'บริษัท เทเวศประกันภัย จำกัด (มหาชน)', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'ADM', 'ADM', 'A'),
-(3, 'บริษัท กรุงไทยพานิชประกันภัย จำกัด (มหาชน)', 'บริษัท กรุงไทยพานิชประกันภัย จำกัด (มหาชน)', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'ADM', 'ADM', 'A'),
-(4, 'บริษัท เมืองไทยประกันภัย จำกัด (มหาชน)', 'บริษัท เมืองไทยประกันภัย จำกัด (มหาชน)', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'ADM', 'ADM', 'A'),
-(5, 'บริษัท อาคเนย์ประกันภัย จำกัด (มหาชน)', 'บริษัท อาคเนย์ประกันภัย จำกัด (มหาชน)', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'ADM', 'ADM', 'A'),
-(6, 'บริษัท โตเกียวมารีนประกันภัย (ประเทศไทย) จำกัด (มหาชน)', 'บริษัท โตเกียวมารีนประกันภัย (ประเทศไทย) จำกัด (มหาชน)', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'ADM', 'ADM', 'A'),
-(7, 'บริษัท เจ้าพระยาประกันภัย จำกัด (มหาชน)', 'บริษัท เจ้าพระยาประกันภัย จำกัด (มหาชน)', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'ADM', 'ADM', 'A'),
-(8, 'บริษัท มิตรแท้ประกันภัย จำกัด(มหาชน)', 'บริษัท มิตรแท้ประกันภัย จำกัด(มหาชน)', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'ADM', 'ADM', 'A'),
-(9, 'บริษัท อินทรประกันภัย จำกัด(มหาชน', 'บริษัท อินทรประกันภัย จำกัด(มหาชน', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'ADM', 'ADM', 'A'),
-(10, 'บริษัทเอเชียประกันภัย 1950 จำกัด (มหาชน)', 'บริษัทเอเชียประกันภัย 1950 จำกัด (มหาชน)', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'ADM', 'ADM', 'A'),
-(11, 'บริษัท คิวบีอี ประกันภัย (ประเทศไทย) จำกัด (มหาชน)', 'บริษัท คิวบีอี ประกันภัย (ประเทศไทย) จำกัด (มหาชน)', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'ADM', 'ADM', 'A'),
-(12, 'บริษัท บางกอกสหประกันภัย จำกัด (มหาชน)', 'บริษัท บางกอกสหประกันภัย จำกัด (มหาชน)', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'ADM', 'ADM', 'A'),
-(13, 'บริษัท ประกันภัยไทยวิวัฒน์ จำกัด (มหาชน)', 'บริษัท ประกันภัยไทยวิวัฒน์ จำกัด (มหาชน)', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'ADM', 'ADM', 'A'),
-(14, 'บริษัท ไดเร็ค เอเชีย (ประเทศไทย) จำกัด', 'บริษัท ไดเร็ค เอเชีย (ประเทศไทย) จำกัด', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'ADM', 'ADM', 'A');
+(1, 'บริษัท ธนชาตประกันภัย จำกัด (มหาชน)', 'บริษัท ธนชาตประกันภัย จำกัด (มหาชน)', '201711092103451.jpg', '0000-00-00 00:00:00', '2017-11-09 21:03:45', 'ADM', 'admin', 'A'),
+(2, 'บริษัท เทเวศประกันภัย จำกัด (มหาชน)', 'บริษัท เทเวศประกันภัย จำกัด (มหาชน)', '201711092108581.png', '0000-00-00 00:00:00', '2017-11-09 21:08:58', 'ADM', 'admin', 'A'),
+(3, 'บริษัท กรุงไทยพานิชประกันภัย จำกัด (มหาชน)', 'บริษัท กรุงไทยพานิชประกันภัย จำกัด (มหาชน)', '201711092100301.png', '0000-00-00 00:00:00', '2017-11-09 21:00:30', 'ADM', 'admin', 'A'),
+(4, 'บริษัท เมืองไทยประกันภัย จำกัด (มหาชน)', 'บริษัท เมืองไทยประกันภัย จำกัด (มหาชน)', '201711092111431.png', '0000-00-00 00:00:00', '2017-11-09 21:11:43', 'ADM', 'admin', 'A'),
+(5, 'บริษัท อาคเนย์ประกันภัย จำกัด (มหาชน)', 'บริษัท อาคเนย์ประกันภัย จำกัด (มหาชน)', '201711092105561.jpg', '0000-00-00 00:00:00', '2017-11-09 21:05:56', 'ADM', 'admin', 'A'),
+(6, 'บริษัท โตเกียวมารีนประกันภัย (ประเทศไทย) จำกัด (มหาชน)', 'บริษัท โตเกียวมารีนประกันภัย (ประเทศไทย) จำกัด (มหาชน)', '201711092113231.jpg', '0000-00-00 00:00:00', '2017-11-09 21:13:23', 'ADM', 'admin', 'A'),
+(7, 'บริษัท เจ้าพระยาประกันภัย จำกัด (มหาชน)', 'บริษัท เจ้าพระยาประกันภัย จำกัด (มหาชน)', '201711092107271.jpg', '0000-00-00 00:00:00', '2017-11-09 21:07:27', 'ADM', 'admin', 'A'),
+(8, 'บริษัท มิตรแท้ประกันภัย จำกัด(มหาชน)', 'บริษัท มิตรแท้ประกันภัย จำกัด(มหาชน)', '201711092029051.png', '0000-00-00 00:00:00', '2017-11-09 20:29:05', 'ADM', 'admin', 'A'),
+(9, 'บริษัท อินทรประกันภัย จำกัด(มหาชน', 'บริษัท อินทรประกันภัย จำกัด(มหาชน', '201711092106361.png', '0000-00-00 00:00:00', '2017-11-09 21:06:36', 'ADM', 'admin', 'A'),
+(10, 'บริษัทเอเชียประกันภัย 1950 จำกัด (มหาชน)', 'บริษัทเอเชียประกันภัย 1950 จำกัด (มหาชน)', '201711092114531.jpg', '0000-00-00 00:00:00', '2017-11-09 21:14:53', 'ADM', 'admin', 'A'),
+(11, 'บริษัท คิวบีอี ประกันภัย (ประเทศไทย) จำกัด (มหาชน)', 'บริษัท คิวบีอี ประกันภัย (ประเทศไทย) จำกัด (มหาชน)', '201711092102031.jpg', '0000-00-00 00:00:00', '2017-11-09 21:02:03', 'ADM', 'admin', 'A'),
+(12, 'บริษัท บางกอกสหประกันภัย จำกัด (มหาชน)', 'บริษัท บางกอกสหประกันภัย จำกัด (มหาชน)', '201711092104411.jpg', '0000-00-00 00:00:00', '2017-11-09 21:04:41', 'ADM', 'admin', 'A'),
+(13, 'บริษัท ประกันภัยไทยวิวัฒน์ จำกัด (มหาชน)', 'บริษัท ประกันภัยไทยวิวัฒน์ จำกัด (มหาชน)', '201711092105171.jpg', '0000-00-00 00:00:00', '2017-11-09 21:05:17', 'ADM', 'admin', 'A'),
+(14, 'บริษัท ไดเร็ค เอเชีย (ประเทศไทย) จำกัด', 'บริษัท ไดเร็ค เอเชีย (ประเทศไทย) จำกัด', '201711092114151.jpg', '0000-00-00 00:00:00', '2017-11-09 21:14:15', 'ADM', 'admin', 'A');
 
 -- --------------------------------------------------------
 
@@ -10604,6 +10621,26 @@ CREATE TABLE `tb_portfolio` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tb_position`
+--
+
+CREATE TABLE `tb_position` (
+  `i_position` int(10) NOT NULL,
+  `s_detail` varchar(100) NOT NULL,
+  `s_status` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tb_position`
+--
+
+INSERT INTO `tb_position` (`i_position`, `s_detail`, `s_status`) VALUES
+(1, 'สไลด์หน้าแรก', 'A'),
+(2, 'สไลด์หน้าอยากซ่อมอู่', 'A');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tb_promotion`
 --
 
@@ -10729,6 +10766,7 @@ INSERT INTO `tb_provinces` (`i_province`, `s_code`, `s_name_th`, `s_name_en`, `i
 CREATE TABLE `tb_slide` (
   `i_slide` int(10) NOT NULL,
   `i_index` int(11) NOT NULL,
+  `i_position` int(11) NOT NULL,
   `s_desc_hl` varchar(150) NOT NULL,
   `s_desc_nm` varchar(150) NOT NULL,
   `s_image` varchar(100) NOT NULL,
@@ -10998,6 +11036,13 @@ ALTER TABLE `tb_portfolio`
   ADD KEY `index_tb_portfolio` (`i_vote`,`i_view`,`s_status`);
 
 --
+-- Indexes for table `tb_position`
+--
+ALTER TABLE `tb_position`
+  ADD PRIMARY KEY (`i_position`),
+  ADD KEY `index_tb_position` (`s_status`);
+
+--
 -- Indexes for table `tb_promotion`
 --
 ALTER TABLE `tb_promotion`
@@ -11053,17 +11098,17 @@ ALTER TABLE `tb_vat`
 -- AUTO_INCREMENT for table `tb_car_brand`
 --
 ALTER TABLE `tb_car_brand`
-  MODIFY `i_brand` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `i_brand` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT for table `tb_car_generation`
 --
 ALTER TABLE `tb_car_generation`
-  MODIFY `i_gen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `i_gen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `tb_car_map`
 --
 ALTER TABLE `tb_car_map`
-  MODIFY `i_car` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `i_car` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 --
 -- AUTO_INCREMENT for table `tb_car_sub`
 --
@@ -11093,7 +11138,7 @@ ALTER TABLE `tb_employee`
 -- AUTO_INCREMENT for table `tb_insurance`
 --
 ALTER TABLE `tb_insurance`
-  MODIFY `i_insurance` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `i_insurance` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `tb_insurance_comp`
 --
@@ -11143,7 +11188,12 @@ ALTER TABLE `tb_partner_comp`
 -- AUTO_INCREMENT for table `tb_portfolio`
 --
 ALTER TABLE `tb_portfolio`
-  MODIFY `i_portf` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `i_portf` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `tb_position`
+--
+ALTER TABLE `tb_position`
+  MODIFY `i_position` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `tb_promotion`
 --
@@ -11153,7 +11203,7 @@ ALTER TABLE `tb_promotion`
 -- AUTO_INCREMENT for table `tb_slide`
 --
 ALTER TABLE `tb_slide`
-  MODIFY `i_slide` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `i_slide` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `tb_title`
 --
@@ -11173,8 +11223,7 @@ ALTER TABLE `tb_user`
 -- AUTO_INCREMENT for table `tb_vat`
 --
 ALTER TABLE `tb_vat`
-  MODIFY `i_vat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;COMMIT;
-
+  MODIFY `i_vat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
