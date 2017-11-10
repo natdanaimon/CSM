@@ -3,7 +3,7 @@ var $datatable = $('#datatable');
 function initialDataTable(first) {
     $.ajax({
         type: 'GET',
-        url: 'controller/ui/knowController.php?func=dataTable',
+        url: 'controller/ui/portfolioController.php?func=dataTable',
         beforeSend: function ()
         {
             $('#se-pre-con').fadeIn(100);
@@ -35,7 +35,7 @@ function initialDataTable(first) {
 
                 col_checkbox = '<span class="md-checkbox has-success" style="padding-right: 0px;">';
                 col_checkbox += '  <input type="checkbox" id="checkbox_' + i + '" name="checkboxItem" class="md-check"';
-                col_checkbox += '  value="' + item.i_know + '" onclick=remove_select_all("checkbox_' + i + '")>';
+                col_checkbox += '  value="' + item.i_portf + '" onclick=remove_select_all("checkbox_' + i + '")>';
                 col_checkbox += '  <label for="checkbox_' + i + '">';
                 col_checkbox += '    <span class="inc"></span>';
                 col_checkbox += '    <span class="check"></span>';
@@ -45,8 +45,8 @@ function initialDataTable(first) {
 
 
                 if (item.s_img_p1 != "") {
-                    col_picture = '<a title="' + item.s_img_p1 + '" class="example-image-link" href="upload/know/' + item.s_img_p1 + '" data-lightbox="example-' + item.i_know + '">';
-                    col_picture += '<img class="example-image" src="upload/know/' + item.s_img_p1 + '" width="50px" height="50px"  />';
+                    col_picture = '<a title="' + item.s_img_p1 + '" class="example-image-link" href="upload/portfolio/' + item.s_img_p1 + '" data-lightbox="example-' + item.i_portf + '">';
+                    col_picture += '<img class="example-image" src="upload/portfolio/' + item.s_img_p1 + '" width="50px" height="50px"  />';
                     col_picture += '</a>';
                 }
 
@@ -56,12 +56,12 @@ function initialDataTable(first) {
                 col_status += '';
 
 
-                col_edit += '<a href="ui_knowledgeManage.php?func=edit&id=' + item.i_know + '" class="btn btn-circle btn-icon-only blue">';
+                col_edit += '<a href="ui_portfolioManage.php?func=edit&id=' + item.i_portf + '" class="btn btn-circle btn-icon-only blue">';
                 col_edit += ' <i class="fa fa-edit"></i>';
                 col_edit += '</a>';
 
 
-                col_delete += '<a href="' + (disable != "" ? '#' : 'javascript:Confirm(\'' + item.i_know + '\',\'delete\');') + '" class="btn btn-circle btn-icon-only red" ' + disable + '>';
+                col_delete += '<a href="' + (disable != "" ? '#' : 'javascript:Confirm(\'' + item.i_portf + '\',\'delete\');') + '" class="btn btn-circle btn-icon-only red" ' + disable + '>';
                 col_delete += ' <i class="fa fa-trash-o"></i>';
                 col_delete += '</a>';
 
@@ -225,7 +225,7 @@ $(document).on('click', '.notifyjs-foo-base .notify-all-yes', function () {
 
     $.ajax({
         type: 'GET',
-        url: 'controller/ui/knowController.php',
+        url: 'controller/ui/portfolioController.php',
         data: {data: jsonData, func: "deleteAll"},
         beforeSend: function ()
         {
@@ -303,7 +303,7 @@ $(document).on('click', '.notifyjs-foo-base .notify-yes', function () {
 
     $.ajax({
         type: 'GET',
-        url: 'controller/ui/knowController.php?func=' + func + '&id=' + id,
+        url: 'controller/ui/portfolioController.php?func=' + func + '&id=' + id,
         beforeSend: function ()
         {
             $('#se-pre-con').fadeIn(100);

@@ -474,6 +474,18 @@
     </detail>
     <!--  news-->  
 
+    <!--  portfolio -->  
+    <detail>
+        <variable>lb_setPort_subject</variable>
+        <th>หัวข้อผลงาน</th>
+        <en>Portfolio Subject</en>
+    </detail>
+    <detail>
+        <variable>lb_setPort_detail</variable>
+        <th>รายละเอียดผลงาน</th>
+        <en>Portfolio Detail</en>
+    </detail>
+    <!--  portfolio -->  
 
     <!--  popup-->  
     <detail>
@@ -490,7 +502,7 @@
 
 
     <!--  slide-->  
-     <detail>
+    <detail>
         <variable>lb_setSlide_hl</variable>
         <th>ข้อความไฮไลฟ์</th>
         <en>Height Light Text</en>

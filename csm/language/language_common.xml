@@ -818,6 +818,11 @@
         <en>Promotion Management</en>
     </detail>
     <detail>
+        <variable>ui_portfolio</variable>
+        <th>จัดการข้อมูลผลงาน</th>
+        <en>Portfolio Management</en>
+    </detail>
+    <detail>
         <variable>ui_popup</variable>
         <th>จัดการข้อมูลโปรโมชั่นแจ้งเตือน</th>
         <en>Popup Manangement</en>
@@ -1199,6 +1204,11 @@
         <variable>tt_mg_news</variable>
         <th>จัดการข้อมูลข่าว</th>
         <en>MANAGED NEWS</en>
+    </detail>
+     <detail>
+        <variable>tt_mg_portfolio</variable>
+        <th>จัดการข้อผลงาน</th>
+        <en>MANAGED PORTFOLIO</en>
     </detail>
     <detail>
         <variable>tt_mg_vip</variable>

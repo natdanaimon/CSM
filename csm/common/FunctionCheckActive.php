@@ -43,13 +43,14 @@ function ACTIVEPAGES($page, $sub) {
     $_SESSION["nav_sub_ins_prd"] = "";
     $_SESSION["nav_sub_ins_tran"] = "";
 
-    
+
     //csm ui
     $_SESSION["nav_sub_ui_slide"] = "";
     $_SESSION["nav_sub_ui_news"] = "";
     $_SESSION["nav_sub_ui_knowledge"] = "";
     $_SESSION["nav_sub_ui_promotion"] = "";
     $_SESSION["nav_sub_ui_popup"] = "";
+    $_SESSION["nav_sub_ui_portfolio"] = "";
 
 
 
@@ -88,11 +89,13 @@ function ACTIVEPAGES($page, $sub) {
             $_SESSION["nav_sub_ui_slide"] = " active open";
         } else if ($sub == 2) {
             $_SESSION["nav_sub_ui_news"] = " active open";
-        }else if ($sub == 3) {
+        } else if ($sub == 3) {
             $_SESSION["nav_sub_ui_knowledge"] = " active open";
-        }else if ($sub == 4) {
+        } else if ($sub == 4) {
             $_SESSION["nav_sub_ui_promotion"] = " active open";
-        }else if ($sub == 5) {
+        } else if ($sub == 6) {
+            $_SESSION["nav_sub_ui_portfolio"] = " active open";
+        } else if ($sub == 5) {
             $_SESSION["nav_sub_ui_popup"] = " active open";
         }
     } else if ($page == 99) {

@@ -21,62 +21,62 @@
         </a>
     </li>
     <?php if ($_SESSION["perm"] == "A") { ?>
-<!--        <li class="nav-item <?= $_SESSION["post_nav_main_dashboard"] ?>">
-            <a href="javascript:;" class="nav-link nav-toggle">
-                <i class="fa fa-newspaper-o"></i>
-                <span class="title"><?= $_SESSION[app_nagieos_post] ?></span>
-                <span class="selected"></span>
-            </a>
-            <ul class="sub-menu">
-                <li class="nav-item  <?= $_SESSION["cs_nav_sub_register_adm"] ?>">
-                    <a href="cs_register_adm.php" class="nav-link ">
+    <!--        <li class="nav-item <?= $_SESSION["post_nav_main_dashboard"] ?>">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa fa-newspaper-o"></i>
+                    <span class="title"><?= $_SESSION[app_nagieos_post] ?></span>
+                    <span class="selected"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item  <?= $_SESSION["cs_nav_sub_register_adm"] ?>">
+                        <a href="cs_register_adm.php" class="nav-link ">
 
-                        <span class="title"><?= $_SESSION[register_adm] ?></span>
-                        <span class="selected"></span>
-                        <span class="badge badge-success" ></span>
-                    </a>
-                </li>
+                            <span class="title"><?= $_SESSION[register_adm] ?></span>
+                            <span class="selected"></span>
+                            <span class="badge badge-success" ></span>
+                        </a>
+                    </li>
 
-                <li class="nav-item  <?= $_SESSION["cs_nav_sub_promotion_dp"] ?>">
-                    <a href="cs_promotion.php" class="nav-link ">
+                    <li class="nav-item  <?= $_SESSION["cs_nav_sub_promotion_dp"] ?>">
+                        <a href="cs_promotion.php" class="nav-link ">
 
-                        <span class="title"><?= $_SESSION[promotion_dp] ?></span>
-                        <span class="selected"></span>
-                        <span class="badge badge-success" ></span>
-                    </a>
-                </li>
-                <li class="nav-item  <?= $_SESSION["cs_nav_sub_bank"] ?>">
-                    <a href="cs_bank.php" class="nav-link ">
+                            <span class="title"><?= $_SESSION[promotion_dp] ?></span>
+                            <span class="selected"></span>
+                            <span class="badge badge-success" ></span>
+                        </a>
+                    </li>
+                    <li class="nav-item  <?= $_SESSION["cs_nav_sub_bank"] ?>">
+                        <a href="cs_bank.php" class="nav-link ">
 
-                        <span class="title"><?= $_SESSION[bank] ?></span>
-                        <span class="selected"></span>
-                    </a>
-                </li>
-                <li class="nav-item  <?= $_SESSION["cs_nav_sub_website"] ?>">
-                    <a href="cs_website.php" class="nav-link ">
+                            <span class="title"><?= $_SESSION[bank] ?></span>
+                            <span class="selected"></span>
+                        </a>
+                    </li>
+                    <li class="nav-item  <?= $_SESSION["cs_nav_sub_website"] ?>">
+                        <a href="cs_website.php" class="nav-link ">
 
-                        <span class="title"><?= $_SESSION[website] ?></span>
-                        <span class="selected"></span>
-                    </a>
-                </li> 
-                <li class="nav-item  <?= $_SESSION["post_nav_sub_game"] ?>">
-                    <a href="cs_game.php" class="nav-link ">
+                            <span class="title"><?= $_SESSION[website] ?></span>
+                            <span class="selected"></span>
+                        </a>
+                    </li> 
+                    <li class="nav-item  <?= $_SESSION["post_nav_sub_game"] ?>">
+                        <a href="cs_game.php" class="nav-link ">
 
-                        <span class="title"><?= $_SESSION[lb_game] ?></span>
-                        <span class="selected"></span>
-                    </a>
-                </li>
-                    <li class="nav-item  <?= $_SESSION["post_nav_sub_email"] ?>">
-                    <a href="po_email.php" class="nav-link ">
+                            <span class="title"><?= $_SESSION[lb_game] ?></span>
+                            <span class="selected"></span>
+                        </a>
+                    </li>
+                        <li class="nav-item  <?= $_SESSION["post_nav_sub_email"] ?>">
+                        <a href="po_email.php" class="nav-link ">
 
-                        <span class="title"><?= $_SESSION[email] ?></span>
-                        <span class="selected"></span>
-                    </a>
-                </li>
+                            <span class="title"><?= $_SESSION[email] ?></span>
+                            <span class="selected"></span>
+                        </a>
+                    </li>
 
 
-            </ul>
-        </li>-->
+                </ul>
+            </li>-->
 
 
 
@@ -338,6 +338,13 @@
                     <a href="ui_promotion.php" class="nav-link ">
 
                         <span class="title"><?= $_SESSION[ui_promotion] ?></span>
+                        <span class="selected"></span>
+                    </a>
+                </li>
+                <li class="nav-item  <?= $_SESSION["nav_sub_ui_portfolio"] ?>">
+                    <a href="ui_portfolio.php" class="nav-link ">
+
+                        <span class="title"><?= $_SESSION[ui_portfolio] ?></span>
                         <span class="selected"></span>
                     </a>
                 </li>
