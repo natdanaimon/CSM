@@ -2,15 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/xampp/htdocs/CSM/csm/service/commonService.php</file>
-            <file>file:/C:/xampp/htdocs/CSM/csm/js/action/insurance/product.js</file>
-            <file>file:/C:/xampp/htdocs/CSM/csm/controller/insurance/productController.php</file>
-            <file>file:/C:/xampp/htdocs/CSM/csm/js/action/insurance/productManage.js</file>
-            <file>file:/C:/xampp/htdocs/CSM/csm/service/insurance/productService.php</file>
-            <file>file:/C:/xampp/htdocs/CSM/csm/ins_productManage.php</file>
-            <file>file:/C:/xampp/htdocs/CSM/csm/controller/setting/generationController.php</file>
-            <file>file:/C:/xampp/htdocs/CSM/csm/ins_product.php</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

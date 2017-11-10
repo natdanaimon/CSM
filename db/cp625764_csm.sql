@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 10, 2017 at 11:06 AM
+-- Generation Time: Nov 10, 2017 at 02:09 PM
 -- Server version: 5.6.37
 -- PHP Version: 5.6.30
 
@@ -1223,6 +1223,23 @@ INSERT INTO `tb_car_year` (`i_year`, `d_create`, `d_update`, `s_create_by`, `s_u
 (2016, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A'),
 (2017, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A'),
 (2018, '2017-11-03 14:47:13', '2017-11-03 14:47:13', 'admin', 'admin', 'A');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_claim_image`
+--
+
+CREATE TABLE `tb_claim_image` (
+  `i_cimage` int(11) NOT NULL,
+  `s_ref_image` varchar(100) NOT NULL,
+  `s_image` varchar(100) NOT NULL,
+  `d_create` datetime NOT NULL,
+  `d_update` datetime NOT NULL,
+  `s_create_by` varchar(50) NOT NULL,
+  `s_update_by` varchar(50) NOT NULL,
+  `s_status` varchar(10) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -10352,6 +10369,36 @@ INSERT INTO `tb_insurance` (`i_insurance`, `s_insurance_htext`, `i_ins_comp`, `i
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tb_insurance_claim`
+--
+
+CREATE TABLE `tb_insurance_claim` (
+  `i_claim` int(11) NOT NULL,
+  `s_firstname` varchar(100) NOT NULL,
+  `s_lastname` varchar(100) NOT NULL,
+  `s_owner` varchar(10) NOT NULL,
+  `s_related` varchar(100) NOT NULL,
+  `s_phone_1` varchar(50) NOT NULL,
+  `s_phone_2` varchar(50) NOT NULL,
+  `s_email` varchar(50) NOT NULL,
+  `s_line` varchar(50) NOT NULL,
+  `s_copy_claim` varchar(100) NOT NULL,
+  `s_claim_number` varchar(100) NOT NULL,
+  `s_copy_driver` varchar(100) NOT NULL,
+  `s_copy_insurance` varchar(100) NOT NULL,
+  `s_copy_car` varchar(100) NOT NULL,
+  `s_ref_image` varchar(50) NOT NULL,
+  `s_copy_pay` varchar(100) NOT NULL,
+  `d_create` datetime NOT NULL,
+  `d_update` datetime NOT NULL,
+  `s_create_by` varchar(50) NOT NULL,
+  `s_update_by` varchar(50) NOT NULL,
+  `s_status` varchar(10) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tb_insurance_comp`
 --
 
@@ -10452,6 +10499,8 @@ CREATE TABLE `tb_insurance_trans` (
   `s_lastname` varchar(100) NOT NULL,
   `s_phone` varchar(50) NOT NULL,
   `s_email` varchar(100) NOT NULL,
+  `s_copy_citizen` varchar(100) NOT NULL,
+  `s_copy_car` varchar(100) NOT NULL,
   `d_create` int(11) NOT NULL,
   `d_update` int(11) NOT NULL,
   `s_create_by` varchar(50) NOT NULL,
@@ -10538,7 +10587,7 @@ CREATE TABLE `tb_knowledge` (
 --
 
 INSERT INTO `tb_knowledge` (`i_know`, `s_img_p1`, `s_img_p2`, `i_index`, `s_subject`, `s_detail`, `i_view`, `i_vote`, `d_create`, `d_update`, `s_create_by`, `s_update_by`, `s_status`) VALUES
-(5, '201711071757061.png', '201711071757062.png', 1, 'ทดสอบ', '<p><img alt=\"\" src=\"https://www.horgarage.com/csm/upload/knowDetail/681_image_th_171027114625.jpg\" style=\"height:221px; width:500px\" />&nbsp;ๅ</p>\r\n', 0, 0, '2017-11-07 17:57:06', '2017-11-07 17:57:06', 'admin', 'admin', 'A'),
+(5, '201711071757061.png', '201711071757062.png', 1, 'ทดสอบ', '<p><img alt=\"\" src=\"https://www.horgarage.com/csm/upload/knowDetail/681_image_th_171027114625.jpg\" style=\"height:221px; width:500px\" />&nbsp;ๅ</p>\r\n', 1, 1, '2017-11-07 17:57:06', '2017-11-10 12:08:16', 'admin', 'admin', 'A'),
 (6, '201711071757061.png', '201711071757062.png', 1, 'ทดสอบ', '<p><img alt=\"\" src=\"https://www.horgarage.com/csm/upload/knowDetail/681_image_th_171027114625.jpg\" style=\"height:221px; width:500px\" />&nbsp;ๅ</p>\r\n', 0, 0, '2017-11-07 17:57:06', '2017-11-07 17:57:06', 'admin', 'admin', 'A'),
 (7, '201711071757061.png', '201711071757062.png', 1, 'ทดสอบ', '<p><img alt=\"\" src=\"https://www.horgarage.com/csm/upload/knowDetail/681_image_th_171027114625.jpg\" style=\"height:221px; width:500px\" />&nbsp;ๅ</p>\r\n', 0, 0, '2017-11-07 17:57:06', '2017-11-07 17:57:06', 'admin', 'admin', 'A'),
 (8, '201711071757061.png', '201711071757062.png', 1, 'ทดสอบ', '<p><img alt=\"\" src=\"https://www.horgarage.com/csm/upload/knowDetail/681_image_th_171027114625.jpg\" style=\"height:221px; width:500px\" />&nbsp;ๅ</p>\r\n', 0, 0, '2017-11-07 17:57:06', '2017-11-07 17:57:06', 'admin', 'admin', 'A'),
@@ -10741,6 +10790,13 @@ CREATE TABLE `tb_portfolio` (
   `s_update_by` varchar(50) NOT NULL,
   `s_status` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tb_portfolio`
+--
+
+INSERT INTO `tb_portfolio` (`i_portf`, `s_img_p1`, `s_img_p2`, `i_index`, `s_subject`, `s_detail`, `i_view`, `i_vote`, `d_create`, `d_update`, `s_create_by`, `s_update_by`, `s_status`) VALUES
+(1, '201711101203471.png', '201711101203472.png', 1, 'test', '<p><img alt=\"\" src=\"https://www.horgarage.com/csm/upload/portfolioDetail/popup.png\" style=\"height:250px; width:255px\" />&nbsp;<img alt=\"\" src=\"https://www.horgarage.com/csm/upload/portfolioDetail/ASIAINSURANCE_BANNER_1360x680px_FINAL_CC.jpg\" style=\"height:125px; width:250px\" /></p>\r\n', 5, 5, '2017-11-10 12:03:47', '2017-11-10 12:08:45', 'admin', 'admin', 'A');
 
 -- --------------------------------------------------------
 
@@ -10961,9 +11017,9 @@ CREATE TABLE `tb_slide` (
 --
 
 INSERT INTO `tb_slide` (`i_slide`, `i_index`, `i_position`, `s_desc_hl`, `s_desc_nm`, `s_image`, `d_create`, `d_update`, `s_create_by`, `s_update_by`, `s_status`) VALUES
-(4, 1, 0, 'Horgarage', 'Slide 01', '201711071751271.jpg', '2017-11-07 17:51:27', '2017-11-07 17:51:27', 'admin', 'admin', 'A'),
-(5, 2, 0, 'Horgarage', 'Slide 02', '201711071751411.jpg', '2017-11-07 17:51:41', '2017-11-07 17:58:42', 'admin', 'admin', 'C'),
-(6, 3, 0, 'Horgarage', 'Slide 03', '201711071751561.jpg', '2017-11-07 17:51:56', '2017-11-07 17:51:56', 'admin', 'admin', 'A');
+(4, 1, 1, 'Horgarage', 'Slide 01', '201711071751271.jpg', '2017-11-07 17:51:27', '2017-11-07 17:51:27', 'admin', 'admin', 'A'),
+(5, 2, 1, 'Horgarage', 'Slide 02', '201711071751411.jpg', '2017-11-07 17:51:41', '2017-11-10 11:41:52', 'admin', 'admin', 'C'),
+(6, 3, 1, 'Horgarage', 'Slide 03', '201711071751561.jpg', '2017-11-07 17:51:56', '2017-11-07 17:51:56', 'admin', 'admin', 'A');
 
 -- --------------------------------------------------------
 
@@ -11116,6 +11172,13 @@ ALTER TABLE `tb_car_year`
   ADD PRIMARY KEY (`i_year`);
 
 --
+-- Indexes for table `tb_claim_image`
+--
+ALTER TABLE `tb_claim_image`
+  ADD PRIMARY KEY (`i_cimage`),
+  ADD KEY `index_claim_image` (`s_ref_image`,`s_status`);
+
+--
 -- Indexes for table `tb_customer`
 --
 ALTER TABLE `tb_customer`
@@ -11149,6 +11212,13 @@ ALTER TABLE `tb_employee`
 --
 ALTER TABLE `tb_insurance`
   ADD PRIMARY KEY (`i_insurance`);
+
+--
+-- Indexes for table `tb_insurance_claim`
+--
+ALTER TABLE `tb_insurance_claim`
+  ADD PRIMARY KEY (`i_claim`),
+  ADD KEY `index_claim` (`s_ref_image`,`s_status`);
 
 --
 -- Indexes for table `tb_insurance_comp`
@@ -11303,6 +11373,11 @@ ALTER TABLE `tb_car_map`
 ALTER TABLE `tb_car_sub`
   MODIFY `i_sub` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
+-- AUTO_INCREMENT for table `tb_claim_image`
+--
+ALTER TABLE `tb_claim_image`
+  MODIFY `i_cimage` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `tb_customer`
 --
 ALTER TABLE `tb_customer`
@@ -11327,6 +11402,11 @@ ALTER TABLE `tb_employee`
 --
 ALTER TABLE `tb_insurance`
   MODIFY `i_insurance` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT for table `tb_insurance_claim`
+--
+ALTER TABLE `tb_insurance_claim`
+  MODIFY `i_claim` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `tb_insurance_comp`
 --
@@ -11376,7 +11456,7 @@ ALTER TABLE `tb_partner_comp`
 -- AUTO_INCREMENT for table `tb_portfolio`
 --
 ALTER TABLE `tb_portfolio`
-  MODIFY `i_portf` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `i_portf` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `tb_position`
 --

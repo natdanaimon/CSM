@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 10, 2017 at 06:23 AM
+-- Generation Time: Nov 10, 2017 at 08:09 AM
 -- Server version: 10.1.9-MariaDB
 -- PHP Version: 5.5.30
 
@@ -1221,6 +1221,23 @@ INSERT INTO `tb_car_year` (`i_year`, `d_create`, `d_update`, `s_create_by`, `s_u
 (2016, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A'),
 (2017, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A'),
 (2018, '2017-11-03 14:47:13', '2017-11-03 14:47:13', 'admin', 'admin', 'A');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_claim_image`
+--
+
+CREATE TABLE `tb_claim_image` (
+  `i_cimage` int(11) NOT NULL,
+  `s_ref_image` varchar(100) NOT NULL,
+  `s_image` varchar(100) NOT NULL,
+  `d_create` datetime NOT NULL,
+  `d_update` datetime NOT NULL,
+  `s_create_by` varchar(50) NOT NULL,
+  `s_update_by` varchar(50) NOT NULL,
+  `s_status` varchar(10) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -10350,6 +10367,36 @@ INSERT INTO `tb_insurance` (`i_insurance`, `s_insurance_htext`, `i_ins_comp`, `i
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tb_insurance_claim`
+--
+
+CREATE TABLE `tb_insurance_claim` (
+  `i_claim` int(11) NOT NULL,
+  `s_firstname` varchar(100) NOT NULL,
+  `s_lastname` varchar(100) NOT NULL,
+  `s_owner` varchar(10) NOT NULL,
+  `s_related` varchar(100) NOT NULL,
+  `s_phone_1` varchar(50) NOT NULL,
+  `s_phone_2` varchar(50) NOT NULL,
+  `s_email` varchar(50) NOT NULL,
+  `s_line` varchar(50) NOT NULL,
+  `s_copy_claim` varchar(100) NOT NULL,
+  `s_claim_number` varchar(100) NOT NULL,
+  `s_copy_driver` varchar(100) NOT NULL,
+  `s_copy_insurance` varchar(100) NOT NULL,
+  `s_copy_car` varchar(100) NOT NULL,
+  `s_ref_image` varchar(50) NOT NULL,
+  `s_copy_pay` varchar(100) NOT NULL,
+  `d_create` datetime NOT NULL,
+  `d_update` datetime NOT NULL,
+  `s_create_by` varchar(50) NOT NULL,
+  `s_update_by` varchar(50) NOT NULL,
+  `s_status` varchar(10) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tb_insurance_comp`
 --
 
@@ -10450,6 +10497,8 @@ CREATE TABLE `tb_insurance_trans` (
   `s_lastname` varchar(100) NOT NULL,
   `s_phone` varchar(50) NOT NULL,
   `s_email` varchar(100) NOT NULL,
+  `s_copy_citizen` varchar(100) NOT NULL,
+  `s_copy_car` varchar(100) NOT NULL,
   `d_create` int(11) NOT NULL,
   `d_update` int(11) NOT NULL,
   `s_create_by` varchar(50) NOT NULL,
@@ -10928,6 +10977,13 @@ ALTER TABLE `tb_car_year`
   ADD PRIMARY KEY (`i_year`);
 
 --
+-- Indexes for table `tb_claim_image`
+--
+ALTER TABLE `tb_claim_image`
+  ADD PRIMARY KEY (`i_cimage`),
+  ADD KEY `index_claim_image` (`s_ref_image`,`s_status`);
+
+--
 -- Indexes for table `tb_customer`
 --
 ALTER TABLE `tb_customer`
@@ -10961,6 +11017,13 @@ ALTER TABLE `tb_employee`
 --
 ALTER TABLE `tb_insurance`
   ADD PRIMARY KEY (`i_insurance`);
+
+--
+-- Indexes for table `tb_insurance_claim`
+--
+ALTER TABLE `tb_insurance_claim`
+  ADD PRIMARY KEY (`i_claim`),
+  ADD KEY `index_claim` (`s_ref_image`,`s_status`);
 
 --
 -- Indexes for table `tb_insurance_comp`
@@ -11115,6 +11178,11 @@ ALTER TABLE `tb_car_map`
 ALTER TABLE `tb_car_sub`
   MODIFY `i_sub` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
+-- AUTO_INCREMENT for table `tb_claim_image`
+--
+ALTER TABLE `tb_claim_image`
+  MODIFY `i_cimage` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `tb_customer`
 --
 ALTER TABLE `tb_customer`
@@ -11139,6 +11207,11 @@ ALTER TABLE `tb_employee`
 --
 ALTER TABLE `tb_insurance`
   MODIFY `i_insurance` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT for table `tb_insurance_claim`
+--
+ALTER TABLE `tb_insurance_claim`
+  MODIFY `i_claim` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `tb_insurance_comp`
 --
