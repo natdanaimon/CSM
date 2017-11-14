@@ -311,7 +311,7 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                                 <div class="col-md-12">
                                     <div class="portlet-body form">
                                         <div class="form-actions noborder">
-                                            <a href="set_carmapping.php"> <button type="button" class="btn default"><?= $_SESSION[btn_cancel] ?></button></a>
+                                            <a href="ins_product.php"> <button type="button" class="btn default"><?= $_SESSION[btn_cancel] ?></button></a>
                                             <button type="button" class="btn blue" onclick="save()"><?= $_SESSION[btn_submit] ?></button>
                                         </div>
                                     </div>

@@ -146,7 +146,7 @@ ACTIVEPAGES(13, 2);
                                                     <th class="none"> <span style="color:red"><?= $_SESSION[tb_co_dRepair] ?> </span></th>
 
                                                     <th class="all">  <?= $_SESSION[tb_co_status] ?></th>
-                                                    <th class="all" style="width: 40px"> <?= $_SESSION[tb_co_edit] ?> </th>
+                                                    <th class="all" style="width: 40px"> <?= $_SESSION[tb_co_view] ?> </th>
                                                     <th class="all" style="width: 40px"> <?= $_SESSION[tb_co_delete] ?></th>
                                             </thead>
                                             <tbody>

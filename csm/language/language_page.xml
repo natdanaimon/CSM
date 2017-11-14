@@ -527,4 +527,28 @@
     </detail>
     <!--  knowledge--> 
 
+
+    <!--  knowledge-->  
+    <detail>
+        <variable>lb_setTrans_first</variable>
+        <th>ชื่อ</th>
+        <en>Firstname</en>
+    </detail>
+    <detail>
+        <variable>lb_setTrans_last</variable>
+        <th>นามสกุล</th>
+        <en>Lastname</en>
+    </detail>
+    <detail>
+        <variable>lb_setTrans_phone</variable>
+        <th>เบอร์โทรศัพท์</th>
+        <en>Phone</en>
+    </detail>
+    <detail>
+        <variable>lb_setTrans_email</variable>
+        <th>อีเมลล์</th>
+        <en>Email</en>
+    </detail>
+    <!--  knowledge--> 
+
 </language>

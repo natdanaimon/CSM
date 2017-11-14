@@ -66,6 +66,17 @@
         <th>รูปภาพรายละเอียด</th>
         <en>Image Detail</en>
     </detail>
+    
+     <detail>
+        <variable>image_h_copy_person</variable>
+        <th>สำเนาบัตรประชาชน</th>
+        <en>Image Copy person</en>
+    </detail>
+    <detail>
+        <variable>image_h_copy_car</variable>
+        <th>สำเนาเล่มรถ</th>
+        <en>Image Copy car</en>
+    </detail>
     <!--  Notification -->
 
     <!--  Other -->
@@ -104,6 +115,11 @@
         <variable>edit_info</variable>
         <th>แก้ไขข้อมูล</th>
         <en>Edit </en> 
+    </detail>
+     <detail>
+        <variable>view_info</variable>
+        <th>ดูข้อมูล</th>
+        <en>VIew </en> 
     </detail>
     <detail>
         <variable>add_info</variable>
@@ -865,6 +881,11 @@
         <th>สถานะ</th>
         <en>Status</en>
     </detail>
+      <detail>
+        <variable>tb_co_view</variable>
+        <th>ดูข้อมูล</th>
+        <en>View</en>
+    </detail>
     <detail>
         <variable>tb_co_date</variable>
         <th>วันที่</th>
@@ -1205,7 +1226,7 @@
         <th>จัดการข้อมูลข่าว</th>
         <en>MANAGED NEWS</en>
     </detail>
-     <detail>
+    <detail>
         <variable>tt_mg_portfolio</variable>
         <th>จัดการข้อผลงาน</th>
         <en>MANAGED PORTFOLIO</en>
@@ -1394,6 +1415,16 @@
         <variable>tt_mg_knowledge</variable>
         <th>จัดการข้อมูลคลังความรู้</th>
         <en>MANAGE KNOWLEDGE</en>
+    </detail>
+    <detail>
+        <variable>tt_detail_person</variable>
+        <th>รายละเอียดผู้สมัคประกันภัย</th>
+        <en>Detail</en>
+    </detail>
+    <detail>
+        <variable>tt_detail_insurance</variable>
+        <th>รายละเอียดประกันภัย</th>
+        <en>Detail</en>
     </detail>
 
     
