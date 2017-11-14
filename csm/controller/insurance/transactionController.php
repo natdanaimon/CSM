@@ -70,6 +70,8 @@ class transactionController {
             $db->rollback();
             echo $_SESSION['cd_2001'];
         }
+
+        $this->deleteTempFile($db);
     }
 
     public function deleteAll($info) {
@@ -88,6 +90,7 @@ class transactionController {
                 $db->rollback();
                 echo $_SESSION['cd_2001'];
             }
+            $this->deleteTempFile($db);
         }
     }
 
@@ -99,6 +102,19 @@ class transactionController {
         } else {
             return NULL;
         }
+    }
+
+    public function deleteTempFile($db) {
+        $temp = new upload();
+        $svTemp = new transactionService();
+        $temp->set_path("../../upload/transaction/");
+        $_dataTemp = $svTemp->getInfoFile($db);
+        foreach ($_dataTemp as $key => $value) {
+            if ($_dataTemp[$key]['img'] != "") {
+                $temp->add_FileName($_dataTemp[$key]['img']);
+            }
+        }
+        $temp->deleteFileNoTemp();
     }
 
 }

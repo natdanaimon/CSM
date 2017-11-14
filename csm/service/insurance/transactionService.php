@@ -82,6 +82,13 @@ class transactionService {
         return $_data;
     }
 
+    function getInfoFile($db) {
+        $strSql = "select s_copy_citizen img from tb_insurance_trans ";
+        $strSql .= " union ";
+        $strSql .= "select s_copy_car img from tb_insurance_trans ";
+        $_data = $db->Search_Data_FormatJson($strSql);
+        return $_data;
+    }
 
 
 }
