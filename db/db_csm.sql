@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 10, 2017 at 08:09 AM
+-- Generation Time: Nov 14, 2017 at 07:12 AM
 -- Server version: 10.1.9-MariaDB
 -- PHP Version: 5.5.30
 
@@ -10361,8 +10361,8 @@ CREATE TABLE `tb_insurance` (
 
 INSERT INTO `tb_insurance` (`i_insurance`, `s_insurance_htext`, `i_ins_comp`, `i_ins_type`, `s_car_code`, `i_ins_promotion`, `f_price`, `f_discount`, `f_point`, `s_prcar_base`, `s_prcar_fire`, `s_prcar_water`, `s_prcar_repair`, `i_prcar_repair_type`, `s_prperson_per`, `s_prperson_pertimes`, `s_prperson_outsider`, `s_prother_personal`, `s_prother_insurance`, `s_prother_medical`, `d_create`, `d_update`, `s_create_by`, `s_update_by`, `s_status`) VALUES
 (6, 'ประกันสุขใจ 1', 1, 1, 'HO18CIVIC15', 5, 20000, 600, 8, '800000', '800000', '800000', '800000', 1, '800000', '800000', '800000', '800000', '800000', '800000', '2017-11-09 20:49:33', '2017-11-09 20:49:33', 'admin', 'admin', 'A'),
-(7, 'มิตรแท้ชั้น 1', 8, 1, 'HO18CIVIC15', 1, 18000, 2000, 9, '850000', '850000', '850000', '850000', 1, '850000', '850000', '850000', '850000', '850000', '850000', '2017-11-09 20:54:02', '2017-11-09 20:54:02', 'admin', 'admin', 'A'),
-(8, 'ประกันไทยวิวัฒน์สั่งได้ 1', 13, 1, 'HO18CIVIC15', 1, 15000, 300, 7, '600000', '600000', '600000', '600000', 1, '600000', '600000', '600000', '600000', '600000', '600000', '2017-11-09 20:56:02', '2017-11-09 20:56:02', 'admin', 'admin', 'A');
+(7, 'มิตรแท้ชั้น 1', 8, 3, 'HO18CIVIC15', 1, 18000, 2000, 9, '850000', '850000', '850000', '850000', 1, '850000', '850000', '850000', '850000', '850000', '850000', '2017-11-09 20:54:02', '2017-11-14 12:57:16', 'admin', 'admin', 'A'),
+(8, 'ประกันไทยวิวัฒน์สั่งได้ 1', 13, 1, 'HO18CIVIC15', 1, 15000, 300, 7, '600000', '600000', '600000', '600000', 1, '600000', '600000', '600000', '600000', '600000', '600000', '2017-11-09 20:56:02', '2017-11-14 12:57:10', 'admin', 'admin', 'A');
 
 -- --------------------------------------------------------
 
@@ -10499,8 +10499,8 @@ CREATE TABLE `tb_insurance_trans` (
   `s_email` varchar(100) NOT NULL,
   `s_copy_citizen` varchar(100) NOT NULL,
   `s_copy_car` varchar(100) NOT NULL,
-  `d_create` int(11) NOT NULL,
-  `d_update` int(11) NOT NULL,
+  `d_create` datetime NOT NULL,
+  `d_update` datetime NOT NULL,
   `s_create_by` varchar(50) NOT NULL,
   `s_update_by` varchar(50) NOT NULL,
   `s_status` varchar(10) NOT NULL
@@ -11231,7 +11231,7 @@ ALTER TABLE `tb_insurance_repair_type`
 -- AUTO_INCREMENT for table `tb_insurance_trans`
 --
 ALTER TABLE `tb_insurance_trans`
-  MODIFY `i_ins_trans` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `i_ins_trans` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `tb_insurance_type`
 --
@@ -11261,12 +11261,12 @@ ALTER TABLE `tb_partner_comp`
 -- AUTO_INCREMENT for table `tb_portfolio`
 --
 ALTER TABLE `tb_portfolio`
-  MODIFY `i_portf` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `i_portf` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `tb_position`
 --
 ALTER TABLE `tb_position`
-  MODIFY `i_position` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `i_position` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `tb_promotion`
 --
@@ -11276,7 +11276,7 @@ ALTER TABLE `tb_promotion`
 -- AUTO_INCREMENT for table `tb_slide`
 --
 ALTER TABLE `tb_slide`
-  MODIFY `i_slide` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `i_slide` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `tb_title`
 --

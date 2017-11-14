@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 10, 2017 at 02:09 PM
+-- Generation Time: Nov 14, 2017 at 01:11 PM
 -- Server version: 5.6.37
 -- PHP Version: 5.6.30
 
@@ -10501,8 +10501,8 @@ CREATE TABLE `tb_insurance_trans` (
   `s_email` varchar(100) NOT NULL,
   `s_copy_citizen` varchar(100) NOT NULL,
   `s_copy_car` varchar(100) NOT NULL,
-  `d_create` int(11) NOT NULL,
-  `d_update` int(11) NOT NULL,
+  `d_create` datetime NOT NULL,
+  `d_update` datetime NOT NULL,
   `s_create_by` varchar(50) NOT NULL,
   `s_update_by` varchar(50) NOT NULL,
   `s_status` varchar(10) NOT NULL
