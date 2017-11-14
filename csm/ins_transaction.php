@@ -138,7 +138,7 @@ ACTIVEPAGES(13, 2);
                                                     <th class="all">  <?= $_SESSION[tb_co_fullname] ?> </th>
                                                     <th class="all">  <?= $_SESSION[tb_co_phone] ?> </th>
                                                     <th class="all">  <?= $_SESSION[tb_co_email] ?> </th>
-                                                    <th class="all">  <?= $_SESSION[tb_co_datetime] ?> </th>
+                                                    <th class="all">  <?= $_SESSION[tb_co_datetime_reg] ?> </th>
 
 
                                                     <th class="all">  <?= $_SESSION[tb_co_status] ?></th>

@@ -942,6 +942,11 @@
         <en>Datetime</en>
     </detail>
     <detail>
+        <variable>tb_co_datetime_reg</variable>
+        <th>วันเวลาที่สมัคร</th>
+        <en>Datetime Register</en>
+    </detail>
+    <detail>
         <variable>tb_co_phone</variable>
         <th>เบอร์โทรศัพท์</th>
         <en>Phone</en>
