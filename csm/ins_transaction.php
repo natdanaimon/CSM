@@ -105,12 +105,12 @@ ACTIVEPAGES(13, 2);
                                                 
                                                                                                 </div>-->
                                                 <div class="col-md-6" align="left"  <?= $hidden ?>>
-                                                    <div class="btn-group">
+<!--                                                    <div class="btn-group">
                                                         <a href="ins_transactionManage.php?func=add">
                                                             <button id="sample_editable_1_new" class="btn sbold green"> <?= $_SESSION[btn_add] ?>
                                                             </button>
                                                         </a>
-                                                    </div>
+                                                    </div>-->
                                                     <div class="btn-group">
                                                         <button id="sample_editable_1_new" class="btn sbold red" onclick="deleteAll()"> <?= $_SESSION[btn_delete_all] ?>
 <!--                                                            <i class="fa fa-minus"></i>-->
