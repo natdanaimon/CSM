@@ -8,14 +8,10 @@ class transactionService {
         $db = new ConnectDB();
         $strSql = "";
         $strSql .= "SELECT  ";
-        $strSql .= "m.*, st.s_detail_th status_th, st.s_detail_en status_en , c.s_comp_th , c.s_image , t.s_name s_type_name , p.s_promotion , rp.s_name s_repair_type";
+        $strSql .= "m.*, st.s_detail_th status_th, st.s_detail_en status_en ";
         $strSql .= " FROM  ";
-        $strSql .= "tb_insurance m  , tb_insurance_comp c , tb_insurance_type t, tb_status st ,tb_insurance_promotion p , tb_insurance_repair_type rp ";
+        $strSql .= "tb_insurance_trans m ,   tb_status st  ";
         $strSql .= "WHERE 1=1 ";
-        $strSql .= "AND m.i_ins_comp = c.i_ins_comp ";
-        $strSql .= "AND m.i_ins_type = t.i_ins_type ";
-        $strSql .= "AND m.i_ins_promotion = p.i_ins_promotion ";
-        $strSql .= "AND m.i_prcar_repair_type = rp.i_repair ";
         $strSql .= "AND m.s_status = st.s_status ";
         $strSql .= "AND st.s_type   =  'ACTIVE' ";
 //        $strSql .= " and    s.s_status = 'A' ";

@@ -67,7 +67,7 @@
         <en>Image Detail</en>
     </detail>
     
-     <detail>
+    <detail>
         <variable>image_h_copy_person</variable>
         <th>สำเนาบัตรประชาชน</th>
         <en>Image Copy person</en>
@@ -116,7 +116,7 @@
         <th>แก้ไขข้อมูล</th>
         <en>Edit </en> 
     </detail>
-     <detail>
+    <detail>
         <variable>view_info</variable>
         <th>ดูข้อมูล</th>
         <en>VIew </en> 
@@ -881,7 +881,7 @@
         <th>สถานะ</th>
         <en>Status</en>
     </detail>
-      <detail>
+    <detail>
         <variable>tb_co_view</variable>
         <th>ดูข้อมูล</th>
         <en>View</en>
@@ -940,6 +940,16 @@
         <variable>tb_co_datetime</variable>
         <th>วันเวลา</th>
         <en>Datetime</en>
+    </detail>
+    <detail>
+        <variable>tb_co_phone</variable>
+        <th>เบอร์โทรศัพท์</th>
+        <en>Phone</en>
+    </detail>
+    <detail>
+        <variable>tb_co_email</variable>
+        <th>อีเมลล์</th>
+        <en>Email</en>
     </detail>
     <detail>
         <variable>tb_co_premise</variable>
