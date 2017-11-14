@@ -232,7 +232,7 @@ function getDDLInsuranceRepair() {
 }
 
 
-
+var idInsurance = "";
 function edit() {
     $.ajax({
         type: 'GET',
@@ -248,8 +248,9 @@ function edit() {
                 $("#s_lastname").val(item.s_lastname);
                 $("#s_phone").val(item.s_phone);
                 $("#s_email").val(item.s_email);
-
-                editDetail(item.i_insurance);
+                
+                idInsurance = item.i_insurance;
+              
 
                 if (item.s_img_p1 != "") {
                     $('#m1').attr('title', item.s_copy_citizen);
@@ -266,8 +267,8 @@ function edit() {
                 var lb_edit = (item.s_update_by != "" ? item.s_update_by + " ( " + item.d_update + " )" : "-");
                 $("#lb_edit").text(lb_edit);
             });
-
-            $('#se-pre-con').delay(100).fadeOut();
+              editDetail();
+            
 
         },
         error: function (data) {
@@ -278,10 +279,10 @@ function edit() {
 }
 
 
-function editDetail(i_insurance) {
+function editDetail() {
     $.ajax({
         type: 'GET',
-        url: 'controller/insurance/productController.php?func=getInfo&id=' + i_insurance,
+        url: 'controller/insurance/productController.php?func=getInfo&id=' + idInsurance,
         beforeSend: function () {
             //$('#se-pre-con').fadeIn(100);
         },
@@ -319,7 +320,7 @@ function editDetail(i_insurance) {
                 $("#s_prother_medical").val(item.s_prother_medical);
 
             });
-
+            $('#se-pre-con').delay(100).fadeOut();
 
 
         },

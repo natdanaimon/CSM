@@ -43,7 +43,7 @@ function initialDataTable(first) {
                 col_checkbox += '</span>';
 
 
-
+ 
        
 
                 col_status = '';
@@ -52,7 +52,7 @@ function initialDataTable(first) {
 
 
                 col_edit += '<a href="ins_transactionManage.php?func=edit&id=' + item.i_ins_trans + '" class="btn btn-circle btn-icon-only blue">';
-                col_edit += ' <i class="fa fa-edit"></i>';
+                col_edit += ' <i class="fa fa-eye"></i>';
                 col_edit += '</a>';
 
 
