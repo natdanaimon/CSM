@@ -550,5 +550,84 @@
         <en>Email</en>
     </detail>
     <!--  knowledge--> 
+    
+    
+    <!--  claim -->  
+    <detail>
+        <variable>lb_setClaim_first</variable>
+        <th>ชื่อ</th>
+        <en>Firstname</en>
+    </detail>
+    <detail>
+        <variable>lb_setClaim_last</variable>
+        <th>นามสกุล</th>
+        <en>Lastname</en>
+    </detail>
+    <detail>
+        <variable>lb_setClaim_phone1</variable>
+        <th>เบอร์โทรศัพท์ 1</th>
+        <en>Phone 1</en>
+    </detail>
+    <detail>
+        <variable>lb_setClaim_phone2</variable>
+        <th>เบอร์โทรศัพท์ 2</th>
+        <en>Phone 2</en>
+    </detail>
+    <detail>
+        <variable>lb_setClaim_email</variable>
+        <th>อีเมลล์</th>
+        <en>Email</en>
+    </detail>
+    <detail>
+        <variable>lb_setClaim_line</variable>
+        <th>ไลน์ไอดี</th>
+        <en>Line ID</en>
+    </detail>
+    <detail>
+        <variable>lb_setClaim_ownerCar</variable>
+        <th>เจ้าของรถ</th>
+        <en>Owner Car</en>
+    </detail>
+    <detail>
+        <variable>lb_setClaim_noOwnerCar</variable>
+        <th>ไม่ใช่เจ้าของรถ</th>
+        <en>No Owner Car</en>
+    </detail>
+    <detail>
+        <variable>lb_setClaim_docClaim</variable>
+        <th>ใบเคลม</th>
+        <en>Claim Document</en>
+    </detail>
+    <detail>
+        <variable>lb_setClaim_claimNo</variable>
+        <th>เลขที่รับแจ้งเคลม</th>
+        <en>Claim no</en>
+    </detail>
+    <detail>
+        <variable>lb_setClaim_docClaim1</variable>
+        <th>ใบขับขี่ของผู้ขับขี่ที่ระบุในใบเคลมหรือเจ้าของรถ</th>
+        <en>Driver's license in the claim or car owner.</en>
+    </detail>
+    <detail>
+        <variable>lb_setClaim_insurancePolicy</variable>
+        <th>กรมธรรม์ประกันภัย</th>
+        <en>Insurance policy</en>
+    </detail>
+    <detail>
+        <variable>lb_setClaim_carRegis</variable>
+        <th>รายการจดทะเบียนรถยนต์ ปัจจุบัน</th>
+        <en>Current car registrations</en>
+    </detail>
+    <detail>
+        <variable>lb_setClaim_paySlip</variable>
+        <th>หลักฐานการชำระเงิน</th>
+        <en>Pay Slip</en>
+    </detail>
+     <detail>
+        <variable>lb_setClaim_picCarDmg</variable>
+        <th>รูปถ่ายความเสียหายรถ</th>
+        <en>Image Car Damage</en>
+    </detail>
+    <!--  claim --> 
 
 </language>

@@ -425,6 +425,11 @@
         <th>ตำแหน่ง</th>
         <en>Position</en>
     </detail>
+    <detail>
+        <variable>or</variable>
+        <th>หรือ </th>
+        <en>Or </en>
+    </detail>	
     <!--  Other -->
     
     
@@ -750,7 +755,7 @@
     <detail>
         <variable>emp_employee</variable>
         <th>ข้อมูลพนักงาน</th>
-        <en>Employee Info</en>
+        <en>Employee Info</en> 
     </detail>
 	
     <detail>
@@ -1441,7 +1446,21 @@
         <th>รายละเอียดประกันภัย</th>
         <en>Detail</en>
     </detail>
-
+    <detail>
+        <variable>tt_mg_claimonline</variable>
+        <th>จัดการข้อมูลแจ้งเคลมออนไลน์</th>
+        <en>MANAGE CLAIM ONLINE</en>
+    </detail>
+    <detail>
+        <variable>tt_detail_claimReq</variable>
+        <th>เอกสารแจ้งเคลม</th>
+        <en>Request Claim Document</en>
+    </detail>
+    <detail>
+        <variable>tt_detail_claimSubReq</variable>
+        <th>เอกสารประกอบการเคลม</th>
+        <en>Request Sub Claim Document</en>
+    </detail>
     
     
     <!--  Title Header  --> 
