@@ -2,6 +2,16 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/xampp/htdocs/CSM/csm/service/insurance/transactionService.php</file>
+            <file>file:/C:/xampp/htdocs/CSM/csm/js/action/cs_vip.js</file>
+            <file>file:/C:/xampp/htdocs/CSM/csm/ins_transaction.php</file>
+            <file>file:/C:/xampp/htdocs/CSM/csm/common/upload.php</file>
+            <file>file:/C:/xampp/htdocs/CSM/csm/js/action/insurance/transactionManage.js</file>
+            <file>file:/C:/xampp/htdocs/CSM/csm/controller/insurance/transactionController.php</file>
+            <file>file:/C:/xampp/htdocs/CSM/csm/js/action/insurance/transaction.js</file>
+            <file>file:/C:/xampp/htdocs/CSM/csm/language/language_common.xml</file>
+            <file>file:/C:/xampp/htdocs/CSM/csm/controller/ui/newsController.php</file>
+        </group>
     </open-files>
 </project-private>
