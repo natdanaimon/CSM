@@ -252,12 +252,12 @@ function edit() {
                 idInsurance = item.i_insurance;
               
 
-                if (item.s_img_p1 != "") {
+                if (item.s_img_p1 != "" && typeof(item.s_img_p1) != "undefined") {
                     $('#m1').attr('title', item.s_copy_citizen);
                     $('#m1').attr('href', 'upload/transaction/' + item.s_copy_citizen);
                     $('#img1').attr('src', 'upload/transaction/' + item.s_copy_citizen);
                 }
-                if (item.s_img_p2 != "") {
+                if (item.s_img_p2 != "" && typeof(item.s_img_p2) != "undefined") {
                     $('#m2').attr('title', item.s_copy_car);
                     $('#m2').attr('href', 'upload/transaction/' + item.s_copy_car);
                     $('#img2').attr('src', 'upload/transaction/' + item.s_copy_car);
