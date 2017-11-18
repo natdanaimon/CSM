@@ -11,3 +11,7 @@ td.child {
 .dtr-title {
     font-weight: bold !important;
 }
+
+
+.pdfobject-container { height: 500px;}
+.pdfobject { border: 1px solid #666; }

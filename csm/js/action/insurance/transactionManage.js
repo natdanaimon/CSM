@@ -248,27 +248,43 @@ function edit() {
                 $("#s_lastname").val(item.s_lastname);
                 $("#s_phone").val(item.s_phone);
                 $("#s_email").val(item.s_email);
-                
-                idInsurance = item.i_insurance;
-              
 
-                if (item.s_img_p1 != "" && typeof(item.s_img_p1) != "undefined") {
-                    $('#m1').attr('title', item.s_copy_citizen);
-                    $('#m1').attr('href', 'upload/transaction/' + item.s_copy_citizen);
-                    $('#img1').attr('src', 'upload/transaction/' + item.s_copy_citizen);
+                idInsurance = item.i_insurance;
+
+
+                if (item.s_copy_citizen != "" && typeof (item.s_copy_citizen) != "undefined") {
+                    var typeFile1 = item.s_copy_citizen.substr(item.s_copy_citizen.lastIndexOf('.') + 1);
+                    if (typeFile1 == "pdf") {
+                        $('#img1').attr('src', 'images/pdf.png');
+                        $('#m1').removeAttr("data-lightbox");
+                        $('#m1').attr('title', item.s_copy_citizen);
+                        $('#m1').attr('href', "javascript:window.open('upload/transaction/" + item.s_copy_citizen + "', 'MsgWindow','width=400,height=600');");
+                    } else {
+                        $('#m1').attr('title', item.s_copy_citizen);
+                        $('#m1').attr('href', 'upload/transaction/' + item.s_copy_citizen);
+                        $('#img1').attr('src', 'upload/transaction/' + item.s_copy_citizen);
+                    }
                 }
-                if (item.s_img_p2 != "" && typeof(item.s_img_p2) != "undefined") {
-                    $('#m2').attr('title', item.s_copy_car);
-                    $('#m2').attr('href', 'upload/transaction/' + item.s_copy_car);
-                    $('#img2').attr('src', 'upload/transaction/' + item.s_copy_car);
+                if (item.s_copy_car != "" && typeof (item.s_copy_car) != "undefined") {
+                    var typeFile2 = item.s_copy_car.substr(item.s_copy_car.lastIndexOf('.') + 1);
+                    if (typeFile2 == "pdf") {
+                        $('#img2').attr('src', 'images/pdf.png');
+                        $('#m2').removeAttr("data-lightbox");
+                        $('#m2').attr('title', item.s_copy_car);
+                        $('#m2').attr('href', "javascript:window.open('upload/transaction/" + item.s_copy_car + "', 'MsgWindow','width=400,height=600');");
+                    } else {
+                        $('#m2').attr('title', item.s_copy_car);
+                        $('#m2').attr('href', 'upload/transaction/' + item.s_copy_car);
+                        $('#img2').attr('src', 'upload/transaction/' + item.s_copy_car);
+                    }
                 }
 
                 $("#lb_create").text(item.s_create_by + " ( " + item.d_create + " )");
                 var lb_edit = (item.s_update_by != "" ? item.s_update_by + " ( " + item.d_update + " )" : "-");
                 $("#lb_edit").text(lb_edit);
             });
-              editDetail();
-            
+            editDetail();
+
 
         },
         error: function (data) {

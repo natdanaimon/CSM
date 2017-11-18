@@ -487,11 +487,13 @@ $disableView = 'disabled="disable"';
 
         <script src="js/common/notify.js" type="text/javascript"></script>
         <link href="css/notify.css" rel="stylesheet" type="text/css" />
+        <!--<link href="css/custom.css" rel="stylesheet" type="text/css" />-->
         <script src="js/action/insurance/transactionManage.js" type="text/javascript"></script>
 
         <!-- BEGIS SELECT 2 SCRIPTS -->
         <link href="css/select2.min.css" rel="stylesheet" />
         <script src="js/common/select2.min.js"></script>
+        <script src="js/common/pdfobject.js"></script>
         <!-- END SELECT 2 SCRIPTS -->
         <link href="outbound/lightbox/css/lightbox.css" rel="stylesheet" type="text/css" />
         <script src="outbound/lightbox/js/lightbox.js" type="text/javascript"></script>
