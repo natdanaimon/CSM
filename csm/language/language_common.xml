@@ -811,7 +811,11 @@
         <th>ข้อมูลรายการสมัคประกันภัย</th>
         <en>Insurance Transaction</en>
     </detail>
-	
+    <detail>
+        <variable>ins_claim</variable>
+        <th>ข้อมูลแจ้งเคลมออนไลน์</th>
+        <en>Claim Online</en>
+    </detail>
 
     <detail>
         <variable>ui_management</variable>
@@ -1192,6 +1196,18 @@
         <en>Repair Type</en>
     </detail>
 
+
+
+    <detail>
+        <variable>tb_co_datetime_claim</variable>
+        <th>วันที่แจ้งเคลมออนไลน์</th>
+        <en>Datetime Claim</en>
+    </detail>
+    <detail>
+        <variable>tb_co_claimNo</variable>
+        <th>เลขที่รับแจ้งเคลม</th>
+        <en>Claim No</en>
+    </detail>
 
     <!--  table  --> 
         

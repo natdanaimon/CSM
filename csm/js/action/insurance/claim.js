@@ -21,6 +21,7 @@ function initialDataTable(first) {
             $.each(res, function(i, item) {
                 var bath = " บาท.";
                 var col_checkbox = "";
+                var col_claimNo = "";
                 var col_fullname = item.s_firstname + " " + item.s_lastname;
                 var col_phone = item.s_phone;
                 var col_email = item.s_email;
@@ -62,6 +63,7 @@ function initialDataTable(first) {
 
                 var addRow = [
                     col_checkbox,
+                    col_claimNo,
                     col_fullname,
                     col_phone,
                     col_email,
@@ -83,7 +85,7 @@ function initialDataTable(first) {
                 $datatable.dataTable({
                     data: JsonData,
                     order: [
-                        [4, 'desc'],
+                        [4, 'asc'],
                         [2, 'asc']
                     ],
                     columnDefs: [

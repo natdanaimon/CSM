@@ -42,6 +42,7 @@ function ACTIVEPAGES($page, $sub) {
     //csm insurance
     $_SESSION["nav_sub_ins_prd"] = "";
     $_SESSION["nav_sub_ins_tran"] = "";
+    $_SESSION["nav_sub_ins_claim"] = "";
 
 
     //csm ui
@@ -82,6 +83,8 @@ function ACTIVEPAGES($page, $sub) {
             $_SESSION["nav_sub_ins_prd"] = " active open";
         } else if ($sub == 2) {
             $_SESSION["nav_sub_ins_tran"] = " active open";
+        } else if ($sub == 3) {
+            $_SESSION["nav_sub_ins_claim"] = " active open";
         }
     } else if ($page == 14) {
         $_SESSION["nav_main_ui"] = " active open";
