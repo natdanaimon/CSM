@@ -1458,8 +1458,18 @@
         <en>Detail</en>
     </detail>
     <detail>
+        <variable>tt_detail_person2</variable>
+        <th>รายละเอียดผู้แจ้งเคลมออนไลน์</th>
+        <en>Detail</en>
+    </detail>
+    <detail>
         <variable>tt_detail_insurance</variable>
         <th>รายละเอียดประกันภัย</th>
+        <en>Detail</en>
+    </detail>
+    <detail>
+        <variable>tt_detail_claim</variable>
+        <th>เอกสารแจ้งเคลมออนไลน์</th>
         <en>Detail</en>
     </detail>
     <detail>
@@ -1476,6 +1486,18 @@
         <variable>tt_detail_claimSubReq</variable>
         <th>เอกสารประกอบการเคลม</th>
         <en>Request Sub Claim Document</en>
+    </detail>
+    <detail>
+        <variable>tt_detail_claimDmg</variable>
+        <th>รูปถ่ายความเสียหายรถยนต์</th>
+        <en>Claim Damage</en>
+    </detail>
+    
+
+    <detail>
+        <variable>tt_detail_claimPay</variable>
+        <th>หลักฐานการชำระเงิน</th>
+        <en>Claim Payment</en>
     </detail>
     
     

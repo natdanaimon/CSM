@@ -565,12 +565,12 @@
     </detail>
     <detail>
         <variable>lb_setClaim_phone1</variable>
-        <th>เบอร์โทรศัพท์ 1</th>
+        <th>เบอร์โทรศัพท์</th>
         <en>Phone 1</en>
     </detail>
     <detail>
         <variable>lb_setClaim_phone2</variable>
-        <th>เบอร์โทรศัพท์ 2</th>
+        <th>เบอร์โทรศัพท์ สำรอง</th>
         <en>Phone 2</en>
     </detail>
     <detail>
@@ -592,6 +592,16 @@
         <variable>lb_setClaim_noOwnerCar</variable>
         <th>ไม่ใช่เจ้าของรถ</th>
         <en>No Owner Car</en>
+    </detail>
+    <detail>
+        <variable>lb_setClaim_other</variable>
+        <th>อื่นๆ</th>
+        <en>Other</en>
+    </detail>
+    <detail>
+        <variable>lb_setClaim_ref</variable>
+        <th>ความเกี่ยวข้องกับเจ้าของรถ</th>
+        <en>Ref Owner.</en>
     </detail>
     <detail>
         <variable>lb_setClaim_docClaim</variable>
@@ -623,7 +633,7 @@
         <th>หลักฐานการชำระเงิน</th>
         <en>Pay Slip</en>
     </detail>
-     <detail>
+    <detail>
         <variable>lb_setClaim_picCarDmg</variable>
         <th>รูปถ่ายความเสียหายรถ</th>
         <en>Image Car Damage</en>

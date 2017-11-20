@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 15, 2017 at 10:31 AM
+-- Generation Time: Nov 20, 2017 at 05:02 PM
 -- Server version: 5.6.37
 -- PHP Version: 5.6.30
 
@@ -1239,7 +1239,15 @@ CREATE TABLE `tb_claim_image` (
   `s_create_by` varchar(50) NOT NULL,
   `s_update_by` varchar(50) NOT NULL,
   `s_status` varchar(10) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tb_claim_image`
+--
+
+INSERT INTO `tb_claim_image` (`i_cimage`, `s_ref_image`, `s_image`, `d_create`, `d_update`, `s_create_by`, `s_update_by`, `s_status`) VALUES
+(1, '20171120160500', 's1.jpg', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A'),
+(2, '20171120160500', 's2.jpg', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A');
 
 -- --------------------------------------------------------
 
@@ -10394,7 +10402,14 @@ CREATE TABLE `tb_insurance_claim` (
   `s_create_by` varchar(50) NOT NULL,
   `s_update_by` varchar(50) NOT NULL,
   `s_status` varchar(10) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tb_insurance_claim`
+--
+
+INSERT INTO `tb_insurance_claim` (`i_claim`, `s_firstname`, `s_lastname`, `s_owner`, `s_related`, `s_phone_1`, `s_phone_2`, `s_email`, `s_line`, `s_copy_claim`, `s_claim_number`, `s_copy_driver`, `s_copy_insurance`, `s_copy_car`, `s_ref_image`, `s_copy_pay`, `d_create`, `d_update`, `s_create_by`, `s_update_by`, `s_status`) VALUES
+(5, 'ณัฐดนัย', 'มั่นคง', '2', 'test', '0888888888', '0999999999', 'a@a.com', 'aaaa', 's1.jpg', '888990', 's2.jpg', 's3.pdf', 's4.jpg', '20171120160500', 's5.jpg', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A');
 
 -- --------------------------------------------------------
 
@@ -10514,7 +10529,15 @@ CREATE TABLE `tb_insurance_trans` (
 --
 
 INSERT INTO `tb_insurance_trans` (`i_ins_trans`, `i_insurance`, `s_firstname`, `s_lastname`, `s_phone`, `s_email`, `s_copy_citizen`, `s_copy_car`, `d_create`, `d_update`, `s_create_by`, `s_update_by`, `s_status`) VALUES
-(1, 6, 'ณัฐดนัย', 'มั่นคง', '086-361-9979', 'natdanaimon@gmail.com', 's1.jpg', 's2.jpg', '2017-11-14 05:23:08', '2017-11-14 05:23:08', 'user', 'user', 'A');
+(1, 6, 'ณัฐดนัย', 'มั่นคง', '086-361-9979', 'natdanaimon@gmail.com', 's1.jpg', 's2.pdf', '2017-11-14 05:23:08', '2017-11-14 05:23:08', 'user', 'user', 'A'),
+(2, 6, 'aaa', 'sss', '0987654321', 'a@a.com', '', '', '2017-11-18 09:57:18', '2017-11-18 09:57:18', 'user', 'user', 'A'),
+(3, 7, 'sssss', 'ssss', '1234567890', 'aa@aa.com', '', '', '2017-11-18 09:58:29', '2017-11-18 09:58:29', 'user', 'user', 'A'),
+(4, 6, 'sss', 'fdddd', '111111', 'a@a.com', '', '', '2017-11-18 10:00:58', '2017-11-18 10:00:58', 'user', 'user', 'A'),
+(5, 6, 'fff', 'ddd', '11111', 'a@a.com', '', '', '2017-11-18 10:03:42', '2017-11-18 10:03:42', 'user', 'user', 'A'),
+(6, 6, 'ทดสอบ', 'ทดสอบ', '0888888888', 'nat@gmail.com', '', '', '2017-11-19 18:42:24', '2017-11-19 18:42:24', 'user', 'user', 'A'),
+(7, 8, 'aaa', 'bbb', '0987654321', 'a@a.com', '', '', '2017-11-19 22:31:24', '2017-11-19 22:31:24', 'user', 'user', 'A'),
+(8, 7, 'aaaa', 'sss', '1234567890', 'aa@aa.com', '8citizen.jpg', '8car.jpg', '2017-11-19 22:35:11', '2017-11-19 22:35:11', 'user', 'user', 'A'),
+(10, 7, 'fdsfsd', 'fdsafsada', '12121212', 'nat@gmail.com', '10citizen.jpg', '10car.pdf', '2017-11-19 23:17:27', '2017-11-19 23:17:27', 'user', 'user', 'A');
 
 -- --------------------------------------------------------
 
@@ -11384,7 +11407,7 @@ ALTER TABLE `tb_car_sub`
 -- AUTO_INCREMENT for table `tb_claim_image`
 --
 ALTER TABLE `tb_claim_image`
-  MODIFY `i_cimage` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `i_cimage` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `tb_customer`
 --
@@ -11414,7 +11437,7 @@ ALTER TABLE `tb_insurance`
 -- AUTO_INCREMENT for table `tb_insurance_claim`
 --
 ALTER TABLE `tb_insurance_claim`
-  MODIFY `i_claim` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `i_claim` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `tb_insurance_comp`
 --
@@ -11434,7 +11457,7 @@ ALTER TABLE `tb_insurance_repair_type`
 -- AUTO_INCREMENT for table `tb_insurance_trans`
 --
 ALTER TABLE `tb_insurance_trans`
-  MODIFY `i_ins_trans` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `i_ins_trans` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `tb_insurance_type`
 --

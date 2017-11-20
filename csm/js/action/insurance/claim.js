@@ -3,7 +3,7 @@ var $datatable = $('#datatable');
 function initialDataTable(first) {
     $.ajax({
         type: 'GET',
-        url: 'controller/insurance/transactionController.php?func=dataTable',
+        url: 'controller/insurance/claimController.php?func=dataTable',
         beforeSend: function() {
             $('#se-pre-con').fadeIn(100);
         },
@@ -21,9 +21,9 @@ function initialDataTable(first) {
             $.each(res, function(i, item) {
                 var bath = " บาท.";
                 var col_checkbox = "";
-                var col_claimNo = "";
+                var col_claimNo = item.s_claim_number;
                 var col_fullname = item.s_firstname + " " + item.s_lastname;
-                var col_phone = item.s_phone;
+                var col_phone = item.s_phone_1;
                 var col_email = item.s_email;
                 var col_datetime = item.d_create;
 
@@ -36,7 +36,7 @@ function initialDataTable(first) {
 
                 col_checkbox = '<span class="md-checkbox has-success" style="padding-right: 0px;">';
                 col_checkbox += '  <input type="checkbox" id="checkbox_' + i + '" name="checkboxItem" class="md-check"';
-                col_checkbox += '  value="' + item.i_ins_trans + '" onclick=remove_select_all("checkbox_' + i + '")>';
+                col_checkbox += '  value="' + item.i_claim + '" onclick=remove_select_all("checkbox_' + i + '")>';
                 col_checkbox += '  <label for="checkbox_' + i + '">';
                 col_checkbox += '    <span class="inc"></span>';
                 col_checkbox += '    <span class="check"></span>';
@@ -52,12 +52,12 @@ function initialDataTable(first) {
                 col_status += '';
 
 
-                col_edit += '<a href="ins_transactionManage.php?func=edit&id=' + item.i_ins_trans + '" class="btn btn-circle btn-icon-only blue">';
+                col_edit += '<a href="ins_claimManage.php?func=edit&id=' + item.i_claim + '" class="btn btn-circle btn-icon-only blue">';
                 col_edit += ' <i class="fa fa-eye"></i>';
                 col_edit += '</a>';
 
 
-                col_delete += '<a href="' + (disable != "" ? '#' : 'javascript:Confirm(\'' + item.i_ins_trans + '\',\'delete\');') + '" class="btn btn-circle btn-icon-only red" ' + disable + '>';
+                col_delete += '<a href="' + (disable != "" ? '#' : 'javascript:Confirm(\'' + item.i_claim + '\',\'delete\');') + '" class="btn btn-circle btn-icon-only red" ' + disable + '>';
                 col_delete += ' <i class="fa fa-trash-o"></i>';
                 col_delete += '</a>';
 
@@ -230,7 +230,7 @@ $(document).on('click', '.notifyjs-foo-base .notify-all-yes', function() {
 
     $.ajax({
         type: 'GET',
-        url: 'controller/insurance/transactionController.php',
+        url: 'controller/insurance/claimController.php',
         data: { data: jsonData, func: "deleteAll" },
         beforeSend: function() {
             $('#se-pre-con').fadeIn(100);
@@ -306,7 +306,7 @@ $(document).on('click', '.notifyjs-foo-base .notify-yes', function() {
 
     $.ajax({
         type: 'GET',
-        url: 'controller/insurance/transactionController.php?func=' + func + '&id=' + id,
+        url: 'controller/insurance/claimController.php?func=' + func + '&id=' + id,
         beforeSend: function() {
             $('#se-pre-con').fadeIn(100);
         },
@@ -358,7 +358,7 @@ $('#upfile').submit(function(e) {
     formData.append('file', $('input[type=file]')[0].files[0]);
     $.ajax({
         type: 'POST',
-        url: 'controller/insurance/transactionController.php?func=import',
+        url: 'controller/insurance/claimController.php?func=import',
         data: formData,
         cache: false,
         contentType: false,
