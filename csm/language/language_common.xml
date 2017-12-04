@@ -455,6 +455,11 @@
         <en>Search</en> 
     </detail>
     <detail>
+        <variable>btn_searchCustomer</variable>
+        <th>ค้นหาข้อมูลลูกค้า</th>
+        <en>Search Cust.</en> 
+    </detail>
+    <detail>
         <variable>btn_cancel</variable>
         <th>ยกเลิก</th>
         <en>Cancel</en> 
@@ -853,7 +858,30 @@
         <en>Popup Manangement</en>
     </detail>
       
-
+    <detail>
+        <variable>ui_popup</variable>
+        <th>จัดการข้อมูลโปรโมชั่นแจ้งเตือน</th>
+        <en>Popup Manangement</en>
+    </detail>
+    
+    
+    <detail>
+        <variable>repair</variable>
+        <th>ระบบนำซ่อม</th>
+        <en>Repair Management</en>
+    </detail>
+    
+    <detail>
+        <variable>re_status</variable>
+        <th>ตรวจสอบสถานะรถ</th>
+        <en>Status</en>
+    </detail>
+    
+    <detail>
+        <variable>re_inbound</variable>
+        <th>ตรวจสภาพรถก่อนนำเข้า</th>
+        <en>Check Inbound Car</en>
+    </detail>
 	
     <!--  Menu -->
     
@@ -1367,7 +1395,11 @@
         <th>จัดการข้อมูลลูกค้า</th>
         <en>MANAGE CUSTOMER</en>
     </detail>
-    
+    <detail>
+        <variable>tt_mg_inbound</variable>
+        <th>จัดการข้อมูลตรวจสภาพรถก่อนนำเข้า</th>
+        <en>MANAGE INBOUND CAR</en>
+    </detail>
     
     <detail>
         <variable>tt_mg_caryear</variable>
@@ -1451,6 +1483,11 @@
         <variable>tt_mg_knowledge</variable>
         <th>จัดการข้อมูลคลังความรู้</th>
         <en>MANAGE KNOWLEDGE</en>
+    </detail>
+     <detail>
+        <variable>tt_detail_cust</variable>
+        <th>รายละเอียดลูกค้า</th>
+        <en>Detail Cust.</en>
     </detail>
     <detail>
         <variable>tt_detail_person</variable>
