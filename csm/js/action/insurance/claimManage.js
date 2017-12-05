@@ -163,7 +163,7 @@ function editDetail() {
         },
         success: function (data) {
             var html = "";
-            var res = JSON.parse(data);            
+            var res = JSON.parse(data);
             $.each(res, function (i, item) {
                 debugger;
                 html += '<div class="col-md-3">';
@@ -171,10 +171,15 @@ function editDetail() {
 //                html += '<label for="form_control_1"><?= $_SESSION[lb_setClaim_carRegis] ?> <span class="required"></span></label>';
                 html += '<div class="fileinput fileinput-new" data-provides="fileinput">';
                 html += '<div class="fileinput-new thumbnail"  style="max-width: 205px; max-height: 160px;">';
-                html += '<a id="" title="'+item.s_image+'" class="example-image-link" href="upload/claimDmg/'+item.s_image+'" data-lightbox="example-2">';
-                html += '<img id="" src="upload/claimDmg/'+item.s_image+'" alt="" style="max-width: 195px; max-height: 145px;"/> ';
+                html += '<a id="" title="' + item.s_detail + '" class="example-image-link" href="upload/claimDmg/' + item.s_image + '" data-lightbox="example-2">';
+                html += '<img id="" src="upload/claimDmg/' + item.s_image + '" alt="" style="max-width: 195px; max-height: 145px;"/> ';
                 html += '</a> ';
-                html += '</div></div></div></div>';
+                html += '</div>';
+                html += '<span style="font-weight:bold;">' + item.s_detail + '</span>';
+                html += '</div></div></div>';
+
+
+
             });
             $("#image-damage").html(html);
             $('#se-pre-con').delay(100).fadeOut();

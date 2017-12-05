@@ -30,7 +30,7 @@ class claimService {
     
     function getInfoDetail($seq) {
         $db = new ConnectDB();
-        $strSql = " select * from tb_claim_image where s_ref_image ='" . $seq."'";
+        $strSql = " select * from tb_claim_image where s_ref_image ='" . $seq."' order by s_flg_width desc , i_cimage asc ";
         $_data = $db->Search_Data_FormatJson($strSql);
         $db->close_conn();
         return $_data;
