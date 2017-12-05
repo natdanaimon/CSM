@@ -66,6 +66,7 @@ class claimController {
             echo $_SESSION['cd_2001'];
         }
         $service->deleteNotRef($db);
+        $db->commit();
 
         $this->deleteTempFile($db);
         $this->deleteTempFileDetail($db);
@@ -88,7 +89,7 @@ class claimController {
                 echo $_SESSION['cd_2001'];
             }
             $service->deleteNotRef($db);
-            
+            $db->commit();
             
             $this->deleteTempFile($db);
             $this->deleteTempFileDetail($db);
