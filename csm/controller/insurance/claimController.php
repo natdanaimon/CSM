@@ -65,6 +65,7 @@ class claimController {
             $db->rollback();
             echo $_SESSION['cd_2001'];
         }
+        $service->deleteNotRef($db);
 
         $this->deleteTempFile($db);
         $this->deleteTempFileDetail($db);
@@ -86,8 +87,12 @@ class claimController {
                 $db->rollback();
                 echo $_SESSION['cd_2001'];
             }
+            $service->deleteNotRef($db);
+            
+            
             $this->deleteTempFile($db);
             $this->deleteTempFileDetail($db);
+            
         }
     }
 
@@ -101,7 +106,7 @@ class claimController {
         }
     }
 
-     public function getInfoDetail($seq) {
+    public function getInfoDetail($seq) {
         $service = new claimService();
         $_dataTable = $service->getInfoDetail($seq);
         if ($_dataTable != NULL) {
@@ -110,7 +115,7 @@ class claimController {
             return NULL;
         }
     }
-    
+
     public function deleteTempFile($db) {
         $temp = new upload();
         $svTemp = new claimService();

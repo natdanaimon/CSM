@@ -53,6 +53,15 @@ class claimService {
         $reslut = $db->insert_for_upadte($arr);
         return $reslut;
     }
+    
+     function deleteNotRef($db) {
+        $strSQL = "DELETE FROM tb_claim_image WHERE s_ref_image NOT in (select s_ref_image from tb_insurance_claim)";
+        $arr = array(
+            array("query" => "$strSQL")
+        );
+        $reslut = $db->insert_for_upadte($arr);
+        return $reslut;
+    }
 
     function SelectById($db, $seq) {
         $strSql = "SELECT * FROM tb_insurance_claim WHERE i_insurance = '" . $seq . "' ";
