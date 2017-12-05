@@ -11,7 +11,7 @@ and open the template in the editor.
     </head>
     <body>
         <!-- Modal -->
-        <div class="modal fade" id="searchCust" role="dialog">
+        <div class="modal fade" id="searchCust" role="dialog" style="top: 30px;">
             <div class="modal-dialog">
 
                 <!-- Modal content-->
@@ -22,7 +22,7 @@ and open the template in the editor.
                             <thead>
                                 <tr>
 
-                                    <th>  <?= $_SESSION[tb_co_fullname] ?> </th>
+                                    <th align="left">  <?= $_SESSION[tb_co_fullname] ?> </th>
                                     <th>  <?= $_SESSION[tb_co_phone] ?> </th>
 
                             </thead>

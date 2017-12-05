@@ -8,7 +8,7 @@ function initialCust(first) {
             $('#se-pre-con').fadeIn(100);
         },
         success: function (data) {
-            debugger;
+          
             if (data == '') {
                 var datatable = $datatable.dataTable().api();
                 $('.dataTables_empty').remove();
