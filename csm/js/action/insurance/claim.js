@@ -4,10 +4,10 @@ function initialDataTable(first) {
     $.ajax({
         type: 'GET',
         url: 'controller/insurance/claimController.php?func=dataTable',
-        beforeSend: function() {
+        beforeSend: function () {
             $('#se-pre-con').fadeIn(100);
         },
-        success: function(data) {
+        success: function (data) {
             if (data == '') {
                 var datatable = $datatable.dataTable().api();
                 $('.dataTables_empty').remove();
@@ -18,10 +18,10 @@ function initialDataTable(first) {
             }
             var res = JSON.parse(data);
             var JsonData = [];
-            $.each(res, function(i, item) {
+            $.each(res, function (i, item) {
                 var bath = " บาท.";
                 var col_checkbox = "";
-                var col_claimNo = item.s_claim_number;
+                var col_claimNo = (item.s_claim_number==''?'-':item.s_claim_number);
                 var col_fullname = item.s_firstname + " " + item.s_lastname;
                 var col_phone = item.s_phone_1;
                 var col_email = item.s_email;
@@ -44,8 +44,8 @@ function initialDataTable(first) {
                 col_checkbox += '</span>';
 
 
- 
-       
+
+
 
                 col_status = '';
                 col_status += '<span class="badge badge-' + colorStatus(item.s_status) + '">' + sortHidden(item.s_status) + (language == "th" ? item.status_th : item.status_en) + '</span>';
@@ -63,8 +63,8 @@ function initialDataTable(first) {
 
                 var addRow = [
                     col_checkbox,
-                    col_claimNo,
                     col_fullname,
+                    col_claimNo,
                     col_phone,
                     col_email,
                     col_datetime,
@@ -85,11 +85,10 @@ function initialDataTable(first) {
                 $datatable.dataTable({
                     data: JsonData,
                     order: [
-                        [4, 'asc'],
-                        [2, 'asc']
+                        [5, 'desc']
                     ],
                     columnDefs: [
-                        { "orderable": false, "targets": 0 }
+                        {"orderable": false, "targets": 0}
                     ]
                 });
             } else {
@@ -105,7 +104,7 @@ function initialDataTable(first) {
             $('#se-pre-con').delay(100).fadeOut();
 
         },
-        error: function(data) {
+        error: function (data) {
 
         }
 
@@ -129,24 +128,24 @@ function sortHidden(status) {
 }
 
 
-$('#checkbox14').click(function() {
+$('#checkbox14').click(function () {
     var checkboxes = $('input[name$=checkboxItem]');
     var array = [];
-    $('input[name$="checkboxItem"]').each(function() {
+    $('input[name$="checkboxItem"]').each(function () {
         array.push($(this).attr('id'));
     });
     if ($(this).is(':checked')) {
         checkboxes.prop('checked', true);
         var names = [];
         names = jQuery.unique(array);
-        $.each(names, function(key, value) {
+        $.each(names, function (key, value) {
             $('input:checkbox[id=' + value + ']').attr('checked', true);
         });
     } else {
         checkboxes.prop('checked', false);
         var names = [];
         names = jQuery.unique(array);
-        $.each(names, function(key, value) {
+        $.each(names, function (key, value) {
             $('input:checkbox[id=' + value + ']').attr('checked', false);
         });
     }
@@ -159,12 +158,12 @@ function remove_select_all(id) {
 
         //set element select all selected
         var array = [];
-        $('input[name$="checkboxItem"]').each(function() {
+        $('input[name$="checkboxItem"]').each(function () {
             array.push($(this).attr('id'));
         });
         var names = [];
         names = jQuery.unique(array);
-        $.each(names, function(key, value) {
+        $.each(names, function (key, value) {
             if ($("#" + value).is(':checked')) {
                 selected.push($("#" + value).val());
             }
@@ -186,14 +185,14 @@ function deleteAll() {
     $('#se-pre-con').fadeIn(100);
     $.notify.addStyle('foo', {
         html: "<div>" +
-            "<div class='clearfix'>" +
-            "<div class='title' data-notify-html='title'/>" +
-            "<div class='buttons'>" +
-            "<button class='notify-all-no btn red'>" + cancel + "</button>" +
-            "<button class='notify-all-yes btn green'>" + yes + "</button>" +
-            "</div>" +
-            "</div>" +
-            "</div>"
+                "<div class='clearfix'>" +
+                "<div class='title' data-notify-html='title'/>" +
+                "<div class='buttons'>" +
+                "<button class='notify-all-no btn red'>" + cancel + "</button>" +
+                "<button class='notify-all-yes btn green'>" + yes + "</button>" +
+                "</div>" +
+                "</div>" +
+                "</div>"
     });
 
     $.notify({
@@ -206,20 +205,20 @@ function deleteAll() {
     });
 
 }
-$(document).on('click', '.notifyjs-foo-base .notify-all-no', function() {
+$(document).on('click', '.notifyjs-foo-base .notify-all-no', function () {
     $('#se-pre-con').delay(100).fadeOut();
     $(this).trigger('notify-hide');
 });
-$(document).on('click', '.notifyjs-foo-base .notify-all-yes', function() {
+$(document).on('click', '.notifyjs-foo-base .notify-all-yes', function () {
     $(this).trigger('notify-hide');
     var selected = [];
     var array = [];
-    $('input[name$="checkboxItem"]').each(function() {
+    $('input[name$="checkboxItem"]').each(function () {
         array.push($(this).attr('id'));
     });
     var names = [];
     names = jQuery.unique(array);
-    $.each(names, function(key, value) {
+    $.each(names, function (key, value) {
         if ($("#" + value).is(':checked')) {
             //alert($("#" + value).val());
             selected.push($("#" + value).val());
@@ -231,11 +230,11 @@ $(document).on('click', '.notifyjs-foo-base .notify-all-yes', function() {
     $.ajax({
         type: 'GET',
         url: 'controller/insurance/claimController.php',
-        data: { data: jsonData, func: "deleteAll" },
-        beforeSend: function() {
+        data: {data: jsonData, func: "deleteAll"},
+        beforeSend: function () {
             $('#se-pre-con').fadeIn(100);
         },
-        success: function(data) {
+        success: function (data) {
 
             var res = data.split(",");
             if (res[0] == "0000") {
@@ -249,7 +248,7 @@ $(document).on('click', '.notifyjs-foo-base .notify-all-yes', function() {
             $('#se-pre-con').delay(100).fadeOut();
             initialDataTable("FALSE");
         },
-        error: function(data) {
+        error: function (data) {
 
         }
 
@@ -273,16 +272,16 @@ function Confirm(txt, func) {
     $('#se-pre-con').fadeIn(100);
     $.notify.addStyle('foo', {
         html: "<div>" +
-            "<div class='clearfix'>" +
-            "<div class='title' data-notify-html='title'/>" +
-            "<div class='buttons'>" +
-            "<input type='hidden' id='id' value='" + txt + "' />" +
-            "<input type='hidden' id='func' value='" + func + "' />" +
-            "<button class='notify-no btn red'>" + cancel + "</button>" +
-            "<button class='notify-yes btn green'>" + yes + "</button>" +
-            "</div>" +
-            "</div>" +
-            "</div>"
+                "<div class='clearfix'>" +
+                "<div class='title' data-notify-html='title'/>" +
+                "<div class='buttons'>" +
+                "<input type='hidden' id='id' value='" + txt + "' />" +
+                "<input type='hidden' id='func' value='" + func + "' />" +
+                "<button class='notify-no btn red'>" + cancel + "</button>" +
+                "<button class='notify-yes btn green'>" + yes + "</button>" +
+                "</div>" +
+                "</div>" +
+                "</div>"
     });
 
     $.notify({
@@ -295,11 +294,11 @@ function Confirm(txt, func) {
     });
 
 }
-$(document).on('click', '.notifyjs-foo-base .notify-no', function() {
+$(document).on('click', '.notifyjs-foo-base .notify-no', function () {
     $('#se-pre-con').delay(100).fadeOut();
     $(this).trigger('notify-hide');
 });
-$(document).on('click', '.notifyjs-foo-base .notify-yes', function() {
+$(document).on('click', '.notifyjs-foo-base .notify-yes', function () {
     $(this).trigger('notify-hide');
     var id = $("#id").val();
     var func = $("#func").val();
@@ -307,10 +306,10 @@ $(document).on('click', '.notifyjs-foo-base .notify-yes', function() {
     $.ajax({
         type: 'GET',
         url: 'controller/insurance/claimController.php?func=' + func + '&id=' + id,
-        beforeSend: function() {
+        beforeSend: function () {
             $('#se-pre-con').fadeIn(100);
         },
-        success: function(data) {
+        success: function (data) {
 
             var res = data.split(",");
             if (res[0] == "0000") {
@@ -324,7 +323,7 @@ $(document).on('click', '.notifyjs-foo-base .notify-yes', function() {
             $('#se-pre-con').delay(100).fadeOut();
             initialDataTable("FALSE");
         },
-        error: function(data) {
+        error: function (data) {
 
         }
 
@@ -342,14 +341,14 @@ function clickFile() {
     $("#file").click();
 }
 
-$("#file").on('change', function() {
+$("#file").on('change', function () {
     //    console.log(this.files);
     $("#upfile").submit();
 }).click();
 
 
 
-$('#upfile').submit(function(e) {
+$('#upfile').submit(function (e) {
     //alert(e);
     e.preventDefault();
     //    console.log($(this).serialize());
@@ -363,10 +362,10 @@ $('#upfile').submit(function(e) {
         cache: false,
         contentType: false,
         processData: false,
-        beforeSend: function() {
+        beforeSend: function () {
             $('#se-pre-con').fadeIn(100);
         },
-        success: function(data) {
+        success: function (data) {
             $("#file").val("");
             var res = data.split(",");
             if (res[0] == "0000") {
@@ -380,11 +379,11 @@ $('#upfile').submit(function(e) {
                 return;
             }
             //            notification();
-            $('#upfile').each(function() {
+            $('#upfile').each(function () {
                 setTimeout(reloadTime, 1000);
             });
         },
-        error: function(data) {
+        error: function (data) {
             $("#file").val("");
         }
     });

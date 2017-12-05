@@ -16,7 +16,7 @@ ACTIVEPAGES(13, 3);
         <meta content="<?= $_SESSION[title_content] ?>"    name="description" />
         <meta content="" name="author" />
         <!-- BEGIN GLOBAL MANDATORY STYLES -->
-        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
         <link href="../assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
         <link href="../assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
         <link href="../assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -125,7 +125,7 @@ ACTIVEPAGES(13, 3);
                                         <table class="table table-striped table-bordered table-hover table-checkable order-column dt-responsive" id="datatable">
                                             <thead>
                                                 <tr>
-                                                    <th style="padding-left: 0px;width: 20px" class="no-sort">
+                                                    <th style="padding-left: 0px;width: 20px" >
 
                                                         <span class="md-checkbox has-success">
                                                             <input type="checkbox" id="checkbox14" name="checkbox14" class="md-check">
@@ -135,8 +135,9 @@ ACTIVEPAGES(13, 3);
                                                                 <span class="box"></span> </label>
                                                         </span>
                                                     </th>
-                                                    <th class="all">  <?= $_SESSION[tb_co_claimNo] ?> </th>
                                                     <th class="all">  <?= $_SESSION[tb_co_fullname] ?> </th>
+                                                    <th class="all">  <?= $_SESSION[tb_co_claimNo] ?> </th>
+                                                    
                                                     <th class="all">  <?= $_SESSION[tb_co_phone] ?> </th>
                                                     <th class="all">  <?= $_SESSION[tb_co_email] ?> </th>
                                                     <th class="all">  <?= $_SESSION[tb_co_datetime_claim] ?> </th>
