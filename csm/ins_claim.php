@@ -122,10 +122,10 @@ ACTIVEPAGES(13, 3);
 
                                             </div>
                                         </div>
-                                        <table class="table table-striped table-bordered table-hover table-checkable order-column dt-responsive" id="datatable">
+                                          <table class="table table-striped table-bordered table-hover table-checkable order-column" id="datatable">
                                             <thead>
                                                 <tr>
-                                                    <th style="padding-left: 0px;width: 20px" >
+                                                    <th style="padding-left: 0px;width: 20px" class="no-sort">
 
                                                         <span class="md-checkbox has-success">
                                                             <input type="checkbox" id="checkbox14" name="checkbox14" class="md-check">

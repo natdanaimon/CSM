@@ -85,7 +85,7 @@ function initialDataTable(first) {
                 $datatable.dataTable({
                     data: JsonData,
                     order: [
-                        [5, 'desc']
+                        [5, 'desc'], [1, 'asc']
                     ],
                     columnDefs: [
                         {"orderable": false, "targets": 0}
