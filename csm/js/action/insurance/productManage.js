@@ -272,6 +272,14 @@ function edit() {
                 $("#s_prother_personal").val(item.s_prother_personal);
                 $("#s_prother_insurance").val(item.s_prother_insurance);
                 $("#s_prother_medical").val(item.s_prother_medical);
+                
+                //3-4
+                $("#s_prother_1_txt").val(item.s_prother_1_txt);
+                $("#s_prother_2_txt").val(item.s_prother_2_txt);
+                $("#s_prother_3_txt").val(item.s_prother_3_txt);
+                $("#s_prother_1_val").val(item.s_prother_1_val);
+                $("#s_prother_2_val").val(item.s_prother_2_val);
+                $("#s_prother_3_val").val(item.s_prother_3_val);
 
 
                 $("#status").val(item.s_status);

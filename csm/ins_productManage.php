@@ -304,7 +304,71 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                                 </div>
                             </div>
 
+                            <div class="row">
+                                <div class="col-md-6">
 
+                                    <div class="portlet light bordered">
+                                        <div class="row">
+                                            <div class="portlet-title">
+                                                <div class="caption font-green">
+                                                    <i class="fa fa-file font-green"></i>
+                                                    <span class="caption-subject bold uppercase"> <?= $_SESSION[tt_mg_protec_3] ?></span>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                        <br/>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group form-md-line-input has-success">
+                                                    <input type="text" class="form-control bold" id="s_prother_1_txt" name="s_prother_1_txt">
+                                                    <label for="form_control_1"><?= $_SESSION[lb_setIns_h_1] ?> <span class="required"></span></label>          
+                                                </div> 
+
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group form-md-line-input has-success">
+                                                    <input type="text" class="form-control bold" id="s_prother_1_val" name="s_prother_1_val">
+                                                    <label for="form_control_1"><?= $_SESSION[lb_setIns_d_1] ?> <span class="required"></span></label>          
+                                                </div> 
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group form-md-line-input has-success">
+                                                    <input type="text" class="form-control bold" id="s_prother_2_txt" name="s_prother_2_txt">
+                                                    <label for="form_control_1"><?= $_SESSION[lb_setIns_h_2] ?> <span class="required"></span></label>          
+                                                </div> 
+
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group form-md-line-input has-success">
+                                                    <input type="text" class="form-control bold" id="s_prother_2_val" name="s_prother_2_val">
+                                                    <label for="form_control_1"><?= $_SESSION[lb_setIns_d_2] ?> <span class="required"></span></label>          
+                                                </div> 
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group form-md-line-input has-success">
+                                                    <input type="text" class="form-control bold" id="s_prother_3_txt" name="s_prother_3_txt">
+                                                    <label for="form_control_1"><?= $_SESSION[lb_setIns_h_3] ?> <span class="required"></span></label>          
+                                                </div> 
+
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group form-md-line-input has-success">
+                                                    <input type="text" class="form-control bold" id="s_prother_3_val" name="s_prother_3_val">
+                                                    <label for="form_control_1"><?= $_SESSION[lb_setIns_d_3] ?> <span class="required"></span></label>          
+                                                </div> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
 
 
                             <div class="row">

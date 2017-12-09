@@ -444,6 +444,39 @@
     </detail>  
     
     
+    <detail>
+        <variable>lb_setIns_h_1</variable>
+        <th>หัวข้อความคุ้มครองเสริมรายการที่1</th>
+        <en>Extra Subject 1</en>
+    </detail>  
+    <detail>
+        <variable>lb_setIns_h_2</variable>
+        <th>หัวข้อความคุ้มครองเสริมรายการที่2</th>
+        <en>Extra Subject 2</en>
+    </detail>  
+    <detail>
+        <variable>lb_setIns_h_3</variable>
+        <th>หัวข้อความคุ้มครองเสริมรายการที่3</th>
+        <en>Extra Subject 3</en>
+    </detail>  
+    <detail>
+        <variable>lb_setIns_d_1</variable>
+        <th>จำนวนเงิน (บาท)</th>
+        <en>Extra Detail 1</en>
+    </detail>  
+    <detail>
+        <variable>lb_setIns_d_2</variable>
+        <th>จำนวนเงิน (บาท)</th>
+        <en>Extra Detail 2</en>
+    </detail>  
+    <detail>
+        <variable>lb_setIns_d_3</variable>
+        <th>จำนวนเงิน (บาท)</th>
+        <en>Extra Detail 3</en>
+    </detail>  
+    
+    
+    
     <!--  insurance product-->  
 
 
@@ -528,7 +561,7 @@
     <!--  knowledge--> 
 
 
-    <!--  knowledge-->  
+    <!--  transaction -->  
     <detail>
         <variable>lb_setTrans_first</variable>
         <th>ชื่อ</th>
@@ -549,7 +582,23 @@
         <th>อีเมลล์</th>
         <en>Email</en>
     </detail>
-    <!--  knowledge--> 
+    
+    <detail>
+        <variable>lb_setTrans_address</variable>
+        <th>ที่อยู่สำหรับจัดส่งเอกสาร</th>
+        <en>Address</en>
+    </detail>
+    <detail>
+        <variable>lb_setTrans_require</variable>
+        <th>ความต้องการอื่นๆ</th>
+        <en>Require Other</en>
+    </detail>
+    <detail>
+        <variable>lb_setTrans_require_date</variable>
+        <th>วันที่เริ่มเอาประกัน</th>
+        <en>Insurance Require Date</en>
+    </detail>
+    <!--  transaction --> 
     
     
     <!--  claim -->  

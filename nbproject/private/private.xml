@@ -3,12 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/CSM/csm/service/insurance/claimService.php</file>
-            <file>file:/C:/xampp/htdocs/CSM/csm/set_carsub.php</file>
-            <file>file:/C:/xampp/htdocs/CSM/csm/js/action/insurance/claim.js</file>
-            <file>file:/C:/xampp/htdocs/CSM/csm/common/upload.php</file>
-            <file>file:/C:/xampp/htdocs/CSM/csm/ins_claim.php</file>
-            <file>file:/C:/xampp/htdocs/CSM/csm/controller/insurance/claimController.php</file>
+            <file>file:/C:/xampp/htdocs/CSM/csm/ins_transactionManage.php</file>
         </group>
     </open-files>
 </project-private>

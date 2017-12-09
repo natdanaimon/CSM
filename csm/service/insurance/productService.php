@@ -129,6 +129,14 @@ class productService {
         $strSql .= "    s_prother_insurance='$info[s_prother_insurance]', ";
         $strSql .= "    s_prother_medical='$info[s_prother_medical]', ";
 
+        $strSql .= "    s_prother_1_txt='$info[s_prother_1_txt]', ";
+        $strSql .= "    s_prother_2_txt='$info[s_prother_2_txt]', ";
+        $strSql .= "    s_prother_3_txt='$info[s_prother_3_txt]', ";
+        $strSql .= "    s_prother_1_val='$info[s_prother_1_val]', ";
+        $strSql .= "    s_prother_2_val='$info[s_prother_2_val]', ";
+        $strSql .= "    s_prother_3_val='$info[s_prother_3_val]', ";
+
+
 
 
         $strSql .= "d_update = " . $db->Sysdate(TRUE) . ", ";
@@ -173,6 +181,14 @@ class productService {
         $strSql .= "    s_prother_insurance, ";
         $strSql .= "    s_prother_medical, ";
 
+        $strSql .= "    s_prother_1_txt, ";
+        $strSql .= "    s_prother_2_txt, ";
+        $strSql .= "    s_prother_3_txt, ";
+
+        $strSql .= "    s_prother_1_val, ";
+        $strSql .= "    s_prother_2_val, ";
+        $strSql .= "    s_prother_3_val, ";
+
 
         $strSql .= "    d_create, ";
         $strSql .= "    d_update, ";
@@ -204,7 +220,17 @@ class productService {
         $strSql .= "  '$info[s_prother_insurance]', ";
         $strSql .= "  '$info[s_prother_medical]', ";
 
+        $strSql .= "  '$info[s_prother_1_txt]', ";
+        $strSql .= "  '$info[s_prother_2_txt]', ";
+        $strSql .= "  '$info[s_prother_3_txt]', ";
 
+        $strSql .= "  '$info[s_prother_1_val]', ";
+        $strSql .= "  '$info[s_prother_2_val]', ";
+        $strSql .= "  '$info[s_prother_3_val]', ";
+
+
+
+        
         $strSql .= "  " . $db->Sysdate(TRUE) . ", ";
         $strSql .= " " . $db->Sysdate(TRUE) . ", ";
         $strSql .= "  '$_SESSION[username]', ";
@@ -322,7 +348,7 @@ class productService {
                 $isNumber = TRUE;
                 for ($l = 7; $l < 20; $l++) {
                     if (!is_numeric($col[$l])) {
-                        $txt .= "No=" . $col[0] . "|Desc Column ".($l+1)." = [" . $col[$l] . "] is not number.\r\n";
+                        $txt .= "No=" . $col[0] . "|Desc Column " . ($l + 1) . " = [" . $col[$l] . "] is not number.\r\n";
                         $isNumber = FALSE;
                     }
                 }

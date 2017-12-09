@@ -30,6 +30,11 @@ $disableView = 'disabled="disable"';
         <link href="../assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
         <link href="../assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="../assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/global/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/global/plugins/clockface/css/clockface.css" rel="stylesheet" type="text/css" />
         <!-- END GLOBAL MANDATORY STYLES -->
         <!-- BEGIN PAGE LEVEL PLUGINS -->
         <link href="../assets/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
@@ -148,6 +153,43 @@ $disableView = 'disabled="disable"';
                                                             <div class="form-group form-md-line-input has-warning">
                                                                 <input type="text" class="form-control bold" id="s_email" name="s_email" <?= $disableView ?>>
                                                                 <label for="form_control_1"><?= $_SESSION[lb_setTrans_email] ?> <span class="required">*</span></label>          
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+
+                                                            <label for="form_control_1" style="color: #c49f47;"><?= $_SESSION[lb_setTrans_require_date] ?> <span class="required" style="color: red;">*</span></label> 
+                                                            <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy" data-date="<?= date("d-m-Y") ?>"  style="width: 100% !important;">
+                                                                <span class="input-group-btn">
+                                                                    <button class="btn default" type="button" <?= $disableView ?>>
+                                                                        <i class="fa fa-calendar"></i>
+                                                                    </button>
+                                                                </span>
+                                                                <input type="text" class="form-control" readonly name="d_require" id="d_require" value="<?= date("d-m-Y") ?>"  <?= $disableView ?>>
+
+                                                            </div>
+
+
+                                                        </div>
+                                                        <div class="col-md-6">
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group form-md-line-input  form-md-floating-label has-warning">
+                                                                <label for="form_control_1" style="color: #c49f47;"><?= $_SESSION[lb_setTrans_address] ?> <span class="required">*</span></label>          
+                                                                <textarea class="form-control"  name="" rows="4" id="s_address" name="s_address" <?= $disableView ?> ></textarea>
+
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group form-md-line-input  form-md-floating-label has-warning">
+                                                                <label for="form_control_1" style="color: #c49f47;"><?= $_SESSION[lb_setTrans_require] ?> <span class="required">*</span></label>          
+                                                                <textarea class="form-control" name="" rows="4" id="s_require" name="s_require" <?= $disableView ?> ></textarea>
+
                                                             </div>
                                                         </div>
                                                     </div>
@@ -342,7 +384,71 @@ $disableView = 'disabled="disable"';
                                         </div>
                                     </div>
 
+                                    <div class="row">
+                                        <div class="col-md-6">
 
+                                            <div class="portlet light bordered">
+                                                <div class="row">
+                                                    <div class="portlet-title">
+                                                        <div class="caption font-green">
+                                                            <i class="fa fa-file font-green"></i>
+                                                            <span class="caption-subject bold uppercase"> <?= $_SESSION[tt_mg_protec_3] ?></span>
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+                                                <br/>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group form-md-line-input has-success">
+                                                            <input type="text" class="form-control bold" id="s_prother_1_txt" name="s_prother_1_txt" <?= $disableView ?> >
+                                                            <label for="form_control_1"><?= $_SESSION[lb_setIns_h_1] ?> <span class="required"></span></label>          
+                                                        </div> 
+
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group form-md-line-input has-success">
+                                                            <input type="text" class="form-control bold" id="s_prother_1_val" name="s_prother_1_val" <?= $disableView ?> >
+                                                            <label for="form_control_1"><?= $_SESSION[lb_setIns_d_1] ?> <span class="required"></span></label>          
+                                                        </div> 
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group form-md-line-input has-success">
+                                                            <input type="text" class="form-control bold" id="s_prother_2_txt" name="s_prother_2_txt" <?= $disableView ?> >
+                                                            <label for="form_control_1"><?= $_SESSION[lb_setIns_h_2] ?> <span class="required"></span></label>          
+                                                        </div> 
+
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group form-md-line-input has-success">
+                                                            <input type="text" class="form-control bold" id="s_prother_2_val" name="s_prother_2_val" <?= $disableView ?> >
+                                                            <label for="form_control_1"><?= $_SESSION[lb_setIns_d_2] ?> <span class="required"></span></label>          
+                                                        </div> 
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group form-md-line-input has-success">
+                                                            <input type="text" class="form-control bold" id="s_prother_3_txt" name="s_prother_3_txt" <?= $disableView ?> >
+                                                            <label for="form_control_1"><?= $_SESSION[lb_setIns_h_3] ?> <span class="required"></span></label>          
+                                                        </div> 
+
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group form-md-line-input has-success">
+                                                            <input type="text" class="form-control bold" id="s_prother_3_val" name="s_prother_3_val" <?= $disableView ?> >
+                                                            <label for="form_control_1"><?= $_SESSION[lb_setIns_d_3] ?> <span class="required"></span></label>          
+                                                        </div> 
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
 
                                 </div>
 
@@ -469,9 +575,15 @@ $disableView = 'disabled="disable"';
         <script src="../assets/global/scripts/datatable.js" type="text/javascript"></script>
         <script src="../assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
         <script src="../assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
+<!--        <script src="../assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js" type="text/javascript"></script>-->
+        <script src="../assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+        <!--<script src="../assets/global/plugins/bootstrap-timepicker/js/bootstrap-timepicker.js" type="text/javascript"></script>-->
+        <script src="../assets/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js" type="text/javascript"></script>
+        <script src="../assets/global/plugins/clockface/js/clockface.js" type="text/javascript"></script>
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL SCRIPTS -->
         <script src="../assets/global/scripts/app.min.js" type="text/javascript"></script>
+        <script src="../assets/pages/scripts/components-date-time-pickers.js" type="text/javascript"></script>
         <script src="../assets/global/plugins/jquery-inputmask/jquery.inputmask.bundle.min.js" type="text/javascript"></script>
         <script src="js/common/markPattern.js" type="text/javascript"></script>
         <!-- END THEME GLOBAL SCRIPTS -->

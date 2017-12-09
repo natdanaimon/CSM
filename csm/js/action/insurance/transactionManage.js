@@ -248,6 +248,10 @@ function edit() {
                 $("#s_lastname").val(item.s_lastname);
                 $("#s_phone").val(item.s_phone);
                 $("#s_email").val(item.s_email);
+                
+                $("#d_require").val(item.d_require);
+                $("#s_require").val(item.s_require);
+                $("#s_address").val(item.s_address);
 
                 idInsurance = item.i_insurance;
 
@@ -334,6 +338,16 @@ function editDetail() {
                 $("#s_prother_personal").val(item.s_prother_personal);
                 $("#s_prother_insurance").val(item.s_prother_insurance);
                 $("#s_prother_medical").val(item.s_prother_medical);
+                
+                 //3-4
+                $("#s_prother_1_txt").val(item.s_prother_1_txt);
+                $("#s_prother_2_txt").val(item.s_prother_2_txt);
+                $("#s_prother_3_txt").val(item.s_prother_3_txt);
+                $("#s_prother_1_val").val(item.s_prother_1_val);
+                $("#s_prother_2_val").val(item.s_prother_2_val);
+                $("#s_prother_3_val").val(item.s_prother_3_val);
+                
+                
 
             });
             $('#se-pre-con').delay(100).fadeOut();

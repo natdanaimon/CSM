@@ -250,7 +250,6 @@ class productController {
         return $table;
     }
 
-
     public function isValidImport($info) {
         $intReturn = FALSE;
         $return2099 = $_SESSION['cd_2099'];
@@ -352,6 +351,7 @@ class productController {
 
     public function isValid($info) {
         $intReturn = FALSE;
+        $intReturn2 = TRUE;
         $return2099 = $_SESSION['cd_2099'];
         $return2003 = $_SESSION['cd_2003'];
         $return2097 = $_SESSION['cd_2097'];
@@ -449,7 +449,45 @@ class productController {
         } else {
             $intReturn = TRUE;
         }
-        return $intReturn;
+
+        if ($intReturn) {
+            if (!$util->isEmpty($info[s_prother_1_txt]) || !$util->isEmpty($info[s_prother_1_val])) {
+                if (!is_numeric($info[s_prother_1_val])) {
+                    $intReturn2 = FALSE;
+                    $return2003 = eregi_replace("field", $_SESSION['lb_setIns_d_1'], $return2003);
+                    echo $return2003;
+                } else if ($util->isEmpty($info[s_prother_1_txt])) {
+                    $intReturn2 = FALSE;
+                    $return2099 = eregi_replace("field", $_SESSION['lb_setIns_h_1'], $return2099);
+                    echo $return2099;
+                }
+            }
+            if ((!$util->isEmpty($info[s_prother_2_txt]) || !$util->isEmpty($info[s_prother_2_val]) && $intReturn2 )) {
+                if (!is_numeric($info[s_prother_2_val])) {
+                    $intReturn2 = FALSE;
+                    $return2003 = eregi_replace("field", $_SESSION['lb_setIns_d_2'], $return2003);
+                    echo $return2003;
+                } else if ($util->isEmpty($info[s_prother_2_txt])) {
+                    $intReturn2 = FALSE;
+                    $return2099 = eregi_replace("field", $_SESSION['lb_setIns_h_2'], $return2099);
+                    echo $return2099;
+                }
+            }
+            if ((!$util->isEmpty($info[s_prother_3_txt]) || !$util->isEmpty($info[s_prother_3_val]) && $intReturn2)) {
+                if (!is_numeric($info[s_prother_3_val])) {
+                    $intReturn2 = FALSE;
+                    $return2003 = eregi_replace("field", $_SESSION['lb_setIns_d_3'], $return2003);
+                    echo $return2003;
+                } else if ($util->isEmpty($info[s_prother_3_txt])) {
+                    $intReturn2 = FALSE;
+                    $return2099 = eregi_replace("field", $_SESSION['lb_setIns_h_3'], $return2099);
+                    echo $return2099;
+                }
+            }
+        }
+
+
+        return (($intReturn && $intReturn2) ? TRUE : FALSE);
     }
 
 }
