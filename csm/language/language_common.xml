@@ -882,6 +882,12 @@
         <th>ตรวจสภาพรถก่อนนำเข้า</th>
         <en>Check Inbound Car</en>
     </detail>
+    
+    <detail>
+        <variable>set_cmail</variable>
+        <th>ตั้งค่าอีเมล</th>
+        <en>Config Email</en>
+    </detail>
 	
     <!--  Menu -->
     
@@ -1246,6 +1252,11 @@
         <en>DETAIL</en>
     </detail>
     <detail>
+        <variable>tt_detail_cmail</variable>
+        <th>ตั้งค่าอีเมล</th>
+        <en>Config Email</en>
+    </detail>
+    <detail>
         <variable>tt_user</variable>
         <th>ชื่อผู้ใช้งาน</th>
         <en>USERNAME</en>
@@ -1484,7 +1495,7 @@
         <th>จัดการข้อมูลคลังความรู้</th>
         <en>MANAGE KNOWLEDGE</en>
     </detail>
-     <detail>
+    <detail>
         <variable>tt_detail_cust</variable>
         <th>รายละเอียดลูกค้า</th>
         <en>Detail Cust.</en>

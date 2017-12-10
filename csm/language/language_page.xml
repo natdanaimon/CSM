@@ -334,6 +334,23 @@
         <en>Car code</en>
     </detail>  
     <!--  car mapping -->  
+    
+    
+     <!--  config email --> 
+    <detail>
+        <variable>lb_setMail_insurnce</variable>
+        <th>อีเมลแจ้งการสมัครประกันภัยออนไลน์</th>
+        <en>Email Insurance Online</en>
+    </detail>  
+    <detail>
+        <variable>lb_setMail_claim</variable>
+        <th>อีเมลแจ้งเคลมออนไลน์</th>
+        <en>Email Claim Online</en>
+    </detail>  
+    <!--  config email --> 
+    
+    
+    
     <!--  insurance product--> 
     <detail>
         <variable>lb_setIns_htext</variable>
