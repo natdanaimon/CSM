@@ -89,7 +89,7 @@ class productController {
         $_promotion = $prd->MsInsurancePromotion(); //โปรโมชั่น
         $_repair = $prd->MsInsuranceRepair(); //ประเภทการซ่อม
         $_compu = $prd->MsCompulsory(); //ประเภทประกันภัยภาคบังคับ
-
+        $_status = $prd->MsStatus(); //ประเภทประกันภัยภาคบังคับ
 
         $html = "";
 
@@ -101,6 +101,7 @@ class productController {
         $head[3] = "โปรโมชั่น";
         $head[4] = "ประเภทการซ่อม";
         $head[5] = "ประเภทประกันภัยภาคบังคับ";
+        $head[6] = "ประเภทสถานะ";
 
         $_data = array();
         $_data[0] = $_comp;
@@ -108,7 +109,8 @@ class productController {
         $_data[2] = $_car;
         $_data[3] = $_promotion;
         $_data[4] = $_repair;
-        $_data[] = $_compu;
+        $_data[5] = $_compu;
+        $_data[6] = $_status;
         $html .= $this->getTableExcel($head, $_data);
 
 
@@ -124,7 +126,7 @@ class productController {
         $promotion = $_data[3];
         $repair = $_data[4];
         $compu = $_data[5];
-
+        $status = $_data[6];
 
         $table = "";
 
@@ -272,7 +274,27 @@ class productController {
         $table .= "</td>";
 
 
+        $table .= "<td>&nbsp;</td>";
 
+
+        $table .= "<td>";
+        $table .= "<table border='1'>";
+        $table .= "<tr>";
+        $table .= "<th colspan = '2' style='background:#f5f5f0;'>$head[6]</th>";
+        $table .= "</tr>";
+        $table .= "<tr>";
+        $table .= "<th style='background:yellow;'>CODE</th>";
+        $table .= "<th style='background:#e0e0d1;'>VALUE</th>";
+        $table .= "</tr>";
+
+        foreach ($status as $key => $value) {
+            $table .= "<tr>";
+            $table .= "<td>" . $status[$key]['s_status'] . "</td>";
+            $table .= "<td>" . $status[$key]['s_detail_th'] . "</td>";
+            $table .= "</tr>";
+        }
+        $table .= "</table>";
+        $table .= "</td>";
 
 
 

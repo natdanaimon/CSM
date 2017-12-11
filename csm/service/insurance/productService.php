@@ -315,10 +315,11 @@ class productService {
             $col[18] = ( (isset($r[18])) ? $r[18] : NULL );
             $col[19] = ( (isset($r[19])) ? $r[19] : NULL );
             $col[20] = ( (isset($r[20])) ? $r[20] : NULL );
+            $col[21] = ( (isset($r[21])) ? $r[21] : NULL );
 
             if ($k == 0) {
                 $flgContinue = FALSE;
-                $flgContinue = (count($col) == 21 ? FALSE : TRUE);
+                $flgContinue = (count($col) == 22 ? FALSE : TRUE);
                 if ($flgContinue) {
                     $txt .= "Header format not found.\r\n";
                     break;
@@ -339,7 +340,7 @@ class productService {
             }
 
             $rowNotNull = TRUE;
-            for ($l = 0; $l < 21; $l++) {
+            for ($l = 0; $l < 22; $l++) {
                 if ($col[$l] == NULL || $col[$l] == "") {
                     $rowNotNull = FALSE;
                 }
@@ -374,6 +375,11 @@ class productService {
                     continue;
                 }
 
+                if ($this->isNotMsStatus($db, $col[21])) {
+                    $txt .= "No=" . $col[0] . "|Desc Column 21 = Status [" . $col[21] . "] is not master data.\r\n";
+                    continue;
+                }
+
                 $isNumber = TRUE;
                 for ($l = 7; $l < 21; $l++) {
                     if (!is_numeric($col[$l])) {
@@ -390,8 +396,22 @@ class productService {
                 if (trim($col[0]) == "") {
                     continue;
                 }
+                $newData = FALSE;
 
-                $state = $this->createStatement($db, $col);
+
+                $newData = $this->checkforUpdate($db, $col);
+
+                if ($newData) {
+                    $state = $this->updateStatement($db, $col);
+                } else {
+                    $state = $this->createStatement($db, $col);
+                }
+
+
+
+
+
+
                 array_push($arrSQL, $state);
             }
         }
@@ -409,6 +429,17 @@ class productService {
 
 
         return $reslut;
+    }
+
+    function checkforUpdate($db, $col) {
+        $strSql = "SELECT count(*) cnt FROM tb_insurance WHERE 1=1 ";
+        $strSql .= "and s_insurance_htext = '" . $col[1] . "' ";
+        $strSql .= "and i_ins_comp = " . $col[2] . " ";
+        $strSql .= "and i_ins_type = " . $col[3] . " ";
+        $strSql .= "and s_car_code = '" . $col[4] . "' ";
+        $strSql .= "and s_status = 'A' ";
+        $_data = $db->Search_Data_FormatJson($strSql);
+        return ($_data[0]['cnt'] == 0 ? FALSE : TRUE);
     }
 
     function createStatement($db, $col) {
@@ -471,9 +502,43 @@ class productService {
         $strSql .= " " . $db->Sysdate(TRUE) . ", ";
         $strSql .= "  '$_SESSION[username]', ";
         $strSql .= "  '$_SESSION[username]', ";
-        $strSql .= "  'A' , ";
+        $strSql .= "  '" . trim($col[21]) . "' , ";
         $strSql .= "  $col[20] ";
         $strSql .= ") ";
+        return array("query" => "$strSql");
+    }
+
+    function updateStatement($db, $col) {
+        $strSql = "";
+        $strSql .= "UPDATE tb_insurance ";
+        $strSql .= "SET ";
+    
+        $strSql .= "    i_ins_promotion=$col[5], ";
+        $strSql .= "    f_price=$col[7], ";
+        $strSql .= "    f_discount=$col[8], ";
+        $strSql .= "    f_point=$col[9], ";
+        $strSql .= "    s_prcar_base='$col[10]', ";
+        $strSql .= "    s_prcar_fire='$col[12]', ";
+        $strSql .= "    s_prcar_water='$col[12]', ";
+        $strSql .= "    s_prcar_repair='$col[13]', ";
+        $strSql .= "    i_prcar_repair_type=$col[6], ";
+        $strSql .= "    s_prperson_per='$col[14]', ";
+        $strSql .= "    s_prperson_pertimes='$col[15]', ";
+        $strSql .= "    s_prperson_outsider='$col[16]', ";
+        $strSql .= "    s_prother_personal='$col[17]', ";
+        $strSql .= "    s_prother_insurance='$col[18]', ";
+        $strSql .= "    s_prother_medical='$col[19]', ";
+        $strSql .= "    d_update= " . $db->Sysdate(TRUE) . ", ";
+        $strSql .= "    s_update_by=  '$_SESSION[username]', ";
+        $strSql .= "    s_status='" . trim($col[21]) . "',";
+        $strSql .= "    i_compu=".$col[20];
+
+        $strSql .= " WHERE 1=1  ";
+        $strSql .= " and s_insurance_htext = '" . $col[1] . "' ";
+        $strSql .= " and i_ins_comp = " . $col[2] . " ";
+        $strSql .= " and i_ins_type = " . $col[3] . " ";
+        $strSql .= " and s_car_code = '" . $col[4] . "' ";
+        $strSql .= " and s_status = 'A' ";
         return array("query" => "$strSql");
     }
 
@@ -516,6 +581,13 @@ class productService {
     function isNotMsCompulsory($db, $i_compu) {
         $strSql = "SELECT count(*) cnt FROM tb_compulsory WHERE 1=1 ";
         $strSql .= "and i_compu = " . $i_compu . " ";
+        $_data = $db->Search_Data_FormatJson($strSql);
+        return ($_data[0]['cnt'] == 0 ? TRUE : FALSE);
+    }
+
+    function isNotMsStatus($db, $status) {
+        $strSql = "SELECT count(*) cnt FROM tb_status WHERE 1=1 ";
+        $strSql .= "and s_status = '" . $status . "' ";
         $_data = $db->Search_Data_FormatJson($strSql);
         return ($_data[0]['cnt'] == 0 ? TRUE : FALSE);
     }
@@ -582,6 +654,14 @@ class productService {
         return $_data;
     }
 
+    function MsStatus() {
+        $db = new ConnectDB();
+        $strSql = "select * from tb_status where s_type = 'ACTIVE' order by s_status asc ";
+        $_data = $db->Search_Data_FormatJson($strSql);
+        $db->close_conn();
+        return $_data;
+    }
+
     //--------------------------------------- Export Master ---------------------------------------
 
 
@@ -608,6 +688,7 @@ class productService {
         $head[18] = "ประกันตัวผู้ขับขี่";
         $head[19] = "ค่ารักษาพยาบาล";
         $head[20] = "ประกันภัยภาคบังคับ";
+        $head[21] = "สถานะ";
         return $head;
     }
 
