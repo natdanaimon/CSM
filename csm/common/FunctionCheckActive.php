@@ -28,7 +28,7 @@ function ACTIVEPAGES($page, $sub) {
     $_SESSION["nav_sub_set_sub"] = "";
     $_SESSION["nav_sub_set_map"] = "";
     $_SESSION["nav_sub_set_cmail"] = "";
-
+    $_SESSION["nav_sub_set_compu"] = "";
 
 
     //csm employee
@@ -142,6 +142,8 @@ function ACTIVEPAGES($page, $sub) {
             $_SESSION["nav_sub_set_map"] = " active open";
         } else if ($sub == 14) {
             $_SESSION["nav_sub_set_cmail"] = " active open";
+        } else if ($sub == 15) {
+            $_SESSION["nav_sub_set_compu"] = " active open";
         }
     }
 }

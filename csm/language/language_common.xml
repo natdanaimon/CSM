@@ -888,6 +888,11 @@
         <th>ตั้งค่าอีเมล</th>
         <en>Config Email</en>
     </detail>
+    <detail>
+        <variable>set_compu</variable>
+        <th>ตั้งค่าประกันภัยภาคบังคับ</th>
+        <en>Config Compulsory</en>
+    </detail>
 	
     <!--  Menu -->
     
@@ -1121,6 +1126,11 @@
         <variable>tb_co_itemname</variable>
         <th>ชื่อสินค้า</th>
         <en>Item Name</en>
+    </detail>
+    <detail>
+        <variable>tb_co_compu_name</variable>
+        <th>ชื่อประกันภัยภาคบังคับ</th>
+        <en>Compulsory name</en>
     </detail>
     <detail>
         <variable>tb_co_insurance_name</variable>
@@ -1364,6 +1374,11 @@
         <variable>tt_mg_dept</variable>
         <th>จัดการข้อมูลแผนกงาน</th>
         <en>MANAGE DEPARTMENT</en>
+    </detail>
+    <detail>
+        <variable>tt_mg_compu</variable>
+        <th>จัดการข้อมูลประกันภัยภาคบังคับ</th>
+        <en>MANAGE COMPULSORY</en>
     </detail>
     <detail>
         <variable>tt_mg_dmg</variable>

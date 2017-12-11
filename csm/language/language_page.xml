@@ -87,6 +87,18 @@
         <en>Department</en>
     </detail>  
     <!--  department --> 
+    <!--  compulsory --> 
+    <detail>
+        <variable>lb_setCompu_name</variable>
+        <th>ชื่อประกันภัยภาคบังคับ</th>
+        <en>Compulsory name</en>
+    </detail>  
+    <detail>
+        <variable>lb_setCompu_amount</variable>
+        <th>จำนวนเงิน</th>
+        <en>Amount</en>
+    </detail>  
+    <!--  compulsory --> 
 	 
     <!--  damage --> 
     <detail>

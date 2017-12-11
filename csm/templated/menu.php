@@ -146,6 +146,18 @@
                         <span class="badge badge-success" ></span>
                     </a>
                 </li>
+                 <li class="nav-item  <?= $_SESSION["nav_sub_set_compu"] ?>">
+                    <a href="set_compulsory.php" class="nav-link ">
+
+                        <span class="title"><?= $_SESSION[set_compu] ?></span>
+                        <span class="selected"></span>
+                        <span class="badge badge-success" ></span>
+                    </a>
+                </li>
+                
+                
+                
+                
 
                 <li class="heading">
                     <h3 class="uppercase"></h3>
