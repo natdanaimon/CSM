@@ -297,6 +297,19 @@ $disableView = 'disabled="disable"';
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
+                                                           
+                                                            <div class="md-checkbox-list">
+                                                                <div class="md-checkbox has-success">
+                                                                    <input type="checkbox" id="s_flg_compu" name="s_flg_compu" class="md-check" <?= $disableView ?>>
+                                                                    <label for="s_flg_compu">
+                                                                        <span></span>
+                                                                        <span class="check"></span>
+                                                                        <span class="box"></span> <?= $_SESSION[lb_setTrans_flg_compu] ?> </label>
+                                                                </div>
+                                                                
+                                                            </div>
+
+
 
                                                         </div>
                                                     </div>

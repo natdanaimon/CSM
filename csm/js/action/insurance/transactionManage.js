@@ -282,6 +282,15 @@ function edit() {
                 $("#s_require").val(item.s_require);
                 $("#s_address").val(item.s_address);
 
+                if (item.s_flg_compu == "Y") {
+                    $('input:checkbox[id="s_flg_compu"]').attr('checked', 'checked');
+                } else {
+                    $('input:checkbox[id="s_flg_compu"]').removeAttr('checked');
+                }
+                $("#f_totalamount").val(item.f_totalamount);
+
+
+
                 idInsurance = item.i_insurance;
 
 

@@ -105,6 +105,9 @@ class transactionController {
         if ($_dataTable != NULL) {
             foreach ($_dataTable as $key => $value) {
                 $_dataTable[$key]['d_require'] = $util->DateSql2d_dmm_yyyy($_dataTable[$key]['d_require']);
+                $_dataTable[$key]['f_totalamount'] = $service->totalAmount($_dataTable[$key]['i_insurance'],$_dataTable[$key]['s_flg_compu']);
+                
+                
             }
             return json_encode($_dataTable);
         } else {

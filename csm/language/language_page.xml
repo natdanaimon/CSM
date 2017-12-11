@@ -630,6 +630,11 @@
         <th>จำนวนเงินสุทธิที่ลูกค้าต้องชำระเงิน</th>
         <en>Total Amount</en>
     </detail>
+    <detail>
+        <variable>lb_setTrans_flg_compu</variable>
+        <th>จำนวนเงินสุทธิที่ลูกค้าต้องชำระเงิน</th>
+        <en>Total Amount</en>
+    </detail>
     <!--  transaction --> 
     
     

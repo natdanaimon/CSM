@@ -42,13 +42,35 @@ class transactionService {
 
     function getInfo($seq) {
         $db = new ConnectDB();
-        $strSql = " select * from tb_insurance_trans where i_ins_trans =" . $seq;
+        $strSql = " select t.*, 0 as f_totalamount from tb_insurance_trans t where t.i_ins_trans =" . $seq;
         $_data = $db->Search_Data_FormatJson($strSql);
         $db->close_conn();
         return $_data;
     }
 
+    function totalAmount($i_insurance, $s_flg_compu) {
+        $db = new ConnectDB();
+        $amount = 0.00;
+        $discount = 0.00;
+        $compulsory = 0.00;
+        $i_compu = 0;
+        $strSql = " select * from tb_insurance where i_insurance =" . $i_insurance;
+        $_data = $db->Search_Data_FormatJson($strSql);
+        if ($_data != NULL) {
+            $amount = floatval($_data[0]['f_price']);
+            $discount = floatval($_data[0]['f_discount']);
+            $i_compu = $_data[0]['i_compu'];
+        }
 
+        if ($s_flg_compu == "Y") {
+            $strSql2 = " select * from tb_compulsory where i_compu =" . $i_compu;
+            $_data2 = $db->Search_Data_FormatJson($strSql2);
+            if ($_data2 != NULL) {
+                $compulsory = floatval($_data2[0]['f_amount']);
+            }
+        }
+        return ($amount + $compulsory) - ($discount);
+    }
 
     function delete($db, $seq) {
         $strSQL = "DELETE FROM tb_insurance_trans WHERE i_ins_trans = '" . $seq . "' ";
@@ -74,8 +96,6 @@ class transactionService {
         return $_data;
     }
 
-  
-
     function SelectByArray($db, $query) {
         $strSql = "SELECT * FROM tb_insurance_trans  WHERE i_ins_trans in ($query) ";
         $_data = $db->Search_Data_FormatJson($strSql);
@@ -89,6 +109,5 @@ class transactionService {
         $_data = $db->Search_Data_FormatJson($strSql);
         return $_data;
     }
-
 
 }
