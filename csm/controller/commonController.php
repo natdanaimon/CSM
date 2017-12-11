@@ -66,8 +66,11 @@ switch ($info[func]) {
     case "DDLInsuranceRepair" :
         echo $controller->DDLInsuranceRepair();
         break;
-     case "DDLPosition" :
+    case "DDLPosition" :
         echo $controller->DDLPosition();
+        break;
+    case "DDLCompulsory" :
+        echo $controller->DDLCompulsory();
         break;
 }
 
@@ -100,6 +103,17 @@ class commonController {
             return NULL;
         }
     }
+    
+     public function DDLCompulsory() {
+        $service = new commonService();
+        $_dataTable = $service->DDLCompulsory();
+        if ($_dataTable != NULL) {
+            return json_encode($_dataTable);
+        } else {
+            return NULL;
+        }
+    }
+    
 
     public function DDLDepartment() {
         $service = new commonService();
@@ -160,8 +174,8 @@ class commonController {
             return NULL;
         }
     }
-    
-    public function  DDLPosition(){
+
+    public function DDLPosition() {
         $service = new commonService();
         $_dataTable = $service->DDLPosition();
         if ($_dataTable != NULL) {
@@ -316,7 +330,7 @@ class commonController {
             return NULL;
         }
     }
-    
+
     public function DDLInsuranceRepair() {
         $service = new commonService();
         $_dataTable = $service->DDLInsuranceRepair();

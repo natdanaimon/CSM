@@ -336,7 +336,7 @@
     <!--  car mapping -->  
     
     
-     <!--  config email --> 
+    <!--  config email --> 
     <detail>
         <variable>lb_setMail_insurnce</variable>
         <th>อีเมลแจ้งการสมัครประกันภัยออนไลน์</th>
@@ -376,6 +376,11 @@
         <variable>lb_setIns_promotion</variable>
         <th>โปรโมชัน</th>
         <en>Promotion</en>
+    </detail>  
+    <detail>
+        <variable>lb_setIns_compu</variable>
+        <th>ประกันภัยภาคบังคับ</th>
+        <en>Compulsory</en>
     </detail>  
     <detail>
         <variable>lb_setIns_repait</variable>
@@ -614,6 +619,16 @@
         <variable>lb_setTrans_require_date</variable>
         <th>วันที่เริ่มเอาประกัน</th>
         <en>Insurance Require Date</en>
+    </detail>
+    <detail>
+        <variable>lb_setTrans_compu</variable>
+        <th>ประกันภัยภาคบังคับ</th>
+        <en>Insurance Compulsory</en>
+    </detail>
+    <detail>
+        <variable>lb_setTrans_total</variable>
+        <th>จำนวนเงินสุทธิที่ลูกค้าต้องชำระเงิน</th>
+        <en>Total Amount</en>
     </detail>
     <!--  transaction --> 
     

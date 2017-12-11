@@ -2,20 +2,20 @@ function getDDLStatus() {
     $.ajax({
         type: 'GET',
         url: 'controller/commonController.php?func=DDLStatusActive',
-        beforeSend: function() {
+        beforeSend: function () {
             //$('#se-pre-con').fadeIn(100);
         },
-        success: function(data) {
+        success: function (data) {
             var htmlOption = "";
             var res = JSON.parse(data);
-            $.each(res, function(i, item) {
+            $.each(res, function (i, item) {
                 var txt_status = (language == "th" ? item.s_detail_th : item.s_detail_en);
                 htmlOption += "<option value='" + item.s_status + "'>" + txt_status + "</option>";
             });
             $("#status").html(htmlOption);
             getDDLInsurance();
         },
-        error: function(data) {
+        error: function (data) {
 
         }
 
@@ -36,8 +36,8 @@ function formatStateComp(state) {
 
 
     var $state = $(
-        '<span><img src="' + pathImg + '" width="50px" height="50px" class="img-flag" Style="margin-bottom: 5px;"/><span style="color:black;font-weight:bold;"> ' + state.text + '</span></span>'
-    );
+            '<span><img src="' + pathImg + '" width="50px" height="50px" class="img-flag" Style="margin-bottom: 5px;"/><span style="color:black;font-weight:bold;"> ' + state.text + '</span></span>'
+            );
     return $state;
 }
 
@@ -45,8 +45,8 @@ function getDDLInsurance() {
     $.ajax({
         type: 'GET',
         url: 'controller/commonController.php?func=DDLInsurance',
-        beforeSend: function() {},
-        success: function(ddl) {
+        beforeSend: function () {},
+        success: function (ddl) {
             var res = JSON.parse(ddl);
             $("#i_ins_comp").select2({
                 data: res,
@@ -58,7 +58,7 @@ function getDDLInsurance() {
             getDDLInsuranceType();
 
         },
-        error: function(ddl) {
+        error: function (ddl) {
 
         }
 
@@ -74,11 +74,11 @@ function getDDLInsuranceType() {
     $.ajax({
         type: 'GET',
         url: 'controller/commonController.php?func=DDLInsuranceType',
-        beforeSend: function() {},
-        success: function(ddl) {
+        beforeSend: function () {},
+        success: function (ddl) {
             var res = JSON.parse(ddl);
             var html = "";
-            $.each(res, function(i, item) {
+            $.each(res, function (i, item) {
                 var checked = "";
                 if (keyEdit == "") {
                     checked = (i == 0 ? "checked" : "");
@@ -98,7 +98,7 @@ function getDDLInsuranceType() {
             $("#insurance_type").html(html);
             getDDLInsurancePro();
         },
-        error: function(ddl) {
+        error: function (ddl) {
 
         }
 
@@ -112,8 +112,8 @@ function formatStatePro(state) {
         return state.text;
     }
     var $state = $(
-        '<span><span style="color:black;font-weight:bold;"> ' + state.text + '</span></span>'
-    );
+            '<span><span style="color:black;font-weight:bold;"> ' + state.text + '</span></span>'
+            );
     return $state;
 }
 
@@ -121,8 +121,8 @@ function getDDLInsurancePro() {
     $.ajax({
         type: 'GET',
         url: 'controller/commonController.php?func=DDLInsurancePromotion',
-        beforeSend: function() {},
-        success: function(ddl) {
+        beforeSend: function () {},
+        success: function (ddl) {
             var res = JSON.parse(ddl);
             $("#i_ins_promotion").select2({
                 data: res,
@@ -133,7 +133,7 @@ function getDDLInsurancePro() {
 
             getDDLCar();
         },
-        error: function(ddl) {
+        error: function (ddl) {
 
         }
 
@@ -162,8 +162,8 @@ function formatStateCar(state) {
 
 
     var $state = $(
-        '<span><img src="' + pathImg + '" width="30px" height="30px" class="img-flag" Style="margin-bottom: 5px;"/><span style="color:black;font-weight:bold;"> ' + state.text + '</span></span>'
-    );
+            '<span><img src="' + pathImg + '" width="30px" height="30px" class="img-flag" Style="margin-bottom: 5px;"/><span style="color:black;font-weight:bold;"> ' + state.text + '</span></span>'
+            );
     return $state;
 }
 
@@ -171,8 +171,8 @@ function getDDLCar() {
     $.ajax({
         type: 'GET',
         url: 'controller/commonController.php?func=DDLCar',
-        beforeSend: function() {},
-        success: function(ddl) {
+        beforeSend: function () {},
+        success: function (ddl) {
             var res = JSON.parse(ddl);
             $("#s_car_code").select2({
                 data: res,
@@ -180,10 +180,10 @@ function getDDLCar() {
                 templateSelection: formatStateCar
 
             });
-            getDDLInsuranceRepair();
+            getDDLCompu();
 
         },
-        error: function(ddl) {
+        error: function (ddl) {
 
         }
 
@@ -192,13 +192,41 @@ function getDDLCar() {
     });
 }
 
+
+function getDDLCompu() {
+    $.ajax({
+        type: 'GET',
+        url: 'controller/commonController.php?func=DDLCompulsory',
+        beforeSend: function () {
+            //$('#se-pre-con').fadeIn(100);
+        },
+        success: function (data) {
+            debugger;
+            var htmlOption = "";
+            var res = JSON.parse(data);
+            $.each(res, function (i, item) {
+                htmlOption += "<option value='" + item.i_compu + "'>" + item.s_name + " ( " + item.f_amount + " บาท.)</option>";
+            });
+            $("#i_compu").html(htmlOption);
+            getDDLInsuranceRepair();
+        },
+        error: function (data) {
+
+        }
+
+    });
+}
+
+
+
+
 function formatStateRepair(state) {
     if (!state.id) {
         return state.text;
     }
     var $state = $(
-        '<span><span style="color:black;font-weight:bold;"> ' + state.text + '</span></span>'
-    );
+            '<span><span style="color:black;font-weight:bold;"> ' + state.text + '</span></span>'
+            );
     return $state;
 }
 
@@ -206,8 +234,8 @@ function getDDLInsuranceRepair() {
     $.ajax({
         type: 'GET',
         url: 'controller/commonController.php?func=DDLInsuranceRepair',
-        beforeSend: function() {},
-        success: function(ddl) {
+        beforeSend: function () {},
+        success: function (ddl) {
             var res = JSON.parse(ddl);
             $("#i_prcar_repair_type").select2({
                 data: res,
@@ -222,7 +250,7 @@ function getDDLInsuranceRepair() {
 
 
         },
-        error: function(ddl) {
+        error: function (ddl) {
 
         }
 
@@ -237,12 +265,12 @@ function edit() {
     $.ajax({
         type: 'GET',
         url: 'controller/insurance/productController.php?func=getInfo&id=' + keyEdit,
-        beforeSend: function() {
+        beforeSend: function () {
             //$('#se-pre-con').fadeIn(100);
         },
-        success: function(data) {
+        success: function (data) {
             var res = JSON.parse(data);
-            $.each(res, function(i, item) {
+            $.each(res, function (i, item) {
                 debugger;
                 $("#s_insurance_htext").val(item.s_insurance_htext);
                 $("#i_ins_comp").val(item.i_ins_comp).trigger('change');
@@ -255,6 +283,7 @@ function edit() {
                 $("#f_price").val(item.f_price);
                 $("#f_discount").val(item.f_discount);
                 $("#f_point").val(item.f_point);
+                $("#i_compu").val(item.i_compu);
 
                 //3-1
                 $("#s_prcar_base").val(item.s_prcar_base);
@@ -272,7 +301,7 @@ function edit() {
                 $("#s_prother_personal").val(item.s_prother_personal);
                 $("#s_prother_insurance").val(item.s_prother_insurance);
                 $("#s_prother_medical").val(item.s_prother_medical);
-                
+
                 //3-4
                 $("#s_prother_1_txt").val(item.s_prother_1_txt);
                 $("#s_prother_2_txt").val(item.s_prother_2_txt);
@@ -292,7 +321,7 @@ function edit() {
             $('#se-pre-con').delay(100).fadeOut();
 
         },
-        error: function(data) {
+        error: function (data) {
 
         }
 
@@ -310,10 +339,10 @@ function save() {
         type: 'POST',
         url: 'controller/insurance/productController.php',
         data: Jsdata,
-        beforeSend: function() {
+        beforeSend: function () {
             $('#se-pre-con').fadeIn(100);
         },
-        success: function(data) {
+        success: function (data) {
 
             var res = data.split(",");
             if (res[0] == "0000") {
@@ -327,13 +356,13 @@ function save() {
             }
             $('#se-pre-con').delay(100).fadeOut();
             notification();
-            $('#form-action').each(function() {
+            $('#form-action').each(function () {
                 getDDLStatus();
                 this.reset();
             });
             //            location.reload();
         },
-        error: function(data) {
+        error: function (data) {
 
         }
 

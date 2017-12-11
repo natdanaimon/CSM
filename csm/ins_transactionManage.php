@@ -288,6 +288,30 @@ $disableView = 'disabled="disable"';
                                                         </div>
                                                     </div>
 
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group form-md-line-input has-success">
+                                                                <select class="form-control edited bold" id="i_compu" name="i_compu" <?= $disableView ?>>
+                                                                </select>
+                                                                <label for="form_control_1"><?= $_SESSION[lb_setIns_compu] ?></label>       
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group form-md-line-input has-success">
+                                                                <input type="text" class="form-control bold" id="f_totalamount" name="f_totalamount" <?= $disableView ?>>
+                                                                <label for="form_control_1"><?= $_SESSION[lb_setTrans_total] ?> <span class="required">*</span></label>          
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+
+                                                        </div>
+                                                    </div>
+
 
                                                 </div>
                                             </div>

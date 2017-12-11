@@ -3,7 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/xampp/htdocs/CSM/csm/service/setting/mailService.php</file>
+            <file>file:/C:/xampp/htdocs/CSM/csm/common/FunctionCheckActive.php</file>
+            <file>file:/C:/xampp/htdocs/CSM/csm/language/language_page.xml</file>
+            <file>file:/C:/xampp/htdocs/CSM/csm/controller/setting/mailController.php</file>
+            <file>file:/C:/xampp/htdocs/CSM/csm/set_mail.php</file>
+            <file>file:/C:/xampp/htdocs/CSM/csm/js/action/setting/email.js</file>
             <file>file:/C:/xampp/htdocs/CSM/csm/ins_transactionManage.php</file>
+            <file>file:/C:/xampp/htdocs/CSM/csm/templated/menu.php</file>
+            <file>file:/C:/xampp/htdocs/CSM/csm/language/language_common.xml</file>
         </group>
     </open-files>
 </project-private>

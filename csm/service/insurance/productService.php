@@ -9,6 +9,7 @@ class productService {
         $strSql = "";
         $strSql .= "SELECT  ";
         $strSql .= "m.*, st.s_detail_th status_th, st.s_detail_en status_en , c.s_comp_th , c.s_image , t.s_name s_type_name , p.s_promotion , rp.s_name s_repair_type";
+        $strSql .= " , '' as s_cartype ";
         $strSql .= " FROM  ";
         $strSql .= "tb_insurance m  , tb_insurance_comp c , tb_insurance_type t, tb_status st ,tb_insurance_promotion p , tb_insurance_repair_type rp ";
         $strSql .= "WHERE 1=1 ";
@@ -24,13 +25,33 @@ class productService {
         return $_data;
     }
 
+    function searchCar($carcode) {
+        $db = new ConnectDB();
+        $strSql = "";
+        $strSql .= "        SELECT    ";
+        $strSql .= "        CONCAT(b.s_brand_name,' : ',y.i_year,' : ',g.s_gen_name,' : ',s.s_sub_name ) as s_name";
+        $strSql .= "        FROM    ";
+        $strSql .= "        tb_car_map m , tb_car_year y , tb_car_brand b , tb_car_generation g , tb_car_sub s , tb_status st   ";
+        $strSql .= "        WHERE 1=1   ";
+        $strSql .= "        AND m.i_year = y.i_year   ";
+        $strSql .= "        AND m.s_brand_code = b.s_brand_code   ";
+        $strSql .= "        AND m.s_gen_code = g.s_gen_code   ";
+        $strSql .= "        AND m.s_sub_code = s.s_sub_code   ";
+        $strSql .= "        AND m.s_status = st.s_status   ";
+        $strSql .= "        AND m.s_car_code   =  '$carcode'   ";
+
+        $_data = $db->Search_Data_FormatJson($strSql);
+        $db->close_conn();
+        return ($_data[0]['s_name'] != NULL ? $_data[0]['s_name'] : '');
+    }
+
     function dataTableEx() {
         $db = new ConnectDB();
         $strSql = "";
         $strSql .= "        SELECT    ";
         $strSql .= "        m.s_car_code s_code , CONCAT(b.s_brand_name,' : ',y.i_year,' : ',g.s_gen_name,' : ',s.s_sub_name ) as s_name ";
         $strSql .= "        FROM    ";
-        $strSql .= "        tb_insurance m , tb_car_year y , tb_car_brand b , tb_car_generation g , tb_car_sub s , tb_status st   ";
+        $strSql .= "        tb_insurance m , tb_car_year y , tb_car_brand b , tb_car_generation g , tb_car_sub s , tb_status st    ";
         $strSql .= "        WHERE 1=1   ";
         $strSql .= "        AND m.i_year = y.i_year   ";
         $strSql .= "        AND m.s_brand_code = b.s_brand_code   ";
@@ -113,6 +134,7 @@ class productService {
         $strSql .= "    f_price=$info[f_price], ";
         $strSql .= "    f_discount=$info[f_discount], ";
         $strSql .= "    f_point=$info[f_point], ";
+        $strSql .= "    i_compu=$info[i_compu], ";
 
 
         $strSql .= "    s_prcar_base='$info[s_prcar_base]', ";
@@ -165,7 +187,7 @@ class productService {
         $strSql .= "    f_price, ";
         $strSql .= "    f_discount, ";
         $strSql .= "    f_point, ";
-
+        $strSql .= "    i_compu, ";
 
         $strSql .= "    s_prcar_base, ";
         $strSql .= "    s_prcar_fire, ";
@@ -205,6 +227,7 @@ class productService {
         $strSql .= "   $info[f_price], ";
         $strSql .= "   $info[f_discount], ";
         $strSql .= "   $info[f_point], ";
+        $strSql .= "   $info[i_compu], ";
 
         $strSql .= "  '$info[s_prcar_base]', ";
         $strSql .= "  '$info[s_prcar_fire]', ";
@@ -230,7 +253,7 @@ class productService {
 
 
 
-        
+
         $strSql .= "  " . $db->Sysdate(TRUE) . ", ";
         $strSql .= " " . $db->Sysdate(TRUE) . ", ";
         $strSql .= "  '$_SESSION[username]', ";
@@ -291,10 +314,11 @@ class productService {
             $col[17] = ( (isset($r[17])) ? $r[17] : NULL );
             $col[18] = ( (isset($r[18])) ? $r[18] : NULL );
             $col[19] = ( (isset($r[19])) ? $r[19] : NULL );
+            $col[20] = ( (isset($r[20])) ? $r[20] : NULL );
 
             if ($k == 0) {
                 $flgContinue = FALSE;
-                $flgContinue = (count($col) == 20 ? FALSE : TRUE);
+                $flgContinue = (count($col) == 21 ? FALSE : TRUE);
                 if ($flgContinue) {
                     $txt .= "Header format not found.\r\n";
                     break;
@@ -314,14 +338,14 @@ class productService {
                 }
             }
 
-            $ronNotNull = TRUE;
-            for ($l = 0; $l < 20; $l++) {
+            $rowNotNull = TRUE;
+            for ($l = 0; $l < 21; $l++) {
                 if ($col[$l] == NULL || $col[$l] == "") {
-                    $ronNotNull = FALSE;
+                    $rowNotNull = FALSE;
                 }
             }
 
-            if ($ronNotNull) {
+            if ($rowNotNull) {
 
 
                 if ($this->isNotMsComp($db, $col[2])) {
@@ -345,8 +369,13 @@ class productService {
                     continue;
                 }
 
+                if ($this->isNotMsCompulsory($db, $col[20])) {
+                    $txt .= "No=" . $col[0] . "|Desc Column 20 = Compulsory [" . $col[20] . "] is not master data.\r\n";
+                    continue;
+                }
+
                 $isNumber = TRUE;
-                for ($l = 7; $l < 20; $l++) {
+                for ($l = 7; $l < 21; $l++) {
                     if (!is_numeric($col[$l])) {
                         $txt .= "No=" . $col[0] . "|Desc Column " . ($l + 1) . " = [" . $col[$l] . "] is not number.\r\n";
                         $isNumber = FALSE;
@@ -410,7 +439,8 @@ class productService {
         $strSql .= "    d_update, ";
         $strSql .= "    s_create_by, ";
         $strSql .= "    s_update_by, ";
-        $strSql .= "    s_status ";
+        $strSql .= "    s_status, ";
+        $strSql .= "    i_compu ";
         $strSql .= "  ) ";
         $strSql .= "VALUES( ";
         $strSql .= "  '$col[1]', ";
@@ -441,7 +471,8 @@ class productService {
         $strSql .= " " . $db->Sysdate(TRUE) . ", ";
         $strSql .= "  '$_SESSION[username]', ";
         $strSql .= "  '$_SESSION[username]', ";
-        $strSql .= "  'A' ";
+        $strSql .= "  'A' , ";
+        $strSql .= "  $col[20] ";
         $strSql .= ") ";
         return array("query" => "$strSql");
     }
@@ -478,6 +509,13 @@ class productService {
     function isNotMsRepair($db, $i_repair) {
         $strSql = "SELECT count(*) cnt FROM tb_insurance_repair_type WHERE 1=1 ";
         $strSql .= "and i_repair = '" . $i_repair . "' ";
+        $_data = $db->Search_Data_FormatJson($strSql);
+        return ($_data[0]['cnt'] == 0 ? TRUE : FALSE);
+    }
+
+    function isNotMsCompulsory($db, $i_compu) {
+        $strSql = "SELECT count(*) cnt FROM tb_compulsory WHERE 1=1 ";
+        $strSql .= "and i_compu = " . $i_compu . " ";
         $_data = $db->Search_Data_FormatJson($strSql);
         return ($_data[0]['cnt'] == 0 ? TRUE : FALSE);
     }
@@ -536,6 +574,14 @@ class productService {
         return $_data;
     }
 
+    function MsCompulsory() {
+        $db = new ConnectDB();
+        $strSql = "select * from tb_compulsory where s_status = 'A' order by i_compu asc ";
+        $_data = $db->Search_Data_FormatJson($strSql);
+        $db->close_conn();
+        return $_data;
+    }
+
     //--------------------------------------- Export Master ---------------------------------------
 
 
@@ -561,6 +607,7 @@ class productService {
         $head[17] = "อุบัติเหตุส่วนบุคคล";
         $head[18] = "ประกันตัวผู้ขับขี่";
         $head[19] = "ค่ารักษาพยาบาล";
+        $head[20] = "ประกันภัยภาคบังคับ";
         return $head;
     }
 

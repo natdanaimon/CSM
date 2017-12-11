@@ -1229,7 +1229,11 @@
         <th>ซ่อม</th>
         <en>Repair Type</en>
     </detail>
-
+    <detail>
+        <variable>tb_co_cartype</variable>
+        <th>รุ่นรถ</th>
+        <en>Car type</en>
+    </detail>
 
 
     <detail>

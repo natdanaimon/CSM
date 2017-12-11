@@ -173,6 +173,19 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                                                 </div>
                                             </div>
 
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group form-md-line-input has-success">
+                                                        <select class="form-control edited bold" id="i_compu" name="i_compu">
+                                                        </select>
+                                                        <label for="form_control_1"><?= $_SESSION[lb_setIns_compu] ?></label>       
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+
+                                                </div>
+                                            </div>
+
 
                                         </div>
                                     </div>

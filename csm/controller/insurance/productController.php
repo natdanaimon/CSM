@@ -53,6 +53,9 @@ class productController {
         $service = new productService();
         $_dataTable = $service->dataTable();
         if ($_dataTable != NULL) {
+            foreach ($_dataTable as $key => $value) {
+                $_dataTable[$key]['s_cartype'] = $service->searchCar($_dataTable[$key]['s_car_code']);
+            }
             return json_encode($_dataTable);
         } else {
             return NULL;
@@ -85,6 +88,7 @@ class productController {
         $_car = $prd->MsCar(); // ข้อมูลรถ
         $_promotion = $prd->MsInsurancePromotion(); //โปรโมชั่น
         $_repair = $prd->MsInsuranceRepair(); //ประเภทการซ่อม
+        $_compu = $prd->MsCompulsory(); //ประเภทประกันภัยภาคบังคับ
 
 
         $html = "";
@@ -96,6 +100,7 @@ class productController {
         $head[2] = "ข้อมูลรถ";
         $head[3] = "โปรโมชั่น";
         $head[4] = "ประเภทการซ่อม";
+        $head[5] = "ประเภทประกันภัยภาคบังคับ";
 
         $_data = array();
         $_data[0] = $_comp;
@@ -103,6 +108,7 @@ class productController {
         $_data[2] = $_car;
         $_data[3] = $_promotion;
         $_data[4] = $_repair;
+        $_data[] = $_compu;
         $html .= $this->getTableExcel($head, $_data);
 
 
@@ -117,7 +123,7 @@ class productController {
         $car = $_data[2];
         $promotion = $_data[3];
         $repair = $_data[4];
-
+        $compu = $_data[5];
 
 
         $table = "";
@@ -241,6 +247,34 @@ class productController {
         }
         $table .= "</table>";
         $table .= "</td>";
+
+
+        $table .= "<td>&nbsp;</td>";
+
+
+        $table .= "<td>";
+        $table .= "<table border='1'>";
+        $table .= "<tr>";
+        $table .= "<th colspan = '2' style='background:#f5f5f0;'>$head[5]</th>";
+        $table .= "</tr>";
+        $table .= "<tr>";
+        $table .= "<th style='background:yellow;'>CODE</th>";
+        $table .= "<th style='background:#e0e0d1;'>VALUE</th>";
+        $table .= "</tr>";
+
+        foreach ($compu as $key => $value) {
+            $table .= "<tr>";
+            $table .= "<td>" . $compu[$key]['i_compu'] . "</td>";
+            $table .= "<td>" . $compu[$key]['s_name'] . "</td>";
+            $table .= "</tr>";
+        }
+        $table .= "</table>";
+        $table .= "</td>";
+
+
+
+
+
 
 
 
@@ -462,7 +496,7 @@ class productController {
                     echo $return2099;
                 }
             }
-            if ((!$util->isEmpty($info[s_prother_2_txt]) || !$util->isEmpty($info[s_prother_2_val]) && $intReturn2 )) {
+            if ((!$util->isEmpty($info[s_prother_2_txt]) || !$util->isEmpty($info[s_prother_2_val]) && $intReturn2)) {
                 if (!is_numeric($info[s_prother_2_val])) {
                     $intReturn2 = FALSE;
                     $return2003 = eregi_replace("field", $_SESSION['lb_setIns_d_2'], $return2003);
