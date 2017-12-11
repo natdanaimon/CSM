@@ -566,14 +566,14 @@ class productService {
 
     function isNotMsPromotion($db, $i_ins_promotion) {
         $strSql = "SELECT count(*) cnt FROM tb_insurance_promotion WHERE 1=1 ";
-        $strSql .= "and i_ins_promotion = '" . $i_ins_promotion . "' ";
+        $strSql .= "and i_ins_promotion = " . $i_ins_promotion . " ";
         $_data = $db->Search_Data_FormatJson($strSql);
         return ($_data[0]['cnt'] == 0 ? TRUE : FALSE);
     }
 
     function isNotMsRepair($db, $i_repair) {
         $strSql = "SELECT count(*) cnt FROM tb_insurance_repair_type WHERE 1=1 ";
-        $strSql .= "and i_repair = '" . $i_repair . "' ";
+        $strSql .= "and i_repair = " . $i_repair . " ";
         $_data = $db->Search_Data_FormatJson($strSql);
         return ($_data[0]['cnt'] == 0 ? TRUE : FALSE);
     }
