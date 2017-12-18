@@ -865,6 +865,7 @@
     </detail>
     
     
+    
     <detail>
         <variable>repair</variable>
         <th>ระบบนำซ่อม</th>
@@ -876,7 +877,11 @@
         <th>ตรวจสอบสถานะรถ</th>
         <en>Status</en>
     </detail>
-    
+    <detail>
+        <variable>re_create</variable>
+        <th>สร้างรายการนำซ่อม</th>
+        <en>Create Repair Management</en>
+    </detail>
     <detail>
         <variable>re_inbound</variable>
         <th>ตรวจสภาพรถก่อนนำเข้า</th>
@@ -1256,6 +1261,37 @@
         <th>เลขที่รับแจ้งเคลม</th>
         <en>Claim No</en>
     </detail>
+    
+    
+    
+    
+    <detail>
+        <variable>tb_co_refno</variable>
+        <th>เลขการทำรายการ (Ref no.)</th>
+        <en>Ref no.</en>
+    </detail>
+    <detail>
+        <variable>tb_co_custname</variable>
+        <th>ชื่อลูกค้า</th>
+        <en>Cust. Name</en>
+    </detail>
+    <detail>
+        <variable>tb_co_license</variable>
+        <th>ทะเบียนรถ</th>
+        <en>License plate</en>
+    </detail>
+    <detail>
+        <variable>tb_co_dinbound_car</variable>
+        <th>วันที่เข้า</th>
+        <en>Date Inbound Car</en>
+    </detail>
+    <detail>
+        <variable>tb_co_doutbound_car</variable>
+        <th>วันที่นัดรับ</th>
+        <en>Date Outbound Car</en>
+    </detail>
+    
+
 
     <!--  table  --> 
         
@@ -1429,6 +1465,11 @@
         <variable>tt_mg_inbound</variable>
         <th>จัดการข้อมูลตรวจสภาพรถก่อนนำเข้า</th>
         <en>MANAGE INBOUND CAR</en>
+    </detail>
+    <detail>
+        <variable>tt_mg_create</variable>
+        <th>จัดการข้อมูลรายการนำซ่อม</th>
+        <en>MANAGE CREATE TRANSACTION</en>
     </detail>
     
     <detail>

@@ -49,16 +49,23 @@
                 <span class="selected"></span>
             </a>
             <ul class="sub-menu">
-<!--                <li class="nav-item  <?= $_SESSION["nav_sub_re_status"] ?>">
+    <!--                <li class="nav-item  <?= $_SESSION["nav_sub_re_status"] ?>">
                     <a href="re_status.php" class="nav-link ">
                         <span class="title"><?= $_SESSION[re_status] ?></span>
                         <span class="selected"></span>
                         <span class="badge badge-success" ></span>
                     </a>
                 </li>-->
+                <li class="nav-item  <?= $_SESSION["nav_sub_re_create"] ?>">
+                    <a href="re_create.php" class="nav-link ">
+                        <span class="title">1 <?= $_SESSION[re_create] ?></span>
+                        <span class="selected"></span>
+                        <span class="badge badge-success" ></span>
+                    </a>
+                </li>
                 <li class="nav-item  <?= $_SESSION["nav_sub_re_inbound"] ?>">
                     <a href="re_inbound.php" class="nav-link ">
-                        <span class="title"><?= $_SESSION[re_inbound] ?></span>
+                        <span class="title">2 <?= $_SESSION[re_inbound] ?></span>
                         <span class="selected"></span>
                         <span class="badge badge-success" ></span>
                     </a>
@@ -146,7 +153,7 @@
                         <span class="badge badge-success" ></span>
                     </a>
                 </li>
-                 <li class="nav-item  <?= $_SESSION["nav_sub_set_compu"] ?>">
+                <li class="nav-item  <?= $_SESSION["nav_sub_set_compu"] ?>">
                     <a href="set_compulsory.php" class="nav-link ">
 
                         <span class="title"><?= $_SESSION[set_compu] ?></span>
@@ -154,10 +161,10 @@
                         <span class="badge badge-success" ></span>
                     </a>
                 </li>
-                
-                
-                
-                
+
+
+
+
 
                 <li class="heading">
                     <h3 class="uppercase"></h3>

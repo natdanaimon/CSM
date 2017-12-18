@@ -42,7 +42,7 @@ function ACTIVEPAGES($page, $sub) {
     $_SESSION["nav_sub_cus_customer"] = "";
 
     //csm_repair
-    $_SESSION["nav_sub_re_status"] = "";
+    $_SESSION["nav_sub_re_create"] = "";
     $_SESSION["nav_sub_re_inbound"] = "";
 
     //csm insurance
@@ -77,7 +77,7 @@ function ACTIVEPAGES($page, $sub) {
     } else if ($page == 3) {
         $_SESSION["nav_main_repair"] = " active open";
         if ($sub == 1) {
-            $_SESSION["nav_sub_re_status"] = " active open";
+            $_SESSION["nav_sub_re_create"] = " active open";
         } else if ($sub == 2) {
             $_SESSION["nav_sub_re_inbound"] = " active open";
         }

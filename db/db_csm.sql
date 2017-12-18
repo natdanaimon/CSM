@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 14, 2017 at 07:12 AM
+-- Generation Time: Dec 18, 2017 at 01:04 PM
 -- Server version: 10.1.9-MariaDB
 -- PHP Version: 5.5.30
 
@@ -1231,13 +1231,52 @@ INSERT INTO `tb_car_year` (`i_year`, `d_create`, `d_update`, `s_create_by`, `s_u
 CREATE TABLE `tb_claim_image` (
   `i_cimage` int(11) NOT NULL,
   `s_ref_image` varchar(100) NOT NULL,
+  `s_detail` text NOT NULL,
+  `s_flg_width` varchar(10) NOT NULL DEFAULT 'N',
   `s_image` varchar(100) NOT NULL,
   `d_create` datetime NOT NULL,
   `d_update` datetime NOT NULL,
   `s_create_by` varchar(50) NOT NULL,
   `s_update_by` varchar(50) NOT NULL,
   `s_status` varchar(10) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tb_claim_image`
+--
+
+INSERT INTO `tb_claim_image` (`i_cimage`, `s_ref_image`, `s_detail`, `s_flg_width`, `s_image`, `d_create`, `d_update`, `s_create_by`, `s_update_by`, `s_status`) VALUES
+(1, '20171120160500', 'ภาพมุมกว้าง 1', 'Y', 's1.jpg', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A'),
+(2, '20171120160500', 'ภาพมุมกว้าง 2', 'Y', 's2.jpg', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A'),
+(3, '20171120160500', 'แผลเคลมจุดที่ 1', 'N', 's3.jpg', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_compulsory`
+--
+
+CREATE TABLE `tb_compulsory` (
+  `i_compu` int(11) NOT NULL,
+  `s_name` varchar(100) NOT NULL,
+  `f_amount` float NOT NULL,
+  `d_create` datetime NOT NULL,
+  `d_update` datetime NOT NULL,
+  `s_create_by` varchar(50) NOT NULL,
+  `s_update_by` varchar(50) NOT NULL,
+  `s_status` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tb_compulsory`
+--
+
+INSERT INTO `tb_compulsory` (`i_compu`, `s_name`, `f_amount`, `d_create`, `d_update`, `s_create_by`, `s_update_by`, `s_status`) VALUES
+(1, 'รถยนต์นั่งไม่เกิน 7 ที่นั่ง (เก๋ง/ซีดาน)', 100, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A'),
+(2, 'รถบรรทุกไม่เกิน 2-3 ตัน (กระบะ)', 200, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A'),
+(3, 'รถตู้', 300, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A'),
+(4, 'รถจักรยานยนต์', 400, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A'),
+(5, 'แคมเปญแถมฟรี พรบ.', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A');
 
 -- --------------------------------------------------------
 
@@ -1272,7 +1311,29 @@ CREATE TABLE `tb_customer` (
 --
 
 INSERT INTO `tb_customer` (`i_customer`, `i_title`, `s_firstname`, `s_lastname`, `s_phone_1`, `s_phone_2`, `s_email`, `s_line`, `s_image`, `s_address`, `i_district`, `i_amphure`, `i_province`, `i_zipcode`, `d_create`, `d_update`, `s_create_by`, `s_update_by`, `s_status`) VALUES
-(4, 1, 'ณัฐดนัย', 'มั่นคง', '(086) 361-9979', '(213) 212-1321', 'natdanaimon@gmail.com', 'nagie', 'default.png', '99/99 ม.3 ', 200403, 139, 11, 20150, '2017-10-30 23:27:10', '2017-10-31 00:33:04', 'admin', 'admin', 'A');
+(4, 1, 'ณัฐดนัย', 'มั่นคง', '(086) 361-9979', '(213) 212-1321', 'natdanaimon@gmail.com', 'nagie', 'default.png', '99/99 ม.3 ', 200403, 139, 11, 20150, '2017-10-30 23:27:10', '2017-10-31 00:33:04', 'admin', 'admin', 'A'),
+(5, 2, 'ปุญญิสา', 'ทองทิพย์', '(088) 888-8888', '(099) 999-9999', 'test@gmail.com', 'tres', 'default.png', '123123123', 100303, 3, 1, 10530, '2017-12-04 13:54:49', '2017-12-04 13:54:49', 'admin', 'admin', 'A');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_customer_car`
+--
+
+CREATE TABLE `tb_customer_car` (
+  `i_car` int(11) NOT NULL,
+  `i_customer` int(7) NOT NULL COMMENT 'รหัสอ้างอิงผูกกับข้อมูลลูกค้ากับข้อมูลรถ',
+  `ref_no` varchar(50) NOT NULL COMMENT 'รหัสอ้างอิงสำหรับทำรายการซ่อม',
+  `s_car_code` varchar(50) NOT NULL COMMENT 'รหัสอ้างอิงข้อมูลรุ่นรถ',
+  `s_license` varchar(50) NOT NULL COMMENT 'ทะเบียนรถ',
+  `d_ins_exp` date NOT NULL COMMENT 'วันที่ กธ หมดอายุ',
+  `s_type_capital` varchar(100) NOT NULL COMMENT 'ประเภททุน',
+  `s_pay_type` varchar(10) NOT NULL COMMENT 'ประเภทการชำระเงิน',
+  `i_ins_comp` int(10) NOT NULL COMMENT 'รหัสบริษัทประกัน',
+  `i_dmg` int(10) NOT NULL COMMENT 'รหัสระดับความเสียหาย',
+  `d_inbound` datetime NOT NULL COMMENT 'วันที่เข้ามาติดต่อ',
+  `d_inbound_confirm` datetime NOT NULL COMMENT 'วันที่นัดรับรถ'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -10337,6 +10398,7 @@ CREATE TABLE `tb_insurance` (
   `f_price` float NOT NULL,
   `f_discount` float NOT NULL,
   `f_point` float NOT NULL,
+  `i_compu` int(11) NOT NULL,
   `s_prcar_base` varchar(50) NOT NULL,
   `s_prcar_fire` varchar(50) NOT NULL,
   `s_prcar_water` varchar(50) NOT NULL,
@@ -10348,6 +10410,12 @@ CREATE TABLE `tb_insurance` (
   `s_prother_personal` varchar(50) NOT NULL,
   `s_prother_insurance` varchar(50) NOT NULL,
   `s_prother_medical` varchar(50) NOT NULL,
+  `s_prother_1_txt` varchar(100) NOT NULL,
+  `s_prother_2_txt` varchar(100) NOT NULL,
+  `s_prother_3_txt` varchar(100) NOT NULL,
+  `s_prother_1_val` varchar(50) NOT NULL,
+  `s_prother_2_val` varchar(50) NOT NULL,
+  `s_prother_3_val` varchar(50) NOT NULL,
   `d_create` datetime NOT NULL,
   `d_update` datetime NOT NULL,
   `s_create_by` varchar(50) NOT NULL,
@@ -10359,10 +10427,11 @@ CREATE TABLE `tb_insurance` (
 -- Dumping data for table `tb_insurance`
 --
 
-INSERT INTO `tb_insurance` (`i_insurance`, `s_insurance_htext`, `i_ins_comp`, `i_ins_type`, `s_car_code`, `i_ins_promotion`, `f_price`, `f_discount`, `f_point`, `s_prcar_base`, `s_prcar_fire`, `s_prcar_water`, `s_prcar_repair`, `i_prcar_repair_type`, `s_prperson_per`, `s_prperson_pertimes`, `s_prperson_outsider`, `s_prother_personal`, `s_prother_insurance`, `s_prother_medical`, `d_create`, `d_update`, `s_create_by`, `s_update_by`, `s_status`) VALUES
-(6, 'ประกันสุขใจ 1', 1, 1, 'HO18CIVIC15', 5, 20000, 600, 8, '800000', '800000', '800000', '800000', 1, '800000', '800000', '800000', '800000', '800000', '800000', '2017-11-09 20:49:33', '2017-11-09 20:49:33', 'admin', 'admin', 'A'),
-(7, 'มิตรแท้ชั้น 1', 8, 3, 'HO18CIVIC15', 1, 18000, 2000, 9, '850000', '850000', '850000', '850000', 1, '850000', '850000', '850000', '850000', '850000', '850000', '2017-11-09 20:54:02', '2017-11-14 12:57:16', 'admin', 'admin', 'A'),
-(8, 'ประกันไทยวิวัฒน์สั่งได้ 1', 13, 1, 'HO18CIVIC15', 1, 15000, 300, 7, '600000', '600000', '600000', '600000', 1, '600000', '600000', '600000', '600000', '600000', '600000', '2017-11-09 20:56:02', '2017-11-14 12:57:10', 'admin', 'admin', 'A');
+INSERT INTO `tb_insurance` (`i_insurance`, `s_insurance_htext`, `i_ins_comp`, `i_ins_type`, `s_car_code`, `i_ins_promotion`, `f_price`, `f_discount`, `f_point`, `i_compu`, `s_prcar_base`, `s_prcar_fire`, `s_prcar_water`, `s_prcar_repair`, `i_prcar_repair_type`, `s_prperson_per`, `s_prperson_pertimes`, `s_prperson_outsider`, `s_prother_personal`, `s_prother_insurance`, `s_prother_medical`, `s_prother_1_txt`, `s_prother_2_txt`, `s_prother_3_txt`, `s_prother_1_val`, `s_prother_2_val`, `s_prother_3_val`, `d_create`, `d_update`, `s_create_by`, `s_update_by`, `s_status`) VALUES
+(6, 'ประกันสุขใจ 1', 5, 1, 'HO18CIVIC15', 5, 20000, 600, 8, 1, '800000', '800000', '800000', '800000', 1, '800000', '800000', '800000', '800000', '800000', '800000', 'บริการคุ้มครองการเดินทางภายในประเทศ สำหรับผู้เอาประกัน', '', '', '100000', '', '', '2017-11-09 20:49:33', '2017-12-11 17:19:05', 'admin', 'admin', 'A'),
+(7, 'มิตรแท้ชั้น 1', 8, 1, 'HO18CIVIC15', 1, 18000, 2000, 9, 1, '850000', '850000', '850000', '850000', 1, '850000', '850000', '850000', '850000', '850000', '850000', '', '', '', '', '', '', '2017-11-09 20:54:02', '2017-12-11 17:18:57', 'admin', 'admin', 'A'),
+(8, 'ประกันไทยวิวัฒน์สั่งได้ 1', 13, 1, 'HO18CIVIC15', 1, 15000, 300, 7, 1, '600000', '600000', '600000', '600000', 1, '600000', '600000', '600000', '600000', '600000', '600000', 'ความคุ้มครองเสริมรายการ 1', 'ความคุ้มครองเสริมรายการ 2', '', '100000', '200000', '', '2017-11-09 20:56:02', '2017-12-11 17:18:43', 'admin', 'admin', 'A'),
+(12, 'ประกันภัยสุขได้ 2', 1, 1, 'HO18CIVIC15', 2, 25000, 5000, 9, 1, '1000000', '1000000', '1000000', '1000000', 1, '1000000', '1000000', '1000000', '1000000', '1000000', '1000000', '', '', '', '', '', '', '2017-12-11 23:41:01', '2017-12-11 23:41:50', 'admin', 'admin', 'A');
 
 -- --------------------------------------------------------
 
@@ -10392,7 +10461,14 @@ CREATE TABLE `tb_insurance_claim` (
   `s_create_by` varchar(50) NOT NULL,
   `s_update_by` varchar(50) NOT NULL,
   `s_status` varchar(10) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tb_insurance_claim`
+--
+
+INSERT INTO `tb_insurance_claim` (`i_claim`, `s_firstname`, `s_lastname`, `s_owner`, `s_related`, `s_phone_1`, `s_phone_2`, `s_email`, `s_line`, `s_copy_claim`, `s_claim_number`, `s_copy_driver`, `s_copy_insurance`, `s_copy_car`, `s_ref_image`, `s_copy_pay`, `d_create`, `d_update`, `s_create_by`, `s_update_by`, `s_status`) VALUES
+(5, 'ณัฐดนัย', 'มั่นคง', '2', 'test', '0888888888', '0999999999', 'a@a.com', 'aaaa', 's1.jpg', '888990', 's2.jpg', 's3.pdf', 's4.jpg', '20171120160500', 's5.jpg', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A');
 
 -- --------------------------------------------------------
 
@@ -10497,14 +10573,27 @@ CREATE TABLE `tb_insurance_trans` (
   `s_lastname` varchar(100) NOT NULL,
   `s_phone` varchar(50) NOT NULL,
   `s_email` varchar(100) NOT NULL,
+  `s_address` text NOT NULL,
+  `s_require` text NOT NULL,
+  `d_require` date NOT NULL,
   `s_copy_citizen` varchar(100) NOT NULL,
   `s_copy_car` varchar(100) NOT NULL,
+  `s_flg_compu` varchar(50) NOT NULL DEFAULT 'N',
   `d_create` datetime NOT NULL,
   `d_update` datetime NOT NULL,
   `s_create_by` varchar(50) NOT NULL,
   `s_update_by` varchar(50) NOT NULL,
   `s_status` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tb_insurance_trans`
+--
+
+INSERT INTO `tb_insurance_trans` (`i_ins_trans`, `i_insurance`, `s_firstname`, `s_lastname`, `s_phone`, `s_email`, `s_address`, `s_require`, `d_require`, `s_copy_citizen`, `s_copy_car`, `s_flg_compu`, `d_create`, `d_update`, `s_create_by`, `s_update_by`, `s_status`) VALUES
+(20, 6, 'ณัฐดนัย', 'มั่นคง', '086-3619979', 'natdanaimon@gmail.com', 'พระราม9 กรุงเทพมหานคร 10500', '-', '2017-12-12', '20citizen.png', '20car.png', 'Y', '2017-11-22 18:53:25', '2017-11-22 18:53:25', 'user', 'user', 'A'),
+(23, 8, 'ทดสอบ', 'ทดสอบ', '1111111111', 'a@a.com', '12', '12', '2017-12-13', '23citizen.png', '23car.png', 'N', '2017-12-11 14:54:01', '2017-12-11 14:54:01', 'user', 'user', 'A'),
+(24, 6, 'safd', 'sdaf', '1231232131', 'natdanaimon@gmail.com', '123', '123', '2017-12-12', '24citizen.png', '24car.png', 'Y', '2017-12-11 15:17:35', '2017-12-11 15:17:35', 'user', 'user', 'A');
 
 -- --------------------------------------------------------
 
@@ -10583,6 +10672,28 @@ CREATE TABLE `tb_knowledge` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tb_mail_config`
+--
+
+CREATE TABLE `tb_mail_config` (
+  `s_insurance` varchar(100) NOT NULL,
+  `s_claimonline` varchar(100) NOT NULL,
+  `d_create` datetime NOT NULL,
+  `d_update` datetime NOT NULL,
+  `s_create_by` varchar(100) NOT NULL,
+  `s_update_by` varchar(100) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_mail_config`
+--
+
+INSERT INTO `tb_mail_config` (`s_insurance`, `s_claimonline`, `d_create`, `d_update`, `s_create_by`, `s_update_by`) VALUES
+('natdanaimon@gmail.com', 'natdanaimon@gmail.com', '0000-00-00 00:00:00', '2017-12-10 14:09:56', 'ADM', 'admin');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tb_news`
 --
 
@@ -10620,6 +10731,33 @@ CREATE TABLE `tb_partner_comp` (
   `s_update_by` varchar(50) NOT NULL,
   `s_status` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_pay`
+--
+
+CREATE TABLE `tb_pay` (
+  `i_pay` int(11) NOT NULL,
+  `s_pay_type` varchar(10) NOT NULL,
+  `s_detail` varchar(100) NOT NULL,
+  `d_create` datetime NOT NULL,
+  `d_update` datetime NOT NULL,
+  `s_create_by` varchar(100) NOT NULL,
+  `s_update_by` varchar(100) NOT NULL,
+  `s_status` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tb_pay`
+--
+
+INSERT INTO `tb_pay` (`i_pay`, `s_pay_type`, `s_detail`, `d_create`, `d_update`, `s_create_by`, `s_update_by`, `s_status`) VALUES
+(1, 'A', 'เงินสด', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A'),
+(2, 'INS', 'ประกันภัย', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A'),
+(3, 'AINS', 'เงินสด + ประกันภัย', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A'),
+(4, 'O', 'อื่นๆ', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A');
 
 -- --------------------------------------------------------
 
@@ -10984,12 +11122,24 @@ ALTER TABLE `tb_claim_image`
   ADD KEY `index_claim_image` (`s_ref_image`,`s_status`);
 
 --
+-- Indexes for table `tb_compulsory`
+--
+ALTER TABLE `tb_compulsory`
+  ADD PRIMARY KEY (`i_compu`);
+
+--
 -- Indexes for table `tb_customer`
 --
 ALTER TABLE `tb_customer`
   ADD PRIMARY KEY (`i_customer`),
   ADD KEY `index_address` (`i_district`,`i_amphure`,`i_province`,`i_zipcode`),
   ADD KEY `index_customer_search` (`s_status`);
+
+--
+-- Indexes for table `tb_customer_car`
+--
+ALTER TABLE `tb_customer_car`
+  ADD PRIMARY KEY (`i_car`);
 
 --
 -- Indexes for table `tb_damage`
@@ -11084,6 +11234,12 @@ ALTER TABLE `tb_news`
 ALTER TABLE `tb_partner_comp`
   ADD PRIMARY KEY (`i_part_comp`),
   ADD KEY `index_part_comp` (`s_status`);
+
+--
+-- Indexes for table `tb_pay`
+--
+ALTER TABLE `tb_pay`
+  ADD PRIMARY KEY (`i_pay`);
 
 --
 -- Indexes for table `tb_popup`
@@ -11181,12 +11337,22 @@ ALTER TABLE `tb_car_sub`
 -- AUTO_INCREMENT for table `tb_claim_image`
 --
 ALTER TABLE `tb_claim_image`
-  MODIFY `i_cimage` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `i_cimage` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `tb_compulsory`
+--
+ALTER TABLE `tb_compulsory`
+  MODIFY `i_compu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `tb_customer`
 --
 ALTER TABLE `tb_customer`
-  MODIFY `i_customer` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `i_customer` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `tb_customer_car`
+--
+ALTER TABLE `tb_customer_car`
+  MODIFY `i_car` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `tb_damage`
 --
@@ -11206,12 +11372,12 @@ ALTER TABLE `tb_employee`
 -- AUTO_INCREMENT for table `tb_insurance`
 --
 ALTER TABLE `tb_insurance`
-  MODIFY `i_insurance` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `i_insurance` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `tb_insurance_claim`
 --
 ALTER TABLE `tb_insurance_claim`
-  MODIFY `i_claim` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `i_claim` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `tb_insurance_comp`
 --
@@ -11231,7 +11397,7 @@ ALTER TABLE `tb_insurance_repair_type`
 -- AUTO_INCREMENT for table `tb_insurance_trans`
 --
 ALTER TABLE `tb_insurance_trans`
-  MODIFY `i_ins_trans` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `i_ins_trans` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT for table `tb_insurance_type`
 --
@@ -11257,6 +11423,11 @@ ALTER TABLE `tb_news`
 --
 ALTER TABLE `tb_partner_comp`
   MODIFY `i_part_comp` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `tb_pay`
+--
+ALTER TABLE `tb_pay`
+  MODIFY `i_pay` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `tb_portfolio`
 --
