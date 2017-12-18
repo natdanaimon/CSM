@@ -262,6 +262,64 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                                         </div>
                                     </div>
 
+
+
+                                    <!--LIST-->
+                                    <div class="portlet light bordered">
+                                        <div class="portlet-title">
+                                            <div class="caption font-green">
+                                                <i class="fa fa-car font-green"></i>
+                                                <span class="caption-subject bold uppercase"> <?= $_SESSION[tt_detail] ?></span>
+                                            </div>
+                                        </div>
+                                        <div class="portlet-body form">
+
+                                            <div class="form-body">
+
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <table class="table table-striped table-bordered table-hover table-checkable order-column" id="datatable">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th style="padding-left: 0px;width: 20px" class="no-sort">
+                                                                        <!--                                                        <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
+                                                                                                                                    <input type="checkbox" class="group-checkable" data-set="#datatable .checkboxes" id="select_all" />
+                                                                                                                                    <span></span>
+                                                                                                                                </label>-->
+                                                                        <span class="md-checkbox has-success">
+                                                                            <input type="checkbox" id="checkbox14" name="checkbox14" class="md-check">
+                                                                            <label for="checkbox14">
+                                                                                <span class="inc"></span>
+                                                                                <span class="check"></span>
+                                                                                <span class="box"></span> </label>
+                                                                        </span>
+                                                                    </th>
+                                                                    <th style="width: 100px" class="no-sort">  <?= $_SESSION[tb_co_profile] ?> </th>
+                                                                    <th>  <?= $_SESSION[tb_co_fullname] ?> </th>
+                                                                    <th>  <?= $_SESSION[tb_co_phone] ?> </th>
+                                                                    <th>  <?= $_SESSION[tb_co_status] ?> </th>
+                                                                    <th style="width: 40px"> <?= $_SESSION[tb_co_edit] ?> </th>
+                                                                    <th style="width: 40px"> <?= $_SESSION[tb_co_delete] ?></th>
+                                                            </thead>
+                                                            <tbody>
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+
+                                                </div>
+
+
+
+
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                    <!--LIST-->
+
+
                                     <!-- END EXAMPLE TABLE PORTLET-->
                                 </div>
                                 <div class="col-md-4">
