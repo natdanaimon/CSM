@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Dec 18, 2017 at 06:59 PM
--- Server version: 10.1.25-MariaDB
--- PHP Version: 5.6.31
+-- Host: 127.0.0.1
+-- Generation Time: Dec 19, 2017 at 01:08 PM
+-- Server version: 10.1.9-MariaDB
+-- PHP Version: 5.5.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -20636,6 +20634,26 @@ INSERT INTO `tb_mail_config` (`s_insurance`, `s_claimonline`, `d_create`, `d_upd
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tb_master_running`
+--
+
+CREATE TABLE `tb_master_running` (
+  `i_key` int(11) NOT NULL,
+  `s_year` varchar(10) NOT NULL,
+  `s_month` varchar(10) NOT NULL,
+  `s_running` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tb_master_running`
+--
+
+INSERT INTO `tb_master_running` (`i_key`, `s_year`, `s_month`, `s_running`) VALUES
+(1, '2017', '12', '000');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tb_news`
 --
 
@@ -21164,6 +21182,12 @@ ALTER TABLE `tb_knowledge`
   ADD KEY `index_tb_knowledge` (`i_vote`,`i_view`,`s_status`);
 
 --
+-- Indexes for table `tb_master_running`
+--
+ALTER TABLE `tb_master_running`
+  ADD PRIMARY KEY (`i_key`);
+
+--
 -- Indexes for table `tb_news`
 --
 ALTER TABLE `tb_news`
@@ -21356,6 +21380,11 @@ ALTER TABLE `tb_item`
 ALTER TABLE `tb_knowledge`
   MODIFY `i_know` int(10) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `tb_master_running`
+--
+ALTER TABLE `tb_master_running`
+  MODIFY `i_key` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
 -- AUTO_INCREMENT for table `tb_news`
 --
 ALTER TABLE `tb_news`
@@ -21409,8 +21438,7 @@ ALTER TABLE `tb_user`
 -- AUTO_INCREMENT for table `tb_vat`
 --
 ALTER TABLE `tb_vat`
-  MODIFY `i_vat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;COMMIT;
-
+  MODIFY `i_vat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

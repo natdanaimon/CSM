@@ -14,7 +14,7 @@ function getDDLStatus() {
             });
             $("#status").html(htmlOption);
 
-            getDDLTitle();
+            getDDLPayType();
 
         },
         error: function(data) {
@@ -24,6 +24,149 @@ function getDDLStatus() {
     });
 }
 
+
+function getDDLPayType() {
+    $.ajax({
+        type: 'GET',
+        url: 'controller/commonController.php?func=DDLPayType',
+        beforeSend: function() {
+            //$('#se-pre-con').fadeIn(100);
+        },
+        success: function(data) {
+            var htmlOption = "";
+            var res = JSON.parse(data);
+            $.each(res, function(i, item) {
+                var txt_status = (language == "th" ? item.s_detail : item.s_detail);
+                htmlOption += "<option value='" + item.s_pay_type + "'>" + txt_status + "</option>";
+            });
+            $("#s_pay_type").html(htmlOption);
+
+            getDDLInsurance();
+
+        },
+        error: function(data) {
+            getDDLProvince();
+        }
+
+    });
+}
+
+
+function formatStateComp(state) {
+    if (!state.id) {
+        return state.text;
+    }
+    var pathImg = "";
+    if (state.img == "") {
+        pathImg = "images/noImage.jpeg";
+    } else {
+        pathImg = "upload/compInsurance/" + state.img;
+    }
+
+
+    var $state = $(
+            '<span><img src="' + pathImg + '" width="50px" height="50px" class="img-flag" Style="margin-bottom: 5px;"/><span style="color:black;font-weight:bold;"> ' + state.text + '</span></span>'
+            );
+    return $state;
+}
+
+function getDDLInsurance() {
+    $.ajax({
+        type: 'GET',
+        url: 'controller/commonController.php?func=DDLInsurance',
+        beforeSend: function () {},
+        success: function (ddl) {
+            var res = JSON.parse(ddl);
+            $("#i_ins_comp").select2({
+                data: res,
+                templateResult: formatStateComp,
+                templateSelection: formatStateComp
+
+            });
+
+            getDDLCar();
+
+        },
+        error: function (ddl) {
+
+        }
+
+
+
+    });
+}
+
+
+
+function formatStateCar(state) {
+    if (!state.id) {
+        return state.text;
+    }
+    var pathImg = "";
+    if (state.img == "") {
+        pathImg = "images/noCar.png";
+    } else {
+        pathImg = "upload/brand/" + state.img;
+    }
+
+
+    var $state = $(
+            '<span><img src="' + pathImg + '" width="30px" height="30px" class="img-flag" Style="margin-bottom: 5px;"/><span style="color:black;font-weight:bold;"> ' + state.text + '</span></span>'
+            );
+    return $state;
+}
+
+function getDDLCar() {
+    $.ajax({
+        type: 'GET',
+        url: 'controller/commonController.php?func=DDLCar',
+        beforeSend: function () {},
+        success: function (ddl) {
+            var res = JSON.parse(ddl);
+            $("#s_car_code").select2({
+                data: res,
+                templateResult: formatStateCar,
+                templateSelection: formatStateCar
+
+            });
+            getDDLDamage();
+
+        },
+        error: function (ddl) {
+
+        }
+
+
+
+    });
+}
+
+
+function getDDLDamage() {
+    $.ajax({
+        type: 'GET',
+        url: 'controller/commonController.php?func=DDLDamage',
+        beforeSend: function() {
+            //$('#se-pre-con').fadeIn(100);
+        },
+        success: function(data) {
+            var htmlOption = "";
+            var res = JSON.parse(data);
+            $.each(res, function(i, item) {
+                var txt_status = (language == "th" ? item.s_dmg_th : item.s_dmg_en);
+                htmlOption += "<option value='" + item.i_dmg + "'>" + txt_status + "</option>";
+            });
+            $("#i_dmg").html(htmlOption);
+
+            getDDLTitle();
+
+        },
+        error: function(data) {
+            getDDLProvince();
+        }
+
+    });
+}
 function getDDLTitle() {
     $.ajax({
         type: 'GET',

@@ -1608,6 +1608,16 @@
         <en>Claim Payment</en>
     </detail>
     
+     <detail>
+        <variable>tt_detail_create1</variable>
+        <th>ข้อมูลทั่วไป</th>
+        <en>Info.</en>
+    </detail>
+    
+    
+    
+    
+    
     
     <!--  Title Header  --> 
         

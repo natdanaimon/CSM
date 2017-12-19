@@ -738,4 +738,63 @@
     </detail>
     <!--  claim --> 
 
+    <!-- repair create --> 
+    <detail>
+        <variable>lb_re_refNo</variable>
+        <th>รหัสอ้างอิง (Ref no.)</th>
+        <en>Ref no.</en>
+    </detail>
+    
+    <detail>
+        <variable>lb_re_paytype</variable>
+        <th>ประเภทการชำระเงิน</th>
+        <en>Payment Type</en>
+    </detail>
+    
+    <detail>
+        <variable>lb_re_insurance_comp</variable>
+        <th>บริษัทประกันภัย</th>
+        <en>Insurance Company</en>
+    </detail>
+    <detail>
+        <variable>lb_re_dmg</variable>
+        <th>ระดับความเสียหาย</th>
+        <en>Level Damage</en>
+    </detail>
+    <detail>
+        <variable>lb_re_dinbound</variable>
+        <th>วันที่นำรถเข้ามาติดต่อ</th>
+        <en>Date Contac</en>
+    </detail>
+    <detail>
+        <variable>lb_re_doutbound_confirm</variable>
+        <th>วันที่นัดรับรถ</th>
+        <en>Date Outbound</en>
+    </detail>
+    <detail>
+        <variable>lb_re_carinfo</variable>
+        <th>ข้อมูลรถ</th>
+        <en>Car Info.</en>
+    </detail>
+    <detail>
+        <variable>lb_re_carlicense</variable>
+        <th>ทะเบียนรถ</th>
+        <en>Car License.</en>
+    </detail>
+    
+    <detail>
+        <variable>lb_re_dexp</variable>
+        <th>วันที่ กธ หมดอายุ</th>
+        <en>Insurance Date Expire</en>
+    </detail>
+    
+    <detail>
+        <variable>lb_re_type_capital</variable>
+        <th>ประเภททุน</th>
+        <en>Capital Type</en>
+    </detail>
+    <!-- repair create --> 
+
+
+
 </language>

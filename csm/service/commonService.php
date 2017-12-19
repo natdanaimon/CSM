@@ -13,6 +13,30 @@ class commonService {
         return $_data;
     }
 
+    function DDLPayType() {
+        $db = new ConnectDB();
+        $strSql = "select * from tb_pay where s_status = 'A' ";
+        $_data = $db->Search_Data_FormatJson($strSql);
+        $db->close_conn();
+        return $_data;
+    }
+
+    function DDLDamage() {
+        $db = new ConnectDB();
+        $strSql = "select * from tb_damage where s_status = 'A' ";
+        $_data = $db->Search_Data_FormatJson($strSql);
+        $db->close_conn();
+        return $_data;
+    }
+    
+      function DDLCAPITAL() {
+        $db = new ConnectDB();
+        $strSql = "select * from tb_damage where s_status = 'A' ";
+        $_data = $db->Search_Data_FormatJson($strSql);
+        $db->close_conn();
+        return $_data;
+    }
+
     function DDLStatusActive() {
         $db = new ConnectDB();
         $strSql = "select * from tb_status where s_type = 'ACTIVE' ";
@@ -69,23 +93,22 @@ class commonService {
         return $_data;
     }
 
-    function DDLPosition(){
-         $db = new ConnectDB();
+    function DDLPosition() {
+        $db = new ConnectDB();
         $strSql = "select * from tb_position ";
         $_data = $db->Search_Data_FormatJson($strSql);
         $db->close_conn();
         return $_data;
     }
-    
-    function DDLCompulsory(){
-         $db = new ConnectDB();
+
+    function DDLCompulsory() {
+        $db = new ConnectDB();
         $strSql = "select * from tb_compulsory ";
         $_data = $db->Search_Data_FormatJson($strSql);
         $db->close_conn();
         return $_data;
     }
-    
-    
+
     function DDLYear() {
         $db = new ConnectDB();
         $strSql = "select * from tb_car_year where s_status = 'A' order by i_year desc ";
@@ -93,7 +116,6 @@ class commonService {
         $db->close_conn();
         return $_data;
     }
-    
 
     function DDLBrand() {
         $db = new ConnectDB();
@@ -153,17 +175,17 @@ class commonService {
         $db->close_conn();
         return $_data;
     }
-    
-     function DDLInsurancePromotion() {
+
+    function DDLInsurancePromotion() {
         $db = new ConnectDB();
         $strSql = "select * from tb_insurance_promotion where s_status = 'A' order by i_ins_promotion asc ";
         $_data = $db->Search_Data_FormatJson($strSql);
         $db->close_conn();
         return $_data;
     }
-    
-    function DDLInsuranceRepair(){
-         $db = new ConnectDB();
+
+    function DDLInsuranceRepair() {
+        $db = new ConnectDB();
         $strSql = "select * from tb_insurance_repair_type where s_status = 'A' order by i_repair asc ";
         $_data = $db->Search_Data_FormatJson($strSql);
         $db->close_conn();

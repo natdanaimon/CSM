@@ -240,7 +240,7 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                                                             <select class="form-control edited bold" id="i_province" name="i_province" 
                                                                     onchange="getDDLAmphure();"
                                                                     style="color:black;font-weight:bold;">
-                                                                <option value="">กรุณาเลือกข้อมูล</option>
+                                                                <option value=""><?=$_SESSION[lb_please_select]?></option>
                                                             </select>
                                                             <label for="form_control_1"><?= $_SESSION[province] ?> <span class="required">*</span></label>          
                                                         </div>
@@ -250,7 +250,7 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                                                             <select class="form-control edited bold" id="i_amphure" name="i_amphure" 
                                                                     onchange="getDDLDistrict()"
                                                                     style="color:black;font-weight:bold;">
-                                                                <option value="">กรุณาเลือกข้อมูล</option>
+                                                                <option value=""><?=$_SESSION[lb_please_select]?></option>
                                                             </select>
                                                             <label for="form_control_1"><?= $_SESSION[amphure] ?> <span class="required">*</span></label>          
                                                         </div>
@@ -262,7 +262,7 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                                                             <select class="form-control edited bold" id="i_district" name="i_district" 
                                                                     onchange="getDDLZipcode()"
                                                                     style="color:black;font-weight:bold;">
-                                                                <option value="">กรุณาเลือกข้อมูล</option>
+                                                                <option value=""><?=$_SESSION[lb_please_select]?></option>
                                                             </select>
                                                             <label for="form_control_1"><?= $_SESSION[district] ?> <span class="required">*</span></label>          
                                                         </div>
@@ -270,7 +270,7 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                                                     <div class="col-md-6">
                                                         <div class="form-group form-md-line-input has-success">
                                                             <select class="form-control edited bold" id="i_zipcode" name="i_zipcode" style="color:black;font-weight:bold;">
-                                                                <option value="">กรุณาเลือกข้อมูล</option>
+                                                                <option value=""><?=$_SESSION[lb_please_select]?></option>
                                                             </select>
                                                             <label for="form_control_1"><?= $_SESSION[zipcode] ?> <span class="required">*</span></label>          
                                                         </div>

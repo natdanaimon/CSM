@@ -8,7 +8,7 @@ function initialCust(first) {
             $('#se-pre-con').fadeIn(100);
         },
         success: function (data) {
-          
+
             if (data == '') {
                 var datatable = $datatable.dataTable().api();
                 $('.dataTables_empty').remove();
@@ -81,6 +81,8 @@ function setCust(id) {
             var res = JSON.parse(data);
             $.each(res, function (i, item) {
                 debugger;
+
+                $("#i_customer").val(id);
 
                 $("#i_title").val(item.i_title);
                 $("#s_firstname").val(item.s_firstname);

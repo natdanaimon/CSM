@@ -91,7 +91,7 @@ ACTIVEPAGES(3, 1);
                                 <div class="portlet light bordered">
                                     <div class="portlet-title">
                                         <div class="caption font-dark">
-                                            <i class="icon-users font-dark"></i>
+                                            <i class="fa fa-wrench font-dark"></i>
                                             <span class="caption-subject bold uppercase"><?= $_SESSION[tt_mg_create] ?></span>
                                         </div>
                                         <div class="actions">
@@ -106,7 +106,7 @@ ACTIVEPAGES(3, 1);
                                                                                                 </div>-->
                                                 <div class="col-md-6" align="left"  <?= $hidden ?>>
                                                     <div class="btn-group">
-                                                        <a href="re_inboundManage.php?func=add">
+                                                        <a href="re_createManage.php?func=add">
                                                             <button id="sample_editable_1_new" class="btn sbold green"> <?= $_SESSION[btn_add] ?>
                                                             </button>
                                                         </a>

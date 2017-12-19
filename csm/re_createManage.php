@@ -3,14 +3,17 @@
 include './common/Permission.php';
 include './common/PermissionADM.php';
 include './common/FunctionCheckActive.php';
-ACTIVEPAGES(3, 2);
+ACTIVEPAGES(3, 1);
 
 if ($_GET[func] != NULL) {
     $tt_header = ($_GET[func] == "add" ? $_SESSION[add_info] : $_SESSION[edit_info]);
 }
 if ($_GET[id] == NULL && $_GET[func] != "add") {
-    echo header("Location: re_inbound.php");
+    echo header("Location: re_create.php");
 }
+
+
+$disableElement = 'disabled="disable"';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,19 +55,7 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
 
 
 
-        <!-- UPLOAD JQUERY -->
-        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-        <!-- Generic page styles -->
-        <link rel="stylesheet" href="css/style.css">
-        <!-- blueimp Gallery styles -->
-        <link rel="stylesheet" href="//blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
-        <!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
-        <link rel="stylesheet" href="css/jquery.fileupload.css">
-        <link rel="stylesheet" href="css/jquery.fileupload-ui.css">
-        <!-- CSS adjustments for browsers with JavaScript disabled -->
-        <noscript><link rel="stylesheet" href="css/jquery.fileupload-noscript.css"></noscript>
-        <noscript><link rel="stylesheet" href="css/jquery.fileupload-ui-noscript.css"></noscript>
-        <!-- UPLOAD JQUERY -->
+
 
         <link rel="shortcut icon" href="favicon.ico" /> </head>
     <!-- END HEAD -->
@@ -105,7 +96,7 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                                     <i class="fa fa-circle" style="color:  #00FF00;"></i>
                                 </li>
                                 <li>
-                                    <a href="re_inbound.php"><?= $_SESSION[re_inbound] ?></a>
+                                    <a href="re_create.php"><?= $_SESSION[re_create] ?></a>
                                     <i class="fa fa-circle" style="color:  #00FF00;"></i>
                                 </li>
                                 <li>
@@ -124,13 +115,177 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                             <form enctype="multipart/form-data" name="form-action" id="form-action" method="post">
                                 <input type="hidden" id="func" name="func" value="<?= $_GET[func] ?>"/>
                                 <input type="hidden" id="id" name="id" value="<?= $_GET[id] ?>"/>
+                                <input type="hidden" id="i_customer" name="i_customer" value=""/>
                                 <div class="col-md-8">
                                     <!-- BEGIN EXAMPLE TABLE PORTLET-->
                                     <div class="portlet light bordered">
                                         <div class="portlet-title">
                                             <div class="caption font-green inline">
 
-                                                <span class="caption-subject bold uppercase"> <?= $_SESSION[tt_detail_cust] ?></span>
+                                                <span class="caption-subject bold uppercase"> <?= $_SESSION[tt_detail_create1] ?></span>
+
+                                            </div>
+                                        </div>
+                                        <div class="portlet-body form">
+
+                                            <div class="form-body">
+
+
+                                                <div class="row" id="div-refno">
+
+                                                    <div class="col-md-3">
+                                                        <div class="form-group form-md-line-input has-success" >
+                                                            <input type="text" class="form-control bold required" id="ref_no" name="ref_no" >
+                                                            <label for="form_control_1"><?= $_SESSION[lb_re_refNo] ?> <span class="required"></span></label>          
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-5"></div>
+                                                    <div class="col-md-4"></div> 
+                                                </div>
+
+                                                <div class="row" >
+                                                    <div class="col-md-4">
+
+                                                        <div class="form-group form-md-line-input has-success" style="height: 80px">
+                                                            <select class="form-control edited bold" id="i_ins_comp" name="i_ins_comp" >
+                                                                <!--<option value="-1"></option>-->
+                                                            </select>
+                                                            <label for="form_control_1"><?= $_SESSION[lb_re_insurance_comp] ?></label>
+                                                        </div>
+
+
+
+
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <label for="form_control_1" style="color: #36c6d3;"><?= $_SESSION[lb_re_dinbound] ?> <span class="required" style="color: red;">*</span></label> 
+                                                        <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy" data-date="<?= date("d-m-Y") ?>"  style="width: 100% !important;">
+                                                            <span class="input-group-btn">
+                                                                <button class="btn default" type="button" <?= $disableView ?>>
+                                                                    <i class="fa fa-calendar"></i>
+                                                                </button>
+                                                            </span>
+                                                            <input type="text" class="form-control" readonly name="d_inbound" id="d_inbound" value="<?= date("d-m-Y") ?>"  <?= $disableView ?>>
+
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <label for="form_control_1" style="color: #36c6d3;"><?= $_SESSION[lb_re_doutbound_confirm] ?> <span class="required" style="color: red;">*</span></label> 
+                                                        <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy" data-date="<?= date("d-m-Y") ?>"  style="width: 100% !important;">
+                                                            <span class="input-group-btn">
+                                                                <button class="btn default" type="button" <?= $disableView ?>>
+                                                                    <i class="fa fa-calendar"></i>
+                                                                </button>
+                                                            </span>
+                                                            <input type="text" class="form-control" readonly name="d_outbound_confirm" id="d_outbound_confirm" value="<?= date("d-m-Y") ?>"  <?= $disableView ?>>
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="row" >
+                                                    <div class="col-md-4">
+                                                        <div class="form-group form-md-line-input has-success" >
+                                                            <select class="form-control edited bold" id="s_pay_type" name="s_pay_type" style="color:black;font-weight:bold;"   >
+                                                                <option value="-1"></option>
+                                                            </select>
+                                                            <label for="form_control_1"><?= $_SESSION[lb_re_paytype] ?> <span class="required">*</span></label>          
+                                                        </div>
+
+                                                    </div>
+
+
+                                                    <div class="col-md-3">
+                                                        <div class="form-group form-md-line-input has-success">
+                                                            <select class="form-control edited bold" id="i_dmg" name="i_dmg" style="color:black;font-weight:bold;"   >
+                                                                <option value="-1"></option>
+                                                            </select>
+                                                            <label for="form_control_1"><?= $_SESSION[lb_re_dmg] ?> <span class="required">*</span></label>          
+                                                        </div>
+                                                    </div> 
+
+
+                                                    <div class="col-md-4">
+
+                                                    </div> 
+                                                </div>
+
+
+
+                                                <div class="row" >
+
+                                                    <div class="col-md-4">
+                                                        <div class="form-group form-md-line-input has-success" style="height: 60px">
+                                                            <select class="form-control edited bold" id="s_car_code" name="s_car_code">
+                                                            </select>
+                                                            <label for="form_control_1"><?= $_SESSION[lb_re_carinfo] ?></label>
+                                                        </div>
+                                                       
+
+                                                    </div>
+                                                    <div class="col-md-5">
+
+                                                        <div class="form-group form-md-line-input has-success">
+                                                            <input type="text" class="form-control bold required" id="s_license" name="s_license" >
+                                                            <label for="form_control_1"><?= $_SESSION[lb_re_carlicense] ?> <span class="required">*</span></label>          
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-3">
+
+                                                    </div> 
+                                                </div>
+
+                                                <div class="row" >
+
+                                                    <div class="col-md-4">
+                                                        <div class="form-group form-md-line-input has-success">
+                                                            <input type="text" class="form-control bold required" id="s_type_capital" name="s_type_capital" >
+                                                            <label for="form_control_1"><?= $_SESSION[lb_re_type_capital] ?> <span class="required"></span></label>          
+                                                        </div>
+
+
+                                                    </div>
+                                                    <div class="col-md-5">
+
+                                                        <label for="form_control_1" style="color: #36c6d3;"><?= $_SESSION[lb_re_dexp] ?> <span class="required" style="color: red;">*</span></label> 
+                                                        <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy" data-date="<?= date("d-m-Y") ?>"  style="width: 100% !important;">
+                                                            <span class="input-group-btn">
+                                                                <button class="btn default" type="button" <?= $disableView ?>>
+                                                                    <i class="fa fa-calendar"></i>
+                                                                </button>
+                                                            </span>
+                                                            <input type="text" class="form-control" readonly name="d_ins_exp" id="d_ins_exp" value="<?= date("d-m-Y") ?>"  <?= $disableView ?>>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-3">
+
+                                                    </div> 
+                                                </div>
+
+
+
+
+
+
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+
+
+
+
+                                    <div class="portlet light bordered">
+                                        <div class="portlet-title">
+                                            <div class="caption font-green inline">
+
+                                                <span class="caption-subject bold uppercase"> <?= $_SESSION[1] ?></span>
                                                 <a data-toggle="modal" href="#searchCust"> 
                                                     <button type="button" class="btn btn-success">
                                                         <i class="fa fa-search"></i>
@@ -146,7 +301,7 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                                                 <div class="row">
                                                     <div class="col-md-2">
                                                         <div class="form-group form-md-line-input has-success">
-                                                            <select class="form-control edited bold" id="i_title" name="i_title" style="color:black;font-weight:bold;">
+                                                            <select class="form-control edited bold" id="i_title" name="i_title" style="color:black;font-weight:bold;"  <?= $disableElement ?>    >
                                                                 <option value="-1"></option>
                                                             </select>
                                                             <label for="form_control_1"><?= $_SESSION[lb_setCus_title] ?> <span class="required">*</span></label>          
@@ -154,13 +309,13 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                                                     </div>
                                                     <div class="col-md-5">
                                                         <div class="form-group form-md-line-input has-success">
-                                                            <input type="text" class="form-control bold" id="s_firstname" name="s_firstname">
+                                                            <input type="text" class="form-control bold" id="s_firstname" name="s_firstname" <?= $disableElement ?>>
                                                             <label for="form_control_1"><?= $_SESSION[lb_setCus_fname] ?> <span class="required">*</span></label>          
                                                         </div>
                                                     </div>
                                                     <div class="col-md-5">
                                                         <div class="form-group form-md-line-input has-success">
-                                                            <input type="text" class="form-control bold" id="s_lastname"  name="s_lastname">
+                                                            <input type="text" class="form-control bold" id="s_lastname"  name="s_lastname" <?= $disableElement ?>>
                                                             <label  for="form_control_1"><?= $_SESSION[lb_setCus_lname] ?> <span class="required">*</span>
                                                                 <span id="class_val_username" class="" >
                                                                     <i id="icon_val_username" class=""></i>
@@ -174,7 +329,7 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                                                 <div class="row">
                                                     <div class="col-md-3">
                                                         <div class="form-group form-md-line-input has-success">
-                                                            <input type="text" class="form-control bold" id="s_phone_1" name="s_phone_1">
+                                                            <input type="text" class="form-control bold" id="s_phone_1" name="s_phone_1" <?= $disableElement ?>>
                                                             <label for="form_control_1"><?= $_SESSION[lb_setCus_phone1] ?> <span class="required">*</span>
                                                                 <span id="class_val_phone" class="" >
                                                                     <i id="icon_val_phone" class=""></i>
@@ -185,7 +340,7 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group form-md-line-input has-success">
-                                                            <input type="text" class="form-control bold" id="s_phone_2" name="s_phone_2">
+                                                            <input type="text" class="form-control bold" id="s_phone_2" name="s_phone_2" <?= $disableElement ?>>
                                                             <label for="form_control_1"><?= $_SESSION[lb_setCus_phone2] ?> <span class="required"></span>
                                                                 <span id="class_val_phone" class="" >
                                                                     <i id="icon_val_phone" class=""></i>
@@ -196,7 +351,7 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group form-md-line-input has-success" >
-                                                            <input type="text" class="form-control bold" id="s_email" name="s_email">
+                                                            <input type="text" class="form-control bold" id="s_email" name="s_email" <?= $disableElement ?>>
                                                             <label for="form_control_1"><?= $_SESSION[lb_setCus_email] ?> <span class="required"></span>
                                                                 <span id="class_val_secu" class="" >
                                                                     <i id="icon_val_secu" class=""></i>
@@ -207,7 +362,7 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group form-md-line-input has-success">
-                                                            <input type="text" class="form-control bold" id="s_line" name="s_line">
+                                                            <input type="text" class="form-control bold" id="s_line" name="s_line" <?= $disableElement ?>>
                                                             <label for="form_control_1"><?= $_SESSION[lb_setCus_line] ?> <span class="required"></span>
                                                                 <span id="class_val_phone" class="" >
                                                                     <i id="icon_val_phone" class=""></i>
@@ -223,7 +378,7 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="form-group form-md-line-input has-success">
-                                                            <input type="text" class="form-control bold" id="s_address" name="s_address">
+                                                            <input type="text" class="form-control bold" id="s_address" name="s_address" <?= $disableElement ?>>
                                                             <label for="form_control_1"><?= $_SESSION[lb_setCus_address] ?> <span class="required">*</span>
                                                                 <span id="class_val_phone" class="" >
                                                                     <i id="icon_val_phone" class=""></i>
@@ -237,20 +392,20 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group form-md-line-input has-success">
-                                                            <select class="form-control edited bold" id="i_province" name="i_province" 
+                                                            <select class="form-control edited bold" id="i_province" name="i_province"  <?= $disableElement ?>
                                                                     onchange="getDDLAmphure();"
                                                                     style="color:black;font-weight:bold;">
-                                                                <option value="">กรุณาเลือกข้อมูล</option>
+                                                                <option value=""><?= $_SESSION[lb_please_select] ?></option>
                                                             </select>
                                                             <label for="form_control_1"><?= $_SESSION[province] ?> <span class="required">*</span></label>          
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group form-md-line-input has-success">
-                                                            <select class="form-control edited bold" id="i_amphure" name="i_amphure" 
+                                                            <select class="form-control edited bold" id="i_amphure" name="i_amphure"  <?= $disableElement ?>
                                                                     onchange="getDDLDistrict()"
                                                                     style="color:black;font-weight:bold;">
-                                                                <option value="">กรุณาเลือกข้อมูล</option>
+                                                                <option value=""><?= $_SESSION[lb_please_select] ?></option>
                                                             </select>
                                                             <label for="form_control_1"><?= $_SESSION[amphure] ?> <span class="required">*</span></label>          
                                                         </div>
@@ -259,18 +414,19 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group form-md-line-input has-success">
-                                                            <select class="form-control edited bold" id="i_district" name="i_district" 
+                                                            <select class="form-control edited bold" id="i_district" name="i_district" <?= $disableElement ?>
                                                                     onchange="getDDLZipcode()"
                                                                     style="color:black;font-weight:bold;">
-                                                                <option value="">กรุณาเลือกข้อมูล</option>
+                                                                <option value=""><?= $_SESSION[lb_please_select] ?></option>
                                                             </select>
                                                             <label for="form_control_1"><?= $_SESSION[district] ?> <span class="required">*</span></label>          
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group form-md-line-input has-success">
-                                                            <select class="form-control edited bold" id="i_zipcode" name="i_zipcode" style="color:black;font-weight:bold;">
-                                                                <option value="">กรุณาเลือกข้อมูล</option>
+                                                            <select class="form-control edited bold" id="i_zipcode" name="i_zipcode" <?= $disableElement ?> 
+                                                                    style="color:black;font-weight:bold;">
+                                                                <option value=""><?= $_SESSION[lb_please_select] ?></option>
                                                             </select>
                                                             <label for="form_control_1"><?= $_SESSION[zipcode] ?> <span class="required">*</span></label>          
                                                         </div>
@@ -285,6 +441,8 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
 
                                         </div>
                                     </div>
+
+
 
                                     <!-- END EXAMPLE TABLE PORTLET-->
                                 </div>
@@ -319,43 +477,6 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                                 </div>
 
 
-                                <div class="row fileupload-buttonbar">
-                                    <div class="col-lg-7">
-                                        <!-- The fileinput-button span is used to style the file input field as button -->
-                                        <span class="btn btn-success fileinput-button">
-                                            <i class="glyphicon glyphicon-plus"></i>
-                                            <span>Add files...</span>
-                                            <input type="file" name="files[]" multiple>
-                                        </span>
-                                        <button type="submit" class="btn btn-primary start">
-                                            <i class="glyphicon glyphicon-upload"></i>
-                                            <span>Start upload</span>
-                                        </button>
-                                        <button type="reset" class="btn btn-warning cancel">
-                                            <i class="glyphicon glyphicon-ban-circle"></i>
-                                            <span>Cancel upload</span>
-                                        </button>
-                                        <button type="button" class="btn btn-danger delete">
-                                            <i class="glyphicon glyphicon-trash"></i>
-                                            <span>Delete</span>
-                                        </button>
-                                        <input type="checkbox" class="toggle">
-                                        <!-- The global file processing state -->
-                                        <span class="fileupload-process"></span>
-                                    </div>
-                                    <!-- The global progress state -->
-                                    <div class="col-lg-5 fileupload-progress fade">
-                                        <!-- The global progress bar -->
-                                        <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-                                            <div class="progress-bar progress-bar-success" style="width:0%;"></div>
-                                        </div>
-                                        <!-- The extended global progress state -->
-                                        <div class="progress-extended">&nbsp;</div>
-                                    </div>
-                                </div>
-                                <!-- The table listing the files available for upload/download -->
-                                <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
-
 
 
                                 <div class="row">
@@ -383,45 +504,6 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                             </form>
                         </div>
                         <!------------ CONTENT ------------>
-                        <!--                        <form id="fileupload_before" action="#" method="POST" enctype="multipart/form-data">
-                        
-                                                    <div class="row fileupload-buttonbar">
-                                                        <div class="col-lg-7">
-                                                             The fileinput-button span is used to style the file input field as button 
-                                                            <span class="btn btn-success fileinput-button">
-                                                                <i class="glyphicon glyphicon-plus"></i>
-                                                                <span>Add files...</span>
-                                                                <input type="file" name="files[]" multiple>
-                                                            </span>
-                                                            <button type="submit" class="btn btn-primary start">
-                                                                <i class="glyphicon glyphicon-upload"></i>
-                                                                <span>Start upload</span>
-                                                            </button>
-                                                            <button type="reset" class="btn btn-warning cancel">
-                                                                <i class="glyphicon glyphicon-ban-circle"></i>
-                                                                <span>Cancel upload</span>
-                                                            </button>
-                                                            <button type="button" class="btn btn-danger delete">
-                                                                <i class="glyphicon glyphicon-trash"></i>
-                                                                <span>Delete</span>
-                                                            </button>
-                                                            <input type="checkbox" class="toggle">
-                                                             The global file processing state 
-                                                            <span class="fileupload-process"></span>
-                                                        </div>
-                                                         The global progress state 
-                                                        <div class="col-lg-5 fileupload-progress fade">
-                                                             The global progress bar 
-                                                            <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-                                                                <div class="progress-bar progress-bar-success" style="width:0%;"></div>
-                                                            </div>
-                                                             The extended global progress state 
-                                                            <div class="progress-extended">&nbsp;</div>
-                                                        </div>
-                                                    </div>
-                                                     The table listing the files available for upload/download 
-                                                    <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
-                                                </form>-->
 
 
                     </div>
@@ -433,101 +515,11 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
             <!-- END CONTAINER -->
 
 
+
+
+
+
             <span class="badge bg-primary"></span>
-
-
-
-
-
-
-
-            <!-- The blueimp Gallery widget -->
-            <!-- The blueimp Gallery widget -->
-            <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls" data-filter=":even">
-                <div class="slides"></div>
-                <h3 class="title"></h3>
-                <a class="prev">‹</a>
-                <a class="next">›</a>
-                <a class="close">×</a>
-                <a class="play-pause"></a>
-                <ol class="indicator"></ol>
-            </div>
-            <!-- The template to display files available for upload -->
-            <script id="template-upload" type="text/x-tmpl">
-                {% for (var i=0, file; file=o.files[i]; i++) { %}
-                <tr class="template-upload fade">
-                <td>
-                <span class="preview"></span>
-                </td>
-                <td>
-                <p class="name">{%=file.name%}</p>
-                <strong class="error text-danger"></strong>
-                </td>
-                <td>
-                <p class="size">Processing...</p>
-                <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-bar progress-bar-success" style="width:0%;"></div></div>
-                </td>
-                <td>
-                {% if (!i && !o.options.autoUpload) { %}
-                <button class="btn btn-primary start" disabled>
-                <i class="glyphicon glyphicon-upload"></i>
-                <span>Start</span>
-                </button>
-                {% } %}
-                {% if (!i) { %}
-                <button class="btn btn-warning cancel">
-                <i class="glyphicon glyphicon-ban-circle"></i>
-                <span>Cancel</span>
-                </button>
-                {% } %}
-                </td>
-                </tr>
-                {% } %}
-            </script>
-            <!-- The template to display files available for download -->
-            <script id="template-download" type="text/x-tmpl">
-                {% for (var i=0, file; file=o.files[i]; i++) { %}
-                <tr class="template-download fade">
-                <td>
-                <span class="preview">
-                {% if (file.thumbnailUrl) { %}
-                <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" data-gallery><img src="{%=file.thumbnailUrl%}"></a>
-                {% } %}
-                </span>
-                </td>
-                <td>
-                <p class="name">
-                {% if (file.url) { %}
-                <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" {%=file.thumbnailUrl?'data-gallery':''%}>{%=file.name%}</a>
-                {% } else { %}
-                <span>{%=file.name%}</span>
-                {% } %}
-                </p>
-                {% if (file.error) { %}
-                <div><span class="label label-danger">Error</span> {%=file.error%}</div>
-                {% } %}
-                </td>
-                <td>
-                <span class="size">{%=o.formatFileSize(file.size)%}</span>
-                </td>
-                <td>
-                {% if (file.deleteUrl) { %}
-                <button class="btn btn-danger delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}"{% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}'{% } %}>
-                <i class="glyphicon glyphicon-trash"></i>
-                <span>Delete</span>
-                </button>
-                <input type="checkbox" name="delete" value="1" class="toggle">
-                {% } else { %}
-                <button class="btn btn-warning cancel">
-                <i class="glyphicon glyphicon-ban-circle"></i>
-                <span>Cancel</span>
-                </button>
-                {% } %}
-                </td>
-                </tr>
-                {% } %}
-            </script>
-
 
 
 
@@ -601,27 +593,11 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
 
 
 
-        <!-- JS JQUERY UPLOAD -->
-        <script src="outbound/upload/vendor/jquery.ui.widget.js"></script>
-        <script src="//blueimp.github.io/JavaScript-Templates/js/tmpl.min.js"></script>
-        <script src="//blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js"></script>
-        <script src="//blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
-<!--        <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>-->
-        <script src="//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
-        <script src="outbound/upload/jquery.iframe-transport.js"></script>
-        <script src="outbound/upload/jquery.fileupload.js"></script>
-        <script src="outbound/upload/jquery.fileupload-process.js"></script>
-        <script src="outbound/upload/jquery.fileupload-image.js"></script>
-        <script src="outbound/upload/jquery.fileupload-audio.js"></script>
-        <script src="outbound/upload/jquery.fileupload-video.js"></script>
-        <script src="outbound/upload/jquery.fileupload-validate.js"></script>
-        <script src="outbound/upload/jquery.fileupload-ui.js"></script>
-        <script src="outbound/upload/re_inbound.js"></script>
-        <!-- JS JQUERY UPLOAD -->
 
 
 
-        <script src="js/action/repair/re_inboundManage.js" type="text/javascript"></script>
+
+        <script src="js/action/repair/re_createManage.js" type="text/javascript"></script>
         <script src="js/action/search/popup.js" type="text/javascript"></script>
 
 
