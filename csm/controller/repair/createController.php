@@ -48,6 +48,7 @@ class createController {
     public function dataTable() {
         $service = new createService();
         $_dataTable = $service->dataTable();
+        $util = new Utility();
         if ($_dataTable != NULL) {
             foreach ($_dataTable as $key => $value) {
                 $_dataTable[$key]['i_year'] = $service->getYear($_dataTable[$key]['s_car_code']);
@@ -56,6 +57,9 @@ class createController {
                 $_dataTable[$key]['i_sub'] = $service->getSub($_dataTable[$key]['s_car_code']);
                 $_dataTable[$key]['i_ins_comp'] = $service->getInsurance($_dataTable[$key]['i_ins_comp']);
                 $_dataTable[$key]['i_dmg'] = $service->getDamage($_dataTable[$key]['i_dmg']);
+
+                $_dataTable[$key]['d_inbound'] = $util->DateSql2d_dmm_yyyy($_dataTable[$key]['d_inbound']);
+                $_dataTable[$key]['d_outbound_confirm'] = $util->DateSql2d_dmm_yyyy($_dataTable[$key]['d_outbound_confirm']);
             }
             return json_encode($_dataTable);
         } else {
