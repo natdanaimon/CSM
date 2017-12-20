@@ -63,13 +63,13 @@
                         <span class="badge badge-success" ></span>
                     </a>
                 </li>
-                <li class="nav-item  <?= $_SESSION["nav_sub_re_inbound"] ?>">
+<!--                <li class="nav-item  <?= $_SESSION["nav_sub_re_inbound"] ?>">
                     <a href="re_inbound.php" class="nav-link ">
                         <span class="title">2 <?= $_SESSION[re_inbound] ?></span>
                         <span class="selected"></span>
                         <span class="badge badge-success" ></span>
                     </a>
-                </li>
+                </li>-->
             </ul>
         </li>
         <!--R3 ระบบนำซ่อม-->

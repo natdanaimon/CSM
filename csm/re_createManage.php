@@ -131,11 +131,11 @@ $disableElement = 'disabled="disable"';
                                             <div class="form-body">
 
 
-                                                <div class="row" id="div-refno">
+                                                <div class="row" id="div-refno" style="display:none">
 
                                                     <div class="col-md-3">
                                                         <div class="form-group form-md-line-input has-success" >
-                                                            <input type="text" class="form-control bold required" id="ref_no" name="ref_no" >
+                                                            <input type="text" class="form-control bold required" id="ref_no" name="ref_no" readonly="readonly" >
                                                             <label for="form_control_1"><?= $_SESSION[lb_re_refNo] ?> <span class="required"></span></label>          
                                                         </div>
                                                     </div>
@@ -222,7 +222,7 @@ $disableElement = 'disabled="disable"';
                                                             </select>
                                                             <label for="form_control_1"><?= $_SESSION[lb_re_carinfo] ?></label>
                                                         </div>
-                                                       
+
 
                                                     </div>
                                                     <div class="col-md-5">
@@ -483,7 +483,7 @@ $disableElement = 'disabled="disable"';
                                     <div class="col-md-12">
                                         <div class="portlet-body form">
                                             <div class="form-actions noborder">
-                                                <a href="re_inbound.php"> <button type="button" class="btn default"><?= $_SESSION[btn_cancel] ?></button></a>
+                                                <a href="re_create.php"> <button type="button" class="btn default"><?= $_SESSION[btn_cancel] ?></button></a>
                                                 <button type="submit"  class="btn blue" ><?= $_SESSION[btn_submit] ?></button>
                                             </div>
                                         </div>
@@ -590,12 +590,6 @@ $disableElement = 'disabled="disable"';
         <!-- END SELECT 2 SCRIPTS -->
         <link href="outbound/lightbox/css/lightbox.css" rel="stylesheet" type="text/css" />
         <script src="outbound/lightbox/js/lightbox.js" type="text/javascript"></script>
-
-
-
-
-
-
 
         <script src="js/action/repair/re_createManage.js" type="text/javascript"></script>
         <script src="js/action/search/popup.js" type="text/javascript"></script>

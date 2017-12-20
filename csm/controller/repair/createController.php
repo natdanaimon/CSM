@@ -30,6 +30,9 @@ switch ($info[func]) {
     case "add":
         echo $controller->add($info);
         break;
+    case "dataTableKey":
+        echo $controller->dataTableKey($info[id]);
+        break;
 }
 
 class createController {
@@ -46,6 +49,32 @@ class createController {
         $service = new createService();
         $_dataTable = $service->dataTable();
         if ($_dataTable != NULL) {
+            foreach ($_dataTable as $key => $value) {
+                $_dataTable[$key]['i_year'] = $service->getYear($_dataTable[$key]['s_car_code']);
+                $_dataTable[$key]['i_brand'] = $service->getBrand($_dataTable[$key]['s_car_code']);
+                $_dataTable[$key]['i_gen'] = $service->getGeneration($_dataTable[$key]['s_car_code']);
+                $_dataTable[$key]['i_sub'] = $service->getSub($_dataTable[$key]['s_car_code']);
+                $_dataTable[$key]['i_ins_comp'] = $service->getInsurance($_dataTable[$key]['i_ins_comp']);
+                $_dataTable[$key]['i_dmg'] = $service->getDamage($_dataTable[$key]['i_dmg']);
+            }
+            return json_encode($_dataTable);
+        } else {
+            return NULL;
+        }
+    }
+
+    public function dataTableKey($id) {
+        $service = new createService();
+        $_dataTable = $service->dataTableKey($id);
+        if ($_dataTable != NULL) {
+            foreach ($_dataTable as $key => $value) {
+                $_dataTable[$key]['i_year'] = $service->getYear($_dataTable[$key]['s_car_code']);
+                $_dataTable[$key]['i_brand'] = $service->getBrand($_dataTable[$key]['s_car_code']);
+                $_dataTable[$key]['i_gen'] = $service->getGeneration($_dataTable[$key]['s_car_code']);
+                $_dataTable[$key]['i_sub'] = $service->getSub($_dataTable[$key]['s_car_code']);
+                $_dataTable[$key]['i_ins_comp'] = $service->getInsurance($_dataTable[$key]['i_ins_comp']);
+                $_dataTable[$key]['i_dmg'] = $service->getDamage($_dataTable[$key]['i_dmg']);
+            }
             return json_encode($_dataTable);
         } else {
             return NULL;
@@ -86,8 +115,14 @@ class createController {
 
     public function getInfo($seq) {
         $service = new createService();
+        $util = new Utility();
         $_dataTable = $service->getInfo($seq);
         if ($_dataTable != NULL) {
+            foreach ($_dataTable as $key => $value) {
+                $_dataTable[$key]['d_ins_exp'] = $util->DateSql2d_dmm_yyyy($_dataTable[$key]['d_ins_exp']);
+                $_dataTable[$key]['d_inbound'] = $util->DateSql2d_dmm_yyyy($_dataTable[$key]['d_inbound']);
+                $_dataTable[$key]['d_outbound_confirm'] = $util->DateSql2d_dmm_yyyy($_dataTable[$key]['d_outbound_confirm']);
+            }
             return json_encode($_dataTable);
         } else {
             return NULL;
@@ -133,20 +168,16 @@ class createController {
         $return2003 = $_SESSION['cd_2003'];
         $return2097 = $_SESSION['cd_2097'];
         $util = new Utility();
-        if ($util->isEmpty($info[s_firstname])) {
-            $return2099 = eregi_replace("field", $_SESSION['lb_setCus_fname'], $return2099);
+
+        if ($util->isEmpty($info[s_license])) {
+            $return2099 = eregi_replace("field", $_SESSION['lb_re_carlicense'], $return2099);
             echo $return2099;
-        } else if ($util->isEmpty($info[s_lastname])) {
-            $return2099 = eregi_replace("field", $_SESSION['lb_setCus_lname'], $return2099);
+        } else if ($util->isEmpty($info[s_type_capital])) {
+            $return2099 = eregi_replace("field", $_SESSION['lb_re_type_capital'], $return2099);
             echo $return2099;
-        } else if ($util->isEmpty($info[s_phone_1])) {
-            $return2099 = eregi_replace("field", $_SESSION['lb_setCus_phone1'], $return2099);
+        } else if ($util->isEmpty($info[i_customer])) {
+            $return2099 = eregi_replace("field", $_SESSION['lb_re_custinfo'], $return2099);
             echo $return2099;
-        } else if (!$util->isPhoneNumber($info[s_phone_1])) {
-            $return2097 = eregi_replace("field", $_SESSION['lb_setCus_phone1'], $return2097);
-            echo $return2097;
-        } else if (!filter_var($info[s_email], FILTER_VALIDATE_EMAIL) && !$util->isEmpty($info[s_email])) {
-            echo $_SESSION['cd_2006'];
         } else if ($util->isEmpty($info[status])) {
             $return2099 = eregi_replace("field", $_SESSION['label_status'], $return2099);
             echo $return2099;

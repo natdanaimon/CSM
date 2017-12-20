@@ -1468,7 +1468,7 @@
     </detail>
     <detail>
         <variable>tt_mg_create</variable>
-        <th>จัดการข้อมูลรายการนำซ่อม</th>
+        <th>จัดการข้อมูลสร้างรายการนำซ่อม</th>
         <en>MANAGE CREATE TRANSACTION</en>
     </detail>
     

@@ -216,7 +216,7 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                                                             <select class="form-control edited bold" id="i_province" name="i_province" 
                                                                     onchange="getDDLAmphure();"
                                                                     style="color:black;font-weight:bold;">
-                                                                <option value=""><?=$_SESSION[lb_please_select]?></option>
+                                                                <option value=""><?= $_SESSION[lb_please_select] ?></option>
                                                             </select>
                                                             <label for="form_control_1"><?= $_SESSION[province] ?> <span class="required">*</span></label>          
                                                         </div>
@@ -226,7 +226,7 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                                                             <select class="form-control edited bold" id="i_amphure" name="i_amphure" 
                                                                     onchange="getDDLDistrict()"
                                                                     style="color:black;font-weight:bold;">
-                                                                <option value=""><?=$_SESSION[lb_please_select]?></option>
+                                                                <option value=""><?= $_SESSION[lb_please_select] ?></option>
                                                             </select>
                                                             <label for="form_control_1"><?= $_SESSION[amphure] ?> <span class="required">*</span></label>          
                                                         </div>
@@ -238,7 +238,7 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                                                             <select class="form-control edited bold" id="i_district" name="i_district" 
                                                                     onchange="getDDLZipcode()"
                                                                     style="color:black;font-weight:bold;">
-                                                                <option value=""><?=$_SESSION[lb_please_select]?></option>
+                                                                <option value=""><?= $_SESSION[lb_please_select] ?></option>
                                                             </select>
                                                             <label for="form_control_1"><?= $_SESSION[district] ?> <span class="required">*</span></label>          
                                                         </div>
@@ -246,7 +246,7 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                                                     <div class="col-md-6">
                                                         <div class="form-group form-md-line-input has-success">
                                                             <select class="form-control edited bold" id="i_zipcode" name="i_zipcode" style="color:black;font-weight:bold;">
-                                                                <option value=""><?=$_SESSION[lb_please_select]?></option>
+                                                                <option value=""><?= $_SESSION[lb_please_select] ?></option>
                                                             </select>
                                                             <label for="form_control_1"><?= $_SESSION[zipcode] ?> <span class="required">*</span></label>          
                                                         </div>
@@ -265,7 +265,7 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
 
 
                                     <!--LIST-->
-                                    <div class="portlet light bordered">
+                                    <div class="portlet light bordered" id="div-tb-refno" style="display: none;">
                                         <div class="portlet-title">
                                             <div class="caption font-green">
                                                 <i class="fa fa-car font-green"></i>
@@ -278,28 +278,15 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
 
                                                 <div class="row">
                                                     <div class="col-md-12">
-                                                        <table class="table table-striped table-bordered table-hover table-checkable order-column" id="datatable">
+                                                        <table class="table table-striped table-bordered table-hover table-checkable order-column dt-responsive" id="datatable">
                                                             <thead>
                                                                 <tr>
-                                                                    <th style="padding-left: 0px;width: 20px" class="no-sort">
-                                                                        <!--                                                        <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-                                                                                                                                    <input type="checkbox" class="group-checkable" data-set="#datatable .checkboxes" id="select_all" />
-                                                                                                                                    <span></span>
-                                                                                                                                </label>-->
-                                                                        <span class="md-checkbox has-success">
-                                                                            <input type="checkbox" id="checkbox14" name="checkbox14" class="md-check">
-                                                                            <label for="checkbox14">
-                                                                                <span class="inc"></span>
-                                                                                <span class="check"></span>
-                                                                                <span class="box"></span> </label>
-                                                                        </span>
-                                                                    </th>
-                                                                    <th style="width: 100px" class="no-sort">  <?= $_SESSION[tb_co_profile] ?> </th>
-                                                                    <th>  <?= $_SESSION[tb_co_fullname] ?> </th>
-                                                                    <th>  <?= $_SESSION[tb_co_phone] ?> </th>
-                                                                    <th>  <?= $_SESSION[tb_co_status] ?> </th>
-                                                                    <th style="width: 40px"> <?= $_SESSION[tb_co_edit] ?> </th>
-                                                                    <th style="width: 40px"> <?= $_SESSION[tb_co_delete] ?></th>
+
+                                                                    <th style="width: 200px">  <?= $_SESSION[tb_co_refno] ?> </th>
+                                                                    <th style="width: 200px"><?= $_SESSION[tb_co_license] ?> </th>
+                                                                    <th><?= $_SESSION[tb_co_caryear] ?></span> </th>
+                                                                    <th style="width: 100px"> <?= $_SESSION[tb_co_status] ?> </th>
+                                                                   
                                                             </thead>
                                                             <tbody>
 

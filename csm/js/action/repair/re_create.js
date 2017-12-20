@@ -26,12 +26,12 @@ function initialDataTable(first) {
                 var col_license = item.s_license;
                 
                 
-                var col_caryear = "";
-                var col_carbrand = "";
-                var col_cargen = "";
-                var col_carsub = "";
-                var col_insurance = "";
-                var col_dmg = "";
+                var col_caryear = item.i_year;
+                var col_carbrand = item.i_brand;
+                var col_cargen = item.i_gen;
+                var col_carsub = item.i_sub;
+                var col_insurance = item.i_ins_comp;
+                var col_dmg = item.i_dmg;
                 var col_inout = item.d_inbound + " - " + item.d_outbound_confirm;
                 
                 
@@ -56,7 +56,7 @@ function initialDataTable(first) {
                 col_status += '';
 
 
-                col_edit += '<a href="cus_customerManage.php?func=edit&id=' + item.i_cust_car + '" class="btn btn-circle btn-icon-only blue" style="width:32px;height:32px">';
+                col_edit += '<a href="re_createManage.php?func=edit&id=' + item.i_cust_car + '" class="btn btn-circle btn-icon-only blue" style="width:32px;height:32px">';
                 col_edit += ' <i class="fa fa-edit"></i>';
                 col_edit += '</a>';
 
@@ -89,8 +89,8 @@ function initialDataTable(first) {
                 $datatable.dataTable({
                     data: JsonData,
                     order: [
-                        [4, 'asc'],
-                        [2, 'asc']
+                        [1, 'desc'],
+                        [11, 'asc']
                     ],
                     columnDefs: [
                         { "orderable": false, "targets": 0 }

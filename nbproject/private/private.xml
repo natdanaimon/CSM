@@ -3,7 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/CSM/csm/controller/loginController.php</file>
+            <file>file:/C:/xampp/htdocs/CSM/csm/re_create.php</file>
+            <file>file:/C:/xampp/htdocs/CSM/csm/service/commonService.php</file>
+            <file>file:/C:/xampp/htdocs/CSM/csm/cus_customerManage.php</file>
+            <file>file:/C:/xampp/htdocs/CSM/csm/language/language_page.xml</file>
+            <file>file:/C:/xampp/htdocs/CSM/csm/index.php</file>
+            <file>file:/C:/xampp/htdocs/CSM/csm/js/action/insurance/productManage.js</file>
+            <file>file:/C:/xampp/htdocs/CSM/csm/controller/commonController.php</file>
+            <file>file:/C:/xampp/htdocs/CSM/csm/ins_productManage.php</file>
+            <file>file:/C:/xampp/htdocs/CSM/csm/table_datatables_fixedheader.html</file>
+            <file>file:/C:/xampp/htdocs/CSM/csm/js/action/repair/re_createManage.js</file>
+            <file>file:/C:/xampp/htdocs/CSM/csm/re_createManage.php</file>
         </group>
     </open-files>
 </project-private>

@@ -793,6 +793,11 @@
         <th>ประเภททุน</th>
         <en>Capital Type</en>
     </detail>
+     <detail>
+        <variable>lb_re_custinfo</variable>
+        <th>ข้อมูลลูกค้า</th>
+        <en>Customer Info.</en>
+    </detail>
     <!-- repair create --> 
 
 

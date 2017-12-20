@@ -136,7 +136,7 @@ ACTIVEPAGES(3, 1);
                                                                 <span class="box"></span> </label>
                                                         </span>
                                                     </th>
-                                                    <th  class="all">  <?= $_SESSION[tb_co_refno] ?> </th>
+                                                    <th  class="all"  style="width: 80px">  <?= $_SESSION[tb_co_refno] ?> </th>
                                                     <th  class="all">  <?= $_SESSION[tb_co_custname] ?> </th>
                                                     <th  class="all">  <?= $_SESSION[tb_co_license] ?> </th>
 
