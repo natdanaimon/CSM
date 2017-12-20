@@ -15,3 +15,7 @@ td.child {
 
 .pdfobject-container { height: 500px;}
 .pdfobject { border: 1px solid #666; }
+
+.badge-waring{
+    background-color: #ffca00;
+}

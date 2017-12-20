@@ -278,12 +278,12 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
 
                                                 <div class="row">
                                                     <div class="col-md-12">
-                                                        <table class="table table-striped table-bordered table-hover table-checkable order-column dt-responsive" id="datatable">
+                                                    <table class="table table-striped table-bordered table-hover table-checkable order-column" id="datatable">
                                                             <thead>
                                                                 <tr>
 
-                                                                    <th style="width: 200px">  <?= $_SESSION[tb_co_refno] ?> </th>
-                                                                    <th style="width: 200px"><?= $_SESSION[tb_co_license] ?> </th>
+                                                                    <th style="width: 150px">  <?= $_SESSION[tb_co_refno] ?> </th>
+                                                                    <th style="width: 100px"><?= $_SESSION[tb_co_license] ?> </th>
                                                                     <th><?= $_SESSION[tb_co_caryear] ?></span> </th>
                                                                     <th style="width: 100px"> <?= $_SESSION[tb_co_status] ?> </th>
                                                                    
@@ -487,6 +487,7 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
 
         <!-- BEGIS SELECT 2 SCRIPTS -->
         <link href="css/select2.min.css" rel="stylesheet" />
+        <link href="css/custom.css" rel="stylesheet" />
         <script src="js/common/select2.min.js"></script>
         <!-- END SELECT 2 SCRIPTS -->
         <link href="outbound/lightbox/css/lightbox.css" rel="stylesheet" type="text/css" />

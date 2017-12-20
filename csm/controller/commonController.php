@@ -78,6 +78,9 @@ switch ($info[func]) {
     case "DDLDamage" :
         echo $controller->DDLDamage();
         break;
+    case "DDLStatusRepart" :
+        echo $controller->DDLStatusRepart();
+        break;
 }
 
 class commonController {
@@ -103,6 +106,16 @@ class commonController {
     public function DDLStatusActive() {
         $service = new commonService();
         $_dataTable = $service->DDLStatusActive();
+        if ($_dataTable != NULL) {
+            return json_encode($_dataTable);
+        } else {
+            return NULL;
+        }
+    }
+
+    public function DDLStatusRepart() {
+        $service = new commonService();
+        $_dataTable = $service->DDLStatusRepart();
         if ($_dataTable != NULL) {
             return json_encode($_dataTable);
         } else {

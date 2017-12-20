@@ -469,17 +469,41 @@ function initialDataTable(first, id) {
 }
 
 function colorStatus(status) {
-    if (status == "A") {
+    if (status == "R12") {
         return "success";
-    } else if (status == "C") {
+    } else if (status == "R0") {
         return "danger";
+    }else{
+        return "warning";
     }
 }
 
 function sortHidden(status) {
-    if (status == "A") {
+    if (status == "R1") {
         return "<span style='display:none;'>1</span>";
-    } else if (status == "C") {
+    } else if (status == "R2") {
         return "<span style='display:none;'>2</span>";
+    } else if (status == "R3") {
+        return "<span style='display:none;'>3</span>";
+    } else if (status == "R4") {
+        return "<span style='display:none;'>4</span>";
+    } else if (status == "R5") {
+        return "<span style='display:none;'>5</span>";
+    } else if (status == "R6") {
+        return "<span style='display:none;'>6</span>";
+    } else if (status == "R7") {
+        return "<span style='display:none;'>7</span>";
+    } else if (status == "R8") {
+        return "<span style='display:none;'>8</span>";
+    }else if (status == "R9") {
+        return "<span style='display:none;'>9</span>";
+    }else if (status == "R10") {
+        return "<span style='display:none;'>10</span>";
+    }else if (status == "R11") {
+        return "<span style='display:none;'>11</span>";
+    }else if (status == "R12") {
+        return "<span style='display:none;'>12</span>";
+    }else if (status == "R0") {
+        return "<span style='display:none;'>13</span>";
     }
 }

@@ -11,7 +11,7 @@ class createService {
         $strSql .= " select u.*, s.s_detail_th status_th, s.s_detail_en status_en";
         $strSql .= " from tb_customer_car u, tb_status s";
         $strSql .= " where u.s_status = s.s_status";
-        $strSql .= " and s.s_type = 'ACTIVE'";
+        $strSql .= " and s.s_type = 'REPAIR'";
         $strSql .= " ) tb_cust ,";
         $strSql .= " (";
         $strSql .= " select u.i_customer,concat(t.s_title_th, ' ', u.s_firstname, ' ', u.s_lastname) s_fullname,u.s_phone_1";
@@ -33,7 +33,7 @@ class createService {
         $strSql .= " select u.*, s.s_detail_th status_th, s.s_detail_en status_en";
         $strSql .= " from tb_customer_car u, tb_status s";
         $strSql .= " where u.s_status = s.s_status";
-        $strSql .= " and s.s_type = 'ACTIVE'";
+        $strSql .= " and s.s_type = 'REPAIR' ";
         $strSql .= " ) tb_cust ,";
         $strSql .= " (";
         $strSql .= " select u.i_customer,concat(t.s_title_th, ' ', u.s_firstname, ' ', u.s_lastname) s_fullname,u.s_phone_1";

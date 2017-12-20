@@ -1,7 +1,7 @@
 function getDDLStatus() {
     $.ajax({
         type: 'GET',
-        url: 'controller/commonController.php?func=DDLStatusActive',
+        url: 'controller/commonController.php?func=DDLStatusRepart',
         beforeSend: function () {
             //$('#se-pre-con').fadeIn(100);
         },
