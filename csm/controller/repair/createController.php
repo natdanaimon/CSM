@@ -172,13 +172,16 @@ class createController {
         $return2003 = $_SESSION['cd_2003'];
         $return2097 = $_SESSION['cd_2097'];
         $util = new Utility();
-
-        if ($util->isEmpty($info[s_license])) {
-            $return2099 = eregi_replace("field", $_SESSION['lb_re_carlicense'], $return2099);
-            echo $return2099;
-        } else if ($util->isEmpty($info[s_type_capital])) {
+        if ($util->isEmpty($info[s_type_capital])) {
             $return2099 = eregi_replace("field", $_SESSION['lb_re_type_capital'], $return2099);
             echo $return2099;
+        } else if (!is_numeric($info[s_type_capital])) {
+                $return2003 = eregi_replace("field", $_SESSION['lb_re_type_capital'], $return2003);
+                echo $return2003;
+        } else if ($util->isEmpty($info[s_license])) {
+            $return2099 = eregi_replace("field", $_SESSION['lb_re_carlicense'], $return2099);
+            echo $return2099;
+
         } else if ($util->isEmpty($info[i_customer])) {
             $return2099 = eregi_replace("field", $_SESSION['lb_re_custinfo'], $return2099);
             echo $return2099;

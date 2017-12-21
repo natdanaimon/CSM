@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 20, 2017 at 06:56 PM
+-- Generation Time: Dec 21, 2017 at 10:58 PM
 -- Server version: 5.6.37
 -- PHP Version: 5.6.30
 
@@ -1071,7 +1071,7 @@ CREATE TABLE `tb_car_brand` (
 --
 
 INSERT INTO `tb_car_brand` (`i_brand`, `s_brand_code`, `s_brand_name`, `s_image`, `d_create`, `d_update`, `s_create_by`, `s_update_by`, `s_status`) VALUES
-(4, 'HO', 'HONDA', '201711091918481.png', '0000-00-00 00:00:00', '2017-11-09 19:20:26', 'admin', 'admin', 'A'),
+(4, 'HO', 'HONDA', '201712201922531.png', '0000-00-00 00:00:00', '2017-12-20 19:22:53', 'admin', 'admin', 'A'),
 (7, 'TO', 'TOYOTA', '201711091919211.png', '0000-00-00 00:00:00', '2017-11-09 19:19:21', 'admin', 'admin', 'A'),
 (8, 'SU', 'SUZUKI', '201711091944061.png', '2017-11-09 19:44:06', '2017-11-09 19:44:06', 'admin', 'admin', 'A'),
 (9, 'BMW', 'BMW', '201711091944471.png', '2017-11-09 19:44:47', '2017-11-09 19:44:47', 'admin', 'admin', 'A'),
@@ -1337,6 +1337,7 @@ CREATE TABLE `tb_customer_car` (
   `s_car_code` varchar(50) NOT NULL COMMENT 'รหัสอ้างอิงข้อมูลรุ่นรถ',
   `s_license` varchar(50) NOT NULL COMMENT 'ทะเบียนรถ',
   `d_ins_exp` date NOT NULL COMMENT 'วันที่ กธ หมดอายุ',
+  `i_ins_type` int(5) NOT NULL,
   `s_type_capital` varchar(100) NOT NULL COMMENT 'ประเภททุน',
   `s_pay_type` varchar(10) NOT NULL COMMENT 'ประเภทการชำระเงิน',
   `i_ins_comp` int(10) NOT NULL COMMENT 'รหัสบริษัทประกัน',
@@ -1354,10 +1355,10 @@ CREATE TABLE `tb_customer_car` (
 -- Dumping data for table `tb_customer_car`
 --
 
-INSERT INTO `tb_customer_car` (`i_cust_car`, `i_customer`, `ref_no`, `s_car_code`, `s_license`, `d_ins_exp`, `s_type_capital`, `s_pay_type`, `i_ins_comp`, `i_dmg`, `d_inbound`, `d_outbound_confirm`, `d_create`, `d_update`, `s_create_by`, `s_update_by`, `s_status`) VALUES
-(9, 5, '201712001', 'HO15CIVIC18', 'sdafsadfsadfsdf', '2017-12-22', 'sadfsadfs', 'INS', 2, 1, '2017-12-21', '2017-12-22', '2017-12-20 16:57:13', '2017-12-20 17:23:13', 'admin', 'admin', 'C'),
-(10, 4, '201712002', 'HO18CIVIC15', 'fasdfasf', '2017-12-20', 'asfd', 'A', 9, 1, '2017-12-20', '2017-12-20', '2017-12-20 17:00:16', '2017-12-20 17:00:16', 'admin', 'admin', 'A'),
-(11, 4, '201712003', 'HO16CI12', '133315555', '2017-12-29', '12355555', 'AINS', 2, 4, '2017-12-27', '2017-12-28', '2017-12-20 17:12:42', '2017-12-20 17:23:06', 'admin', 'admin', 'A');
+INSERT INTO `tb_customer_car` (`i_cust_car`, `i_customer`, `ref_no`, `s_car_code`, `s_license`, `d_ins_exp`, `i_ins_type`, `s_type_capital`, `s_pay_type`, `i_ins_comp`, `i_dmg`, `d_inbound`, `d_outbound_confirm`, `d_create`, `d_update`, `s_create_by`, `s_update_by`, `s_status`) VALUES
+(9, 5, '201712001', 'HO15CIVIC18', 'ธน5548', '2017-12-22', 0, 'เงิน', 'INS', 2, 1, '2017-12-21', '2017-12-22', '2017-12-20 16:57:13', '2017-12-20 19:02:45', 'admin', 'admin', 'R1'),
+(10, 4, '201712002', 'HO18CIVIC15', 'กจ9989', '2017-12-20', 0, 'เงิน', 'A', 9, 1, '2017-12-20', '2017-12-20', '2017-12-20 17:00:16', '2017-12-20 19:02:21', 'admin', 'admin', 'R1'),
+(11, 5, '201712003', 'HO16CI12', 'กจ5862', '2017-12-29', 0, 'เงิน', 'AINS', 2, 4, '2017-12-27', '2017-12-28', '2017-12-20 17:12:42', '2017-12-20 19:03:00', 'admin', 'admin', 'R1');
 
 -- --------------------------------------------------------
 
@@ -11076,16 +11077,30 @@ CREATE TABLE `tb_status` (
   `s_status` varchar(50) NOT NULL,
   `s_type` varchar(50) NOT NULL,
   `s_detail_th` varchar(100) NOT NULL,
-  `s_detail_en` varchar(100) NOT NULL
+  `s_detail_en` varchar(100) NOT NULL,
+  `i_index` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tb_status`
 --
 
-INSERT INTO `tb_status` (`s_status`, `s_type`, `s_detail_th`, `s_detail_en`) VALUES
-('A', 'ACTIVE', 'ใช้งาน', 'Active'),
-('C', 'ACTIVE', 'ยกเลิก', 'Cancel');
+INSERT INTO `tb_status` (`s_status`, `s_type`, `s_detail_th`, `s_detail_en`, `i_index`) VALUES
+('A', 'ACTIVE', 'ใช้งาน', 'Active', 0),
+('C', 'ACTIVE', 'ยกเลิก', 'Cancel', 0),
+('R0', 'REPAIR', 'ยกเลิก', 'Cancel', 13),
+('R1', 'REPAIR', 'รอคิวเข้าซ่อม', 'Wait queue for repair', 1),
+('R10', 'REPAIR', 'กำลังดำเนินการซ่อม (ตรวจสอบ)', 'Repairing (Check)', 10),
+('R11', 'REPAIR', 'รอลูกค้ามารับรถ', 'Wait for the customer', 11),
+('R12', 'REPAIR', 'เสร็จสิ้น (ลูกค้ามารับรถแล้ว)', 'Finished (customers pick up the car)', 12),
+('R2', 'REPAIR', 'ตรวจสภาพรถรอการนำซ่อม', 'Check your car for repair', 2),
+('R3', 'REPAIR', 'รอนำซ่อม', 'Wait Repair', 3),
+('R4', 'REPAIR', 'กำลังดำเนินการซ่อม (รื้อ)', 'Repairing (dismantling)', 4),
+('R5', 'REPAIR', 'กำลังดำเนินการซ่อม (เคาะ)', 'Repairing (tapping)', 5),
+('R6', 'REPAIR', 'กำลังดำเนินการซ่อม (โป๊ว)', 'Repairing (filling)', 6),
+('R7', 'REPAIR', 'กำลังดำเนินการซ่อม (พ่น)', 'Repairing (spraying)', 7),
+('R8', 'REPAIR', 'กำลังดำเนินการซ่อม (ประกอบ)', 'Repairing (prepare)', 8),
+('R9', 'REPAIR', 'กำลังดำเนินการซ่อม (ขัด)', 'Repairing (polishing)', 9);
 
 -- --------------------------------------------------------
 

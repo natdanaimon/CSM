@@ -170,6 +170,7 @@ class createService {
         $strSql .= "    s_car_code, ";
         $strSql .= "    s_license, ";
         $strSql .= "    d_ins_exp, ";
+        $strSql .= "    i_ins_type, ";
         $strSql .= "    s_type_capital, ";
         $strSql .= "    s_pay_type, ";
 
@@ -191,6 +192,7 @@ class createService {
         $strSql .= "  '$info[s_car_code]', ";
         $strSql .= "  '$info[s_license]', ";
         $strSql .= "  '" . $util->DateSQL($info[d_ins_exp]) . "', ";
+        $strSql .= "  $info[i_ins_type], ";
         $strSql .= "  '$info[s_type_capital]', ";
         $strSql .= "  '$info[s_pay_type]', ";
 
@@ -221,6 +223,7 @@ class createService {
         $strSql .= "s_car_code = '$info[s_car_code]', ";
         $strSql .= "s_license = '$info[s_license]', ";
         $strSql .= "d_ins_exp = '" . $util->DateSQL($info[d_ins_exp]) . "', ";
+        $strSql .= "i_ins_type = $info[i_ins_type], ";
         $strSql .= "s_type_capital = '$info[s_type_capital]', ";
         $strSql .= "s_pay_type = '$info[s_pay_type]', ";
         $strSql .= "i_ins_comp = $info[i_ins_comp], ";

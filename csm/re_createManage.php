@@ -185,6 +185,55 @@ $disableElement = 'disabled="disable"';
 
                                                 </div>
 
+
+                                                <div class="row">
+                                                <div class="col-md-12"> 
+                                                <div class="form-group form-md-line-input has-success" >
+                                                <div class="md-radio-inline">
+                                                    <div id="insurance_type"></div>
+
+                                                </div>
+                                                <input type="hidden" id="i_ins_type" name="i_ins_type" />
+                                                </div>
+                                                </div>
+                                               
+                                                
+                                                </div>
+
+
+                                                <div class="row" >
+
+                                                    <div class="col-md-4">
+                                                        <div class="form-group form-md-line-input has-success">
+                                                            <input type="text" class="form-control bold required" id="s_type_capital" name="s_type_capital" >
+                                                            <label for="form_control_1"><?= $_SESSION[lb_re_type_capital] ?> <span class="required"></span></label>          
+                                                        </div>
+
+
+                                                    </div>
+                                                    <div class="col-md-5">
+
+                                                        <label for="form_control_1" style="color: #36c6d3;"><?= $_SESSION[lb_re_dexp] ?> <span class="required" style="color: red;">*</span></label> 
+                                                        <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy" data-date="<?= date("d-m-Y") ?>"  style="width: 100% !important;">
+                                                            <span class="input-group-btn">
+                                                                <button class="btn default" type="button" <?= $disableView ?>>
+                                                                    <i class="fa fa-calendar"></i>
+                                                                </button>
+                                                            </span>
+                                                            <input type="text" class="form-control" readonly name="d_ins_exp" id="d_ins_exp" value="<?= date("d-m-Y") ?>"  <?= $disableView ?>>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-3">
+
+                                                    </div> 
+                                                </div>
+                                                
+
+
+
+
                                                 <div class="row" >
                                                     <div class="col-md-4">
                                                         <div class="form-group form-md-line-input has-success" >
@@ -238,34 +287,7 @@ $disableElement = 'disabled="disable"';
                                                     </div> 
                                                 </div>
 
-                                                <div class="row" >
-
-                                                    <div class="col-md-4">
-                                                        <div class="form-group form-md-line-input has-success">
-                                                            <input type="text" class="form-control bold required" id="s_type_capital" name="s_type_capital" >
-                                                            <label for="form_control_1"><?= $_SESSION[lb_re_type_capital] ?> <span class="required"></span></label>          
-                                                        </div>
-
-
-                                                    </div>
-                                                    <div class="col-md-5">
-
-                                                        <label for="form_control_1" style="color: #36c6d3;"><?= $_SESSION[lb_re_dexp] ?> <span class="required" style="color: red;">*</span></label> 
-                                                        <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy" data-date="<?= date("d-m-Y") ?>"  style="width: 100% !important;">
-                                                            <span class="input-group-btn">
-                                                                <button class="btn default" type="button" <?= $disableView ?>>
-                                                                    <i class="fa fa-calendar"></i>
-                                                                </button>
-                                                            </span>
-                                                            <input type="text" class="form-control" readonly name="d_ins_exp" id="d_ins_exp" value="<?= date("d-m-Y") ?>"  <?= $disableView ?>>
-
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-md-3">
-
-                                                    </div> 
-                                                </div>
+                                                
 
 
 
