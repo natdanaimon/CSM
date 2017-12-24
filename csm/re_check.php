@@ -3,7 +3,7 @@
 include './common/Permission.php';
 include './common/PermissionADM.php';
 include './common/FunctionCheckActive.php';
-ACTIVEPAGES(3, 1);
+ACTIVEPAGES(3, 2);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -74,7 +74,7 @@ ACTIVEPAGES(3, 1);
                                     <i class="fa fa-circle" style="color:  #00FF00;"></i>
                                 </li>
                                 <li>
-                                    <a href="re_create.php"><?= $_SESSION[re_create] ?></a>
+                                    <a href="re_check.php"><?= $_SESSION[re_check] ?></a>
                                 </li>
                             </ul>
 
@@ -92,7 +92,7 @@ ACTIVEPAGES(3, 1);
                                     <div class="portlet-title">
                                         <div class="caption font-dark">
                                             <i class="fa fa-wrench font-dark"></i>
-                                            <span class="caption-subject bold uppercase"><?= $_SESSION[tt_mg_create] ?></span>
+                                            <span class="caption-subject bold uppercase"><?= $_SESSION[tt_mg_check] ?></span>
                                         </div>
                                         <div class="actions">
 
@@ -221,7 +221,7 @@ ACTIVEPAGES(3, 1);
         <link href="css/notify.css" rel="stylesheet" type="text/css" />
         <link href="outbound/lightbox/css/lightbox.css" rel="stylesheet" type="text/css" />
         <script src="outbound/lightbox/js/lightbox.js" type="text/javascript"></script>
-        <script src="js/action/repair/re_create.js" type="text/javascript"></script>
+        <script src="js/action/repair/re_check.js" type="text/javascript"></script>
         <script>
                                                             $(document).ready(function () {
                                                                 initialDataTable("TRUE");

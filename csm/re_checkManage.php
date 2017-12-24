@@ -3,13 +3,13 @@
 include './common/Permission.php';
 include './common/PermissionADM.php';
 include './common/FunctionCheckActive.php';
-ACTIVEPAGES(3, 1);
+ACTIVEPAGES(3, 2);
 
 if ($_GET[func] != NULL) {
     $tt_header = ($_GET[func] == "add" ? $_SESSION[add_info] : $_SESSION[edit_info]);
 }
 if ($_GET[id] == NULL && $_GET[func] != "add") {
-    echo header("Location: re_create.php");
+    echo header("Location: re_check.php");
 }
 
 
@@ -40,7 +40,7 @@ $disableElement = 'disabled="disable"';
         <link href="../assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" />
         <link href="../assets/global/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css" rel="stylesheet" type="text/css" />
         <link href="../assets/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />
-        <!--<link href="../assets/global/plugins/clockface/css/clockface.css" rel="stylesheet" type="text/css" />-->
+        <link href="../assets/global/plugins/clockface/css/clockface.css" rel="stylesheet" type="text/css" />
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL STYLES -->
         <link href="../assets/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
@@ -51,10 +51,7 @@ $disableElement = 'disabled="disable"';
         <link href="../assets/layouts/layout/css/themes/darkblue.min.css" rel="stylesheet" type="text/css" id="style_color" />
         <link href="../assets/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css" />
         <!-- END THEME LAYOUT STYLES -->
-        <!-- BEGIS SELECT 2 SCRIPTS -->
-        <link href="css/select2.min.css" rel="stylesheet" />
 
-        <!-- END SELECT 2 SCRIPTS -->
 
 
 
@@ -99,7 +96,7 @@ $disableElement = 'disabled="disable"';
                                     <i class="fa fa-circle" style="color:  #00FF00;"></i>
                                 </li>
                                 <li>
-                                    <a href="re_create.php"><?= $_SESSION[re_create] ?></a>
+                                    <a href="re_create.php"><?= $_SESSION[re_check] ?></a>
                                     <i class="fa fa-circle" style="color:  #00FF00;"></i>
                                 </li>
                                 <li>
@@ -115,6 +112,8 @@ $disableElement = 'disabled="disable"';
 
                         <!------------ CONTENT ------------>
                         <div class="row">
+
+
                             <form enctype="multipart/form-data" name="form-action" id="form-action" method="post">
                                 <input type="hidden" id="func" name="func" value="<?= $_GET[func] ?>"/>
                                 <input type="hidden" id="id" name="id" value="<?= $_GET[id] ?>"/>
@@ -138,7 +137,7 @@ $disableElement = 'disabled="disable"';
                                     </div>
 
 
-
+                                    <!-- BEGIN STEP1-->
                                     <div class="portlet box green">
                                         <div class="portlet-title">
                                             <div class="caption">
@@ -147,22 +146,24 @@ $disableElement = 'disabled="disable"';
                                                 <a href="javascript:closeStep(1);" class="fa fa-angle-down" style="color: white;text-decoration:none;"> </a>
                                             </div>
                                         </div>
-                                        <div class="portlet-body form" id="step1" style="display: block;">
-                                            <!-- BEGIN FORM-->
+
+
+                                        <div class="portlet-body form" id="step1" style="display: none;">
+
 
                                             <div class="portlet light bordered">
-                                                <div class="portlet-title">
-                                                    <div class="caption font-green inline">
-
-                                                        <span class="caption-subject bold uppercase"> <?= $_SESSION[1] ?></span>
-                                                        <a data-toggle="modal" href="#searchCust"> 
-                                                            <button type="button" class="btn btn-success">
-                                                                <i class="fa fa-search"></i>
-                                                                <?= $_SESSION[btn_searchCustomer] ?>
-                                                            </button>
-                                                        </a>
-                                                    </div>
-                                                </div>
+                                                <!--                                                <div class="portlet-title">
+                                                                                                    <div class="caption font-green inline">
+                                                
+                                                                                                        <span class="caption-subject bold uppercase"> <?= $_SESSION[1] ?></span>
+                                                                                                        <a data-toggle="modal" href="#searchCust"> 
+                                                                                                            <button type="button" class="btn btn-success">
+                                                                                                                <i class="fa fa-search"></i>
+                                                <?= $_SESSION[btn_searchCustomer] ?>
+                                                                                                            </button>
+                                                                                                        </a>
+                                                                                                    </div>
+                                                                                                </div>-->
                                                 <div class="portlet-body form">
 
                                                     <div class="form-body">
@@ -310,10 +311,7 @@ $disableElement = 'disabled="disable"';
                                                         <div class="row" id="div-refno" style="display:none">
 
                                                             <div class="col-md-3">
-                                                                <div class="form-group form-md-line-input has-success" >
-                                                                    <input type="text" class="form-control bold required" id="ref_no" name="ref_no" readonly="readonly" >
-                                                                    <label for="form_control_1"><?= $_SESSION[lb_re_refNo] ?> <span class="required"></span></label>          
-                                                                </div>
+
                                                             </div>
                                                             <div class="col-md-5"></div>
                                                             <div class="col-md-4"></div> 
@@ -323,7 +321,7 @@ $disableElement = 'disabled="disable"';
                                                             <div class="col-md-4">
 
                                                                 <div class="form-group form-md-line-input has-success" style="height: 80px">
-                                                                    <select class="form-control edited bold" id="i_ins_comp" name="i_ins_comp" >
+                                                                    <select class="form-control edited bold" id="i_ins_comp" name="i_ins_comp" <?= $disableElement ?>>
                                                                         <!--<option value="-1"></option>-->
                                                                     </select>
                                                                     <label for="form_control_1"><?= $_SESSION[lb_re_insurance_comp] ?></label>
@@ -337,11 +335,11 @@ $disableElement = 'disabled="disable"';
                                                                 <label for="form_control_1" style="color: #36c6d3;"><?= $_SESSION[lb_re_dinbound] ?> <span class="required" style="color: red;">*</span></label> 
                                                                 <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy" data-date="<?= date("d-m-Y") ?>"  style="width: 100% !important;">
                                                                     <span class="input-group-btn">
-                                                                        <button class="btn default" type="button" <?= $disableView ?>>
+                                                                        <button class="btn default" type="button" <?= $disableElement ?>>
                                                                             <i class="fa fa-calendar"></i>
                                                                         </button>
                                                                     </span>
-                                                                    <input type="text" class="form-control" readonly name="d_inbound" id="d_inbound" value="<?= date("d-m-Y") ?>"  <?= $disableView ?>>
+                                                                    <input type="text" class="form-control" readonly name="d_inbound" id="d_inbound" value="<?= date("d-m-Y") ?>"  <?= $disableElement ?>>
 
                                                                 </div>
 
@@ -350,11 +348,11 @@ $disableElement = 'disabled="disable"';
                                                                 <label for="form_control_1" style="color: #36c6d3;"><?= $_SESSION[lb_re_doutbound_confirm] ?> <span class="required" style="color: red;">*</span></label> 
                                                                 <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy" data-date="<?= date("d-m-Y") ?>"  style="width: 100% !important;">
                                                                     <span class="input-group-btn">
-                                                                        <button class="btn default" type="button" <?= $disableView ?>>
+                                                                        <button class="btn default" type="button" <?= $disableElement ?>>
                                                                             <i class="fa fa-calendar"></i>
                                                                         </button>
                                                                     </span>
-                                                                    <input type="text" class="form-control" readonly name="d_outbound_confirm" id="d_outbound_confirm" value="<?= date("d-m-Y") ?>"  <?= $disableView ?>>
+                                                                    <input type="text" class="form-control" readonly name="d_outbound_confirm" id="d_outbound_confirm" value="<?= date("d-m-Y") ?>"  <?= $disableElement ?>>
 
                                                                 </div>
                                                             </div>
@@ -365,7 +363,7 @@ $disableElement = 'disabled="disable"';
                                                         <div class="row">
                                                             <div class="col-md-12"> 
                                                                 <div class="form-group form-md-line-input has-success" >
-                                                                    <div class="md-radio-inline">
+                                                                    <div class="md-radio-inline" <?= $disableElement ?>>
                                                                         <div id="insurance_type"></div>
 
                                                                     </div>
@@ -381,7 +379,7 @@ $disableElement = 'disabled="disable"';
 
                                                             <div class="col-md-4">
                                                                 <div class="form-group form-md-line-input has-success">
-                                                                    <input type="text" class="form-control bold required" id="s_type_capital" name="s_type_capital" >
+                                                                    <input type="text" class="form-control bold required" id="s_type_capital" name="s_type_capital" <?= $disableElement ?>>
                                                                     <label for="form_control_1"><?= $_SESSION[lb_re_type_capital] ?> <span class="required"></span></label>          
                                                                 </div>
 
@@ -392,11 +390,11 @@ $disableElement = 'disabled="disable"';
                                                                 <label for="form_control_1" style="color: #36c6d3;"><?= $_SESSION[lb_re_dexp] ?> <span class="required" style="color: red;">*</span></label> 
                                                                 <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy" data-date="<?= date("d-m-Y") ?>"  style="width: 100% !important;">
                                                                     <span class="input-group-btn">
-                                                                        <button class="btn default" type="button" <?= $disableView ?>>
+                                                                        <button class="btn default" type="button" <?= $disableElement ?>>
                                                                             <i class="fa fa-calendar"></i>
                                                                         </button>
                                                                     </span>
-                                                                    <input type="text" class="form-control" readonly name="d_ins_exp" id="d_ins_exp" value="<?= date("d-m-Y") ?>"  <?= $disableView ?>>
+                                                                    <input type="text" class="form-control" readonly name="d_ins_exp" id="d_ins_exp" value="<?= date("d-m-Y") ?>"  <?= $disableElement ?>>
 
                                                                 </div>
                                                             </div>
@@ -413,7 +411,7 @@ $disableElement = 'disabled="disable"';
                                                         <div class="row" >
                                                             <div class="col-md-4">
                                                                 <div class="form-group form-md-line-input has-success" >
-                                                                    <select class="form-control edited bold" id="s_pay_type" name="s_pay_type" style="color:black;font-weight:bold;"   >
+                                                                    <select class="form-control edited bold" id="s_pay_type" name="s_pay_type" style="color:black;font-weight:bold;"   <?= $disableElement ?>>
                                                                         <option value="-1"></option>
                                                                     </select>
                                                                     <label for="form_control_1"><?= $_SESSION[lb_re_paytype] ?> <span class="required">*</span></label>          
@@ -443,7 +441,7 @@ $disableElement = 'disabled="disable"';
 
                                                             <div class="col-md-4">
                                                                 <div class="form-group form-md-line-input has-success" style="height: 60px">
-                                                                    <select class="form-control edited bold" id="s_car_code" name="s_car_code">
+                                                                    <select class="form-control edited bold" id="s_car_code" name="s_car_code" <?= $disableElement ?>>
                                                                     </select>
                                                                     <label for="form_control_1"><?= $_SESSION[lb_re_carinfo] ?></label>
                                                                 </div>
@@ -453,7 +451,7 @@ $disableElement = 'disabled="disable"';
                                                             <div class="col-md-5">
 
                                                                 <div class="form-group form-md-line-input has-success">
-                                                                    <input type="text" class="form-control bold required" id="s_license" name="s_license" >
+                                                                    <input type="text" class="form-control bold required" id="s_license" name="s_license" <?= $disableElement ?>>
                                                                     <label for="form_control_1"><?= $_SESSION[lb_re_carlicense] ?> <span class="required">*</span></label>          
                                                                 </div>
                                                             </div>
@@ -485,12 +483,95 @@ $disableElement = 'disabled="disable"';
 
 
 
-                                            <!-- END FORM-->
+
                                         </div>
+
+
+
+
+
+
+
+
                                     </div>
+                                    <!-- END STEP1-->
 
 
-                                    <!-- BEGIN EXAMPLE TABLE PORTLET-->
+
+                                    <!-- BEGIN STEP2-->
+                                    <div class="portlet box green">
+                                        <div class="portlet-title">
+                                            <div class="caption">
+                                                <i class="fa fa-car"></i> <?= $_SESSION[tt_detail_create2] ?></div>
+                                            <div class="tools">
+                                                <a href="javascript:closeStep(2);" class="fa fa-angle-down" style="color: white;text-decoration:none;"> </a>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="portlet-body form" id="step2" style="display: block;">
+
+
+                                            <div class="portlet light bordered">
+                                                <!--                                                <div class="portlet-title">
+                                                                                                    <div class="caption font-green inline">
+                                                
+                                                                                                        <span class="caption-subject bold uppercase"> <?= $_SESSION[1] ?></span>
+                                                
+                                                                                                    </div>
+                                                                                                </div>-->
+                                                <div class="portlet-body form">
+
+                                                    <div class="form-body">
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                <div class="form-group form-md-line-input has-success">
+                                                                    <select class="form-control edited bold" id="i_dmg" name="i_dmg" style="color:black;font-weight:bold;"   >
+                                                                        <option value="-1"></option>
+                                                                    </select>
+                                                                    <label for="form_control_1"><?= $_SESSION[lb_re_dmg] ?> <span class="required">*</span></label>          
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4"></div>
+                                                            <div class="col-md-4"></div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-2"><b>รายการซ่อม</b></div>
+                                                            <div class="col-md-3"><b>รายละเอียดเพิ่มเติม</b></div>
+                                                            <div class="col-md-1"></div>
+                                                            <div class="col-md-2"><b>รายการซ่อม</b></div>
+                                                            <div class="col-md-3"><b>รายละเอียดเพิ่มเติม</b></div>
+                                                            <div class="col-md-1"></div>
+                                                        </div>
+                                                        <div id="div_checkbox_repair"></div>
+
+
+
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+
+
+
+
+                                        </div>
+
+
+
+
+
+
+
+
+                                    </div>
+                                    <!-- END STEP2-->
+
+
+
+
+
 
 
 
@@ -555,6 +636,12 @@ $disableElement = 'disabled="disable"';
                                     </div>
                                 </div>
                             </form>
+
+
+
+
+
+
                         </div>
                         <!------------ CONTENT ------------>
 
@@ -599,8 +686,6 @@ $disableElement = 'disabled="disable"';
 
         <!-- BEGIN CORE PLUGINS -->
         <script src="../assets/global/plugins/jquery.min.js" type="text/javascript"></script>
-
-
         <script src="../assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="../assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
         <script src="../assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
@@ -634,15 +719,19 @@ $disableElement = 'disabled="disable"';
         <script src="../assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
         <script src="../assets/layouts/global/scripts/quick-nav.min.js" type="text/javascript"></script>
         <!-- END THEME LAYOUT SCRIPTS -->
-        <script src="js/common/select2.min.js"></script>
+
         <script src="js/common/notify.js" type="text/javascript"></script>
         <link href="css/notify.css" rel="stylesheet" type="text/css" />
 
 
+        <!-- BEGIS SELECT 2 SCRIPTS -->
+        <link href="css/select2.min.css" rel="stylesheet" />
+        <script src="js/common/select2.min.js"></script>
+        <!-- END SELECT 2 SCRIPTS -->
         <link href="outbound/lightbox/css/lightbox.css" rel="stylesheet" type="text/css" />
         <script src="outbound/lightbox/js/lightbox.js" type="text/javascript"></script>
         <!--<link href="css/custom_select2.css" rel="stylesheet" />-->
-        <script src="js/action/repair/re_createManage.js" type="text/javascript"></script>
+        <script src="js/action/repair/re_checkManage.js" type="text/javascript"></script>
         <script src="js/action/search/popup.js" type="text/javascript"></script>
         <script src="js/common/closeStep.js" type="text/javascript"></script>
 
@@ -660,9 +749,6 @@ $disableElement = 'disabled="disable"';
                 }
 
             });
-
-
-
         </script>
 
 

@@ -81,6 +81,9 @@ switch ($info[func]) {
     case "DDLStatusRepart" :
         echo $controller->DDLStatusRepart();
         break;
+    case "CheckBoxCheckRepair" :
+        echo $controller->CheckBoxCheckRepair();
+        break;
 }
 
 class commonController {
@@ -96,6 +99,16 @@ class commonController {
     public function DDLStatus() {
         $service = new commonService();
         $_dataTable = $service->DDLStatus();
+        if ($_dataTable != NULL) {
+            return json_encode($_dataTable);
+        } else {
+            return NULL;
+        }
+    }
+
+    public function CheckBoxCheckRepair() {
+        $service = new commonService();
+        $_dataTable = $service->CheckBoxCheckRepair();
         if ($_dataTable != NULL) {
             return json_encode($_dataTable);
         } else {

@@ -2,7 +2,7 @@
 
 @session_start();
 
-class createService {
+class checkService {
 
     function dataTable() {
         $db = new ConnectDB();
@@ -12,7 +12,7 @@ class createService {
         $strSql .= " from tb_customer_car u, tb_status s";
         $strSql .= " where u.s_status = s.s_status";
         $strSql .= " and s.s_type = 'REPAIR'";
-        $strSql .= " and s.s_status = 'R1'";
+        $strSql .= " and s.s_status = 'R2'";
         $strSql .= " ) tb_cust ,";
         $strSql .= " (";
         $strSql .= " select u.i_customer,concat(t.s_title_th, ' ', u.s_firstname, ' ', u.s_lastname) s_fullname,u.s_phone_1";
@@ -160,59 +160,59 @@ class createService {
     }
 
     function add($db, $info) {
-        $util = new Utility();
-
-        $strSql = "";
-        $strSql .= "INSERT ";
-        $strSql .= "INTO ";
-        $strSql .= "  tb_customer_car ( ";
-        $strSql .= "    i_customer, ";
-        $strSql .= "    ref_no, ";
-        $strSql .= "    s_car_code, ";
-        $strSql .= "    s_license, ";
-        $strSql .= "    d_ins_exp, ";
-        $strSql .= "    i_ins_type, ";
-        $strSql .= "    s_type_capital, ";
-        $strSql .= "    s_pay_type, ";
-
-        $strSql .= "    i_ins_comp, ";
-//        $strSql .= "    i_dmg, ";
-        $strSql .= "    d_inbound, ";
-        $strSql .= "    d_outbound_confirm, ";
-
-
-        $strSql .= "    d_create, ";
-        $strSql .= "    d_update, ";
-        $strSql .= "    s_create_by, ";
-        $strSql .= "    s_update_by, ";
-        $strSql .= "    s_status ";
-        $strSql .= "  ) ";
-        $strSql .= "VALUES( ";
-        $strSql .= "  $info[i_customer], ";
-        $strSql .= "  '" . $this->getRunning($db) . "', ";
-        $strSql .= "  '$info[s_car_code]', ";
-        $strSql .= "  '$info[s_license]', ";
-        $strSql .= "  '" . $util->DateSQL($info[d_ins_exp]) . "', ";
-        $strSql .= "  $info[i_ins_type], ";
-        $strSql .= "  '$info[s_type_capital]', ";
-        $strSql .= "  '$info[s_pay_type]', ";
-
-        $strSql .= "  $info[i_ins_comp], ";
-//        $strSql .= "  $info[i_dmg], ";
-        $strSql .= "  '" . $util->DateSQL($info[d_inbound]) . "', ";
-        $strSql .= "  '" . $util->DateSQL($info[d_outbound_confirm]) . "', ";
-
-        $strSql .= "  " . $db->Sysdate(TRUE) . ", ";
-        $strSql .= " " . $db->Sysdate(TRUE) . ", ";
-        $strSql .= "  '$_SESSION[username]', ";
-        $strSql .= "  '$_SESSION[username]', ";
-        $strSql .= "  '$info[status]' ";
-        $strSql .= ") ";
-        $arr = array(
-            array("query" => "$strSql")
-        );
-        $reslut = $db->insert_for_upadte($arr);
-        return $reslut;
+//        $util = new Utility();
+//
+//        $strSql = "";
+//        $strSql .= "INSERT ";
+//        $strSql .= "INTO ";
+//        $strSql .= "  tb_customer_car ( ";
+//        $strSql .= "    i_customer, ";
+//        $strSql .= "    ref_no, ";
+//        $strSql .= "    s_car_code, ";
+//        $strSql .= "    s_license, ";
+//        $strSql .= "    d_ins_exp, ";
+//        $strSql .= "    i_ins_type, ";
+//        $strSql .= "    s_type_capital, ";
+//        $strSql .= "    s_pay_type, ";
+//
+//        $strSql .= "    i_ins_comp, ";
+////        $strSql .= "    i_dmg, ";
+//        $strSql .= "    d_inbound, ";
+//        $strSql .= "    d_outbound_confirm, ";
+//
+//
+//        $strSql .= "    d_create, ";
+//        $strSql .= "    d_update, ";
+//        $strSql .= "    s_create_by, ";
+//        $strSql .= "    s_update_by, ";
+//        $strSql .= "    s_status ";
+//        $strSql .= "  ) ";
+//        $strSql .= "VALUES( ";
+//        $strSql .= "  $info[i_customer], ";
+//        $strSql .= "  '" . $this->getRunning($db) . "', ";
+//        $strSql .= "  '$info[s_car_code]', ";
+//        $strSql .= "  '$info[s_license]', ";
+//        $strSql .= "  '" . $util->DateSQL($info[d_ins_exp]) . "', ";
+//        $strSql .= "  $info[i_ins_type], ";
+//        $strSql .= "  '$info[s_type_capital]', ";
+//        $strSql .= "  '$info[s_pay_type]', ";
+//
+//        $strSql .= "  $info[i_ins_comp], ";
+////        $strSql .= "  $info[i_dmg], ";
+//        $strSql .= "  '" . $util->DateSQL($info[d_inbound]) . "', ";
+//        $strSql .= "  '" . $util->DateSQL($info[d_outbound_confirm]) . "', ";
+//
+//        $strSql .= "  " . $db->Sysdate(TRUE) . ", ";
+//        $strSql .= " " . $db->Sysdate(TRUE) . ", ";
+//        $strSql .= "  '$_SESSION[username]', ";
+//        $strSql .= "  '$_SESSION[username]', ";
+//        $strSql .= "  '$info[status]' ";
+//        $strSql .= ") ";
+//        $arr = array(
+//            array("query" => "$strSql")
+//        );
+//        $reslut = $db->insert_for_upadte($arr);
+//        return $reslut;
     }
 
     function edit($db, $info) {
@@ -220,17 +220,17 @@ class createService {
         $strSql = "";
         $strSql .= "update tb_customer_car ";
         $strSql .= "set  ";
-        $strSql .= "i_customer = $info[i_customer], ";
-        $strSql .= "s_car_code = '$info[s_car_code]', ";
-        $strSql .= "s_license = '$info[s_license]', ";
-        $strSql .= "d_ins_exp = '" . $util->DateSQL($info[d_ins_exp]) . "', ";
-        $strSql .= "i_ins_type = $info[i_ins_type], ";
-        $strSql .= "s_type_capital = '$info[s_type_capital]', ";
-        $strSql .= "s_pay_type = '$info[s_pay_type]', ";
-        $strSql .= "i_ins_comp = $info[i_ins_comp], ";
-//        $strSql .= "i_dmg = $info[i_dmg], ";
-        $strSql .= "d_inbound = '" . $util->DateSQL($info[d_inbound]) . "', ";
-        $strSql .= "d_outbound_confirm = '" . $util->DateSQL($info[d_outbound_confirm]) . "', ";
+//        $strSql .= "i_customer = $info[i_customer], ";
+//        $strSql .= "s_car_code = '$info[s_car_code]', ";
+//        $strSql .= "s_license = '$info[s_license]', ";
+//        $strSql .= "d_ins_exp = '" . $util->DateSQL($info[d_ins_exp]) . "', ";
+//        $strSql .= "i_ins_type = $info[i_ins_type], ";
+//        $strSql .= "s_type_capital = '$info[s_type_capital]', ";
+//        $strSql .= "s_pay_type = '$info[s_pay_type]', ";
+//        $strSql .= "i_ins_comp = $info[i_ins_comp], ";
+////        $strSql .= "i_dmg = $info[i_dmg], ";
+//        $strSql .= "d_inbound = '" . $util->DateSQL($info[d_inbound]) . "', ";
+//        $strSql .= "d_outbound_confirm = '" . $util->DateSQL($info[d_outbound_confirm]) . "', ";
 
         $strSql .= "d_update = " . $db->Sysdate(TRUE) . ", ";
         $strSql .= "s_update_by = '$_SESSION[username]', ";

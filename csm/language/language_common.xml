@@ -883,6 +883,11 @@
         <en>Create Repair Management</en>
     </detail>
     <detail>
+        <variable>re_check</variable>
+        <th>ตรวจสภาพรถก่อนนำซ่อม</th>
+        <en>Check Repair Management</en>
+    </detail>
+    <detail>
         <variable>re_inbound</variable>
         <th>ตรวจสภาพรถก่อนนำเข้า</th>
         <en>Check Inbound Car</en>
@@ -1471,7 +1476,11 @@
         <th>จัดการข้อมูลสร้างรายการนำซ่อม</th>
         <en>MANAGE CREATE TRANSACTION</en>
     </detail>
-    
+    <detail>
+        <variable>tt_mg_check</variable>
+        <th>จัดการข้อมูลตรวจสอบสภาพรถก่อนนำซ่อม</th>
+        <en>MANAGE CHECK REPAIR</en>
+    </detail>
     <detail>
         <variable>tt_mg_caryear</variable>
         <th>จัดการข้อมูลปีรถ</th>
@@ -1608,11 +1617,18 @@
         <en>Claim Payment</en>
     </detail>
     
-     <detail>
+    
+    <detail>
         <variable>tt_detail_create1</variable>
         <th>ข้อมูลทั่วไป</th>
         <en>Info.</en>
     </detail>
+    <detail>
+        <variable>tt_detail_create2</variable>
+        <th>ข้อมูลตรวจสภาพรถก่อนนำซ่อม</th>
+        <en>Check Repair Management</en>
+    </detail>
+
     
     
     

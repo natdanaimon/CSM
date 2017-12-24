@@ -1,0 +1,7 @@
+.select2-container .select2-selection--single .select2-selection__rendered{
+    display: inline-block !important;
+}
+
+.select2-dropdown select2-dropdown--below{
+    width: max-content !important;
+}
