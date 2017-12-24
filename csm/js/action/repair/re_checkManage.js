@@ -53,9 +53,9 @@ function initialCheckBox() {
 
                 htmlOption += '<div class="col-md-2 col-sm-12" style="padding-top: 10px;">';
                 htmlOption += '<span class=" md-checkbox has-success" >';
-                htmlOption += '  <input type="checkbox" id="checkbox_' + i + '" name="checkboxItem" class="md-check"';
+                htmlOption += '  <input type="checkbox" id="i_repair_item_' + item.i_repair_item + '" name="i_repair_item_' + item.i_repair_item + '" class="md-check"';
                 htmlOption += '  value="' + item.i_repair_item + '" >';
-                htmlOption += '  <label for="checkbox_' + i + '">';
+                htmlOption += '  <label for="i_repair_item_' + item.i_repair_item + '">';
                 htmlOption += '    <span class="inc"></span>';
                 htmlOption += '    <span class="check"></span>';
                 htmlOption += '    <span class="box"></span> ' + item.s_repair_name + '</label>';
@@ -83,7 +83,7 @@ function initialCheckBox() {
             });
 
             $("#div_checkbox_repair").html(htmlOption);
-            getDDLInsuranceType();
+            initialCheckBoxOther();
         },
         error: function (data) {
 
@@ -95,6 +95,58 @@ function initialCheckBox() {
 
 
 }
+
+function initialCheckBoxOther() {
+    var htmlOption = "";
+
+    var count = 1;
+    for (i = 1; i < 14; i++) {
+        if (count == 2) {
+            count = 0;
+        }
+
+
+        if (count == 0) {
+            htmlOption += '<div class="row">';
+        }
+
+        htmlOption += '<div class="col-md-1 col-sm-12" style="padding-top: 10px;">';
+        htmlOption += '<span class=" md-checkbox has-success" >';
+        htmlOption += '  <input type="checkbox" id="i_repair_subitem_' + i + '" name="i_repair_subitem_' + i + '" class="md-check"';
+        htmlOption += '  value="' + i + '" >';
+        htmlOption += '  <label for="i_repair_subitem_' + i + '">';
+        htmlOption += '    <span class="inc"></span>';
+        htmlOption += '    <span class="check"></span>';
+        htmlOption += '    <span class="box"></span> ' + i + '.</label>';
+        htmlOption += '</span>';
+        htmlOption += '</div>';
+
+
+
+
+
+        htmlOption += '<div class="col-md-3 col-sm-12">';
+        htmlOption += '<div class="form-group form-md-line-input has-success" style="padding-top:0px !important;" >';
+        htmlOption += '<input type="text" class="form-control bold required" id="s_repair_subitem_' + i + '" name="s_repair_subitem_' + i + '" >';
+        htmlOption += '</div>';
+        htmlOption += '</div>';
+
+        htmlOption += '<div class="col-md-1">';
+        htmlOption += '</div>';
+        if (count == 0) {
+            htmlOption += "</div>";
+        }
+
+        count++;
+
+    }
+
+    $("#div_checkbox_repair_other").html(htmlOption);
+    getDDLInsuranceType();
+
+}
+
+
 
 function getDDLInsuranceType() {
     $.ajax({
@@ -444,18 +496,21 @@ function edit() {
             $.each(res, function (i, item) {
                 debugger;
                 $("#i_customer").val(item.i_customer);
-
+                $("#ref_no").val(item.ref_no);
                 //radio
                 radio_type(item.i_ins_type);
 
                 editCustomer(item.i_customer);
-                $("#ref_no").val(item.ref_no);
+
+                editCheckBoxMain(item.ref_no);
+                editCheckBoxOther(item.ref_no);
+
                 $("#i_ins_comp").val(item.i_ins_comp).trigger('change');
                 $("#d_inbound").val(item.d_inbound);
                 $("#d_outbound_confirm").val(item.d_outbound_confirm);
 
                 $("#s_pay_type").val(item.s_pay_type);
-//                $("#i_dmg").val(item.i_dmg);
+                $("#i_dmg").val(item.i_dmg);
 
                 $("#s_car_code").val(item.s_car_code).trigger('change');
                 $("#s_license").val(item.s_license);
@@ -522,8 +577,113 @@ function editCustomer(id) {
 }
 
 
+function editCheckBoxMain(ref_no) {
+
+    $.ajax({
+        type: 'GET',
+        url: 'controller/repair/checkController.php?func=getCheckBoxMain&ref_no=' + ref_no,
+        beforeSend: function () {
+            //$('#se-pre-con').fadeIn(100);
+        },
+        success: function (data) {
+            if (data == '') {
+                return;
+            }
+            var res = JSON.parse(data);
+
+            $.each(res, function (i, item) {
+                debugger;
+
+                $('input:checkbox[id="i_repair_item_' + item.i_repair_item + '"]').attr('checked', 'Y');
+                $('#s_repair_item_' + item.i_repair_item).val(item.s_remark);
 
 
+            });
+
+//            $('#se-pre-con').delay(100).fadeOut();
+
+        },
+        error: function (data) {
+
+        }
+
+    });
+}
+
+
+function editCheckBoxOther(ref_no) {
+
+    $.ajax({
+        type: 'GET',
+        url: 'controller/repair/checkController.php?func=getCheckBoxOther&ref_no=' + ref_no,
+        beforeSend: function () {
+            //$('#se-pre-con').fadeIn(100);
+        },
+        success: function (data) {
+            if (data == '') {
+                return;
+            }
+            var res = JSON.parse(data);
+
+            $.each(res, function (i, item) {
+                debugger;
+
+                setValSelected(1, item.i_repair_subitem1);
+                setValSelected(2, item.i_repair_subitem2);
+                setValSelected(3, item.i_repair_subitem3);
+                setValSelected(4, item.i_repair_subitem4);
+                setValSelected(5, item.i_repair_subitem5);
+                setValSelected(6, item.i_repair_subitem6);
+                setValSelected(7, item.i_repair_subitem7);
+                setValSelected(8, item.i_repair_subitem8);
+                setValSelected(9, item.i_repair_subitem9);
+                setValSelected(10, item.i_repair_subitem10);
+                setValSelected(11, item.i_repair_subitem11);
+                setValSelected(12, item.i_repair_subitem12);
+                setValSelected(13, item.i_repair_subitem13);
+
+
+
+
+
+                $('#s_repair_subitem_1').val(item.s_txt_1);
+                $('#s_repair_subitem_2').val(item.s_txt_2);
+                $('#s_repair_subitem_3').val(item.s_txt_3);
+                $('#s_repair_subitem_4').val(item.s_txt_4);
+                $('#s_repair_subitem_5').val(item.s_txt_5);
+                $('#s_repair_subitem_6').val(item.s_txt_6);
+                $('#s_repair_subitem_7').val(item.s_txt_7);
+                $('#s_repair_subitem_8').val(item.s_txt_8);
+                $('#s_repair_subitem_9').val(item.s_txt_9);
+                $('#s_repair_subitem_10').val(item.s_txt_10);
+                $('#s_repair_subitem_11').val(item.s_txt_11);
+                $('#s_repair_subitem_12').val(item.s_txt_12);
+                $('#s_repair_subitem_13').val(item.s_txt_13);
+
+
+
+
+
+
+            });
+
+//            $('#se-pre-con').delay(100).fadeOut();
+
+        },
+        error: function (data) {
+
+        }
+
+    });
+}
+
+function setValSelected(index, val) {
+    var tmp = ((val != null && val != '') ? 'Y' : '')
+    if (tmp == 'Y') {
+        $('input:checkbox[id="i_repair_subitem_' + index + '"]').attr('checked', 'Y');
+    }
+
+}
 
 
 function save() {

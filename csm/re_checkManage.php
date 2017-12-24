@@ -536,16 +536,34 @@ $disableElement = 'disabled="disable"';
                                                             <div class="col-md-4"></div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col-md-2"><b>รายการซ่อม</b></div>
-                                                            <div class="col-md-3"><b>รายละเอียดเพิ่มเติม</b></div>
+                                                            <div class="col-md-2"><b><?= $_SESSION[lb_repair_list] ?></b></div>
+                                                            <div class="col-md-3"><b><?= $_SESSION[lb_repair_remark] ?></b></div>
                                                             <div class="col-md-1"></div>
-                                                            <div class="col-md-2"><b>รายการซ่อม</b></div>
-                                                            <div class="col-md-3"><b>รายละเอียดเพิ่มเติม</b></div>
+                                                            <div class="col-md-2"><b><?= $_SESSION[lb_repair_list] ?></b></div>
+                                                            <div class="col-md-3"><b><?= $_SESSION[lb_repair_remark] ?></b></div>
                                                             <div class="col-md-1"></div>
                                                         </div>
                                                         <div id="div_checkbox_repair"></div>
+                                                        <br/><br/> <br/><br/>
+
+                                                        <div class="row">
+                                                            <div class="col-md-12"><b><?= $_SESSION[other] ?></b></div>
+
+                                                        </div>
+                                                        <br/>
+                                                        <div id="div_checkbox_repair_other"></div>
+                                                        
 
 
+
+
+
+
+
+
+
+
+                                                        <br/>
 
                                                     </div>
 

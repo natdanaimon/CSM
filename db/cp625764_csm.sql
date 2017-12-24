@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 21, 2017 at 02:36 AM
+-- Generation Time: Dec 25, 2017 at 01:48 AM
 -- Server version: 5.6.37
 -- PHP Version: 5.6.30
 
@@ -1227,6 +1227,82 @@ INSERT INTO `tb_car_year` (`i_year`, `d_create`, `d_update`, `s_create_by`, `s_u
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tb_check_repair`
+--
+
+CREATE TABLE `tb_check_repair` (
+  `ref_no` varchar(50) NOT NULL,
+  `i_repair_item` int(11) NOT NULL,
+  `s_remark` varchar(100) NOT NULL,
+  `d_create` datetime NOT NULL,
+  `d_update` datetime NOT NULL,
+  `s_create_by` varchar(50) NOT NULL,
+  `s_update_by` varchar(50) NOT NULL,
+  `s_status` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tb_check_repair`
+--
+
+INSERT INTO `tb_check_repair` (`ref_no`, `i_repair_item`, `s_remark`, `d_create`, `d_update`, `s_create_by`, `s_update_by`, `s_status`) VALUES
+('201712003', 1, 'fasdfadsf', '2017-12-25 01:46:32', '2017-12-25 01:46:32', 'admin', 'admin', 'A'),
+('201712003', 11, 'dsfaasfsadfsadfsadf', '2017-12-25 01:46:32', '2017-12-25 01:46:32', 'admin', 'admin', 'A'),
+('201712003', 20, 'dfsadf', '2017-12-25 01:46:32', '2017-12-25 01:46:32', 'admin', 'admin', 'A'),
+('201712003', 26, 'fasdfs', '2017-12-25 01:46:32', '2017-12-25 01:46:32', 'admin', 'admin', 'A');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_check_repair_other`
+--
+
+CREATE TABLE `tb_check_repair_other` (
+  `ref_no` varchar(50) NOT NULL,
+  `s_txt_1` text NOT NULL,
+  `s_txt_2` text NOT NULL,
+  `s_txt_3` text NOT NULL,
+  `s_txt_4` text NOT NULL,
+  `s_txt_5` text NOT NULL,
+  `s_txt_6` text NOT NULL,
+  `s_txt_7` text NOT NULL,
+  `s_txt_8` text NOT NULL,
+  `s_txt_9` text NOT NULL,
+  `s_txt_10` text NOT NULL,
+  `s_txt_11` text NOT NULL,
+  `s_txt_12` text NOT NULL,
+  `s_txt_13` text NOT NULL,
+  `s_flg_check1` text NOT NULL,
+  `s_flg_check2` text NOT NULL,
+  `s_flg_check3` text NOT NULL,
+  `s_flg_check4` text NOT NULL,
+  `s_flg_check5` text NOT NULL,
+  `s_flg_check6` text NOT NULL,
+  `s_flg_check7` text NOT NULL,
+  `s_flg_check8` text NOT NULL,
+  `s_flg_check9` text NOT NULL,
+  `s_flg_check10` text NOT NULL,
+  `s_flg_check11` text NOT NULL,
+  `s_flg_check12` text NOT NULL,
+  `s_flg_check13` text NOT NULL,
+  `i_repair_subitem1` int(11) NOT NULL,
+  `i_repair_subitem2` int(11) NOT NULL,
+  `i_repair_subitem3` int(11) NOT NULL,
+  `i_repair_subitem4` int(11) NOT NULL,
+  `i_repair_subitem5` int(11) NOT NULL,
+  `i_repair_subitem6` int(11) NOT NULL,
+  `i_repair_subitem7` int(11) NOT NULL,
+  `i_repair_subitem8` int(11) NOT NULL,
+  `i_repair_subitem9` int(11) NOT NULL,
+  `i_repair_subitem10` int(11) NOT NULL,
+  `i_repair_subitem11` int(11) NOT NULL,
+  `i_repair_subitem12` int(11) NOT NULL,
+  `i_repair_subitem13` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tb_claim_image`
 --
 
@@ -1242,23 +1318,6 @@ CREATE TABLE `tb_claim_image` (
   `s_update_by` varchar(50) NOT NULL,
   `s_status` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `tb_claim_image`
---
-
-INSERT INTO `tb_claim_image` (`i_cimage`, `s_ref_image`, `s_detail`, `s_flg_width`, `s_image`, `d_create`, `d_update`, `s_create_by`, `s_update_by`, `s_status`) VALUES
-(1, '20171120160500', 'ภาพมุมกว้าง 1', 'Y', 's1.jpg', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A'),
-(2, '20171120160500', 'ภาพมุมกว้าง 2', 'Y', 's2.jpg', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A'),
-(3, '20171120160500', 'แผลเคลมจุดที่ 1', 'N', 's3.jpg', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A'),
-(30, '20171211125345', '123', 'Y', 'pay0.png', '2017-12-11 12:53:45', '2017-12-11 12:53:45', 'user', 'user', 'A'),
-(31, '20171211125345', '321', 'Y', 'pay1.png', '2017-12-11 12:53:45', '2017-12-11 12:53:45', 'user', 'user', 'A'),
-(32, '20171211151053', '123', 'Y', 'pay0.png', '2017-12-11 15:10:53', '2017-12-11 15:10:53', 'user', 'user', 'A'),
-(33, '20171211151053', '123', 'Y', 'pay1.png', '2017-12-11 15:10:53', '2017-12-11 15:10:53', 'user', 'user', 'A'),
-(34, '20171211151309', '123', 'Y', 'pay0.png', '2017-12-11 15:13:09', '2017-12-11 15:13:09', 'user', 'user', 'A'),
-(35, '20171211151309', '123', 'Y', 'pay1.png', '2017-12-11 15:13:09', '2017-12-11 15:13:09', 'user', 'user', 'A'),
-(36, '20171214143955', 'Wide', 'Y', 'pay0.jpg', '2017-12-14 14:39:55', '2017-12-14 14:39:55', 'user', 'user', 'A'),
-(37, '20171214143955', 'wide', 'Y', 'pay1.jpg', '2017-12-14 14:39:55', '2017-12-14 14:39:55', 'user', 'user', 'A');
 
 -- --------------------------------------------------------
 
@@ -1337,6 +1396,7 @@ CREATE TABLE `tb_customer_car` (
   `s_car_code` varchar(50) NOT NULL COMMENT 'รหัสอ้างอิงข้อมูลรุ่นรถ',
   `s_license` varchar(50) NOT NULL COMMENT 'ทะเบียนรถ',
   `d_ins_exp` date NOT NULL COMMENT 'วันที่ กธ หมดอายุ',
+  `i_ins_type` int(5) NOT NULL,
   `s_type_capital` varchar(100) NOT NULL COMMENT 'ประเภททุน',
   `s_pay_type` varchar(10) NOT NULL COMMENT 'ประเภทการชำระเงิน',
   `i_ins_comp` int(10) NOT NULL COMMENT 'รหัสบริษัทประกัน',
@@ -1354,10 +1414,10 @@ CREATE TABLE `tb_customer_car` (
 -- Dumping data for table `tb_customer_car`
 --
 
-INSERT INTO `tb_customer_car` (`i_cust_car`, `i_customer`, `ref_no`, `s_car_code`, `s_license`, `d_ins_exp`, `s_type_capital`, `s_pay_type`, `i_ins_comp`, `i_dmg`, `d_inbound`, `d_outbound_confirm`, `d_create`, `d_update`, `s_create_by`, `s_update_by`, `s_status`) VALUES
-(9, 5, '201712001', 'HO15CIVIC18', 'ธน5548', '2017-12-22', 'เงิน', 'INS', 2, 1, '2017-12-21', '2017-12-22', '2017-12-20 16:57:13', '2017-12-20 19:02:45', 'admin', 'admin', 'R1'),
-(10, 4, '201712002', 'HO18CIVIC15', 'กจ9989', '2017-12-20', 'เงิน', 'A', 9, 1, '2017-12-20', '2017-12-20', '2017-12-20 17:00:16', '2017-12-20 19:02:21', 'admin', 'admin', 'R1'),
-(11, 5, '201712003', 'HO16CI12', 'กจ5862', '2017-12-29', 'เงิน', 'AINS', 2, 4, '2017-12-27', '2017-12-28', '2017-12-20 17:12:42', '2017-12-20 19:03:00', 'admin', 'admin', 'R1');
+INSERT INTO `tb_customer_car` (`i_cust_car`, `i_customer`, `ref_no`, `s_car_code`, `s_license`, `d_ins_exp`, `i_ins_type`, `s_type_capital`, `s_pay_type`, `i_ins_comp`, `i_dmg`, `d_inbound`, `d_outbound_confirm`, `d_create`, `d_update`, `s_create_by`, `s_update_by`, `s_status`) VALUES
+(9, 5, '201712001', 'HO15CIVIC18', 'ธน5548', '2017-12-22', 1, '800000', 'INS', 5, 1, '2017-12-21', '2017-12-22', '2017-12-20 16:57:13', '2017-12-22 00:01:27', 'admin', 'admin', 'R1'),
+(10, 4, '201712002', 'HO18CIVIC15', 'กจ9989', '2017-12-20', 1, '600000', 'A', 9, 1, '2017-12-20', '2017-12-20', '2017-12-20 17:00:16', '2017-12-22 00:01:11', 'admin', 'admin', 'R1'),
+(11, 5, '201712003', 'HO16CI12', 'กจ5862', '2017-12-29', 2, '500000', 'AINS', 2, 4, '2017-12-27', '2017-12-28', '2017-12-20 17:12:42', '2017-12-22 00:00:56', 'admin', 'admin', 'R1');
 
 -- --------------------------------------------------------
 
@@ -10486,18 +10546,6 @@ CREATE TABLE `tb_insurance_claim` (
   `s_status` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `tb_insurance_claim`
---
-
-INSERT INTO `tb_insurance_claim` (`i_claim`, `s_firstname`, `s_lastname`, `s_owner`, `s_related`, `s_phone_1`, `s_phone_2`, `s_email`, `s_line`, `s_copy_claim`, `s_claim_number`, `s_copy_driver`, `s_copy_insurance`, `s_copy_car`, `s_ref_image`, `s_copy_pay`, `d_create`, `d_update`, `s_create_by`, `s_update_by`, `s_status`) VALUES
-(5, 'ณัฐดนัย', 'มั่นคง', '2', 'test', '0888888888', '0999999999', 'a@a.com', 'aaaa', 's1.jpg', '888990', 's2.jpg', 's3.pdf', 's4.jpg', '20171120160500', 's5.jpg', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'A'),
-(20, '1', '1', '1', '1', '1111111111', '', 'natdanaimon@gmail.com', '', '', '', 'driver20.png', '', 'car20.png', '20171211125345', 'pay20.png', '2017-12-11 12:53:45', '2017-12-11 12:53:45', 'user', 'user', 'A'),
-(21, '', '', '', '', '', '', '', '', '', '', '', '', '', '20171211130126', '', '2017-12-11 13:01:26', '2017-12-11 13:01:26', 'user', 'user', 'A'),
-(22, 'ทดสอบ', 'ทดสอบ', '1', '', '0888881111', '', 'nat@gmail.com', '', 'claim22.png', '', 'driver22.png', 'insurance22.png', 'car22.png', '20171211151053', 'pay22.png', '2017-12-11 15:10:53', '2017-12-11 15:10:53', 'user', 'user', 'A'),
-(23, 'ณัฐดนัย', 'มั่นคง', '1', '', '0888881111', '', 'natdanaimon@gmail.com', '', 'claim23.png', '', 'driver23.png', 'insurance23.png', 'car23.png', '20171211151309', 'pay23.png', '2017-12-11 15:13:09', '2017-12-11 15:13:09', 'user', 'user', 'A'),
-(24, 'ping', 'jatus', '2', 'น้องชาย', '0899822449', '', 'po-meng@hotmail.com', 'hungping-im', 'claim24.jpg', '', 'driver24.jpg', 'insurance24.jpg', 'car24.jpg', '20171214143955', 'pay24.jpg', '2017-12-14 14:39:55', '2017-12-14 14:39:55', 'user', 'user', 'A');
-
 -- --------------------------------------------------------
 
 --
@@ -10625,7 +10673,11 @@ INSERT INTO `tb_insurance_trans` (`i_ins_trans`, `i_insurance`, `s_firstname`, `
 (24, 6, 'safd', 'sdaf', '1231232131', 'natdanaimon@gmail.com', '123', '123', '2017-12-12', '24citizen.png', '24car.png', 'Y', '2017-12-11 15:17:35', '2017-12-11 15:17:35', 'user', 'user', 'A'),
 (25, 6, 'test ', 'test111', '0987654321', 'numkangg12@gmail.com', 'aaa', 'test', '2017-12-31', '25citizen.jpg', '25car.jpg', 'Y', '2017-12-11 20:17:18', '2017-12-11 20:17:18', 'user', 'user', 'A'),
 (26, 7, 'Ping', 'Jatus', '0899822449', 'po-meng@hotmail.com', '232323', '2323232', '2017-12-16', '26citizen.jpg', '26car.jpg', 'Y', '2017-12-14 14:35:13', '2017-12-14 14:35:13', 'user', 'user', 'A'),
-(27, 7, 'ping', 'test', '0899822119', 'pp.jatus@gmail.com', 'ddd', 'ddd', '2017-12-15', '27citizen.jpg', '27car.jpg', 'Y', '2017-12-14 14:36:12', '2017-12-14 14:36:12', 'user', 'user', 'A');
+(27, 7, 'ping', 'test', '0899822119', 'pp.jatus@gmail.com', 'ddd', 'ddd', '2017-12-15', '27citizen.jpg', '27car.jpg', 'Y', '2017-12-14 14:36:12', '2017-12-14 14:36:12', 'user', 'user', 'A'),
+(28, 7, 'กร', 'กร', '0899999999', 'korn@hotmail.con', 'กร', 'พาไปโรมัน', '2018-12-22', '28citizen.png', '', 'N', '2017-12-22 20:31:06', '2017-12-22 20:31:06', 'user', 'user', 'A'),
+(29, 7, 'กร', 'กร', '0899999999', 'kornatwork@hotmail.con', 'กร', 'พาไปโรมัน', '2018-12-22', '29citizen.png', '', 'N', '2017-12-22 20:31:29', '2017-12-22 20:31:29', 'user', 'user', 'A'),
+(30, 6, 'K', 'U', '0999999999', 'kornatwork@gmail.com', 'Y', 'Yai', '2018-12-22', '', '', 'N', '2017-12-22 20:35:09', '2017-12-22 20:35:09', 'user', 'user', 'A'),
+(31, 7, 'pudit', 'jatusit', '0899822449', 'po-meng@hotmail.com', 'ghgg', 'hhh', '2017-12-23', '31citizen.jpeg', '31car.jpeg', 'N', '2017-12-22 20:35:11', '2017-12-22 20:35:11', 'user', 'user', 'A');
 
 -- --------------------------------------------------------
 
@@ -10731,7 +10783,7 @@ CREATE TABLE `tb_mail_config` (
 --
 
 INSERT INTO `tb_mail_config` (`s_insurance`, `s_claimonline`, `d_create`, `d_update`, `s_create_by`, `s_update_by`) VALUES
-('natdanaimon@gmail.com', 'natdanaimon@gmail.com', '0000-00-00 00:00:00', '2017-12-11 13:00:34', 'ADM', 'admin');
+('rungsap.haugarage@gmail.com', 'rungsap.haugarage@gmail.com', '0000-00-00 00:00:00', '2017-12-25 01:01:04', 'ADM', 'admin');
 
 -- --------------------------------------------------------
 
@@ -11040,6 +11092,85 @@ INSERT INTO `tb_provinces` (`i_province`, `s_code`, `s_name_th`, `s_name_en`, `i
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tb_repair_item`
+--
+
+CREATE TABLE `tb_repair_item` (
+  `i_repair_item` int(11) NOT NULL,
+  `s_repair_name` varchar(100) NOT NULL,
+  `d_create` datetime NOT NULL,
+  `d_update` datetime NOT NULL,
+  `s_create_by` varchar(100) NOT NULL,
+  `s_update_by` varchar(100) NOT NULL,
+  `s_status` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tb_repair_item`
+--
+
+INSERT INTO `tb_repair_item` (`i_repair_item`, `s_repair_name`, `d_create`, `d_update`, `s_create_by`, `s_update_by`, `s_status`) VALUES
+(1, 'กันชนหน้า', '2017-12-24 00:00:00', '2017-12-24 00:00:00', 'ADM', 'ADM', 'A'),
+(2, 'กันชนหลัง', '2017-12-24 00:00:00', '2017-12-24 00:00:00', 'ADM', 'ADM', 'A'),
+(3, 'กันชนเสริมหน้า', '2017-12-24 00:00:00', '2017-12-24 00:00:00', 'ADM', 'ADM', 'A'),
+(4, 'กันชนเสริมหลัง', '2017-12-24 00:00:00', '2017-12-24 00:00:00', 'ADM', 'ADM', 'A'),
+(5, 'ฝากระโปรงหน้า', '2017-12-24 00:00:00', '2017-12-24 00:00:00', 'ADM', 'ADM', 'A'),
+(6, 'ฝาประโปรงหลัง', '2017-12-24 00:00:00', '2017-12-24 00:00:00', 'ADM', 'ADM', 'A'),
+(7, 'ฝาปิดท้าย', '2017-12-24 00:00:00', '2017-12-24 00:00:00', 'ADM', 'ADM', 'A'),
+(8, 'บังโคลนหน้า ซ้าย', '2017-12-24 00:00:00', '2017-12-24 00:00:00', 'ADM', 'ADM', 'A'),
+(9, 'บังโคลนหน้า ขวา', '2017-12-24 00:00:00', '2017-12-24 00:00:00', 'ADM', 'ADM', 'A'),
+(10, 'บังโคลนหลัง ซ้าย', '2017-12-24 00:00:00', '2017-12-24 00:00:00', 'ADM', 'ADM', 'A'),
+(11, 'บังโคลนหลัง ขวา', '2017-12-24 00:00:00', '2017-12-24 00:00:00', 'ADM', 'ADM', 'A'),
+(12, 'ประตูหน้า ซ้าย', '2017-12-24 00:00:00', '2017-12-24 00:00:00', 'ADM', 'ADM', 'A'),
+(13, 'ประตูหน้า ขวา', '2017-12-24 00:00:00', '2017-12-24 00:00:00', 'ADM', 'ADM', 'A'),
+(14, 'ประตูหลัง ซ้าย', '2017-12-24 00:00:00', '2017-12-24 00:00:00', 'ADM', 'ADM', 'A'),
+(15, 'ประตูหลัง ขวา', '2017-12-24 00:00:00', '2017-12-24 00:00:00', 'ADM', 'ADM', 'A'),
+(16, 'แคป ซ้าย', '2017-12-24 00:00:00', '2017-12-24 00:00:00', 'ADM', 'ADM', 'A'),
+(17, 'แคป ขวา', '2017-12-24 00:00:00', '2017-12-24 00:00:00', 'ADM', 'ADM', 'A'),
+(18, 'กระบะ ซ้าย', '2017-12-24 00:00:00', '2017-12-24 00:00:00', 'ADM', 'ADM', 'A'),
+(19, 'กระบะ ขวา', '2017-12-24 00:00:00', '2017-12-24 00:00:00', 'ADM', 'ADM', 'A'),
+(20, 'กระจกมองข้าง ซ้าย', '2017-12-24 00:00:00', '2017-12-24 00:00:00', 'ADM', 'ADM', 'A'),
+(21, 'กระจกมองข้าง ขวา', '2017-12-24 00:00:00', '2017-12-24 00:00:00', 'ADM', 'ADM', 'A'),
+(22, 'หลังคา', '2017-12-24 00:00:00', '2017-12-24 00:00:00', 'ADM', 'ADM', 'A'),
+(23, 'ไฟใหญ่หน้า ซ้าย', '2017-12-24 00:00:00', '2017-12-24 00:00:00', 'ADM', 'ADM', 'A'),
+(24, 'ไฟใหญ่หน้า ขวา', '2017-12-24 00:00:00', '2017-12-24 00:00:00', 'ADM', 'ADM', 'A'),
+(25, 'ไฟเลี้ยวหน้า ซ้าย', '2017-12-24 00:00:00', '2017-12-24 00:00:00', 'ADM', 'ADM', 'A'),
+(26, 'ไฟเลี้ยวหน้า ขวา', '2017-12-24 00:00:00', '2017-12-24 00:00:00', 'ADM', 'ADM', 'A'),
+(27, 'ไฟท้าย ซ้าย', '2017-12-24 00:00:00', '2017-12-24 00:00:00', 'ADM', 'ADM', 'A'),
+(28, 'ไฟท้าย ขวา', '2017-12-24 00:00:00', '2017-12-24 00:00:00', 'ADM', 'ADM', 'A'),
+(29, 'กระจังหน้า', '2017-12-24 00:00:00', '2017-12-24 00:00:00', 'ADM', 'ADM', 'A'),
+(30, 'กระจกบังลมหน้า', '2017-12-24 00:00:00', '2017-12-24 00:00:00', 'ADM', 'ADM', 'A'),
+(31, 'กระจกบังลมหลัง', '2017-12-24 00:00:00', '2017-12-24 00:00:00', 'ADM', 'ADM', 'A');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_repair_subitem`
+--
+
+CREATE TABLE `tb_repair_subitem` (
+  `i_repair_subitem` int(11) NOT NULL,
+  `s_subitem_name` varchar(100) NOT NULL,
+  `d_create` datetime NOT NULL,
+  `d_update` datetime NOT NULL,
+  `s_create_by` varchar(100) NOT NULL,
+  `s_update_by` varchar(100) NOT NULL,
+  `s_status` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tb_repair_subitem`
+--
+
+INSERT INTO `tb_repair_subitem` (`i_repair_subitem`, `s_subitem_name`, `d_create`, `d_update`, `s_create_by`, `s_update_by`, `s_status`) VALUES
+(1, 'ชิ้นส่วน (กระจกมองข้าง, บันไดเสริม...)', '2017-12-24 00:00:00', '2017-12-24 00:00:00', 'ADM', 'ADM', 'A'),
+(2, 'เล็ก (กันชน, บังโคลน, ประตู...)', '2017-12-24 00:00:00', '2017-12-24 00:00:00', 'ADM', 'ADM', 'A'),
+(3, 'กลาง (ฝากระโปรง, กระบะ…)', '2017-12-24 00:00:00', '2017-12-24 00:00:00', 'ADM', 'ADM', 'A'),
+(4, 'ใหญ่ (หลังคา…)', '2017-12-24 00:00:00', '2017-12-24 00:00:00', 'ADM', 'ADM', 'A');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tb_slide`
 --
 
@@ -11231,6 +11362,18 @@ ALTER TABLE `tb_car_year`
   ADD PRIMARY KEY (`i_year`);
 
 --
+-- Indexes for table `tb_check_repair`
+--
+ALTER TABLE `tb_check_repair`
+  ADD PRIMARY KEY (`ref_no`,`i_repair_item`);
+
+--
+-- Indexes for table `tb_check_repair_other`
+--
+ALTER TABLE `tb_check_repair_other`
+  ADD PRIMARY KEY (`ref_no`);
+
+--
 -- Indexes for table `tb_claim_image`
 --
 ALTER TABLE `tb_claim_image`
@@ -11391,6 +11534,18 @@ ALTER TABLE `tb_promotion`
   ADD KEY `index_tb_promotion` (`i_vote`,`i_view`,`s_status`);
 
 --
+-- Indexes for table `tb_repair_item`
+--
+ALTER TABLE `tb_repair_item`
+  ADD PRIMARY KEY (`i_repair_item`);
+
+--
+-- Indexes for table `tb_repair_subitem`
+--
+ALTER TABLE `tb_repair_subitem`
+  ADD PRIMARY KEY (`i_repair_subitem`);
+
+--
 -- Indexes for table `tb_slide`
 --
 ALTER TABLE `tb_slide`
@@ -11459,7 +11614,7 @@ ALTER TABLE `tb_car_sub`
 -- AUTO_INCREMENT for table `tb_claim_image`
 --
 ALTER TABLE `tb_claim_image`
-  MODIFY `i_cimage` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `i_cimage` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 --
 -- AUTO_INCREMENT for table `tb_compulsory`
 --
@@ -11499,7 +11654,7 @@ ALTER TABLE `tb_insurance`
 -- AUTO_INCREMENT for table `tb_insurance_claim`
 --
 ALTER TABLE `tb_insurance_claim`
-  MODIFY `i_claim` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `i_claim` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT for table `tb_insurance_comp`
 --
@@ -11519,7 +11674,7 @@ ALTER TABLE `tb_insurance_repair_type`
 -- AUTO_INCREMENT for table `tb_insurance_trans`
 --
 ALTER TABLE `tb_insurance_trans`
-  MODIFY `i_ins_trans` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `i_ins_trans` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 --
 -- AUTO_INCREMENT for table `tb_insurance_type`
 --
@@ -11570,6 +11725,16 @@ ALTER TABLE `tb_position`
 --
 ALTER TABLE `tb_promotion`
   MODIFY `i_promotion` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `tb_repair_item`
+--
+ALTER TABLE `tb_repair_item`
+  MODIFY `i_repair_item` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+--
+-- AUTO_INCREMENT for table `tb_repair_subitem`
+--
+ALTER TABLE `tb_repair_subitem`
+  MODIFY `i_repair_subitem` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `tb_slide`
 --

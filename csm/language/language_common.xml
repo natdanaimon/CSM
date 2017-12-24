@@ -430,6 +430,23 @@
         <th>หรือ </th>
         <en>Or </en>
     </detail>	
+    <detail>
+        <variable>other</variable>
+        <th>อื่นๆ</th>
+        <en>Other</en>
+    </detail>	
+    
+    
+    <detail>
+        <variable>lb_repair_list</variable>
+        <th>รายการซ่อม</th>
+        <en>List Repair</en>
+    </detail>
+    <detail>
+        <variable>lb_repair_remark</variable>
+        <th>รายละเอียดเพิ่มเติม</th>
+        <en>Remark</en>
+    </detail>
     <!--  Other -->
     
     

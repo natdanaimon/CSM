@@ -33,6 +33,12 @@ switch ($info[func]) {
     case "dataTableKey":
         echo $controller->dataTableKey($info[id]);
         break;
+    case "getCheckBoxMain":
+        echo $controller->getCheckBoxMain($info[ref_no]);
+        break;
+    case "getCheckBoxOther":
+        echo $controller->getCheckBoxOther($info[ref_no]);
+        break;
 }
 
 class checkController {
@@ -79,6 +85,26 @@ class checkController {
                 $_dataTable[$key]['i_ins_comp'] = $service->getInsurance($_dataTable[$key]['i_ins_comp']);
                 $_dataTable[$key]['i_dmg'] = $service->getDamage($_dataTable[$key]['i_dmg']);
             }
+            return json_encode($_dataTable);
+        } else {
+            return NULL;
+        }
+    }
+
+    public function getCheckBoxMain($ref_no) {
+        $service = new checkService();
+        $_dataTable = $service->getCheckBoxMain($ref_no);
+        if ($_dataTable != NULL) {
+            return json_encode($_dataTable);
+        } else {
+            return NULL;
+        }
+    }
+
+    public function getCheckBoxOther($ref_no) {
+        $service = new checkService();
+        $_dataTable = $service->getCheckBoxOther($ref_no);
+        if ($_dataTable != NULL) {
             return json_encode($_dataTable);
         } else {
             return NULL;
@@ -150,20 +176,18 @@ class checkController {
     }
 
     public function edit($info) {
-        if ($this->isValid($info)) {
-            $db = new ConnectDB();
-            $db->conn();
-            $service = new checkService();
-
-
-            if ($service->edit($db, $info)) {
-                $db->commit();
-                echo $_SESSION['cd_0000'];
-            } else {
-                $db->rollback();
-                echo $_SESSION['cd_2001'];
-            }
+//        if ($this->isValid($info)) {
+        $db = new ConnectDB();
+        $db->conn();
+        $service = new checkService();
+        if ($service->edit($db, $info)) {
+            $db->commit();
+            echo $_SESSION['cd_0000'];
+        } else {
+            $db->rollback();
+            echo $_SESSION['cd_2001'];
         }
+//        }
     }
 
     public function isValid($info) {
@@ -176,12 +200,11 @@ class checkController {
             $return2099 = eregi_replace("field", $_SESSION['lb_re_type_capital'], $return2099);
             echo $return2099;
         } else if (!is_numeric($info[s_type_capital])) {
-                $return2003 = eregi_replace("field", $_SESSION['lb_re_type_capital'], $return2003);
-                echo $return2003;
+            $return2003 = eregi_replace("field", $_SESSION['lb_re_type_capital'], $return2003);
+            echo $return2003;
         } else if ($util->isEmpty($info[s_license])) {
             $return2099 = eregi_replace("field", $_SESSION['lb_re_carlicense'], $return2099);
             echo $return2099;
-
         } else if ($util->isEmpty($info[i_customer])) {
             $return2099 = eregi_replace("field", $_SESSION['lb_re_custinfo'], $return2099);
             echo $return2099;

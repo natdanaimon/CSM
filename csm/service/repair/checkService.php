@@ -50,6 +50,36 @@ class checkService {
         return $_data;
     }
 
+    function getCheckBoxMain($ref_no) {
+        $db = new ConnectDB();
+        $strSql = " select * from tb_check_repair where ref_no = '$ref_no' ";
+        $_data = $db->Search_Data_FormatJson($strSql);
+        $db->close_conn();
+        return $_data;
+    }
+
+    function getCheckBoxOther($ref_no) {
+        $db = new ConnectDB();
+        $strSql = " select * from tb_check_repair_other where ref_no = '$ref_no' ";
+        $_data = $db->Search_Data_FormatJson($strSql);
+        $db->close_conn();
+        return $_data;
+    }
+
+    function checkKey($db, $info) {
+        $db = new ConnectDB();
+        $rtn = FALSE;
+        $strSql = " select count(*) cnt from tb_check_repair where ref_no = '$info[ref_no]'";
+        $_data = $db->Search_Data_FormatJson($strSql);
+        $db->close_conn();
+        if ($_data != NULL) {
+            if ($_data[0]['cnt'] == 0) {
+                $rtn = TRUE;
+            }
+        }
+        return $rtn;
+    }
+
     function getYear($seq) {
         $db = new ConnectDB();
         $strSql = " select * from tb_car_map where s_car_code = '" . $seq . "'";
@@ -216,7 +246,166 @@ class checkService {
     }
 
     function edit($db, $info) {
-        $util = new Utility();
+        $ref_no = $info[ref_no];
+        $strSqlDelete = "DELETE FROM tb_check_repair where ref_no = '$info[ref_no]'";
+        $strSqlDelete2 = "DELETE FROM tb_check_repair_other where ref_no = '$info[ref_no]'";
+        $arr = array();
+        array_push($arr, array("query" => "$strSqlDelete"));
+        array_push($arr, array("query" => "$strSqlDelete2"));
+
+        foreach ($info as $value) {
+            $key = key($info);
+            if ("i_repair_item_" == substr($key, 0, 14) && $info[$key] != '') {
+                $keyIndex = substr($key, 14);
+                $keyMain = substr($key, 1, strlen($key));
+                $i_repair = $keyIndex;
+                $remark = $info['s' . $keyMain];
+                $sql = $this->createStatement($db, $ref_no, $i_repair, $remark);
+                array_push($arr, array("query" => "$sql"));
+            }
+            next($info);
+        }
+        array_push($arr, array("query" => $this->sqlUpdateMain($db, $info)));
+
+
+        $sql = $this->createStatementSub($db, $info);
+        array_push($arr, array("query" => "$sql"));
+
+
+
+
+
+
+        $reslut = $db->insert_for_upadte($arr);
+        return $reslut;
+    }
+
+    function createStatement($db, $ref, $i_repair, $remark) {
+
+
+        $strSql = "";
+        $strSql .= "INSERT ";
+        $strSql .= "INTO ";
+        $strSql .= "  tb_check_repair ( ";
+        $strSql .= "    ref_no, ";
+        $strSql .= "    i_repair_item, ";
+        $strSql .= "    s_remark, ";
+
+
+        $strSql .= "    d_create, ";
+        $strSql .= "    d_update, ";
+        $strSql .= "    s_create_by, ";
+        $strSql .= "    s_update_by, ";
+        $strSql .= "    s_status ";
+        $strSql .= "  ) ";
+        $strSql .= "VALUES( ";
+
+        $strSql .= "  '$ref', ";
+        $strSql .= "  $i_repair, ";
+        $strSql .= "  '$remark', ";
+
+
+        $strSql .= "  " . $db->Sysdate(TRUE) . ", ";
+        $strSql .= " " . $db->Sysdate(TRUE) . ", ";
+        $strSql .= "  '$_SESSION[username]', ";
+        $strSql .= "  '$_SESSION[username]', ";
+        $strSql .= "  'A' ";
+        $strSql .= ") ";
+
+        return $strSql;
+    }
+
+    function createStatementSub($db, $info) {
+        $strSql = "";
+        $strSql .= "INSERT ";
+        $strSql .= "INTO ";
+        $strSql .= "  tb_check_repair_other ( ";
+        $strSql .= "    ref_no, ";
+        $strSql .= "    s_txt_1, ";
+        $strSql .= "    s_txt_2, ";
+        $strSql .= "    s_txt_3, ";
+        $strSql .= "    s_txt_4, ";
+        $strSql .= "    s_txt_5, ";
+        $strSql .= "    s_txt_6, ";
+        $strSql .= "    s_txt_7, ";
+        $strSql .= "    s_txt_8, ";
+        $strSql .= "    s_txt_9, ";
+        $strSql .= "    s_txt_10, ";
+        $strSql .= "    s_txt_11, ";
+        $strSql .= "    s_txt_12, ";
+        $strSql .= "    s_txt_13, ";
+        $strSql .= "    i_repair_subitem1, ";
+        $strSql .= "    i_repair_subitem2, ";
+        $strSql .= "    i_repair_subitem3, ";
+        $strSql .= "    i_repair_subitem4, ";
+        $strSql .= "    i_repair_subitem5, ";
+        $strSql .= "    i_repair_subitem6, ";
+        $strSql .= "    i_repair_subitem7, ";
+        $strSql .= "    i_repair_subitem8, ";
+        $strSql .= "    i_repair_subitem9, ";
+        $strSql .= "    i_repair_subitem10, ";
+        $strSql .= "    i_repair_subitem11, ";
+        $strSql .= "    i_repair_subitem12, ";
+        $strSql .= "    i_repair_subitem13 ";
+        $strSql .= "  ) ";
+        $strSql .= "VALUES( ";
+        $strSql .= "  '$info[ref_no]', ";
+        $strSql .= "  '" . $this->checkSQLSelectedText($info, 1) . "', ";
+        $strSql .= "  '" . $this->checkSQLSelectedText($info, 2) . "', ";
+        $strSql .= "  '" . $this->checkSQLSelectedText($info, 3) . "', ";
+        $strSql .= "  '" . $this->checkSQLSelectedText($info, 4) . "', ";
+        $strSql .= "  '" . $this->checkSQLSelectedText($info, 5) . "', ";
+        $strSql .= "  '" . $this->checkSQLSelectedText($info, 6) . "', ";
+        $strSql .= "  '" . $this->checkSQLSelectedText($info, 7) . "', ";
+        $strSql .= "  '" . $this->checkSQLSelectedText($info, 8) . "', ";
+        $strSql .= "  '" . $this->checkSQLSelectedText($info, 9) . "', ";
+        $strSql .= "  '" . $this->checkSQLSelectedText($info, 10) . "', ";
+        $strSql .= "  '" . $this->checkSQLSelectedText($info, 11) . "', ";
+        $strSql .= "  '" . $this->checkSQLSelectedText($info, 12) . "', ";
+        $strSql .= "  '" . $this->checkSQLSelectedText($info, 13) . "', ";
+
+        $strSql .= "  '" . $this->checkSQLSelected($info, 1) . "', ";
+        $strSql .= "  '" . $this->checkSQLSelected($info, 2) . "', ";
+        $strSql .= "  '" . $this->checkSQLSelected($info, 3) . "', ";
+        $strSql .= "  '" . $this->checkSQLSelected($info, 4) . "', ";
+        $strSql .= "  '" . $this->checkSQLSelected($info, 5) . "', ";
+        $strSql .= "  '" . $this->checkSQLSelected($info, 6) . "', ";
+        $strSql .= "  '" . $this->checkSQLSelected($info, 7) . "', ";
+        $strSql .= "  '" . $this->checkSQLSelected($info, 8) . "', ";
+        $strSql .= "  '" . $this->checkSQLSelected($info, 9) . "', ";
+        $strSql .= "  '" . $this->checkSQLSelected($info, 10) . "', ";
+        $strSql .= "  '" . $this->checkSQLSelected($info, 11) . "', ";
+        $strSql .= "  '" . $this->checkSQLSelected($info, 12) . "', ";
+        $strSql .= "  '" . $this->checkSQLSelected($info, 13) . "' ";
+        $strSql .= ") ";
+
+        return $strSql;
+    }
+
+    function checkSQLSelected($info, $index) {
+        if ($info['i_repair_subitem_' . $index] == '' && $info['i_repair_subitem_' . $index] == '0') {
+            return '';
+        } else {
+            return $info['i_repair_subitem_' . $index];
+        }
+    }
+
+    function checkSQLSelectedText($info, $index) {
+        $tmp = '';
+        if ($info['i_repair_subitem_' . $index] == '' && $info['i_repair_subitem_' . $index] == '0') {
+            $tmp = '';
+        } else {
+            $tmp = $info['i_repair_subitem_' . $index];
+        }
+
+        if ($tmp != '') {
+            return $info['s_repair_subitem_' . $index];
+        } else {
+            return '';
+        }
+    }
+
+    function sqlUpdateMain($db, $info) {
         $strSql = "";
         $strSql .= "update tb_customer_car ";
         $strSql .= "set  ";
@@ -228,7 +417,7 @@ class checkService {
 //        $strSql .= "s_type_capital = '$info[s_type_capital]', ";
 //        $strSql .= "s_pay_type = '$info[s_pay_type]', ";
 //        $strSql .= "i_ins_comp = $info[i_ins_comp], ";
-////        $strSql .= "i_dmg = $info[i_dmg], ";
+        $strSql .= "i_dmg = $info[i_dmg], ";
 //        $strSql .= "d_inbound = '" . $util->DateSQL($info[d_inbound]) . "', ";
 //        $strSql .= "d_outbound_confirm = '" . $util->DateSQL($info[d_outbound_confirm]) . "', ";
 
@@ -236,11 +425,8 @@ class checkService {
         $strSql .= "s_update_by = '$_SESSION[username]', ";
         $strSql .= "s_status = '$info[status]' ";
         $strSql .= "where i_cust_car = $info[id] ";
-        $arr = array(
-            array("query" => "$strSql")
-        );
-        $reslut = $db->insert_for_upadte($arr);
-        return $reslut;
+
+        return $strSql;
     }
 
     function getRunning($db) {
