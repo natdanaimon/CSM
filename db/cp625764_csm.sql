@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 25, 2017 at 01:48 AM
+-- Generation Time: Dec 25, 2017 at 03:33 AM
 -- Server version: 5.6.37
 -- PHP Version: 5.6.30
 
@@ -1285,19 +1285,19 @@ CREATE TABLE `tb_check_repair_other` (
   `s_flg_check11` text NOT NULL,
   `s_flg_check12` text NOT NULL,
   `s_flg_check13` text NOT NULL,
-  `i_repair_subitem1` int(11) NOT NULL,
-  `i_repair_subitem2` int(11) NOT NULL,
-  `i_repair_subitem3` int(11) NOT NULL,
-  `i_repair_subitem4` int(11) NOT NULL,
-  `i_repair_subitem5` int(11) NOT NULL,
-  `i_repair_subitem6` int(11) NOT NULL,
-  `i_repair_subitem7` int(11) NOT NULL,
-  `i_repair_subitem8` int(11) NOT NULL,
-  `i_repair_subitem9` int(11) NOT NULL,
-  `i_repair_subitem10` int(11) NOT NULL,
-  `i_repair_subitem11` int(11) NOT NULL,
-  `i_repair_subitem12` int(11) NOT NULL,
-  `i_repair_subitem13` int(11) NOT NULL
+  `i_repair_subitem1` varchar(11) NOT NULL,
+  `i_repair_subitem2` varchar(11) NOT NULL,
+  `i_repair_subitem3` varchar(11) NOT NULL,
+  `i_repair_subitem4` varchar(11) NOT NULL,
+  `i_repair_subitem5` varchar(11) NOT NULL,
+  `i_repair_subitem6` varchar(11) NOT NULL,
+  `i_repair_subitem7` varchar(11) NOT NULL,
+  `i_repair_subitem8` varchar(11) NOT NULL,
+  `i_repair_subitem9` varchar(11) NOT NULL,
+  `i_repair_subitem10` varchar(11) NOT NULL,
+  `i_repair_subitem11` varchar(11) NOT NULL,
+  `i_repair_subitem12` varchar(11) NOT NULL,
+  `i_repair_subitem13` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
