@@ -127,8 +127,8 @@ $disableElement = 'disabled="disable"';
                                         <div class="col-md-5">
 
                                         </div>
-                                        <div class="col-md-5"></div>
-                                        <div class="col-md-2">
+                                        <div class="col-md-4"></div>
+                                        <div class="col-md-3">
                                             <div class="form-group form-md-line-input has-success" >
                                                 <input type="text" class="form-control bold required" id="ref_no" name="ref_no" readonly="readonly" >
                                                 <label for="form_control_1"><?= $_SESSION[lb_re_refNo] ?> <span class="required"></span></label>          

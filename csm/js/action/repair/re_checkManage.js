@@ -51,7 +51,7 @@ function initialCheckBox() {
                     htmlOption += '<div class="row">';
                 }
 
-                htmlOption += '<div class="col-md-2 col-sm-12" style="padding-top: 10px;">';
+                htmlOption += '<div class="col-md-3 col-sm-12" style="padding-top: 10px;">';
                 htmlOption += '<span class=" md-checkbox has-success" >';
                 htmlOption += '  <input type="checkbox" id="i_repair_item_' + item.i_repair_item + '" name="i_repair_item_' + item.i_repair_item + '" class="md-check"';
                 htmlOption += '  value="' + item.i_repair_item + '" >';
@@ -72,8 +72,8 @@ function initialCheckBox() {
                 htmlOption += '</div>';
                 htmlOption += '</div>';
 
-                htmlOption += '<div class="col-md-1">';
-                htmlOption += '</div>';
+//                htmlOption += '<div class="col-md-1">';
+//                htmlOption += '</div>';
                 if (count == 0) {
                     htmlOption += "</div>";
                 }
