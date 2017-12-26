@@ -536,12 +536,12 @@ $disableElement = 'disabled="disable"';
                                                             <div class="col-md-4"></div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col-md-2"><b><?= $_SESSION[lb_repair_list] ?></b></div>
+                                                            <div class="col-md-3"><b><?= $_SESSION[lb_repair_list] ?></b></div>
                                                             <div class="col-md-3"><b><?= $_SESSION[lb_repair_remark] ?></b></div>
-                                                            <div class="col-md-1"></div>
-                                                            <div class="col-md-2"><b><?= $_SESSION[lb_repair_list] ?></b></div>
+                                                            <!--<div class="col-md-1"></div>-->
+                                                            <div class="col-md-3"><b><?= $_SESSION[lb_repair_list] ?></b></div>
                                                             <div class="col-md-3"><b><?= $_SESSION[lb_repair_remark] ?></b></div>
-                                                            <div class="col-md-1"></div>
+                                                            <!--<div class="col-md-1"></div>-->
                                                         </div>
                                                         <div id="div_checkbox_repair"></div>
                                                         <br/><br/> <br/><br/>
@@ -552,7 +552,6 @@ $disableElement = 'disabled="disable"';
                                                         </div>
                                                         <br/>
                                                         <div id="div_checkbox_repair_other"></div>
-                                                        
 
 
 
@@ -560,6 +559,10 @@ $disableElement = 'disabled="disable"';
 
 
 
+                                                        <br/>
+                                                        <!--<input type="file" accept="image/jpeg, image/png" multiple id="f1" />-->
+<!--                                                        <input type="file" accept="image/jpeg, image/png" multiple id="f2"/>
+                                                        <input type="file" accept="image/jpeg, image/png" multiple id="f3"/>-->
 
 
 
@@ -741,7 +744,9 @@ $disableElement = 'disabled="disable"';
         <script src="js/common/notify.js" type="text/javascript"></script>
         <link href="css/notify.css" rel="stylesheet" type="text/css" />
 
-
+<!--        <script src="js/common/app.js" type="text/javascript"></script>
+        <script src="js/common/resize.js" type="text/javascript"></script>-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/jquery.canvasjs.min.js" type="text/javascript"></script>
         <!-- BEGIS SELECT 2 SCRIPTS -->
         <link href="css/select2.min.css" rel="stylesheet" />
         <script src="js/common/select2.min.js"></script>
@@ -752,6 +757,7 @@ $disableElement = 'disabled="disable"';
         <script src="js/action/repair/re_checkManage.js" type="text/javascript"></script>
         <script src="js/action/search/popup.js" type="text/javascript"></script>
         <script src="js/common/closeStep.js" type="text/javascript"></script>
+
 
 
 

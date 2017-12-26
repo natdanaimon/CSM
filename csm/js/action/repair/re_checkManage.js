@@ -51,7 +51,7 @@ function initialCheckBox() {
                     htmlOption += '<div class="row">';
                 }
 
-                htmlOption += '<div class="col-md-3 col-sm-12" style="padding-top: 10px;">';
+                htmlOption += '<div class="col-md-3 col-sm-12" style="padding-top: 10px;display:inline-flex;">';
                 htmlOption += '<span class=" md-checkbox has-success" >';
                 htmlOption += '  <input type="checkbox" id="i_repair_item_' + item.i_repair_item + '" name="i_repair_item_' + item.i_repair_item + '" class="md-check"';
                 htmlOption += '  value="' + item.i_repair_item + '" >';
@@ -60,6 +60,17 @@ function initialCheckBox() {
                 htmlOption += '    <span class="check"></span>';
                 htmlOption += '    <span class="box"></span> ' + item.s_repair_name + '</label>';
                 htmlOption += '</span>';
+                htmlOption += ' &nbsp;<a href="javascript:UploadMultifile(' + item.i_repair_item + ');"><span class="fa fa-cloud-upload"></span></a>';
+
+//                                    col_premise = '<a title="' + item.s_img + '" class="example-image-link" href="upload/premise/' + item.s_img + '" data-lightbox="example-' + item.i_dp + '">';
+//                    col_premise += '<img class="example-image" src="upload/premise/' + item.s_img + '" width="50px" height="50px"  />';
+//                    col_premise += '</a>';
+                htmlOption += '<a id="imgpopup_' + item.i_repair_item + '" title="รูปภาพประกอบ" class="example-image-link" href="" data-lightbox="example-' + item.i_repair_item + '">';
+                htmlOption += ' <span><img src="images/photos-app-icon.png" width="18px" height="18px" id="img_' + item.i_repair_item + '" name="img_' + item.i_repair_item + '"  style="display:none;" ></span>';
+                htmlOption += '</a>';
+
+                htmlOption += '<input type="file" id="file_' + item.i_repair_item + '" name="file_' + item.i_repair_item + '"  style="display:none;" onchange="return fileValidation(' + item.i_repair_item + ')" >';
+
                 htmlOption += '</div>';
 
 
@@ -95,6 +106,56 @@ function initialCheckBox() {
 
 
 }
+
+
+function UploadMultifile(id) {
+    $('#file_' + id).click();
+//    $("#file_" + id).change(function () {
+//        if ($('#file_' + id).get(0).files.length === 0) {
+//            $('#img_' + id).attr('style', 'display:none;');
+//        } else {
+//            $('#img_' + id).attr('style', 'display:block;');
+//        }
+//    });
+
+}
+
+function fileValidation(id) {
+    $('#img_' + id).attr('style', 'display:none;');
+    var fileInput = document.getElementById('file_' + id);
+    var filePath = fileInput.value;
+    var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+    if ($('#file_' + id).get(0).files.length != 0) {
+        if (!allowedExtensions.exec(filePath)) {
+            var errCode = "Code (2201) : ประเภทไฟล์ที่ทำการอัพโหลดไม่ถูกต้อง";
+            $.notify(errCode, "error");
+            fileInput.value = '';
+            return false;
+        } else {
+            //Image preview
+            if (fileInput.files && fileInput.files[0]) {
+               
+               var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#imgpopup_' + id).attr('href', e.target.result)
+                };
+                reader.readAsDataURL(fileInput.files[0]);
+                $('#img_' + id).attr('style', 'display:block;');
+            }
+        }
+    }
+
+
+
+
+//    if ($('#file_' + id).get(0).files.length === 0) {
+//        $('#img_' + id).attr('style', 'display:none;');
+//    } else {
+//        $('#img_' + id).attr('style', 'display:block;');
+//    }
+}
+
+
 
 function initialCheckBoxOther() {
     var htmlOption = "";
