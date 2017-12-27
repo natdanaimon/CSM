@@ -2,6 +2,7 @@
 
 @session_start();
 error_reporting(E_ERROR | E_PARSE);
+ini_set("upload_max_filesize","20M");
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -25,9 +26,13 @@ class upload {
     private $_maxSizeImg = 10240000;
     private $_minSizeDoc = 1;
     private $_maxSizeDoc = 20480000;
-    private $_imgType = array("png", "PNG", "jpg", "JPG");
+    private $_imgType = array("png", "PNG", "jpg", "JPG",'jpeg','JPEG');
     private $_docType = array("pdf", "PDF");
     private $_errorMessage = "";
+    private $_reSize = FALSE;
+    private $_defaultWidth = 1560;
+    private $_defaultHeight = 1256;
+
 
     function Initial_and_Clear() {
         $this->_Filename = array();
@@ -59,8 +64,26 @@ class upload {
         return $this->_Filename;
     }
 
+   
     function set_path($_path) {
         $this->_path = $_path;
+    }
+
+    function getResize() {
+        return $this->_reSize;
+    }
+
+
+    function setResize($_reSize) {
+        $this->_reSize = $_reSize;
+    }
+
+    function setDefaultWidth($_defaultWidth){
+        $this->_defaultWidth = $_defaultWidth;
+    }
+
+    function setDefaultHeight($_defaultHeight){
+        $this->_defaultHeight = $_defaultHeight;
     }
 
     function set_Filename($_Filename) {
@@ -240,6 +263,16 @@ class upload {
                 }
 
                 if (move_uploaded_file($value["tmp_name"], $newfilename)) {
+
+                    if($this->getResize()){
+                        $this->init($newfilename);
+	                    $this->resize( $this->_defaultWidth, $this->_defaultHeight);
+                        if($this->save($newfilename)=== false) {
+                            $this->_errorMessage = "Error Resize";
+                            $this->clearDataInFilenameResult($tmpFileName);
+                            return (bool) $resultStatus = FALSE;
+                        }
+                    }
                     $this->_errorMessage = "";
                     $resultStatus = TRUE;
                 } else {
@@ -271,5 +304,100 @@ class upload {
         }
         return (bool) $flgDelete;
     }
+
+
+
+
+    //ResizeFile
+    private $image;
+	private $image_type;
+ 
+	public function init($filename) {
+		$image_info = getimagesize($filename);
+		$this->image_type = $image_info[2];
+		
+		switch($this->image_type) {
+			case IMAGETYPE_JPEG:
+				$this->image = imagecreatefromjpeg($filename);
+				break;
+			case IMAGETYPE_GIF:
+				$this->image = imagecreatefromgif($filename);
+				break;
+			case IMAGETYPE_PNG:
+				$this->image = imagecreatefrompng($filename);
+				break;
+		}
+	}
+	
+	public function save($filename, $image_type=IMAGETYPE_JPEG, $compression=75, $permissions=null) {
+		switch($image_type) {
+			case IMAGETYPE_JPEG:
+				imagejpeg($this->image, $filename, $compression);
+				break;
+			case IMAGETYPE_GIF:
+				imagegif($this->image,$filename);
+				break;
+			case IMAGETYPE_PNG:
+				imagepng($this->image,$filename);
+				break;
+			default:
+				return false;
+				break;
+		}
+		
+		if($permissions != null) {
+			chmod($filename, $permissions);
+		}
+		
+		return true;
+	}
+
+	public function output($image_type = IMAGETYPE_JPEG) {
+		switch($image_type) {
+			case IMAGETYPE_JPEG:
+				imagejpeg($this->image);
+				break;
+			case IMAGETYPE_GIF:
+				imagegif($this->image); 
+				break;
+			case IMAGETYPE_PNG:
+				imagepng($this->image);
+				break;
+		}  
+	}
+
+	public function get_width() {
+		return imagesx($this->image);
+	}
+   
+	public function get_height() {
+		return imagesy($this->image);
+	}
+	
+	public function resize_to_height($height) {
+		$ratio = $height / $this->get_height();
+		$width = $this->get_width() * $ratio;
+		$this->resize($width, $height);
+	}
+   
+	public function resize_to_width($width) {
+		$ratio = $width / $this->get_width();
+		$height = $this->get_height() * $ratio;
+		$this->resize($width, $height);
+	}
+   
+	public function scale($scale) {
+		$width = $this->get_width() * $scale/100;
+		$height = $this->get_height() * $scale/100; 
+		$this->resize($width, $height);
+	}
+	
+	public function resize($width,$height) {
+		$new_image = imagecreatetruecolor($width, $height);
+		imagecopyresampled($new_image, $this->image, 0, 0, 0, 0, $width, $height, $this->get_width(), $this->get_height());
+		$this->image = $new_image;   
+	}
+
+
 
 }

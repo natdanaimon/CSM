@@ -187,6 +187,7 @@ class slideController {
         if ($this->isValid($info)) {
             $doc = new upload();
             $doc->set_path("../../upload/slide/");
+            $doc->setResize(TRUE);
             $db = new ConnectDB();
             $db->conn();
             $service = new slideService();
