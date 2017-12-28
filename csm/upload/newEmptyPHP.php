@@ -17,45 +17,30 @@
         // $('#f1').val($('#m1')[0].currentSrc);
         debugger;
         var file = "http://localhost/CSM/csm/upload/1712005_1.JPG";
+        var preview = document.querySelector('#preview');
+        var files = document.querySelector('input[type=file]').files;
 
-        var inputElement = $("input[name=file]");
-        readImage(inputElement).done(function (base64Data) {
-            alert(base64Data);
-        });
+        function readAndPreview(file) {
 
+            // Make sure `file.name` matches our extensions criteria
+            if (/\.(jpe?g|png|gif)$/i.test(file.name)) {
+                var reader = new FileReader();
 
-        function readImage(inputElement) {
-            var deferred = $.Deferred();
+                reader.addEventListener("load", function () {
+                    var image = new Image();
+                    image.height = 100;
+                    image.title = file.name;
+                    image.src = this.result;
+                    preview.appendChild(image);
+                }, false);
 
-            var files = inputElement.get(0).files;
-            if (files && files[0]) {
-                var fr = new FileReader();
-                fr.onload = function (e) {
-                    deferred.resolve(e.target.result);
-                };
-                fr.readAsDataURL(files[0]);
-            } else {
-                deferred.resolve(undefined);
+                reader.readAsDataURL(file);
             }
 
-            return deferred.promise();
         }
 
-
-//        var BlobBuilder = window.MozBlobBuilder || window.WebKitBlobBuilder;
-//        var bb = new BlobBuilder();
-//
-//        var xhr = new XMLHttpRequest();
-//        xhr.open('GET', file, true);
-//
-//        xhr.responseType = 'arraybuffer';
-//
-//        bb.append(this.response); // Note: not xhr.responseText
-//
-////at this point you have the equivalent of: new File()
-//        var blob = bb.getBlob('image/png');
-//
-//        /* more setup code */
-//        xhr.send(blob);
+        if (files) {
+            [].forEach.call(files, readAndPreview);
+        }
     });
 </script>
