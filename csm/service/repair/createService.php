@@ -244,7 +244,7 @@ class createService {
     }
 
     function getRunning($db) {
-        $year = date("Y");
+        $year = substr(date("Y"),2);
         $month = str_pad("", 2 - strlen(date("m")), "0") . date("m");
         $strSql = "SELECT * FROM tb_master_running WHERE s_year = '" . $year . "' and s_month = '" . $month . "' ";
         $_data = $db->Search_Data_FormatJson($strSql);

@@ -189,6 +189,18 @@ class checkService {
         return $_data;
     }
 
+    function getListRepairActive($db) {
+        $strSql = "SELECT * FROM tb_repair_item WHERE s_status = 'A' ";
+        $_data = $db->Search_Data_FormatJson($strSql);
+        return $_data;
+    }
+
+    function getInfoFile($db) {
+        $strSql = "select s_filename img from tb_check_repair ";
+        $_data = $db->Search_Data_FormatJson($strSql);
+        return $_data;
+    }
+
     function add($db, $info) {
 //        $util = new Utility();
 //
@@ -260,8 +272,17 @@ class checkService {
                 $keyMain = substr($key, 1, strlen($key));
                 $i_repair = $keyIndex;
                 $remark = $info['s' . $keyMain];
-                $sql = $this->createStatement($db, $ref_no, $i_repair, $remark);
-                array_push($arr, array("query" => "$sql"));
+                $indexFile = 'file_' . $keyIndex;
+                $filename = '';
+                if ($_FILES[$indexFile] != NULL && $_FILES[$indexFile]['error'] == 0) {
+                    $temp = explode(".", $_FILES[$indexFile]['name']);
+                    $filename = $info[ref_no] . '_' . $keyIndex . '.' . end($temp);
+                }
+
+                if ($filename != '') {
+                    $sql = $this->createStatement($db, $ref_no, $i_repair, $filename, $remark);
+                    array_push($arr, array("query" => "$sql"));
+                }
             }
             next($info);
         }
@@ -280,7 +301,7 @@ class checkService {
         return $reslut;
     }
 
-    function createStatement($db, $ref, $i_repair, $remark) {
+    function createStatement($db, $ref, $i_repair, $filename, $remark) {
 
 
         $strSql = "";
@@ -289,6 +310,7 @@ class checkService {
         $strSql .= "  tb_check_repair ( ";
         $strSql .= "    ref_no, ";
         $strSql .= "    i_repair_item, ";
+        $strSql .= "    s_filename, ";
         $strSql .= "    s_remark, ";
 
 
@@ -302,6 +324,7 @@ class checkService {
 
         $strSql .= "  '$ref', ";
         $strSql .= "  $i_repair, ";
+        $strSql .= "  '$filename', ";
         $strSql .= "  '$remark', ";
 
 
@@ -430,7 +453,7 @@ class checkService {
     }
 
     function getRunning($db) {
-        $year = date("Y");
+        $year = substr(date("Y"), 2);
         $month = str_pad("", 2 - strlen(date("m")), "0") . date("m");
         $strSql = "SELECT * FROM tb_master_running WHERE s_year = '" . $year . "' and s_month = '" . $month . "' ";
         $_data = $db->Search_Data_FormatJson($strSql);

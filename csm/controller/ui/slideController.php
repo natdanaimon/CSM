@@ -52,6 +52,45 @@ class slideController {
         }
     }
 
+    public function deleteNS($seq) {
+        $db = new ConnectDB();
+        $db->conn();
+        $service = new slideService();
+
+        // delete file temp
+        $this->deleteTempFile($db);
+        // delete file temp
+
+        $arr_img = $service->SelectById($db, $seq);
+        if ($service->delete($db, $seq)) {
+            $upload = new upload();
+            $upload->Initial_and_Clear();
+            $upload->set_path("../../upload/slide/");
+            foreach ($arr_img as $key => $value) {
+                if ($arr_img[$key]['s_image'] != NULL && $arr_img[$key]['s_image'] != "") {
+                    $upload->add_FileNameCustom($arr_img[$key]['s_image'],$key);
+                }
+            }
+
+            if (count($upload->get_FilenameCustom()) > 0) {
+                if ($upload->deleteFileCustom()) {
+                    $db->commit();
+                    echo $_SESSION['cd_0000'];
+                } else {
+                    $db->rollback();
+                    echo $_SESSION['cd_2001'];
+                }
+            } else {
+                $db->commit();
+                echo $_SESSION['cd_0000'];
+            }
+        } else {
+            $db->rollback();
+            echo $_SESSION['cd_2001'];
+        }
+    }
+    
+    
     public function delete($seq) {
         $db = new ConnectDB();
         $db->conn();
@@ -182,12 +221,12 @@ class slideController {
             }
         }
     }
-
+    
     public function add($info) {
         if ($this->isValid($info)) {
             $doc = new upload();
             $doc->set_path("../../upload/slide/");
-            $doc->setResize(TRUE);
+//            $doc->setResize(TRUE);
             $db = new ConnectDB();
             $db->conn();
             $service = new slideService();
@@ -202,6 +241,38 @@ class slideController {
             $flg = $doc->AddFile();
             if ($flg) {
                 $tmpDoc = $doc->get_FilenameResult();
+                if ($service->add($db, $info, $tmpDoc[0])) {
+                    $db->commit();
+                    echo $_SESSION['cd_0000'];
+                } else {
+                    $db->rollback();
+                    $doc->clearFileAddFail();
+                    echo $_SESSION['cd_2001'];
+                }
+            } else {
+                echo $doc->get_errorMessage();
+            }
+        }
+    }
+    public function addNS($info) {
+        if ($this->isValid($info)) {
+            $doc = new upload();
+            $doc->set_path("../../upload/slide/");
+//            $doc->setResize(TRUE);
+            $db = new ConnectDB();
+            $db->conn();
+            $service = new slideService();
+
+            // delete file temp
+            $this->deleteTempFile($db);
+            // delete file temp
+
+
+
+            $doc->add_FileNameCustom($_FILES["s_img_p1"],"abc");
+            $flg = $doc->AddFileCustom();
+            if ($flg) {
+                $tmpDoc = $doc->get_FilenameCustomResult();
                 if ($service->add($db, $info, $tmpDoc[0])) {
                     $db->commit();
                     echo $_SESSION['cd_0000'];

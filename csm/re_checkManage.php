@@ -421,12 +421,7 @@ $disableElement = 'disabled="disable"';
 
 
                                                             <div class="col-md-3">
-                                                                <!--                                                        <div class="form-group form-md-line-input has-success">
-                                                                                                                            <select class="form-control edited bold" id="i_dmg" name="i_dmg" style="color:black;font-weight:bold;"   >
-                                                                                                                                <option value="-1"></option>
-                                                                                                                            </select>
-                                                                                                                            <label for="form_control_1"><?= $_SESSION[lb_re_dmg] ?> <span class="required">*</span></label>          
-                                                                                                                        </div>-->
+                 
                                                             </div> 
 
 
@@ -527,7 +522,7 @@ $disableElement = 'disabled="disable"';
                                                             <div class="col-md-4">
                                                                 <div class="form-group form-md-line-input has-success">
                                                                     <select class="form-control edited bold" id="i_dmg" name="i_dmg" style="color:black;font-weight:bold;"   >
-                                                                        <option value="-1"></option>
+                                                                        <option value=""><?= $_SESSION[lb_please_select] ?></option>
                                                                     </select>
                                                                     <label for="form_control_1"><?= $_SESSION[lb_re_dmg] ?> <span class="required">*</span></label>          
                                                                 </div>

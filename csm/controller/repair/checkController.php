@@ -2,6 +2,12 @@
 
 @session_start();
 error_reporting(E_ERROR | E_PARSE);
+ini_set("post_max_size", "1024M");
+ini_set("upload_max_filesize", "1024M");
+ini_set("max_input_time", "3600");
+ini_set("output_buffering", "Off");
+ini_set("max_execution_time", "1800");
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $info = json_decode(preg_replace('/("\w+"):(\d+)/', '\\1:"\\2"', json_encode($_POST)), true);
@@ -159,35 +165,85 @@ class checkController {
         }
     }
 
-    public function add($info) {
-        if ($this->isValid($info)) {
-
-            $db = new ConnectDB();
-            $db->conn();
-            $service = new checkService();
-            if ($service->add($db, $info)) {
-                $db->commit();
-                echo $_SESSION['cd_0000'];
-            } else {
-                $db->rollback();
-                echo $_SESSION['cd_2001'];
-            }
-        }
-    }
+//    public function add($info) {
+//        if ($this->isValid($info)) {
+//
+//            $db = new ConnectDB();
+//            $db->conn();
+//            $service = new checkService();
+//            if ($service->add($db, $info)) {
+//                $db->commit();
+//                echo $_SESSION['cd_0000'];
+//            } else {
+//                $db->rollback();
+//                echo $_SESSION['cd_2001'];
+//            }
+//        }
+//    }
 
     public function edit($info) {
-//        if ($this->isValid($info)) {
-        $db = new ConnectDB();
-        $db->conn();
-        $service = new checkService();
-        if ($service->edit($db, $info)) {
-            $db->commit();
-            echo $_SESSION['cd_0000'];
-        } else {
-            $db->rollback();
-            echo $_SESSION['cd_2001'];
+        if ($this->isValid($info)) {
+            $service = new checkService();
+            $db = new ConnectDB();
+            $db->conn();
+            $doc = new upload();
+            $doc->set_path("../../upload/step_checkrepair/");
+            $doc->setResize(TRUE);
+            $flgValid = TRUE;
+
+            // delete file temp
+            //$this->deleteTempFile($db);
+            // delete file temp
+
+
+
+            $listRepairActive = $service->getListRepairActive($db);
+            if ($listRepairActive != NULL) {
+                foreach ($listRepairActive as $key => $value) {
+                    $keyDB = $listRepairActive[$key]['i_repair_item'];
+                    $keyInputCheckbox = 'i_repair_item_' . $keyDB;
+                    $keyInputFile = 'file_' . $keyDB;
+                    $keyInputRemark = 's_repair_item_' . $keyDB;
+
+                    if ($info[$keyInputCheckbox] != NULL && $info[$keyInputCheckbox] != '') {
+                        if ($_FILES[$keyInputFile]["error"] == 4) {
+                            $flgValid = FALSE;
+                            echo $_SESSION['cd_2207'];
+                            break;
+                        } else {
+                            $doc->add_FileNameCustom($_FILES[$keyInputFile], $info[ref_no] . '_' . $keyDB);
+                        }
+                    }
+                }
+            }
+
+
+            if ($flgValid) {
+
+                if (count($doc->get_FilenameCustom()) > 0) {
+                    if ($doc->AddFileCustom()) {
+                        if ($service->edit($db, $info)) {
+                            $db->commit();
+                            echo $_SESSION['cd_0000'];
+                        } else {
+                            $db->rollback();
+                            $doc->clearFileAddFailCustom();
+                            echo $_SESSION['cd_2001'];
+                        }
+                    } else {
+                        echo $doc->get_errorMessage();
+                    }
+                } else {
+                    if ($service->edit($db, $info)) {
+                        $db->commit();
+                        echo $_SESSION['cd_0000'];
+                    } else {
+                        $db->rollback();
+                        echo $_SESSION['cd_2001'];
+                    }
+                }
+            }
         }
-//        }
     }
 
     public function isValid($info) {
@@ -196,17 +252,8 @@ class checkController {
         $return2003 = $_SESSION['cd_2003'];
         $return2097 = $_SESSION['cd_2097'];
         $util = new Utility();
-        if ($util->isEmpty($info[s_type_capital])) {
-            $return2099 = eregi_replace("field", $_SESSION['lb_re_type_capital'], $return2099);
-            echo $return2099;
-        } else if (!is_numeric($info[s_type_capital])) {
-            $return2003 = eregi_replace("field", $_SESSION['lb_re_type_capital'], $return2003);
-            echo $return2003;
-        } else if ($util->isEmpty($info[s_license])) {
-            $return2099 = eregi_replace("field", $_SESSION['lb_re_carlicense'], $return2099);
-            echo $return2099;
-        } else if ($util->isEmpty($info[i_customer])) {
-            $return2099 = eregi_replace("field", $_SESSION['lb_re_custinfo'], $return2099);
+        if ($util->isEmpty($info[i_dmg])) {
+            $return2099 = eregi_replace("field", $_SESSION['lb_re_dmg'], $return2099);
             echo $return2099;
         } else if ($util->isEmpty($info[status])) {
             $return2099 = eregi_replace("field", $_SESSION['label_status'], $return2099);
@@ -215,6 +262,19 @@ class checkController {
             $intReturn = TRUE;
         }
         return $intReturn;
+    }
+
+    public function deleteTempFile($db) {
+        $temp = new upload();
+        $svTemp = new checkService();
+        $temp->set_path("../../upload/step_checkrepair/");
+        $_dataTemp = $svTemp->getInfoFile($db);
+        foreach ($_dataTemp as $key => $value) {
+            if ($_dataTemp[$key]['img'] != "") {
+                $temp->add_FileName($_dataTemp[$key]['img']);
+            }
+        }
+        $temp->deleteFileNoTemp();
     }
 
 }

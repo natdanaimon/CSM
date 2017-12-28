@@ -69,7 +69,7 @@ function initialCheckBox() {
                 htmlOption += ' <span><img src="images/photos-app-icon.png" width="18px" height="18px" id="img_' + item.i_repair_item + '" name="img_' + item.i_repair_item + '"  style="display:none;" ></span>';
                 htmlOption += '</a>';
 
-                htmlOption += '<input type="file" id="file_' + item.i_repair_item + '" name="file_' + item.i_repair_item + '"  style="display:none;" onchange="return fileValidation(' + item.i_repair_item + ')" >';
+                htmlOption += '<input type="file" id="file_' + item.i_repair_item + '" name="file_' + item.i_repair_item + '" value="" style="display:none;" onchange="return fileValidation(' + item.i_repair_item + ')" >';
 
                 htmlOption += '</div>';
 
@@ -134,8 +134,8 @@ function fileValidation(id) {
         } else {
             //Image preview
             if (fileInput.files && fileInput.files[0]) {
-               
-               var reader = new FileReader();
+
+                var reader = new FileReader();
                 reader.onload = function (e) {
                     $('#imgpopup_' + id).attr('href', e.target.result)
                 };
@@ -374,6 +374,7 @@ function getDDLDamage() {
         },
         success: function (data) {
             var htmlOption = "";
+            htmlOption += "<option value=''>กรุณาเลือกข้อมูล</option>";
             var res = JSON.parse(data);
             $.each(res, function (i, item) {
                 var txt_status = (language == "th" ? item.s_dmg_th : item.s_dmg_en);
@@ -658,7 +659,21 @@ function editCheckBoxMain(ref_no) {
                 $('input:checkbox[id="i_repair_item_' + item.i_repair_item + '"]').attr('checked', 'Y');
                 $('#s_repair_item_' + item.i_repair_item).val(item.s_remark);
 
+                $('#imgpopup_' + item.i_repair_item).attr('href', 'upload/step_checkrepair/' + item.s_filename)
+                $('#img_' + item.i_repair_item).attr('style', 'display:block;');
+//                $('input type=[file]').val('http://localhost/CSM/csm/upload/step_checkrepair/'+item.s_filename);
 
+
+//                $('#file_' + item.i_repair_item).fileinput({
+//                    uploadUrl: 'upload/step_checkrepair/' + item.s_filename, // you must set this for ajax uploads
+//                    maxFileCount: 10,
+//                    enctype: "multipart/form-data",
+//                    overwriteInitial: false
+//                });
+                
+//                var formData = new FormData($(this)[0]);
+//                $('#file_' + item.i_repair_item).trigger('click');
+                $('#file_' + item.i_repair_item).attr('value', 'upload/step_checkrepair/' + item.s_filename);
             });
 
 //            $('#se-pre-con').delay(100).fadeOut();
