@@ -257,13 +257,20 @@ class checkService {
 //        return $reslut;
     }
 
-    function edit($db, $info) {
+    function edit($db, $info, $arrOld) {
         $ref_no = $info[ref_no];
         $strSqlDelete = "DELETE FROM tb_check_repair where ref_no = '$info[ref_no]'";
-        $strSqlDelete2 = "DELETE FROM tb_check_repair_other where ref_no = '$info[ref_no]'";
+//        $strSqlDelete2 = "DELETE FROM tb_check_repair_other where ref_no = '$info[ref_no]'";
+        if (count($arrOld) > 0) {
+            $util = new Utility();
+            $query = $util->arr2strQuery($arrOld, "I");
+            $strSqlDelete = $strSqlDelete . " and i_repair_item not in ($query) ";
+        }
+
+
         $arr = array();
         array_push($arr, array("query" => "$strSqlDelete"));
-        array_push($arr, array("query" => "$strSqlDelete2"));
+//        array_push($arr, array("query" => "$strSqlDelete2"));
 
         foreach ($info as $value) {
             $key = key($info);
@@ -287,10 +294,11 @@ class checkService {
             next($info);
         }
         array_push($arr, array("query" => $this->sqlUpdateMain($db, $info)));
+        array_push($arr, array("query" => $this->sqlUpdateCheckOther($db, $info)));
 
 
-        $sql = $this->createStatementSub($db, $info);
-        array_push($arr, array("query" => "$sql"));
+//        $sql = $this->createStatementSub($db, $info);
+//        array_push($arr, array("query" => "$sql"));
 
 
 
@@ -413,6 +421,27 @@ class checkService {
         }
     }
 
+    function checkSQLSelectedFile($info, $index) {
+        if ($info['i_repair_subitem_' . $index] == '' && $info['i_repair_subitem_' . $index] == '0') {
+            return '';
+        } else {
+            $keyIndex = 'files_' . $index;
+            $temp = explode(".", $_FILES[$keyIndex]["name"]);
+
+            if ($_FILES[$keyIndex]['error'] == 4) {
+                $cksKey = 'cks_'.$index;
+                if($info[$cksKey] != ''){
+                    return $info[$cksKey];
+                }else{
+                    return '';
+                }
+            } else {
+                return $info[ref_no] . "_" . $index . "." . end($temp);
+            }
+//            return ( $_FILES[$keyIndex]['error'] == 4 ? "" : $info[ref_no] . "_" . $index . "." . end($temp));
+        }
+    }
+
     function checkSQLSelectedText($info, $index) {
         $tmp = '';
         if ($info['i_repair_subitem_' . $index] == '' && $info['i_repair_subitem_' . $index] == '0') {
@@ -448,6 +477,60 @@ class checkService {
         $strSql .= "s_update_by = '$_SESSION[username]', ";
         $strSql .= "s_status = '$info[status]' ";
         $strSql .= "where i_cust_car = $info[id] ";
+
+        return $strSql;
+    }
+
+    function sqlUpdateCheckOther($db, $info) {
+        $strSql = "";
+        $strSql .= "update tb_check_repair_other ";
+        $strSql .= "set  ";
+
+
+        $strSql .= "s_txt_1 = '" . $this->checkSQLSelectedText($info, 1) . "', ";
+        $strSql .= "s_txt_2 = '" . $this->checkSQLSelectedText($info, 2) . "', ";
+        $strSql .= "s_txt_3 = '" . $this->checkSQLSelectedText($info, 3) . "', ";
+        $strSql .= "s_txt_4 = '" . $this->checkSQLSelectedText($info, 4) . "', ";
+        $strSql .= "s_txt_5 = '" . $this->checkSQLSelectedText($info, 5) . "', ";
+        $strSql .= "s_txt_6 = '" . $this->checkSQLSelectedText($info, 6) . "', ";
+        $strSql .= "s_txt_7 = '" . $this->checkSQLSelectedText($info, 7) . "', ";
+        $strSql .= "s_txt_8 = '" . $this->checkSQLSelectedText($info, 8) . "', ";
+        $strSql .= "s_txt_9 = '" . $this->checkSQLSelectedText($info, 9) . "', ";
+        $strSql .= "s_txt_10 = '" . $this->checkSQLSelectedText($info, 10) . "', ";
+        $strSql .= "s_txt_11 = '" . $this->checkSQLSelectedText($info, 11) . "', ";
+        $strSql .= "s_txt_12 = '" . $this->checkSQLSelectedText($info, 12) . "', ";
+        $strSql .= "s_txt_13 = '" . $this->checkSQLSelectedText($info, 13) . "', ";
+
+        $strSql .= "i_repair_subitem1 = '" . $this->checkSQLSelected($info, 1) . "', ";
+        $strSql .= "i_repair_subitem2 = '" . $this->checkSQLSelected($info, 2) . "', ";
+        $strSql .= "i_repair_subitem3 = '" . $this->checkSQLSelected($info, 3) . "', ";
+        $strSql .= "i_repair_subitem4 = '" . $this->checkSQLSelected($info, 4) . "', ";
+        $strSql .= "i_repair_subitem5 = '" . $this->checkSQLSelected($info, 5) . "', ";
+        $strSql .= "i_repair_subitem6 = '" . $this->checkSQLSelected($info, 6) . "', ";
+        $strSql .= "i_repair_subitem7 = '" . $this->checkSQLSelected($info, 7) . "', ";
+        $strSql .= "i_repair_subitem8 = '" . $this->checkSQLSelected($info, 8) . "', ";
+        $strSql .= "i_repair_subitem9 = '" . $this->checkSQLSelected($info, 9) . "', ";
+        $strSql .= "i_repair_subitem10 = '" . $this->checkSQLSelected($info, 10) . "', ";
+        $strSql .= "i_repair_subitem11 = '" . $this->checkSQLSelected($info, 11) . "', ";
+        $strSql .= "i_repair_subitem12 = '" . $this->checkSQLSelected($info, 12) . "', ";
+        $strSql .= "i_repair_subitem13 = '" . $this->checkSQLSelected($info, 13) . "', ";
+
+        $strSql .= "s_filename_1 = '" . $this->checkSQLSelectedFile($info, 1) . "', ";
+        $strSql .= "s_filename_2 = '" . $this->checkSQLSelectedFile($info, 2) . "', ";
+        $strSql .= "s_filename_3 = '" . $this->checkSQLSelectedFile($info, 3) . "', ";
+        $strSql .= "s_filename_4 = '" . $this->checkSQLSelectedFile($info, 4) . "', ";
+        $strSql .= "s_filename_5 = '" . $this->checkSQLSelectedFile($info, 5) . "', ";
+        $strSql .= "s_filename_6 = '" . $this->checkSQLSelectedFile($info, 6) . "', ";
+        $strSql .= "s_filename_7 = '" . $this->checkSQLSelectedFile($info, 7) . "', ";
+        $strSql .= "s_filename_8 = '" . $this->checkSQLSelectedFile($info, 8) . "', ";
+        $strSql .= "s_filename_9 = '" . $this->checkSQLSelectedFile($info, 9) . "', ";
+        $strSql .= "s_filename_10 = '" . $this->checkSQLSelectedFile($info, 10) . "', ";
+        $strSql .= "s_filename_11 = '" . $this->checkSQLSelectedFile($info, 11) . "', ";
+        $strSql .= "s_filename_12 = '" . $this->checkSQLSelectedFile($info, 12) . "', ";
+        $strSql .= "s_filename_13 = '" . $this->checkSQLSelectedFile($info, 13) . "' ";
+
+
+        $strSql .= "where ref_no = $info[ref_no] ";
 
         return $strSql;
     }

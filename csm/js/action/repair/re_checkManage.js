@@ -62,14 +62,12 @@ function initialCheckBox() {
                 htmlOption += '</span>';
                 htmlOption += ' &nbsp;<a href="javascript:UploadMultifile(' + item.i_repair_item + ');"><span class="fa fa-cloud-upload"></span></a>';
 
-//                                    col_premise = '<a title="' + item.s_img + '" class="example-image-link" href="upload/premise/' + item.s_img + '" data-lightbox="example-' + item.i_dp + '">';
-//                    col_premise += '<img class="example-image" src="upload/premise/' + item.s_img + '" width="50px" height="50px"  />';
-//                    col_premise += '</a>';
                 htmlOption += '<a id="imgpopup_' + item.i_repair_item + '" title="รูปภาพประกอบ" class="example-image-link" href="" data-lightbox="example-' + item.i_repair_item + '">';
                 htmlOption += ' <span><img src="images/photos-app-icon.png" width="18px" height="18px" id="img_' + item.i_repair_item + '" name="img_' + item.i_repair_item + '"  style="display:none;" ></span>';
                 htmlOption += '</a>';
+                htmlOption += '<input type="hidden" id="ck_' + item.i_repair_item + '" name="ck_' + item.i_repair_item + '" value="" style="display:none;" >';
 
-                htmlOption += '<input type="file" id="file_' + item.i_repair_item + '" name="file_' + item.i_repair_item + '" value="" style="display:none;" onchange="return fileValidation(' + item.i_repair_item + ')" >';
+                htmlOption += '<input type="file" id="file_' + item.i_repair_item + '" name="file_' + item.i_repair_item + '" value="" style="display:none;" onchange="return fileValidation(' + item.i_repair_item + ')"  >';
 
                 htmlOption += '</div>';
 
@@ -110,15 +108,12 @@ function initialCheckBox() {
 
 function UploadMultifile(id) {
     $('#file_' + id).click();
-//    $("#file_" + id).change(function () {
-//        if ($('#file_' + id).get(0).files.length === 0) {
-//            $('#img_' + id).attr('style', 'display:none;');
-//        } else {
-//            $('#img_' + id).attr('style', 'display:block;');
-//        }
-//    });
-
 }
+
+function UploadMultifileOther(id) {
+    $('#files_' + id).click();
+}
+
 
 function fileValidation(id) {
     $('#img_' + id).attr('style', 'display:none;');
@@ -141,18 +136,40 @@ function fileValidation(id) {
                 };
                 reader.readAsDataURL(fileInput.files[0]);
                 $('#img_' + id).attr('style', 'display:block;');
+                $('#ck_' + id).val('');
             }
         }
     }
 
+}
 
 
+function fileValidations(id) {
+    $('#imgs_' + id).attr('style', 'display:none;');
+    var fileInput = document.getElementById('files_' + id);
+    var filePath = fileInput.value;
+    var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+    if ($('#files_' + id).get(0).files.length != 0) {
+        if (!allowedExtensions.exec(filePath)) {
+            var errCode = "Code (2201) : ประเภทไฟล์ที่ทำการอัพโหลดไม่ถูกต้อง";
+            $.notify(errCode, "error");
+            fileInput.value = '';
+            return false;
+        } else {
+            //Image preview
+            if (fileInput.files && fileInput.files[0]) {
 
-//    if ($('#file_' + id).get(0).files.length === 0) {
-//        $('#img_' + id).attr('style', 'display:none;');
-//    } else {
-//        $('#img_' + id).attr('style', 'display:block;');
-//    }
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#imgpopups_' + id).attr('href', e.target.result)
+                };
+                reader.readAsDataURL(fileInput.files[0]);
+                $('#imgs_' + id).attr('style', 'display:block;');
+                $('#cks_' + id).val('');
+            }
+        }
+    }
+
 }
 
 
@@ -171,20 +188,23 @@ function initialCheckBoxOther() {
             htmlOption += '<div class="row">';
         }
 
-        htmlOption += '<div class="col-md-1 col-sm-12" style="padding-top: 10px;">';
-        htmlOption += '<span class=" md-checkbox has-success" >';
+        htmlOption += '<div class="col-md-3 col-sm-12" style="padding-top: 10px;display:inline-flex;">';
+        htmlOption += '<span class=" md-checkbox has-success" style="display: inherit;">';
         htmlOption += '  <input type="checkbox" id="i_repair_subitem_' + i + '" name="i_repair_subitem_' + i + '" class="md-check"';
         htmlOption += '  value="' + i + '" >';
         htmlOption += '  <label for="i_repair_subitem_' + i + '">';
         htmlOption += '    <span class="inc"></span>';
         htmlOption += '    <span class="check"></span>';
         htmlOption += '    <span class="box"></span> ' + i + '.</label>';
-        htmlOption += '</span>';
+        htmlOption += ' &nbsp;<a href="javascript:UploadMultifileOther(' + i + ');"><span class="fa fa-cloud-upload"></span></a>';
+
+        htmlOption += '<a id="imgpopups_' + i + '" title="รูปภาพประกอบ" class="example-image-link" href="" data-lightbox="examples-' + i + '">';
+        htmlOption += ' <img src="images/photos-app-icon.png" width="18px" height="18px" id="imgs_' + i + '" name="imgs_' + i + '"  style="display:none;" >';
+        htmlOption += '</a>';
+        htmlOption += '<input type="hidden" id="cks_' + i + '" name="cks_' + i + '" value="" style="display:none;" >';
+        htmlOption += '<input type="file" id="files_' + i + '" name="files_' + i + '" value="" style="display:none;" onchange="return fileValidations(' + i + ')"  >';
+
         htmlOption += '</div>';
-
-
-
-
 
         htmlOption += '<div class="col-md-3 col-sm-12">';
         htmlOption += '<div class="form-group form-md-line-input has-success" style="padding-top:0px !important;" >';
@@ -192,8 +212,8 @@ function initialCheckBoxOther() {
         htmlOption += '</div>';
         htmlOption += '</div>';
 
-        htmlOption += '<div class="col-md-1">';
-        htmlOption += '</div>';
+//        htmlOption += '<div class="col-md-1">';
+//        htmlOption += '</div>';
         if (count == 0) {
             htmlOption += "</div>";
         }
@@ -661,19 +681,7 @@ function editCheckBoxMain(ref_no) {
 
                 $('#imgpopup_' + item.i_repair_item).attr('href', 'upload/step_checkrepair/' + item.s_filename)
                 $('#img_' + item.i_repair_item).attr('style', 'display:block;');
-//                $('input type=[file]').val('http://localhost/CSM/csm/upload/step_checkrepair/'+item.s_filename);
-
-
-//                $('#file_' + item.i_repair_item).fileinput({
-//                    uploadUrl: 'upload/step_checkrepair/' + item.s_filename, // you must set this for ajax uploads
-//                    maxFileCount: 10,
-//                    enctype: "multipart/form-data",
-//                    overwriteInitial: false
-//                });
-                
-//                var formData = new FormData($(this)[0]);
-//                $('#file_' + item.i_repair_item).trigger('click');
-                $('#file_' + item.i_repair_item).attr('value', 'upload/step_checkrepair/' + item.s_filename);
+                $('#ck_' + item.i_repair_item).val(item.s_filename);
             });
 
 //            $('#se-pre-con').delay(100).fadeOut();
@@ -718,10 +726,6 @@ function editCheckBoxOther(ref_no) {
                 setValSelected(12, item.i_repair_subitem12);
                 setValSelected(13, item.i_repair_subitem13);
 
-
-
-
-
                 $('#s_repair_subitem_1').val(item.s_txt_1);
                 $('#s_repair_subitem_2').val(item.s_txt_2);
                 $('#s_repair_subitem_3').val(item.s_txt_3);
@@ -736,6 +740,40 @@ function editCheckBoxOther(ref_no) {
                 $('#s_repair_subitem_12').val(item.s_txt_12);
                 $('#s_repair_subitem_13').val(item.s_txt_13);
 
+
+
+
+
+
+                $('#imgpopups_1').attr('href', 'upload/step_checkrepair_other/' + item.s_filename_1);
+                $('#imgpopups_2').attr('href', 'upload/step_checkrepair_other/' + item.s_filename_2);
+                $('#imgpopups_3').attr('href', 'upload/step_checkrepair_other/' + item.s_filename_3);
+                $('#imgpopups_4').attr('href', 'upload/step_checkrepair_other/' + item.s_filename_4);
+                $('#imgpopups_5').attr('href', 'upload/step_checkrepair_other/' + item.s_filename_5);
+                $('#imgpopups_6').attr('href', 'upload/step_checkrepair_other/' + item.s_filename_6);
+                $('#imgpopups_7').attr('href', 'upload/step_checkrepair_other/' + item.s_filename_7);
+                $('#imgpopups_8').attr('href', 'upload/step_checkrepair_other/' + item.s_filename_8);
+                $('#imgpopups_9').attr('href', 'upload/step_checkrepair_other/' + item.s_filename_9);
+                $('#imgpopups_10').attr('href', 'upload/step_checkrepair_other/' + item.s_filename_10);
+                $('#imgpopups_11').attr('href', 'upload/step_checkrepair_other/' + item.s_filename_11);
+                $('#imgpopups_12').attr('href', 'upload/step_checkrepair_other/' + item.s_filename_12);
+                $('#imgpopups_13').attr('href', 'upload/step_checkrepair_other/' + item.s_filename_13);
+
+
+
+                $('#cks_1').val(item.s_filename_1);
+                $('#cks_2').val(item.s_filename_2);
+                $('#cks_3').val(item.s_filename_3);
+                $('#cks_4').val(item.s_filename_4);
+                $('#cks_5').val(item.s_filename_5);
+                $('#cks_6').val(item.s_filename_6);
+                $('#cks_7').val(item.s_filename_7);
+                $('#cks_8').val(item.s_filename_8);
+                $('#cks_9').val(item.s_filename_9);
+                $('#cks_10').val(item.s_filename_10);
+                $('#cks_11').val(item.s_filename_11);
+                $('#cks_12').val(item.s_filename_12);
+                $('#cks_13').val(item.s_filename_13);
 
 
 
@@ -757,6 +795,7 @@ function setValSelected(index, val) {
     var tmp = ((val != null && val != '') ? 'Y' : '')
     if (tmp == 'Y') {
         $('input:checkbox[id="i_repair_subitem_' + index + '"]').attr('checked', 'Y');
+        $('#imgs_'+index).attr('style', 'display:block;');
     }
 
 }

@@ -189,11 +189,15 @@ class checkController {
             $doc = new upload();
             $doc->set_path("../../upload/step_checkrepair/");
             $doc->setResize(TRUE);
-            $flgValid = TRUE;
 
-            // delete file temp
-            //$this->deleteTempFile($db);
-            // delete file temp
+            $doc2 = new upload();
+            $doc2->set_path("../../upload/step_checkrepair_other/");
+            $doc2->setResize(TRUE);
+
+            $flgValid = TRUE;
+            $arrOld = array();
+            $arrOld2 = array();
+
 
 
 
@@ -204,45 +208,110 @@ class checkController {
                     $keyInputCheckbox = 'i_repair_item_' . $keyDB;
                     $keyInputFile = 'file_' . $keyDB;
                     $keyInputRemark = 's_repair_item_' . $keyDB;
-
+                    $keyckOld = 'ck_' . $keyDB;
+                    $valckOld = $info[$keyckOld];
                     if ($info[$keyInputCheckbox] != NULL && $info[$keyInputCheckbox] != '') {
-                        if ($_FILES[$keyInputFile]["error"] == 4) {
+                        if ($_FILES[$keyInputFile]["error"] == 4 && $valckOld == '') {
                             $flgValid = FALSE;
                             echo $_SESSION['cd_2207'];
                             break;
                         } else {
-                            $doc->add_FileNameCustom($_FILES[$keyInputFile], $info[ref_no] . '_' . $keyDB);
+                            if ($valckOld == '') {
+                                $doc->add_FileNameCustom($_FILES[$keyInputFile], $info[ref_no] . '_' . $keyDB);
+                            } else {
+                                array_push($arrOld, $keyDB);
+                            }
                         }
                     }
                 }
             }
+
+
+            for ($i = 1; $i < 14; $i++) {
+                $keyDB = $i;
+                $keyInputCheckbox = 'i_repair_subitem_' . $keyDB;
+                $keyInputFile = 'files_' . $keyDB;
+                $keyInputRemark = 's_repair_subitem_' . $keyDB;
+                $keyckOld = 'cks_' . $keyDB;
+                $valckOld = $info[$keyckOld];
+                if ($info[$keyInputCheckbox] != NULL && $info[$keyInputCheckbox] != '') {
+                    if ($_FILES[$keyInputFile]["error"] == 4 && $valckOld == '') {
+                        $flgValid = FALSE;
+                        echo $_SESSION['cd_2207'];
+                        break;
+                    } else {
+                        if ($valckOld == '') {
+                            $doc2->add_FileNameCustom($_FILES[$keyInputFile], $info[ref_no] . '_' . $keyDB);
+                        }
+                    }
+                }
+            }
+
+
 
 
             if ($flgValid) {
 
                 if (count($doc->get_FilenameCustom()) > 0) {
                     if ($doc->AddFileCustom()) {
-                        if ($service->edit($db, $info)) {
-                            $db->commit();
-                            echo $_SESSION['cd_0000'];
+
+                        if (count($doc2->get_FilenameCustom()) > 0) {
+                            if ($doc2->AddFileCustom()) {
+                                if ($service->edit($db, $info, $arrOld)) {
+                                    $db->commit();
+                                    echo $_SESSION['cd_0000'];
+                                } else {
+                                    $db->rollback();
+                                    $doc->clearFileAddFailCustom();
+                                    $doc2->clearFileAddFailCustom();
+                                    echo $_SESSION['cd_2001'];
+                                }
+                            } else {
+                                echo $doc2->get_errorMessage();
+                            }
                         } else {
-                            $db->rollback();
-                            $doc->clearFileAddFailCustom();
-                            echo $_SESSION['cd_2001'];
+                            if ($service->edit($db, $info, $arrOld)) {
+                                $db->commit();
+                                echo $_SESSION['cd_0000'];
+                            } else {
+                                $db->rollback();
+                                $doc->clearFileAddFailCustom();
+                                echo $_SESSION['cd_2001'];
+                            }
                         }
                     } else {
                         echo $doc->get_errorMessage();
                     }
                 } else {
-                    if ($service->edit($db, $info)) {
-                        $db->commit();
-                        echo $_SESSION['cd_0000'];
+
+
+                    if (count($doc2->get_FilenameCustom()) > 0) {
+                        if ($doc2->AddFileCustom()) {
+                            if ($service->edit($db, $info, $arrOld)) {
+                                $db->commit();
+                                echo $_SESSION['cd_0000'];
+                            } else {
+                                $db->rollback();
+                                $doc2->clearFileAddFailCustom();
+                                echo $_SESSION['cd_2001'];
+                            }
+                        } else {
+                            echo $doc2->get_errorMessage();
+                        }
                     } else {
-                        $db->rollback();
-                        echo $_SESSION['cd_2001'];
+                        if ($service->edit($db, $info, $arrOld)) {
+                            $db->commit();
+                            echo $_SESSION['cd_0000'];
+                        } else {
+                            $db->rollback();
+                            echo $_SESSION['cd_2001'];
+                        }
                     }
                 }
             }
+            // delete file temp
+            $this->deleteTempFile($db);
+            // delete file temp
         }
     }
 

@@ -40,7 +40,7 @@ $disableElement = 'disabled="disable"';
         <link href="../assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" />
         <link href="../assets/global/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css" rel="stylesheet" type="text/css" />
         <link href="../assets/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />
-        <link href="../assets/global/plugins/clockface/css/clockface.css" rel="stylesheet" type="text/css" />
+        <!--<link href="../assets/global/plugins/clockface/css/clockface.css" rel="stylesheet" type="text/css" />-->
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL STYLES -->
         <link href="../assets/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
@@ -51,6 +51,10 @@ $disableElement = 'disabled="disable"';
         <link href="../assets/layouts/layout/css/themes/darkblue.min.css" rel="stylesheet" type="text/css" id="style_color" />
         <link href="../assets/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css" />
         <!-- END THEME LAYOUT STYLES -->
+        <!-- BEGIS SELECT 2 SCRIPTS -->
+        <link href="css/select2.min.css" rel="stylesheet" />
+
+        <!-- END SELECT 2 SCRIPTS -->
 
 
 
@@ -421,7 +425,7 @@ $disableElement = 'disabled="disable"';
 
 
                                                             <div class="col-md-3">
-                 
+
                                                             </div> 
 
 
@@ -702,6 +706,8 @@ $disableElement = 'disabled="disable"';
 
         <!-- BEGIN CORE PLUGINS -->
         <script src="../assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+
+
         <script src="../assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="../assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
         <script src="../assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
@@ -735,17 +741,11 @@ $disableElement = 'disabled="disable"';
         <script src="../assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
         <script src="../assets/layouts/global/scripts/quick-nav.min.js" type="text/javascript"></script>
         <!-- END THEME LAYOUT SCRIPTS -->
-
+        <script src="js/common/select2.min.js"></script>
         <script src="js/common/notify.js" type="text/javascript"></script>
         <link href="css/notify.css" rel="stylesheet" type="text/css" />
 
-<!--        <script src="js/common/app.js" type="text/javascript"></script>
-        <script src="js/common/resize.js" type="text/javascript"></script>-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/jquery.canvasjs.min.js" type="text/javascript"></script>
-        <!-- BEGIS SELECT 2 SCRIPTS -->
-        <link href="css/select2.min.css" rel="stylesheet" />
-        <script src="js/common/select2.min.js"></script>
-        <!-- END SELECT 2 SCRIPTS -->
+        <link href="css/custom.css" rel="stylesheet" type="text/css" />
         <link href="outbound/lightbox/css/lightbox.css" rel="stylesheet" type="text/css" />
         <script src="outbound/lightbox/js/lightbox.js" type="text/javascript"></script>
         <!--<link href="css/custom_select2.css" rel="stylesheet" />-->
