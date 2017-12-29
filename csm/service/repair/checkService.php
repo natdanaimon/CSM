@@ -294,19 +294,27 @@ class checkService {
             next($info);
         }
         array_push($arr, array("query" => $this->sqlUpdateMain($db, $info)));
-        array_push($arr, array("query" => $this->sqlUpdateCheckOther($db, $info)));
 
+        if ($this->checkDuppSub($db, $info)) {
+            array_push($arr, array("query" => $this->sqlUpdateCheckOther($db, $info)));
+        } else {
 
-//        $sql = $this->createStatementSub($db, $info);
-//        array_push($arr, array("query" => "$sql"));
-
-
-
-
-
-
+            array_push($arr, array("query" => $this->createStatementSub($db, $info)));
+        }
         $reslut = $db->insert_for_upadte($arr);
         return $reslut;
+    }
+
+    function checkDuppSub($db, $info) {
+        $rtn = FALSE;
+        $strSql = " select count(*) cnt from tb_check_repair_other where ref_no = '$info[ref_no]'";
+        $_data = $db->Search_Data_FormatJson($strSql);
+        if ($_data != NULL) {
+            if ($_data[0]['cnt'] > 0) {
+                $rtn = TRUE;
+            }
+        }
+        return $rtn;
     }
 
     function createStatement($db, $ref, $i_repair, $filename, $remark) {
@@ -365,6 +373,19 @@ class checkService {
         $strSql .= "    s_txt_11, ";
         $strSql .= "    s_txt_12, ";
         $strSql .= "    s_txt_13, ";
+        $strSql .= "    s_filename_1, ";
+        $strSql .= "    s_filename_2, ";
+        $strSql .= "    s_filename_3, ";
+        $strSql .= "    s_filename_4, ";
+        $strSql .= "    s_filename_5, ";
+        $strSql .= "    s_filename_6, ";
+        $strSql .= "    s_filename_7, ";
+        $strSql .= "    s_filename_8, ";
+        $strSql .= "    s_filename_9, ";
+        $strSql .= "    s_filename_10, ";
+        $strSql .= "    s_filename_11, ";
+        $strSql .= "    s_filename_12, ";
+        $strSql .= "    s_filename_13, ";
         $strSql .= "    i_repair_subitem1, ";
         $strSql .= "    i_repair_subitem2, ";
         $strSql .= "    i_repair_subitem3, ";
@@ -394,6 +415,21 @@ class checkService {
         $strSql .= "  '" . $this->checkSQLSelectedText($info, 11) . "', ";
         $strSql .= "  '" . $this->checkSQLSelectedText($info, 12) . "', ";
         $strSql .= "  '" . $this->checkSQLSelectedText($info, 13) . "', ";
+
+        $strSql .= "  '" . $this->checkSQLSelectedFile($info, 1) . "', ";
+        $strSql .= "  '" . $this->checkSQLSelectedFile($info, 2) . "', ";
+        $strSql .= "  '" . $this->checkSQLSelectedFile($info, 3) . "', ";
+        $strSql .= "  '" . $this->checkSQLSelectedFile($info, 4) . "', ";
+        $strSql .= "  '" . $this->checkSQLSelectedFile($info, 5) . "', ";
+        $strSql .= "  '" . $this->checkSQLSelectedFile($info, 6) . "', ";
+        $strSql .= "  '" . $this->checkSQLSelectedFile($info, 7) . "', ";
+        $strSql .= "  '" . $this->checkSQLSelectedFile($info, 8) . "', ";
+        $strSql .= "  '" . $this->checkSQLSelectedFile($info, 9) . "', ";
+        $strSql .= "  '" . $this->checkSQLSelectedFile($info, 10) . "', ";
+        $strSql .= "  '" . $this->checkSQLSelectedFile($info, 11) . "', ";
+        $strSql .= "  '" . $this->checkSQLSelectedFile($info, 12) . "', ";
+        $strSql .= "  '" . $this->checkSQLSelectedFile($info, 13) . "', ";
+
 
         $strSql .= "  '" . $this->checkSQLSelected($info, 1) . "', ";
         $strSql .= "  '" . $this->checkSQLSelected($info, 2) . "', ";
@@ -429,10 +465,10 @@ class checkService {
             $temp = explode(".", $_FILES[$keyIndex]["name"]);
 
             if ($_FILES[$keyIndex]['error'] == 4) {
-                $cksKey = 'cks_'.$index;
-                if($info[$cksKey] != ''){
+                $cksKey = 'cks_' . $index;
+                if ($info[$cksKey] != '') {
                     return $info[$cksKey];
-                }else{
+                } else {
                     return '';
                 }
             } else {
