@@ -592,7 +592,7 @@ function edit() {
                 $("#d_outbound_confirm").val(item.d_outbound_confirm);
 
                 $("#s_pay_type").val(item.s_pay_type);
-                $("#i_dmg").val(item.i_dmg);
+                $("#i_dmg").val((item.i_dmg=="0"?"":item.i_dmg));
 
                 $("#s_car_code").val(item.s_car_code).trigger('change');
                 $("#s_license").val(item.s_license);
