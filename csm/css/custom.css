@@ -23,3 +23,38 @@ td.child {
 .select2-container .select2-selection--single .select2-selection__rendered{
     display: initial !important;
 }
+
+
+.dz-progress{
+    display: none !important;
+}
+
+.dz-remove{
+    background-color: red;
+    color: white;
+    text-decoration:none !important;
+}
+
+a.dz-remove:visited {
+    text-decoration: none;
+    color: white;
+
+}
+
+a.dz-remove:link {
+    color: white;
+}
+
+
+a.dz-remove:hover {
+    color: white;
+}
+
+a.dz-remove:active {
+    color: white;
+}
+
+.dropzone .dz-preview .dz-image img {
+    width: 120px !important;
+    height: 120px !important;
+}

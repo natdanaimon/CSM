@@ -143,11 +143,12 @@ $disableElement = 'disabled="disable"';
 
                                     <!-- BEGIN STEP1-->
                                     <div class="portlet box green">
-                                        <div class="portlet-title">
+                                        <div class="portlet-title" onclick="closeStep(1)" style="cursor: pointer;">
                                             <div class="caption">
                                                 <i class="fa fa-user"></i> <?= $_SESSION[tt_detail_create1] ?></div>
                                             <div class="tools">
-                                                <a href="javascript:closeStep(1);" class="fa fa-angle-down" style="color: white;text-decoration:none;"> </a>
+                                                <span class="fa fa-angle-down" style="color: white;text-decoration:none;"> </span>
+                                                <!--<a href="javascript:closeStep(1);" class="fa fa-angle-down" style="color: white;text-decoration:none;"> </a>-->
                                             </div>
                                         </div>
 
@@ -499,11 +500,12 @@ $disableElement = 'disabled="disable"';
 
                                     <!-- BEGIN STEP2-->
                                     <div class="portlet box green">
-                                        <div class="portlet-title">
+                                        <div class="portlet-title" onclick="closeStep(2)" style="cursor: pointer;">
                                             <div class="caption">
                                                 <i class="fa fa-car"></i> <?= $_SESSION[tt_detail_create2] ?></div>
                                             <div class="tools">
-                                                <a href="javascript:closeStep(2);" class="fa fa-angle-down" style="color: white;text-decoration:none;"> </a>
+                                                <span class="fa fa-angle-down" style="color: white;text-decoration:none;"> </span>
+                                                <!--<a href="javascript:closeStep(2);" class="fa fa-angle-down" style="color: white;text-decoration:none;"> </a>-->
                                             </div>
                                         </div>
 
@@ -757,7 +759,7 @@ $disableElement = 'disabled="disable"';
 
 
         <script>
-                                                                                var keyEdit = "<?= $_GET[id] ?>";
+                                            var keyEdit = "<?= $_GET[id] ?>";
         </script>
         <script>
             $(document).ready(function () {

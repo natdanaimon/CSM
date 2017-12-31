@@ -3,7 +3,7 @@
 include './common/Permission.php';
 include './common/PermissionADM.php';
 include './common/FunctionCheckActive.php';
-ACTIVEPAGES(3, 2);
+ACTIVEPAGES(3, 3);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -74,7 +74,7 @@ ACTIVEPAGES(3, 2);
                                     <i class="fa fa-circle" style="color:  #00FF00;"></i>
                                 </li>
                                 <li>
-                                    <a href="re_inbound.php"><?= $_SESSION[re_inbound] ?></a>
+                                    <a href="re_process.php"><?= $_SESSION[re_process] ?></a>
                                 </li>
                             </ul>
 
@@ -91,8 +91,8 @@ ACTIVEPAGES(3, 2);
                                 <div class="portlet light bordered">
                                     <div class="portlet-title">
                                         <div class="caption font-dark">
-                                            <i class="icon-users font-dark"></i>
-                                            <span class="caption-subject bold uppercase"><?= $_SESSION[tt_mg_inbound] ?></span>
+                                            <i class="fa fa-wrench font-dark"></i>
+                                            <span class="caption-subject bold uppercase"><?= $_SESSION[tt_mg_process] ?></span>
                                         </div>
                                         <div class="actions">
 
@@ -106,10 +106,10 @@ ACTIVEPAGES(3, 2);
                                                                                                 </div>-->
                                                 <div class="col-md-6" align="left"  <?= $hidden ?>>
                                                     <div class="btn-group">
-                                                        <a href="re_inboundManage.php?func=add">
+<!--                                                        <a href="re_createManage.php?func=add">
                                                             <button id="sample_editable_1_new" class="btn sbold green"> <?= $_SESSION[btn_add] ?>
                                                             </button>
-                                                        </a>
+                                                        </a>-->
                                                     </div>
                                                     <div class="btn-group">
                                                         <button id="sample_editable_1_new" class="btn sbold red" onclick="deleteAll()"> <?= $_SESSION[btn_delete_all] ?>
@@ -120,10 +120,10 @@ ACTIVEPAGES(3, 2);
 
                                             </div>
                                         </div>
-                                        <table class="table table-striped table-bordered table-hover table-checkable order-column" id="datatable">
+                                        <table class="table table-striped table-bordered table-hover table-checkable order-column dt-responsive" id="datatable">
                                             <thead>
                                                 <tr>
-                                                    <th style="padding-left: 0px;width: 20px" class="no-sort">
+                                                    <th style="padding-left: 30px;width: 30px" class="no-sort">
                                                         <!--                                                        <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
                                                                                                                     <input type="checkbox" class="group-checkable" data-set="#datatable .checkboxes" id="select_all" />
                                                                                                                     <span></span>
@@ -136,10 +136,21 @@ ACTIVEPAGES(3, 2);
                                                                 <span class="box"></span> </label>
                                                         </span>
                                                     </th>
-                                                    <th style="width: 100px" class="no-sort">  <?= $_SESSION[tb_co_profile] ?> </th>
-                                                    <th>  <?= $_SESSION[tb_co_fullname] ?> </th>
-                                                    <th>  <?= $_SESSION[tb_co_phone] ?> </th>
-                                                    <th>  <?= $_SESSION[tb_co_status] ?> </th>
+                                                    <th  class="all"  style="width: 80px">  <?= $_SESSION[tb_co_refno] ?> </th>
+                                                    <th  class="all">  <?= $_SESSION[tb_co_custname] ?> </th>
+                                                    <th  class="all">  <?= $_SESSION[tb_co_license] ?> </th>
+
+                                                    <th class="none"> <span style="color:red"><?= $_SESSION[tb_co_caryear] ?></span> </th>
+                                                    <th class="none"> <span style="color:red"><?= $_SESSION[tb_co_carbrand] ?></span> </th>
+                                                    <th class="none"> <span style="color:red"><?= $_SESSION[tb_co_cargeneration] ?></span> </th>
+                                                    <th class="none"> <span style="color:red"><?= $_SESSION[tb_co_carsub] ?></span> </th>
+
+                                                    <th class="none"> <span style="color:red"><?= $_SESSION[tb_co_insurance_name] ?></span> </th>
+                                                    <!--<th class="none"> <span style="color:red"><?= $_SESSION[tb_co_dmg] ?></span> </th>-->
+                                                    <th class="none"> <span style="color:red"><?= $_SESSION[tb_co_dinbound_car] ?> - <?= $_SESSION[tb_co_doutbound_car] ?></span> </th>
+
+
+                                                    <th  class="all">  <?= $_SESSION[tb_co_status] ?> </th>
                                                     <th style="width: 40px"> <?= $_SESSION[tb_co_edit] ?> </th>
                                                     <th style="width: 40px"> <?= $_SESSION[tb_co_delete] ?></th>
                                             </thead>
@@ -206,10 +217,11 @@ ACTIVEPAGES(3, 2);
 
         <script src="js/common/notify.js" type="text/javascript"></script>
         <script src="js/common/utility.js" type="text/javascript"></script>
+         <link href="css/custom.css" rel="stylesheet" type="text/css" />
         <link href="css/notify.css" rel="stylesheet" type="text/css" />
         <link href="outbound/lightbox/css/lightbox.css" rel="stylesheet" type="text/css" />
         <script src="outbound/lightbox/js/lightbox.js" type="text/javascript"></script>
-        <script src="js/action/repair/re_inbound.js" type="text/javascript"></script>
+        <script src="js/action/repair/re_process.js" type="text/javascript"></script>
         <script>
                                                             $(document).ready(function () {
                                                                 initialDataTable("TRUE");

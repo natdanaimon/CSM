@@ -406,4 +406,19 @@ class Utility {
         return date_format(date_add($date, date_interval_create_from_date_string('-' . $i . ' months')), 'Y-m');
     }
 
+    function convertFileSize($size) {
+        
+        $size = ($size/1000);
+        
+        $kbCal = 1024;
+        if ($size < 100) {
+            $returnSize = number_format($size, 1, '.', '') . " KB";
+        } else {
+            $returnSize = number_format(($size/$kbCal), 1, '.', '') . " MB";
+        }
+
+
+        return $returnSize;
+    }
+
 }

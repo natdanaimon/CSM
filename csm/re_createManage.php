@@ -140,11 +140,12 @@ $disableElement = 'disabled="disable"';
 
 
                                     <div class="portlet box green">
-                                        <div class="portlet-title">
+                                        <div class="portlet-title" onclick="closeStep(1)" style="cursor: pointer;">
                                             <div class="caption">
                                                 <i class="fa fa-user"></i> <?= $_SESSION[tt_detail_create1] ?></div>
                                             <div class="tools">
-                                                <a href="javascript:closeStep(1);" class="fa fa-angle-down" style="color: white;text-decoration:none;"> </a>
+                                                <!--<a href="javascript:closeStep(1);" class="fa fa-angle-down" style="color: white;text-decoration:none;"> </a>-->
+                                                <span class="fa fa-angle-down" style="color: white;text-decoration:none;"> </span>
                                             </div>
                                         </div>
                                         <div class="portlet-body form" id="step1" style="display: block;">

@@ -70,6 +70,13 @@
                         <span class="badge badge-success" ></span>
                     </a>
                 </li>
+                <li class="nav-item  <?= $_SESSION["nav_sub_re_process"] ?>">
+                    <a href="re_process.php" class="nav-link ">
+                        <span class="title">3 <?= $_SESSION[re_process] ?></span>
+                        <span class="selected"></span>
+                        <span class="badge badge-success" ></span>
+                    </a>
+                </li>
             </ul>
         </li>
         <!--R3 ระบบนำซ่อม-->

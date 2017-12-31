@@ -905,6 +905,11 @@
         <en>Check Repair Management</en>
     </detail>
     <detail>
+        <variable>re_process</variable>
+        <th>ขั้นตอนกำลังดำเนินการ</th>
+        <en>Process Repair Management</en>
+    </detail>
+    <detail>
         <variable>re_inbound</variable>
         <th>ตรวจสภาพรถก่อนนำเข้า</th>
         <en>Check Inbound Car</en>
@@ -1499,6 +1504,11 @@
         <en>MANAGE CHECK REPAIR</en>
     </detail>
     <detail>
+        <variable>tt_mg_process</variable>
+        <th>จัดการข้อมูลขั้นตอนการดำเนินการ</th>
+        <en>MANAGE PROCESS REPAIR</en>
+    </detail>
+    <detail>
         <variable>tt_mg_caryear</variable>
         <th>จัดการข้อมูลปีรถ</th>
         <en>MANAGE CAR YEAR</en>
@@ -1645,6 +1655,16 @@
         <th>ข้อมูลตรวจสภาพรถก่อนนำซ่อม</th>
         <en>Check Repair Management</en>
     </detail>
+    <detail>
+        <variable>tt_detail_create3</variable>
+        <th>ข้อมูลภาพ กำลังดำเนินการซ่อม (รื้อ)</th>
+        <en>Image processed (dismantling)</en>
+    </detail>
+    <detail>
+        <variable>tt_detail_create4</variable>
+        <th>ข้อมูลภาพ กำลังดำเนินการซ่อม (เคาะ)</th>
+        <en>Image processed (tap)</en>
+    </detail>
 
     
     
@@ -1746,7 +1766,13 @@
         <th>2014,รายการข้อมูลรหัสรถนี้มีอยู่แล้วในระบบ</th>
         <en>2014,Car Code already exists in the system.</en> 
     </detail>
-	
+    <detail>
+        <variable>cd_2015</variable>
+        <th>2015,ไฟล์รูปภาพชื่อนี้มีอยู่แล้วในระบบ</th>
+        <en>2015,This image file already exists in the system.</en> 
+    </detail>
+        
+        
     <detail>
         <variable>cd_2099</variable>
         <th>2099,กรุณาระบุข้อมูล field ด้วยค่ะ</th>

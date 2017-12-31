@@ -3,7 +3,7 @@ var $datatable = $('#datatable');
 function initialDataTable(first) {
     $.ajax({
         type: 'GET',
-        url: 'controller/customer/customerController.php?func=dataTable',
+        url: 'controller/repair/processController.php?func=dataTable',
         beforeSend: function() {
             $('#se-pre-con').fadeIn(100);
         },
@@ -21,32 +21,33 @@ function initialDataTable(first) {
             $.each(res, function(i, item) {
 
                 var col_checkbox = "";
-                var col_picture = '';
-                var col_name = (language == "th" ? item.s_title_th : item.s_title_en) + " " + item.s_firstname + " " + item.s_lastname;
-                var col_phone = item.s_phone_1;
+                var col_refno = item.ref_no;
+                var col_name = item.s_fullname;
+                var col_license = item.s_license;
+
+
+                var col_caryear = item.i_year;
+                var col_carbrand = item.i_brand;
+                var col_cargen = item.i_gen;
+                var col_carsub = item.i_sub;
+                var col_insurance = item.i_ins_comp;
+//                var col_dmg = item.i_dmg;
+                var col_inout = item.d_inbound + " - " + item.d_outbound_confirm;
+
+
                 var col_status = "";
                 var col_edit = "";
                 var col_delete = "";
-                //                    col_checkbox = '<label class="mt-checkbox mt-checkbox-single mt-checkbox-outline" style="padding-right: 30px;">';
-                //                    col_checkbox += '<input type="checkbox" class="checkboxes" value="1" />';
-                //                    col_checkbox += '<span></span>';
-                //                    col_checkbox += ' </label>';
+
                 col_checkbox = '<span class="md-checkbox has-success" style="padding-right: 0px;">';
                 col_checkbox += '  <input type="checkbox" id="checkbox_' + i + '" name="checkboxItem" class="md-check"';
-                col_checkbox += '  value="' + item.i_customer + '" onclick=remove_select_all("checkbox_' + i + '")>';
+                col_checkbox += '  value="' + item.i_cust_car + '" onclick=remove_select_all("checkbox_' + i + '")>';
                 col_checkbox += '  <label for="checkbox_' + i + '">';
                 col_checkbox += '    <span class="inc"></span>';
                 col_checkbox += '    <span class="check"></span>';
                 col_checkbox += '    <span class="box"></span> </label>';
                 col_checkbox += '</span>';
 
-
-                if (item.s_image != "") {
-                    col_picture = '<a title="' + item.s_image + '" class="example-image-link" href="upload/customer/' + item.s_image + '" data-lightbox="example-' + item.i_customer +
-                        '">';
-                    col_picture += '<img class="example-image" src="upload/customer/' + item.s_image + '" width="32px" height="32px"  />';
-                    col_picture += '</a>';
-                }
 
 
 
@@ -55,21 +56,27 @@ function initialDataTable(first) {
                 col_status += '';
 
 
-                col_edit += '<a href="cus_customerManage.php?func=edit&id=' + item.i_customer + '" class="btn btn-circle btn-icon-only blue" style="width:32px;height:32px">';
+                col_edit += '<a href="re_processManage.php?func=edit&id=' + item.i_cust_car + '&ref_no='+item.ref_no+'" class="btn btn-circle btn-icon-only blue" style="width:32px;height:32px">';
                 col_edit += ' <i class="fa fa-edit"></i>';
                 col_edit += '</a>';
 
-                col_delete += '<a href="' + (disable != "" ? '#' : 'javascript:Confirm(\'' + item.i_customer + '\',\'delete\');') + '" style="width:33px;height:33px" class="btn btn-circle btn-icon-only red" ' + disable + '>';
+                col_delete += '<a href="' + (disable != "" ? '#' : 'javascript:Confirm(\'' + item.i_cust_car + '\',\'delete\');') + '" style="width:33px;height:33px" class="btn btn-circle btn-icon-only red" ' + disable + '>';
                 col_delete += ' <i class="fa fa-trash-o" ></i>';
                 col_delete += '</a>';
 
 
-
                 var addRow = [
                     col_checkbox,
-                    col_picture,
+                    col_refno,
                     col_name,
-                    col_phone,
+                    col_license,
+                    col_caryear,
+                    col_carbrand,
+                    col_cargen,
+                    col_carsub,
+                    col_insurance,
+//                    col_dmg,
+                    col_inout,
                     col_status,
                     col_edit,
                     col_delete
@@ -82,8 +89,8 @@ function initialDataTable(first) {
                 $datatable.dataTable({
                     data: JsonData,
                     order: [
-                        [4, 'asc'],
-                        [2, 'asc']
+                        [1, 'desc'],
+                        [11, 'asc']
                     ],
                     columnDefs: [
                         { "orderable": false, "targets": 0 }
@@ -109,18 +116,42 @@ function initialDataTable(first) {
 }
 
 function colorStatus(status) {
-    if (status == "A") {
+    if (status == "R12") {
         return "success";
-    } else if (status == "C") {
+    } else if (status == "R0") {
         return "danger";
+    }else{
+        return "warning";
     }
 }
 
 function sortHidden(status) {
-    if (status == "A") {
+    if (status == "R1") {
         return "<span style='display:none;'>1</span>";
-    } else if (status == "C") {
+    } else if (status == "R2") {
         return "<span style='display:none;'>2</span>";
+    } else if (status == "R3") {
+        return "<span style='display:none;'>3</span>";
+    } else if (status == "R4") {
+        return "<span style='display:none;'>4</span>";
+    } else if (status == "R5") {
+        return "<span style='display:none;'>5</span>";
+    } else if (status == "R6") {
+        return "<span style='display:none;'>6</span>";
+    } else if (status == "R7") {
+        return "<span style='display:none;'>7</span>";
+    } else if (status == "R8") {
+        return "<span style='display:none;'>8</span>";
+    }else if (status == "R9") {
+        return "<span style='display:none;'>9</span>";
+    }else if (status == "R10") {
+        return "<span style='display:none;'>10</span>";
+    }else if (status == "R11") {
+        return "<span style='display:none;'>11</span>";
+    }else if (status == "R12") {
+        return "<span style='display:none;'>12</span>";
+    }else if (status == "R0") {
+        return "<span style='display:none;'>13</span>";
     }
 }
 
@@ -226,7 +257,7 @@ $(document).on('click', '.notifyjs-foo-base .notify-all-yes', function() {
 
     $.ajax({
         type: 'GET',
-        url: 'controller/customer/customerController.php',
+        url: 'controller/repair/processController.php',
         data: { data: jsonData, func: "deleteAll" },
         beforeSend: function() {
             $('#se-pre-con').fadeIn(100);
@@ -347,7 +378,7 @@ $(document).on('click', '.notifyjs-foo-base .notify-yes', function() {
 
     $.ajax({
         type: 'GET',
-        url: 'controller/customer/customerController.php?func=' + func + '&id=' + id,
+        url: 'controller/repair/processController.php?func=' + func + '&id=' + id,
         beforeSend: function() {
             $('#se-pre-con').fadeIn(100);
         },

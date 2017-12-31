@@ -216,7 +216,7 @@ class upload {
 
         return (bool) $resultStatus;
     }
-    
+
     function deleteFileCustom() {
         $resultStatus = FALSE;
         mkdir($this->_path . "temp/", 0777, true);
@@ -361,6 +361,7 @@ class upload {
         $img = FALSE;
         $doc = FALSE;
         $seq = 1;
+        mkdir($this->_path, 0777, true);
         foreach ($this->_FilenameCustom as $value) {
             if (!is_null($value) && $value != "") {
 
@@ -455,7 +456,7 @@ class upload {
         }
         return (bool) $flgDelete;
     }
-    
+
     function clearFileAddFailCustom() {
         $flgDelete = TRUE;
         if ($this->_FilenameCustomResult != NULL) {
