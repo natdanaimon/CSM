@@ -3,13 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/CSM/csm/js/action/repair/re_processManage.js</file>
-            <file>file:/C:/xampp/htdocs/CSM/csm/js/common/form-dropzone.js</file>
             <file>file:/C:/xampp/htdocs/CSM/csm/controller/repair/processController.php</file>
-            <file>file:/C:/xampp/htdocs/CSM/csm/re_process.php</file>
-            <file>file:/C:/xampp/htdocs/CSM/csm/form_dropzone.html</file>
-            <file>file:/C:/xampp/htdocs/CSM/csm/controller/repair/checkController.php</file>
             <file>file:/C:/xampp/htdocs/CSM/csm/re_processManage.php</file>
+            <file>file:/C:/xampp/htdocs/CSM/csm/language/language_common.xml</file>
         </group>
     </open-files>
 </project-private>

@@ -601,6 +601,7 @@ function edit() {
                 $("#d_ins_exp").val(item.d_ins_exp);
 
                 $("#status").val(item.s_status);
+                activeStep(item.s_status)
                 $("#lb_create").text(item.s_create_by + " ( " + item.d_create + " )");
                 var lb_edit = (item.s_update_by != "" ? item.s_update_by + " ( " + item.d_update + " )" : "-");
                 $("#lb_edit").text(lb_edit);
@@ -619,7 +620,18 @@ function edit() {
     });
 }
 
-
+function activeStep(status) {
+    debugger;
+    var i = 1;
+    for (i = 1; i < 12; i++) {
+        $('#step' + i).removeAttr('style');
+        $('#step' + i).attr('style', 'display:none;');
+    }
+    debugger;
+    var indexActive = parseInt(status.substring(1));
+    indexActive = (indexActive - 1)
+    $('#step' + indexActive).attr('style', 'display:block;');
+}
 
 function editCustomer(id) {
 
@@ -804,43 +816,42 @@ function setValSelected(index, val) {
 }
 
 
-function save() {
-    $('#form-action').submit(function (e) {
-        e.preventDefault();
-        console.log($(this).serialize());
-        var formData = new FormData($(this)[0]);
-        $.ajax({
-            type: 'POST',
-            url: 'controller/repair/processController.php',
-            data: formData,
-            cache: false,
-            contentType: false,
-            processData: false,
-            beforeSend: function () {
-                $('#se-pre-con').fadeIn(100);
-            },
-            success: function (data) {
-                var res = data.split(",");
-                if (res[0] == "0000") {
-                    var errCode = "Code (" + res[0] + ") : " + res[1];
-                    $.notify(errCode, "success");
-                } else {
-                    var errCode = "Code (" + res[0] + ") : " + res[1];
-                    $.notify(errCode, "error");
-                    //fix
-                    $('#se-pre-con').delay(100).fadeOut();
-                    return;
-                }
+function saveCustomChangeStatus() {
 
-                notification();
-                $('#form-action').each(function () {
-                    setTimeout(reloadTime, 1000);
-                });
-            },
-            error: function (data) {
 
+    $.ajax({
+        type: 'GET',
+        url: 'controller/repair/processController.php?func=edit&status=' + $('#status').val() + '&id=' + $('#id').val(),
+        // data: formData,
+        cache: false,
+        contentType: false,
+        processData: false,
+        beforeSend: function () {
+            $('#se-pre-con').fadeIn(100);
+        },
+        success: function (data) {
+            var res = data.split(",");
+            if (res[0] == "0000") {
+                var errCode = "Code (" + res[0] + ") : " + res[1];
+                $.notify(errCode, "success");
+            } else {
+                var errCode = "Code (" + res[0] + ") : " + res[1];
+                $.notify(errCode, "error");
+                //fix
+                $('#se-pre-con').delay(100).fadeOut();
+                return;
             }
-        });
+
+            notification();
+//            $('#form-action').each(function () {
+//                setTimeout(reloadTime, 1000);
+//            });
+            getDDLStatus();
+//            $('#se-pre-con').delay(100).fadeOut();
+        },
+        error: function (data) {
+
+        }
     });
 }
 
@@ -955,88 +966,3 @@ function radio_type(setSelected) {
 function setRadio(i) {
     $("#i_ins_type").val(i);
 }
-
-
-
-
-var maxImageWidth = 800;
-var maxImageHeight = 800;
-
-
-var FormDropzone = function () {
-
-
-    return {
-        //main function to initiate the module
-        init: function () {
-
-            Dropzone.options.myDropzoneS3 = {
-                dictDefaultMessage: "",
-                addRemoveLinks: true,
-                maxFiles: 50,
-                thumbnailWidth: "120",
-                thumbnailHeight: "120",
-                acceptedFiles: "image/jpeg,image/png,image/gif",
-                init: function () {
-                    thisDropzone = this;
-                    var dupplicate = false;
-                    $.get('controller/repair/processController.php?func=iniDismantling&ref_no=' + ref_no, function (data) {
-                        $.each(data, function (key, value) {
-                            var mockFile = {name: value.name, size: value.size};
-                            thisDropzone.options.addedfile.call(thisDropzone, mockFile);
-                            thisDropzone.options.thumbnail.call(thisDropzone, mockFile, "upload/step_dismantling/" + ref_no + "/" + value.name);
-                            thisDropzone.options.complete(thisDropzone, mockFile);
-                        });
-                    });
-                    this.on("success", function (file, response) {
-                        var res = JSON.parse(response);
-                        var resp = res.error.split(",");
-                        if (res.code != '0') {
-                            dupplicate = true;
-                            thisDropzone.removeFile(file);
-                            var errCode = "Code (" + resp[0] + ") : " + resp[1];
-                            $.notify(errCode, "error");
-                            return;
-                        } else {
-                            var errCode = "Code (" + resp[0] + ") : " + resp[1];
-                            $.notify(errCode, "success");
-                        }
-                        $(file.previewElement).find('[data-dz-name]').html(res.name);
-                        $(file.previewElement).find('[data-dz-size]').html(res.size);
-                    });
-                    this.on("removedfile", function (file) {
-                        if (!dupplicate) {
-                            $.get('controller/repair/processController.php?func=delDismantling&filename=' + file.name + '&ref_no=' + ref_no, function (data) {
-                                dupplicate = false;
-                                var res = data.split(",");
-                                if (res[0] == "0000") {
-                                    var errCode = "Code (" + res[0] + ") : " + res[1];
-                                    $.notify(errCode, "success");
-                                } else {
-                                    var errCode = "Code (" + res[0] + ") : " + res[1];
-                                    $.notify(errCode, "error");
-                                    $('#se-pre-con').delay(100).fadeOut();
-                                    return;
-                                }
-                            });
-                        }
-                        dupplicate = false;
-                    });
-                }
-            }
-            
-            
-            
-            
-            
-            
-            
-            
-            
-        }
-    };
-}();
-
-jQuery(document).ready(function () {
-    FormDropzone.init();
-});

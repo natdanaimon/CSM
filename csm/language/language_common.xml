@@ -1665,8 +1665,31 @@
         <th>ข้อมูลภาพ กำลังดำเนินการซ่อม (เคาะ)</th>
         <en>Image processed (tap)</en>
     </detail>
-
-    
+    <detail>
+        <variable>tt_detail_create5</variable>
+        <th>ข้อมูลภาพ กำลังดำเนินการซ่อม (โป๊ว)</th>
+        <en>Image processed (filling)</en>
+    </detail>
+    <detail>
+        <variable>tt_detail_create6</variable>
+        <th>ข้อมูลภาพ กำลังดำเนินการซ่อม (พ่น)</th>
+        <en>Image processed (spraying)</en>
+    </detail>
+    <detail>
+        <variable>tt_detail_create7</variable>
+        <th>ข้อมูลภาพ กำลังดำเนินการซ่อม (ประกอบ)</th>
+        <en>Image processed (Prepare)</en>
+    </detail>
+    <detail>
+        <variable>tt_detail_create8</variable>
+        <th>ข้อมูลภาพ กำลังดำเนินการซ่อม (ขัด)</th>
+        <en>Image processed (polishing)</en>
+    </detail>
+    <detail>
+        <variable>tt_detail_create9</variable>
+        <th>ข้อมูลภาพ กำลังดำเนินการซ่อม (ตรวจสอบสภาพ)</th>
+        <en>Image processed (check)</en>
+    </detail>
     
     
     

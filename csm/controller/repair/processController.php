@@ -57,6 +57,60 @@ switch ($info[func]) {
     case "delDismantling":
         echo $controller->delDismantling($info);
         break;
+    case "addTapping":
+        echo $controller->addTapping($info);
+        break;
+    case "iniTapping":
+        echo $controller->iniTapping($info);
+        break;
+    case "delTapping":
+        echo $controller->delTapping($info);
+        break;
+    case "addFilling":
+        echo $controller->addFilling($info);
+        break;
+    case "iniFilling":
+        echo $controller->iniFilling($info);
+        break;
+    case "delFilling":
+        echo $controller->delFilling($info);
+        break;
+    case "addSpraying":
+        echo $controller->addSpraying($info);
+        break;
+    case "iniSpraying":
+        echo $controller->iniSpraying($info);
+        break;
+    case "delSpraying":
+        echo $controller->delSpraying($info);
+        break;
+    case "addPrepare":
+        echo $controller->addPrepare($info);
+        break;
+    case "iniPrepare":
+        echo $controller->iniPrepare($info);
+        break;
+    case "delPrepare":
+        echo $controller->delPrepare($info);
+        break;
+    case "addPolishing":
+        echo $controller->addPolishing($info);
+        break;
+    case "iniPolishing":
+        echo $controller->iniPolishing($info);
+        break;
+    case "delPolishing":
+        echo $controller->delPolishing($info);
+        break;
+    case "addCheck":
+        echo $controller->addCheck($info);
+        break;
+    case "iniCheck":
+        echo $controller->iniCheck($info);
+        break;
+    case "delCheck":
+        echo $controller->delCheck($info);
+        break;
 }
 
 class processController {
@@ -79,7 +133,7 @@ class processController {
         $doc->set_path("../../upload/step_dismantling/" . $info[ref_no] . "/");
         $doc->setResize(TRUE);
         if (!empty($_FILES)) {
-            
+
             if (file_exists($doc->get_path() . $_FILES['file']['name'])) {
                 $error = $_SESSION['cd_2015'];
             } else {
@@ -91,7 +145,7 @@ class processController {
                     $db = new ConnectDB();
                     $db->conn();
                     $service = new processService();
-                    if ($service->addDismantling($db, $info, $_FILES['file']['name'])) {
+                    if ($service->addDropzone('tb_img_dismantling', $db, $info, $_FILES['file']['name'])) {
                         if ($doc->AddFileCustom()) {
                             $code = '0';
                             $name = $doc->get_FilenameCustomResult()[0];
@@ -126,7 +180,7 @@ class processController {
         $doc = new upload();
         $doc->set_path("../../upload/step_dismantling/" . $info[ref_no] . "/");
         $doc->add_FileName($info[filename]);
-        if ($service->delDismantling($db, $info)) {
+        if ($service->delDropzone('tb_img_dismantling', $db, $info)) {
             if ($doc->deleteFile()) {
                 $db->commit();
                 echo $_SESSION['cd_0000'];
@@ -146,6 +200,540 @@ class processController {
         $result = array();
         $service = new processService();
         $files = $service->initialDropzone('tb_img_dismantling', $info[ref_no]);
+        if ($files != NULL) {
+            foreach ($files as $key => $value) {
+                $obj['name'] = $files[$key]['s_image'];
+                $obj['size'] = filesize($storeFolder . $files[$key]['s_image']);
+                $result[] = $obj;
+            }
+        }
+        header('Content-type: text/json');
+        header('Content-type: application/json');
+        echo json_encode($result);
+    }
+
+    public function addTapping($info) {
+        $code = '';
+        $name = '';
+        $error = $_SESSION['cd_2001'];
+        $size = 0;
+        $result = array();
+        $doc = new upload();
+        $doc->set_path("../../upload/step_tapping/" . $info[ref_no] . "/");
+        $doc->setResize(TRUE);
+        if (!empty($_FILES)) {
+
+            if (file_exists($doc->get_path() . $_FILES['file']['name'])) {
+                $error = $_SESSION['cd_2015'];
+            } else {
+
+
+                $filename = explode(".", $_FILES['file']['name']);
+                $doc->add_FileNameCustom($_FILES['file'], $filename[0]);
+                if (count($doc->get_FilenameCustom()) > 0) {
+                    $db = new ConnectDB();
+                    $db->conn();
+                    $service = new processService();
+                    if ($service->addDropzone('tb_img_tapping', $db, $info, $_FILES['file']['name'])) {
+                        if ($doc->AddFileCustom()) {
+                            $code = '0';
+                            $name = $doc->get_FilenameCustomResult()[0];
+                            $size = filesize($doc->get_path() . $_FILES['file']['name']);
+                            $db->commit();
+                            $error = $_SESSION['cd_0000'];
+                        } else {
+                            $db->rollback();
+                            $doc->clearFileAddFailCustom();
+                        }
+                    } else {
+                        $db->rollback();
+                    }
+                }
+            }
+        }
+        $util = new Utility();
+        $result = array(
+            "code" => $code,
+            "error" => $error,
+            "name" => $name,
+            "size" => $util->convertFileSize($size)
+        );
+        return json_encode($result);
+    }
+
+    public function delTapping($info) {
+        $service = new processService();
+        $db = new ConnectDB();
+        $db->conn();
+
+        $doc = new upload();
+        $doc->set_path("../../upload/step_tapping/" . $info[ref_no] . "/");
+        $doc->add_FileName($info[filename]);
+        if ($service->delDropzone('tb_img_tapping', $db, $info)) {
+            if ($doc->deleteFile()) {
+                $db->commit();
+                echo $_SESSION['cd_0000'];
+            } else {
+                $db->rollback();
+                $doc->clearFileAddFail();
+                echo $_SESSION['cd_2001'];
+            }
+        } else {
+            $db->rollback();
+            echo $_SESSION['cd_2001'];
+        }
+    }
+
+    public function iniTapping($info) {
+        $storeFolder = "../../upload/step_tapping/" . $info[ref_no] . "/";
+        $result = array();
+        $service = new processService();
+        $files = $service->initialDropzone('tb_img_tapping', $info[ref_no]);
+        if ($files != NULL) {
+            foreach ($files as $key => $value) {
+                $obj['name'] = $files[$key]['s_image'];
+                $obj['size'] = filesize($storeFolder . $files[$key]['s_image']);
+                $result[] = $obj;
+            }
+        }
+        header('Content-type: text/json');
+        header('Content-type: application/json');
+        echo json_encode($result);
+    }
+
+    public function addFilling($info) {
+        $code = '';
+        $name = '';
+        $error = $_SESSION['cd_2001'];
+        $size = 0;
+        $result = array();
+        $doc = new upload();
+        $doc->set_path("../../upload/step_filling/" . $info[ref_no] . "/");
+        $doc->setResize(TRUE);
+        if (!empty($_FILES)) {
+
+            if (file_exists($doc->get_path() . $_FILES['file']['name'])) {
+                $error = $_SESSION['cd_2015'];
+            } else {
+
+
+                $filename = explode(".", $_FILES['file']['name']);
+                $doc->add_FileNameCustom($_FILES['file'], $filename[0]);
+                if (count($doc->get_FilenameCustom()) > 0) {
+                    $db = new ConnectDB();
+                    $db->conn();
+                    $service = new processService();
+                    if ($service->addDropzone('tb_img_filling', $db, $info, $_FILES['file']['name'])) {
+                        if ($doc->AddFileCustom()) {
+                            $code = '0';
+                            $name = $doc->get_FilenameCustomResult()[0];
+                            $size = filesize($doc->get_path() . $_FILES['file']['name']);
+                            $db->commit();
+                            $error = $_SESSION['cd_0000'];
+                        } else {
+                            $db->rollback();
+                            $doc->clearFileAddFailCustom();
+                        }
+                    } else {
+                        $db->rollback();
+                    }
+                }
+            }
+        }
+        $util = new Utility();
+        $result = array(
+            "code" => $code,
+            "error" => $error,
+            "name" => $name,
+            "size" => $util->convertFileSize($size)
+        );
+        return json_encode($result);
+    }
+
+    public function delFilling($info) {
+        $service = new processService();
+        $db = new ConnectDB();
+        $db->conn();
+
+        $doc = new upload();
+        $doc->set_path("../../upload/step_filling/" . $info[ref_no] . "/");
+        $doc->add_FileName($info[filename]);
+        if ($service->delDropzone('tb_img_filling', $db, $info)) {
+            if ($doc->deleteFile()) {
+                $db->commit();
+                echo $_SESSION['cd_0000'];
+            } else {
+                $db->rollback();
+                $doc->clearFileAddFail();
+                echo $_SESSION['cd_2001'];
+            }
+        } else {
+            $db->rollback();
+            echo $_SESSION['cd_2001'];
+        }
+    }
+
+    public function iniFilling($info) {
+        $storeFolder = "../../upload/step_filling/" . $info[ref_no] . "/";
+        $result = array();
+        $service = new processService();
+        $files = $service->initialDropzone('tb_img_filling', $info[ref_no]);
+        if ($files != NULL) {
+            foreach ($files as $key => $value) {
+                $obj['name'] = $files[$key]['s_image'];
+                $obj['size'] = filesize($storeFolder . $files[$key]['s_image']);
+                $result[] = $obj;
+            }
+        }
+        header('Content-type: text/json');
+        header('Content-type: application/json');
+        echo json_encode($result);
+    }
+
+    public function addSpraying($info) {
+        $code = '';
+        $name = '';
+        $error = $_SESSION['cd_2001'];
+        $size = 0;
+        $result = array();
+        $doc = new upload();
+        $doc->set_path("../../upload/step_spraying/" . $info[ref_no] . "/");
+        $doc->setResize(TRUE);
+        if (!empty($_FILES)) {
+
+            if (file_exists($doc->get_path() . $_FILES['file']['name'])) {
+                $error = $_SESSION['cd_2015'];
+            } else {
+
+
+                $filename = explode(".", $_FILES['file']['name']);
+                $doc->add_FileNameCustom($_FILES['file'], $filename[0]);
+                if (count($doc->get_FilenameCustom()) > 0) {
+                    $db = new ConnectDB();
+                    $db->conn();
+                    $service = new processService();
+                    if ($service->addDropzone('tb_img_spraying', $db, $info, $_FILES['file']['name'])) {
+                        if ($doc->AddFileCustom()) {
+                            $code = '0';
+                            $name = $doc->get_FilenameCustomResult()[0];
+                            $size = filesize($doc->get_path() . $_FILES['file']['name']);
+                            $db->commit();
+                            $error = $_SESSION['cd_0000'];
+                        } else {
+                            $db->rollback();
+                            $doc->clearFileAddFailCustom();
+                        }
+                    } else {
+                        $db->rollback();
+                    }
+                }
+            }
+        }
+        $util = new Utility();
+        $result = array(
+            "code" => $code,
+            "error" => $error,
+            "name" => $name,
+            "size" => $util->convertFileSize($size)
+        );
+        return json_encode($result);
+    }
+
+    public function delSpraying($info) {
+        $service = new processService();
+        $db = new ConnectDB();
+        $db->conn();
+
+        $doc = new upload();
+        $doc->set_path("../../upload/step_spraying/" . $info[ref_no] . "/");
+        $doc->add_FileName($info[filename]);
+        if ($service->delDropzone('tb_img_spraying', $db, $info)) {
+            if ($doc->deleteFile()) {
+                $db->commit();
+                echo $_SESSION['cd_0000'];
+            } else {
+                $db->rollback();
+                $doc->clearFileAddFail();
+                echo $_SESSION['cd_2001'];
+            }
+        } else {
+            $db->rollback();
+            echo $_SESSION['cd_2001'];
+        }
+    }
+
+    public function iniSpraying($info) {
+        $storeFolder = "../../upload/step_spraying/" . $info[ref_no] . "/";
+        $result = array();
+        $service = new processService();
+        $files = $service->initialDropzone('tb_img_spraying', $info[ref_no]);
+        if ($files != NULL) {
+            foreach ($files as $key => $value) {
+                $obj['name'] = $files[$key]['s_image'];
+                $obj['size'] = filesize($storeFolder . $files[$key]['s_image']);
+                $result[] = $obj;
+            }
+        }
+        header('Content-type: text/json');
+        header('Content-type: application/json');
+        echo json_encode($result);
+    }
+
+    public function addPrepare($info) {
+        $code = '';
+        $name = '';
+        $error = $_SESSION['cd_2001'];
+        $size = 0;
+        $result = array();
+        $doc = new upload();
+        $doc->set_path("../../upload/step_prepare/" . $info[ref_no] . "/");
+        $doc->setResize(TRUE);
+        if (!empty($_FILES)) {
+
+            if (file_exists($doc->get_path() . $_FILES['file']['name'])) {
+                $error = $_SESSION['cd_2015'];
+            } else {
+
+
+                $filename = explode(".", $_FILES['file']['name']);
+                $doc->add_FileNameCustom($_FILES['file'], $filename[0]);
+                if (count($doc->get_FilenameCustom()) > 0) {
+                    $db = new ConnectDB();
+                    $db->conn();
+                    $service = new processService();
+                    if ($service->addDropzone('tb_img_prepare', $db, $info, $_FILES['file']['name'])) {
+                        if ($doc->AddFileCustom()) {
+                            $code = '0';
+                            $name = $doc->get_FilenameCustomResult()[0];
+                            $size = filesize($doc->get_path() . $_FILES['file']['name']);
+                            $db->commit();
+                            $error = $_SESSION['cd_0000'];
+                        } else {
+                            $db->rollback();
+                            $doc->clearFileAddFailCustom();
+                        }
+                    } else {
+                        $db->rollback();
+                    }
+                }
+            }
+        }
+        $util = new Utility();
+        $result = array(
+            "code" => $code,
+            "error" => $error,
+            "name" => $name,
+            "size" => $util->convertFileSize($size)
+        );
+        return json_encode($result);
+    }
+
+    public function delPrepare($info) {
+        $service = new processService();
+        $db = new ConnectDB();
+        $db->conn();
+
+        $doc = new upload();
+        $doc->set_path("../../upload/step_prepare/" . $info[ref_no] . "/");
+        $doc->add_FileName($info[filename]);
+        if ($service->delDropzone('tb_img_prepare', $db, $info)) {
+            if ($doc->deleteFile()) {
+                $db->commit();
+                echo $_SESSION['cd_0000'];
+            } else {
+                $db->rollback();
+                $doc->clearFileAddFail();
+                echo $_SESSION['cd_2001'];
+            }
+        } else {
+            $db->rollback();
+            echo $_SESSION['cd_2001'];
+        }
+    }
+
+    public function iniPrepare($info) {
+        $storeFolder = "../../upload/step_prepare/" . $info[ref_no] . "/";
+        $result = array();
+        $service = new processService();
+        $files = $service->initialDropzone('tb_img_prepare', $info[ref_no]);
+        if ($files != NULL) {
+            foreach ($files as $key => $value) {
+                $obj['name'] = $files[$key]['s_image'];
+                $obj['size'] = filesize($storeFolder . $files[$key]['s_image']);
+                $result[] = $obj;
+            }
+        }
+        header('Content-type: text/json');
+        header('Content-type: application/json');
+        echo json_encode($result);
+    }
+
+    public function addPolishing($info) {
+        $code = '';
+        $name = '';
+        $error = $_SESSION['cd_2001'];
+        $size = 0;
+        $result = array();
+        $doc = new upload();
+        $doc->set_path("../../upload/step_polishing/" . $info[ref_no] . "/");
+        $doc->setResize(TRUE);
+        if (!empty($_FILES)) {
+
+            if (file_exists($doc->get_path() . $_FILES['file']['name'])) {
+                $error = $_SESSION['cd_2015'];
+            } else {
+
+
+                $filename = explode(".", $_FILES['file']['name']);
+                $doc->add_FileNameCustom($_FILES['file'], $filename[0]);
+                if (count($doc->get_FilenameCustom()) > 0) {
+                    $db = new ConnectDB();
+                    $db->conn();
+                    $service = new processService();
+                    if ($service->addDropzone('tb_img_polishing', $db, $info, $_FILES['file']['name'])) {
+                        if ($doc->AddFileCustom()) {
+                            $code = '0';
+                            $name = $doc->get_FilenameCustomResult()[0];
+                            $size = filesize($doc->get_path() . $_FILES['file']['name']);
+                            $db->commit();
+                            $error = $_SESSION['cd_0000'];
+                        } else {
+                            $db->rollback();
+                            $doc->clearFileAddFailCustom();
+                        }
+                    } else {
+                        $db->rollback();
+                    }
+                }
+            }
+        }
+        $util = new Utility();
+        $result = array(
+            "code" => $code,
+            "error" => $error,
+            "name" => $name,
+            "size" => $util->convertFileSize($size)
+        );
+        return json_encode($result);
+    }
+
+    public function delPolishing($info) {
+        $service = new processService();
+        $db = new ConnectDB();
+        $db->conn();
+
+        $doc = new upload();
+        $doc->set_path("../../upload/step_polishing/" . $info[ref_no] . "/");
+        $doc->add_FileName($info[filename]);
+        if ($service->delDropzone('tb_img_polishing', $db, $info)) {
+            if ($doc->deleteFile()) {
+                $db->commit();
+                echo $_SESSION['cd_0000'];
+            } else {
+                $db->rollback();
+                $doc->clearFileAddFail();
+                echo $_SESSION['cd_2001'];
+            }
+        } else {
+            $db->rollback();
+            echo $_SESSION['cd_2001'];
+        }
+    }
+
+    public function iniPolishing($info) {
+        $storeFolder = "../../upload/step_polishing/" . $info[ref_no] . "/";
+        $result = array();
+        $service = new processService();
+        $files = $service->initialDropzone('tb_img_polishing', $info[ref_no]);
+        if ($files != NULL) {
+            foreach ($files as $key => $value) {
+                $obj['name'] = $files[$key]['s_image'];
+                $obj['size'] = filesize($storeFolder . $files[$key]['s_image']);
+                $result[] = $obj;
+            }
+        }
+        header('Content-type: text/json');
+        header('Content-type: application/json');
+        echo json_encode($result);
+    }
+
+    public function addCheck($info) {
+        $code = '';
+        $name = '';
+        $error = $_SESSION['cd_2001'];
+        $size = 0;
+        $result = array();
+        $doc = new upload();
+        $doc->set_path("../../upload/step_check/" . $info[ref_no] . "/");
+        $doc->setResize(TRUE);
+        if (!empty($_FILES)) {
+
+            if (file_exists($doc->get_path() . $_FILES['file']['name'])) {
+                $error = $_SESSION['cd_2015'];
+            } else {
+
+
+                $filename = explode(".", $_FILES['file']['name']);
+                $doc->add_FileNameCustom($_FILES['file'], $filename[0]);
+                if (count($doc->get_FilenameCustom()) > 0) {
+                    $db = new ConnectDB();
+                    $db->conn();
+                    $service = new processService();
+                    if ($service->addDropzone('tb_img_check', $db, $info, $_FILES['file']['name'])) {
+                        if ($doc->AddFileCustom()) {
+                            $code = '0';
+                            $name = $doc->get_FilenameCustomResult()[0];
+                            $size = filesize($doc->get_path() . $_FILES['file']['name']);
+                            $db->commit();
+                            $error = $_SESSION['cd_0000'];
+                        } else {
+                            $db->rollback();
+                            $doc->clearFileAddFailCustom();
+                        }
+                    } else {
+                        $db->rollback();
+                    }
+                }
+            }
+        }
+        $util = new Utility();
+        $result = array(
+            "code" => $code,
+            "error" => $error,
+            "name" => $name,
+            "size" => $util->convertFileSize($size)
+        );
+        return json_encode($result);
+    }
+
+    public function delCheck($info) {
+        $service = new processService();
+        $db = new ConnectDB();
+        $db->conn();
+
+        $doc = new upload();
+        $doc->set_path("../../upload/step_check/" . $info[ref_no] . "/");
+        $doc->add_FileName($info[filename]);
+        if ($service->delDropzone('tb_img_check', $db, $info)) {
+            if ($doc->deleteFile()) {
+                $db->commit();
+                echo $_SESSION['cd_0000'];
+            } else {
+                $db->rollback();
+                $doc->clearFileAddFail();
+                echo $_SESSION['cd_2001'];
+            }
+        } else {
+            $db->rollback();
+            echo $_SESSION['cd_2001'];
+        }
+    }
+
+    public function iniCheck($info) {
+        $storeFolder = "../../upload/step_check/" . $info[ref_no] . "/";
+        $result = array();
+        $service = new processService();
+        $files = $service->initialDropzone('tb_img_check', $info[ref_no]);
         if ($files != NULL) {
             foreach ($files as $key => $value) {
                 $obj['name'] = $files[$key]['s_image'];
@@ -267,136 +855,16 @@ class processController {
     }
 
     public function edit($info) {
-        if ($this->isValid($info)) {
-            $service = new processService();
-            $db = new ConnectDB();
-            $db->conn();
-            $doc = new upload();
-            $doc->set_path("../../upload/step_checkrepair/");
-            $doc->setResize(TRUE);
 
-            $doc2 = new upload();
-            $doc2->set_path("../../upload/step_checkrepair_other/");
-            $doc2->setResize(TRUE);
-
-            $flgValid = TRUE;
-            $arrOld = array();
-            $arrOld2 = array();
-
-
-
-
-            $listRepairActive = $service->getListRepairActive($db);
-            if ($listRepairActive != NULL) {
-                foreach ($listRepairActive as $key => $value) {
-                    $keyDB = $listRepairActive[$key]['i_repair_item'];
-                    $keyInputCheckbox = 'i_repair_item_' . $keyDB;
-                    $keyInputFile = 'file_' . $keyDB;
-                    $keyInputRemark = 's_repair_item_' . $keyDB;
-                    $keyckOld = 'ck_' . $keyDB;
-                    $valckOld = $info[$keyckOld];
-                    if ($info[$keyInputCheckbox] != NULL && $info[$keyInputCheckbox] != '') {
-                        if ($_FILES[$keyInputFile]["error"] == 4 && $valckOld == '') {
-                            $flgValid = FALSE;
-                            echo $_SESSION['cd_2207'];
-                            break;
-                        } else {
-                            if ($valckOld == '') {
-                                $doc->add_FileNameCustom($_FILES[$keyInputFile], $info[ref_no] . '_' . $keyDB);
-                            } else {
-                                array_push($arrOld, $keyDB);
-                            }
-                        }
-                    }
-                }
-            }
-
-
-            for ($i = 1; $i < 14; $i++) {
-                $keyDB = $i;
-                $keyInputCheckbox = 'i_repair_subitem_' . $keyDB;
-                $keyInputFile = 'files_' . $keyDB;
-                $keyInputRemark = 's_repair_subitem_' . $keyDB;
-                $keyckOld = 'cks_' . $keyDB;
-                $valckOld = $info[$keyckOld];
-                if ($info[$keyInputCheckbox] != NULL && $info[$keyInputCheckbox] != '') {
-                    if ($_FILES[$keyInputFile]["error"] == 4 && $valckOld == '') {
-                        $flgValid = FALSE;
-                        echo $_SESSION['cd_2207'];
-                        break;
-                    } else {
-                        if ($valckOld == '') {
-                            $doc2->add_FileNameCustom($_FILES[$keyInputFile], $info[ref_no] . '_' . $keyDB);
-                        }
-                    }
-                }
-            }
-
-
-
-
-            if ($flgValid) {
-
-                if (count($doc->get_FilenameCustom()) > 0) {
-                    if ($doc->AddFileCustom()) {
-
-                        if (count($doc2->get_FilenameCustom()) > 0) {
-                            if ($doc2->AddFileCustom()) {
-                                if ($service->edit($db, $info, $arrOld)) {
-                                    $db->commit();
-                                    echo $_SESSION['cd_0000'];
-                                } else {
-                                    $db->rollback();
-                                    $doc->clearFileAddFailCustom();
-                                    $doc2->clearFileAddFailCustom();
-                                    echo $_SESSION['cd_2001'];
-                                }
-                            } else {
-                                echo $doc2->get_errorMessage();
-                            }
-                        } else {
-                            if ($service->edit($db, $info, $arrOld)) {
-                                $db->commit();
-                                echo $_SESSION['cd_0000'];
-                            } else {
-                                $db->rollback();
-                                $doc->clearFileAddFailCustom();
-                                echo $_SESSION['cd_2001'];
-                            }
-                        }
-                    } else {
-                        echo $doc->get_errorMessage();
-                    }
-                } else {
-
-
-                    if (count($doc2->get_FilenameCustom()) > 0) {
-                        if ($doc2->AddFileCustom()) {
-                            if ($service->edit($db, $info, $arrOld)) {
-                                $db->commit();
-                                echo $_SESSION['cd_0000'];
-                            } else {
-                                $db->rollback();
-                                $doc2->clearFileAddFailCustom();
-                                echo $_SESSION['cd_2001'];
-                            }
-                        } else {
-                            echo $doc2->get_errorMessage();
-                        }
-                    } else {
-                        if ($service->edit($db, $info, $arrOld)) {
-                            $db->commit();
-                            echo $_SESSION['cd_0000'];
-                        } else {
-                            $db->rollback();
-                            echo $_SESSION['cd_2001'];
-                        }
-                    }
-                }
-            }
-            // delete file temp
-            $this->deleteTempFile($db);
-            // delete file temp
+        $service = new processService();
+        $db = new ConnectDB();
+        $db->conn();
+        if ($service->edit($db, $info)) {
+            $db->commit();
+            echo $_SESSION['cd_0000'];
+        } else {
+            $db->rollback();
+            echo $_SESSION['cd_2001'];
         }
     }
 

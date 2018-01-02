@@ -605,22 +605,15 @@ $disableElement = 'disabled="disable"';
                                             <i class="fa fa-wrench"></i> <?= $_SESSION[tt_detail_create3] ?></div>
                                         <div class="tools">
                                             <span class="fa fa-angle-down" style="color: white;text-decoration:none;"> </span>
-                                            <!--<a href="javascript:closeStep(2);" class="fa fa-angle-down" style="color: white;text-decoration:none;"> </a>-->
+                                           
                                         </div>
                                     </div>
 
 
-                                    <div class="portlet-body form" id="step3" style="display: block;">
+                                    <div class="portlet-body form" id="step3" style="display: none;">
 
 
                                         <div class="portlet light bordered">
-                                            <!--                                                <div class="portlet-title">
-                                                                                                <div class="caption font-green inline">
-                                            
-                                                                                                    <span class="caption-subject bold uppercase"> <?= $_SESSION[1] ?></span>
-                                            
-                                                                                                </div>
-                                                                                            </div>-->
                                             <div class="portlet-body form">
 
                                                 <div class="form-body">
@@ -666,53 +659,188 @@ $disableElement = 'disabled="disable"';
                                             <i class="fa fa-wrench"></i> <?= $_SESSION[tt_detail_create4] ?></div>
                                         <div class="tools">
                                             <span class="fa fa-angle-down" style="color: white;text-decoration:none;"> </span>
-                                            <!--<a href="javascript:closeStep(2);" class="fa fa-angle-down" style="color: white;text-decoration:none;"> </a>-->
                                         </div>
                                     </div>
-
-
-                                    <div class="portlet-body form" id="step4" style="display: block;">
-
-
+                                    <div class="portlet-body form" id="step4" style="display: none;">
                                         <div class="portlet light bordered">
-                                            <!--                                                <div class="portlet-title">
-                                                                                                <div class="caption font-green inline">
-                                            
-                                                                                                    <span class="caption-subject bold uppercase"> <?= $_SESSION[1] ?></span>
-                                            
-                                                                                                </div>
-                                                                                            </div>-->
                                             <div class="portlet-body form">
-
                                                 <div class="form-body">
                                                     <div class="row">
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-12">
+                                                            <form action="controller/repair/processController.php?func=addTapping&ref_no=<?= $ref_no ?>" 
+                                                                  class="dropzone dropzone-file-area" 
+                                                                  id="myDropzoneS4" 
+                                                                  style="width:auto; height:auto;" >
+                                                                <h3 class="sbold">Drop files here or click to upload</h3>
+                                                                <!--<p> This is just a demo dropzone. Selected files are not actually uploaded. </p>-->
+                                                            </form>
                                                         </div>
-                                                        <div class="col-md-4"></div>
-                                                        <div class="col-md-4"></div>
                                                     </div>
-
-
                                                 </div>
-
-
                                             </div>
                                         </div>
-
-
-
-
                                     </div>
-
-
-
-
-
-
-
-
                                 </div>
                                 <!-- END STEP4-->
+
+                                <!-- BEGIN STEP5-->
+                                <div class="portlet box green">
+                                    <div class="portlet-title" onclick="closeStep(5)" style="cursor: pointer;">
+                                        <div class="caption">
+                                            <i class="fa fa-wrench"></i> <?= $_SESSION[tt_detail_create5] ?></div>
+                                        <div class="tools">
+                                            <span class="fa fa-angle-down" style="color: white;text-decoration:none;"> </span>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body form" id="step5" style="display: none;">
+                                        <div class="portlet light bordered">
+                                            <div class="portlet-body form">
+                                                <div class="form-body">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <form action="controller/repair/processController.php?func=addFilling&ref_no=<?= $ref_no ?>" 
+                                                                  class="dropzone dropzone-file-area" 
+                                                                  id="myDropzoneS5" 
+                                                                  style="width:auto; height:auto;" >
+                                                                <h3 class="sbold">Drop files here or click to upload</h3>
+                                                                <!--<p> This is just a demo dropzone. Selected files are not actually uploaded. </p>-->
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- END STEP5-->
+
+                                <!-- BEGIN STEP6-->
+                                <div class="portlet box green">
+                                    <div class="portlet-title" onclick="closeStep(6)" style="cursor: pointer;">
+                                        <div class="caption">
+                                            <i class="fa fa-wrench"></i> <?= $_SESSION[tt_detail_create6] ?></div>
+                                        <div class="tools">
+                                            <span class="fa fa-angle-down" style="color: white;text-decoration:none;"> </span>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body form" id="step6" style="display: none;">
+                                        <div class="portlet light bordered">
+                                            <div class="portlet-body form">
+                                                <div class="form-body">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <form action="controller/repair/processController.php?func=addSpraying&ref_no=<?= $ref_no ?>" 
+                                                                  class="dropzone dropzone-file-area" 
+                                                                  id="myDropzoneS6" 
+                                                                  style="width:auto; height:auto;" >
+                                                                <h3 class="sbold">Drop files here or click to upload</h3>
+                                                                <!--<p> This is just a demo dropzone. Selected files are not actually uploaded. </p>-->
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- END STEP6-->
+
+                                <!-- BEGIN STEP7-->
+                                <div class="portlet box green">
+                                    <div class="portlet-title" onclick="closeStep(7)" style="cursor: pointer;">
+                                        <div class="caption">
+                                            <i class="fa fa-wrench"></i> <?= $_SESSION[tt_detail_create7] ?></div>
+                                        <div class="tools">
+                                            <span class="fa fa-angle-down" style="color: white;text-decoration:none;"> </span>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body form" id="step7" style="display: none;">
+                                        <div class="portlet light bordered">
+                                            <div class="portlet-body form">
+                                                <div class="form-body">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <form action="controller/repair/processController.php?func=addPrepare&ref_no=<?= $ref_no ?>" 
+                                                                  class="dropzone dropzone-file-area" 
+                                                                  id="myDropzoneS7" 
+                                                                  style="width:auto; height:auto;" >
+                                                                <h3 class="sbold">Drop files here or click to upload</h3>
+                                                                <!--<p> This is just a demo dropzone. Selected files are not actually uploaded. </p>-->
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- END STEP7-->
+
+
+                                <!-- BEGIN STEP8-->
+                                <div class="portlet box green">
+                                    <div class="portlet-title" onclick="closeStep(8)" style="cursor: pointer;">
+                                        <div class="caption">
+                                            <i class="fa fa-wrench"></i> <?= $_SESSION[tt_detail_create8] ?></div>
+                                        <div class="tools">
+                                            <span class="fa fa-angle-down" style="color: white;text-decoration:none;"> </span>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body form" id="step8" style="display: none;">
+                                        <div class="portlet light bordered">
+                                            <div class="portlet-body form">
+                                                <div class="form-body">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <form action="controller/repair/processController.php?func=addPolishing&ref_no=<?= $ref_no ?>" 
+                                                                  class="dropzone dropzone-file-area" 
+                                                                  id="myDropzoneS8" 
+                                                                  style="width:auto; height:auto;" >
+                                                                <h3 class="sbold">Drop files here or click to upload</h3>
+                                                                <!--<p> This is just a demo dropzone. Selected files are not actually uploaded. </p>-->
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- END STEP8-->
+
+                                <!-- BEGIN STEP9-->
+                                <div class="portlet box green">
+                                    <div class="portlet-title" onclick="closeStep(9)" style="cursor: pointer;">
+                                        <div class="caption">
+                                            <i class="fa fa-wrench"></i> <?= $_SESSION[tt_detail_create9] ?></div>
+                                        <div class="tools">
+                                            <span class="fa fa-angle-down" style="color: white;text-decoration:none;"> </span>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body form" id="step9" style="display: none;">
+                                        <div class="portlet light bordered">
+                                            <div class="portlet-body form">
+                                                <div class="form-body">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <form action="controller/repair/processController.php?func=addCheck&ref_no=<?= $ref_no ?>" 
+                                                                  class="dropzone dropzone-file-area" 
+                                                                  id="myDropzoneS9" 
+                                                                  style="width:auto; height:auto;" >
+                                                                <h3 class="sbold">Drop files here or click to upload</h3>
+                                                                <!--<p> This is just a demo dropzone. Selected files are not actually uploaded. </p>-->
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- END STEP9-->
+
+
+
 
 
 
@@ -761,7 +889,7 @@ $disableElement = 'disabled="disable"';
                                     <div class="portlet-body form">
                                         <div class="form-actions noborder">
                                             <a href="re_create.php"> <button type="button" class="btn default"><?= $_SESSION[btn_cancel] ?></button></a>
-                                            <!--<button type="submit"  class="btn blue" ><?= $_SESSION[btn_submit] ?></button>-->
+                                            <button type="submit"  class="btn blue" onclick="saveCustomChangeStatus()"><?= $_SESSION[btn_submit] ?></button>
                                         </div>
                                     </div>
                                 </div>
@@ -825,108 +953,88 @@ $disableElement = 'disabled="disable"';
         <?php include './templated/quick_nav.php'; ?>
         <!-- END QUICK NAV -->
 
-    <script>
-        var ref_no = '<?=$ref_no?>';
-    </script>
+        <script>
+            var ref_no = '<?= $ref_no ?>';
+        </script>
 
-    <!-- BEGIN CORE PLUGINS -->
-    <script src="../assets/global/plugins/jquery.min.js" type="text/javascript"></script>
-
-
-    <script src="../assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="../assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
-    <script src="../assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
-    <script src="../assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
-    <script src="../assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
-    <!-- END CORE PLUGINS -->
-
-    <!-- BEGIN PAGE LEVEL PLUGINS -->
-    <script src="../assets/global/plugins/dropzone/dropzone.min.js" type="text/javascript"></script>
-    <!--<script src="js/common/form-dropzone.js" type="text/javascript"></script>-->
-    <!-- END PAGE LEVEL PLUGINS -->
+        <!-- BEGIN CORE PLUGINS -->
+        <script src="../assets/global/plugins/jquery.min.js" type="text/javascript"></script>
 
 
-    <!-- BEGIN PAGE LEVEL PLUGINS -->
-    <script src="../assets/global/scripts/datatable.js" type="text/javascript"></script>
-    <script src="../assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
-    <script src="../assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
-    <script src="../assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
+        <script src="../assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="../assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
+        <script src="../assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+        <script src="../assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+        <script src="../assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+        <!-- END CORE PLUGINS -->
 
-    <script src="../assets/global/plugins/moment.min.js" type="text/javascript"></script>
-    <script src="../assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js" type="text/javascript"></script>
-    <script src="../assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
-    <script src="../assets/global/plugins/bootstrap-timepicker/js/bootstrap-timepicker.js" type="text/javascript"></script>
-    <script src="../assets/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js" type="text/javascript"></script>
-    <script src="../assets/global/plugins/clockface/js/clockface.js" type="text/javascript"></script>
-    <!-- END PAGE LEVEL PLUGINS -->
-    <!-- BEGIN THEME GLOBAL SCRIPTS -->
-    <script src="../assets/global/scripts/app.min.js" type="text/javascript"></script>
-    <script src="../assets/global/plugins/jquery-inputmask/jquery.inputmask.bundle.min.js" type="text/javascript"></script>
-    <script src="js/common/markPattern.js" type="text/javascript"></script>
-    <!-- END THEME GLOBAL SCRIPTS -->
-    <!-- BEGIN PAGE LEVEL SCRIPTS -->
-    <script src="../assets/pages/scripts/components-date-time-pickers.js" type="text/javascript"></script>
-    <!-- END PAGE LEVEL SCRIPTS -->
-    <!-- BEGIN THEME LAYOUT SCRIPTS -->
-    <script src="../assets/layouts/layout/scripts/layout.min.js" type="text/javascript"></script>
-    <script src="../assets/layouts/layout/scripts/demo.min.js" type="text/javascript"></script>
-    <script src="../assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
-    <script src="../assets/layouts/global/scripts/quick-nav.min.js" type="text/javascript"></script>
-    <!-- END THEME LAYOUT SCRIPTS -->
-    <script src="js/common/select2.min.js"></script>
-    <script src="js/common/notify.js" type="text/javascript"></script>
-    <link href="css/notify.css" rel="stylesheet" type="text/css" />
-
-    <link href="css/custom.css" rel="stylesheet" type="text/css" />
-    <link href="outbound/lightbox/css/lightbox.css" rel="stylesheet" type="text/css" />
-    <script src="outbound/lightbox/js/lightbox.js" type="text/javascript"></script>
-    <!--<link href="css/custom_select2.css" rel="stylesheet" />-->
-    <script src="js/action/repair/re_processManage.js" type="text/javascript"></script>
-    <script src="js/action/search/popup.js" type="text/javascript"></script>
-    <script src="js/common/closeStep.js" type="text/javascript"></script>
+        <!-- BEGIN PAGE LEVEL PLUGINS -->
+        <script src="../assets/global/plugins/dropzone/dropzone.min.js" type="text/javascript"></script>
+       
+        <!-- END PAGE LEVEL PLUGINS -->
 
 
+        <!-- BEGIN PAGE LEVEL PLUGINS -->
+        <script src="../assets/global/scripts/datatable.js" type="text/javascript"></script>
+        <script src="../assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
+        <script src="../assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
+        <script src="../assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
+
+        <script src="../assets/global/plugins/moment.min.js" type="text/javascript"></script>
+        <script src="../assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js" type="text/javascript"></script>
+        <script src="../assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+        <script src="../assets/global/plugins/bootstrap-timepicker/js/bootstrap-timepicker.js" type="text/javascript"></script>
+        <script src="../assets/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js" type="text/javascript"></script>
+        <script src="../assets/global/plugins/clockface/js/clockface.js" type="text/javascript"></script>
+        <!-- END PAGE LEVEL PLUGINS -->
+        <!-- BEGIN THEME GLOBAL SCRIPTS -->
+        <script src="../assets/global/scripts/app.min.js" type="text/javascript"></script>
+        <script src="../assets/global/plugins/jquery-inputmask/jquery.inputmask.bundle.min.js" type="text/javascript"></script>
+        <script src="js/common/markPattern.js" type="text/javascript"></script>
+        <!-- END THEME GLOBAL SCRIPTS -->
+        <!-- BEGIN PAGE LEVEL SCRIPTS -->
+        <script src="../assets/pages/scripts/components-date-time-pickers.js" type="text/javascript"></script>
+        <!-- END PAGE LEVEL SCRIPTS -->
+        <!-- BEGIN THEME LAYOUT SCRIPTS -->
+        <script src="../assets/layouts/layout/scripts/layout.min.js" type="text/javascript"></script>
+        <script src="../assets/layouts/layout/scripts/demo.min.js" type="text/javascript"></script>
+        <script src="../assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
+        <script src="../assets/layouts/global/scripts/quick-nav.min.js" type="text/javascript"></script>
+        <!-- END THEME LAYOUT SCRIPTS -->
+        <script src="js/common/select2.min.js"></script>
+        <script src="js/common/notify.js" type="text/javascript"></script>
+        <link href="css/notify.css" rel="stylesheet" type="text/css" />
+
+        <link href="css/custom.css" rel="stylesheet" type="text/css" />
+        <link href="outbound/lightbox/css/lightbox.css" rel="stylesheet" type="text/css" />
+        <script src="outbound/lightbox/js/lightbox.js" type="text/javascript"></script>
+        <!--<link href="css/custom_select2.css" rel="stylesheet" />-->
+        <script src="js/action/repair/re_processManage.js" type="text/javascript"></script>
+        <script src="js/action/search/popup.js" type="text/javascript"></script>
+        <script src="js/common/closeStep.js" type="text/javascript"></script>
+         <script src="js/common/form-dropzone.js" type="text/javascript"></script>
 
 
-    <script>
-                                        var keyEdit = "<?= $_GET[id] ?>";
-    </script>
-    <script>
-        $(document).ready(function () {
-            getDDLStatus();
-            save();
-            if (keyEdit == "") {
-                unloading();
-            }
 
-//                Dropzone.options.myDropzoneS3 = {
-//                    init: function () {
-//                        thisDropzone = this;
-//
-//                        $.get('controller/repair/processController.php?func=inidismantling', function (data) {
-//
-//                            $.each(data, function (key, value) {
-//
-//                                var mockFile = {name: value.name, size: value.size};
-//
-//                                thisDropzone.options.addedfile.call(thisDropzone, mockFile);
-//
-//                                thisDropzone.options.thumbnail.call(thisDropzone, mockFile, "upload/step_dismantling/" + value.name);
-//
-//                            });
-//
-//                        });
-//                    }
-//                };
+        <script>
+            var keyEdit = "<?= $_GET[id] ?>";
+        </script>
+        <script>
+            $(document).ready(function () {
+                getDDLStatus();
+//                save();
+                if (keyEdit == "") {
+                    unloading();
+                }
 
-        });
-    </script>
+            });
+        </script>
 
-    <script>
+        <script>
 
 
-    </script>
+        </script>
 
-</body>
+    </body>
 
 </html>
