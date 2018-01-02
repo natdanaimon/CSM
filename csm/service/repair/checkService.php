@@ -12,7 +12,7 @@ class checkService {
         $strSql .= " from tb_customer_car u, tb_status s";
         $strSql .= " where u.s_status = s.s_status";
         $strSql .= " and s.s_type = 'REPAIR'";
-        $strSql .= " and s.s_status = 'R2'";
+        $strSql .= " and s.s_status in ('R2','R3') ";
         $strSql .= " ) tb_cust ,";
         $strSql .= " (";
         $strSql .= " select u.i_customer,concat(t.s_title_th, ' ', u.s_firstname, ' ', u.s_lastname) s_fullname,u.s_phone_1";
