@@ -61,7 +61,7 @@ function initialDataTable(first) {
                 col_edit += '</a>';
 
                 col_delete += '<a href="' + (disable != "" ? '#' : 'javascript:Confirm(\'' + item.i_cust_car + '\',\'delete\');') + '" style="width:33px;height:33px" class="btn btn-circle btn-icon-only red" ' + disable + '>';
-                col_delete += ' <i class="fa fa-trash-o" ></i>';
+                col_delete += ' <i class="fa fa-archive" ></i>';
                 col_delete += '</a>';
 
 
@@ -224,7 +224,7 @@ function deleteAll() {
     });
 
     $.notify({
-        title: title,
+        title: titleCancel,
         button: 'Confirm'
     }, {
         style: 'foo',
@@ -358,7 +358,7 @@ function Confirm(txt, func) {
     });
 
     $.notify({
-        title: title,
+        title: titleCancel,
         button: 'Confirm'
     }, {
         style: 'foo',

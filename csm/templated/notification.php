@@ -62,6 +62,7 @@
 <script>
     var language = "<?= $_SESSION[lan] ?>";
     var title = "<?= $_SESSION[confirmDelete] ?>";
+    var titleCancel = "<?= $_SESSION[confirmCancel] ?>";
     var yes = "<?= $_SESSION[btn_yes] ?>";
     var cancel = "<?= $_SESSION[btn_cancel] ?>";
     var lb_search_noInfo = "<?= $_SESSION[lb_search_noInfo] ?>";

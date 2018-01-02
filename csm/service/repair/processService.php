@@ -46,6 +46,29 @@ class processService {
         return $reslut;
     }
 
+    function listImage($db, $info) {
+
+        $strSql = "";
+        $strSql .= "select * from ( ";
+        $strSql .= "select 'lb-3' as 'step' , count(*) as cnt from tb_img_dismantling WHERE ref_no = '$info[ref_no]' ";
+        $strSql .= "UNION ALL ";
+        $strSql .= "select 'lb-4' as 'step' , count(*) as cnt from tb_img_tapping WHERE ref_no = '$info[ref_no]' ";
+        $strSql .= "UNION ALL ";
+        $strSql .= "select 'lb-5' as 'step' , count(*) as cnt from tb_img_filling WHERE ref_no = '$info[ref_no]' ";
+        $strSql .= "UNION ALL ";
+        $strSql .= "select 'lb-6' as 'step' , count(*) as cnt from tb_img_spraying WHERE ref_no = '$info[ref_no]' ";
+        $strSql .= "UNION ALL ";
+        $strSql .= "select 'lb-7' as 'step' , count(*) as cnt from tb_img_prepare WHERE ref_no = '$info[ref_no]' ";
+        $strSql .= "UNION ALL ";
+        $strSql .= "select 'lb-8' as 'step' , count(*) as cnt from tb_img_polishing WHERE ref_no = '$info[ref_no]' ";
+        $strSql .= "UNION ALL ";
+        $strSql .= "select 'lb-9' as 'step' , count(*) as cnt from tb_img_check WHERE ref_no = '$info[ref_no]' ";
+        $strSql .= " ) noti order by step asc ";
+        $_data = $db->Search_Data_FormatJson($strSql);
+        $db->close_conn();
+        return $_data;
+    }
+
     function dataTable() {
         $db = new ConnectDB();
         $strSql = " select *, '' as i_year , '' as i_brand , '' as i_gen , '' as i_sub from ";
@@ -54,7 +77,7 @@ class processService {
         $strSql .= " from tb_customer_car u, tb_status s";
         $strSql .= " where u.s_status = s.s_status";
         $strSql .= " and s.s_type = 'REPAIR'";
-        $strSql .= " and s.s_status not in ('A','C','R1','R2','R3')";
+        $strSql .= " and s.s_status not in ('A','C','R1','R2','R3','R0','R11','R12')";
         $strSql .= " ) tb_cust ,";
         $strSql .= " (";
         $strSql .= " select u.i_customer,concat(t.s_title_th, ' ', u.s_firstname, ' ', u.s_lastname) s_fullname,u.s_phone_1";
@@ -201,7 +224,8 @@ class processService {
     }
 
     function delete($db, $seq) {
-        $strSQL = "DELETE FROM tb_customer_car WHERE i_cust_car = '" . $seq . "' ";
+//        $strSQL = "DELETE FROM tb_customer_car WHERE i_cust_car = '" . $seq . "' ";
+        $strSQL = "UPDATE tb_customer_car set s_status = 'R0' WHERE i_cust_car = '" . $seq . "' ";
         $arr = array(
             array("query" => "$strSQL")
         );
@@ -211,7 +235,8 @@ class processService {
 
     function deleteAll($db, $query) {
 
-        $strSQL = "DELETE FROM tb_customer_car WHERE i_cust_car in ($query) ";
+//        $strSQL = "DELETE FROM tb_customer_car WHERE i_cust_car in ($query) ";
+        $strSQL = "UPDATE tb_customer_car set s_status = 'R0' WHERE i_cust_car in ($query) ";
         $arr = array(
             array("query" => "$strSQL")
         );

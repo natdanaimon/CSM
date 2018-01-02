@@ -2,7 +2,49 @@
 
 @session_start();
 
-class checkService {
+class successService {
+
+    function initialDropzone($table, $ref_no) {
+        $db = new ConnectDB();
+        $strSql = " select * from $table";
+        $strSql .= " where ref_no=" . $ref_no;
+        $strSql .= " order by d_create asc";
+        $_data = $db->Search_Data_FormatJson($strSql);
+        $db->close_conn();
+        return $_data;
+    }
+
+    function addDropzone($table, $db, $info, $filename) {
+        $strSql = "";
+        $strSql .= "INSERT ";
+        $strSql .= "INTO ";
+        $strSql .= "  $table ( ";
+        $strSql .= "    ref_no, ";
+        $strSql .= "    s_image, ";
+        $strSql .= "    d_create, ";
+        $strSql .= "    s_create_by ";
+        $strSql .= "  ) ";
+        $strSql .= "VALUES( ";
+        $strSql .= "  '$info[ref_no]', ";
+        $strSql .= "  '" . $filename . "', ";
+        $strSql .= " " . $db->Sysdate(TRUE) . ", ";
+        $strSql .= "  '$_SESSION[username]' ";
+        $strSql .= ") ";
+        $arr = array(
+            array("query" => "$strSql")
+        );
+        $reslut = $db->insert_for_upadte($arr);
+        return $reslut;
+    }
+
+    function delDropzone($table, $db, $info) {
+        $strSQL = "DELETE FROM $table WHERE ref_no = '" . $info[ref_no] . "' and s_image = '$info[filename]' ";
+        $arr = array(
+            array("query" => "$strSQL")
+        );
+        $reslut = $db->insert_for_upadte($arr);
+        return $reslut;
+    }
 
     function dataTable() {
         $db = new ConnectDB();
@@ -12,7 +54,7 @@ class checkService {
         $strSql .= " from tb_customer_car u, tb_status s";
         $strSql .= " where u.s_status = s.s_status";
         $strSql .= " and s.s_type = 'REPAIR'";
-        $strSql .= " and s.s_status in ('R2','R3') ";
+        $strSql .= " and s.s_status in ('R11','R12')";
         $strSql .= " ) tb_cust ,";
         $strSql .= " (";
         $strSql .= " select u.i_customer,concat(t.s_title_th, ' ', u.s_firstname, ' ', u.s_lastname) s_fullname,u.s_phone_1";
@@ -259,50 +301,9 @@ class checkService {
 //        return $reslut;
     }
 
-    function edit($db, $info, $arrOld) {
-        $ref_no = $info[ref_no];
-        $strSqlDelete = "DELETE FROM tb_check_repair where ref_no = '$info[ref_no]'";
-//        $strSqlDelete2 = "DELETE FROM tb_check_repair_other where ref_no = '$info[ref_no]'";
-        if (count($arrOld) > 0) {
-            $util = new Utility();
-            $query = $util->arr2strQuery($arrOld, "I");
-            $strSqlDelete = $strSqlDelete . " and i_repair_item not in ($query) ";
-        }
-
-
+    function edit($db, $info) {
         $arr = array();
-        array_push($arr, array("query" => "$strSqlDelete"));
-//        array_push($arr, array("query" => "$strSqlDelete2"));
-
-        foreach ($info as $value) {
-            $key = key($info);
-            if ("i_repair_item_" == substr($key, 0, 14) && $info[$key] != '') {
-                $keyIndex = substr($key, 14);
-                $keyMain = substr($key, 1, strlen($key));
-                $i_repair = $keyIndex;
-                $remark = $info['s' . $keyMain];
-                $indexFile = 'file_' . $keyIndex;
-                $filename = '';
-                if ($_FILES[$indexFile] != NULL && $_FILES[$indexFile]['error'] == 0) {
-                    $temp = explode(".", $_FILES[$indexFile]['name']);
-                    $filename = $info[ref_no] . '_' . $keyIndex . '.' . end($temp);
-                }
-
-                if ($filename != '') {
-                    $sql = $this->createStatement($db, $ref_no, $i_repair, $filename, $remark);
-                    array_push($arr, array("query" => "$sql"));
-                }
-            }
-            next($info);
-        }
         array_push($arr, array("query" => $this->sqlUpdateMain($db, $info)));
-
-        if ($this->checkDuppSub($db, $info)) {
-            array_push($arr, array("query" => $this->sqlUpdateCheckOther($db, $info)));
-        } else {
-
-            array_push($arr, array("query" => $this->createStatementSub($db, $info)));
-        }
         $reslut = $db->insert_for_upadte($arr);
         return $reslut;
     }
@@ -507,7 +508,7 @@ class checkService {
 //        $strSql .= "s_type_capital = '$info[s_type_capital]', ";
 //        $strSql .= "s_pay_type = '$info[s_pay_type]', ";
 //        $strSql .= "i_ins_comp = $info[i_ins_comp], ";
-        $strSql .= "i_dmg = $info[i_dmg], ";
+//        $strSql .= "i_dmg = $info[i_dmg], ";
 //        $strSql .= "d_inbound = '" . $util->DateSQL($info[d_inbound]) . "', ";
 //        $strSql .= "d_outbound_confirm = '" . $util->DateSQL($info[d_outbound_confirm]) . "', ";
 

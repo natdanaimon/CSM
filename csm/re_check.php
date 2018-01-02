@@ -112,7 +112,7 @@ ACTIVEPAGES(3, 2);
                                                         </a>-->
                                                     </div>
                                                     <div class="btn-group">
-                                                        <button id="sample_editable_1_new" class="btn sbold red" onclick="deleteAll()"> <?= $_SESSION[btn_delete_all] ?>
+                                                        <button id="sample_editable_1_new" class="btn sbold red" onclick="deleteAll()"> <?= $_SESSION[btn_cancel_all] ?>
 <!--                                                            <i class="fa fa-minus"></i>-->
                                                         </button>
                                                     </div>
@@ -152,7 +152,7 @@ ACTIVEPAGES(3, 2);
 
                                                     <th  class="all">  <?= $_SESSION[tb_co_status] ?> </th>
                                                     <th style="width: 40px"> <?= $_SESSION[tb_co_edit] ?> </th>
-                                                    <th style="width: 40px"> <?= $_SESSION[tb_co_delete] ?></th>
+                                                    <th style="width: 40px"> <?= $_SESSION[tb_co_cancel] ?></th>
                                             </thead>
                                             <tbody>
 

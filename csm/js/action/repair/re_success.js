@@ -3,7 +3,7 @@ var $datatable = $('#datatable');
 function initialDataTable(first) {
     $.ajax({
         type: 'GET',
-        url: 'controller/repair/checkController.php?func=dataTable',
+        url: 'controller/repair/successController.php?func=dataTable',
         beforeSend: function() {
             $('#se-pre-con').fadeIn(100);
         },
@@ -56,7 +56,7 @@ function initialDataTable(first) {
                 col_status += '';
 
 
-                col_edit += '<a href="re_checkManage.php?func=edit&id=' + item.i_cust_car + '" class="btn btn-circle btn-icon-only blue" style="width:32px;height:32px">';
+                col_edit += '<a href="re_successManage.php?func=edit&id=' + item.i_cust_car + '&ref_no='+item.ref_no+'" class="btn btn-circle btn-icon-only blue" style="width:32px;height:32px">';
                 col_edit += ' <i class="fa fa-edit"></i>';
                 col_edit += '</a>';
 
@@ -257,7 +257,7 @@ $(document).on('click', '.notifyjs-foo-base .notify-all-yes', function() {
 
     $.ajax({
         type: 'GET',
-        url: 'controller/repair/checkController.php',
+        url: 'controller/repair/successController.php',
         data: { data: jsonData, func: "deleteAll" },
         beforeSend: function() {
             $('#se-pre-con').fadeIn(100);
@@ -378,7 +378,7 @@ $(document).on('click', '.notifyjs-foo-base .notify-yes', function() {
 
     $.ajax({
         type: 'GET',
-        url: 'controller/repair/checkController.php?func=' + func + '&id=' + id,
+        url: 'controller/repair/successController.php?func=' + func + '&id=' + id,
         beforeSend: function() {
             $('#se-pre-con').fadeIn(100);
         },

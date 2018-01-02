@@ -569,7 +569,7 @@ function getDDLZipcode() {
 function edit() {
     $.ajax({
         type: 'GET',
-        url: 'controller/repair/processController.php?func=getInfo&id=' + keyEdit,
+        url: 'controller/repair/successController.php?func=getInfo&id=' + keyEdit,
         beforeSend: function () {
             //$('#se-pre-con').fadeIn(100);
         },
@@ -586,10 +586,7 @@ function edit() {
 
                 editCheckBoxMain(item.ref_no);
                 editCheckBoxOther(item.ref_no);
-
                 setImageCount(item.ref_no);
-
-
                 $("#i_ins_comp").val(item.i_ins_comp).trigger('change');
                 $("#d_inbound").val(item.d_inbound);
                 $("#d_outbound_confirm").val(item.d_outbound_confirm);
@@ -621,19 +618,6 @@ function edit() {
         }
 
     });
-}
-
-function activeStep(status) {
-    debugger;
-    var i = 1;
-    for (i = 1; i < 12; i++) {
-        $('#step' + i).removeAttr('style');
-        $('#step' + i).attr('style', 'display:none;');
-    }
-    debugger;
-    var indexActive = parseInt(status.substring(1));
-    indexActive = (indexActive - 1)
-    $('#step' + indexActive).attr('style', 'display:block;');
 }
 
 function setImageCount(id) {
@@ -684,6 +668,20 @@ function setImageCount(id) {
     });
 }
 
+
+function activeStep(status) {
+    debugger;
+    var i = 1;
+    for (i = 1; i < 12; i++) {
+        $('#step' + i).removeAttr('style');
+        $('#step' + i).attr('style', 'display:none;');
+    }
+    debugger;
+    var indexActive = parseInt(status.substring(1));
+    indexActive = (indexActive - 1)
+    $('#step' + indexActive).attr('style', 'display:block;');
+}
+
 function editCustomer(id) {
 
     $.ajax({
@@ -729,7 +727,7 @@ function editCheckBoxMain(ref_no) {
 
     $.ajax({
         type: 'GET',
-        url: 'controller/repair/processController.php?func=getCheckBoxMain&ref_no=' + ref_no,
+        url: 'controller/repair/successController.php?func=getCheckBoxMain&ref_no=' + ref_no,
         beforeSend: function () {
             //$('#se-pre-con').fadeIn(100);
         },
@@ -765,7 +763,7 @@ function editCheckBoxOther(ref_no) {
 
     $.ajax({
         type: 'GET',
-        url: 'controller/repair/processController.php?func=getCheckBoxOther&ref_no=' + ref_no,
+        url: 'controller/repair/successController.php?func=getCheckBoxOther&ref_no=' + ref_no,
         beforeSend: function () {
             //$('#se-pre-con').fadeIn(100);
         },
@@ -872,7 +870,7 @@ function saveCustomChangeStatus() {
 
     $.ajax({
         type: 'GET',
-        url: 'controller/repair/processController.php?func=edit&status=' + $('#status').val() + '&id=' + $('#id').val(),
+        url: 'controller/repair/successController.php?func=edit&status=' + $('#status').val() + '&id=' + $('#id').val(),
         // data: formData,
         cache: false,
         contentType: false,

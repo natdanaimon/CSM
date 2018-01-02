@@ -3,16 +3,16 @@
 include './common/Permission.php';
 include './common/PermissionADM.php';
 include './common/FunctionCheckActive.php';
-ACTIVEPAGES(3, 3);
+ACTIVEPAGES(3, 5);
 
 if ($_GET[func] != NULL) {
     $tt_header = ($_GET[func] == "add" ? $_SESSION[add_info] : $_SESSION[edit_info]);
 }
 if ($_GET[id] == NULL && $_GET[func] != "add") {
-    echo header("Location: re_process.php");
+    echo header("Location: re_cancel.php");
 }
 if ($_GET[ref_no] == NULL && $_GET[ref_no] == "") {
-    echo header("Location: re_process.php");
+    echo header("Location: re_cancel.php");
 }
 $ref_no = $_GET[ref_no];
 
@@ -107,7 +107,7 @@ $disableElement = 'disabled="disable"';
                                     <i class="fa fa-circle" style="color:  #00FF00;"></i>
                                 </li>
                                 <li>
-                                    <a href="re_process.php"><?= $_SESSION[re_process] ?></a>
+                                    <a href="re_cencel.php"><?= $_SESSION[re_cancel] ?></a>
                                     <i class="fa fa-circle" style="color:  #00FF00;"></i>
                                 </li>
                                 <li>
@@ -890,7 +890,7 @@ $disableElement = 'disabled="disable"';
                                 <div class="col-md-12">
                                     <div class="portlet-body form">
                                         <div class="form-actions noborder">
-                                            <a href="re_process.php"> <button type="button" class="btn default"><?= $_SESSION[btn_cancel] ?></button></a>
+                                            <a href="re_cancel.php"> <button type="button" class="btn default"><?= $_SESSION[btn_cancel] ?></button></a>
                                             <button type="submit"  class="btn blue" onclick="saveCustomChangeStatus()"><?= $_SESSION[btn_submit] ?></button>
                                         </div>
                                     </div>
@@ -1011,10 +1011,10 @@ $disableElement = 'disabled="disable"';
         <link href="outbound/lightbox/css/lightbox.css" rel="stylesheet" type="text/css" />
         <script src="outbound/lightbox/js/lightbox.js" type="text/javascript"></script>
         <!--<link href="css/custom_select2.css" rel="stylesheet" />-->
-        <script src="js/action/repair/re_processManage.js" type="text/javascript"></script>
+        <script src="js/action/repair/re_cancelManage.js" type="text/javascript"></script>
         <script src="js/action/search/popup.js" type="text/javascript"></script>
         <script src="js/common/closeStep.js" type="text/javascript"></script>
-        <script src="js/common/form-dropzone.js" type="text/javascript"></script>
+        <script src="js/common/form-dropzone-disable.js" type="text/javascript"></script>
 
 
 

@@ -19,7 +19,7 @@ if (count($info) == 0) {
     $info = json_decode(preg_replace('/("\w+"):(\d+)/', '\\1:"\\2"', json_encode($_GET)), true);
 }
 
-$controller = new processController();
+$controller = new cancelController();
 switch ($info[func]) {
     case "dataTable":
         echo $controller->dataTable();
@@ -111,31 +111,16 @@ switch ($info[func]) {
     case "delCheck":
         echo $controller->delCheck($info);
         break;
-    case "listImage":
-        echo $controller->listImage($info);
-        break;
 }
 
-class processController {
+class cancelController {
 
     public function __construct() {
         include '../../common/ConnectDB.php';
         include '../../common/Utility.php';
         include '../../common/Logs.php';
         include '../../common/upload.php';
-        include '../../service/repair/processService.php';
-    }
-
-    public function listImage($info) {
-        $service = new processService();
-        $util = new Utility();
-        $db = new ConnectDB();
-        $_dataTable = $service->listImage($db,$info);
-        if ($_dataTable != NULL) {
-            return json_encode($_dataTable);
-        } else {
-            return NULL;
-        }
+        include '../../service/repair/cancelService.php';
     }
 
     public function addDismantling($info) {
@@ -159,7 +144,7 @@ class processController {
                 if (count($doc->get_FilenameCustom()) > 0) {
                     $db = new ConnectDB();
                     $db->conn();
-                    $service = new processService();
+                    $service = new cancelService();
                     if ($service->addDropzone('tb_img_dismantling', $db, $info, $_FILES['file']['name'])) {
                         if ($doc->AddFileCustom()) {
                             $code = '0';
@@ -188,7 +173,7 @@ class processController {
     }
 
     public function delDismantling($info) {
-        $service = new processService();
+        $service = new cancelService();
         $db = new ConnectDB();
         $db->conn();
 
@@ -213,7 +198,7 @@ class processController {
     public function iniDismantling($info) {
         $storeFolder = "../../upload/step_dismantling/" . $info[ref_no] . "/";
         $result = array();
-        $service = new processService();
+        $service = new cancelService();
         $files = $service->initialDropzone('tb_img_dismantling', $info[ref_no]);
         if ($files != NULL) {
             foreach ($files as $key => $value) {
@@ -248,7 +233,7 @@ class processController {
                 if (count($doc->get_FilenameCustom()) > 0) {
                     $db = new ConnectDB();
                     $db->conn();
-                    $service = new processService();
+                    $service = new cancelService();
                     if ($service->addDropzone('tb_img_tapping', $db, $info, $_FILES['file']['name'])) {
                         if ($doc->AddFileCustom()) {
                             $code = '0';
@@ -277,7 +262,7 @@ class processController {
     }
 
     public function delTapping($info) {
-        $service = new processService();
+        $service = new cancelService();
         $db = new ConnectDB();
         $db->conn();
 
@@ -302,7 +287,7 @@ class processController {
     public function iniTapping($info) {
         $storeFolder = "../../upload/step_tapping/" . $info[ref_no] . "/";
         $result = array();
-        $service = new processService();
+        $service = new cancelService();
         $files = $service->initialDropzone('tb_img_tapping', $info[ref_no]);
         if ($files != NULL) {
             foreach ($files as $key => $value) {
@@ -337,7 +322,7 @@ class processController {
                 if (count($doc->get_FilenameCustom()) > 0) {
                     $db = new ConnectDB();
                     $db->conn();
-                    $service = new processService();
+                    $service = new cancelService();
                     if ($service->addDropzone('tb_img_filling', $db, $info, $_FILES['file']['name'])) {
                         if ($doc->AddFileCustom()) {
                             $code = '0';
@@ -366,7 +351,7 @@ class processController {
     }
 
     public function delFilling($info) {
-        $service = new processService();
+        $service = new cancelService();
         $db = new ConnectDB();
         $db->conn();
 
@@ -391,7 +376,7 @@ class processController {
     public function iniFilling($info) {
         $storeFolder = "../../upload/step_filling/" . $info[ref_no] . "/";
         $result = array();
-        $service = new processService();
+        $service = new cancelService();
         $files = $service->initialDropzone('tb_img_filling', $info[ref_no]);
         if ($files != NULL) {
             foreach ($files as $key => $value) {
@@ -426,7 +411,7 @@ class processController {
                 if (count($doc->get_FilenameCustom()) > 0) {
                     $db = new ConnectDB();
                     $db->conn();
-                    $service = new processService();
+                    $service = new cancelService();
                     if ($service->addDropzone('tb_img_spraying', $db, $info, $_FILES['file']['name'])) {
                         if ($doc->AddFileCustom()) {
                             $code = '0';
@@ -455,7 +440,7 @@ class processController {
     }
 
     public function delSpraying($info) {
-        $service = new processService();
+        $service = new cancelService();
         $db = new ConnectDB();
         $db->conn();
 
@@ -480,7 +465,7 @@ class processController {
     public function iniSpraying($info) {
         $storeFolder = "../../upload/step_spraying/" . $info[ref_no] . "/";
         $result = array();
-        $service = new processService();
+        $service = new cancelService();
         $files = $service->initialDropzone('tb_img_spraying', $info[ref_no]);
         if ($files != NULL) {
             foreach ($files as $key => $value) {
@@ -515,7 +500,7 @@ class processController {
                 if (count($doc->get_FilenameCustom()) > 0) {
                     $db = new ConnectDB();
                     $db->conn();
-                    $service = new processService();
+                    $service = new cancelService();
                     if ($service->addDropzone('tb_img_prepare', $db, $info, $_FILES['file']['name'])) {
                         if ($doc->AddFileCustom()) {
                             $code = '0';
@@ -544,7 +529,7 @@ class processController {
     }
 
     public function delPrepare($info) {
-        $service = new processService();
+        $service = new cancelService();
         $db = new ConnectDB();
         $db->conn();
 
@@ -569,7 +554,7 @@ class processController {
     public function iniPrepare($info) {
         $storeFolder = "../../upload/step_prepare/" . $info[ref_no] . "/";
         $result = array();
-        $service = new processService();
+        $service = new cancelService();
         $files = $service->initialDropzone('tb_img_prepare', $info[ref_no]);
         if ($files != NULL) {
             foreach ($files as $key => $value) {
@@ -604,7 +589,7 @@ class processController {
                 if (count($doc->get_FilenameCustom()) > 0) {
                     $db = new ConnectDB();
                     $db->conn();
-                    $service = new processService();
+                    $service = new cancelService();
                     if ($service->addDropzone('tb_img_polishing', $db, $info, $_FILES['file']['name'])) {
                         if ($doc->AddFileCustom()) {
                             $code = '0';
@@ -633,7 +618,7 @@ class processController {
     }
 
     public function delPolishing($info) {
-        $service = new processService();
+        $service = new cancelService();
         $db = new ConnectDB();
         $db->conn();
 
@@ -658,7 +643,7 @@ class processController {
     public function iniPolishing($info) {
         $storeFolder = "../../upload/step_polishing/" . $info[ref_no] . "/";
         $result = array();
-        $service = new processService();
+        $service = new cancelService();
         $files = $service->initialDropzone('tb_img_polishing', $info[ref_no]);
         if ($files != NULL) {
             foreach ($files as $key => $value) {
@@ -693,7 +678,7 @@ class processController {
                 if (count($doc->get_FilenameCustom()) > 0) {
                     $db = new ConnectDB();
                     $db->conn();
-                    $service = new processService();
+                    $service = new cancelService();
                     if ($service->addDropzone('tb_img_check', $db, $info, $_FILES['file']['name'])) {
                         if ($doc->AddFileCustom()) {
                             $code = '0';
@@ -722,7 +707,7 @@ class processController {
     }
 
     public function delCheck($info) {
-        $service = new processService();
+        $service = new cancelService();
         $db = new ConnectDB();
         $db->conn();
 
@@ -747,7 +732,7 @@ class processController {
     public function iniCheck($info) {
         $storeFolder = "../../upload/step_check/" . $info[ref_no] . "/";
         $result = array();
-        $service = new processService();
+        $service = new cancelService();
         $files = $service->initialDropzone('tb_img_check', $info[ref_no]);
         if ($files != NULL) {
             foreach ($files as $key => $value) {
@@ -762,7 +747,7 @@ class processController {
     }
 
     public function dataTable() {
-        $service = new processService();
+        $service = new cancelService();
         $_dataTable = $service->dataTable();
         $util = new Utility();
         if ($_dataTable != NULL) {
@@ -784,7 +769,7 @@ class processController {
     }
 
     public function dataTableKey($id) {
-        $service = new processService();
+        $service = new cancelService();
         $_dataTable = $service->dataTableKey($id);
         if ($_dataTable != NULL) {
             foreach ($_dataTable as $key => $value) {
@@ -802,7 +787,7 @@ class processController {
     }
 
     public function getCheckBoxMain($ref_no) {
-        $service = new processService();
+        $service = new cancelService();
         $_dataTable = $service->getCheckBoxMain($ref_no);
         if ($_dataTable != NULL) {
             return json_encode($_dataTable);
@@ -812,7 +797,7 @@ class processController {
     }
 
     public function getCheckBoxOther($ref_no) {
-        $service = new processService();
+        $service = new cancelService();
         $_dataTable = $service->getCheckBoxOther($ref_no);
         if ($_dataTable != NULL) {
             return json_encode($_dataTable);
@@ -824,7 +809,7 @@ class processController {
     public function delete($seq) {
         $db = new ConnectDB();
         $db->conn();
-        $service = new processService();
+        $service = new cancelService();
         if ($service->delete($db, $seq)) {
             $db->commit();
             echo $_SESSION['cd_0000'];
@@ -841,7 +826,7 @@ class processController {
             $util = new Utility();
             $db = new ConnectDB();
             $db->conn();
-            $service = new processService();
+            $service = new cancelService();
             $query = $util->arr2strQuery($info[data], "I");
             if ($service->deleteAll($db, $query)) {
                 $db->commit();
@@ -854,7 +839,7 @@ class processController {
     }
 
     public function getInfo($seq) {
-        $service = new processService();
+        $service = new cancelService();
         $util = new Utility();
         $_dataTable = $service->getInfo($seq);
         if ($_dataTable != NULL) {
@@ -871,7 +856,7 @@ class processController {
 
     public function edit($info) {
 
-        $service = new processService();
+        $service = new cancelService();
         $db = new ConnectDB();
         $db->conn();
         if ($service->edit($db, $info)) {
@@ -903,7 +888,7 @@ class processController {
 
     public function deleteTempFile($db) {
         $temp = new upload();
-        $svTemp = new processService();
+        $svTemp = new cancelService();
         $temp->set_path("../../upload/step_checkrepair/");
         $_dataTemp = $svTemp->getInfoFile($db);
         foreach ($_dataTemp as $key => $value) {

@@ -129,7 +129,8 @@ class createService {
     }
 
     function delete($db, $seq) {
-        $strSQL = "DELETE FROM tb_customer_car WHERE i_cust_car = '" . $seq . "' ";
+//        $strSQL = "DELETE FROM tb_customer_car WHERE i_cust_car = '" . $seq . "' ";
+        $strSQL = "UPDATE tb_customer_car set s_status = 'R0' WHERE i_cust_car = '" . $seq . "' ";
         $arr = array(
             array("query" => "$strSQL")
         );
@@ -139,7 +140,8 @@ class createService {
 
     function deleteAll($db, $query) {
 
-        $strSQL = "DELETE FROM tb_customer_car WHERE i_cust_car in ($query) ";
+//        $strSQL = "DELETE FROM tb_customer_car WHERE i_cust_car in ($query) ";
+        $strSQL = "UPDATE tb_customer_car set s_status = 'R0' WHERE i_cust_car in ($query) ";
         $arr = array(
             array("query" => "$strSQL")
         );
@@ -244,7 +246,7 @@ class createService {
     }
 
     function getRunning($db) {
-        $year = substr(date("Y"),2);
+        $year = substr(date("Y"), 2);
         $month = str_pad("", 2 - strlen(date("m")), "0") . date("m");
         $strSql = "SELECT * FROM tb_master_running WHERE s_year = '" . $year . "' and s_month = '" . $month . "' ";
         $_data = $db->Search_Data_FormatJson($strSql);

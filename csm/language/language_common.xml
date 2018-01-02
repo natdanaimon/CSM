@@ -96,6 +96,12 @@
         <th>คุณต้องการลบข้อมูลใช่หรือไม่ ?</th>
         <en>Do you want to delete Information ?</en>
     </detail>
+      <detail>
+        <variable>confirmCancel</variable>
+        <th>คุณต้องการยกเลิกข้อมูลใช่หรือไม่ ?</th>
+        <en>Do you want to cancel Information ?</en>
+    </detail>
+    
     <detail>
         <variable>active</variable>
         <th>ใช้งาน</th>
@@ -562,6 +568,11 @@
         <en>DELETE ALL</en>
     </detail>
     <detail>
+        <variable>btn_cancel_all</variable>
+        <th>ยกเลิกข้อมูล</th>
+        <en>CANCEL ALL</en>
+    </detail>
+    <detail>
         <variable>btn_clear_all</variable>
         <th>เคลียข้อมูล</th>
         <en>CLEAR ALL</en>
@@ -910,6 +921,16 @@
         <en>Process Repair Management</en>
     </detail>
     <detail>
+        <variable>re_success</variable>
+        <th>รอลูกค้ามารับรถ / เสร็จแล้ว</th>
+        <en>Success Repair Management</en>
+    </detail>
+    <detail>
+        <variable>re_cancel</variable>
+        <th>รายการที่ยกเลิก</th>
+        <en>Cancel Repair Management</en>
+    </detail>
+    <detail>
         <variable>re_inbound</variable>
         <th>ตรวจสภาพรถก่อนนำเข้า</th>
         <en>Check Inbound Car</en>
@@ -985,6 +1006,11 @@
         <variable>tb_co_delete</variable>
         <th>ลบ</th>
         <en>Delete</en>
+    </detail>
+    <detail>
+        <variable>tb_co_cancel</variable>
+        <th>ยกเลิก</th>
+        <en>Cancel</en>
     </detail>
     <detail>
         <variable>tb_co_name</variable>
@@ -1507,6 +1533,16 @@
         <variable>tt_mg_process</variable>
         <th>จัดการข้อมูลขั้นตอนการดำเนินการ</th>
         <en>MANAGE PROCESS REPAIR</en>
+    </detail>
+    <detail>
+        <variable>tt_mg_success</variable>
+        <th>จัดการข้อมูลรอลูกค้ารับรถ / เสร็จแล้ว</th>
+        <en>MANAGE PROCESS REPAIR</en>
+    </detail>
+    <detail>
+        <variable>tt_mg_cancel</variable>
+        <th>จัดการข้อมูลรายการที่ยกเลิก</th>
+        <en>MANAGE CANCEL REPAIR</en>
     </detail>
     <detail>
         <variable>tt_mg_caryear</variable>

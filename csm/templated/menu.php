@@ -77,6 +77,20 @@
                         <span class="badge badge-success" ></span>
                     </a>
                 </li>
+                <li class="nav-item  <?= $_SESSION["nav_sub_re_success"] ?>">
+                    <a href="re_success.php" class="nav-link ">
+                        <span class="title">4 <?= $_SESSION[re_success] ?></span>
+                        <span class="selected"></span>
+                        <span class="badge badge-success" ></span>
+                    </a>
+                </li>
+                <li class="nav-item  <?= $_SESSION["nav_sub_re_cancel"] ?>">
+                    <a href="re_cancel.php" class="nav-link ">
+                        <span class="title">5 <?= $_SESSION[re_cancel] ?></span>
+                        <span class="selected"></span>
+                        <span class="badge badge-success" ></span>
+                    </a>
+                </li>
             </ul>
         </li>
         <!--R3 ระบบนำซ่อม-->

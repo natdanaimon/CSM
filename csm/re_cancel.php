@@ -3,7 +3,7 @@
 include './common/Permission.php';
 include './common/PermissionADM.php';
 include './common/FunctionCheckActive.php';
-ACTIVEPAGES(3, 1);
+ACTIVEPAGES(3, 5);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -71,10 +71,10 @@ ACTIVEPAGES(3, 1);
                             <ul class="page-breadcrumb">
                                 <li>
                                     <span><?= $_SESSION[repair] ?></span>
-                                    <i class="fa fa-circle" style="color:  #00FF00;"></i>
+                                    <i class="fa fa-circle" style="color:#00FF00;"></i>
                                 </li>
                                 <li>
-                                    <a href="re_create.php"><?= $_SESSION[re_create] ?></a>
+                                    <a href="re_cancel.php"><?= $_SESSION[re_cancel] ?></a>
                                 </li>
                             </ul>
 
@@ -92,7 +92,7 @@ ACTIVEPAGES(3, 1);
                                     <div class="portlet-title">
                                         <div class="caption font-dark">
                                             <i class="fa fa-wrench font-dark"></i>
-                                            <span class="caption-subject bold uppercase"><?= $_SESSION[tt_mg_create] ?></span>
+                                            <span class="caption-subject bold uppercase"><?= $_SESSION[tt_mg_cancel] ?></span>
                                         </div>
                                         <div class="actions">
 
@@ -106,13 +106,13 @@ ACTIVEPAGES(3, 1);
                                                                                                 </div>-->
                                                 <div class="col-md-6" align="left"  <?= $hidden ?>>
                                                     <div class="btn-group">
-                                                        <a href="re_createManage.php?func=add">
+<!--                                                        <a href="re_createManage.php?func=add">
                                                             <button id="sample_editable_1_new" class="btn sbold green"> <?= $_SESSION[btn_add] ?>
                                                             </button>
-                                                        </a>
+                                                        </a>-->
                                                     </div>
                                                     <div class="btn-group">
-                                                        <button id="sample_editable_1_new" class="btn sbold red" onclick="deleteAll()"> <?= $_SESSION[btn_cancel_all] ?>
+                                                        <button id="sample_editable_1_new" class="btn sbold red" onclick="deleteAll()"> <?= $_SESSION[btn_delete_all] ?>
 <!--                                                            <i class="fa fa-minus"></i>-->
                                                         </button>
                                                     </div>
@@ -152,7 +152,7 @@ ACTIVEPAGES(3, 1);
 
                                                     <th  class="all">  <?= $_SESSION[tb_co_status] ?> </th>
                                                     <th style="width: 40px"> <?= $_SESSION[tb_co_edit] ?> </th>
-                                                    <th style="width: 40px"> <?= $_SESSION[tb_co_cancel] ?></th>
+                                                    <th style="width: 40px"> <?= $_SESSION[tb_co_delete] ?></th>
                                             </thead>
                                             <tbody>
 
@@ -221,7 +221,7 @@ ACTIVEPAGES(3, 1);
         <link href="css/notify.css" rel="stylesheet" type="text/css" />
         <link href="outbound/lightbox/css/lightbox.css" rel="stylesheet" type="text/css" />
         <script src="outbound/lightbox/js/lightbox.js" type="text/javascript"></script>
-        <script src="js/action/repair/re_create.js" type="text/javascript"></script>
+        <script src="js/action/repair/re_cancel.js" type="text/javascript"></script>
         <script>
                                                             $(document).ready(function () {
                                                                 initialDataTable("TRUE");

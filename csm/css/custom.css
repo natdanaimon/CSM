@@ -58,3 +58,10 @@ a.dz-remove:active {
     width: 120px !important;
     height: 120px !important;
 }
+
+
+.badge{
+    padding :3px 7px !important;
+    font-size: 18px!important;
+    padding-top:0px!important;
+}

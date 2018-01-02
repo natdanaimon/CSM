@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 25, 2017 at 03:33 AM
+-- Generation Time: Jan 03, 2018 at 04:24 AM
 -- Server version: 5.6.37
 -- PHP Version: 5.6.30
 
@@ -1233,6 +1233,7 @@ INSERT INTO `tb_car_year` (`i_year`, `d_create`, `d_update`, `s_create_by`, `s_u
 CREATE TABLE `tb_check_repair` (
   `ref_no` varchar(50) NOT NULL,
   `i_repair_item` int(11) NOT NULL,
+  `s_filename` varchar(100) NOT NULL,
   `s_remark` varchar(100) NOT NULL,
   `d_create` datetime NOT NULL,
   `d_update` datetime NOT NULL,
@@ -1245,11 +1246,9 @@ CREATE TABLE `tb_check_repair` (
 -- Dumping data for table `tb_check_repair`
 --
 
-INSERT INTO `tb_check_repair` (`ref_no`, `i_repair_item`, `s_remark`, `d_create`, `d_update`, `s_create_by`, `s_update_by`, `s_status`) VALUES
-('201712003', 1, 'fasdfadsf', '2017-12-25 01:46:32', '2017-12-25 01:46:32', 'admin', 'admin', 'A'),
-('201712003', 11, 'dsfaasfsadfsadfsadf', '2017-12-25 01:46:32', '2017-12-25 01:46:32', 'admin', 'admin', 'A'),
-('201712003', 20, 'dfsadf', '2017-12-25 01:46:32', '2017-12-25 01:46:32', 'admin', 'admin', 'A'),
-('201712003', 26, 'fasdfs', '2017-12-25 01:46:32', '2017-12-25 01:46:32', 'admin', 'admin', 'A');
+INSERT INTO `tb_check_repair` (`ref_no`, `i_repair_item`, `s_filename`, `s_remark`, `d_create`, `d_update`, `s_create_by`, `s_update_by`, `s_status`) VALUES
+('1712002', 1, '1712002_1.JPG', '', '2017-12-29 15:53:31', '2017-12-29 15:53:31', 'admin', 'admin', 'A'),
+('1801001', 1, '1801001_1.jpg', '', '2018-01-02 01:01:12', '2018-01-02 01:01:12', 'admin', 'admin', 'A');
 
 -- --------------------------------------------------------
 
@@ -1272,19 +1271,19 @@ CREATE TABLE `tb_check_repair_other` (
   `s_txt_11` text NOT NULL,
   `s_txt_12` text NOT NULL,
   `s_txt_13` text NOT NULL,
-  `s_flg_check1` text NOT NULL,
-  `s_flg_check2` text NOT NULL,
-  `s_flg_check3` text NOT NULL,
-  `s_flg_check4` text NOT NULL,
-  `s_flg_check5` text NOT NULL,
-  `s_flg_check6` text NOT NULL,
-  `s_flg_check7` text NOT NULL,
-  `s_flg_check8` text NOT NULL,
-  `s_flg_check9` text NOT NULL,
-  `s_flg_check10` text NOT NULL,
-  `s_flg_check11` text NOT NULL,
-  `s_flg_check12` text NOT NULL,
-  `s_flg_check13` text NOT NULL,
+  `s_filename_1` varchar(100) NOT NULL,
+  `s_filename_2` varchar(100) NOT NULL,
+  `s_filename_3` varchar(100) NOT NULL,
+  `s_filename_4` varchar(100) NOT NULL,
+  `s_filename_5` varchar(100) NOT NULL,
+  `s_filename_6` varchar(100) NOT NULL,
+  `s_filename_7` varchar(100) NOT NULL,
+  `s_filename_8` varchar(100) NOT NULL,
+  `s_filename_9` varchar(100) NOT NULL,
+  `s_filename_10` varchar(100) NOT NULL,
+  `s_filename_11` varchar(100) NOT NULL,
+  `s_filename_12` varchar(100) NOT NULL,
+  `s_filename_13` varchar(100) NOT NULL,
   `i_repair_subitem1` varchar(11) NOT NULL,
   `i_repair_subitem2` varchar(11) NOT NULL,
   `i_repair_subitem3` varchar(11) NOT NULL,
@@ -1299,6 +1298,14 @@ CREATE TABLE `tb_check_repair_other` (
   `i_repair_subitem12` varchar(11) NOT NULL,
   `i_repair_subitem13` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tb_check_repair_other`
+--
+
+INSERT INTO `tb_check_repair_other` (`ref_no`, `s_txt_1`, `s_txt_2`, `s_txt_3`, `s_txt_4`, `s_txt_5`, `s_txt_6`, `s_txt_7`, `s_txt_8`, `s_txt_9`, `s_txt_10`, `s_txt_11`, `s_txt_12`, `s_txt_13`, `s_filename_1`, `s_filename_2`, `s_filename_3`, `s_filename_4`, `s_filename_5`, `s_filename_6`, `s_filename_7`, `s_filename_8`, `s_filename_9`, `s_filename_10`, `s_filename_11`, `s_filename_12`, `s_filename_13`, `i_repair_subitem1`, `i_repair_subitem2`, `i_repair_subitem3`, `i_repair_subitem4`, `i_repair_subitem5`, `i_repair_subitem6`, `i_repair_subitem7`, `i_repair_subitem8`, `i_repair_subitem9`, `i_repair_subitem10`, `i_repair_subitem11`, `i_repair_subitem12`, `i_repair_subitem13`) VALUES
+('1712002', '12121212', '', '', '', '', '', '', '', '', '', '', '', '', '1712002_1.jpg', '', '', '', '', '', '', '', '', '', '', '', '', '1', '', '', '', '', '', '', '', '', '', '', '', ''),
+('1801001', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -1415,9 +1422,8 @@ CREATE TABLE `tb_customer_car` (
 --
 
 INSERT INTO `tb_customer_car` (`i_cust_car`, `i_customer`, `ref_no`, `s_car_code`, `s_license`, `d_ins_exp`, `i_ins_type`, `s_type_capital`, `s_pay_type`, `i_ins_comp`, `i_dmg`, `d_inbound`, `d_outbound_confirm`, `d_create`, `d_update`, `s_create_by`, `s_update_by`, `s_status`) VALUES
-(9, 5, '201712001', 'HO15CIVIC18', 'ธน5548', '2017-12-22', 1, '800000', 'INS', 5, 1, '2017-12-21', '2017-12-22', '2017-12-20 16:57:13', '2017-12-22 00:01:27', 'admin', 'admin', 'R1'),
-(10, 4, '201712002', 'HO18CIVIC15', 'กจ9989', '2017-12-20', 1, '600000', 'A', 9, 1, '2017-12-20', '2017-12-20', '2017-12-20 17:00:16', '2017-12-22 00:01:11', 'admin', 'admin', 'R1'),
-(11, 5, '201712003', 'HO16CI12', 'กจ5862', '2017-12-29', 2, '500000', 'AINS', 2, 4, '2017-12-27', '2017-12-28', '2017-12-20 17:12:42', '2017-12-22 00:00:56', 'admin', 'admin', 'R1');
+(12, 4, '1712002', 'HO18CIVIC15', 'กต8856', '2017-12-29', 1, '900000', 'A', 1, 1, '2017-12-29', '2017-12-29', '2017-12-29 15:36:10', '2017-12-29 18:11:05', 'admin', 'admin', 'R2'),
+(13, 5, '1801001', 'HO18CIVIC15', '123123', '2018-01-02', 1, '123123', 'A', 1, 1, '2018-01-02', '2018-01-02', '2018-01-02 00:55:56', '2018-01-02 17:14:31', 'admin', 'admin', 'R5');
 
 -- --------------------------------------------------------
 
@@ -10469,6 +10475,111 @@ INSERT INTO `tb_geographies` (`i_geography`, `s_name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tb_img_check`
+--
+
+CREATE TABLE `tb_img_check` (
+  `i_id` int(11) NOT NULL,
+  `ref_no` varchar(20) NOT NULL,
+  `s_image` varchar(100) NOT NULL,
+  `d_create` datetime NOT NULL,
+  `s_create_by` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_img_dismantling`
+--
+
+CREATE TABLE `tb_img_dismantling` (
+  `i_id` int(11) NOT NULL,
+  `ref_no` varchar(20) NOT NULL,
+  `s_image` varchar(100) NOT NULL,
+  `d_create` datetime NOT NULL,
+  `s_create_by` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tb_img_dismantling`
+--
+
+INSERT INTO `tb_img_dismantling` (`i_id`, `ref_no`, `s_image`, `d_create`, `s_create_by`) VALUES
+(42, '1801001', 'S__8093702.jpg', '2018-01-02 17:14:19', 'admin');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_img_filling`
+--
+
+CREATE TABLE `tb_img_filling` (
+  `i_id` int(11) NOT NULL,
+  `ref_no` varchar(20) NOT NULL,
+  `s_image` varchar(100) NOT NULL,
+  `d_create` datetime NOT NULL,
+  `s_create_by` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_img_polishing`
+--
+
+CREATE TABLE `tb_img_polishing` (
+  `i_id` int(11) NOT NULL,
+  `ref_no` varchar(20) NOT NULL,
+  `s_image` varchar(100) NOT NULL,
+  `d_create` datetime NOT NULL,
+  `s_create_by` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_img_prepare`
+--
+
+CREATE TABLE `tb_img_prepare` (
+  `i_id` int(11) NOT NULL,
+  `ref_no` varchar(20) NOT NULL,
+  `s_image` varchar(100) NOT NULL,
+  `d_create` datetime NOT NULL,
+  `s_create_by` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_img_spraying`
+--
+
+CREATE TABLE `tb_img_spraying` (
+  `i_id` int(11) NOT NULL,
+  `ref_no` varchar(20) NOT NULL,
+  `s_image` varchar(100) NOT NULL,
+  `d_create` datetime NOT NULL,
+  `s_create_by` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_img_tapping`
+--
+
+CREATE TABLE `tb_img_tapping` (
+  `i_id` int(11) NOT NULL,
+  `ref_no` varchar(20) NOT NULL,
+  `s_image` varchar(100) NOT NULL,
+  `d_create` datetime NOT NULL,
+  `s_create_by` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tb_insurance`
 --
 
@@ -10803,7 +10914,8 @@ CREATE TABLE `tb_master_running` (
 --
 
 INSERT INTO `tb_master_running` (`i_key`, `s_year`, `s_month`, `s_running`) VALUES
-(1, '2017', '12', '003');
+(1, '17', '12', '002'),
+(2, '18', '01', '001');
 
 -- --------------------------------------------------------
 
@@ -11422,6 +11534,48 @@ ALTER TABLE `tb_employee`
   ADD KEY `index_employee_search` (`s_status`,`i_dept`);
 
 --
+-- Indexes for table `tb_img_check`
+--
+ALTER TABLE `tb_img_check`
+  ADD PRIMARY KEY (`i_id`);
+
+--
+-- Indexes for table `tb_img_dismantling`
+--
+ALTER TABLE `tb_img_dismantling`
+  ADD PRIMARY KEY (`i_id`);
+
+--
+-- Indexes for table `tb_img_filling`
+--
+ALTER TABLE `tb_img_filling`
+  ADD PRIMARY KEY (`i_id`);
+
+--
+-- Indexes for table `tb_img_polishing`
+--
+ALTER TABLE `tb_img_polishing`
+  ADD PRIMARY KEY (`i_id`);
+
+--
+-- Indexes for table `tb_img_prepare`
+--
+ALTER TABLE `tb_img_prepare`
+  ADD PRIMARY KEY (`i_id`);
+
+--
+-- Indexes for table `tb_img_spraying`
+--
+ALTER TABLE `tb_img_spraying`
+  ADD PRIMARY KEY (`i_id`);
+
+--
+-- Indexes for table `tb_img_tapping`
+--
+ALTER TABLE `tb_img_tapping`
+  ADD PRIMARY KEY (`i_id`);
+
+--
 -- Indexes for table `tb_insurance`
 --
 ALTER TABLE `tb_insurance`
@@ -11629,7 +11783,7 @@ ALTER TABLE `tb_customer`
 -- AUTO_INCREMENT for table `tb_customer_car`
 --
 ALTER TABLE `tb_customer_car`
-  MODIFY `i_cust_car` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `i_cust_car` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `tb_damage`
 --
@@ -11645,6 +11799,41 @@ ALTER TABLE `tb_department`
 --
 ALTER TABLE `tb_employee`
   MODIFY `i_emp` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `tb_img_check`
+--
+ALTER TABLE `tb_img_check`
+  MODIFY `i_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `tb_img_dismantling`
+--
+ALTER TABLE `tb_img_dismantling`
+  MODIFY `i_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+--
+-- AUTO_INCREMENT for table `tb_img_filling`
+--
+ALTER TABLE `tb_img_filling`
+  MODIFY `i_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `tb_img_polishing`
+--
+ALTER TABLE `tb_img_polishing`
+  MODIFY `i_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `tb_img_prepare`
+--
+ALTER TABLE `tb_img_prepare`
+  MODIFY `i_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `tb_img_spraying`
+--
+ALTER TABLE `tb_img_spraying`
+  MODIFY `i_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `tb_img_tapping`
+--
+ALTER TABLE `tb_img_tapping`
+  MODIFY `i_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `tb_insurance`
 --
@@ -11694,7 +11883,7 @@ ALTER TABLE `tb_knowledge`
 -- AUTO_INCREMENT for table `tb_master_running`
 --
 ALTER TABLE `tb_master_running`
-  MODIFY `i_key` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `i_key` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `tb_news`
 --

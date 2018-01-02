@@ -15,6 +15,9 @@ switch ($info[func]) {
     case "listNotify":
         echo $controller->listNotify();
         break;
+    case "listImage":
+        echo $controller->listImage();
+        break;
 }
 
 class notificationController {
@@ -34,5 +37,7 @@ class notificationController {
             return NULL;
         }
     }
+
+    
 
 }

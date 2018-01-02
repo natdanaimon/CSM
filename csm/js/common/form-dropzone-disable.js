@@ -12,8 +12,8 @@ var FormDropzone = function () {
 
             Dropzone.options.myDropzoneS3 = {
                 dictDefaultMessage: "",
-                addRemoveLinks: true,
-                maxFiles: 50,
+                addRemoveLinks: false,
+                maxFiles: 0,
                 thumbnailWidth: "120",
                 thumbnailHeight: "120",
                 acceptedFiles: "image/jpeg,image/png,image/gif",
@@ -77,8 +77,8 @@ var FormDropzone = function () {
 
             Dropzone.options.myDropzoneS4 = {
                 dictDefaultMessage: "",
-                addRemoveLinks: true,
-                maxFiles: 50,
+                addRemoveLinks: false,
+                maxFiles: 0,
                 thumbnailWidth: "120",
                 thumbnailHeight: "120",
                 acceptedFiles: "image/jpeg,image/png,image/gif",
@@ -140,8 +140,8 @@ var FormDropzone = function () {
 
             Dropzone.options.myDropzoneS5 = {
                 dictDefaultMessage: "",
-                addRemoveLinks: true,
-                maxFiles: 50,
+                addRemoveLinks: false,
+                maxFiles: 0,
                 thumbnailWidth: "120",
                 thumbnailHeight: "120",
                 acceptedFiles: "image/jpeg,image/png,image/gif",
@@ -203,8 +203,8 @@ var FormDropzone = function () {
 
             Dropzone.options.myDropzoneS6 = {
                 dictDefaultMessage: "",
-                addRemoveLinks: true,
-                maxFiles: 50,
+                addRemoveLinks: false,
+                maxFiles: 0,
                 thumbnailWidth: "120",
                 thumbnailHeight: "120",
                 acceptedFiles: "image/jpeg,image/png,image/gif",
@@ -266,8 +266,8 @@ var FormDropzone = function () {
 
             Dropzone.options.myDropzoneS7 = {
                 dictDefaultMessage: "",
-                addRemoveLinks: true,
-                maxFiles: 50,
+                addRemoveLinks: false,
+                maxFiles: 0,
                 thumbnailWidth: "120",
                 thumbnailHeight: "120",
                 acceptedFiles: "image/jpeg,image/png,image/gif",
@@ -328,8 +328,8 @@ var FormDropzone = function () {
 
             Dropzone.options.myDropzoneS8 = {
                 dictDefaultMessage: "",
-                addRemoveLinks: true,
-                maxFiles: 50,
+                addRemoveLinks: false,
+                maxFiles: 0,
                 thumbnailWidth: "120",
                 thumbnailHeight: "120",
                 acceptedFiles: "image/jpeg,image/png,image/gif",
@@ -390,8 +390,8 @@ var FormDropzone = function () {
 
             Dropzone.options.myDropzoneS9 = {
                 dictDefaultMessage: "",
-                addRemoveLinks: true,
-                maxFiles: 50,
+                addRemoveLinks: false,
+                maxFiles: 0,
                 thumbnailWidth: "120",
                 thumbnailHeight: "120",
                 acceptedFiles: "image/jpeg,image/png,image/gif",
