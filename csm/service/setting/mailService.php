@@ -16,8 +16,9 @@ class mailService {
         $strSql = "";
         $strSql .= "update tb_mail_config ";
         $strSql .= "set  ";
-        $strSql .= "s_insurance = '".$info[s_insurance]."', ";
-        $strSql .= "s_claimonline = '".$info[s_claimonline]."', ";
+        $strSql .= "s_insurance = '" . $info[s_insurance] . "', ";
+        $strSql .= "s_claimonline = '" . $info[s_claimonline] . "', ";
+        $strSql .= "s_contacts = '" . $info[s_contacts] . "', ";
         $strSql .= "d_update = " . $db->Sysdate(TRUE) . ", ";
         $strSql .= "s_update_by = '$_SESSION[username]' ";
         $arr = array(

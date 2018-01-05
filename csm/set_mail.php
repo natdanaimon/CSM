@@ -115,6 +115,10 @@ ACTIVEPAGES(99, 14);
                                                 <input type="text" class="form-control bold" id="s_claimonline" name="s_claimonline">
                                                 <label for="form_control_1"><?= $_SESSION[lb_setMail_claim] ?> <span class="required">*</span></label>          
                                             </div>
+                                            <div class="form-group form-md-line-input has-success">
+                                                <input type="text" class="form-control bold" id="s_contacts" name="s_contacts">
+                                                <label for="form_control_1"><?= $_SESSION[lb_setMail_contacts] ?> <span class="required">*</span></label>          
+                                            </div>
 
 
 

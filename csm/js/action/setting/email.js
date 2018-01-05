@@ -13,6 +13,8 @@ function edit() {
                 debugger;
                 $("#s_insurance").val(item.s_insurance);
                 $("#s_claimonline").val(item.s_claimonline);
+                $("#s_contacts").val(item.s_contacts);
+                
                 $("#lb_create").text(item.s_create_by + " ( " + item.d_create + " )");
                 var lb_edit = (item.s_update_by != "" ? item.s_update_by + " ( " + item.d_update + " )" : "-");
                 $("#lb_edit").text(lb_edit);

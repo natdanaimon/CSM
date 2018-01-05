@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 03, 2018 at 04:24 AM
+-- Generation Time: Jan 06, 2018 at 02:28 AM
 -- Server version: 5.6.37
 -- PHP Version: 5.6.30
 
@@ -1423,7 +1423,7 @@ CREATE TABLE `tb_customer_car` (
 
 INSERT INTO `tb_customer_car` (`i_cust_car`, `i_customer`, `ref_no`, `s_car_code`, `s_license`, `d_ins_exp`, `i_ins_type`, `s_type_capital`, `s_pay_type`, `i_ins_comp`, `i_dmg`, `d_inbound`, `d_outbound_confirm`, `d_create`, `d_update`, `s_create_by`, `s_update_by`, `s_status`) VALUES
 (12, 4, '1712002', 'HO18CIVIC15', 'กต8856', '2017-12-29', 1, '900000', 'A', 1, 1, '2017-12-29', '2017-12-29', '2017-12-29 15:36:10', '2017-12-29 18:11:05', 'admin', 'admin', 'R2'),
-(13, 5, '1801001', 'HO18CIVIC15', '123123', '2018-01-02', 1, '123123', 'A', 1, 1, '2018-01-02', '2018-01-02', '2018-01-02 00:55:56', '2018-01-02 17:14:31', 'admin', 'admin', 'R5');
+(13, 5, '1801001', 'HO18CIVIC15', '123123', '2018-01-02', 1, '123123', 'A', 1, 1, '2018-01-02', '2018-01-02', '2018-01-02 00:55:56', '2018-01-03 04:28:39', 'admin', 'admin', 'R0');
 
 -- --------------------------------------------------------
 
@@ -10872,7 +10872,9 @@ INSERT INTO `tb_knowledge` (`i_know`, `s_img_p1`, `s_img_p2`, `i_index`, `s_subj
 (1, '201712101213351.jpg', '201712101213352.jpg', 1, 'คลังความรู้ 1', '<p>คลังความรู้ 1</p>\r\n\r\n<p><img alt=\"\" src=\"https://www.horgarage.com/csm/upload/knowDetail/1.jpg\" style=\"height:273px; width:184px\" /></p>\r\n', 0, 0, '2017-12-10 12:13:35', '2017-12-10 12:13:35', 'admin', 'admin', 'A'),
 (2, '201712101214061.jpg', '201712101214062.jpg', 2, 'คลังความรู้ 2', '<p>คลังความรู้ 2</p>\r\n\r\n<p><img alt=\"\" src=\"https://www.horgarage.com/csm/upload/knowDetail/2.jpg\" style=\"height:230px; width:219px\" /></p>\r\n', 0, 0, '2017-12-10 12:14:06', '2017-12-10 12:14:06', 'admin', 'admin', 'A'),
 (3, '201712101214281.jpg', '201712101214282.jpg', 3, 'คลังความรู้ 3', '<p>คลังความรู้ 3</p>\r\n\r\n<p><img alt=\"\" src=\"https://www.horgarage.com/csm/upload/knowDetail/3.jpg\" style=\"height:252px; width:200px\" /></p>\r\n', 0, 0, '2017-12-10 12:14:28', '2017-12-10 12:14:28', 'admin', 'admin', 'A'),
-(4, '201712101214511.jpg', '201712101214512.jpg', 4, 'คลังความรู้ 4', '<p>คลังความรู้ 4</p>\r\n\r\n<p><img alt=\"\" src=\"https://www.horgarage.com/csm/upload/knowDetail/4.jpg\" style=\"height:256px; width:197px\" /></p>\r\n', 0, 0, '2017-12-10 12:14:51', '2017-12-10 12:14:51', 'admin', 'admin', 'A');
+(4, '201712101214511.jpg', '201712101214512.jpg', 4, 'คลังความรู้ 4', '<p>คลังความรู้ 4</p>\r\n\r\n<p><img alt=\"\" src=\"https://www.horgarage.com/csm/upload/knowDetail/4.jpg\" style=\"height:256px; width:197px\" /></p>\r\n', 0, 0, '2017-12-10 12:14:51', '2017-12-10 12:14:51', 'admin', 'admin', 'A'),
+(5, '201801031852171.jpg', '201801031852172.jpg', 1, '55', '<p>gyhj</p>\r\n', 0, 0, '2018-01-03 18:52:17', '2018-01-03 18:52:17', 'admin', 'admin', 'A'),
+(6, '201801031852441.png', '201801031852442.png', 1, '6', '<p>ugi</p>\r\n', 0, 0, '2018-01-03 18:52:44', '2018-01-03 18:52:44', 'admin', 'admin', 'A');
 
 -- --------------------------------------------------------
 
@@ -10883,6 +10885,7 @@ INSERT INTO `tb_knowledge` (`i_know`, `s_img_p1`, `s_img_p2`, `i_index`, `s_subj
 CREATE TABLE `tb_mail_config` (
   `s_insurance` varchar(100) NOT NULL,
   `s_claimonline` varchar(100) NOT NULL,
+  `s_contacts` varchar(100) NOT NULL,
   `d_create` datetime NOT NULL,
   `d_update` datetime NOT NULL,
   `s_create_by` varchar(100) NOT NULL,
@@ -10893,8 +10896,8 @@ CREATE TABLE `tb_mail_config` (
 -- Dumping data for table `tb_mail_config`
 --
 
-INSERT INTO `tb_mail_config` (`s_insurance`, `s_claimonline`, `d_create`, `d_update`, `s_create_by`, `s_update_by`) VALUES
-('rungsap.haugarage@gmail.com', 'rungsap.haugarage@gmail.com', '0000-00-00 00:00:00', '2017-12-25 01:01:04', 'ADM', 'admin');
+INSERT INTO `tb_mail_config` (`s_insurance`, `s_claimonline`, `s_contacts`, `d_create`, `d_update`, `s_create_by`, `s_update_by`) VALUES
+('rungsap.haugarage@gmail.com', 'rungsap.haugarage@gmail.com', 'rungsap.haugarage@gmail.com', '0000-00-00 00:00:00', '2017-12-25 01:01:04', 'ADM', 'admin');
 
 -- --------------------------------------------------------
 
@@ -10947,7 +10950,9 @@ INSERT INTO `tb_news` (`i_news`, `s_img_p1`, `s_img_p2`, `i_index`, `s_subject`,
 (1, '201712101209041.jpg', '201712101209042.jpg', 1, 'ข่าว 1', '<p>ข่าว 1</p>\r\n\r\n<p><img alt=\"\" src=\"https://www.horgarage.com/csm/upload/newsDetail/1.jpg\" style=\"height:273px; width:184px\" /></p>\r\n', 0, 0, '2017-12-10 12:09:04', '2017-12-10 12:09:04', 'admin', 'admin', 'A'),
 (2, '201712101210301.jpg', '201712101210302.jpg', 2, 'ข่าว 2', '<p>ข่าว 2</p>\r\n\r\n<p><img alt=\"\" src=\"https://www.horgarage.com/csm/upload/newsDetail/2.jpg\" style=\"height:230px; width:219px\" /></p>\r\n', 0, 0, '2017-12-10 12:10:30', '2017-12-10 12:10:30', 'admin', 'admin', 'A'),
 (3, '201712101210541.jpg', '201712101210542.jpg', 3, 'ข่าว 3', '<p>ข่าว 3</p>\r\n\r\n<p><img alt=\"\" src=\"https://www.horgarage.com/csm/upload/newsDetail/3.jpg\" style=\"height:252px; width:200px\" /></p>\r\n', 0, 0, '2017-12-10 12:10:54', '2017-12-10 12:10:54', 'admin', 'admin', 'A'),
-(4, '201712101211221.jpg', '201712101211222.jpg', 4, 'ข่าว 4', '<p>ข่าว 4<img alt=\"\" src=\"https://www.horgarage.com/csm/upload/newsDetail/4.jpg\" style=\"height:256px; width:197px\" /></p>\r\n', 0, 0, '2017-12-10 12:11:22', '2017-12-10 12:11:22', 'admin', 'admin', 'A');
+(4, '201712101211221.jpg', '201712101211222.jpg', 4, 'ข่าว 4', '<p>ข่าว 4<img alt=\"\" src=\"https://www.horgarage.com/csm/upload/newsDetail/4.jpg\" style=\"height:256px; width:197px\" /></p>\r\n', 0, 0, '2017-12-10 12:11:22', '2017-12-10 12:11:22', 'admin', 'admin', 'A'),
+(5, '201801031848071.jpg', '201801031848072.jpg', 1, '555', '<p>hjghjkhj</p>\r\n', 0, 0, '2018-01-03 18:48:07', '2018-01-03 18:48:07', 'admin', 'admin', 'A'),
+(6, '201801031849251.png', '201801031849252.png', 1, '6666', '<p>y</p>\r\n', 0, 0, '2018-01-03 18:49:25', '2018-01-03 18:49:25', 'admin', 'admin', 'A');
 
 -- --------------------------------------------------------
 
@@ -11049,7 +11054,9 @@ INSERT INTO `tb_portfolio` (`i_portf`, `s_img_p1`, `s_img_p2`, `i_index`, `s_sub
 (1, '201712101217481.jpg', '201712101217482.jpg', 1, 'ผลงานของเรา 1', '<p>ผลงานของเรา 1</p>\r\n\r\n<p><img alt=\"\" src=\"https://www.horgarage.com/csm/upload/portfolioDetail/1.jpg\" style=\"height:273px; width:184px\" /></p>\r\n', 0, 0, '2017-12-10 12:17:48', '2017-12-10 12:17:48', 'admin', 'admin', 'A'),
 (2, '201712101218131.jpg', '201712101218132.jpg', 2, 'ผลงานของเรา 2', '<p>ผลงานของเรา 2</p>\r\n\r\n<p><img alt=\"\" src=\"https://www.horgarage.com/csm/upload/portfolioDetail/2.jpg\" style=\"height:230px; width:219px\" /></p>\r\n', 0, 0, '2017-12-10 12:18:13', '2017-12-10 12:18:13', 'admin', 'admin', 'A'),
 (3, '201712101218401.jpg', '201712101218402.jpg', 3, 'ผลงานของเรา 3', '<p>ผลงานของเรา 3</p>\r\n\r\n<p><img alt=\"\" src=\"https://www.horgarage.com/csm/upload/portfolioDetail/3.jpg\" style=\"height:252px; width:200px\" /></p>\r\n', 0, 0, '2017-12-10 12:18:40', '2017-12-10 12:18:40', 'admin', 'admin', 'A'),
-(4, '201712101219021.jpg', '201712101219022.jpg', 4, 'ผลงานของเรา 4', '<p>ผลงานของเรา 4</p>\r\n\r\n<p><img alt=\"\" src=\"https://www.horgarage.com/csm/upload/portfolioDetail/4.jpg\" style=\"height:256px; width:197px\" /></p>\r\n', 0, 0, '2017-12-10 12:19:02', '2017-12-10 12:19:02', 'admin', 'admin', 'A');
+(4, '201712101219021.jpg', '201712101219022.jpg', 4, 'ผลงานของเรา 4', '<p>ผลงานของเรา 4</p>\r\n\r\n<p><img alt=\"\" src=\"https://www.horgarage.com/csm/upload/portfolioDetail/4.jpg\" style=\"height:256px; width:197px\" /></p>\r\n', 0, 0, '2017-12-10 12:19:02', '2017-12-10 12:19:02', 'admin', 'admin', 'A'),
+(5, '201801031855051.png', '201801031855052.png', 1, '6', '<p>hui</p>\r\n', 0, 0, '2018-01-03 18:55:05', '2018-01-03 18:55:05', 'admin', 'admin', 'A'),
+(6, '201801031855341.jpg', '201801031855342.jpg', 1, '55', '<p>hu</p>\r\n', 0, 0, '2018-01-03 18:55:34', '2018-01-03 18:55:34', 'admin', 'admin', 'A');
 
 -- --------------------------------------------------------
 
@@ -11102,7 +11109,8 @@ INSERT INTO `tb_promotion` (`i_promotion`, `s_img_p1`, `s_img_p2`, `i_index`, `s
 (2, '201712101216111.jpg', '201712101216112.jpg', 2, 'โปรโมชั่น 2', '<p>โปรโมชั่น 2</p>\r\n\r\n<p><img alt=\"\" src=\"https://www.horgarage.com/csm/upload/promotionDetail/2.jpg\" style=\"height:230px; width:219px\" /></p>\r\n', 0, 0, '2017-12-10 12:16:11', '2017-12-10 12:16:11', 'admin', 'admin', 'A'),
 (3, '201712101216381.jpg', '201712101216382.jpg', 3, 'โปรโมชั่น 3', '<p>โปรโมชั่น 3</p>\r\n\r\n<p><img alt=\"\" src=\"https://www.horgarage.com/csm/upload/promotionDetail/3.jpg\" style=\"height:252px; width:200px\" /></p>\r\n', 0, 0, '2017-12-10 12:16:38', '2017-12-10 12:16:38', 'admin', 'admin', 'A'),
 (4, '201712101217041.jpg', '201712101217042.jpg', 4, 'โปรโมชั่น 4', '<p>โปรโมชั่น 4</p>\r\n\r\n<p><img alt=\"\" src=\"https://www.horgarage.com/csm/upload/promotionDetail/4.jpg\" style=\"height:256px; width:197px\" /></p>\r\n', 0, 0, '2017-12-10 12:17:04', '2017-12-10 12:17:04', 'admin', 'admin', 'A'),
-(5, '201712111444541.png', '201712111444542.png', 1, 'test', '<p>rr</p>\r\n', 0, 0, '2017-12-11 14:44:54', '2017-12-11 14:44:54', 'admin', 'admin', 'A');
+(5, '201712111444541.png', '201712111444542.png', 1, 'test', '<p>rr</p>\r\n', 0, 0, '2017-12-11 14:44:54', '2017-12-11 14:44:54', 'admin', 'admin', 'A'),
+(6, '201801031853201.jpg', '201801031853202.jpg', 1, '55', '<p>huji</p>\r\n', 0, 0, '2018-01-03 18:53:20', '2018-01-03 18:53:20', 'admin', 'admin', 'A');
 
 -- --------------------------------------------------------
 
@@ -11878,7 +11886,7 @@ ALTER TABLE `tb_item`
 -- AUTO_INCREMENT for table `tb_knowledge`
 --
 ALTER TABLE `tb_knowledge`
-  MODIFY `i_know` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `i_know` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `tb_master_running`
 --
@@ -11888,7 +11896,7 @@ ALTER TABLE `tb_master_running`
 -- AUTO_INCREMENT for table `tb_news`
 --
 ALTER TABLE `tb_news`
-  MODIFY `i_news` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `i_news` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `tb_partner_comp`
 --
@@ -11903,7 +11911,7 @@ ALTER TABLE `tb_pay`
 -- AUTO_INCREMENT for table `tb_portfolio`
 --
 ALTER TABLE `tb_portfolio`
-  MODIFY `i_portf` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `i_portf` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `tb_position`
 --
@@ -11913,7 +11921,7 @@ ALTER TABLE `tb_position`
 -- AUTO_INCREMENT for table `tb_promotion`
 --
 ALTER TABLE `tb_promotion`
-  MODIFY `i_promotion` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `i_promotion` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `tb_repair_item`
 --

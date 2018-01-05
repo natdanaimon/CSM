@@ -42,8 +42,6 @@ class mailController {
         include '../../service/setting/mailService.php';
     }
 
-  
-
     public function getInfo() {
         $service = new mailService();
         $_dataTable = $service->getInfo();
@@ -85,10 +83,16 @@ class mailController {
             echo $return2099;
         } else if (!filter_var($info[s_claimonline], FILTER_VALIDATE_EMAIL)) {
             echo $_SESSION['cd_2006'];
+        } else if ($util->isEmpty($info[s_contacts])) {
+            $return2099 = eregi_replace("field", $_SESSION['lb_setMail_contacts'], $return2099);
+            echo $return2099;
+        } else if (!filter_var($info[s_contacts], FILTER_VALIDATE_EMAIL)) {
+            echo $_SESSION['cd_2006'];
         } else {
             $intReturn = TRUE;
         }
         return $intReturn;
     }
 
+    
 }
