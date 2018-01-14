@@ -51,7 +51,7 @@ function initialDataTable(first) {
 
 
                 col_status = '';
-                col_status += '     <span class="badge badge-' + colorStatus(item.s_status) + '">' + sortHidden(item.s_status) + (language == "th" ? item.status_th : item.status_en) + '</span>';
+                col_status += '     <span class= "badge badge-' + colorStatus(item.s_status) + '">' + sortHidden(item.s_status) + (language == "th" ? item.status_th : item.status_en) + '</span>';
                 col_status += '';
 
 
