@@ -95,6 +95,46 @@
         </li>
         <!--R3 ระบบนำซ่อม-->
 
+        <!--R4 ระบบจัดซื้อ-->
+        <li class="nav-item <?= $_SESSION["nav_main_po"] ?>">
+            <a href="javascript:;" class="nav-link nav-toggle">
+                <i class="fa fa-shopping-cart"></i>
+                <span class="title">R4. <?= $_SESSION[po] ?></span>
+                <span class="selected"></span>
+            </a>
+            <ul class="sub-menu">
+                <li class="nav-item  <?= $_SESSION["nav_sub_po_search"] ?>">
+                    <a href="po_search.php" class="nav-link ">
+                        <span class="title">1 <?= $_SESSION[po_search] ?></span>
+                        <span class="selected"></span>
+                        <span class="badge badge-success" ></span>
+                    </a>
+                </li>
+                <li class="nav-item  <?= $_SESSION["nav_sub_po_spare"] ?>">
+                    <a href="po_spare.php" class="nav-link ">
+                        <span class="title">2 <?= $_SESSION[po_create_spare] ?></span>
+                        <span class="selected"></span>
+                        <span class="badge badge-success" ></span>
+                    </a>
+                </li>
+                <li class="nav-item  <?= $_SESSION["nav_sub_po_color"] ?>">
+                    <a href="po_color.php" class="nav-link ">
+                        <span class="title">3 <?= $_SESSION[po_create_color] ?></span>
+                        <span class="selected"></span>
+                        <span class="badge badge-success" ></span>
+                    </a>
+                </li>
+                <li class="nav-item  <?= $_SESSION["nav_sub_po_other"] ?>">
+                    <a href="po_other.php" class="nav-link ">
+                        <span class="title">4 <?= $_SESSION[po_create_other] ?></span>
+                        <span class="selected"></span>
+                        <span class="badge badge-success" ></span>
+                    </a>
+                </li>
+                
+            </ul>
+        </li>
+        <!--R4 ระบบจัดซื้อ-->
 
 
 

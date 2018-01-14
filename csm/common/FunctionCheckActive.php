@@ -11,6 +11,9 @@ function ACTIVEPAGES($page, $sub) {
     $_SESSION["nav_main_cus"] = "";
     $_SESSION["nav_main_insurance"] = "";
     $_SESSION["nav_main_ui"] = "";
+    $_SESSION["nav_main_po"] = "";
+
+
 
     //csm setting
     $_SESSION["nav_sub_set_vat"] = "";
@@ -37,9 +40,15 @@ function ACTIVEPAGES($page, $sub) {
 
 
 
-
     //csm customer
     $_SESSION["nav_sub_cus_customer"] = "";
+
+    //csm_po
+    $_SESSION["nav_sub_po_search"] = "";
+    $_SESSION["nav_sub_po_spare"] = "";
+    $_SESSION["nav_sub_po_color"] = "";
+    $_SESSION["nav_sub_po_other"] = "";
+
 
     //csm_repair
     $_SESSION["nav_sub_re_create"] = "";
@@ -47,8 +56,8 @@ function ACTIVEPAGES($page, $sub) {
     $_SESSION["nav_sub_re_process"] = "";
     $_SESSION["nav_sub_re_success"] = "";
     $_SESSION["nav_sub_re_cancel"] = "";
-  
-    
+
+
 //csm insurance
     $_SESSION["nav_sub_ins_prd"] = "";
     $_SESSION["nav_sub_ins_tran"] = "";
@@ -90,6 +99,17 @@ function ACTIVEPAGES($page, $sub) {
             $_SESSION["nav_sub_re_success"] = " active open";
         } else if ($sub == 5) {
             $_SESSION["nav_sub_re_cancel"] = " active open";
+        }
+    } else if ($page == 4) {
+        $_SESSION["nav_main_po"] = " active open";
+        if ($sub == 1) {
+            $_SESSION["nav_sub_po_search"] = " active open";
+        } else if ($sub == 2) {
+            $_SESSION["nav_sub_po_spare"] = " active open";
+        } else if ($sub == 3) {
+            $_SESSION["nav_sub_po_color"] = " active open";
+        } else if ($sub == 4) {
+            $_SESSION["nav_sub_po_other"] = " active open";
         }
     } else if ($page == 9) {
         $_SESSION["nav_main_emp"] = " active open";

@@ -96,7 +96,7 @@
         <th>คุณต้องการลบข้อมูลใช่หรือไม่ ?</th>
         <en>Do you want to delete Information ?</en>
     </detail>
-      <detail>
+    <detail>
         <variable>confirmCancel</variable>
         <th>คุณต้องการยกเลิกข้อมูลใช่หรือไม่ ?</th>
         <en>Do you want to cancel Information ?</en>
@@ -946,7 +946,32 @@
         <th>ตั้งค่าประกันภัยภาคบังคับ</th>
         <en>Config Compulsory</en>
     </detail>
-	
+    
+    <detail>
+        <variable>po</variable>
+        <th>ระบบจัดซื้อ</th>
+        <en>Purchase Order</en>
+    </detail>
+    <detail>
+        <variable>po_search</variable>
+        <th>ค้นหาการสั่งซื้อ/รับอะไหล่</th>
+        <en>Search PO</en>
+    </detail>
+    <detail>
+        <variable>po_create_spare</variable>
+        <th>บริหารจัดการสั่งซื้ออะไหล่</th>
+        <en>PO-Spare</en>
+    </detail>
+    <detail>
+        <variable>po_create_color</variable>
+        <th>บริหารจัดการสั่งซื้อสี</th>
+        <en>PO-Color</en>
+    </detail>
+    <detail>
+        <variable>po_create_other</variable>
+        <th>บริหารจัดการสั่งซื้ออุปกรณ์อื่นๆ</th>
+        <en>PO-Other</en>
+    </detail>
     <!--  Menu -->
     
     
@@ -1728,7 +1753,26 @@
     </detail>
     
     
-    
+    <detail>
+        <variable>tt_mg_po_search</variable>
+        <th>ค้นหาการสั่งซื้อ/รับอะไหล่</th>
+        <en>Search PO / KeyIn</en>
+    </detail>
+    <detail>
+        <variable>tt_mg_po_spare</variable>
+        <th>จัดการข้อมูลการสั่งซื้ออะไหล่</th>
+        <en>MANAGE PO SPARE</en>
+    </detail>
+    <detail>
+        <variable>tt_mg_po_color</variable>
+        <th>จัดการข้อมูลการสั่งซื้อสี</th>
+        <en>MANAGE PO COLOR</en>
+    </detail>
+    <detail>
+        <variable>tt_mg_po_spare</variable>
+        <th>จัดการข้อมูลการสั่งซื้ออุปกรณ์อื่นๆ</th>
+        <en>MANAGE PO OTHER</en>
+    </detail>
     
     
     <!--  Title Header  --> 
