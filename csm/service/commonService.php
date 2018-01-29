@@ -209,5 +209,19 @@ class commonService {
         $db->close_conn();
         return $_data;
     }
+    function DDLPartnercomp() {
+        $db = new ConnectDB();
+        $strSql = "select * from tb_partner_comp where s_status = 'A' order by i_part_comp asc ";
+        $_data = $db->Search_Data_FormatJson($strSql);
+        $db->close_conn();
+        return $_data;
+    }
+    function DDLEmployee() {
+        $db = new ConnectDB();
+        $strSql = "select * from tb_employee where s_status = 'A' order by i_emp asc ";
+        $_data = $db->Search_Data_FormatJson($strSql);
+        $db->close_conn();
+        return $_data;
+    }
 
 }

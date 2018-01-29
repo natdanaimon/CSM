@@ -808,7 +808,13 @@
     <!-- repair  --> 
     
     <!-- repair create --> 
-    
+    <!-- PO create --> 
+    <detail>
+        <variable>lb_po_spare_ref</variable>
+        <th>หมายเลขอ้างอิง</th>
+        <en>ASSM.ref No.</en>
+    </detail>
+    <!-- PO create --> 
     
     
 

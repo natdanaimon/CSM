@@ -1371,6 +1371,60 @@
     
 
 
+    <!--  table po spare  --> 
+    <detail>
+        <variable>tb_po_refno</variable>
+        <th>ASSM.ref No.</th>
+        <en>ASSM.ref No.</en>
+    </detail>
+    <detail>
+        <variable>tb_po_orderdate</variable>
+        <th>วันที่สั่ง</th>
+        <en>Order Date</en>
+    </detail>
+    <detail>
+        <variable>tb_po_code</variable>
+        <th>รหัส	</th>
+        <en>Code</en>
+    </detail>
+    <detail>
+        <variable>tb_po_shop</variable>
+        <th>ชื่อร้าน</th>
+        <en>Shop</en>
+    </detail>
+    <detail>
+        <variable>tb_po_order</variable>
+        <th>รายการ	</th>
+        <en>Order List</en>
+    </detail>
+    <detail>
+        <variable>tb_po_price</variable>
+        <th>ราคา</th>
+        <en>Price</en>
+    </detail>
+    <detail>
+        <variable>tb_po_amount</variable>
+        <th>จำนวน</th>
+        <en>Amount</en>
+    </detail>
+    <detail>
+        <variable>tb_po_receivedate</variable>
+        <th>วันที่รับ	</th>
+        <en>Receive Date</en>
+    </detail>
+    <detail>
+        <variable>tb_po_receiveby</variable>
+        <th>ชื่อผู้รับ</th>
+        <en>Receive By</en>
+    </detail>
+    <detail>
+        <variable>tb_po_store</variable>
+        <th>ที่เก็บ	</th>
+        <en>Store</en>
+    </detail>
+    
+    
+    
     <!--  table  --> 
         
     <!--  Title Header  --> 
@@ -1769,7 +1823,7 @@
         <en>MANAGE PO COLOR</en>
     </detail>
     <detail>
-        <variable>tt_mg_po_spare</variable>
+        <variable>tt_mg_po_other</variable>
         <th>จัดการข้อมูลการสั่งซื้ออุปกรณ์อื่นๆ</th>
         <en>MANAGE PO OTHER</en>
     </detail>

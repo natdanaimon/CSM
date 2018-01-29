@@ -3,7 +3,7 @@
 include './common/Permission.php';
 include './common/PermissionADM.php';
 include './common/FunctionCheckActive.php';
-ACTIVEPAGES(3, 1);
+ACTIVEPAGES(4, 4);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -70,11 +70,11 @@ ACTIVEPAGES(3, 1);
                         <div class="page-bar">
                             <ul class="page-breadcrumb">
                                 <li>
-                                    <span><?= $_SESSION[repair] ?></span>
+                                    <span><?= $_SESSION[po] ?></span>
                                     <i class="fa fa-circle" style="color:  #00FF00;"></i>
                                 </li>
                                 <li>
-                                    <a href="re_create.php"><?= $_SESSION[re_create] ?></a>
+                                    <a href="po_other.php"><?= $_SESSION[po_create_other] ?></a>
                                 </li>
                             </ul>
 
@@ -92,7 +92,7 @@ ACTIVEPAGES(3, 1);
                                     <div class="portlet-title">
                                         <div class="caption font-dark">
                                             <i class="fa fa-wrench font-dark"></i>
-                                            <span class="caption-subject bold uppercase"><?= $_SESSION[tt_mg_create] ?></span>
+                                            <span class="caption-subject bold uppercase"><?= $_SESSION[tt_mg_po_other] ?></span>
                                         </div>
                                         <div class="actions">
 
@@ -106,7 +106,7 @@ ACTIVEPAGES(3, 1);
                                                                                                 </div>-->
                                                 <div class="col-md-6" align="left"  <?= $hidden ?>>
                                                     <div class="btn-group">
-                                                        <a href="re_createManage.php?func=add">
+                                                        <a href="po_other_createManage.php?func=add">
                                                             <button id="sample_editable_1_new" class="btn sbold green"> <?= $_SESSION[btn_add] ?>
                                                             </button>
                                                         </a>
@@ -136,21 +136,15 @@ ACTIVEPAGES(3, 1);
                                                                 <span class="box"></span> </label>
                                                         </span>
                                                     </th>
-                                                    <th  class="all"  style="width: 80px">  <?= $_SESSION[tb_co_refno] ?> </th>
-                                                    <th  class="all">  <?= $_SESSION[tb_co_custname] ?> </th>
-                                                    <th  class="all">  <?= $_SESSION[tb_co_license] ?> </th>
-
-                                                    <th class="none"> <span style="color:red"><?= $_SESSION[tb_co_caryear] ?></span> </th>
-                                                    <th class="none"> <span style="color:red"><?= $_SESSION[tb_co_carbrand] ?></span> </th>
-                                                    <th class="none"> <span style="color:red"><?= $_SESSION[tb_co_cargeneration] ?></span> </th>
-                                                    <th class="none"> <span style="color:red"><?= $_SESSION[tb_co_carsub] ?></span> </th>
-
-                                                    <th class="none"> <span style="color:red"><?= $_SESSION[tb_co_insurance_name] ?></span> </th>
-                                                    <!--<th class="none"> <span style="color:red"><?= $_SESSION[tb_co_dmg] ?></span> </th>-->
-                                                    <th class="none"> <span style="color:red"><?= $_SESSION[tb_co_dinbound_car] ?> - <?= $_SESSION[tb_co_doutbound_car] ?></span> </th>
-
-
-                                                    <th  class="all">  <?= $_SESSION[tb_co_status] ?> </th>
+                                                    <th  class="all"  style="width: 80px">  <?= $_SESSION[tb_po_refno] ?> </th>
+                                                    <th  class="all">  <?= $_SESSION[tb_po_orderdate] ?> </th>
+                                                    <th  class="all">  <?= $_SESSION[tb_po_code] ?> </th>
+                                                    <th  class="all">  <?= $_SESSION[tb_po_shop] ?> </th>
+                                                    <th  class="all">  <?= $_SESSION[tb_po_price] ?> </th>
+                                                    <th  class="all">  <?= $_SESSION[tb_po_amount] ?> </th>
+                                                    <th  class="all">  <?= $_SESSION[tb_po_receivedate] ?> </th>
+                                                    <th  class="all">  <?= $_SESSION[tb_po_receiveby] ?> </th>
+                                                    <th  class="all">  <?= $_SESSION[tb_po_store] ?> </th>
                                                     <th style="width: 40px"> <?= $_SESSION[tb_co_edit] ?> </th>
                                                     <th style="width: 40px"> <?= $_SESSION[tb_co_cancel] ?></th>
                                             </thead>

@@ -84,6 +84,12 @@ switch ($info[func]) {
     case "CheckBoxCheckRepair" :
         echo $controller->CheckBoxCheckRepair();
         break;
+    case "DDLPartnercomp" :
+        echo $controller->DDLPartnercomp();
+        break;
+    case "DDLEmployee" :
+        echo $controller->DDLEmployee();
+        break;
 }
 
 class commonController {
@@ -391,6 +397,42 @@ class commonController {
                 $tmp = array(
                     'id' => $_dataTable[$key]['i_repair'],
                     'text' => $_dataTable[$key]['s_name']
+                );
+                $tmpReturn[] = $tmp;
+            }
+
+            return json_encode(array_values($tmpReturn));
+        } else {
+            return NULL;
+        }
+    }
+    public function DDLPartnercomp() {
+        $service = new commonService();
+        $_dataTable = $service->DDLPartnercomp();
+        if ($_dataTable != NULL) {
+            $tmpReturn = array();
+            foreach ($_dataTable as $key => $value) {
+                $tmp = array(
+                    'id' => $_dataTable[$key]['i_part_comp'],
+                    'text' => $_dataTable[$key]['s_comp_th']
+                );
+                $tmpReturn[] = $tmp;
+            }
+
+            return json_encode(array_values($tmpReturn));
+        } else {
+            return NULL;
+        }
+    }
+    public function DDLEmployee() {
+        $service = new commonService();
+        $_dataTable = $service->DDLEmployee();
+        if ($_dataTable != NULL) {
+            $tmpReturn = array();
+            foreach ($_dataTable as $key => $value) {
+                $tmp = array(
+                    'id' => $_dataTable[$key]['i_emp'],
+                    'text' => $_dataTable[$key]['s_firstname']." ".$_dataTable[$key]['s_lastname']
                 );
                 $tmpReturn[] = $tmp;
             }

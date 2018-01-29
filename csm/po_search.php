@@ -3,7 +3,7 @@
 include './common/Permission.php';
 include './common/PermissionADM.php';
 include './common/FunctionCheckActive.php';
-ACTIVEPAGES(3, 1);
+ACTIVEPAGES(4, 1);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -70,11 +70,11 @@ ACTIVEPAGES(3, 1);
                         <div class="page-bar">
                             <ul class="page-breadcrumb">
                                 <li>
-                                    <span><?= $_SESSION[repair] ?></span>
+                                    <span><?= $_SESSION[po] ?></span>
                                     <i class="fa fa-circle" style="color:  #00FF00;"></i>
                                 </li>
                                 <li>
-                                    <a href="re_create.php"><?= $_SESSION[re_create] ?></a>
+                                    <a href="po_search.php"><?= $_SESSION[po_search] ?></a>
                                 </li>
                             </ul>
 
@@ -92,7 +92,7 @@ ACTIVEPAGES(3, 1);
                                     <div class="portlet-title">
                                         <div class="caption font-dark">
                                             <i class="fa fa-wrench font-dark"></i>
-                                            <span class="caption-subject bold uppercase"><?= $_SESSION[tt_mg_create] ?></span>
+                                            <span class="caption-subject bold uppercase"><?= $_SESSION[tt_mg_po_search] ?></span>
                                         </div>
                                         <div class="actions">
 
