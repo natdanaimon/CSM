@@ -70,4 +70,5 @@
     var disable = "<?= $disable ?>";
     var hidden = "<?= $hidden ?>";
     var pleaseSelect = "<?= $_SESSION[lb_please_select] ?>";
+    var pathOpenLogs = "csm/";
 </script>

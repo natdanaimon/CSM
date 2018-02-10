@@ -327,7 +327,7 @@ $(document).on('click', '.notifyjs-foo-base .notify-yes', function () {
 
 
 function openLogs() {
-    var myWindow = window.open("logs/logImportGen.txt", "", "width=400,height=400");
+    var myWindow = window.open(pathOpenLogs+"logs/logImportGen.txt", "", "width=400,height=400");
 }
 
 

@@ -145,9 +145,9 @@ class generationService {
         $i = 1;
         $tp = "";
         foreach ($xlsx->rows() as $k => $r) {
-            $col0 = ( (isset($r[0])) ? $r[0] : NULL );
-            $col1 = ( (isset($r[1])) ? $r[1] : NULL );
-            $col2 = ( (isset($r[2])) ? $r[2] : NULL );
+            $col0 = ( (isset($r[0])) ? trim($r[0]) : NULL );
+            $col1 = ( (isset($r[1])) ? trim($r[1]) : NULL );
+            $col2 = ( (isset($r[2])) ? trim($r[2]) : NULL );
 
             if ($k == 0) {
                 if ($col0 != NULL && $col1 != NULL && $col2 != NULL) {
