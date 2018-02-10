@@ -17,7 +17,7 @@ function captcha() {
         },
         success: function (data) {
 
-            $("#captcha").attr("src", data);
+            $("#captchas").attr("src", data);
 
         },
         error: function (data) {
@@ -32,6 +32,7 @@ function captcha() {
 
 
 function login() {
+    $('#captcha').val($('#tmp_captcha').val());
     var Jsdata = $("#form-login").serialize();
     $.ajax({
         type: 'POST',

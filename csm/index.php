@@ -52,7 +52,7 @@ session_start();
         <div class="content">
             <!-- BEGIN LOGIN FORM -->
 
-            <form  id="form-login" class="login-form" name="form-login"  method="post">
+            <form  id="form-login" class="login-form" name="form-login"  >
                 <input type="hidden" id="mode" name="mode" value="signin" />
                 <input type="hidden" id="func" name="func" value="login" />
                 <h3 class="form-title font-green">
@@ -72,26 +72,30 @@ session_start();
                     <input class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off" placeholder="Password" id="password"  name="password" /> 
                 </div>
                 <div class="form-group">
-                    <img src="captcha/backgrounds/45-degree-fabric.png" id="captcha"/>
+                    <img src="captcha/backgrounds/45-degree-fabric.png" id="captchas"/>
 
                     <a href="javascript:captcha();">
                         <img src="captcha/icon-reload.png" width="35" height="35" />
                     </a>
                 </div>
                 <div class="form-group">
-                    <input class="form-control form-control-solid placeholder-no-fix" type="text" placeholder="captcha" id="captcha"  name="captcha" /> 
+                    <input class="form-control form-control-solid placeholder-no-fix" type="hidden" placeholder="captcha" id="captcha"  name="captcha" /> 
                 </div>
 
-                <div class="form-actions">
-
-                    <button class="btn green uppercase"id="btn-login" onclick="login()" type="button">Login</button>
-                    <label class="rememberme check mt-checkbox mt-checkbox-outline">
-                        <input type="checkbox" name="remember" value="1" />Remember
-                        <span></span>
-                    </label>
-                    <a href="javascript:;" id="forget-password" class="forget-password">Forgot Password?</a>
-                </div>
             </form>
+            <div class="form-group">
+                <input class="form-control form-control-solid placeholder-no-fix" type="text" placeholder="captcha" id="tmp_captcha"  name="tmp_captcha" /> 
+            </div>
+            <div class="form-actions">
+
+                <a href="javascript:login()" class="btn green uppercase"  >Login</a>
+                <label class="rememberme check mt-checkbox mt-checkbox-outline">
+                    <input type="checkbox" name="remember" value="1" />Remember
+                    <span></span>
+                </label>
+                <a href="javascript:;" id="forget-password" class="forget-password">Forgot Password?</a>
+            </div>
+
 
 
             <!-- END LOGIN FORM -->
@@ -149,6 +153,14 @@ session_start();
 
         <link href="css/notify.css" rel="stylesheet" type="text/css" />
         <script src="js/action/login.js" type="text/javascript"></script>
+        <script>
+                        $("#tmp_captcha").on('keyup', function (e) {
+                            if (e.keyCode == 13) {
+                                login();
+                            }
+                        });
+
+        </script>
     </body>
 
 </html>
