@@ -134,10 +134,13 @@ $disableElement = 'disabled="disable"';
 
                                 <div class="row" id="div-refno" style="display:none">
 
-                                    <div class="col-md-5">
-
+                                    <div class="col-md-4">
+                                        <div class="form-group form-md-line-input has-success" >
+                                            <input type="text" class="form-control bold required" id="ref_car_info" name="ref_car_info" readonly="readonly" >
+                                            <label for="form_control_1"><?= $_SESSION[lb_re_refCarInfo] ?><span class="required"></span></label>          
+                                        </div>
                                     </div>
-                                    <div class="col-md-4"></div>
+                                    <div class="col-md-5"></div>
                                     <div class="col-md-3">
                                         <div class="form-group form-md-line-input has-success" >
                                             <input type="text" class="form-control bold required" id="ref_no" name="ref_no" readonly="readonly" >
@@ -586,263 +589,284 @@ $disableElement = 'disabled="disable"';
                                 <!-- END STEP2-->
 
 
-                                <!-- BEGIN STEP3-->
-                                <div class="portlet box green">
-                                    <div class="portlet-title" onclick="closeStep(3)" style="cursor: pointer;">
+                                <!-- BEGIN STEP IMAGE-->
+                                <div class="portlet box blue">
+                                    <div class="portlet-title" onclick="closeStep(99)" style="cursor: pointer;">
                                         <div class="caption">
-                                            <i class="fa fa-wrench"></i> <?= $_SESSION[tt_detail_create3] ?>
-                                            <span class="badge badge-waring" id="lb-3"></span>
-                                        </div>
+                                            <i class="fa fa-picture-o"></i> <?= $_SESSION[tt_detail_create99] ?></div>
                                         <div class="tools">
                                             <span class="fa fa-angle-down" style="color: white;text-decoration:none;"> </span>
-
+                                            <!--<a href="javascript:closeStep(2);" class="fa fa-angle-down" style="color: white;text-decoration:none;"> </a>-->
                                         </div>
                                     </div>
 
 
-                                    <div class="portlet-body form" id="step3" style="display: none;">
+                                    <div class="portlet-body form" id="step99" style="display: none;">         
+                                        <br/>
 
 
-                                        <div class="portlet light bordered">
-                                            <div class="portlet-body form">
 
-                                                <div class="form-body">
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <form action="controller/repair/processController.php?func=addDismantling&ref_no=<?= $ref_no ?>" 
-                                                                  class="dropzone dropzone-file-area" 
-                                                                  id="myDropzoneS3" 
-                                                                  style="width:auto; height:auto;" >
-                                                                <h3 class="sbold">Drop files here or click to upload</h3>
-                                                                <!--<p> This is just a demo dropzone. Selected files are not actually uploaded. </p>-->
-                                                            </form>
-                                                        </div>
 
-                                                    </div>
-
+                                        <!-- BEGIN STEP3-->
+                                        <div class="portlet box green">
+                                            <div class="portlet-title" onclick="closeStep(3)" style="cursor: pointer;">
+                                                <div class="caption">
+                                                    <i class="fa fa-wrench"></i> <?= $_SESSION[tt_detail_create3] ?>
+                                                    <span class="badge badge-waring" id="lb-3"></span>
+                                                </div>
+                                                <div class="tools">
+                                                    <span class="fa fa-angle-down" style="color: white;text-decoration:none;"> </span>
 
                                                 </div>
+                                            </div>
+
+
+                                            <div class="portlet-body form" id="step3" style="display: none;">
+
+
+                                                <div class="portlet light bordered">
+                                                    <div class="portlet-body form">
+
+                                                        <div class="form-body">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <form action="controller/repair/processController.php?func=addDismantling&ref_no=<?= $ref_no ?>" 
+                                                                          class="dropzone dropzone-file-area" 
+                                                                          id="myDropzoneS3" 
+                                                                          style="width:auto; height:auto;" >
+                                                                        <h3 class="sbold">Drop files here or click to upload</h3>
+                                                                        <!--<p> This is just a demo dropzone. Selected files are not actually uploaded. </p>-->
+                                                                    </form>
+                                                                </div>
+
+                                                            </div>
+
+
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+
+
 
 
                                             </div>
+
+
+
+
+
+
+
+
                                         </div>
+                                        <!-- END STEP3-->
 
-
-
-
-                                    </div>
-
-
-
-
-
-
-
-
-                                </div>
-                                <!-- END STEP3-->
-
-                                <!-- BEGIN STEP4-->
-                                <div class="portlet box green">
-                                    <div class="portlet-title" onclick="closeStep(4)" style="cursor: pointer;">
-                                        <div class="caption">
-                                            <i class="fa fa-wrench"></i> <?= $_SESSION[tt_detail_create4] ?>
-                                            <span class="badge badge-waring" id="lb-4"></span>
-                                        </div>
-                                        <div class="tools">
-                                            <span class="fa fa-angle-down" style="color: white;text-decoration:none;"> </span>
-                                        </div>
-                                    </div>
-                                    <div class="portlet-body form" id="step4" style="display: none;">
-                                        <div class="portlet light bordered">
-                                            <div class="portlet-body form">
-                                                <div class="form-body">
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <form action="controller/repair/processController.php?func=addTapping&ref_no=<?= $ref_no ?>" 
-                                                                  class="dropzone dropzone-file-area" 
-                                                                  id="myDropzoneS4" 
-                                                                  style="width:auto; height:auto;" >
-                                                                <h3 class="sbold">Drop files here or click to upload</h3>
-                                                                <!--<p> This is just a demo dropzone. Selected files are not actually uploaded. </p>-->
-                                                            </form>
-                                                        </div>
-                                                    </div>
+                                        <!-- BEGIN STEP4-->
+                                        <div class="portlet box green">
+                                            <div class="portlet-title" onclick="closeStep(4)" style="cursor: pointer;">
+                                                <div class="caption">
+                                                    <i class="fa fa-wrench"></i> <?= $_SESSION[tt_detail_create4] ?>
+                                                    <span class="badge badge-waring" id="lb-4"></span>
+                                                </div>
+                                                <div class="tools">
+                                                    <span class="fa fa-angle-down" style="color: white;text-decoration:none;"> </span>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- END STEP4-->
-
-                                <!-- BEGIN STEP5-->
-                                <div class="portlet box green">
-                                    <div class="portlet-title" onclick="closeStep(5)" style="cursor: pointer;">
-                                        <div class="caption">
-                                            <i class="fa fa-wrench"></i> <?= $_SESSION[tt_detail_create5] ?>
-                                            <span class="badge badge-waring" id="lb-5"></span>
-                                        </div>
-                                        <div class="tools">
-                                            <span class="fa fa-angle-down" style="color: white;text-decoration:none;"> </span>
-                                        </div>
-                                    </div>
-                                    <div class="portlet-body form" id="step5" style="display: none;">
-                                        <div class="portlet light bordered">
-                                            <div class="portlet-body form">
-                                                <div class="form-body">
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <form action="controller/repair/processController.php?func=addFilling&ref_no=<?= $ref_no ?>" 
-                                                                  class="dropzone dropzone-file-area" 
-                                                                  id="myDropzoneS5" 
-                                                                  style="width:auto; height:auto;" >
-                                                                <h3 class="sbold">Drop files here or click to upload</h3>
-                                                                <!--<p> This is just a demo dropzone. Selected files are not actually uploaded. </p>-->
-                                                            </form>
+                                            <div class="portlet-body form" id="step4" style="display: none;">
+                                                <div class="portlet light bordered">
+                                                    <div class="portlet-body form">
+                                                        <div class="form-body">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <form action="controller/repair/processController.php?func=addTapping&ref_no=<?= $ref_no ?>" 
+                                                                          class="dropzone dropzone-file-area" 
+                                                                          id="myDropzoneS4" 
+                                                                          style="width:auto; height:auto;" >
+                                                                        <h3 class="sbold">Drop files here or click to upload</h3>
+                                                                        <!--<p> This is just a demo dropzone. Selected files are not actually uploaded. </p>-->
+                                                                    </form>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <!-- END STEP5-->
+                                        <!-- END STEP4-->
 
-                                <!-- BEGIN STEP6-->
-                                <div class="portlet box green">
-                                    <div class="portlet-title" onclick="closeStep(6)" style="cursor: pointer;">
-                                        <div class="caption">
-                                            <i class="fa fa-wrench"></i> <?= $_SESSION[tt_detail_create6] ?>
-                                            <span class="badge badge-waring" id="lb-6"></span>
-                                        </div>
-                                        <div class="tools">
-                                            <span class="fa fa-angle-down" style="color: white;text-decoration:none;"> </span>
-                                        </div>
-                                    </div>
-                                    <div class="portlet-body form" id="step6" style="display: none;">
-                                        <div class="portlet light bordered">
-                                            <div class="portlet-body form">
-                                                <div class="form-body">
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <form action="controller/repair/processController.php?func=addSpraying&ref_no=<?= $ref_no ?>" 
-                                                                  class="dropzone dropzone-file-area" 
-                                                                  id="myDropzoneS6" 
-                                                                  style="width:auto; height:auto;" >
-                                                                <h3 class="sbold">Drop files here or click to upload</h3>
-                                                                <!--<p> This is just a demo dropzone. Selected files are not actually uploaded. </p>-->
-                                                            </form>
+                                        <!-- BEGIN STEP5-->
+                                        <div class="portlet box green">
+                                            <div class="portlet-title" onclick="closeStep(5)" style="cursor: pointer;">
+                                                <div class="caption">
+                                                    <i class="fa fa-wrench"></i> <?= $_SESSION[tt_detail_create5] ?>
+                                                    <span class="badge badge-waring" id="lb-5"></span>
+                                                </div>
+                                                <div class="tools">
+                                                    <span class="fa fa-angle-down" style="color: white;text-decoration:none;"> </span>
+                                                </div>
+                                            </div>
+                                            <div class="portlet-body form" id="step5" style="display: none;">
+                                                <div class="portlet light bordered">
+                                                    <div class="portlet-body form">
+                                                        <div class="form-body">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <form action="controller/repair/processController.php?func=addFilling&ref_no=<?= $ref_no ?>" 
+                                                                          class="dropzone dropzone-file-area" 
+                                                                          id="myDropzoneS5" 
+                                                                          style="width:auto; height:auto;" >
+                                                                        <h3 class="sbold">Drop files here or click to upload</h3>
+                                                                        <!--<p> This is just a demo dropzone. Selected files are not actually uploaded. </p>-->
+                                                                    </form>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <!-- END STEP6-->
+                                        <!-- END STEP5-->
 
-                                <!-- BEGIN STEP7-->
-                                <div class="portlet box green">
-                                    <div class="portlet-title" onclick="closeStep(7)" style="cursor: pointer;">
-                                        <div class="caption">
-                                            <i class="fa fa-wrench"></i> <?= $_SESSION[tt_detail_create7] ?>
-                                            <span class="badge badge-waring" id="lb-7"></span>
-                                        </div>
-                                        <div class="tools">
-                                            <span class="fa fa-angle-down" style="color: white;text-decoration:none;"> </span>
-                                        </div>
-                                    </div>
-                                    <div class="portlet-body form" id="step7" style="display: none;">
-                                        <div class="portlet light bordered">
-                                            <div class="portlet-body form">
-                                                <div class="form-body">
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <form action="controller/repair/processController.php?func=addPrepare&ref_no=<?= $ref_no ?>" 
-                                                                  class="dropzone dropzone-file-area" 
-                                                                  id="myDropzoneS7" 
-                                                                  style="width:auto; height:auto;" >
-                                                                <h3 class="sbold">Drop files here or click to upload</h3>
-                                                                <!--<p> This is just a demo dropzone. Selected files are not actually uploaded. </p>-->
-                                                            </form>
+                                        <!-- BEGIN STEP6-->
+                                        <div class="portlet box green">
+                                            <div class="portlet-title" onclick="closeStep(6)" style="cursor: pointer;">
+                                                <div class="caption">
+                                                    <i class="fa fa-wrench"></i> <?= $_SESSION[tt_detail_create6] ?>
+                                                    <span class="badge badge-waring" id="lb-6"></span>
+                                                </div>
+                                                <div class="tools">
+                                                    <span class="fa fa-angle-down" style="color: white;text-decoration:none;"> </span>
+                                                </div>
+                                            </div>
+                                            <div class="portlet-body form" id="step6" style="display: none;">
+                                                <div class="portlet light bordered">
+                                                    <div class="portlet-body form">
+                                                        <div class="form-body">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <form action="controller/repair/processController.php?func=addSpraying&ref_no=<?= $ref_no ?>" 
+                                                                          class="dropzone dropzone-file-area" 
+                                                                          id="myDropzoneS6" 
+                                                                          style="width:auto; height:auto;" >
+                                                                        <h3 class="sbold">Drop files here or click to upload</h3>
+                                                                        <!--<p> This is just a demo dropzone. Selected files are not actually uploaded. </p>-->
+                                                                    </form>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <!-- END STEP7-->
+                                        <!-- END STEP6-->
 
-
-                                <!-- BEGIN STEP8-->
-                                <div class="portlet box green">
-                                    <div class="portlet-title" onclick="closeStep(8)" style="cursor: pointer;">
-                                        <div class="caption">
-                                            <i class="fa fa-wrench"></i> <?= $_SESSION[tt_detail_create8] ?>
-                                            <span class="badge badge-waring" id="lb-8"></span>
-                                        </div>
-                                        <div class="tools">
-                                            <span class="fa fa-angle-down" style="color: white;text-decoration:none;"> </span>
-                                        </div>
-                                    </div>
-                                    <div class="portlet-body form" id="step8" style="display: none;">
-                                        <div class="portlet light bordered">
-                                            <div class="portlet-body form">
-                                                <div class="form-body">
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <form action="controller/repair/processController.php?func=addPolishing&ref_no=<?= $ref_no ?>" 
-                                                                  class="dropzone dropzone-file-area" 
-                                                                  id="myDropzoneS8" 
-                                                                  style="width:auto; height:auto;" >
-                                                                <h3 class="sbold">Drop files here or click to upload</h3>
-                                                                <!--<p> This is just a demo dropzone. Selected files are not actually uploaded. </p>-->
-                                                            </form>
+                                        <!-- BEGIN STEP7-->
+                                        <div class="portlet box green">
+                                            <div class="portlet-title" onclick="closeStep(7)" style="cursor: pointer;">
+                                                <div class="caption">
+                                                    <i class="fa fa-wrench"></i> <?= $_SESSION[tt_detail_create7] ?>
+                                                    <span class="badge badge-waring" id="lb-7"></span>
+                                                </div>
+                                                <div class="tools">
+                                                    <span class="fa fa-angle-down" style="color: white;text-decoration:none;"> </span>
+                                                </div>
+                                            </div>
+                                            <div class="portlet-body form" id="step7" style="display: none;">
+                                                <div class="portlet light bordered">
+                                                    <div class="portlet-body form">
+                                                        <div class="form-body">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <form action="controller/repair/processController.php?func=addPrepare&ref_no=<?= $ref_no ?>" 
+                                                                          class="dropzone dropzone-file-area" 
+                                                                          id="myDropzoneS7" 
+                                                                          style="width:auto; height:auto;" >
+                                                                        <h3 class="sbold">Drop files here or click to upload</h3>
+                                                                        <!--<p> This is just a demo dropzone. Selected files are not actually uploaded. </p>-->
+                                                                    </form>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <!-- END STEP8-->
+                                        <!-- END STEP7-->
 
-                                <!-- BEGIN STEP9-->
-                                <div class="portlet box green">
-                                    <div class="portlet-title" onclick="closeStep(9)" style="cursor: pointer;">
-                                        <div class="caption">
-                                            <i class="fa fa-wrench"></i> <?= $_SESSION[tt_detail_create9] ?>
-                                            <span class="badge badge-waring" id="lb-9"></span>
-                                        </div>
-                                        <div class="tools">
-                                            <span class="fa fa-angle-down" style="color: white;text-decoration:none;"> </span>
-                                        </div>
-                                    </div>
-                                    <div class="portlet-body form" id="step9" style="display: none;">
-                                        <div class="portlet light bordered">
-                                            <div class="portlet-body form">
-                                                <div class="form-body">
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <form action="controller/repair/processController.php?func=addCheck&ref_no=<?= $ref_no ?>" 
-                                                                  class="dropzone dropzone-file-area" 
-                                                                  id="myDropzoneS9" 
-                                                                  style="width:auto; height:auto;" >
-                                                                <h3 class="sbold">Drop files here or click to upload</h3>
-                                                                <!--<p> This is just a demo dropzone. Selected files are not actually uploaded. </p>-->
-                                                            </form>
+
+                                        <!-- BEGIN STEP8-->
+                                        <div class="portlet box green">
+                                            <div class="portlet-title" onclick="closeStep(8)" style="cursor: pointer;">
+                                                <div class="caption">
+                                                    <i class="fa fa-wrench"></i> <?= $_SESSION[tt_detail_create8] ?>
+                                                    <span class="badge badge-waring" id="lb-8"></span>
+                                                </div>
+                                                <div class="tools">
+                                                    <span class="fa fa-angle-down" style="color: white;text-decoration:none;"> </span>
+                                                </div>
+                                            </div>
+                                            <div class="portlet-body form" id="step8" style="display: none;">
+                                                <div class="portlet light bordered">
+                                                    <div class="portlet-body form">
+                                                        <div class="form-body">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <form action="controller/repair/processController.php?func=addPolishing&ref_no=<?= $ref_no ?>" 
+                                                                          class="dropzone dropzone-file-area" 
+                                                                          id="myDropzoneS8" 
+                                                                          style="width:auto; height:auto;" >
+                                                                        <h3 class="sbold">Drop files here or click to upload</h3>
+                                                                        <!--<p> This is just a demo dropzone. Selected files are not actually uploaded. </p>-->
+                                                                    </form>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+                                        <!-- END STEP8-->
+
+                                        <!-- BEGIN STEP9-->
+                                        <div class="portlet box green">
+                                            <div class="portlet-title" onclick="closeStep(9)" style="cursor: pointer;">
+                                                <div class="caption">
+                                                    <i class="fa fa-wrench"></i> <?= $_SESSION[tt_detail_create9] ?>
+                                                    <span class="badge badge-waring" id="lb-9"></span>
+                                                </div>
+                                                <div class="tools">
+                                                    <span class="fa fa-angle-down" style="color: white;text-decoration:none;"> </span>
+                                                </div>
+                                            </div>
+                                            <div class="portlet-body form" id="step9" style="display: none;">
+                                                <div class="portlet light bordered">
+                                                    <div class="portlet-body form">
+                                                        <div class="form-body">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <form action="controller/repair/processController.php?func=addCheck&ref_no=<?= $ref_no ?>" 
+                                                                          class="dropzone dropzone-file-area" 
+                                                                          id="myDropzoneS9" 
+                                                                          style="width:auto; height:auto;" >
+                                                                        <h3 class="sbold">Drop files here or click to upload</h3>
+                                                                        <!--<p> This is just a demo dropzone. Selected files are not actually uploaded. </p>-->
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- END STEP9-->
+
+
                                     </div>
+
                                 </div>
-                                <!-- END STEP9-->
-
-
-
+                                <!-- END IMAGE-->
 
 
 
@@ -881,6 +905,54 @@ $disableElement = 'disabled="disable"';
                                 </div>
 
                                 <!-- END EXAMPLE TABLE PORTLET-->
+                                
+                                
+                                <!-- BEGIN COMMENT PORTLET-->
+                                    <div class="col-md-12">
+                                        <div class="portlet light bordered">
+                                            <div class="portlet-title">
+                                                <div class="caption font-green">
+                                                    <i class="fa  fa-commenting-o font-green"></i>
+                                                    <span class="caption-subject bold uppercase"> <?= $_SESSION[label_comment] ?></span>
+                                                </div>
+                                            </div>
+                                            <div class="portlet-body form">
+
+                                                <div class="form-body">
+
+                                                    <div class="form-group form-md-line-input has-success " style="margin-bottom: 0px !important;">
+                                                        <div class="row">
+                                                            <div class="col-md-7">
+                                                                <input type="text" class="form-control bold required" id="s_comment" name="s_comment" >
+
+                                                            </div>
+                                                            <div class="col-md-5">
+                                                                <a href="javascript:addComment();"> <button type="button" class="btn blue"><?= $_SESSION[btn_addComment] ?></button></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <br/>
+                                                    <table class="table table-striped table-bordered table-hover table-checkable order-column dt-responsive" id="datatable-comment">
+                                                        <thead>
+                                                            <tr>
+                                                                <th style="width: 15px" class="no-sort">
+                                                       
+                                                                </th>
+
+                                                                <th  class="all">  <?= $_SESSION[tb_co_comment] ?> </th>
+                                  
+                                                        </thead>
+                                                        <tbody id="">
+
+                                                        </tbody>
+                                                    </table> 
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- END COMMENT PORTLET-->
                             </div>
 
 

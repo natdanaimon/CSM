@@ -127,10 +127,13 @@ $disableElement = 'disabled="disable"';
 
                                     <div class="row" id="div-refno" style="display:none">
 
-                                        <div class="col-md-5">
-
+                                        <div class="col-md-4">
+                                            <div class="form-group form-md-line-input has-success" >
+                                                <input type="text" class="form-control bold required" id="ref_car_info" name="ref_car_info" readonly="readonly" >
+                                                <label for="form_control_1"><?= $_SESSION[lb_re_refCarInfo] ?><span class="required"></span></label>          
+                                            </div>
                                         </div>
-                                        <div class="col-md-4"></div>
+                                        <div class="col-md-5"></div>
                                         <div class="col-md-3">
                                             <div class="form-group form-md-line-input has-success" >
                                                 <input type="text" class="form-control bold required" id="ref_no" name="ref_no" readonly="readonly" >
@@ -628,8 +631,58 @@ $disableElement = 'disabled="disable"';
                                             </div>
                                         </div>
                                     </div>
-
                                     <!-- END EXAMPLE TABLE PORTLET-->
+
+
+                                    <!-- BEGIN COMMENT PORTLET-->
+                                    <div class="col-md-12">
+                                        <div class="portlet light bordered">
+                                            <div class="portlet-title">
+                                                <div class="caption font-green">
+                                                    <i class="fa  fa-commenting-o font-green"></i>
+                                                    <span class="caption-subject bold uppercase"> <?= $_SESSION[label_comment] ?></span>
+                                                </div>
+                                            </div>
+                                            <div class="portlet-body form">
+
+                                                <div class="form-body">
+
+                                                    <div class="form-group form-md-line-input has-success " style="margin-bottom: 0px !important;">
+                                                        <div class="row">
+                                                            <div class="col-md-7">
+                                                                <input type="text" class="form-control bold required" id="s_comment" name="s_comment" >
+
+                                                            </div>
+                                                            <div class="col-md-5">
+                                                                <a href="javascript:addComment();"> <button type="button" class="btn blue"><?= $_SESSION[btn_addComment] ?></button></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <br/>
+                                                    <table class="table table-striped table-bordered table-hover table-checkable order-column dt-responsive" id="datatable-comment">
+                                                        <thead>
+                                                            <tr>
+                                                                <th style="width: 15px" class="no-sort">
+                                                       
+                                                                </th>
+
+                                                                <th  class="all">  <?= $_SESSION[tb_co_comment] ?> </th>
+                                  
+                                                        </thead>
+                                                        <tbody id="">
+
+                                                        </tbody>
+                                                    </table> 
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- END COMMENT PORTLET-->
+
+
+
                                 </div>
 
 

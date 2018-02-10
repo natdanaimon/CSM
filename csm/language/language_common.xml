@@ -118,6 +118,11 @@
         <en>Status</en> 
     </detail>
     <detail>
+        <variable>label_comment</variable>
+        <th>การพูดคุย</th>
+        <en>Comment</en> 
+    </detail>
+    <detail>
         <variable>edit_info</variable>
         <th>แก้ไขข้อมูล</th>
         <en>Edit </en> 
@@ -486,6 +491,11 @@
         <variable>btn_cancel</variable>
         <th>ยกเลิก</th>
         <en>Cancel</en> 
+    </detail>
+    <detail>
+        <variable>btn_addComment</variable>
+        <th>เพิ่มบทสนทนา</th>
+        <en>Add Comment</en> 
     </detail>
     <detail>
         <variable>btn_next</variable>
@@ -1341,7 +1351,11 @@
     </detail>
     
     
-    
+    <detail>
+        <variable>tb_co_comment</variable>
+        <th>บทสนทนา</th>
+        <en>Comment</en>
+    </detail>
     
     <detail>
         <variable>tb_co_refno</variable>
@@ -1805,6 +1819,11 @@
         <th>ข้อมูลภาพ กำลังดำเนินการซ่อม (ตรวจสอบสภาพ)</th>
         <en>Image processed (check)</en>
     </detail>
+    <detail>
+        <variable>tt_detail_create99</variable>
+        <th>ข้อมูลภาพ การดำเนินการ</th>
+        <en>Image Info</en>
+    </detail>
     
     
     <detail>
@@ -1851,6 +1870,11 @@
         <variable>cd_0000</variable>
         <th>0000,ทำรายการสำเร็จ</th>
         <en>0000,Transaction Success</en> 
+    </detail>
+    <detail>
+        <variable>cdcomment_0000</variable>
+        <th>0000,เพิ่มบทสนทนาสำเร็จ</th>
+        <en>0000,Add Comment Success</en> 
     </detail>
     <detail>
         <variable>cd_2001</variable>

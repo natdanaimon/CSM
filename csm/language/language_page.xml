@@ -749,6 +749,11 @@
         <th>รหัสอ้างอิง (Ref no.)</th>
         <en>Ref no.</en>
     </detail>
+    <detail>
+        <variable>lb_re_refCarInfo</variable>
+        <th>ข้อมูลรถ</th>
+        <en>Car Info.</en>
+    </detail>
     
     <detail>
         <variable>lb_re_paytype</variable>

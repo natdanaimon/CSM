@@ -600,6 +600,15 @@ function edit() {
                 $("#s_type_capital").val(item.s_type_capital);
                 $("#d_ins_exp").val(item.d_ins_exp);
 
+
+
+
+                var carInfo = $('#s_license').val() + " : " + $('#s_car_code').select2('data')[0].text;
+                $("#ref_car_info").val(carInfo);
+
+                debugger;
+                initialDataTable("TRUE");
+
                 $("#status").val(item.s_status);
                 activeStep(item.s_status)
                 $("#lb_create").text(item.s_create_by + " ( " + item.d_create + " )");
@@ -647,8 +656,8 @@ function setImageCount(id) {
                     $("#lb-8").text(item.cnt);
                 } else if (item.step == 'lb-9' && item.cnt != '0') {
                     $("#lb-9").text(item.cnt);
-                }else{
-                    $("#"+item.step).text('');
+                } else {
+                    $("#" + item.step).text('');
 
                 }
 
@@ -675,11 +684,16 @@ function activeStep(status) {
     for (i = 1; i < 12; i++) {
         $('#step' + i).removeAttr('style');
         $('#step' + i).attr('style', 'display:none;');
+        $('#step' + 99).attr('style', 'display:none;');
     }
     debugger;
     var indexActive = parseInt(status.substring(1));
     indexActive = (indexActive - 1)
     $('#step' + indexActive).attr('style', 'display:block;');
+
+    if (indexActive > 2) {
+        $('#step' + 99).attr('style', 'display:block;');
+    }
 }
 
 function editCustomer(id) {
@@ -1015,3 +1029,175 @@ function radio_type(setSelected) {
 function setRadio(i) {
     $("#i_ins_type").val(i);
 }
+
+
+function addComment() {
+    var ref_no = $('#ref_no').val();
+    var s_comment = $('#s_comment').val();
+    $.ajax({
+        type: 'GET',
+        url: 'controller/repair/commentController.php?func=comment&ref_no=' + ref_no + "&s_comment=" + s_comment,
+        cache: false,
+        contentType: false,
+        processData: false,
+        beforeSend: function () {
+            $('#se-pre-con').fadeIn(100);
+        },
+        success: function (data) {
+            var res = data.split(",");
+            if (res[0] == "0000") {
+                var errCode = "Code (" + res[0] + ") : " + res[1];
+                $.notify(errCode, "success");
+                $('#s_comment').val('');
+                initialDataTable("FALSE");
+            } else {
+                var errCode = "Code (" + res[0] + ") : " + res[1];
+                $.notify(errCode, "error");
+            }
+            $('#se-pre-con').delay(100).fadeOut();
+
+            return;
+        },
+        error: function (data) {
+
+        }
+    });
+}
+
+
+
+var $datatableComment = $('#datatable-comment');
+
+function initialDataTable(first) {
+    var ref_no = $('#ref_no').val();
+    $.ajax({
+        type: 'GET',
+        url: 'controller/repair/commentController.php?func=dataTable&ref_no=' + ref_no,
+        beforeSend: function () {
+            $('#se-pre-con').fadeIn(100);
+        },
+        success: function (data) {
+            debugger;
+            if (data == '') {
+                var datatable = $datatableComment.dataTable().api();
+                $('.dataTables_empty').remove();
+                datatable.clear();
+                datatable.draw();
+                return;
+            }
+            var res = JSON.parse(data);
+            var JsonData = [];
+            $.each(res, function (i, item) {
+
+
+                var refno = item.ref_no;
+                var col_comment = item.s_comment + " : " + item.d_create;
+
+                var col_delete = "";
+                col_delete += '<a href="' + (disable != "" ? '#' : 'javascript:Confirm(\'' + item.i_comment + '\',\'delete\');') + '" style="width:30px;height:30px" class="btn btn-circle btn-icon-only red" ' + disable + '>';
+                col_delete += ' <i class="fa fa-archive" ></i>';
+                col_delete += '</a>';
+
+
+                var addRow = [
+                    col_delete,
+                    col_comment
+                ]
+
+                JsonData.push(addRow);
+
+            });
+            if (first == "TRUE") {
+                $datatableComment.dataTable({
+                    data: JsonData,
+                    order: [
+//                        [1, 'desc'],
+//                        [11, 'asc']
+                    ],
+                    columnDefs: [
+                        {"orderable": false, "targets": 0},
+                        {"orderable": false, "targets": 1}
+                    ]
+                });
+            } else {
+
+                var datatable = $datatableComment.dataTable().api();
+                $('.dataTables_empty').remove();
+                datatable.clear();
+                datatable.rows.add(JsonData);
+                datatable.draw();
+            }
+
+        },
+        error: function (data) {
+
+        }
+
+    });
+}
+
+
+
+function Confirm(txt, func) {
+    $('#se-pre-con').fadeIn(100);
+    $.notify.addStyle('foo', {
+        html: "<div>" +
+                "<div class='clearfix'>" +
+                "<div class='title' data-notify-html='title'/>" +
+                "<div class='buttons'>" +
+                "<input type='hidden' id='id_comment' value='" + txt + "' />" +
+                "<input type='hidden' id='func' value='" + func + "' />" +
+                "<button class='notify-no btn red'>" + cancel + "</button>" +
+                "<button class='notify-yes btn green'>" + yes + "</button>" +
+                "</div>" +
+                "</div>" +
+                "</div>"
+    });
+
+    $.notify({
+        title: titleCancel,
+        button: 'Confirm'
+    }, {
+        style: 'foo',
+        autoHide: false,
+        clickToHide: false
+    });
+
+}
+$(document).on('click', '.notifyjs-foo-base .notify-no', function () {
+    $('#se-pre-con').delay(100).fadeOut();
+    $(this).trigger('notify-hide');
+});
+$(document).on('click', '.notifyjs-foo-base .notify-yes', function () {
+    $(this).trigger('notify-hide');
+    var id = $("#id_comment").val();
+
+    $.ajax({
+        type: 'GET',
+        url: 'controller/repair/commentController.php?func=delete&id=' + id,
+        beforeSend: function () {
+            $('#se-pre-con').fadeIn(100);
+        },
+        success: function (data) {
+
+            var res = data.split(",");
+            if (res[0] == "0000") {
+                var errCode = "Code (" + res[0] + ") : " + res[1];
+                $.notify(errCode, "success");
+                
+            } else {
+                var errCode = "Code (" + res[0] + ") : " + res[1];
+                $.notify(errCode, "error");
+
+            }
+            initialDataTable("FALSE");
+            $('#se-pre-con').delay(100).fadeOut();
+
+        },
+        error: function (data) {
+
+        }
+
+    });
+
+});
