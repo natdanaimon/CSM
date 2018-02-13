@@ -436,28 +436,57 @@ $disableElement = 'disabled="disable"';
 
 
                                                     <div class="row" >
+                                                            <div class="col-md-4">
+                                                                <div class="form-group form-md-line-input has-success" >
+                                                                    <select class="form-control edited bold" id="i_year" name="i_year" <?= $disableElement ?>>
+                                                                        <option value=""><?= $_SESSION[lb_please_select] ?></option>
+                                                                    </select>
+                                                                    <label for="form_control_1"><?= $_SESSION[lb_setYear_year] ?></label>
+                                                                </div>
 
-                                                        <div class="col-md-4">
-                                                            <div class="form-group form-md-line-input has-success" style="height: 60px">
-                                                                <select class="form-control edited bold" id="s_car_code" name="s_car_code" <?= $disableElement ?>>
-                                                                </select>
-                                                                <label for="form_control_1"><?= $_SESSION[lb_re_carinfo] ?></label>
+
+                                                            </div>
+                                                            <div class="col-md-5">
+
+                                                                <div class="form-group form-md-line-input has-success" >
+                                                                    <select class="form-control edited bold" id="s_brand_code" name="s_brand_code" onchange="getDDLGenSelect()" <?= $disableElement ?>>
+                                                                        <option value=""><?= $_SESSION[lb_please_select] ?></option>
+                                                                    </select>
+                                                                    <label for="form_control_1"><?= $_SESSION[lb_setBrand_code] ?></label>
+                                                                </div>
+
                                                             </div>
 
+                                                            <div class="col-md-3"></div> 
+                                                        </div>			
 
-                                                        </div>
-                                                        <div class="col-md-5">
 
-                                                            <div class="form-group form-md-line-input has-success">
-                                                                <input type="text" class="form-control bold required" id="s_license" name="s_license" <?= $disableElement ?>>
-                                                                <label for="form_control_1"><?= $_SESSION[lb_re_carlicense] ?> <span class="required">*</span></label>          
+                                                   		
+
+                                                        <div class="row" >
+
+                                                            <div class="col-md-4">
+                                                                <div class="form-group form-md-line-input has-success" >
+                                                                    <select class="form-control edited bold" id="s_gen_code" name="s_gen_code" <?= $disableElement ?>>
+                                                                        <option value=""><?= $_SESSION[lb_please_select] ?></option>
+                                                                    </select>
+                                                                    <label for="form_control_1"><?= $_SESSION[lb_setGen_code] ?></label>
+                                                                </div>
+
+
                                                             </div>
+                                                            <div class="col-md-5">
+
+                                                                <div class="form-group form-md-line-input has-success">
+                                                                    <input type="text" class="form-control bold required" id="s_license" name="s_license"  <?= $disableElement ?>>
+                                                                    <label for="form_control_1"><?= $_SESSION[lb_re_carlicense] ?> <span class="required">*</span></label>          
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-3">
+
+                                                            </div> 
                                                         </div>
-
-                                                        <div class="col-md-3">
-
-                                                        </div> 
-                                                    </div>
 
 
 

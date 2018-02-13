@@ -327,51 +327,6 @@ function getDDLInsurance() {
 
             });
 
-            getDDLCar();
-
-        },
-        error: function (ddl) {
-
-        }
-
-
-
-    });
-}
-
-
-
-function formatStateCar(state) {
-    if (!state.id) {
-        return state.text;
-    }
-    var pathImg = "";
-    if (state.img == "") {
-        pathImg = "images/noCar.png";
-    } else {
-        pathImg = "upload/brand/" + state.img;
-    }
-
-
-    var $state = $(
-            '<span><img src="' + pathImg + '" width="30px" height="30px" class="img-flag" Style="margin-bottom: 5px;"/><span style="color:black;font-weight:bold;"> ' + state.text + '</span></span>'
-            );
-    return $state;
-}
-
-function getDDLCar() {
-    $.ajax({
-        type: 'GET',
-        url: 'controller/commonController.php?func=DDLCar',
-        beforeSend: function () {},
-        success: function (ddl) {
-            var res = JSON.parse(ddl);
-            $("#s_car_code").select2({
-                data: res,
-                templateResult: formatStateCar,
-                templateSelection: formatStateCar
-
-            });
             getDDLDamage();
 
         },
@@ -383,6 +338,9 @@ function getDDLCar() {
 
     });
 }
+
+
+
 
 
 function getDDLDamage() {
@@ -429,6 +387,8 @@ function getDDLTitle() {
             $("#i_title").html(htmlOption);
 
             getDDLProvince();
+            getDDLYear();
+            getDDLBrand();
 
         },
         error: function (data) {
@@ -565,6 +525,105 @@ function getDDLZipcode() {
     });
 }
 
+function getDDLYear() {
+    $.ajax({
+        type: 'GET',
+        url: 'controller/commonController.php?func=DDLYear',
+        beforeSend: function () {},
+        success: function (ddl) {
+            debugger;
+            var htmlOption = "";
+            var res = JSON.parse(ddl);
+            $.each(res, function (i, item) {
+                htmlOption += "<option value='" + item.id + "'>" + item.text + "</option>";
+            });
+            $("#i_year").html(htmlOption);
+
+
+        },
+        error: function (ddl) {
+
+        }
+
+
+
+    });
+}
+
+
+function getDDLBrand() {
+    $.ajax({
+        type: 'GET',
+        url: 'controller/commonController.php?func=DDLBrand',
+        beforeSend: function () {},
+        success: function (ddl) {
+            debugger;
+            var htmlOption = "";
+            var res = JSON.parse(ddl);
+            $.each(res, function (i, item) {
+                htmlOption += "<option value='" + item.id + "'>" + item.id + " : " + item.text + "</option>";
+            });
+            $("#s_brand_code").html(htmlOption);
+            getDDLGenSelect();
+
+        },
+        error: function (ddl) {
+
+        }
+
+
+
+    });
+}
+
+function getDDLGenSelect() {
+    var brandCode = $("#s_brand_code").val();
+    $.ajax({
+        type: 'GET',
+        url: 'controller/commonController.php?func=DDLGenerationSelect&s_brand_code=' + brandCode,
+        beforeSend: function () {},
+        success: function (ddl) {
+            debugger;
+            var htmlOption = "";
+            var res = JSON.parse(ddl);
+            $.each(res, function (i, item) {
+                htmlOption += "<option value='" + item.s_gen_code + "'>" + item.s_gen_code + " : " + item.s_gen_name + "</option>";
+            });
+            $("#s_gen_code").html(htmlOption);
+
+
+        },
+        error: function (ddl) {
+
+        }
+
+
+
+    });
+}
+
+
+function getDDLGenSelectEdit(brandCode) {
+    $.ajax({
+        type: 'GET',
+        url: 'controller/commonController.php?func=DDLGenerationSelect&s_brand_code=' + brandCode,
+        beforeSend: function () {},
+        success: function (ddl) {
+            debugger;
+            var htmlOption = "";
+            var res = JSON.parse(ddl);
+            $.each(res, function (i, item) {
+                htmlOption += "<option value='" + item.s_gen_code + "'>" + item.s_gen_code + " : " + item.s_gen_name + "</option>";
+            });
+            $("#s_gen_code").html(htmlOption);
+
+
+        },
+        error: function (ddl) {
+
+        }
+    });
+}
 
 function edit() {
     $.ajax({
@@ -594,7 +653,11 @@ function edit() {
                 $("#s_pay_type").val(item.s_pay_type);
                 $("#i_dmg").val((item.i_dmg == "0" ? "" : item.i_dmg));
 
-                $("#s_car_code").val(item.s_car_code).trigger('change');
+                $("#i_year").val(item.i_year);
+                $("#s_brand_code").val(item.s_brand_code);
+                getDDLGenSelectEdit(item.s_brand_code);
+                $("#s_gen_code").val(item.s_gen_code);
+//                $("#s_car_code").val(item.s_car_code).trigger('change');
                 $("#s_license").val(item.s_license);
 
                 $("#s_type_capital").val(item.s_type_capital);
@@ -602,7 +665,7 @@ function edit() {
 
 
 
-                var carInfo = $('#s_license').val() + " : " + $('#s_car_code').select2('data')[0].text;
+                var carInfo = $('#s_license').val() + " : " + $("#s_brand_code option:selected").text() + " : " + $("#s_brand_code option:selected").text() + " : " + $("#s_gen_code option:selected").text();
                 $("#ref_car_info").val(carInfo);
 
                 debugger;
@@ -725,7 +788,8 @@ function editCustomer(id) {
                 setDDLAmphure(item.i_amphure, item.i_district, item.i_zipcode);
 
             });
-
+            var carInfo = $('#s_license').val() + " : " + $("#i_year option:selected").text() + " : " + $("#s_brand_code option:selected").text() + " : " + $("#s_gen_code option:selected").text();
+            $("#ref_car_info").val(carInfo);
             $('#se-pre-con').delay(100).fadeOut();
 
         },
@@ -1185,7 +1249,7 @@ $(document).on('click', '.notifyjs-foo-base .notify-yes', function () {
             if (res[0] == "0000") {
                 var errCode = "Code (" + res[0] + ") : " + res[1];
                 $.notify(errCode, "success");
-                
+
             } else {
                 var errCode = "Code (" + res[0] + ") : " + res[1];
                 $.notify(errCode, "error");

@@ -96,7 +96,7 @@
         <!--R3 ระบบนำซ่อม-->
 
         <!--R4 ระบบจัดซื้อ-->
-        <li class="nav-item <?= $_SESSION["nav_main_po"] ?>">
+<!--        <li class="nav-item <?= $_SESSION["nav_main_po"] ?>">
             <a href="javascript:;" class="nav-link nav-toggle">
                 <i class="fa fa-shopping-cart"></i>
                 <span class="title">R4. <?= $_SESSION[po] ?></span>
@@ -133,7 +133,7 @@
                 </li>
                 
             </ul>
-        </li>
+        </li>-->
         <!--R4 ระบบจัดซื้อ-->
 
 
@@ -251,7 +251,7 @@
                         <span class="badge badge-success" ></span>
                     </a>
                 </li>
-                <li class="nav-item  <?= $_SESSION["nav_sub_set_sub"] ?>">
+<!--                <li class="nav-item  <?= $_SESSION["nav_sub_set_sub"] ?>">
                     <a href="set_carsub.php" class="nav-link ">
                         <span class="title"><?= $_SESSION[set_sub] ?></span>
                         <span class="selected"></span>
@@ -264,7 +264,7 @@
                         <span class="selected"></span>
                         <span class="badge badge-success" ></span>
                     </a>
-                </li>
+                </li>-->
 
             </ul>
         </li>

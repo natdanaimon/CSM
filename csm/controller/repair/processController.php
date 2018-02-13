@@ -767,10 +767,8 @@ class processController {
         $util = new Utility();
         if ($_dataTable != NULL) {
             foreach ($_dataTable as $key => $value) {
-                $_dataTable[$key]['i_year'] = $service->getYear($_dataTable[$key]['s_car_code']);
-                $_dataTable[$key]['i_brand'] = $service->getBrand($_dataTable[$key]['s_car_code']);
-                $_dataTable[$key]['i_gen'] = $service->getGeneration($_dataTable[$key]['s_car_code']);
-                $_dataTable[$key]['i_sub'] = $service->getSub($_dataTable[$key]['s_car_code']);
+                $_dataTable[$key]['i_brand'] = $service->getBrand($_dataTable[$key]['s_brand_code']);
+                $_dataTable[$key]['i_gen'] = $service->getGeneration($_dataTable[$key]['s_gen_code']);
                 $_dataTable[$key]['i_ins_comp'] = $service->getInsurance($_dataTable[$key]['i_ins_comp']);
                 $_dataTable[$key]['i_dmg'] = $service->getDamage($_dataTable[$key]['i_dmg']);
 
@@ -788,10 +786,8 @@ class processController {
         $_dataTable = $service->dataTableKey($id);
         if ($_dataTable != NULL) {
             foreach ($_dataTable as $key => $value) {
-                $_dataTable[$key]['i_year'] = $service->getYear($_dataTable[$key]['s_car_code']);
-                $_dataTable[$key]['i_brand'] = $service->getBrand($_dataTable[$key]['s_car_code']);
-                $_dataTable[$key]['i_gen'] = $service->getGeneration($_dataTable[$key]['s_car_code']);
-                $_dataTable[$key]['i_sub'] = $service->getSub($_dataTable[$key]['s_car_code']);
+                 $_dataTable[$key]['i_brand'] = $service->getBrand($_dataTable[$key]['s_brand_code']);
+                $_dataTable[$key]['i_gen'] = $service->getGeneration($_dataTable[$key]['s_gen_code']);
                 $_dataTable[$key]['i_ins_comp'] = $service->getInsurance($_dataTable[$key]['i_ins_comp']);
                 $_dataTable[$key]['i_dmg'] = $service->getDamage($_dataTable[$key]['i_dmg']);
             }

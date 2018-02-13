@@ -249,11 +249,33 @@ $disableView = 'disabled="disable"';
                                                     </div>
 
 
-                                                    <div class="form-group form-md-line-input has-success" style="height: 60px" >
+<!--                                                    <div class="form-group form-md-line-input has-success" style="height: 60px" >
                                                         <select class="form-control edited bold" id="s_car_code" name="s_car_code" <?= $disableView ?>>
                                                         </select>
                                                         <label for="form_control_1"><?= $_SESSION[lb_setIns_code] ?></label>
+                                                    </div>-->
+                                                    <div class="form-group form-md-line-input has-success" >
+                                                        <select class="form-control edited bold" id="i_year" name="i_year" disabled="disabled">
+                                                            <option value=""><?= $_SESSION[lb_please_select] ?></option>
+                                                        </select>
+                                                        <label for="form_control_1"><?= $_SESSION[lb_setYear_year] ?></label>
                                                     </div>
+                                                    <div class="form-group form-md-line-input has-success" >
+                                                        <select class="form-control edited bold" id="s_brand_code" name="s_brand_code" onchange="getDDLGenSelect()"  disabled="disabled">
+                                                            <option value=""><?= $_SESSION[lb_please_select] ?></option>
+                                                        </select>
+                                                        <label for="form_control_1"><?= $_SESSION[lb_setBrand_code] ?></label>
+                                                    </div>
+                                                    <div class="form-group form-md-line-input has-success" >
+                                                        <select class="form-control edited bold" id="s_gen_code" name="s_gen_code"  disabled="disabled">
+                                                            <option value=""><?= $_SESSION[lb_please_select] ?></option>
+                                                        </select>
+                                                        <label for="form_control_1"><?= $_SESSION[lb_setGen_code] ?></label>
+                                                    </div>
+
+
+
+
 
                                                     <div class="row">
                                                         <div class="col-md-6">
@@ -297,7 +319,7 @@ $disableView = 'disabled="disable"';
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
-                                                           
+
                                                             <div class="md-checkbox-list">
                                                                 <div class="md-checkbox has-success">
                                                                     <input type="checkbox" id="s_flg_compu" name="s_flg_compu" class="md-check" <?= $disableView ?>>
@@ -306,7 +328,7 @@ $disableView = 'disabled="disable"';
                                                                         <span class="check"></span>
                                                                         <span class="box"></span> <?= $_SESSION[lb_setTrans_flg_compu] ?> </label>
                                                                 </div>
-                                                                
+
                                                             </div>
 
 
@@ -648,7 +670,7 @@ $disableView = 'disabled="disable"';
         <script src="outbound/lightbox/js/lightbox.js" type="text/javascript"></script>
 
         <script>
-            var keyEdit = "<?= $_GET[id] ?>";
+                                                            var keyEdit = "<?= $_GET[id] ?>";
         </script>
         <script>
             $(document).ready(function () {

@@ -6,7 +6,7 @@ class createService {
 
     function dataTable() {
         $db = new ConnectDB();
-        $strSql = " select *, '' as i_year , '' as i_brand , '' as i_gen , '' as i_sub from ";
+        $strSql = " select *, i_year , '' as i_brand , '' as i_gen , '' as i_sub from ";
         $strSql .= " (";
         $strSql .= " select u.*, s.s_detail_th status_th, s.s_detail_en status_en";
         $strSql .= " from tb_customer_car u, tb_status s";
@@ -29,7 +29,7 @@ class createService {
 
     function dataTableKey($id) {
         $db = new ConnectDB();
-        $strSql = " select *, '' as i_year , '' as i_brand , '' as i_gen , '' as i_sub from ";
+        $strSql = " select *,  i_year , '' as i_brand , '' as i_gen , '' as i_sub from ";
         $strSql .= " (";
         $strSql .= " select u.*, s.s_detail_th status_th, s.s_detail_en status_en";
         $strSql .= " from tb_customer_car u, tb_status s";
@@ -50,48 +50,33 @@ class createService {
         return $_data;
     }
 
-    function getYear($seq) {
+    function getYear($i_year) {
         $db = new ConnectDB();
-        $strSql = " select * from tb_car_map where s_car_code = '" . $seq . "'";
-        $_data = $db->Search_Data_FormatJson($strSql);
 
-        $strSql = " select * from tb_car_year where i_year =" . $_data[0]['i_year'];
+        $strSql = " select * from tb_car_year where i_year =" . $i_year;
         $_data = $db->Search_Data_FormatJson($strSql);
         $db->close_conn();
         return $_data[0]['i_year'];
     }
 
-    function getBrand($seq) {
+    function getBrand($brandCode) {
         $db = new ConnectDB();
-        $strSql = " select * from tb_car_map where s_car_code = '" . $seq . "'";
-        $_data = $db->Search_Data_FormatJson($strSql);
 
-        $strSql = " select * from tb_car_brand where s_brand_code ='" . $_data[0]['s_brand_code'] . "'";
+
+        $strSql = " select * from tb_car_brand where s_brand_code ='" . $brandCode . "'";
         $_data = $db->Search_Data_FormatJson($strSql);
         $db->close_conn();
         return $_data[0]['s_brand_name'];
     }
 
-    function getGeneration($seq) {
+    function getGeneration($genCode) {
         $db = new ConnectDB();
-        $strSql = " select * from tb_car_map where s_car_code = '" . $seq . "'";
-        $_data = $db->Search_Data_FormatJson($strSql);
 
-        $strSql = " select * from tb_car_generation where s_gen_code ='" . $_data[0]['s_gen_code'] . "'";
+
+        $strSql = " select * from tb_car_generation where s_gen_code ='" . $genCode . "'";
         $_data = $db->Search_Data_FormatJson($strSql);
         $db->close_conn();
         return $_data[0]['s_gen_name'];
-    }
-
-    function getSub($seq) {
-        $db = new ConnectDB();
-        $strSql = " select * from tb_car_map where s_car_code = '" . $seq . "'";
-        $_data = $db->Search_Data_FormatJson($strSql);
-
-        $strSql = " select * from tb_car_sub where s_sub_code ='" . $_data[0]['s_sub_code'] . "'";
-        $_data = $db->Search_Data_FormatJson($strSql);
-        $db->close_conn();
-        return $_data[0]['s_sub_name'];
     }
 
     function getInsurance($seq) {
@@ -170,7 +155,10 @@ class createService {
         $strSql .= "  tb_customer_car ( ";
         $strSql .= "    i_customer, ";
         $strSql .= "    ref_no, ";
-        $strSql .= "    s_car_code, ";
+//        $strSql .= "    s_car_code, ";
+        $strSql .= "    i_year, ";
+        $strSql .= "    s_brand_code, ";
+        $strSql .= "    s_gen_code, ";
         $strSql .= "    s_license, ";
         $strSql .= "    d_ins_exp, ";
         $strSql .= "    i_ins_type, ";
@@ -192,7 +180,10 @@ class createService {
         $strSql .= "VALUES( ";
         $strSql .= "  $info[i_customer], ";
         $strSql .= "  '" . $this->getRunning($db) . "', ";
-        $strSql .= "  '$info[s_car_code]', ";
+//        $strSql .= "  '$info[s_car_code]', ";
+        $strSql .= "  $info[i_year], ";
+        $strSql .= "  '$info[s_brand_code]', ";
+        $strSql .= "  '$info[s_gen_code]', ";
         $strSql .= "  '$info[s_license]', ";
         $strSql .= "  '" . $util->DateSQL($info[d_ins_exp]) . "', ";
         $strSql .= "  $info[i_ins_type], ";
@@ -223,7 +214,10 @@ class createService {
         $strSql .= "update tb_customer_car ";
         $strSql .= "set  ";
         $strSql .= "i_customer = $info[i_customer], ";
-        $strSql .= "s_car_code = '$info[s_car_code]', ";
+//        $strSql .= "s_car_code = '$info[s_car_code]', ";
+        $strSql .= "i_year = $info[i_year], ";
+        $strSql .= "s_brand_code = '$info[s_brand_code]', ";
+        $strSql .= "s_gen_code = '$info[s_gen_code]', ";
         $strSql .= "s_license = '$info[s_license]', ";
         $strSql .= "d_ins_exp = '" . $util->DateSQL($info[d_ins_exp]) . "', ";
         $strSql .= "i_ins_type = $info[i_ins_type], ";

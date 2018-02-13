@@ -115,6 +115,12 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                                         <div class="portlet-body form">
                                             <div class="form-body">
                                                 <div class="form-group form-md-line-input has-success">
+                                                   <select class="form-control edited bold" id="s_brand_code" name="s_brand_code" >
+                                                            <option value="-1"></option>
+                                                        </select>
+                                                        <label for="form_control_1"><?= $_SESSION[lb_setBrand_code] ?></label>      
+                                                </div>
+                                                <div class="form-group form-md-line-input has-success">
                                                     <input type="text" class="form-control bold" id="s_gen_code" name="s_gen_code">
                                                     <label for="form_control_1"><?= $_SESSION[lb_setGen_code] ?> <span class="required">*</span></label>          
                                                 </div>

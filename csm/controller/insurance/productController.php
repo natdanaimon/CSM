@@ -54,7 +54,7 @@ class productController {
         $_dataTable = $service->dataTable();
         if ($_dataTable != NULL) {
             foreach ($_dataTable as $key => $value) {
-                $_dataTable[$key]['s_cartype'] = $service->searchCar($_dataTable[$key]['s_car_code']);
+                $_dataTable[$key]['s_cartype'] = $service->searchCar($_dataTable[$key]['i_year'], $_dataTable[$key]['s_brand_code'], $_dataTable[$key]['s_gen_code']);
             }
             return json_encode($_dataTable);
         } else {
@@ -85,7 +85,9 @@ class productController {
         $prd = new productService();
         $_comp = $prd->MsInsurance(); // บริษัทประกันภัย
         $_insType = $prd->MsInsuranceType(); //ประเภทประกันภัย
-        $_car = $prd->MsCar(); // ข้อมูลรถ
+        $_carYear = $prd->MsCarYear(); // ข้อมูลรถ
+        $_carBrand = $prd->MsCarBrand(); // ข้อมูลรถ
+        $_carGen = $prd->MsCarGen(); // ข้อมูลรถ
         $_promotion = $prd->MsInsurancePromotion(); //โปรโมชั่น
         $_repair = $prd->MsInsuranceRepair(); //ประเภทการซ่อม
         $_compu = $prd->MsCompulsory(); //ประเภทประกันภัยภาคบังคับ
@@ -97,20 +99,24 @@ class productController {
         $head = array();
         $head[0] = "บริษัทประกันภัย";
         $head[1] = "ประเภทประกันภัย";
-        $head[2] = "ข้อมูลรถ";
-        $head[3] = "โปรโมชั่น";
-        $head[4] = "ประเภทการซ่อม";
-        $head[5] = "ประเภทประกันภัยภาคบังคับ";
-        $head[6] = "ประเภทสถานะ";
+        $head[2] = "ข้อมูลรถ ปี";
+        $head[3] = "ข้อมูลรถ แบรนด์";
+        $head[4] = "ข้อมูลรถ รุ่น";
+        $head[5] = "โปรโมชั่น";
+        $head[6] = "ประเภทการซ่อม";
+        $head[7] = "ประเภทประกันภัยภาคบังคับ";
+        $head[8] = "ประเภทสถานะ";
 
         $_data = array();
         $_data[0] = $_comp;
         $_data[1] = $_insType;
-        $_data[2] = $_car;
-        $_data[3] = $_promotion;
-        $_data[4] = $_repair;
-        $_data[5] = $_compu;
-        $_data[6] = $_status;
+        $_data[2] = $_carYear;
+        $_data[3] = $_carBrand;
+        $_data[4] = $_carGen;
+        $_data[5] = $_promotion;
+        $_data[6] = $_repair;
+        $_data[7] = $_compu;
+        $_data[8] = $_status;
         $html .= $this->getTableExcel($head, $_data);
 
 
@@ -122,11 +128,13 @@ class productController {
     public function getTableExcel($head, $_data) {
         $comp = $_data[0];
         $insType = $_data[1];
-        $car = $_data[2];
-        $promotion = $_data[3];
-        $repair = $_data[4];
-        $compu = $_data[5];
-        $status = $_data[6];
+        $carYear = $_data[2];
+        $carBrand = $_data[3];
+        $carGen = $_data[4];
+        $promotion = $_data[5];
+        $repair = $_data[6];
+        $compu = $_data[7];
+        $status = $_data[8];
 
         $table = "";
 
@@ -178,40 +186,10 @@ class productController {
 
         $table .= "<td>&nbsp;</td>";
 
-
         $table .= "<td>";
         $table .= "<table border='1'>";
         $table .= "<tr>";
-        $table .= "<th colspan = '5' style='background:#f5f5f0;'>$head[2]</th>";
-        $table .= "</tr>";
-        $table .= "<tr>";
-        $table .= "<th style='background:yellow;'>CODE</th>";
-        $table .= "<th style='background:#e0e0d1;'>BRAND</th>";
-        $table .= "<th style='background:#e0e0d1;'>YEAR</th>";
-        $table .= "<th style='background:#e0e0d1;'>GENERATION</th>";
-        $table .= "<th style='background:#e0e0d1;'>SUB GENERATION</th>";
-        $table .= "</tr>";
-
-        foreach ($car as $key => $value) {
-            $table .= "<tr>";
-            $table .= "<td>" . $car[$key]['s_code'] . "</td>";
-            $table .= "<td>" . $car[$key]['s_brand_name'] . "</td>";
-            $table .= "<td>" . $car[$key]['i_year'] . "</td>";
-            $table .= "<td>" . $car[$key]['s_gen_name'] . "</td>";
-            $table .= "<td>" . $car[$key]['s_sub_name'] . "</td>";
-            $table .= "</tr>";
-        }
-        $table .= "</table>";
-        $table .= "</td>";
-
-
-        $table .= "<td>&nbsp;</td>";
-
-
-        $table .= "<td>";
-        $table .= "<table border='1'>";
-        $table .= "<tr>";
-        $table .= "<th colspan = '2' style='background:#f5f5f0;'>$head[3]</th>";
+        $table .= "<th colspan = '2' style='background:#f5f5f0;'>$head[5]</th>";
         $table .= "</tr>";
         $table .= "<tr>";
         $table .= "<th style='background:yellow;'>CODE</th>";
@@ -234,7 +212,7 @@ class productController {
         $table .= "<td>";
         $table .= "<table border='1'>";
         $table .= "<tr>";
-        $table .= "<th colspan = '2' style='background:#f5f5f0;'>$head[4]</th>";
+        $table .= "<th colspan = '2' style='background:#f5f5f0;'>$head[6]</th>";
         $table .= "</tr>";
         $table .= "<tr>";
         $table .= "<th style='background:yellow;'>CODE</th>";
@@ -257,7 +235,7 @@ class productController {
         $table .= "<td>";
         $table .= "<table border='1'>";
         $table .= "<tr>";
-        $table .= "<th colspan = '2' style='background:#f5f5f0;'>$head[5]</th>";
+        $table .= "<th colspan = '2' style='background:#f5f5f0;'>$head[7]</th>";
         $table .= "</tr>";
         $table .= "<tr>";
         $table .= "<th style='background:yellow;'>CODE</th>";
@@ -280,7 +258,7 @@ class productController {
         $table .= "<td>";
         $table .= "<table border='1'>";
         $table .= "<tr>";
-        $table .= "<th colspan = '2' style='background:#f5f5f0;'>$head[6]</th>";
+        $table .= "<th colspan = '2' style='background:#f5f5f0;'>$head[8]</th>";
         $table .= "</tr>";
         $table .= "<tr>";
         $table .= "<th style='background:yellow;'>CODE</th>";
@@ -296,9 +274,75 @@ class productController {
         $table .= "</table>";
         $table .= "</td>";
 
+        $table .= "<td>&nbsp;</td>";
+
+        $table .= "<td>";
+        $table .= "<table border='1'>";
+        $table .= "<tr>";
+        $table .= "<th colspan = '2' style='background:#f5f5f0;'>$head[2]</th>";
+        $table .= "</tr>";
+        $table .= "<tr>";
+        $table .= "<th style='background:yellow;'>CODE</th>";
+        $table .= "<th style='background:#e0e0d1;'>YEAR</th>";
+        $table .= "</tr>";
+
+        foreach ($carYear as $key => $value) {
+            $table .= "<tr>";
+            $table .= "<td>" . $carYear[$key]['i_year'] . "</td>";
+            $table .= "<td>" . $carYear[$key]['i_year'] . "</td>";
+            $table .= "</tr>";
+        }
+        $table .= "</table>";
+        $table .= "</td>";
 
 
+        $table .= "<td>&nbsp;</td>";
 
+        $table .= "<td>";
+        $table .= "<table border='1'>";
+        $table .= "<tr>";
+        $table .= "<th colspan = '2' style='background:#f5f5f0;'>$head[3]</th>";
+        $table .= "</tr>";
+        $table .= "<tr>";
+        $table .= "<th style='background:yellow;'>CODE</th>";
+        $table .= "<th style='background:#e0e0d1;'>BRAND</th>";
+        $table .= "</tr>";
+
+        foreach ($carBrand as $key => $value) {
+            $table .= "<tr>";
+            $table .= "<td>" . $carBrand[$key]['s_brand_code'] . "</td>";
+            $table .= "<td>" . $carBrand[$key]['s_brand_name'] . "</td>";
+            $table .= "</tr>";
+        }
+        $table .= "</table>";
+        $table .= "</td>";
+
+
+        $table .= "<td>&nbsp;</td>";
+
+        $table .= "<td>";
+        $table .= "<table border='1'>";
+        $table .= "<tr>";
+        $table .= "<th colspan = '3' style='background:#f5f5f0;'>$head[4]</th>";
+        $table .= "</tr>";
+        $table .= "<tr>";
+        $table .= "<th style='background:yellow;'>CODE</th>";
+        $table .= "<th style='background:#e0e0d1;'>BRAND</th>";
+        $table .= "<th style='background:#e0e0d1;'>GEN</th>";
+        $table .= "</tr>";
+
+        foreach ($carGen as $key => $value) {
+            $table .= "<tr>";
+            $table .= "<td>" . $carGen[$key]['s_gen_code'] . "</td>";
+            $table .= "<td>" . $carGen[$key]['s_brand_name'] . "</td>";
+            $table .= "<td>" . $carGen[$key]['s_gen_name'] . "</td>";
+            $table .= "</tr>";
+        }
+        $table .= "</table>";
+        $table .= "</td>";
+
+
+        $table .= "<td>&nbsp;</td>";
 
 
         $table .= "</tr>";
@@ -418,8 +462,17 @@ class productController {
         } else if ($util->isEmpty($info[i_ins_comp])) {
             $return2099 = eregi_replace("field", $_SESSION['lb_setIns_comp'], $return2099);
             echo $return2099;
-        } else if ($util->isEmpty($info[s_car_code])) {
-            $return2099 = eregi_replace("field", $_SESSION['lb_setIns_code'], $return2099);
+//        } else if ($util->isEmpty($info[s_car_code])) {
+//            $return2099 = eregi_replace("field", $_SESSION['lb_setIns_code'], $return2099);
+//            echo $return2099;
+        } else if ($util->isEmpty($info[i_year])) {
+            $return2099 = eregi_replace("field", $_SESSION['lb_setYear_year'], $return2099);
+            echo $return2099;
+        } else if ($util->isEmpty($info[s_brand_code])) {
+            $return2099 = eregi_replace("field", $_SESSION['lb_setBrand_code'], $return2099);
+            echo $return2099;
+        } else if ($util->isEmpty($info[s_gen_code])) {
+            $return2099 = eregi_replace("field", $_SESSION['lb_setGen_code'], $return2099);
             echo $return2099;
         } else if ($util->isEmpty($info[i_ins_promotion])) {
             $return2099 = eregi_replace("field", $_SESSION['lb_setIns_promotion'], $return2099);

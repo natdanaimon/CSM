@@ -90,6 +90,9 @@ switch ($info[func]) {
     case "DDLEmployee" :
         echo $controller->DDLEmployee();
         break;
+    case "DDLGenerationSelect" :
+        echo $controller->DDLGenerationSelect($info);
+        break;
 }
 
 class commonController {
@@ -281,6 +284,16 @@ class commonController {
         }
     }
 
+    public function DDLGenerationSelect($info) {
+        $service = new commonService();
+        $_dataTable = $service->DDLGenerationSelect($info);
+        if ($_dataTable != NULL) {
+            return json_encode($_dataTable);
+        } else {
+            return NULL;
+        }
+    }
+
     public function DDLGeneration() {
         $service = new commonService();
         $_dataTable = $service->DDLGeneration();
@@ -406,6 +419,7 @@ class commonController {
             return NULL;
         }
     }
+
     public function DDLPartnercomp() {
         $service = new commonService();
         $_dataTable = $service->DDLPartnercomp();
@@ -424,6 +438,7 @@ class commonController {
             return NULL;
         }
     }
+
     public function DDLEmployee() {
         $service = new commonService();
         $_dataTable = $service->DDLEmployee();
@@ -432,7 +447,7 @@ class commonController {
             foreach ($_dataTable as $key => $value) {
                 $tmp = array(
                     'id' => $_dataTable[$key]['i_emp'],
-                    'text' => $_dataTable[$key]['s_firstname']." ".$_dataTable[$key]['s_lastname']
+                    'text' => $_dataTable[$key]['s_firstname'] . " " . $_dataTable[$key]['s_lastname']
                 );
                 $tmpReturn[] = $tmp;
             }

@@ -29,7 +29,8 @@ function initialDataTable(first) {
                 var col_caryear = item.i_year;
                 var col_carbrand = item.i_brand;
                 var col_cargen = item.i_gen;
-                var col_carsub = item.i_sub;
+//                var col_carsub = item.i_sub; $_dataTable[$key]['i_brand'] = $service - > getBrand($_dataTable[$key]['s_brand_code']);
+
                 var col_insurance = item.i_ins_comp;
 //                var col_dmg = item.i_dmg;
                 var col_inout = item.d_inbound + " - " + item.d_outbound_confirm;
@@ -73,7 +74,7 @@ function initialDataTable(first) {
                     col_caryear,
                     col_carbrand,
                     col_cargen,
-                    col_carsub,
+//                    col_carsub,
                     col_insurance,
 //                    col_dmg,
                     col_inout,

@@ -14,6 +14,33 @@ function getDDLStatus() {
                 htmlOption += "<option value='" + item.s_status + "'>" + txt_status + "</option>";
             });
             $("#status").html(htmlOption);
+            getDDLBrand();
+
+        },
+        error: function (data) {
+
+        }
+
+    });
+}
+
+
+function getDDLBrand() {
+    $.ajax({
+        type: 'GET',
+        url: 'controller/commonController.php?func=DDLBrand',
+        beforeSend: function ()
+        {
+            //$('#se-pre-con').fadeIn(100);
+        },
+        success: function (data) {
+            var htmlOption = "";
+            var res = JSON.parse(data);
+            $.each(res, function (i, item) {
+                var txt_status = (language == "th" ? item.text : item.text);
+                htmlOption += "<option value='" + item.id + "'>" + item.id + " : " + txt_status + "</option>";
+            });
+            $("#s_brand_code").html(htmlOption);
             if (keyEdit != "") {
                 edit();
             }
@@ -38,6 +65,7 @@ function edit() {
             var res = JSON.parse(data);
             $.each(res, function (i, item) {
                 debugger;
+                $("#s_brand_code").val(item.s_brand_code);
                 $("#s_gen_code").val(item.s_gen_code);
                 $("#s_gen_name").val(item.s_gen_name);
 //                $("#i_index").val(item.i_index);

@@ -169,6 +169,7 @@ ACTIVEPAGES(99, 11);
                                                         </span>
                                                     </th>
                                                     <th>  <?= $_SESSION[tb_co_code] ?> </th>
+                                                    <th>  <?= $_SESSION[tb_co_carbrand] ?> </th>
                                                     <th>  <?= $_SESSION[tb_co_cargeneration] ?> </th>
                                                     <th>  <?= $_SESSION[tb_co_status] ?> </th>
                                                     <th style="width: 40px"> <?= $_SESSION[tb_co_edit] ?> </th>
@@ -244,7 +245,7 @@ ACTIVEPAGES(99, 11);
         <script>
                                                             $(document).ready(function () {
                                                                 initialDataTable("TRUE");
-                                                                unloading();
+//                                                                unloading();
                                                             });
         </script>
     </body>

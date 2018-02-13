@@ -14,6 +14,7 @@ function getDDLStatus() {
             });
             $("#status").html(htmlOption);
             getDDLInsurance();
+
         },
         error: function (data) {
 
@@ -130,58 +131,9 @@ function getDDLInsurancePro() {
                 templateSelection: formatStatePro
 
             });
-
-            getDDLCar();
-        },
-        error: function (ddl) {
-
-        }
-
-
-
-    });
-}
-
-
-
-
-
-
-
-
-function formatStateCar(state) {
-    if (!state.id) {
-        return state.text;
-    }
-    var pathImg = "";
-    if (state.img == "") {
-        pathImg = "images/noCar.png";
-    } else {
-        pathImg = "upload/brand/" + state.img;
-    }
-
-
-    var $state = $(
-            '<span><img src="' + pathImg + '" width="30px" height="30px" class="img-flag" Style="margin-bottom: 5px;"/><span style="color:black;font-weight:bold;"> ' + state.text + '</span></span>'
-            );
-    return $state;
-}
-
-function getDDLCar() {
-    $.ajax({
-        type: 'GET',
-        url: 'controller/commonController.php?func=DDLCar',
-        beforeSend: function () {},
-        success: function (ddl) {
-            var res = JSON.parse(ddl);
-            $("#s_car_code").select2({
-                data: res,
-                templateResult: formatStateCar,
-                templateSelection: formatStateCar
-
-            });
             getDDLCompu();
-
+            getDDLYear();
+            getDDLBrand();
         },
         error: function (ddl) {
 
@@ -191,6 +143,15 @@ function getDDLCar() {
 
     });
 }
+
+
+
+
+
+
+
+
+
 
 function getDDLCompu() {
     $.ajax({
@@ -259,6 +220,109 @@ function getDDLInsuranceRepair() {
 
     });
 }
+
+function getDDLYear() {
+    $.ajax({
+        type: 'GET',
+        url: 'controller/commonController.php?func=DDLYear',
+        beforeSend: function () {},
+        success: function (ddl) {
+            debugger;
+            var htmlOption = "";
+            var res = JSON.parse(ddl);
+            $.each(res, function (i, item) {
+                htmlOption += "<option value='" + item.id + "'>" + item.text + "</option>";
+            });
+            $("#i_year").html(htmlOption);
+
+
+        },
+        error: function (ddl) {
+
+        }
+
+
+
+    });
+}
+
+
+function getDDLBrand() {
+    $.ajax({
+        type: 'GET',
+        url: 'controller/commonController.php?func=DDLBrand',
+        beforeSend: function () {},
+        success: function (ddl) {
+            debugger;
+            var htmlOption = "";
+            var res = JSON.parse(ddl);
+            $.each(res, function (i, item) {
+                htmlOption += "<option value='" + item.id + "'>" + item.id + " : " + item.text + "</option>";
+            });
+            $("#s_brand_code").html(htmlOption);
+            getDDLGenSelect();
+
+        },
+        error: function (ddl) {
+
+        }
+
+
+
+    });
+}
+
+function getDDLGenSelect() {
+    var brandCode = $("#s_brand_code").val();
+    $.ajax({
+        type: 'GET',
+        url: 'controller/commonController.php?func=DDLGenerationSelect&s_brand_code=' + brandCode,
+        beforeSend: function () {},
+        success: function (ddl) {
+            debugger;
+            var htmlOption = "";
+            var res = JSON.parse(ddl);
+            $.each(res, function (i, item) {
+                htmlOption += "<option value='" + item.s_gen_code + "'>" + item.s_gen_code + " : " + item.s_gen_name + "</option>";
+            });
+            $("#s_gen_code").html(htmlOption);
+
+
+        },
+        error: function (ddl) {
+
+        }
+
+
+
+    });
+}
+
+
+function getDDLGenSelectEdit(brandCode) {
+    $.ajax({
+        type: 'GET',
+        url: 'controller/commonController.php?func=DDLGenerationSelect&s_brand_code=' + brandCode,
+        beforeSend: function () {},
+        success: function (ddl) {
+            debugger;
+            var htmlOption = "";
+            var res = JSON.parse(ddl);
+            $.each(res, function (i, item) {
+                htmlOption += "<option value='" + item.s_gen_code + "'>" + item.s_gen_code + " : " + item.s_gen_name + "</option>";
+            });
+            $("#s_gen_code").html(htmlOption);
+
+
+        },
+        error: function (ddl) {
+
+        }
+    });
+}
+
+
+
 
 
 var idInsurance = "";
@@ -353,7 +417,11 @@ function editDetail() {
                 //radio
                 radio_type(item.i_ins_type);
 
-                $("#s_car_code").val(item.s_car_code).trigger('change');
+                $("#i_year").val(item.i_year);
+                $("#s_brand_code").val(item.s_brand_code);
+                getDDLGenSelectEdit(item.s_brand_code);
+                $("#s_gen_code").val(item.s_gen_code);
+//                $("#s_car_code").val(item.s_car_code).trigger('change');
                 $("#i_compu").val(item.i_compu);
 
                 $("#i_ins_promotion").val(item.i_ins_promotion).trigger('change');

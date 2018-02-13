@@ -12,7 +12,7 @@ class commonService {
         $db->close_conn();
         return $_data;
     }
-    
+
     function CheckBoxCheckRepair() {
         require_once('../common/ConnectDB.php');
         $db = new ConnectDB();
@@ -21,7 +21,6 @@ class commonService {
         $db->close_conn();
         return $_data;
     }
-    
 
     function DDLPayType() {
         $db = new ConnectDB();
@@ -38,8 +37,8 @@ class commonService {
         $db->close_conn();
         return $_data;
     }
-    
-      function DDLCAPITAL() {
+
+    function DDLCAPITAL() {
         $db = new ConnectDB();
         $strSql = "select * from tb_damage where s_status = 'A' ";
         $_data = $db->Search_Data_FormatJson($strSql);
@@ -55,7 +54,7 @@ class commonService {
         return $_data;
     }
 
-    function DDLStatusRepart(){
+    function DDLStatusRepart() {
         $db = new ConnectDB();
         $strSql = "select * from tb_status where s_type = 'REPAIR' order by i_index asc";
         $_data = $db->Search_Data_FormatJson($strSql);
@@ -137,7 +136,15 @@ class commonService {
 
     function DDLBrand() {
         $db = new ConnectDB();
-        $strSql = "select * from tb_car_brand where s_status = 'A' order by s_brand_code asc ";
+        $strSql = "select * from tb_car_brand where s_status = 'A' order by i_brand asc ";
+        $_data = $db->Search_Data_FormatJson($strSql);
+        $db->close_conn();
+        return $_data;
+    }
+
+    function DDLGenerationSelect($info) {
+        $db = new ConnectDB();
+        $strSql = "select * from tb_car_generation where s_brand_code = '$info[s_brand_code]' and s_status = 'A' order by s_gen_code asc ";
         $_data = $db->Search_Data_FormatJson($strSql);
         $db->close_conn();
         return $_data;
@@ -209,6 +216,7 @@ class commonService {
         $db->close_conn();
         return $_data;
     }
+
     function DDLPartnercomp() {
         $db = new ConnectDB();
         $strSql = "select * from tb_partner_comp where s_status = 'A' order by i_part_comp asc ";
@@ -216,6 +224,7 @@ class commonService {
         $db->close_conn();
         return $_data;
     }
+
     function DDLEmployee() {
         $db = new ConnectDB();
         $strSql = "select * from tb_employee where s_status = 'A' order by i_emp asc ";

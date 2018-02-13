@@ -143,7 +143,7 @@ ACTIVEPAGES(3, 2);
                                                     <th class="none"> <span style="color:red"><?= $_SESSION[tb_co_caryear] ?></span> </th>
                                                     <th class="none"> <span style="color:red"><?= $_SESSION[tb_co_carbrand] ?></span> </th>
                                                     <th class="none"> <span style="color:red"><?= $_SESSION[tb_co_cargeneration] ?></span> </th>
-                                                    <th class="none"> <span style="color:red"><?= $_SESSION[tb_co_carsub] ?></span> </th>
+                                                    <!--<th class="none"> <span style="color:red"><?= $_SESSION[tb_co_carsub] ?></span> </th>-->
 
                                                     <th class="none"> <span style="color:red"><?= $_SESSION[tb_co_insurance_name] ?></span> </th>
                                                     <!--<th class="none"> <span style="color:red"><?= $_SESSION[tb_co_dmg] ?></span> </th>-->

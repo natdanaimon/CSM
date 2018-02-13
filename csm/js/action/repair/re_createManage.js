@@ -2,13 +2,13 @@ function getDDLStatus() {
     $.ajax({
         type: 'GET',
         url: 'controller/commonController.php?func=DDLStatusRepart',
-        beforeSend: function() {
+        beforeSend: function () {
             //$('#se-pre-con').fadeIn(100);
         },
-        success: function(data) {
+        success: function (data) {
             var htmlOption = "";
             var res = JSON.parse(data);
-            $.each(res, function(i, item) {
+            $.each(res, function (i, item) {
                 var txt_status = (language == "th" ? item.s_detail_th : item.s_detail_en);
                 htmlOption += "<option value='" + item.s_status + "'>" + txt_status + "</option>";
             });
@@ -17,7 +17,7 @@ function getDDLStatus() {
             getDDLInsuranceType();
 
         },
-        error: function(data) {
+        error: function (data) {
             getDDLInsuranceType();
         }
 
@@ -28,11 +28,11 @@ function getDDLInsuranceType() {
     $.ajax({
         type: 'GET',
         url: 'controller/commonController.php?func=DDLInsuranceType',
-        beforeSend: function() {},
-        success: function(ddl) {
+        beforeSend: function () {},
+        success: function (ddl) {
             var res = JSON.parse(ddl);
             var html = "";
-            $.each(res, function(i, item) {
+            $.each(res, function (i, item) {
                 var checked = "";
                 if (keyEdit == "") {
                     checked = (i == 0 ? "checked" : "");
@@ -52,7 +52,7 @@ function getDDLInsuranceType() {
             $("#insurance_type").html(html);
             getDDLPayType();
         },
-        error: function(ddl) {
+        error: function (ddl) {
 
         }
 
@@ -67,13 +67,13 @@ function getDDLPayType() {
     $.ajax({
         type: 'GET',
         url: 'controller/commonController.php?func=DDLPayType',
-        beforeSend: function() {
+        beforeSend: function () {
             //$('#se-pre-con').fadeIn(100);
         },
-        success: function(data) {
+        success: function (data) {
             var htmlOption = "";
             var res = JSON.parse(data);
-            $.each(res, function(i, item) {
+            $.each(res, function (i, item) {
                 var txt_status = (language == "th" ? item.s_detail : item.s_detail);
                 htmlOption += "<option value='" + item.s_pay_type + "'>" + txt_status + "</option>";
             });
@@ -82,7 +82,7 @@ function getDDLPayType() {
             getDDLInsurance();
 
         },
-        error: function(data) {
+        error: function (data) {
             getDDLProvince();
         }
 
@@ -103,8 +103,8 @@ function formatStateComp(state) {
 
 
     var $state = $(
-        '<span><img src="' + pathImg + '" width="50px" height="50px" class="img-flag" Style="margin-bottom: 5px;"/><span style="color:black;font-weight:bold;"> ' + state.text + '</span></span>'
-    );
+            '<span><img src="' + pathImg + '" width="50px" height="50px" class="img-flag" Style="margin-bottom: 5px;"/><span style="color:black;font-weight:bold;"> ' + state.text + '</span></span>'
+            );
     return $state;
 }
 
@@ -112,8 +112,8 @@ function getDDLInsurance() {
     $.ajax({
         type: 'GET',
         url: 'controller/commonController.php?func=DDLInsurance',
-        beforeSend: function() {},
-        success: function(ddl) {
+        beforeSend: function () {},
+        success: function (ddl) {
             var res = JSON.parse(ddl);
             $("#i_ins_comp").select2({
                 data: res,
@@ -122,55 +122,10 @@ function getDDLInsurance() {
 
             });
 
-            getDDLCar();
-
-        },
-        error: function(ddl) {
-
-        }
-
-
-
-    });
-}
-
-
-
-function formatStateCar(state) {
-    if (!state.id) {
-        return state.text;
-    }
-    var pathImg = "";
-    if (state.img == "") {
-        pathImg = "images/noCar.png";
-    } else {
-        pathImg = "upload/brand/" + state.img;
-    }
-
-
-    var $state = $(
-        '<span><img src="' + pathImg + '" width="30px" height="30px" class="img-flag" Style="margin-bottom: 5px;"/><span style="color:black;font-weight:bold;"> ' + state.text + '</span></span>'
-    );
-    return $state;
-}
-
-function getDDLCar() {
-    $.ajax({
-        type: 'GET',
-        url: 'controller/commonController.php?func=DDLCar',
-        beforeSend: function() {},
-        success: function(ddl) {
-            var res = JSON.parse(ddl);
-            $("#s_car_code").select2({
-                data: res,
-                templateResult: formatStateCar,
-                templateSelection: formatStateCar
-
-            });
             getDDLDamage();
 
         },
-        error: function(ddl) {
+        error: function (ddl) {
 
         }
 
@@ -178,19 +133,21 @@ function getDDLCar() {
 
     });
 }
+
+
 
 
 function getDDLDamage() {
     $.ajax({
         type: 'GET',
         url: 'controller/commonController.php?func=DDLDamage',
-        beforeSend: function() {
+        beforeSend: function () {
             //$('#se-pre-con').fadeIn(100);
         },
-        success: function(data) {
+        success: function (data) {
             var htmlOption = "";
             var res = JSON.parse(data);
-            $.each(res, function(i, item) {
+            $.each(res, function (i, item) {
                 var txt_status = (language == "th" ? item.s_dmg_th : item.s_dmg_en);
                 htmlOption += "<option value='" + item.i_dmg + "'>" + txt_status + "</option>";
             });
@@ -199,7 +156,7 @@ function getDDLDamage() {
             getDDLTitle();
 
         },
-        error: function(data) {
+        error: function (data) {
             getDDLProvince();
         }
 
@@ -210,22 +167,24 @@ function getDDLTitle() {
     $.ajax({
         type: 'GET',
         url: 'controller/commonController.php?func=DDLTitle',
-        beforeSend: function() {
+        beforeSend: function () {
             //$('#se-pre-con').fadeIn(100);
         },
-        success: function(data) {
+        success: function (data) {
             var htmlOption = "";
             var res = JSON.parse(data);
-            $.each(res, function(i, item) {
+            $.each(res, function (i, item) {
                 var txt_status = (language == "th" ? item.s_title_th : item.s_title_en);
                 htmlOption += "<option value='" + item.i_title + "'>" + txt_status + "</option>";
             });
             $("#i_title").html(htmlOption);
 
             getDDLProvince();
+            getDDLYear();
+            getDDLBrand();
 
         },
-        error: function(data) {
+        error: function (data) {
             getDDLProvince();
         }
 
@@ -236,10 +195,10 @@ function getDDLProvince() {
     $.ajax({
         type: 'GET',
         url: 'controller/commonController.php?func=DDLProvince',
-        beforeSend: function() {
+        beforeSend: function () {
             //$('#se-pre-con').fadeIn(100);
         },
-        success: function(data) {
+        success: function (data) {
             if (data == "") {
                 htmlOption += "<option value=''>" + pleaseSelect + "</option>";
                 $("#i_province").html(htmlOption);
@@ -248,7 +207,7 @@ function getDDLProvince() {
             var htmlOption = "";
             var res = JSON.parse(data);
             htmlOption += "<option value=''>" + pleaseSelect + "</option>";
-            $.each(res, function(i, item) {
+            $.each(res, function (i, item) {
                 var txt_status = (language == "th" ? item.s_name_th : item.s_name_en);
                 htmlOption += "<option value='" + item.i_province + "'>" + txt_status + "</option>";
             });
@@ -260,7 +219,7 @@ function getDDLProvince() {
             }
 
         },
-        error: function(data) {
+        error: function (data) {
             edit();
         }
 
@@ -271,10 +230,10 @@ function getDDLAmphure() {
     $.ajax({
         type: 'GET',
         url: 'controller/commonController.php?func=DDLAmphure&i_province=' + $("#i_province").val(),
-        beforeSend: function() {
+        beforeSend: function () {
             //$('#se-pre-con').fadeIn(100);
         },
-        success: function(data) {
+        success: function (data) {
             if (data == "") {
                 htmlOption += "<option value=''>" + pleaseSelect + "</option>";
                 $("#i_amphure").html(htmlOption);
@@ -284,14 +243,14 @@ function getDDLAmphure() {
             var htmlOption = "";
             var res = JSON.parse(data);
             htmlOption += "<option value=''>" + pleaseSelect + "</option>";
-            $.each(res, function(i, item) {
+            $.each(res, function (i, item) {
                 var txt_status = (language == "th" ? item.s_name_th : item.s_name_en);
                 htmlOption += "<option value='" + item.i_amphure + "'>" + txt_status + "</option>";
             });
             $("#i_amphure").html(htmlOption);
             getDDLDistrict();
         },
-        error: function(data) {
+        error: function (data) {
             getDDLDistrict();
         }
 
@@ -302,10 +261,10 @@ function getDDLDistrict() {
     $.ajax({
         type: 'GET',
         url: 'controller/commonController.php?func=DDLDistrict&i_amphure=' + $("#i_amphure").val(),
-        beforeSend: function() {
+        beforeSend: function () {
             //$('#se-pre-con').fadeIn(100);
         },
-        success: function(data) {
+        success: function (data) {
             if (data == "") {
                 htmlOption += "<option value=''>" + pleaseSelect + "</option>";
                 $("#i_district").html(htmlOption);
@@ -315,14 +274,14 @@ function getDDLDistrict() {
             var htmlOption = "";
             var res = JSON.parse(data);
             htmlOption += "<option value=''>" + pleaseSelect + "</option>";
-            $.each(res, function(i, item) {
+            $.each(res, function (i, item) {
                 var txt_status = (language == "th" ? item.s_name_th : item.s_name_en);
                 htmlOption += "<option value='" + item.i_district + "'>" + txt_status + "</option>";
             });
             $("#i_district").html(htmlOption);
             getDDLZipcode();
         },
-        error: function(data) {
+        error: function (data) {
             getDDLZipcode();
         }
 
@@ -333,10 +292,10 @@ function getDDLZipcode() {
     $.ajax({
         type: 'GET',
         url: 'controller/commonController.php?func=DDLZipcode&i_district=' + $("#i_district").val(),
-        beforeSend: function() {
+        beforeSend: function () {
             //$('#se-pre-con').fadeIn(100);
         },
-        success: function(data) {
+        success: function (data) {
             if (data == "") {
                 htmlOption += "<option value=''>" + pleaseSelect + "</option>";
                 $("#i_zipcode").html(htmlOption);
@@ -345,17 +304,117 @@ function getDDLZipcode() {
             var htmlOption = "";
             var res = JSON.parse(data);
             htmlOption += "<option value=''>" + pleaseSelect + "</option>";
-            $.each(res, function(i, item) {
+            $.each(res, function (i, item) {
                 var txt_status = (language == "th" ? item.i_zipcode : item.i_zipcode);
                 htmlOption += "<option value='" + item.i_zipcode + "'>" + txt_status + "</option>";
             });
             $("#i_zipcode").html(htmlOption);
 
         },
-        error: function(data) {
+        error: function (data) {
 
         }
 
+    });
+}
+
+function getDDLYear() {
+    $.ajax({
+        type: 'GET',
+        url: 'controller/commonController.php?func=DDLYear',
+        beforeSend: function () {},
+        success: function (ddl) {
+            debugger;
+            var htmlOption = "";
+            var res = JSON.parse(ddl);
+            $.each(res, function (i, item) {
+                htmlOption += "<option value='" + item.id + "'>" + item.text + "</option>";
+            });
+            $("#i_year").html(htmlOption);
+
+
+        },
+        error: function (ddl) {
+
+        }
+
+
+
+    });
+}
+
+
+function getDDLBrand() {
+    $.ajax({
+        type: 'GET',
+        url: 'controller/commonController.php?func=DDLBrand',
+        beforeSend: function () {},
+        success: function (ddl) {
+            debugger;
+            var htmlOption = "";
+            var res = JSON.parse(ddl);
+            $.each(res, function (i, item) {
+                htmlOption += "<option value='" + item.id + "'>" + item.id + " : " + item.text + "</option>";
+            });
+            $("#s_brand_code").html(htmlOption);
+            getDDLGenSelect();
+
+        },
+        error: function (ddl) {
+
+        }
+
+
+
+    });
+}
+
+function getDDLGenSelect() {
+    var brandCode = $("#s_brand_code").val();
+    $.ajax({
+        type: 'GET',
+        url: 'controller/commonController.php?func=DDLGenerationSelect&s_brand_code=' + brandCode,
+        beforeSend: function () {},
+        success: function (ddl) {
+            debugger;
+            var htmlOption = "";
+            var res = JSON.parse(ddl);
+            $.each(res, function (i, item) {
+                htmlOption += "<option value='" + item.s_gen_code + "'>" + item.s_gen_code + " : " + item.s_gen_name + "</option>";
+            });
+            $("#s_gen_code").html(htmlOption);
+
+
+        },
+        error: function (ddl) {
+
+        }
+
+
+
+    });
+}
+
+
+function getDDLGenSelectEdit(brandCode) {
+    $.ajax({
+        type: 'GET',
+        url: 'controller/commonController.php?func=DDLGenerationSelect&s_brand_code=' + brandCode,
+        beforeSend: function () {},
+        success: function (ddl) {
+            debugger;
+            var htmlOption = "";
+            var res = JSON.parse(ddl);
+            $.each(res, function (i, item) {
+                htmlOption += "<option value='" + item.s_gen_code + "'>" + item.s_gen_code + " : " + item.s_gen_name + "</option>";
+            });
+            $("#s_gen_code").html(htmlOption);
+
+
+        },
+        error: function (ddl) {
+
+        }
     });
 }
 
@@ -364,12 +423,12 @@ function edit() {
     $.ajax({
         type: 'GET',
         url: 'controller/repair/createController.php?func=getInfo&id=' + keyEdit,
-        beforeSend: function() {
+        beforeSend: function () {
             //$('#se-pre-con').fadeIn(100);
         },
-        success: function(data) {
+        success: function (data) {
             var res = JSON.parse(data);
-            $.each(res, function(i, item) {
+            $.each(res, function (i, item) {
                 debugger;
                 $("#i_customer").val(item.i_customer);
 
@@ -385,7 +444,13 @@ function edit() {
                 $("#s_pay_type").val(item.s_pay_type);
 //                $("#i_dmg").val(item.i_dmg);
 
-                $("#s_car_code").val(item.s_car_code).trigger('change');
+
+                $("#i_year").val(item.i_year);
+                $("#s_brand_code").val(item.s_brand_code);
+                getDDLGenSelectEdit(item.s_brand_code);
+                $("#s_gen_code").val(item.s_gen_code);
+//                $("#s_car_code").val(item.s_car_code).trigger('change');
+                
                 $("#s_license").val(item.s_license);
 
                 $("#s_type_capital").val(item.s_type_capital);
@@ -400,7 +465,7 @@ function edit() {
             //$('#se-pre-con').delay(100).fadeOut();
 
         },
-        error: function(data) {
+        error: function (data) {
 
         }
 
@@ -414,12 +479,12 @@ function editCustomer(id) {
     $.ajax({
         type: 'GET',
         url: 'controller/customer/customerController.php?func=getInfo&id=' + id,
-        beforeSend: function() {
+        beforeSend: function () {
             //$('#se-pre-con').fadeIn(100);
         },
-        success: function(data) {
+        success: function (data) {
             var res = JSON.parse(data);
-            $.each(res, function(i, item) {
+            $.each(res, function (i, item) {
                 debugger;
 
                 $("#i_title").val(item.i_title);
@@ -442,7 +507,7 @@ function editCustomer(id) {
             $('#se-pre-con').delay(100).fadeOut();
 
         },
-        error: function(data) {
+        error: function (data) {
 
         }
 
@@ -455,7 +520,7 @@ function editCustomer(id) {
 
 
 function save() {
-    $('#form-action').submit(function(e) {
+    $('#form-action').submit(function (e) {
         e.preventDefault();
         console.log($(this).serialize());
         var formData = new FormData($(this)[0]);
@@ -466,10 +531,10 @@ function save() {
             cache: false,
             contentType: false,
             processData: false,
-            beforeSend: function() {
+            beforeSend: function () {
                 $('#se-pre-con').fadeIn(100);
             },
-            success: function(data) {
+            success: function (data) {
                 var res = data.split(",");
                 if (res[0] == "0000") {
                     var errCode = "Code (" + res[0] + ") : " + res[1];
@@ -483,11 +548,11 @@ function save() {
                 }
 
                 notification();
-                $('#form-action').each(function() {
+                $('#form-action').each(function () {
                     setTimeout(reloadTime, 1000);
                 });
             },
-            error: function(data) {
+            error: function (data) {
 
             }
         });
@@ -500,10 +565,10 @@ function setDDLAmphure(i_amphure, i_district, i_zipcode) {
     $.ajax({
         type: 'GET',
         url: 'controller/commonController.php?func=DDLAmphure&i_province=' + $("#i_province").val(),
-        beforeSend: function() {
+        beforeSend: function () {
             //$('#se-pre-con').fadeIn(100);
         },
-        success: function(data) {
+        success: function (data) {
             if (data == "") {
                 htmlOption += "<option value=''>" + pleaseSelect + "</option>";
                 $("#i_amphure").html(htmlOption);
@@ -513,7 +578,7 @@ function setDDLAmphure(i_amphure, i_district, i_zipcode) {
             var htmlOption = "";
             var res = JSON.parse(data);
             htmlOption += "<option value=''>" + pleaseSelect + "</option>";
-            $.each(res, function(i, item) {
+            $.each(res, function (i, item) {
                 var txt_status = (language == "th" ? item.s_name_th : item.s_name_en);
                 htmlOption += "<option value='" + item.i_amphure + "'>" + txt_status + "</option>";
             });
@@ -521,7 +586,7 @@ function setDDLAmphure(i_amphure, i_district, i_zipcode) {
             $("#i_amphure").val(i_amphure);
             setDDLDistrict(i_amphure, i_district, i_zipcode);
         },
-        error: function(data) {
+        error: function (data) {
             setDDLDistrict(i_amphure, i_district, i_zipcode);
         }
 
@@ -532,10 +597,10 @@ function setDDLDistrict(i_amphure, i_district, i_zipcode) {
     $.ajax({
         type: 'GET',
         url: 'controller/commonController.php?func=DDLDistrict&i_amphure=' + i_amphure,
-        beforeSend: function() {
+        beforeSend: function () {
             //$('#se-pre-con').fadeIn(100);
         },
-        success: function(data) {
+        success: function (data) {
             if (data == "") {
                 htmlOption += "<option value=''>" + pleaseSelect + "</option>";
                 $("#i_district").html(htmlOption);
@@ -545,7 +610,7 @@ function setDDLDistrict(i_amphure, i_district, i_zipcode) {
             var htmlOption = "";
             var res = JSON.parse(data);
             htmlOption += "<option value=''>" + pleaseSelect + "</option>";
-            $.each(res, function(i, item) {
+            $.each(res, function (i, item) {
                 var txt_status = (language == "th" ? item.s_name_th : item.s_name_en);
                 htmlOption += "<option value='" + item.i_district + "'>" + txt_status + "</option>";
             });
@@ -553,7 +618,7 @@ function setDDLDistrict(i_amphure, i_district, i_zipcode) {
             $("#i_district").val(i_district);
             setDDLZipcode(i_amphure, i_district, i_zipcode);
         },
-        error: function(data) {
+        error: function (data) {
             setDDLZipcode(i_amphure, i_district, i_zipcode);
         }
 
@@ -564,10 +629,10 @@ function setDDLZipcode(i_amphure, i_district, i_zipcode) {
     $.ajax({
         type: 'GET',
         url: 'controller/commonController.php?func=DDLZipcode&i_district=' + i_district,
-        beforeSend: function() {
+        beforeSend: function () {
             //$('#se-pre-con').fadeIn(100);
         },
-        success: function(data) {
+        success: function (data) {
             if (data == "") {
                 htmlOption += "<option value=''>" + pleaseSelect + "</option>";
                 $("#i_zipcode").html(htmlOption);
@@ -576,7 +641,7 @@ function setDDLZipcode(i_amphure, i_district, i_zipcode) {
             var htmlOption = "";
             var res = JSON.parse(data);
             htmlOption += "<option value=''>" + pleaseSelect + "</option>";
-            $.each(res, function(i, item) {
+            $.each(res, function (i, item) {
                 var txt_status = (language == "th" ? item.i_zipcode : item.i_zipcode);
                 htmlOption += "<option value='" + item.i_zipcode + "'>" + txt_status + "</option>";
             });
@@ -584,7 +649,7 @@ function setDDLZipcode(i_amphure, i_district, i_zipcode) {
             $("#i_zipcode").val(i_zipcode);
 
         },
-        error: function(data) {
+        error: function (data) {
 
         }
 

@@ -401,7 +401,7 @@ function initialDataTable(first, id) {
                 var col_checkbox = "";
                 var col_refno = "";
                 var col_license = item.s_license;
-                var col_car = item.i_year + " : " + item.i_brand + " : " + item.i_gen + " : " + item.i_sub;
+                var col_car = item.i_year + " : " + item.i_brand + " : " + item.i_gen;
                 var col_status = "";
 
 
@@ -412,14 +412,14 @@ function initialDataTable(first, id) {
 
 
 
-                col_checkbox = '<span class="md-checkbox has-success" style="padding-right: 0px;">';
-                col_checkbox += '  <input type="checkbox" id="checkbox_' + i + '" name="checkboxItem" class="md-check"';
-                col_checkbox += '  value="' + item.i_cust_car + '" onclick=remove_select_all("checkbox_' + i + '")>';
-                col_checkbox += '  <label for="checkbox_' + i + '">';
-                col_checkbox += '    <span class="inc"></span>';
-                col_checkbox += '    <span class="check"></span>';
-                col_checkbox += '    <span class="box"></span> </label>';
-                col_checkbox += '</span>';
+//                col_checkbox = '<span class="md-checkbox has-success" style="padding-right: 0px;">';
+//                col_checkbox += '  <input type="checkbox" id="checkbox_' + i + '" name="checkboxItem" class="md-check"';
+//                col_checkbox += '  value="' + item.i_cust_car + '" onclick=remove_select_all("checkbox_' + i + '")>';
+//                col_checkbox += '  <label for="checkbox_' + i + '">';
+//                col_checkbox += '    <span class="inc"></span>';
+//                col_checkbox += '    <span class="check"></span>';
+//                col_checkbox += '    <span class="box"></span> </label>';
+//                col_checkbox += '</span>';
 
 
 

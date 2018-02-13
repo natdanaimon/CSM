@@ -6,10 +6,11 @@ class generationService {
 
     function dataTable() {
         $db = new ConnectDB();
-        $strSql = "select b.*,s.s_detail_th status_th, s.s_detail_en status_en ";
-        $strSql .= " from   tb_car_generation b , tb_status s  ";
+        $strSql = "select b.*,s.s_detail_th status_th, s.s_detail_en status_en, brand.s_brand_code, brand.s_brand_name ";
+        $strSql .= " from   tb_car_generation b , tb_status s  , tb_car_brand brand ";
         $strSql .= " where    b.s_status =  s.s_status ";
         $strSql .= " and    s.s_type   =  'ACTIVE' ";
+        $strSql .= " and    b.s_brand_code   = brand.s_brand_code ";
 //        $strSql .= " and    s.s_status = 'A' ";
         $_data = $db->Search_Data_FormatJson($strSql);
         $db->close_conn();
@@ -84,6 +85,7 @@ class generationService {
         $strSql = "";
         $strSql .= "update tb_car_generation ";
         $strSql .= "set  ";
+        $strSql .= "    s_brand_code='$info[s_brand_code]', ";
         $strSql .= "    s_gen_code='$info[s_gen_code]', ";
         $strSql .= "    s_gen_name='$info[s_gen_name]', ";
         $strSql .= "d_update = " . $db->Sysdate(TRUE) . ", ";
@@ -104,6 +106,7 @@ class generationService {
         $strSql .= "INSERT ";
         $strSql .= "INTO ";
         $strSql .= "  tb_car_generation( ";
+        $strSql .= "    s_brand_code, ";
         $strSql .= "    s_gen_code, ";
         $strSql .= "    s_gen_name, ";
 
@@ -114,6 +117,7 @@ class generationService {
         $strSql .= "    s_status ";
         $strSql .= "  ) ";
         $strSql .= "VALUES( ";
+        $strSql .= "  '$info[s_brand_code]', ";
         $strSql .= "  '$info[s_gen_code]', ";
         $strSql .= "  '$info[s_gen_name]', ";
 
@@ -148,10 +152,11 @@ class generationService {
             $col0 = ( (isset($r[0])) ? trim($r[0]) : NULL );
             $col1 = ( (isset($r[1])) ? trim($r[1]) : NULL );
             $col2 = ( (isset($r[2])) ? trim($r[2]) : NULL );
+            $col3 = ( (isset($r[3])) ? trim($r[3]) : NULL );
 
             if ($k == 0) {
-                if ($col0 != NULL && $col1 != NULL && $col2 != NULL) {
-                    if ($col0 == "NO" && $col1 == "GENERATION CODE" && $col2 == "GENERATION NAME") {
+                if ($col0 != NULL && $col1 != NULL && $col2 != NULL && $col3 != NULL) {
+                    if ($col0 == "NO" && $col1 == "BRAND CODE" && $col2 == "GENERATION CODE" && $col3 == "GENERATION NAME") {
                         continue;
                     } else {
                         $txt .= "Header format not found.\r\n";
@@ -163,11 +168,11 @@ class generationService {
                 }
             }
 
-            if ($col0 != NULL && $col1 != NULL && $col2 != NULL) {
+            if ($col0 != NULL && $col1 != NULL && $col2 != NULL && $col3 != NULL) {
 
 
-                if ($this->isDupplicateExcel($db, $col1)) {
-                    $txt .= "No=" . $col0 . "|Desc= [Generation:$col1] Data Dupplicate.\r\n";
+                if ($this->isDupplicateExcel($db, $col2)) {
+                    $txt .= "No=" . $col0 . "|Desc= [Generation:$col2] Data Dupplicate.\r\n";
                     continue;
                 }
 
@@ -175,7 +180,7 @@ class generationService {
                     continue;
                 }
 
-                $state = $this->createStatement($db, $col1, $col2);
+                $state = $this->createStatement($db, $col1, $col2, $col3);
                 array_push($arrSQL, $state);
             }
         }
@@ -203,9 +208,9 @@ class generationService {
     }
 
     function createStatement($db, $col1, $col2, $col3, $col4) {
-        $sql = " insert into tb_car_generation ( s_gen_code , s_gen_name, d_create , d_update , s_create_by , s_update_by ,s_status) ";
+        $sql = " insert into tb_car_generation (s_brand_code, s_gen_code , s_gen_name, d_create , d_update , s_create_by , s_update_by ,s_status) ";
         $sql .= " values ";
-        $sql .= " ('$col1' , '$col2' ," . $db->Sysdate(TRUE) . " ," . $db->Sysdate(TRUE) . " ,'$_SESSION[username]','$_SESSION[username]','A' ) ";
+        $sql .= " ('$col1' ,'$col2' , '$col3' ," . $db->Sysdate(TRUE) . " ," . $db->Sysdate(TRUE) . " ,'$_SESSION[username]','$_SESSION[username]','A' ) ";
         return array("query" => "$sql");
     }
 

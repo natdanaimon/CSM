@@ -22,6 +22,7 @@ function initialDataTable(first) {
             $.each(res, function (i, item) {
 
                 var col_checkbox = "";
+                var col_brand = item.s_brand_code + " : " + item.s_brand_name;
                 var col_code = item.s_gen_code;
                 var col_gen = (language == "th" ? item.s_gen_name : item.s_gen_name);
 
@@ -60,6 +61,7 @@ function initialDataTable(first) {
                 var addRow = [
                     col_checkbox,
                     col_code,
+                    col_brand,
                     col_gen,
                     col_status,
                     col_edit,
@@ -72,7 +74,7 @@ function initialDataTable(first) {
             if (first == "TRUE") {
                 $datatable.dataTable({
                     data: JsonData,
-                    order: [[3, 'asc'],[1, 'asc'] ],
+                    order: [[2, 'asc'], [1, 'asc']],
                     columnDefs: [
                         {"orderable": false, "targets": 0}
                     ]
@@ -327,7 +329,7 @@ $(document).on('click', '.notifyjs-foo-base .notify-yes', function () {
 
 
 function openLogs() {
-    var myWindow = window.open(pathOpenLogs+"logs/logImportGen.txt", "", "width=400,height=400");
+    var myWindow = window.open(pathOpenLogs + "logs/logImportGen.txt", "", "width=400,height=400");
 }
 
 

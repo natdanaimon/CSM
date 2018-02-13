@@ -48,7 +48,7 @@ class cancelService {
 
     function dataTable() {
         $db = new ConnectDB();
-        $strSql = " select *, '' as i_year , '' as i_brand , '' as i_gen , '' as i_sub from ";
+        $strSql = " select *,  i_year , '' as i_brand , '' as i_gen , '' as i_sub from ";
         $strSql .= " (";
         $strSql .= " select u.*, s.s_detail_th status_th, s.s_detail_en status_en";
         $strSql .= " from tb_customer_car u, tb_status s";
@@ -71,7 +71,7 @@ class cancelService {
 
     function dataTableKey($id) {
         $db = new ConnectDB();
-        $strSql = " select *, '' as i_year , '' as i_brand , '' as i_gen , '' as i_sub from ";
+        $strSql = " select *,  i_year , '' as i_brand , '' as i_gen , '' as i_sub from ";
         $strSql .= " (";
         $strSql .= " select u.*, s.s_detail_th status_th, s.s_detail_en status_en";
         $strSql .= " from tb_customer_car u, tb_status s";
@@ -122,48 +122,37 @@ class cancelService {
         return $rtn;
     }
 
-    function getYear($seq) {
+   function getYear($i_year) {
         $db = new ConnectDB();
-        $strSql = " select * from tb_car_map where s_car_code = '" . $seq . "'";
-        $_data = $db->Search_Data_FormatJson($strSql);
+//        $strSql = " select * from tb_car_map where s_car_code = '" . $seq . "'";
+//        $_data = $db->Search_Data_FormatJson($strSql);
 
-        $strSql = " select * from tb_car_year where i_year =" . $_data[0]['i_year'];
+        $strSql = " select * from tb_car_year where i_year =" . $i_year;
         $_data = $db->Search_Data_FormatJson($strSql);
         $db->close_conn();
         return $_data[0]['i_year'];
     }
 
-    function getBrand($seq) {
+    function getBrand($brandCode) {
         $db = new ConnectDB();
-        $strSql = " select * from tb_car_map where s_car_code = '" . $seq . "'";
-        $_data = $db->Search_Data_FormatJson($strSql);
+//        $strSql = " select * from tb_car_map where s_car_code = '" . $seq . "'";
+//        $_data = $db->Search_Data_FormatJson($strSql);
 
-        $strSql = " select * from tb_car_brand where s_brand_code ='" . $_data[0]['s_brand_code'] . "'";
+        $strSql = " select * from tb_car_brand where s_brand_code ='" . $brandCode . "'";
         $_data = $db->Search_Data_FormatJson($strSql);
         $db->close_conn();
         return $_data[0]['s_brand_name'];
     }
 
-    function getGeneration($seq) {
+    function getGeneration($genCode) {
         $db = new ConnectDB();
-        $strSql = " select * from tb_car_map where s_car_code = '" . $seq . "'";
-        $_data = $db->Search_Data_FormatJson($strSql);
+//        $strSql = " select * from tb_car_map where s_car_code = '" . $seq . "'";
+//        $_data = $db->Search_Data_FormatJson($strSql);
 
-        $strSql = " select * from tb_car_generation where s_gen_code ='" . $_data[0]['s_gen_code'] . "'";
+        $strSql = " select * from tb_car_generation where s_gen_code ='" . $genCode . "'";
         $_data = $db->Search_Data_FormatJson($strSql);
         $db->close_conn();
         return $_data[0]['s_gen_name'];
-    }
-
-    function getSub($seq) {
-        $db = new ConnectDB();
-        $strSql = " select * from tb_car_map where s_car_code = '" . $seq . "'";
-        $_data = $db->Search_Data_FormatJson($strSql);
-
-        $strSql = " select * from tb_car_sub where s_sub_code ='" . $_data[0]['s_sub_code'] . "'";
-        $_data = $db->Search_Data_FormatJson($strSql);
-        $db->close_conn();
-        return $_data[0]['s_sub_name'];
     }
 
     function getInsurance($seq) {
