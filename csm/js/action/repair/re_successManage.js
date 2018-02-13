@@ -969,12 +969,12 @@ function saveCustomChangeStatus() {
                 return;
             }
 
-            notification();
+//            notification();
 //            $('#form-action').each(function () {
 //                setTimeout(reloadTime, 1000);
 //            });
-            getDDLStatus();
-//            $('#se-pre-con').delay(100).fadeOut();
+            //  getDDLStatus();
+            $('#se-pre-con').delay(100).fadeOut();
         },
         error: function (data) {
 

@@ -969,15 +969,15 @@ function saveCustomChangeStatus() {
                 var errCode = "Code (" + res[0] + ") : " + res[1];
                 $.notify(errCode, "error");
                 //fix
-                $('#se-pre-con').delay(100).fadeOut();
+
                 return;
             }
-
-            notification();
+            $('#se-pre-con').delay(100).fadeOut();
+//            notification();
 //            $('#form-action').each(function () {
 //                setTimeout(reloadTime, 1000);
 //            });
-            getDDLStatus();
+//            getDDLStatus();
 //            $('#se-pre-con').delay(100).fadeOut();
         },
         error: function (data) {
