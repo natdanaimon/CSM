@@ -407,18 +407,24 @@ class Utility {
     }
 
     function convertFileSize($size) {
-        
-        $size = ($size/1000);
-        
+
+        $size = ($size / 1000);
+
         $kbCal = 1024;
         if ($size < 100) {
             $returnSize = number_format($size, 1, '.', '') . " KB";
         } else {
-            $returnSize = number_format(($size/$kbCal), 1, '.', '') . " MB";
+            $returnSize = number_format(($size / $kbCal), 1, '.', '') . " MB";
         }
 
 
         return $returnSize;
+    }
+
+    function getDatetimePattern($formatPattern) {
+        date_default_timezone_set('Asia/Bangkok');
+        $date = new DateTime('now');
+        return $date->format($formatPattern);
     }
 
 }
