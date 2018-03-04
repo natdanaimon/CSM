@@ -6,10 +6,11 @@ class createService {
 
     function dataTable() {
         $db = new ConnectDB();
+        /*
         $strSql = " select *, '' as i_year , '' as i_brand , '' as i_gen , '' as i_sub from ";
         $strSql .= " (";
         $strSql .= " select u.*, s.s_detail_th status_th, s.s_detail_en status_en";
-        $strSql .= " from tb_customer_car u, tb_status s";
+        $strSql .= " from tb_po_other u, tb_status s";
         $strSql .= " where u.s_status = s.s_status";
         $strSql .= " and s.s_type = 'REPAIR'";
         $strSql .= " and s.s_status = 'R1'";
@@ -22,6 +23,18 @@ class createService {
         $strSql .= " ) customer";
         $strSql .= " WHERE tb_cust.i_customer = customer.i_customer ";
         $strSql .= " order by tb_cust.d_create desc , tb_cust.s_status desc ";
+        //*/
+        $strSql = " SELECT u.* , s.s_detail_th status_th, s.s_detail_en status_en ,e.s_firstname, e.s_lastname , pc.s_comp_th ";
+       
+
+        $strSql .= " FROM tb_po_other u ";
+        $strSql .= " LEFT JOIN tb_status s ON u.s_status = s.s_status";
+        $strSql .= " LEFT JOIN tb_partner_comp pc ON u.i_other_shop = pc.i_part_comp";
+        $strSql .= " LEFT JOIN tb_employee e ON u.i_other_receive = e.i_emp";
+
+        $strSql .= " order by u.d_create desc , u.s_status desc ";
+
+        
         $_data = $db->Search_Data_FormatJson($strSql);
         $db->close_conn();
         return $_data;
@@ -130,7 +143,7 @@ class createService {
 
     function delete($db, $seq) {
 //        $strSQL = "DELETE FROM tb_customer_car WHERE i_cust_car = '" . $seq . "' ";
-        $strSQL = "UPDATE tb_po_other set s_status = 'R0' WHERE i_po_other = '" . $seq . "' ";
+        $strSQL = "UPDATE tb_customer_car set s_status = 'R0' WHERE i_cust_car = '" . $seq . "' ";
         $arr = array(
             array("query" => "$strSQL")
         );
@@ -141,7 +154,7 @@ class createService {
     function deleteAll($db, $query) {
 
 //        $strSQL = "DELETE FROM tb_customer_car WHERE i_cust_car in ($query) ";
-        $strSQL = "UPDATE tb_po_other set s_status = 'R0' WHERE i_po_other in ($query) ";
+        $strSQL = "UPDATE tb_customer_car set s_status = 'R0' WHERE i_cust_car in ($query) ";
         $arr = array(
             array("query" => "$strSQL")
         );
@@ -150,13 +163,13 @@ class createService {
     }
 
     function SelectById($db, $seq) {
-        $strSql = "SELECT * FROM tb_po_other WHERE i_po_other = '" . $seq . "' ";
+        $strSql = "SELECT * FROM tb_customer_car WHERE i_cust_car = '" . $seq . "' ";
         $_data = $db->Search_Data_FormatJson($strSql);
         return $_data;
     }
 
     function SelectByArray($db, $query) {
-        $strSql = "SELECT * FROM tb_po_other WHERE i_po_other in ($query) ";
+        $strSql = "SELECT * FROM tb_customer_car WHERE i_cust_car in ($query) ";
         $_data = $db->Search_Data_FormatJson($strSql);
         return $_data;
     }
@@ -168,12 +181,12 @@ class createService {
         $strSql .= "INSERT ";
         $strSql .= "INTO ";
         $strSql .= "  tb_po_other ( ";
-        $strSql .= "    s_po_other_order, ";
+        //$strSql .= "    s_po_other_order, ";
         $strSql .= "    s_po_other_ref, ";
         $strSql .= "    d_other_order, ";
         $strSql .= "    i_other_shop, ";
-        $strSql .= "    i_other_price, ";
-        $strSql .= "    i_other_amount, ";
+        $strSql .= "    i_other_receive, ";
+        $strSql .= "    d_other_receive, ";
         $strSql .= "    d_create, ";
         $strSql .= "    d_update, ";
         $strSql .= "    s_create_by, ";
@@ -181,12 +194,12 @@ class createService {
         $strSql .= "    s_status ";
         $strSql .= "  ) ";
         $strSql .= "VALUES( ";
-        $strSql .= "  '$info[s_po_other_order]', ";
+        //$strSql .= "  '$info[s_po_other_order]', ";
         $strSql .= "  '$info[s_po_other_ref]', ";
         $strSql .= "  '" . $util->DateSQL($info[d_other_order]) . "', ";
-        $strSql .= "  $info[i_other_shop], ";
-        $strSql .= "  '$info[i_other_price]', ";
-        $strSql .= "  '$info[i_other_amount]', ";
+        $strSql .= "  '$info[i_other_shop]', ";
+        $strSql .= "  '$info[i_other_receive]', ";
+        $strSql .= "  '" . $util->DateSQL($info[d_other_receive]) . "', ";
         $strSql .= "  " . $db->Sysdate(TRUE) . ", ";
         $strSql .= " " . $db->Sysdate(TRUE) . ", ";
         $strSql .= "  '$_SESSION[username]', ";
@@ -197,21 +210,62 @@ class createService {
             array("query" => "$strSql")
         );
         $reslut = $db->insert_for_upadte($arr);
+        $last_id = mysql_insert_id();
+        
+ 
+				 while(
+				 list($key, $s_po_other_order) = each ($_POST['s_po_other_order'])
+				 and list($key, $i_other_price) = each ($_POST['i_other_price'])
+				 and list($key, $i_other_amount) = each ($_POST['i_other_amount'])
+				 
+				 ){
+        	if($s_po_other_order != '' and $i_other_price != '' and $i_other_amount != ''){
+        $strSql = "";
+        $strSql .= "INSERT ";
+        $strSql .= "INTO ";
+        $strSql .= "  tb_po_other_order ( ";
+        $strSql .= "    i_po_other, ";
+        $strSql .= "    s_po_other_order, ";
+        $strSql .= "    i_other_price, ";
+        $strSql .= "    i_other_amount, ";
+        $strSql .= "    d_create, ";
+        $strSql .= "    d_update, ";
+        $strSql .= "    s_create_by, ";
+        $strSql .= "    s_update_by, ";
+        $strSql .= "    s_status ";
+        $strSql .= "  ) ";
+        $strSql .= "VALUES( ";
+        $strSql .= "  '$last_id', ";
+        $strSql .= "  '$s_po_other_order', ";
+        $strSql .= "  '$i_other_price', ";
+        $strSql .= "  '$i_other_amount', ";
+        $strSql .= "  " . $db->Sysdate(TRUE) . ", ";
+        $strSql .= " " . $db->Sysdate(TRUE) . ", ";
+        $strSql .= "  '$_SESSION[username]', ";
+        $strSql .= "  '$_SESSION[username]', ";
+        $strSql .= "  '$info[status]' ";
+        $strSql .= ") ";
+        $arr = array(
+            array("query" => "$strSql")
+        );
+        $resluts = $db->insert_for_upadte($arr);
+        	}
+        }
+        
+        
+        
         return $reslut;
     }
 
     function edit($db, $info) {
+        
         $util = new Utility();
         $strSql = "";
         $strSql .= "update tb_po_other ";
         $strSql .= "set  ";
-        $strSql .= "s_po_other_order = '$info[s_po_other_order]', ";
-        //$strSql .= "s_po_other_ref = '$info[s_po_other_ref]', ";
+        $strSql .= "s_po_other_ref = '$info[s_po_other_ref]', ";
+        $strSql .= "i_other_shop = '$info[i_other_shop]', ";
         $strSql .= "d_other_order = '" . $util->DateSQL($info[d_other_order]) . "', ";
-        $strSql .= "i_other_shop = $info[i_other_shop], ";
-        $strSql .= "i_other_price = '$info[i_other_price]', ";
-        $strSql .= "i_other_amount = '$info[i_other_amount]', ";
-        $strSql .= "i_other_store = '$info[i_other_store]', ";
         $strSql .= "d_other_receive = '" . $util->DateSQL($info[d_other_receive]) . "', ";
         $strSql .= "i_other_receive = $info[i_other_receive], ";
         $strSql .= "d_update = " . $db->Sysdate(TRUE) . ", ";
@@ -222,6 +276,49 @@ class createService {
             array("query" => "$strSql")
         );
         $reslut = $db->insert_for_upadte($arr);
+        
+        $last_id = $info[id];
+        mysql_query("DELETE FROM tb_po_other_order WHERE i_po_other=$last_id ");
+ 
+				 while(
+				 list($key, $s_po_other_order) = each ($_POST['s_po_other_order'])
+				 and list($key, $i_other_price) = each ($_POST['i_other_price'])
+				 and list($key, $i_other_amount) = each ($_POST['i_other_amount'])
+				 
+				 ){
+        	if($s_po_other_order != '' and $i_other_price != '' and $i_other_amount != ''){
+        $strSql = "";
+        $strSql .= "INSERT ";
+        $strSql .= "INTO ";
+        $strSql .= "  tb_po_other_order ( ";
+        $strSql .= "    i_po_other, ";
+        $strSql .= "    s_po_other_order, ";
+        $strSql .= "    i_other_price, ";
+        $strSql .= "    i_other_amount, ";
+        $strSql .= "    d_create, ";
+        $strSql .= "    d_update, ";
+        $strSql .= "    s_create_by, ";
+        $strSql .= "    s_update_by, ";
+        $strSql .= "    s_status ";
+        $strSql .= "  ) ";
+        $strSql .= "VALUES( ";
+        $strSql .= "  '$last_id', ";
+        $strSql .= "  '$s_po_other_order', ";
+        $strSql .= "  '$i_other_price', ";
+        $strSql .= "  '$i_other_amount', ";
+        $strSql .= "  " . $db->Sysdate(TRUE) . ", ";
+        $strSql .= " " . $db->Sysdate(TRUE) . ", ";
+        $strSql .= "  '$_SESSION[username]', ";
+        $strSql .= "  '$_SESSION[username]', ";
+        $strSql .= "  '$info[status]' ";
+        $strSql .= ") ";
+        $arr = array(
+            array("query" => "$strSql")
+        );
+        $resluts = $db->insert_for_upadte($arr);
+        	}
+        }
+        
         return $reslut;
     }
 

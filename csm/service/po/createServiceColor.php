@@ -6,10 +6,11 @@ class createService {
 
     function dataTable() {
         $db = new ConnectDB();
+        /*
         $strSql = " select *, '' as i_year , '' as i_brand , '' as i_gen , '' as i_sub from ";
         $strSql .= " (";
         $strSql .= " select u.*, s.s_detail_th status_th, s.s_detail_en status_en";
-        $strSql .= " from tb_customer_car u, tb_status s";
+        $strSql .= " from tb_po_color u, tb_status s";
         $strSql .= " where u.s_status = s.s_status";
         $strSql .= " and s.s_type = 'REPAIR'";
         $strSql .= " and s.s_status = 'R1'";
@@ -22,6 +23,18 @@ class createService {
         $strSql .= " ) customer";
         $strSql .= " WHERE tb_cust.i_customer = customer.i_customer ";
         $strSql .= " order by tb_cust.d_create desc , tb_cust.s_status desc ";
+        //*/
+        $strSql = " SELECT u.* , s.s_detail_th status_th, s.s_detail_en status_en ,e.s_firstname, e.s_lastname , pc.s_comp_th ";
+       
+
+        $strSql .= " FROM tb_po_color u ";
+        $strSql .= " LEFT JOIN tb_status s ON u.s_status = s.s_status";
+        $strSql .= " LEFT JOIN tb_partner_comp pc ON u.i_color_shop = pc.i_part_comp";
+        $strSql .= " LEFT JOIN tb_employee e ON u.i_color_receive = e.i_emp";
+
+        $strSql .= " order by u.d_create desc , u.s_status desc ";
+
+        
         $_data = $db->Search_Data_FormatJson($strSql);
         $db->close_conn();
         return $_data;
@@ -112,7 +125,7 @@ class createService {
 
     function getInfo($seq) {
         $db = new ConnectDB();
-        $strSql = " select * from tb_customer_car where i_cust_car =" . $seq;
+        $strSql = " select * from tb_po_color where i_po_color =" . $seq;
         $_data = $db->Search_Data_FormatJson($strSql);
         $db->close_conn();
         return $_data;
@@ -168,12 +181,12 @@ class createService {
         $strSql .= "INSERT ";
         $strSql .= "INTO ";
         $strSql .= "  tb_po_color ( ";
-        $strSql .= "    s_po_color_order, ";
+        //$strSql .= "    s_po_color_order, ";
         $strSql .= "    s_po_color_ref, ";
         $strSql .= "    d_color_order, ";
         $strSql .= "    i_color_shop, ";
-        $strSql .= "    i_color_price, ";
-        $strSql .= "    i_color_amount, ";
+        $strSql .= "    i_color_receive, ";
+        $strSql .= "    d_color_receive, ";
         $strSql .= "    d_create, ";
         $strSql .= "    d_update, ";
         $strSql .= "    s_create_by, ";
@@ -181,12 +194,12 @@ class createService {
         $strSql .= "    s_status ";
         $strSql .= "  ) ";
         $strSql .= "VALUES( ";
-        $strSql .= "  '$info[s_po_color_order]', ";
+        //$strSql .= "  '$info[s_po_color_order]', ";
         $strSql .= "  '$info[s_po_color_ref]', ";
         $strSql .= "  '" . $util->DateSQL($info[d_color_order]) . "', ";
-        $strSql .= "  $info[i_color_shop], ";
-        $strSql .= "  '$info[i_color_price]', ";
-        $strSql .= "  '$info[i_color_amount]', ";
+        $strSql .= "  '$info[i_color_shop]', ";
+        $strSql .= "  '$info[i_color_receive]', ";
+        $strSql .= "  '" . $util->DateSQL($info[d_color_receive]) . "', ";
         $strSql .= "  " . $db->Sysdate(TRUE) . ", ";
         $strSql .= " " . $db->Sysdate(TRUE) . ", ";
         $strSql .= "  '$_SESSION[username]', ";
@@ -197,34 +210,115 @@ class createService {
             array("query" => "$strSql")
         );
         $reslut = $db->insert_for_upadte($arr);
+        $last_id = mysql_insert_id();
+        
+ 
+				 while(
+				 list($key, $s_po_color_order) = each ($_POST['s_po_color_order'])
+				 and list($key, $i_color_price) = each ($_POST['i_color_price'])
+				 and list($key, $i_color_amount) = each ($_POST['i_color_amount'])
+				 
+				 ){
+        	if($s_po_color_order != '' and $i_color_price != '' and $i_color_amount != ''){
+        $strSql = "";
+        $strSql .= "INSERT ";
+        $strSql .= "INTO ";
+        $strSql .= "  tb_po_color_order ( ";
+        $strSql .= "    i_po_color, ";
+        $strSql .= "    s_po_color_order, ";
+        $strSql .= "    i_color_price, ";
+        $strSql .= "    i_color_amount, ";
+        $strSql .= "    d_create, ";
+        $strSql .= "    d_update, ";
+        $strSql .= "    s_create_by, ";
+        $strSql .= "    s_update_by, ";
+        $strSql .= "    s_status ";
+        $strSql .= "  ) ";
+        $strSql .= "VALUES( ";
+        $strSql .= "  '$last_id', ";
+        $strSql .= "  '$s_po_color_order', ";
+        $strSql .= "  '$i_color_price', ";
+        $strSql .= "  '$i_color_amount', ";
+        $strSql .= "  " . $db->Sysdate(TRUE) . ", ";
+        $strSql .= " " . $db->Sysdate(TRUE) . ", ";
+        $strSql .= "  '$_SESSION[username]', ";
+        $strSql .= "  '$_SESSION[username]', ";
+        $strSql .= "  '$info[status]' ";
+        $strSql .= ") ";
+        $arr = array(
+            array("query" => "$strSql")
+        );
+        $resluts = $db->insert_for_upadte($arr);
+        	}
+        }
+        
+        
+        
         return $reslut;
     }
 
     function edit($db, $info) {
+        
         $util = new Utility();
         $strSql = "";
-        $strSql .= "update tb_customer_car ";
+        $strSql .= "update tb_po_color ";
         $strSql .= "set  ";
-        $strSql .= "i_customer = $info[i_customer], ";
-        $strSql .= "s_car_code = '$info[s_car_code]', ";
-        $strSql .= "s_license = '$info[s_license]', ";
-        $strSql .= "d_ins_exp = '" . $util->DateSQL($info[d_ins_exp]) . "', ";
-        $strSql .= "i_ins_type = $info[i_ins_type], ";
-        $strSql .= "s_type_capital = '$info[s_type_capital]', ";
-        $strSql .= "s_pay_type = '$info[s_pay_type]', ";
-        $strSql .= "i_ins_comp = $info[i_ins_comp], ";
-//        $strSql .= "i_dmg = $info[i_dmg], ";
-        $strSql .= "d_inbound = '" . $util->DateSQL($info[d_inbound]) . "', ";
-        $strSql .= "d_outbound_confirm = '" . $util->DateSQL($info[d_outbound_confirm]) . "', ";
-
+        $strSql .= "s_po_color_ref = '$info[s_po_color_ref]', ";
+        $strSql .= "i_color_shop = '$info[i_color_shop]', ";
+        $strSql .= "d_color_order = '" . $util->DateSQL($info[d_color_order]) . "', ";
+        $strSql .= "d_color_receive = '" . $util->DateSQL($info[d_color_receive]) . "', ";
+        $strSql .= "i_color_receive = $info[i_color_receive], ";
         $strSql .= "d_update = " . $db->Sysdate(TRUE) . ", ";
         $strSql .= "s_update_by = '$_SESSION[username]', ";
         $strSql .= "s_status = '$info[status]' ";
-        $strSql .= "where i_cust_car = $info[id] ";
+        $strSql .= "where i_po_color = $info[id] ";
         $arr = array(
             array("query" => "$strSql")
         );
         $reslut = $db->insert_for_upadte($arr);
+        
+        $last_id = $info[id];
+        mysql_query("DELETE FROM tb_po_color_order WHERE i_po_color=$last_id ");
+ 
+				 while(
+				 list($key, $s_po_color_order) = each ($_POST['s_po_color_order'])
+				 and list($key, $i_color_price) = each ($_POST['i_color_price'])
+				 and list($key, $i_color_amount) = each ($_POST['i_color_amount'])
+				 
+				 ){
+        	if($s_po_color_order != '' and $i_color_price != '' and $i_color_amount != ''){
+        $strSql = "";
+        $strSql .= "INSERT ";
+        $strSql .= "INTO ";
+        $strSql .= "  tb_po_color_order ( ";
+        $strSql .= "    i_po_color, ";
+        $strSql .= "    s_po_color_order, ";
+        $strSql .= "    i_color_price, ";
+        $strSql .= "    i_color_amount, ";
+        $strSql .= "    d_create, ";
+        $strSql .= "    d_update, ";
+        $strSql .= "    s_create_by, ";
+        $strSql .= "    s_update_by, ";
+        $strSql .= "    s_status ";
+        $strSql .= "  ) ";
+        $strSql .= "VALUES( ";
+        $strSql .= "  '$last_id', ";
+        $strSql .= "  '$s_po_color_order', ";
+        $strSql .= "  '$i_color_price', ";
+        $strSql .= "  '$i_color_amount', ";
+        $strSql .= "  " . $db->Sysdate(TRUE) . ", ";
+        $strSql .= " " . $db->Sysdate(TRUE) . ", ";
+        $strSql .= "  '$_SESSION[username]', ";
+        $strSql .= "  '$_SESSION[username]', ";
+        $strSql .= "  '$info[status]' ";
+        $strSql .= ") ";
+        $arr = array(
+            array("query" => "$strSql")
+        );
+        $resluts = $db->insert_for_upadte($arr);
+        	}
+        }
+        
         return $reslut;
     }
 

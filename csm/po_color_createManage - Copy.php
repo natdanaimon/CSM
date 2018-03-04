@@ -3,14 +3,13 @@
 include './common/Permission.php';
 include './common/PermissionADM.php';
 include './common/FunctionCheckActive.php';
-include './common/ConnectDB.php';
-ACTIVEPAGES(4, 4);
+ACTIVEPAGES(4, 3);
 
 if ($_GET[func] != NULL) {
     $tt_header = ($_GET[func] == "add" ? $_SESSION[add_info] : $_SESSION[edit_info]);
 }
 if ($_GET[id] == NULL && $_GET[func] != "add") {
-    echo header("Location: po_other_createManage.php");
+    echo header("Location: po_color_createManage.php");
 }
 
 
@@ -100,7 +99,7 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                                     <i class="fa fa-circle" style="color:  #00FF00;"></i>
                                 </li>
                                 <li>
-                                    <a href="po_other.php"><?= $_SESSION[po_create_other] ?></a>
+                                    <a href="po_color.php"><?= $_SESSION[po_create_color] ?></a>
                                     <i class="fa fa-circle" style="color:  #00FF00;"></i>
                                 </li>
                                 <li>
@@ -119,7 +118,7 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                             <form enctype="multipart/form-data" name="form-action" id="form-action" method="post">
                                 <input type="hidden" id="func" name="func" value="<?= $_GET[func] ?>"/>
                                 <input type="hidden" id="id" name="id" value="<?= $_GET[id] ?>"/>
-                                 
+                                <input type="hidden" id="i_customer" name="i_customer" value=""/>
                                 <div class="col-md-8">
 
 
@@ -143,7 +142,7 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                                     <div class="portlet box green">
                                         <div class="portlet-title" onclick="closeStep(1)" style="cursor: pointer;">
                                             <div class="caption">
-                                                <i class="fa fa-shopping-cart"></i> <?= $_SESSION[po_create_other] ?></div>
+                                                <i class="fa fa-user"></i> <?= $_SESSION[tt_detail_create1] ?></div>
                                             <div class="tools">
                                                 <!--<a href="javascript:closeStep(1);" class="fa fa-angle-down" style="color: white;text-decoration:none;"> </a>-->
                                                 <span class="fa fa-angle-down" style="color: white;text-decoration:none;"> </span>
@@ -161,32 +160,49 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                                                         <div class="row">
                                                             
                                                             <div class="col-md-6">
-                                                            </div>
-                                                            <div class="col-md-6">
                                                                 <div class="form-group form-md-line-input has-success">
-                                                                    <input type="text" class="form-control bold" id="s_po_other_ref"  name="s_po_other_ref" <?= $disableElement ?>>
+                                                                    <input type="text" class="form-control bold" id="s_po_color_ref"  name="s_po_color_ref" <?= $disableElement ?>>
                                                                     <label  for="form_control_1"><?= $_SESSION[tb_po_refno] ?> <span class="required">*</span>
                                                                     </label>          
                                                                 </div>
                                                             </div>
-                                                            </div>
-                                                            <div class="row">
                                                             <div class="col-md-6">
 
-                                                                <label for="d_other_order" style="color: #36c6d3;"><?= $_SESSION[tb_po_orderdate] ?> <span class="required" style="color: red;">*</span></label> 
+                                                                <label for="d_color_order" style="color: #36c6d3;"><?= $_SESSION[tb_po_orderdate] ?> <span class="required" style="color: red;">*</span></label> 
                                                                 <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy" data-date="<?= date("d-m-Y") ?>"  style="width: 100% !important;">
                                                                     <span class="input-group-btn">
                                                                         <button class="btn default" type="button" <?= $disableView ?>>
                                                                             <i class="fa fa-calendar"></i>
                                                                         </button>
                                                                     </span>
-                                                                    <input type="text" class="form-control" readonly name="d_other_order" id="d_other_order" value="<?= date("d-m-Y") ?>"  <?= $disableView ?>>
+                                                                    <input type="text" class="form-control" readonly name="d_color_order" id="d_color_order" value="<?= date("d-m-Y") ?>"  <?= $disableView ?>>
 
                                                                 </div>
                                                             </div>
-                                                            <div class="col-md-6">
-                                                            <div class="form-group form-md-line-input has-success">
-                                                                    <select class="form-control edited bold" id="i_other_shop" name="i_other_shop"  <?= $disableElement ?>
+                                                            
+                                                        </div>
+
+                                                        
+
+
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group form-md-line-input has-success">
+                                                                    <input type="text" class="form-control bold" id="s_po_color_order" name="s_po_color_order" <?= $disableElement ?>>
+                                                                    <label for="form_control_1"><?= $_SESSION[tb_po_order] ?> <span class="required">*</span>
+                                                                        <span id="class_val_phone" class="" >
+                                                                            <i id="icon_val_phone" class=""></i>
+                                                                            <span id="lb_val_phone"></span>
+                                                                        </span>
+                                                                    </label>          
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group form-md-line-input has-success">
+                                                                    <select class="form-control edited bold" id="i_color_shop" name="i_color_shop"  <?= $disableElement ?>
                                                                             
                                                                             style="color:black;font-weight:bold;">
                                                                         <option value=""><?= $_SESSION[lb_please_select] ?></option>
@@ -196,23 +212,44 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                                                             </div>
                                                             
                                                         </div>
-
                                                         <div class="row">
-                                                            <div class="col-md-6">
-                                                                <label for="d_other_receive" style="color: #36c6d3;"><?= $_SESSION[tb_po_receivedate] ?> <span class="required" style="color: red;">*</span></label> 
+                                                        <div class="col-md-4">
+                                                                <div class="form-group form-md-line-input has-success">
+                                                                    <input type="number" class="form-control bold required" id="i_color_price" name="i_color_price" >
+                                                                    <label for="form_control_1"><?= $_SESSION[tb_po_price] ?> <span class="required"></span></label>          
+                                                                </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                                <div class="form-group form-md-line-input has-success">
+                                                                    <input type="number" class="form-control bold required" id="i_color_amount" name="i_color_amount" >
+                                                                    <label for="form_control_1"><?= $_SESSION[tb_po_amount] ?> <span class="required"></span></label>          
+                                                                </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                                <div class="form-group form-md-line-input has-success">
+                                                                    <input type="number" class="form-control bold required" id="i_color_store" name="i_color_store" >
+                                                                    <label for="form_control_1"><?= $_SESSION[tb_po_store] ?> <span class="required"></span></label>          
+                                                                </div>
+                                                        </div>
+                                                        
+                                                        </div>
+                                                        
+                                                        <div class="row edit_show"   >
+                                                        <div class="col-md-6">
+                                                                <label for="d_color_receive" style="color: #36c6d3;"><?= $_SESSION[tb_po_receivedate] ?> <span class="required" style="color: red;">*</span></label> 
                                                                 <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy" data-date="<?= date("d-m-Y") ?>"  style="width: 100% !important;">
                                                                     <span class="input-group-btn">
                                                                         <button class="btn default" type="button" <?= $disableView ?>>
                                                                             <i class="fa fa-calendar"></i>
                                                                         </button>
                                                                     </span>
-                                                                    <input type="text" class="form-control" readonly name="d_other_receive" id="d_other_receive" value="<?= date("d-m-Y") ?>"  <?= $disableView ?>>
+                                                                    <input type="text" class="form-control" readonly name="d_color_receive" id="d_color_receive" value="<?= date("d-m-Y") ?>"  <?= $disableView ?>>
 
                                                                 </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                                 <div class="form-group form-md-line-input has-success">
-                                                                    <select class="form-control edited bold" id="i_other_receive" name="i_other_receive"  <?= $disableElement ?>
+                                                                    <select class="form-control edited bold" id="i_color_receive" name="i_color_receive"  <?= $disableElement ?>
                                                                             
                                                                             style="color:black;font-weight:bold;">
                                                                         <option value=""><?= $_SESSION[lb_please_select] ?></option>
@@ -220,8 +257,27 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                                                                     <label for="form_control_1"><?= $_SESSION[tb_po_receiveby] ?> <span class="required">*</span></label>          
                                                                 </div>
                                                         </div>
-                                                            
+                                                        
+                                                        
                                                         </div>
+                                                         
+
+
+
+
+
+
+     
+
+
+
+
+
+
+
+
+
+
 
 
                                                     </div>
@@ -229,9 +285,22 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
 
                                                 </div>
                                             </div>
+
+
+
                                             <!-- END FORM-->
                                         </div>
                                     </div>
+
+
+                                    <!-- BEGIN EXAMPLE TABLE PORTLET-->
+
+
+
+
+
+
+                                    <!-- END EXAMPLE TABLE PORTLET-->
                                 </div>
                                 <div class="col-md-4">
                                     <!-- BEGIN EXAMPLE TABLE PORTLET-->
@@ -266,180 +335,11 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
 
 
 
-                                <div class="col-md-12">
-
-                                    <div class="portlet box green">
-                                        <div class="portlet-title" onclick="closeStep(2)" style="cursor: pointer;">
-                                            <div class="caption">
-                                                <i class="fa fa-shopping-cart"></i> <?= $_SESSION[po_create_other] ?></div>
-                                            <div class="tools">
-                                                <!--<a href="javascript:closeStep(1);" class="fa fa-angle-down" style="color: white;text-decoration:none;"> </a>-->
-                                                <span class="fa fa-angle-down" style="color: white;text-decoration:none;"> </span>
-                                            </div>
-                                        </div>
-                                        <div class="portlet-body form" id="step2" style="display: block;">
-                                            <!-- BEGIN FORM-->
-
-                                            <div class="portlet light bordered">
-                                                
-                                                <div class="portlet-body form">
-
-                                                    <div class="form-body">
-<div class="row">
-                                    <div class="col-md-12" align="right">
-                                        <div class="portlet-body form">
-                                            
-                                                <button onclick="add_row_order();" type="button"  class="btn blue" ><?= $_SESSION[btn_add] ?></button>
-                                            
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr />
-                                                      
-                                                      <table width="100%" cellpadding="5" cellspacing="10">
-                                                      	<tr style="height: 25px; background-color: #32c5d2; color: #ffffff; font-weight: bold;">
-                                                      		<td width="5%" align="center">#</td>
-                                                      		<td width="5%" align="center">No.</td>
-                                                      		<td>Detail</td>
-                                                      		<td width="10%" align="right">Price</td>
-                                                      		<td width="10%" align="right">amount</td>
-                                                      		<td width="10%" align="right">total</td>
-                                                      		<td width="10"></td>
-                                                      	</tr>
-                                                      	<tbody id="tbody_order">
-                                                      	<?php
-                                                      	if($_GET[func]=='add'){
-																													$no = 1;
-																													for($i=0;$i<=4;$i++){
-																														?>
-																														<tr id="tr_order_<?=$i;?>">
-                                                      			<td align="center">
-                                                      				<a class="remove_tr" data-row="<?=$i;?>"><i class="fa fa-times"></i></a>
-                                                      			</td>
-                                                      			<td align="center">#</td>
-                                                      			<td>
-                                                      				<div class="form-group form-md-line-input has-success" style="padding-top: 0px;">
-                                                                    <input type="text" class="form-control bold" id="s_po_other_order_<?=$i;?>" name="s_po_other_order[]" >
-                                                                         
-                                                                </div>
-                                                      			</td>
-                                                      			<td>
-                                                      				<div class="form-group form-md-line-input has-success" style="padding-top: 0px;margin-left: 10px;">
-                                                                    <input type="number" class="form-control bold cal_tr" data-row="<?=$i;?>" id="i_other_price_<?=$i;?>" name="i_other_price[]" >
-                                                                         
-                                                                </div>
-                                                      			</td>
-                                                      			<td>
-                                                      				<div class="form-group form-md-line-input has-success" style="padding-top: 0px;margin-left: 10px;">
-                                                                    <input type="number" class="form-control bold cal_tr" data-row="<?=$i;?>" id="i_other_amount_<?=$i;?>" name="i_other_amount[]" >
-                                                                         
-                                                                </div>
-                                                      			</td>
-                                                      			<td align="right">
-                                                      				<div class="form-group form-md-line-input has-success" style="padding-top: 0px;margin-left: 10px;">
-                                                                    <span id="total_<?=$i;?>">0</span><input type="hidden" id="total_txt_<?=$i;?>" class="quantity" value="0" />                
-                                                                         
-                                                                </div>
-                                                      			</td>
-                                                      			<td></td>
-                                                      		</tr>
-                                                      		<tr>
-                                                      			<td colspan="6" style="border-bottom: 1px solid #cccccc;"></td>
-                                                      		</tr>
-																														<?php
-																													$no++;
-																													}
-																												$total_summm = 0;
-																												}else{
-				$db = new ConnectDB();
-        $strSql = " select * ";
-        $strSql .= " FROM tb_po_other_order  WHERE i_po_other = '".$_GET[id]."' ";
-        //$strSql .= " order by u.d_create desc , u.s_status desc ";
-         $strSql;
-         $_dataTable = $db->Search_Data_FormatJson($strSql);
- 
- 
-				$no = 1;
-				$i = 0;
-																													foreach ($_dataTable as $key => $value) {
-																														?>
-																														<tr id="tr_order_<?=$i;?>">
-                                                      			<td align="center">
-                                                      				<a class="remove_tr" data-row="<?=$i;?>"><i class="fa fa-times"></i></a>
-                                                      			</td>
-                                                      			<td align="center"><?=$no;?></td>
-                                                      			<td>
-                                                      				<div class="form-group form-md-line-input has-success" style="padding-top: 0px;">
-                                                                    <input type="text" class="form-control bold" id="s_po_other_order_<?=$i;?>" name="s_po_other_order[]" value="<?=$_dataTable[$key]['s_po_other_order'];?>" >
-                                                                         
-                                                                </div>
-                                                      			</td>
-                                                      			<td>
-                                                      				<div class="form-group form-md-line-input has-success" style="padding-top: 0px;margin-left: 10px;">
-                                                                    <input type="number" class="form-control bold cal_tr" data-row="<?=$i;?>" id="i_other_price_<?=$i;?>" name="i_other_price[]" value="<?=$_dataTable[$key]['i_other_price'];?>" >
-                                                                         
-                                                                </div>
-                                                      			</td>
-                                                      			<td>
-                                                      				<div class="form-group form-md-line-input has-success" style="padding-top: 0px;margin-left: 10px;">
-                                                                    <input type="number" class="form-control bold cal_tr" data-row="<?=$i;?>" id="i_other_amount_<?=$i;?>" name="i_other_amount[]" value="<?=$_dataTable[$key]['i_other_amount'];?>" >
-                                                                         
-                                                                </div>
-                                                      			</td>
-                                                      			<td align="right">
-                                                      				<div class="form-group form-md-line-input has-success" style="padding-top: 0px;margin-left: 10px;">
-                                                                    <span id="total_<?=$i;?>"><?=$_dataTable[$key]['i_other_amount']*$_dataTable[$key]['i_other_price'];?></span><input type="hidden" id="total_txt_<?=$i;?>" class="quantity" value="<?=$_dataTable[$key]['i_other_amount']*$_dataTable[$key]['i_other_price'];?>" />                
-                                                                         
-                                                                </div>
-                                                      			</td>
-                                                      			<td></td>
-                                                      		</tr>
-                                                      		<tr>
-                                                      			<td colspan="6" style="border-bottom: 1px solid #cccccc;"></td>
-                                                      		</tr>
-																														<?php
-																													$no++;
-																													$i++;
-																													$total_summm += $_dataTable[$key]['i_other_amount']*$_dataTable[$key]['i_other_price'];
-																													}
-																												}
-                                                      	?>
-                                                      		
-                                                      	</tbody>
-                                                      	<tr>
-                                                      		<td colspan="5" align="right">
-                                                      			Sum
-                                                      		</td>
-                                                      		<td align="right">
-                                                      			<span id="sum_total_order"><?=$total_summm;?></span>
-                                                      		</td>
-                                                      		<td></td>
-                                                      	</tr>
-                                                      </table>
-                                                      <input type="hidden" name="last_no" id="last_no" value="<?=$i;?>"/>
-
-
-
-
-                                                    </div>
-
-
-                                                </div>
-                                            </div>
-
-
-
-                                            <!-- END FORM-->
-                                        </div>
-                                    </div>
-
-
-                                </div>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="portlet-body form">
                                             <div class="form-actions noborder">
-                                                <a href="po_other.php"> <button type="button" class="btn default"><?= $_SESSION[btn_cancel] ?></button></a>
+                                                <a href="po_color.php"> <button type="button" class="btn default"><?= $_SESSION[btn_cancel] ?></button></a>
                                                 <button type="submit"  class="btn blue" ><?= $_SESSION[btn_submit] ?></button>
                                             </div>
                                         </div>
@@ -545,63 +445,13 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
         <link href="outbound/lightbox/css/lightbox.css" rel="stylesheet" type="text/css" />
         <script src="outbound/lightbox/js/lightbox.js" type="text/javascript"></script>
         <!--<link href="css/custom_select2.css" rel="stylesheet" />-->
-        <script src="js/action/po/po_other_createManage.js" type="text/javascript"></script>
+        <script src="js/action/po/po_color_createManage.js" type="text/javascript"></script>
         <script src="js/action/search/popup.js" type="text/javascript"></script>
         <script src="js/common/closeStep.js" type="text/javascript"></script>
 
 
 
-        
         <script>
-        	function add_row_order(){
-						var last_no = parseInt($('#last_no').val())+1;
-						$('#last_no').val(last_no);
-						var tr_txt = '<tr id="tr_order_'+last_no+'">                                                       			<td align="center">                                                       				<a onclick="func_remove_tr('+last_no+');"><i class="fa fa-times"></i>                                                       			</td>                                                       			<td align="center">#</td>                                                       			<td>                                                       				<div class="form-group form-md-line-input has-success" style="padding-top: 0px;">                                                                     <input type="text" class="form-control bold" id="s_po_other_order_'+last_no+'" name="s_po_other_order[]" >                                                                                                                                          </div>                                                       			</td>                                                       			<td>                                                       				<div class="form-group form-md-line-input has-success" style="padding-top: 0px;margin-left: 10px;">                                                                     <input type="number" class="form-control bold cal_tr" onkeyup="func_cal_tr('+last_no+')" onblur="func_cal_tr('+last_no+')"  data-row="'+last_no+'" id="i_other_price_'+last_no+'" name="i_other_price[]" >                                                                                                                                          </div>                                                       			</td>                                                       			<td>                                                       				<div class="form-group form-md-line-input has-success" style="padding-top: 0px;margin-left: 10px;">                                                                     <input type="number" class="form-control bold cal_tr" onkeyup="func_cal_tr('+last_no+')"  onblur="func_cal_tr('+last_no+')" data-row="'+last_no+'" id="i_other_amount_'+last_no+'" name="i_other_amount[]" >                                                                                                                                          </div>                                                       			</td>                                                       			<td align="right">                                                       				<div class="form-group form-md-line-input has-success" style="padding-top: 0px;margin-left: 10px;">                                                                     <span id="total_'+last_no+'">0</span>   <input type="hidden" id="total_txt_'+last_no+'" class="quantity" value="0" />                                                                                                                                       </div>                                                       			</td>                                                       			<td></td>                                                       		</tr>                                                       		<tr>                                                       			<td colspan="6" style="border-bottom: 1px solid #cccccc;"></td>                                                       		</tr>';
-						
-						$('#tbody_order').append(tr_txt);
-					}
-					
-					$('.remove_tr').click(function(){
-						var row = $(this).attr('data-row');
-						func_remove_tr(row);
-					});
-					
-					function func_remove_tr(row){
-						$('#tr_order_'+row).closest('tr').remove();
-						sum_total();
-					}
-					
-					$('.cal_tr').keyup(function(){
-						var row = $(this).attr('data-row');
-						func_cal_tr(row);
-					});
-					$('.cal_tr').blur(function(){
-						var row = $(this).attr('data-row');
-						func_cal_tr(row);
-					});
-					function func_cal_tr(row){
-						var price = parseInt($('#i_other_price_'+row).val());
-						var amount = parseInt($('#i_other_amount_'+row).val());
-						var sum = price*amount;
-						$('#total_'+row).html(sum);
-						$('#total_txt_'+row).val(sum);
-						sum_total();
-					}
-					function sum_total(){
-						var last_no = $('#last_no').val(); 
-						var total = 0;
-
-				    $(".quantity").each(function() {
-				        if (!isNaN(this.value) && this.value.length != 0) {
-				            total += parseFloat(this.value);
-				        }
-				    });
-
-						$('#sum_total_order').html(total);
-					}
-        </script>
-
-<script>
                                                                                 var keyEdit = "<?= $_GET[id] ?>";
         </script>
         <script>
@@ -615,7 +465,6 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                     unloading();
                 }else{
 									edit();
-									sum_total();
 								}
 
             });
@@ -623,6 +472,8 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
 
 
         </script>
+
+
     </body>
 
 </html>

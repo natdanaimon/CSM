@@ -50,6 +50,11 @@ function ACTIVEPAGES($page, $sub) {
     $_SESSION["nav_sub_po_other"] = "";
 
 
+    //csm_exp
+    $_SESSION["nav_main_exp"] = "";
+    $_SESSION["nav_sub_exp_daily"] = "";
+
+    
     //csm_repair
     $_SESSION["nav_sub_re_create"] = "";
     $_SESSION["nav_sub_re_check"] = "";
@@ -100,7 +105,8 @@ function ACTIVEPAGES($page, $sub) {
         } else if ($sub == 5) {
             $_SESSION["nav_sub_re_cancel"] = " active open";
         }
-    } else if ($page == 4) {
+    } 
+    else if ($page == 4) {
         $_SESSION["nav_main_po"] = " active open";
         if ($sub == 1) {
             $_SESSION["nav_sub_po_search"] = " active open";
@@ -111,7 +117,15 @@ function ACTIVEPAGES($page, $sub) {
         } else if ($sub == 4) {
             $_SESSION["nav_sub_po_other"] = " active open";
         }
-    } else if ($page == 9) {
+    }
+    else if ($page == 7) {
+        $_SESSION["nav_main_exp"] = " active open";
+        if ($sub == 1) {
+            $_SESSION["nav_sub_exp_daily"] = " active open";
+        } 
+    } 
+    
+    else if ($page == 9) {
         $_SESSION["nav_main_emp"] = " active open";
         if ($sub == 1) {
             $_SESSION["nav_sub_emp_user"] = " active open";

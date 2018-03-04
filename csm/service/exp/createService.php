@@ -10,7 +10,7 @@ class createService {
         $strSql = " select *, '' as i_year , '' as i_brand , '' as i_gen , '' as i_sub from ";
         $strSql .= " (";
         $strSql .= " select u.*, s.s_detail_th status_th, s.s_detail_en status_en";
-        $strSql .= " from tb_po_spare u, tb_status s";
+        $strSql .= " from tb_po_daily u, tb_status s";
         $strSql .= " where u.s_status = s.s_status";
         $strSql .= " and s.s_type = 'REPAIR'";
         $strSql .= " and s.s_status = 'R1'";
@@ -27,10 +27,10 @@ class createService {
         $strSql = " SELECT u.* , s.s_detail_th status_th, s.s_detail_en status_en ,e.s_firstname, e.s_lastname , pc.s_comp_th ";
        
 
-        $strSql .= " FROM tb_po_spare u ";
+        $strSql .= " FROM tb_po_daily u ";
         $strSql .= " LEFT JOIN tb_status s ON u.s_status = s.s_status";
-        $strSql .= " LEFT JOIN tb_partner_comp pc ON u.i_spare_shop = pc.i_part_comp";
-        $strSql .= " LEFT JOIN tb_employee e ON u.i_spare_receive = e.i_emp";
+        $strSql .= " LEFT JOIN tb_partner_comp pc ON u.i_daily_shop = pc.i_part_comp";
+        $strSql .= " LEFT JOIN tb_employee e ON u.i_daily_receive = e.i_emp";
 
         $strSql .= " order by u.d_create desc , u.s_status desc ";
 
@@ -125,7 +125,7 @@ class createService {
 
     function getInfo($seq) {
         $db = new ConnectDB();
-        $strSql = " select * from tb_po_spare where i_po_spare =" . $seq;
+        $strSql = " select * from tb_po_daily where i_po_daily =" . $seq;
         $_data = $db->Search_Data_FormatJson($strSql);
         $db->close_conn();
         return $_data;
@@ -180,13 +180,13 @@ class createService {
         $strSql = "";
         $strSql .= "INSERT ";
         $strSql .= "INTO ";
-        $strSql .= "  tb_po_spare ( ";
-        //$strSql .= "    s_po_spare_order, ";
-        $strSql .= "    s_po_spare_ref, ";
-        $strSql .= "    d_spare_order, ";
-        $strSql .= "    i_spare_shop, ";
-        $strSql .= "    i_spare_receive, ";
-        $strSql .= "    d_spare_receive, ";
+        $strSql .= "  tb_po_daily ( ";
+        //$strSql .= "    s_po_daily_order, ";
+        $strSql .= "    s_po_daily_ref, ";
+        $strSql .= "    d_daily_order, ";
+        $strSql .= "    i_daily_shop, ";
+        $strSql .= "    i_daily_receive, ";
+        $strSql .= "    d_daily_receive, ";
         $strSql .= "    d_create, ";
         $strSql .= "    d_update, ";
         $strSql .= "    s_create_by, ";
@@ -194,12 +194,12 @@ class createService {
         $strSql .= "    s_status ";
         $strSql .= "  ) ";
         $strSql .= "VALUES( ";
-        //$strSql .= "  '$info[s_po_spare_order]', ";
-        $strSql .= "  '$info[s_po_spare_ref]', ";
-        $strSql .= "  '" . $util->DateSQL($info[d_spare_order]) . "', ";
-        $strSql .= "  '$info[i_spare_shop]', ";
-        $strSql .= "  '$info[i_spare_receive]', ";
-        $strSql .= "  '" . $util->DateSQL($info[d_spare_receive]) . "', ";
+        //$strSql .= "  '$info[s_po_daily_order]', ";
+        $strSql .= "  '$info[s_po_daily_ref]', ";
+        $strSql .= "  '" . $util->DateSQL($info[d_daily_order]) . "', ";
+        $strSql .= "  '$info[i_daily_shop]', ";
+        $strSql .= "  '$info[i_daily_receive]', ";
+        $strSql .= "  '" . $util->DateSQL($info[d_daily_receive]) . "', ";
         $strSql .= "  " . $db->Sysdate(TRUE) . ", ";
         $strSql .= " " . $db->Sysdate(TRUE) . ", ";
         $strSql .= "  '$_SESSION[username]', ";
@@ -214,20 +214,20 @@ class createService {
         
  
 				 while(
-				 list($key, $s_po_spare_order) = each ($_POST['s_po_spare_order'])
-				 and list($key, $i_spare_price) = each ($_POST['i_spare_price'])
-				 and list($key, $i_spare_amount) = each ($_POST['i_spare_amount'])
+				 list($key, $s_po_daily_order) = each ($_POST['s_po_daily_order'])
+				 and list($key, $i_daily_price) = each ($_POST['i_daily_price'])
+				 and list($key, $i_daily_amount) = each ($_POST['i_daily_amount'])
 				 
 				 ){
-        	if($s_po_spare_order != '' and $i_spare_price != '' and $i_spare_amount != ''){
+        	if($s_po_daily_order != '' and $i_daily_price != '' and $i_daily_amount != ''){
         $strSql = "";
         $strSql .= "INSERT ";
         $strSql .= "INTO ";
-        $strSql .= "  tb_po_spare_order ( ";
-        $strSql .= "    i_po_spare, ";
-        $strSql .= "    s_po_spare_order, ";
-        $strSql .= "    i_spare_price, ";
-        $strSql .= "    i_spare_amount, ";
+        $strSql .= "  tb_po_daily_order ( ";
+        $strSql .= "    i_po_daily, ";
+        $strSql .= "    s_po_daily_order, ";
+        $strSql .= "    i_daily_price, ";
+        $strSql .= "    i_daily_amount, ";
         $strSql .= "    d_create, ";
         $strSql .= "    d_update, ";
         $strSql .= "    s_create_by, ";
@@ -236,9 +236,9 @@ class createService {
         $strSql .= "  ) ";
         $strSql .= "VALUES( ";
         $strSql .= "  '$last_id', ";
-        $strSql .= "  '$s_po_spare_order', ";
-        $strSql .= "  '$i_spare_price', ";
-        $strSql .= "  '$i_spare_amount', ";
+        $strSql .= "  '$s_po_daily_order', ";
+        $strSql .= "  '$i_daily_price', ";
+        $strSql .= "  '$i_daily_amount', ";
         $strSql .= "  " . $db->Sysdate(TRUE) . ", ";
         $strSql .= " " . $db->Sysdate(TRUE) . ", ";
         $strSql .= "  '$_SESSION[username]', ";
@@ -261,40 +261,40 @@ class createService {
         
         $util = new Utility();
         $strSql = "";
-        $strSql .= "update tb_po_spare ";
+        $strSql .= "update tb_po_daily ";
         $strSql .= "set  ";
-        $strSql .= "s_po_spare_ref = '$info[s_po_spare_ref]', ";
-        $strSql .= "i_spare_shop = '$info[i_spare_shop]', ";
-        $strSql .= "d_spare_order = '" . $util->DateSQL($info[d_spare_order]) . "', ";
-        $strSql .= "d_spare_receive = '" . $util->DateSQL($info[d_spare_receive]) . "', ";
-        $strSql .= "i_spare_receive = $info[i_spare_receive], ";
+        $strSql .= "s_po_daily_ref = '$info[s_po_daily_ref]', ";
+        $strSql .= "i_daily_shop = '$info[i_daily_shop]', ";
+        $strSql .= "d_daily_order = '" . $util->DateSQL($info[d_daily_order]) . "', ";
+        $strSql .= "d_daily_receive = '" . $util->DateSQL($info[d_daily_receive]) . "', ";
+        $strSql .= "i_daily_receive = $info[i_daily_receive], ";
         $strSql .= "d_update = " . $db->Sysdate(TRUE) . ", ";
         $strSql .= "s_update_by = '$_SESSION[username]', ";
         $strSql .= "s_status = '$info[status]' ";
-        $strSql .= "where i_po_spare = $info[id] ";
+        $strSql .= "where i_po_daily = $info[id] ";
         $arr = array(
             array("query" => "$strSql")
         );
         $reslut = $db->insert_for_upadte($arr);
         
         $last_id = $info[id];
-        mysql_query("DELETE FROM tb_po_spare_order WHERE i_po_spare=$last_id ");
+        mysql_query("DELETE FROM tb_po_daily_order WHERE i_po_daily=$last_id ");
  
 				 while(
-				 list($key, $s_po_spare_order) = each ($_POST['s_po_spare_order'])
-				 and list($key, $i_spare_price) = each ($_POST['i_spare_price'])
-				 and list($key, $i_spare_amount) = each ($_POST['i_spare_amount'])
+				 list($key, $s_po_daily_order) = each ($_POST['s_po_daily_order'])
+				 and list($key, $i_daily_price) = each ($_POST['i_daily_price'])
+				 and list($key, $i_daily_amount) = each ($_POST['i_daily_amount'])
 				 
 				 ){
-        	if($s_po_spare_order != '' and $i_spare_price != '' and $i_spare_amount != ''){
+        	if($s_po_daily_order != '' and $i_daily_price != '' and $i_daily_amount != ''){
         $strSql = "";
         $strSql .= "INSERT ";
         $strSql .= "INTO ";
-        $strSql .= "  tb_po_spare_order ( ";
-        $strSql .= "    i_po_spare, ";
-        $strSql .= "    s_po_spare_order, ";
-        $strSql .= "    i_spare_price, ";
-        $strSql .= "    i_spare_amount, ";
+        $strSql .= "  tb_po_daily_order ( ";
+        $strSql .= "    i_po_daily, ";
+        $strSql .= "    s_po_daily_order, ";
+        $strSql .= "    i_daily_price, ";
+        $strSql .= "    i_daily_amount, ";
         $strSql .= "    d_create, ";
         $strSql .= "    d_update, ";
         $strSql .= "    s_create_by, ";
@@ -303,9 +303,9 @@ class createService {
         $strSql .= "  ) ";
         $strSql .= "VALUES( ";
         $strSql .= "  '$last_id', ";
-        $strSql .= "  '$s_po_spare_order', ";
-        $strSql .= "  '$i_spare_price', ";
-        $strSql .= "  '$i_spare_amount', ";
+        $strSql .= "  '$s_po_daily_order', ";
+        $strSql .= "  '$i_daily_price', ";
+        $strSql .= "  '$i_daily_amount', ";
         $strSql .= "  " . $db->Sysdate(TRUE) . ", ";
         $strSql .= " " . $db->Sysdate(TRUE) . ", ";
         $strSql .= "  '$_SESSION[username]', ";

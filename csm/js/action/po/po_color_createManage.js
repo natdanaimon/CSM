@@ -57,7 +57,7 @@ function getDDLEmployee() {
 function getDDLStatus() {
     $.ajax({
         type: 'GET',
-        url: 'controller/commonController.php?func=DDLStatusRepart',
+        url: 'controller/commonController.php?func=DDLStatusActive',
         beforeSend: function() {
             //$('#se-pre-con').fadeIn(100);
         },
@@ -418,10 +418,10 @@ function getDDLZipcode() {
 
 
 function edit() {
-    $('.edit_show').show();
     $.ajax({
         type: 'GET',
-        url: 'controller/repair/createController.php?func=getInfo&id=' + keyEdit,
+ 
+        url: 'controller/po/createControllerColor.php?func=getInfo&id=' + keyEdit,
         beforeSend: function() {
             //$('#se-pre-con').fadeIn(100);
         },
@@ -429,33 +429,21 @@ function edit() {
             var res = JSON.parse(data);
             $.each(res, function(i, item) {
                 debugger;
-                $("#i_customer").val(item.i_customer);
-
-                //radio
-                radio_type(item.i_ins_type);
-
-                editCustomer(item.i_customer);
-                $("#ref_no").val(item.ref_no);
-                $("#i_ins_comp").val(item.i_ins_comp).trigger('change');
-                $("#d_inbound").val(item.d_inbound);
-                $("#d_outbound_confirm").val(item.d_outbound_confirm);
-
-                $("#s_pay_type").val(item.s_pay_type);
-//                $("#i_dmg").val(item.i_dmg);
-
-                $("#s_car_code").val(item.s_car_code).trigger('change');
-                $("#s_license").val(item.s_license);
-
-                $("#s_type_capital").val(item.s_type_capital);
-                $("#d_ins_exp").val(item.d_ins_exp);
-
+                $("#s_po_color_ref").val(item.s_po_color_ref);
+                $("#d_color_order").val(item.d_color_order);
+                $("#i_color_shop").val(item.i_color_shop);
+                $("#i_color_receive").val(item.i_color_receive);
+                $("#d_color_receive").val(item.d_color_receive);
+                
                 $("#status").val(item.s_status);
+                
                 $("#lb_create").text(item.s_create_by + " ( " + item.d_create + " )");
                 var lb_edit = (item.s_update_by != "" ? item.s_update_by + " ( " + item.d_update + " )" : "-");
                 $("#lb_edit").text(lb_edit);
+                
             });
-
-            //$('#se-pre-con').delay(100).fadeOut();
+            warring();
+            //            $('#se-pre-con').delay(100).fadeOut();
 
         },
         error: function(data) {
@@ -464,8 +452,6 @@ function edit() {
 
     });
 }
-
-
 
 function editCustomer(id) {
 

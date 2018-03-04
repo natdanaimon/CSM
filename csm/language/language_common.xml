@@ -982,6 +982,19 @@
         <th>บริหารจัดการสั่งซื้ออุปกรณ์อื่นๆ</th>
         <en>PO-Other</en>
     </detail>
+    
+    <detail>
+        <variable>exp</variable>
+        <th>ค่าใช้จ่ายประจำวัน</th>
+        <en>Expenses-Daily</en>
+    </detail>
+    <detail>
+        <variable>exp_create_daily</variable>
+        <th>บริหารจัดการค่าใช้จ่ายประจำวัน</th>
+        <en>Expenses-Daily</en>
+    </detail>
+    
+    
     <!--  Menu -->
     
     

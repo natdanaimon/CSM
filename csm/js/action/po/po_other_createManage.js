@@ -57,7 +57,7 @@ function getDDLEmployee() {
 function getDDLStatus() {
     $.ajax({
         type: 'GET',
-        url: 'controller/commonController.php?func=DDLStatusRepart',
+        url: 'controller/commonController.php?func=DDLStatusActive',
         beforeSend: function() {
             //$('#se-pre-con').fadeIn(100);
         },
@@ -418,9 +418,9 @@ function getDDLZipcode() {
 
 
 function edit() {
-    $('.edit_show').show();
     $.ajax({
         type: 'GET',
+ 
         url: 'controller/po/createControllerOther.php?func=getInfo&id=' + keyEdit,
         beforeSend: function() {
             //$('#se-pre-con').fadeIn(100);
@@ -429,17 +429,21 @@ function edit() {
             var res = JSON.parse(data);
             $.each(res, function(i, item) {
                 debugger;
-
-                $("#ref_no").val(item.s_po_other_ref);
                 $("#s_po_other_ref").val(item.s_po_other_ref);
                 $("#d_other_order").val(item.d_other_order);
-                $("#s_po_other_order").val(item.s_po_other_order);
                 $("#i_other_shop").val(item.i_other_shop);
-                $("#i_other_price").val(item.i_other_price);
-                $("#i_other_amount").val(item.i_other_amount);
+                $("#i_other_receive").val(item.i_other_receive);
+                $("#d_other_receive").val(item.d_other_receive);
+                
+                $("#status").val(item.s_status);
+                
+                $("#lb_create").text(item.s_create_by + " ( " + item.d_create + " )");
+                var lb_edit = (item.s_update_by != "" ? item.s_update_by + " ( " + item.d_update + " )" : "-");
+                $("#lb_edit").text(lb_edit);
+                
             });
-
-            //$('#se-pre-con').delay(100).fadeOut();
+            warring();
+            //            $('#se-pre-con').delay(100).fadeOut();
 
         },
         error: function(data) {
@@ -448,8 +452,6 @@ function edit() {
 
     });
 }
-
-
 
 function editCustomer(id) {
 

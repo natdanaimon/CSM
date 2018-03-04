@@ -135,6 +135,31 @@
             </ul>
         </li>-->
         <!--R4 ระบบจัดซื้อ-->
+        
+        <!--R7 ค่าใช้จ่ายประจำวัน-->
+        <li class="nav-item <?= $_SESSION["nav_main_exp"] ?>">
+            <a href="exp_daily.php" class="nav-link ">
+                <i class="fa fa-shopping-cart"></i>
+                <span class="title">R7. <?= $_SESSION[exp] ?></span>
+                <span class="selected"></span>
+            </a>
+            <!--<a href="javascript:;" class="nav-link nav-toggle">
+                <i class="fa fa-shopping-cart"></i>
+                <span class="title">R7. <?= $_SESSION[exp] ?></span>
+                <span class="selected"></span>
+            </a>-->
+            <!--<ul class="sub-menu">
+                <li class="nav-item  <?= $_SESSION["nav_sub_exp_daily"] ?>">
+                    <a href="exp_daily.php" class="nav-link ">
+                        <span class="title"><?= $_SESSION[exp_create_daily] ?></span>
+                        <span class="selected"></span>
+                        <span class="badge badge-success" ></span>
+                    </a>
+                </li>
+                
+            </ul>-->
+        </li>
+        <!--R7 ค่าใช้จ่ายประจำวัน-->
 
 
 

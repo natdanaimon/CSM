@@ -42,7 +42,7 @@ class createController {
         include '../../common/Utility.php';
         include '../../common/Logs.php';
         include '../../common/upload.php';
-        include '../../service/po/createService.php';
+        include '../../service/exp/createService.php';
     }
 
     public function dataTable() {
@@ -174,11 +174,11 @@ class createController {
         $return2003 = $_SESSION['cd_2003'];
         $return2097 = $_SESSION['cd_2097'];
         $util = new Utility();
-        if ($util->isEmpty($info[s_po_spare_ref])) {
-            $return2099 = eregi_replace("field", $_SESSION['tb_po_spare_refno'], $return2099);
+        if ($util->isEmpty($info[s_po_daily_ref])) {
+            $return2099 = eregi_replace("field", $_SESSION['tb_po_daily_refno'], $return2099);
             echo $return2099;
-        }  else if ($util->isEmpty($info[d_spare_order])) {
-            $return2099 = eregi_replace("field", $_SESSION['tb_po_spare_orderdate'], $return2099);
+        }  else if ($util->isEmpty($info[d_daily_order])) {
+            $return2099 = eregi_replace("field", $_SESSION['tb_po_daily_orderdate'], $return2099);
             echo $return2099;
 
         } 

@@ -15,7 +15,7 @@ function getDDLPartnercomp() {
                 var txt_status = (language == "th" ? item.text : item.text);
                 htmlOption += "<option value='" + item.id + "'>" + txt_status + "</option>";
             });
-            $("#i_spare_shop").html(htmlOption);
+            $("#i_daily_shop").html(htmlOption);
 
             getDDLInsuranceType();
 
@@ -43,7 +43,7 @@ function getDDLEmployee() {
                 var txt_status = (language == "th" ? item.text : item.text);
                 htmlOption += "<option value='" + item.id + "'>" + txt_status + "</option>";
             });
-            $("#i_spare_receive").html(htmlOption);
+            $("#i_daily_receive").html(htmlOption);
 
             getDDLInsuranceType();
 
@@ -421,7 +421,7 @@ function edit() {
     $.ajax({
         type: 'GET',
  
-        url: 'controller/po/createController.php?func=getInfo&id=' + keyEdit,
+        url: 'controller/exp/createController.php?func=getInfo&id=' + keyEdit,
         beforeSend: function() {
             //$('#se-pre-con').fadeIn(100);
         },
@@ -429,11 +429,11 @@ function edit() {
             var res = JSON.parse(data);
             $.each(res, function(i, item) {
                 debugger;
-                $("#s_po_spare_ref").val(item.s_po_spare_ref);
-                $("#d_spare_order").val(item.d_spare_order);
-                $("#i_spare_shop").val(item.i_spare_shop);
-                $("#i_spare_receive").val(item.i_spare_receive);
-                $("#d_spare_receive").val(item.d_spare_receive);
+                $("#s_po_daily_ref").val(item.s_po_daily_ref);
+                $("#d_daily_order").val(item.d_daily_order);
+                $("#i_daily_shop").val(item.i_daily_shop);
+                $("#i_daily_receive").val(item.i_daily_receive);
+                $("#d_daily_receive").val(item.d_daily_receive);
                 
                 $("#status").val(item.s_status);
                 
@@ -506,7 +506,7 @@ function save() {
         var formData = new FormData($(this)[0]);
         $.ajax({
             type: 'POST',
-            url: 'controller/po/createController.php',
+            url: 'controller/exp/createController.php',
             data: formData,
             cache: false,
             contentType: false,

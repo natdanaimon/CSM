@@ -3,7 +3,7 @@
 include './common/Permission.php';
 include './common/PermissionADM.php';
 include './common/FunctionCheckActive.php';
-ACTIVEPAGES(4, 3);
+ACTIVEPAGES(7, 1);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -70,11 +70,11 @@ ACTIVEPAGES(4, 3);
                         <div class="page-bar">
                             <ul class="page-breadcrumb">
                                 <li>
-                                    <span><?= $_SESSION[po] ?></span>
+                                    <span><?= $_SESSION[exp] ?></span>
                                     <i class="fa fa-circle" style="color:  #00FF00;"></i>
                                 </li>
                                 <li>
-                                    <a href="po_color.php"><?= $_SESSION[po_create_color] ?></a>
+                                    <a href="exp_daily.php"><?= $_SESSION[exp_create_daily] ?></a>
                                 </li>
                             </ul>
 
@@ -92,7 +92,7 @@ ACTIVEPAGES(4, 3);
                                     <div class="portlet-title">
                                         <div class="caption font-dark">
                                             <i class="fa fa-wrench font-dark"></i>
-                                            <span class="caption-subject bold uppercase"><?= $_SESSION[tt_mg_po_color] ?></span>
+                                            <span class="caption-subject bold uppercase"><?= $_SESSION[tt_mg_po_daily] ?></span>
                                         </div>
                                         <div class="actions">
 
@@ -106,7 +106,7 @@ ACTIVEPAGES(4, 3);
                                                                                                 </div>-->
                                                 <div class="col-md-6" align="left"  <?= $hidden ?>>
                                                     <div class="btn-group">
-                                                        <a href="po_color_createManage.php?func=add">
+                                                        <a href="exp_daily_createManage.php?func=add">
                                                             <button id="sample_editable_1_new" class="btn sbold green"> <?= $_SESSION[btn_add] ?>
                                                             </button>
                                                         </a>
@@ -223,7 +223,7 @@ ACTIVEPAGES(4, 3);
         <link href="css/notify.css" rel="stylesheet" type="text/css" />
         <link href="outbound/lightbox/css/lightbox.css" rel="stylesheet" type="text/css" />
         <script src="outbound/lightbox/js/lightbox.js" type="text/javascript"></script>
-        <script src="js/action/po/po_color.js?v=1" type="text/javascript"></script>
+        <script src="js/action/exp/exp_daily.js?v=1" type="text/javascript"></script>
         <script>
                                                             $(document).ready(function () {
                                                                 initialDataTable("TRUE");

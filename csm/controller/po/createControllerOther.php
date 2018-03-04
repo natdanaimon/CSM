@@ -51,6 +51,7 @@ class createController {
         $util = new Utility();
         if ($_dataTable != NULL) {
             foreach ($_dataTable as $key => $value) {
+                /*
                 $_dataTable[$key]['i_year'] = $service->getYear($_dataTable[$key]['s_car_code']);
                 $_dataTable[$key]['i_brand'] = $service->getBrand($_dataTable[$key]['s_car_code']);
                 $_dataTable[$key]['i_gen'] = $service->getGeneration($_dataTable[$key]['s_car_code']);
@@ -60,6 +61,7 @@ class createController {
 
                 $_dataTable[$key]['d_inbound'] = $util->DateSql2d_dmm_yyyy($_dataTable[$key]['d_inbound']);
                 $_dataTable[$key]['d_outbound_confirm'] = $util->DateSql2d_dmm_yyyy($_dataTable[$key]['d_outbound_confirm']);
+                //*/
             }
             return json_encode($_dataTable);
         } else {
@@ -123,8 +125,9 @@ class createController {
         $_dataTable = $service->getInfo($seq);
         if ($_dataTable != NULL) {
             foreach ($_dataTable as $key => $value) {
-                $_dataTable[$key]['d_other_order'] = $util->DateSql2d_dmm_yyyy($_dataTable[$key]['d_other_order']);
-                
+                /*$_dataTable[$key]['d_ins_exp'] = $util->DateSql2d_dmm_yyyy($_dataTable[$key]['d_ins_exp']);
+                $_dataTable[$key]['d_inbound'] = $util->DateSql2d_dmm_yyyy($_dataTable[$key]['d_inbound']);
+                $_dataTable[$key]['d_outbound_confirm'] = $util->DateSql2d_dmm_yyyy($_dataTable[$key]['d_outbound_confirm']);*/
             }
             return json_encode($_dataTable);
         } else {
@@ -172,28 +175,14 @@ class createController {
         $return2097 = $_SESSION['cd_2097'];
         $util = new Utility();
         if ($util->isEmpty($info[s_po_other_ref])) {
-            $return2099 = eregi_replace("field", $_SESSION['tb_po_refno'], $return2099);
+            $return2099 = eregi_replace("field", $_SESSION['tb_po_other_refno'], $return2099);
             echo $return2099;
         }  else if ($util->isEmpty($info[d_other_order])) {
-            $return2099 = eregi_replace("field", $_SESSION['tb_po_orderdate'], $return2099);
+            $return2099 = eregi_replace("field", $_SESSION['tb_po_other_orderdate'], $return2099);
             echo $return2099;
 
-        } else if ($util->isEmpty($info[s_po_other_order])) {
-            $return2099 = eregi_replace("field", $_SESSION['tb_po_order'], $return2099);
-            echo $return2099;
         } 
-        else if ($util->isEmpty($info[i_other_shop])) {
-            $return2099 = eregi_replace("field", $_SESSION['tb_po_shop'], $return2099);
-            echo $return2099;
-        } 
-        else if ($util->isEmpty($info[i_other_price])) {
-            $return2099 = eregi_replace("field", $_SESSION['tb_po_price'], $return2099);
-            echo $return2099;
-        }
-        else if ($util->isEmpty($info[i_other_amount])) {
-            $return2099 = eregi_replace("field", $_SESSION['tb_po_amount'], $return2099);
-            echo $return2099;
-        }
+        
         else {
             $intReturn = TRUE;
         }
