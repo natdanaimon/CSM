@@ -91,7 +91,7 @@ ACTIVEPAGES(4, 2);
                                 <div class="portlet light bordered">
                                     <div class="portlet-title">
                                         <div class="caption font-dark">
-                                            <i class="fa fa-wrench font-dark"></i>
+                                            <i class="fa fa-shopping-cart font-dark"></i>
                                             <span class="caption-subject bold uppercase"><?= $_SESSION[tt_mg_po_spare] ?></span>
                                         </div>
                                         <div class="actions">

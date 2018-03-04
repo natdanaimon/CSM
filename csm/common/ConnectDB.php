@@ -3,9 +3,12 @@
 class ConnectDB {
 
     protected $_host = "localhost";
-    protected $_user = "cp625764_admin";
-    protected $_pass = "P@ssw0rd1";
-    protected $_dbname = "cp625764_csm";
+    protected $_user = "root";
+    protected $_pass = "";
+    protected $_dbname = "db_csm";
+//    protected $_user = "cp625764_admin";
+//    protected $_pass = "P@ssw0rd1";
+//    protected $_dbname = "cp625764_csm";
 //    protected $_user = "cp724538_bet";
 //    protected $_pass = "Na12345678";
 //    protected $_dbname = "cp724538_bet";
@@ -54,7 +57,7 @@ class ConnectDB {
     function dbname() {
         return $this->_dbname;
     }
-    
+
     function fortest() {
         return $this->_conn;
     }

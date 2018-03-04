@@ -1561,6 +1561,11 @@
         <en>HISTORY</en>
     </detail>
     <detail>
+        <variable>tt_mg_expDaily</variable>
+        <th>จัดการข้อค่าใช้จ่ายประจำวัน</th>
+        <en>MANAGE EXPENSES-DAILY</en>
+    </detail>
+    <detail>
         <variable>tt_mg_vat</variable>
         <th>จัดการข้อมูลภาษี</th>
         <en>MANAGE VAT</en>

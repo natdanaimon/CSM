@@ -91,8 +91,8 @@ ACTIVEPAGES(7, 1);
                                 <div class="portlet light bordered">
                                     <div class="portlet-title">
                                         <div class="caption font-dark">
-                                            <i class="fa fa-wrench font-dark"></i>
-                                            <span class="caption-subject bold uppercase"><?= $_SESSION[tt_mg_po_daily] ?></span>
+                                            <i class="fa fa-pencil-square-o font-dark"></i>
+                                            <span class="caption-subject bold uppercase"><?= $_SESSION[tt_mg_expDaily] ?></span>
                                         </div>
                                         <div class="actions">
 
