@@ -90,8 +90,14 @@ switch ($info[func]) {
     case "DDLEmployee" :
         echo $controller->DDLEmployee();
         break;
+    case "DDLEmployeeDept" :
+        echo $controller->DDLEmployeeDept($info[id]);
+        break;
     case "DDLGenerationSelect" :
         echo $controller->DDLGenerationSelect($info);
+        break;
+      case "MNGetDate" :
+        echo $controller->MNGetDate($info);
         break;
 }
 
@@ -457,5 +463,53 @@ class commonController {
             return NULL;
         }
     }
+    
+    public function DDLEmployeeDept($id) {
+        $service = new commonService();
+        $_dataTable = $service->DDLEmployeeDept($id);
+        if ($_dataTable != NULL) {
+            $tmpReturn = array();
+            foreach ($_dataTable as $key => $value) {
+                $tmp = array(
+                    'id' => $_dataTable[$key]['i_emp'],
+                    'text' => $_dataTable[$key]['s_firstname'] . " " . $_dataTable[$key]['s_lastname']
+                );
+                $tmpReturn[] = $tmp;
+            }
+
+            return json_encode(array_values($tmpReturn));
+        } else {
+            return NULL;
+        }
+    }
+    
+    public function MNGetDate($info) {
+    	$total = $info[total]*1;
+    	$d_inbound = $info[d_inbound];
+
+$newDate = date("Y-m-d", strtotime($d_inbound));
+
+        $newTotal = 0;
+        $checkDate = "";
+        for($i=1; $i <= $total; $i++){
+					$d_auto_end = date("d-m-Y", strtotime($newDate."+".$i." days"));
+					$weekDay = date('w', strtotime($d_auto_end));
+					$checkDate .= " ".$weekDay;
+					if($weekDay == 0){
+						$newTotal += 2;
+					}else{
+						$newTotal++;
+					}
+					
+				}
+				
+				
+$d_auto_end = date("d-m-Y", strtotime($newDate."+".$newTotal." days"));
+
+
+        return $d_auto_end;
+    }
+
+
 
 }

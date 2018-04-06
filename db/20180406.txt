@@ -1,0 +1,122 @@
+﻿-- phpMyAdmin SQL Dump
+-- version 4.7.0
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost:3306
+-- Generation Time: Apr 06, 2018 at 10:40 AM
+-- Server version: 5.6.37
+-- PHP Version: 5.6.30
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+--
+-- Database: `cp625764_csm`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_queue`
+--
+
+CREATE TABLE `tb_queue` (
+  `i_queue` int(11) NOT NULL,
+  `ref_no` varchar(100) NOT NULL,
+  `d_auto_end` date NOT NULL,
+  `d_fix_date` date NOT NULL,
+  `i_dept_start` int(11) NOT NULL,
+  `d_create` datetime NOT NULL,
+  `d_update` datetime NOT NULL,
+  `s_create_by` varchar(50) NOT NULL,
+  `s_update_by` varchar(50) NOT NULL,
+  `s_status` varchar(10) NOT NULL,
+  `i_emcs` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_queue_dept`
+--
+
+CREATE TABLE `tb_queue_dept` (
+  `i_queue_dept` int(11) NOT NULL,
+  `i_queue` int(11) NOT NULL,
+  `i_dept_date` int(10) NOT NULL,
+  `i_dept` int(10) NOT NULL,
+  `i_dept_start` int(11) NOT NULL,
+  `d_start` date NOT NULL,
+  `d_end` date NOT NULL,
+  `d_create` datetime NOT NULL,
+  `d_update` datetime NOT NULL,
+  `s_create_by` varchar(50) NOT NULL,
+  `s_update_by` varchar(50) NOT NULL,
+  `i_status` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_queue_dept_staff`
+--
+
+CREATE TABLE `tb_queue_dept_staff` (
+  `i_queue_dept_staff` int(11) NOT NULL,
+  `i_queue_dept` int(11) NOT NULL,
+  `i_staff` int(10) NOT NULL,
+  `d_create` datetime NOT NULL,
+  `d_update` datetime NOT NULL,
+  `s_create_by` varchar(50) NOT NULL,
+  `s_update_by` varchar(50) NOT NULL,
+  `s_status` varchar(10) NOT NULL,
+  `d_start_work` date NOT NULL,
+  `d_end_work` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `tb_queue`
+--
+ALTER TABLE `tb_queue`
+  ADD PRIMARY KEY (`i_queue`),
+  ADD KEY `index_department_search` (`s_status`);
+
+--
+-- Indexes for table `tb_queue_dept`
+--
+ALTER TABLE `tb_queue_dept`
+  ADD PRIMARY KEY (`i_queue_dept`),
+  ADD KEY `index_department_search` (`i_status`);
+
+--
+-- Indexes for table `tb_queue_dept_staff`
+--
+ALTER TABLE `tb_queue_dept_staff`
+  ADD PRIMARY KEY (`i_queue_dept_staff`),
+  ADD KEY `index_department_search` (`s_status`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `tb_queue`
+--
+ALTER TABLE `tb_queue`
+  MODIFY `i_queue` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `tb_queue_dept`
+--
+ALTER TABLE `tb_queue_dept`
+  MODIFY `i_queue_dept` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `tb_queue_dept_staff`
+--
+ALTER TABLE `tb_queue_dept_staff`
+  MODIFY `i_queue_dept_staff` int(11) NOT NULL AUTO_INCREMENT;COMMIT;

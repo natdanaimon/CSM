@@ -135,7 +135,34 @@
             </ul>
         </li>
         <!--R4 ระบบจัดซื้อ-->
-        
+        <!--R5 ระบบจัดคิว-->
+        <li class="nav-item <?= $_SESSION["nav_main_queue"] ?>">
+ 
+            <a href="javascript:;" class="nav-link nav-toggle">
+                <i class="fa fa-clock-o"></i>
+                <span class="title">R5. <?= $_SESSION[queue_list] ?></span>
+                <span class="selected"></span>
+            </a>
+            <ul class="sub-menu">
+                <li class="nav-item  <?= $_SESSION["nav_sub_queue_list"] ?>">
+                    <a href="queue_list.php" class="nav-link ">
+                        <span class="title">1 <?= $_SESSION[queue_list] ?></span>
+                        <span class="selected"></span>
+                        <span class="badge badge-success" ></span>
+                    </a>
+                </li>
+                <li class="nav-item  <?= $_SESSION["nav_sub_queue_listall"] ?>">
+                    <a href="queue_listall.php" class="nav-link ">
+                        <span class="title">2 <?= $_SESSION[queue_list_all] ?></span>
+                        <span class="selected"></span>
+                        <span class="badge badge-success" ></span>
+                    </a>
+                </li>
+                
+            </ul>
+      
+        </li>
+        <!--R5 ระบบจัดคิว-->
         <!--R7 ค่าใช้จ่ายประจำวัน-->
         <li class="nav-item <?= $_SESSION["nav_main_exp"] ?>">
             <a href="exp_daily.php" class="nav-link nav-toggle">

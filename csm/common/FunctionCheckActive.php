@@ -53,6 +53,11 @@ function ACTIVEPAGES($page, $sub) {
     //csm_exp
     $_SESSION["nav_main_exp"] = "";
     $_SESSION["nav_sub_exp_daily"] = "";
+    
+    //csm_que
+    $_SESSION["nav_main_queue"] = "";
+    $_SESSION["nav_sub_queue_list"] = "";
+    $_SESSION["nav_sub_queue_listall"] = "";
 
     
     //csm_repair
@@ -118,6 +123,15 @@ function ACTIVEPAGES($page, $sub) {
             $_SESSION["nav_sub_po_other"] = " active open";
         }
     }
+    else if ($page == 5) {
+        $_SESSION["nav_main_queue"] = " active open";
+        if ($sub == 1) {
+            $_SESSION["nav_sub_queue_list"] = " active open";
+        } else if ($sub == 2) {
+            $_SESSION["nav_sub_queue_listall"] = " active open";
+        }
+    }
+    
     else if ($page == 7) {
         $_SESSION["nav_main_exp"] = " active open";
         if ($sub == 1) {

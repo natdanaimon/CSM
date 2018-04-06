@@ -993,9 +993,36 @@
         <th>บริหารจัดการค่าใช้จ่ายประจำวัน</th>
         <en>Expenses-Daily</en>
     </detail>
+    <detail>
+        <variable>queue_list</variable>
+        <th>บริหารจัดการคิวงาน</th>
+        <en>Manage Queue</en>
+    </detail>
+    <detail>
+        <variable>queue_create</variable>
+        <th>บริหารจัดการคิวงาน</th>
+        <en>Queue-Create</en>
+    </detail>
+    
+    <detail>
+        <variable>queue_list_all</variable>
+        <th>คิวงานทั้งหมด</th>
+        <en>All Queue</en>
+    </detail>
     
     
     <!--  Menu -->
+    
+    
+    <!--  Queue -->
+    
+    <detail>
+        <variable>tb_queue_refno</variable>
+        <th>REF NO</th>
+        <en>REF NO</en>
+    </detail>
+    <!--  Queue -->
+
     
     
     <!--  footer  -->

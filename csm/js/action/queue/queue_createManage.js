@@ -1,3 +1,80 @@
+function searchRef(){
+	var s_queue_ref = $('#s_queue_ref').val();
+	if(s_queue_ref.length > 6){
+
+	$.ajax({
+        type: 'GET',
+        url: 'controller/queue/createController.php?func=getInfoRef&id=' + s_queue_ref,
+        beforeSend: function() {
+            //$('#se-pre-con').fadeIn(100);
+        },
+        success: function(data) {
+           
+   //alert(data)        
+if(data){
+	
+$('#btn_save').prop('disabled', false);
+            var res = JSON.parse(data);
+            
+$.each(res, function(i, item) { 
+ 
+                edit(item.i_cust_car);
+
+            });
+}else{
+	
+ //edit(0)
+	$.notify("Not found Ref.no "+s_queue_ref, "error");
+	$('#btn_save').prop('disabled', true);
+}
+							
+        },
+        error: function(data) {
+            //getDDLInsuranceType();
+            //alert(0)
+        }
+
+    });
+	}
+}
+
+
+
+
+
+function getDateTotal() {
+						var total = 0;
+
+				    $(".i_dept_date").each(function() {
+				        if (!isNaN(this.value) && this.value.length != 0) {
+				            total += parseFloat(this.value);
+				        }
+				    });
+
+						$('#total_date').val(total);
+						var  d_inbound = $('#d_inbound').val();
+				$.ajax({
+        type: 'GET',
+        url: 'controller/commonController.php?func=MNGetDate',
+        data : {d_inbound : d_inbound , total:total},
+        beforeSend: function () {
+            //$('#se-pre-con').fadeIn(100);
+        },
+        success: function (data) {
+            $("#d_auto_end").val(data);
+
+        },
+        error: function (data) {
+
+        }
+
+    });
+						
+						
+	
+}
+
+
 function getDDLStatus() {
     $.ajax({
         type: 'GET',
@@ -626,7 +703,8 @@ function getDDLGenSelectEdit(brandCode) {
     });
 }
 
-function edit() {
+
+function edit(keyEdit) {
     $.ajax({
         type: 'GET',
         url: 'controller/repair/checkController.php?func=getInfo&id=' + keyEdit,
@@ -645,11 +723,12 @@ function edit() {
                 editCustomer(item.i_customer);
 
                 editCheckBoxMain(item.ref_no);
-                editCheckBoxOther(item.ref_no);
+                //editCheckBoxOther(item.ref_no);
 
                 $("#i_ins_comp").val(item.i_ins_comp).trigger('change');
                 $("#d_inbound").val(item.d_inbound);
                 $("#d_outbound_confirm").val(item.d_outbound_confirm);
+                $("#d_auto_end").val(item.d_outbound_confirm);
 
                 $("#s_pay_type").val(item.s_pay_type);
                 $("#i_dmg").val((item.i_dmg == "0" ? "" : item.i_dmg));
@@ -689,8 +768,77 @@ function edit() {
     });
 }
 
+var $datatableComment = $('#datatable-comment');
+
+function initialDataTable(first) {
+    var ref_no = $('#ref_no').val();
+    $.ajax({
+        type: 'GET',
+        url: 'controller/repair/commentController.php?func=dataTable&ref_no=' + ref_no,
+        beforeSend: function () {
+            $('#se-pre-con').fadeIn(100);
+        },
+        success: function (data) {
+            debugger;
+            if (data == '') {
+                var datatable = $datatableComment.dataTable().api();
+                $('.dataTables_empty').remove();
+                datatable.clear();
+                datatable.draw();
+                return;
+            }
+            var res = JSON.parse(data);
+            var JsonData = [];
+            $.each(res, function (i, item) {
 
 
+                var refno = item.ref_no;
+                var col_comment = item.s_comment + " : " + item.d_create;
+
+                var col_delete = "";
+                col_delete += '<a href="' + (disable != "" ? '#' : 'javascript:Confirm(\'' + item.i_comment + '\',\'delete\');') + '" style="width:30px;height:30px" class="btn btn-circle btn-icon-only red" ' + disable + '>';
+                col_delete += ' <i class="fa fa-archive" ></i>';
+                col_delete += '</a>';
+
+
+                var addRow = [
+                    col_delete,
+                    col_comment
+                ]
+
+                JsonData.push(addRow);
+
+            });
+            if (first == "TRUE") {
+                $datatableComment.dataTable({
+                    data: JsonData,
+                    order: [
+//                        [1, 'desc'],
+//                        [11, 'asc']
+                    ],
+                    columnDefs: [
+                        {"orderable": false, "targets": 0},
+                        {"orderable": false, "targets": 1}
+                    ]
+                });
+            } else {
+
+                var datatable = $datatableComment.dataTable().api();
+                $('.dataTables_empty').remove();
+                datatable.clear();
+                datatable.rows.add(JsonData);
+                datatable.draw();
+            }
+
+        },
+        error: function (data) {
+
+        }
+
+    });
+}
+
+ 
 function editCustomer(id) {
 
     $.ajax({
@@ -865,32 +1013,26 @@ function editCheckBoxOther(ref_no) {
     });
 }
 
-function setValSelected(index, val) {
-    var tmp = ((val != null && val != '') ? 'Y' : '')
-    if (tmp == 'Y') {
-        $('input:checkbox[id="i_repair_subitem_' + index + '"]').attr('checked', 'Y');
-        $('#imgs_' + index).attr('style', 'display:block;');
-    }
 
-}
 
 
 function save() {
-    $('#form-action').submit(function (e) {
+    
+    $('#form-action').submit(function(e) {
         e.preventDefault();
         console.log($(this).serialize());
         var formData = new FormData($(this)[0]);
         $.ajax({
             type: 'POST',
-            url: 'controller/repair/checkController.php',
+            url: 'controller/queue/createController.php',
             data: formData,
             cache: false,
             contentType: false,
             processData: false,
-            beforeSend: function () {
+            beforeSend: function() {
                 $('#se-pre-con').fadeIn(100);
             },
-            success: function (data) {
+            success: function(data) {
                 var res = data.split(",");
                 if (res[0] == "0000") {
                     var errCode = "Code (" + res[0] + ") : " + res[1];
@@ -904,11 +1046,11 @@ function save() {
                 }
 
                 notification();
-                $('#form-action').each(function () {
+                $('#form-action').each(function() {
                     setTimeout(reloadTime, 1000);
                 });
             },
-            error: function (data) {
+            error: function(data) {
 
             }
         });
@@ -1023,178 +1165,7 @@ function radio_type(setSelected) {
 }
 
 
+
 function setRadio(i) {
     $("#i_ins_type").val(i);
 }
-
-
-function addComment() {
-    var ref_no = $('#ref_no').val();
-    var s_comment = $('#s_comment').val();
-    $.ajax({
-        type: 'GET',
-        url: 'controller/repair/commentController.php?func=comment&ref_no=' + ref_no + "&s_comment=" + s_comment,
-        cache: false,
-        contentType: false,
-        processData: false,
-        beforeSend: function () {
-            $('#se-pre-con').fadeIn(100);
-        },
-        success: function (data) {
-            var res = data.split(",");
-            if (res[0] == "0000") {
-                var errCode = "Code (" + res[0] + ") : " + res[1];
-                $.notify(errCode, "success");
-                $('#s_comment').val('');
-                initialDataTable("FALSE");
-            } else {
-                var errCode = "Code (" + res[0] + ") : " + res[1];
-                $.notify(errCode, "error");
-            }
-            $('#se-pre-con').delay(100).fadeOut();
-
-            return;
-        },
-        error: function (data) {
-
-        }
-    });
-}
-
-
-
-var $datatableComment = $('#datatable-comment');
-
-function initialDataTable(first) {
-    var ref_no = $('#ref_no').val();
-    $.ajax({
-        type: 'GET',
-        url: 'controller/repair/commentController.php?func=dataTable&ref_no=' + ref_no,
-        beforeSend: function () {
-            $('#se-pre-con').fadeIn(100);
-        },
-        success: function (data) {
-            debugger;
-            if (data == '') {
-                var datatable = $datatableComment.dataTable().api();
-                $('.dataTables_empty').remove();
-                datatable.clear();
-                datatable.draw();
-                return;
-            }
-            var res = JSON.parse(data);
-            var JsonData = [];
-            $.each(res, function (i, item) {
-
-
-                var refno = item.ref_no;
-                var col_comment = item.s_comment + " : " + item.d_create;
-
-                var col_delete = "";
-                col_delete += '<a href="' + (disable != "" ? '#' : 'javascript:Confirm(\'' + item.i_comment + '\',\'delete\');') + '" style="width:30px;height:30px" class="btn btn-circle btn-icon-only red" ' + disable + '>';
-                col_delete += ' <i class="fa fa-archive" ></i>';
-                col_delete += '</a>';
-
-
-                var addRow = [
-                    col_delete,
-                    col_comment
-                ]
-
-                JsonData.push(addRow);
-
-            });
-            if (first == "TRUE") {
-                $datatableComment.dataTable({
-                    data: JsonData,
-                    order: [
-//                        [1, 'desc'],
-//                        [11, 'asc']
-                    ],
-                    columnDefs: [
-                        {"orderable": false, "targets": 0},
-                        {"orderable": false, "targets": 1}
-                    ]
-                });
-            } else {
-
-                var datatable = $datatableComment.dataTable().api();
-                $('.dataTables_empty').remove();
-                datatable.clear();
-                datatable.rows.add(JsonData);
-                datatable.draw();
-            }
-
-        },
-        error: function (data) {
-
-        }
-
-    });
-}
-
-
-
-function Confirm(txt, func) {
-    $('#se-pre-con').fadeIn(100);
-    $.notify.addStyle('foo', {
-        html: "<div>" +
-                "<div class='clearfix'>" +
-                "<div class='title' data-notify-html='title'/>" +
-                "<div class='buttons'>" +
-                "<input type='hidden' id='id_comment' value='" + txt + "' />" +
-                "<input type='hidden' id='func' value='" + func + "' />" +
-                "<button class='notify-no btn red'>" + cancel + "</button>" +
-                "<button class='notify-yes btn green'>" + yes + "</button>" +
-                "</div>" +
-                "</div>" +
-                "</div>"
-    });
-
-    $.notify({
-        title: titleCancel,
-        button: 'Confirm'
-    }, {
-        style: 'foo',
-        autoHide: false,
-        clickToHide: false
-    });
-
-}
-$(document).on('click', '.notifyjs-foo-base .notify-no', function () {
-    $('#se-pre-con').delay(100).fadeOut();
-    $(this).trigger('notify-hide');
-});
-$(document).on('click', '.notifyjs-foo-base .notify-yes', function () {
-    $(this).trigger('notify-hide');
-    var id = $("#id_comment").val();
-
-    $.ajax({
-        type: 'GET',
-        url: 'controller/repair/commentController.php?func=delete&id=' + id,
-        beforeSend: function () {
-            $('#se-pre-con').fadeIn(100);
-        },
-        success: function (data) {
-
-            var res = data.split(",");
-            if (res[0] == "0000") {
-                var errCode = "Code (" + res[0] + ") : " + res[1];
-                $.notify(errCode, "success");
-
-            } else {
-                var errCode = "Code (" + res[0] + ") : " + res[1];
-                $.notify(errCode, "error");
-
-            }
-            initialDataTable("FALSE");
-            $('#se-pre-con').delay(100).fadeOut();
-
-        },
-        error: function (data) {
-
-        }
-
-    });
-
-});
