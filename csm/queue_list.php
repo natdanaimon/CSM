@@ -85,6 +85,87 @@ ACTIVEPAGES(5, 1);
                             <br/>
                         </div>
 
+                        
+                        <!------------ CONTENT R3-1  ------------>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                                <div class="portlet light bordered">
+                                    <div class="portlet-title">
+                                        <div class="caption font-dark">
+                                            <i class="fa fa-wrench font-dark"></i>
+                                            <span class="caption-subject bold uppercase"><?= $_SESSION[queue_list] ?></span>
+                                        </div>
+                                        <div class="actions">
+
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body">
+                                        <div class="table-toolbar" >
+                                            <div class="row">
+                                                <!--                                                <div class="col-md-6">
+                                                
+                                                                                                </div>-->
+                                                <div class="col-md-6" align="left"  <?= $hidden ?>>
+                                                    <div class="btn-group" style="display:none;">
+                                                        <a href="re_createManage.php?func=add">
+                                                            <button id="sample_editable_1_new" class="btn sbold green"> <?= $_SESSION[btn_add] ?>
+                                                            </button>
+                                                        </a>
+                                                    </div>
+                                                    <div class="btn-group">
+                                                        <button id="sample_editable_1_new" class="btn sbold red" onclick="deleteAll()"> <?= $_SESSION[btn_cancel_all] ?>
+
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <table class="table table-striped table-bordered table-hover table-checkable order-column dt-responsive" id="datatable-1">
+                                            <thead>
+                                                <tr>
+                                                    <th style="padding-left: 30px;width: 30px" class="no-sort">
+                                                        <!--                                                        <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
+                                                                                                                    <input type="checkbox" class="group-checkable" data-set="#datatable .checkboxes" id="select_all" />
+                                                                                                                    <span></span>
+                                                                                                                </label>-->
+                                                        <span class="md-checkbox has-success">
+                                                            <input type="checkbox" id="checkbox14" name="checkbox14" class="md-check">
+                                                            <label for="checkbox14">
+                                                                <span class="inc"></span>
+                                                                <span class="check"></span>
+                                                                <span class="box"></span> </label>
+                                                        </span>
+                                                    </th>
+                                                    <th  class="all"  style="width: 80px">  <?= $_SESSION[tb_co_refno] ?> </th>
+                                                    <th  class="all">  <?= $_SESSION[tb_co_custname] ?> </th>
+                                                    <th  class="all">  <?= $_SESSION[tb_co_license] ?> </th>
+
+                                                    <th class="none"> <span style="color:red"><?= $_SESSION[tb_co_caryear] ?></span> </th>
+                                                    <th class="none"> <span style="color:red"><?= $_SESSION[tb_co_carbrand] ?></span> </th>
+                                                    <th class="none"> <span style="color:red"><?= $_SESSION[tb_co_cargeneration] ?></span> </th>
+                                                    <!--<th class="none"> <span style="color:red"><?= $_SESSION[tb_co_carsub] ?></span> </th>-->
+
+                                                    <th class="none"> <span style="color:red"><?= $_SESSION[tb_co_insurance_name] ?></span> </th>
+                                                    <!--<th class="none"> <span style="color:red"><?= $_SESSION[tb_co_dmg] ?></span> </th>-->
+                                                    <th class="none"> <span style="color:red"><?= $_SESSION[tb_co_dinbound_car] ?> - <?= $_SESSION[tb_co_doutbound_car] ?></span> </th>
+
+
+                                                    <th  class="all">  <?= $_SESSION[tb_co_status] ?> </th>
+                                                    <th style="width: 40px"> <?= $_SESSION[tb_co_edit] ?> </th>
+                                                    <th style="width: 40px"> <?= $_SESSION[tb_co_cancel] ?></th>
+                                            </thead>
+                                            <tbody>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- END EXAMPLE TABLE PORTLET-->
+                            </div>
+                        </div>
+                        <!------------ CONTENT R3-1 ------------>                                               
+                        
                         <!------------ CONTENT ------------>
                         <div class="row">
                             <div class="col-md-12">
@@ -100,7 +181,7 @@ ACTIVEPAGES(5, 1);
                                         </div>
                                     </div>
                                     <div class="portlet-body">
-                                        <div class="table-toolbar">
+                                        <div class="table-toolbar" style="display:none;">
                                             <div class="row">
                                                 <!--                                                <div class="col-md-6">
                                                 
@@ -154,7 +235,8 @@ ACTIVEPAGES(5, 1);
         $strSql .= " LEFT JOIN  tb_car_generation cg ON  c.s_gen_code = cg.s_gen_code";
         $strSql .= " where  d.i_dept_date > 0";
         $strSql .= " and    d.i_dept = '".$data[i_dept]."' ";
-        $strSql .= " and    d.i_status = '0' ";
+        $strSql .= " and    d.i_active = '1' ";
+        $strSql .= " ORDER BY d_start";
         $_datalv2 = $db->Search_Data_FormatJson($strSql);
         $db->close_conn();
                                       
@@ -213,7 +295,7 @@ ACTIVEPAGES(5, 1);
                                         $i=0;
                                         foreach($_datalv2 as $datalv2){
                                         ?>
-                                        <tr>
+                                        <tr id = "<?=$datalv2['i_queue_dept'];?>">
                                         	<td>
                                         		<?=$datalv2['ref_no'];?>
                                         	</td>
@@ -241,7 +323,7 @@ ACTIVEPAGES(5, 1);
                                         	<?=$datalv3[s_firstname];?> <?=$datalv3[s_lastname];?> <br />
                                         	<?php $sss++; } ?>
                                         	
-                                        		<button data-toggle="modal" href="#staffManage" data-id="<?=$datalv2['i_queue_dept'];?>" data-dept="<?=$datalv2['i_dept'];?>" data-d_start_work="<?=$datalv2['d_start'];?>" class="btn btn-primary btn-xs getInfoStaff">เพิ่มช่าง</button>
+                                        		<button data-toggle="modal" href="#staffManage" data-id="<?=$datalv2['i_queue_dept'];?>" data-i_dept="<?=$datalv2['i_dept'];?>" data-d_start_work="<?=$datalv2['d_start'];?>" class="btn btn-primary btn-xs getInfoStaff">เพิ่มช่าง</button>
                                         	</td>
                                         	<td>
                                         	<?php
@@ -253,7 +335,7 @@ ACTIVEPAGES(5, 1);
 																						$btn_style = "btn-warning  btn-block btnstatus reject";
 																					}
                                         	?>
-                                        		<button class="btn <?=$btn_style;?> btn-xs" data-id="<?=$datalv2['i_queue_dept'];?>" ><?=$txt_status;?></button>
+                                        		<button class="btn <?=$btn_style;?> btn-xs" data-id="<?=$datalv2['i_queue_dept'];?>" data-i_queue = "<?=$datalv2['i_queue'];?>" data-ref="<?=$datalv2['ref_no'];?>" ><?=$txt_status;?></button>
                                         	</td>
                                         </tr>
                                         <?php } ?>
@@ -343,7 +425,7 @@ ACTIVEPAGES(5, 1);
         <script src="js/action/queue/queue_list.js?v=1" type="text/javascript"></script>
         <script>
                                                             $(document).ready(function () {
-                                                                //initialDataTable("TRUE");
+                                                                initialDataTable_1("TRUE");
                                                                 unloading();
                                                             });
         </script>

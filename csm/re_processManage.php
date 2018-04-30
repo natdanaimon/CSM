@@ -925,7 +925,7 @@ $disableElement = 'disabled="disable"';
                                             <div class="form-body">
 
                                                 <div class="form-group form-md-line-input has-success " style="margin-bottom: 0px !important;">
-                                                    <select class="form-control edited bold" id="status" name="status" style="color:black;font-weight:bold;">
+                                                    <select class="form-control edited bold" id="status" name="status" disabled="disabled" style="color:black;font-weight:bold;">
                                                         <option value="-1"></option>
                                                     </select>
                                                     <label for="form_control_1"><?= $_SESSION[label_status] ?></label>

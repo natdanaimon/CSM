@@ -922,13 +922,17 @@
     </detail>
     <detail>
         <variable>re_check</variable>
-        <th>ตรวจสภาพรถก่อนนำซ่อม</th>
-        <en>Check Repair Management</en>
+        <!--<th>ตรวจสภาพรถก่อนนำซ่อม</th>
+        <en>Check Repair Management</en>-->
+		<th>รอคิวเข้าซ่อม</th>
+        <en>Queue Repair Management</en>
     </detail>
     <detail>
         <variable>re_process</variable>
-        <th>ขั้นตอนกำลังดำเนินการ</th>
-        <en>Process Repair Management</en>
+        <!--<th>ขั้นตอนกำลังดำเนินการ</th>
+        <en>Process Repair Management</en>-->
+		<th>รูปภาพการดำเนินงาน</th>
+        <en>Process Repair Image</en>
     </detail>
     <detail>
         <variable>re_success</variable>
@@ -2210,6 +2214,25 @@
     
     <!-- Response Code -->
     
+
+    <!-- New lang -->
+    <detail>
+        <variable>lb_re_nameclaim</variable>
+        <th>ชื่อพนักงานเคลม</th>
+        <en>Claim name</en> 
+    </detail>
+    <detail>
+        <variable>lb_re_sendcar</variable>
+        <th>วันนัดส่งรถ</th>
+        <en>Car send date</en> 
+    </detail>
+    <detail>
+        <variable>lb_re_emcs</variable>
+        <th> ราคาในระบบ EMCS/ราคาตามใบเสนอราคา</th>
+        <en>EMCS</en> 
+    </detail>
+	
+	
     
 	
 	

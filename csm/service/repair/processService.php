@@ -525,8 +525,8 @@ class processService {
 //        $strSql .= "d_outbound_confirm = '" . $util->DateSQL($info[d_outbound_confirm]) . "', ";
 
         $strSql .= "d_update = " . $db->Sysdate(TRUE) . ", ";
-        $strSql .= "s_update_by = '$_SESSION[username]', ";
-        $strSql .= "s_status = '$info[status]' ";
+        $strSql .= "s_update_by = '$_SESSION[username]'";
+ //       $strSql .= "s_status = '$info[status]' ";
         $strSql .= "where i_cust_car = $info[id] ";
 
         return $strSql;

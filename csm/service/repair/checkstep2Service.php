@@ -2,7 +2,7 @@
 
 @session_start();
 
-class checkService {
+class checkstep2Service {
 
     function dataTable() {
         $db = new ConnectDB();
@@ -248,52 +248,34 @@ class checkService {
 //        return $reslut;
     }
 
-    function edit($db, $info, $arrOld) {
-        $ref_no = $info[ref_no];
-        $strSqlDelete = "DELETE FROM tb_check_repair where ref_no = '$info[ref_no]'";
-//        $strSqlDelete2 = "DELETE FROM tb_check_repair_other where ref_no = '$info[ref_no]'";
-        if (count($arrOld) > 0) {
-            $util = new Utility();
-            $query = $util->arr2strQuery($arrOld, "I");
-            $strSqlDelete = $strSqlDelete . " and i_repair_item not in ($query) ";
-        }
+    function edit($db, $info) {
+         $util = new Utility();
+        $strSql = "";
+        $strSql .= "update tb_customer_car ";
+        $strSql .= "set  ";
+//        $strSql .= "i_customer = $info[i_customer], ";
+//        $strSql .= "s_car_code = '$info[s_car_code]', ";
+//        $strSql .= "s_license = '$info[s_license]', ";
+//        $strSql .= "d_ins_exp = '" . $util->DateSQL($info[d_ins_exp]) . "', ";
+//        $strSql .= "i_ins_type = $info[i_ins_type], ";
+//        $strSql .= "s_type_capital = '$info[s_type_capital]', ";
+//        $strSql .= "s_pay_type = '$info[s_pay_type]', ";
+//        $strSql .= "i_ins_comp = $info[i_ins_comp], ";
+        $strSql .= "i_dmg = $info[i_dmg], ";
+        $strSql .= "d_sendcar = '" . $util->DateSQL($info[d_sendcar]) . "', ";
+        $strSql .= "i_emcs = '" . $info[i_emcs] . "', ";
+//        $strSql .= "d_outbound_confirm = '" . $util->DateSQL($info[d_outbound_confirm]) . "', ";
 
-
-        $arr = array();
-        array_push($arr, array("query" => "$strSqlDelete"));
-//        array_push($arr, array("query" => "$strSqlDelete2"));
-
-        foreach ($info as $value) {
-            $key = key($info);
-            if ("i_repair_item_" == substr($key, 0, 14) && $info[$key] != '') {
-                $keyIndex = substr($key, 14);
-                $keyMain = substr($key, 1, strlen($key));
-                $i_repair = $keyIndex;
-                $remark = $info['s' . $keyMain];
-                $indexFile = 'file_' . $keyIndex;
-                $filename = '';
-                if ($_FILES[$indexFile] != NULL && $_FILES[$indexFile]['error'] == 0) {
-                    $temp = explode(".", $_FILES[$indexFile]['name']);
-                    $filename = $info[ref_no] . '_' . $keyIndex . '.' . end($temp);
-                }
-
-                if ($filename != '') {
-                    $sql = $this->createStatement($db, $ref_no, $i_repair, $filename, $remark);
-                    array_push($arr, array("query" => "$sql"));
-                }
-            }
-            next($info);
-        }
-        array_push($arr, array("query" => $this->sqlUpdateMain($db, $info)));
-
-        if ($this->checkDuppSub($db, $info)) {
-            array_push($arr, array("query" => $this->sqlUpdateCheckOther($db, $info)));
-        } else {
-
-            array_push($arr, array("query" => $this->createStatementSub($db, $info)));
-        }
+        $strSql .= "d_update = " . $db->Sysdate(TRUE) . ", ";
+        $strSql .= "s_update_by = '$_SESSION[username]', ";
+        $strSql .= "s_status = 'RX' ";
+//        $strSql .= "s_status = '$info[status]' ";
+        $strSql .= "where i_cust_car = $info[id] ";
+        $arr = array(
+            array("query" => "$strSql")
+        );
         $reslut = $db->insert_for_upadte($arr);
-        return $reslut;
+        return $info[id];
     }
 
     function checkDuppSub($db, $info) {
@@ -496,13 +478,14 @@ class checkService {
 //        $strSql .= "s_type_capital = '$info[s_type_capital]', ";
 //        $strSql .= "s_pay_type = '$info[s_pay_type]', ";
 //        $strSql .= "i_ins_comp = $info[i_ins_comp], ";
-//        $strSql .= "i_dmg = $info[i_dmg], ";
-//        $strSql .= "d_inbound = '" . $util->DateSQL($info[d_inbound]) . "', ";
+        $strSql .= "i_dmg = $info[i_dmg], ";
+        $strSql .= "d_sendcar = '" . $util->DateSQL($info[d_sendcar]) . "', ";
+        $strSql .= "i_emcs = '" . $info[i_emcs] . "', ";
 //        $strSql .= "d_outbound_confirm = '" . $util->DateSQL($info[d_outbound_confirm]) . "', ";
 
         $strSql .= "d_update = " . $db->Sysdate(TRUE) . ", ";
-        $strSql .= "s_update_by = '$_SESSION[username]', ";
-        $strSql .= "s_status = 'R3' ";
+        $strSql .= "s_update_by = '$_SESSION[username]' ";
+        //$strSql .= "s_status = 'R3' ";
 //        $strSql .= "s_status = '$info[status]' ";
         $strSql .= "where i_cust_car = $info[id] ";
 

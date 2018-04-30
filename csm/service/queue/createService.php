@@ -40,6 +40,43 @@ class createService {
         return $_data;
     }
 
+    function dataTableR10() {
+        $db = new ConnectDB();
+        $strSql = " select *, i_year , '' as i_brand , '' as i_gen , '' as i_sub from ";
+        $strSql .= " (";
+        $strSql .= " select u.*, s.s_detail_th status_th, s.s_detail_en status_en";
+        $strSql .= " from tb_customer_car u, tb_status s";
+        $strSql .= " where u.s_status = s.s_status";
+        $strSql .= " and s.s_type = 'REPAIR'";
+        $strSql .= " and s.s_status ='RX' ";
+        $strSql .= " ) tb_cust ,";
+        $strSql .= " (";
+        $strSql .= " select u.i_customer,concat(t.s_title_th, ' ', u.s_firstname, ' ', u.s_lastname) s_fullname,u.s_phone_1";
+        $strSql .= " from tb_customer u, tb_status s, tb_title t";
+        $strSql .= " where u.s_status = s.s_status";
+        $strSql .= " and s.s_type = 'ACTIVE' and u.i_title = t.i_title ";
+        $strSql .= " ) customer";
+        $strSql .= " WHERE tb_cust.i_customer = customer.i_customer ";
+        $strSql .= " order by tb_cust.d_create desc , tb_cust.s_status desc ";
+        $_data = $db->Search_Data_FormatJson($strSql);
+        $db->close_conn();
+        return $_data;
+
+        
+        $_data = $db->Search_Data_FormatJson($strSql);
+        $db->close_conn();
+        return $_data;
+
+        //return $strSql;
+
+
+
+    }
+
+
+
+
+
     function dataTableKey($id) {
         $db = new ConnectDB();
         $strSql = " select *, '' as i_year , '' as i_brand , '' as i_gen , '' as i_sub from ";
@@ -214,8 +251,8 @@ class createService {
         $strSql .= "    ref_no, ";
         $strSql .= "    d_auto_end, ";
         $strSql .= "    d_fix_date, ";
-        $strSql .= "    i_dept_start, ";
-        $strSql .= "    i_emcs, ";
+        //$strSql .= "    i_dept_start, ";
+        //$strSql .= "    i_emcs, ";
         $strSql .= "    d_create, ";
         $strSql .= "    d_update, ";
         $strSql .= "    s_create_by, ";
@@ -224,10 +261,10 @@ class createService {
         $strSql .= "  ) ";
         $strSql .= "VALUES( ";
         $strSql .= "  '$info[s_queue_ref]', ";
-        $strSql .= "  '" . $util->DateSQL($info[d_auto_end]) . "', ";
+        $strSql .= "  '" . $util->DateSQL($info[d_sendcar]) . "', ";
         $strSql .= "  '" . $util->DateSQL($info[d_fix_date]) . "', ";
-        $strSql .= "  '$info[i_dept_start]', ";
-        $strSql .= "  '$info[i_emcs]', ";
+        //$strSql .= "  '$info[i_dept_start]', ";
+        //$strSql .= "  '$info[i_emcs]', ";
         $strSql .= "  " . $db->Sysdate(TRUE) . ", ";
         $strSql .= " " . $db->Sysdate(TRUE) . ", ";
         $strSql .= "  '$_SESSION[username]', ";
@@ -251,16 +288,16 @@ $newDate = date("Y-m-d", strtotime($d_inbound));
         $newTotal = 0;
         $checkDate = "";
         for($i=1; $i <= $total; $i++){
-					$d_end_dpet_start = date("d-m-Y", strtotime($newDate."+".$i." days"));
+					$d_end_dpet_start = date("d-m-Y", strtotime($newDate."-".$i." days"));
 					$weekDay = date('w', strtotime($d_end_dpet_start));
 					$checkDate .= " ".$weekDay;
 					if($weekDay == 0){
-						$newTotal += 2;
+						$newTotal -= 2;
 					}else{
-						$newTotal++;
+						$newTotal--;
 					}
 				}	
-$d_end_dpet_start = date("d-m-Y", strtotime($newDate."+".$newTotal." days"));
+$d_end_dpet_start = date("d-m-Y", strtotime($newDate."-".$newTotal." days"));
 $weekDay = date('w', strtotime($d_end_dpet_start));
 $newDate = date("Y-m-d", strtotime($d_end_dpet_start));
 					if($weekDay == 0){
@@ -268,7 +305,8 @@ $newDate = date("Y-m-d", strtotime($d_end_dpet_start));
 					}else{
 						$newTotal = 1;
 					}
-$d_inbound_dept_start_loop =  date("d-m-Y", strtotime($newDate."+".$newTotal." days")); 
+//$d_inbound_dept_start_loop =  date("d-m-Y", strtotime($newDate."-".$newTotal." days")); 
+$d_inbound_dept_start_loop =  $info[d_sendcar]; 
 
        
         $strSql = "";
@@ -299,7 +337,7 @@ $d_inbound_dept_start_loop =  date("d-m-Y", strtotime($newDate."+".$newTotal." d
         $arr = array(
             array("query" => "$strSql")
         );
-        $resluts = $db->insert_for_upadte($arr);
+        //$resluts = $db->insert_for_upadte($arr);
         ////////////////////////////// Start Dept
         
         
@@ -307,8 +345,8 @@ $d_inbound_dept_start_loop =  date("d-m-Y", strtotime($newDate."+".$newTotal." d
         $strSql .= " from   tb_department b , tb_status s  ";
         $strSql .= " where    b.s_status =  s.s_status ";
         $strSql .= " and    s.s_type   =  'ACTIVE' ";
-        $strSql .= " and    b.i_dept   <>  '$info[i_dept_start]' ";
-        $strSql .= " order by b.i_index  ";
+        //$strSql .= " and    b.i_dept   <>  '$info[i_dept_start]' ";
+        $strSql .= " order by b.i_index desc ";
         $_data = $db->Search_Data_FormatJson($strSql);
  
         foreach($_data as $data){
@@ -327,13 +365,13 @@ $newDate = date("Y-m-d", strtotime($d_inbound));
         $newTotal = 0;
         $checkDate = "";
         for($i=1; $i <= $total; $i++){
-					$d_end_dpet_start = date("d-m-Y", strtotime($newDate."+".$i." days"));
+					$d_end_dpet_start = date("d-m-Y", strtotime($newDate."-".$i." days"));
 					$weekDay = date('w', strtotime($d_end_dpet_start));
 					$checkDate .= " ".$weekDay;
 					if($weekDay == 0){
-						$newTotal += 2;
+						$newTotal -= 2;
 					}else{
-						$newTotal++;
+						$newTotal--;
 					}
 				}	
 $d_end_dpet_start = date("d-m-Y", strtotime($newDate."+".$newTotal." days"));
@@ -344,7 +382,7 @@ $newDate = date("Y-m-d", strtotime($d_end_dpet_start));
 					}else{
 						$newTotal = 1;
 					}
-$d_inbound_dept_start_loop =  date("d-m-Y", strtotime($newDate."+".$newTotal." days")); 
+$d_inbound_dept_start_loop =  date("d-m-Y", strtotime($newDate."-".$newTotal." days")); 
 
 
         
@@ -395,7 +433,7 @@ $d_inbound_dept_start_loop =  date("d-m-Y", strtotime($newDate."+".$newTotal." d
         $strSql = "";
         $strSql .= "update tb_queue ";
         $strSql .= "set  ";
-        $strSql .= "d_auto_end = '" . $util->DateSQL($info[d_auto_end]) . "', ";
+        $strSql .= "d_auto_end = '" . $util->DateSQL($info[d_sendcar]) . "', ";
         $strSql .= "d_fix_date = '" . $util->DateSQL($info[d_fix_date]) . "', ";
         $strSql .= "i_emcs = '$info[i_emcs]', ";
         $strSql .= "i_dept_start = '$info[i_dept_start]', ";
@@ -421,17 +459,17 @@ $newDate = date("Y-m-d", strtotime($d_inbound));
         $newTotal = 0;
         $checkDate = "";
         for($i=1; $i <= $total; $i++){
-					$d_end_dpet_start = date("d-m-Y", strtotime($newDate."+".$i." days"));
+					$d_end_dpet_start = date("d-m-Y", strtotime($newDate."-".$i." days"));
 					$weekDay = date('w', strtotime($d_end_dpet_start));
 					$checkDate .= " ".$weekDay;
 					if($weekDay == 0){
-						$newTotal += 2;
+						$newTotal -= 2;
 					}else{
-						$newTotal++;
+						$newTotal--;
 					}
 				}	
 				//$newTotal = $newTotal - 1 ;
-$d_end_dpet_start = date("d-m-Y", strtotime($newDate."+".$newTotal." days"));
+$d_end_dpet_start = date("d-m-Y", strtotime($newDate."-".$newTotal." days"));
 $weekDay = date('w', strtotime($d_end_dpet_start));
 $newDate = date("Y-m-d", strtotime($d_end_dpet_start));
 					if($weekDay == 0){
@@ -439,7 +477,8 @@ $newDate = date("Y-m-d", strtotime($d_end_dpet_start));
 					}else{
 						$newTotal = 1;
 					}
-$d_inbound_dept_start_loop =  date("d-m-Y", strtotime($newDate."+".$newTotal." days")); 
+//$d_inbound_dept_start_loop =  date("d-m-Y", strtotime($newDate."-".$newTotal." days")); 
+$d_inbound_dept_start_loop =  $info[d_sendcar]; 
 
        
         $strSql = "";
@@ -454,7 +493,7 @@ $d_inbound_dept_start_loop =  date("d-m-Y", strtotime($newDate."+".$newTotal." d
         $arr = array(
             array("query" => "$strSql")
         );
-        $resluts = $db->insert_for_upadte($arr);
+        //$resluts = $db->insert_for_upadte($arr);
         
         ////////////////////////////// Start Dept
         
@@ -463,8 +502,8 @@ $d_inbound_dept_start_loop =  date("d-m-Y", strtotime($newDate."+".$newTotal." d
         $strSql .= " from   tb_department b , tb_status s  ";
         $strSql .= " where    b.s_status =  s.s_status ";
         $strSql .= " and    s.s_type   =  'ACTIVE' ";
-        $strSql .= " and    b.i_dept   <>  '$info[i_dept_start]' ";
-        $strSql .= " order by b.i_index  ";
+       // $strSql .= " and    b.i_dept   <>  '$info[i_dept_start]' ";
+        $strSql .= " order by b.i_index desc ";
         $_data = $db->Search_Data_FormatJson($strSql);
  
         foreach($_data as $data){
@@ -483,13 +522,13 @@ $newDate = date("Y-m-d", strtotime($d_inbound));
         $newTotal = 0;
         $checkDate = "";
         for($i=1; $i <= $total; $i++){
-					$d_end_dpet_start = date("d-m-Y", strtotime($newDate."+".$i." days"));
+					$d_end_dpet_start = date("d-m-Y", strtotime($newDate."-".$i." days"));
 					$weekDay = date('w', strtotime($d_end_dpet_start));
 					$checkDate .= " ".$weekDay;
 					if($weekDay == 0){
-						$newTotal += 2;
+						$newTotal -= 2;
 					}else{
-						$newTotal++;
+						$newTotal--;
 					}
 				}	
 $d_end_dpet_start = date("d-m-Y", strtotime($newDate."+".$newTotal." days"));
@@ -500,15 +539,16 @@ $newDate = date("Y-m-d", strtotime($d_end_dpet_start));
 					}else{
 						$newTotal = 1;
 					}
-$d_inbound_dept_start_loop =  date("d-m-Y", strtotime($newDate."+".$newTotal." days")); 
+$d_inbound_dept_start_loop =  date("d-m-Y", strtotime($newDate."-".$newTotal." days")); 
 
 
         
         $strSql = "";
         $strSql .= "update tb_queue_dept ";
         $strSql .= "set  ";
-        $strSql .= "d_start = '" . $util->DateSQL($d_inbound) . "', ";
-        $strSql .= "d_end = '" . $util->DateSQL($d_end_dpet_start) . "', ";
+        //$strSql .= "d_start = '" . $util->DateSQL($d_inbound) . "', ";
+        $strSql .= "d_end = '" . $util->DateSQL($d_inbound) . "', ";
+        $strSql .= "d_start = '" . $util->DateSQL($d_end_dpet_start) . "', ";
         $strSql .= "i_dept_date = '".$info[$p_i_dept_date]."', ";
         $strSql .= "d_update = " . $db->Sysdate(TRUE) . ", ";
         $strSql .= "s_update_by = '$_SESSION[username]' ";
@@ -518,7 +558,75 @@ $d_inbound_dept_start_loop =  date("d-m-Y", strtotime($newDate."+".$newTotal." d
         );
         $resluts = $db->insert_for_upadte($arr);
         
-		}
+		
+        
+
+        
+        
+        }
+
+
+
+/******************/
+ 
+        $strSql = "select b.*,s.s_detail_th status_th, s.s_detail_en status_en ";
+        $strSql .= " from   tb_department b , tb_status s  ";
+        $strSql .= " where    b.s_status =  s.s_status ";
+        $strSql .= " and    s.s_type   =  'ACTIVE' ";
+       // $strSql .= " and    b.i_dept   <>  '$info[i_dept_start]' ";
+        $strSql .= " order by b.i_index desc ";
+        $_data = $db->Search_Data_FormatJson($strSql);
+ 
+        foreach($_data as $data){
+$p_i_dept_date = "i_dept_date".$data[i_dept];
+$total = $info[$p_i_dept_date]*1;
+if($total > 0){
+$depart_start = $data[i_dept];
+}
+
+        }
+$strSql = "";
+        $strSql .= "update tb_queue ";
+        $strSql .= "set  ";
+        $strSql .= "i_dept_start = '".$depart_start."'";
+        $strSql .= "where i_queue = '$last_id' ";
+        $arr = array(
+            array("query" => "$strSql")
+        );
+        $reslut = $db->insert_for_upadte($arr);
+
+$strSql = "";
+        $strSql .= "update tb_queue_dept ";
+        $strSql .= "set  ";
+        $strSql .= "i_active = '1'";
+        $strSql .= "where i_queue = '$last_id'  and i_dept = '".$depart_start."' ";
+        $arr = array(
+            array("query" => "$strSql")
+        );
+        $reslut = $db->insert_for_upadte($arr);
+
+
+
+if($depart_start == 1){  $s_status = "R4";  }
+if($depart_start == 2){  $s_status = "R5";  }
+if($depart_start == 3){  $s_status = "R6";  }
+if($depart_start == 4){  $s_status = "R7";  }
+if($depart_start == 5){  $s_status = "R8";  }
+if($depart_start == 6){  $s_status = "R9";  }
+if($depart_start == 7){  $s_status = "R10";  }
+
+
+ $strSql = "";
+        $strSql .= "update tb_customer_car ";
+        $strSql .= "set  ";
+        $strSql .= "s_status = '".$s_status."' ";
+        $strSql .= "where ref_no = '$info[s_queue_ref]'  ";
+        $arr = array(
+            array("query" => "$strSql")
+        );
+        $reslut = $db->insert_for_upadte($arr);
+
+
         
 
         return $reslut;
@@ -532,7 +640,7 @@ $d_inbound_dept_start_loop =  date("d-m-Y", strtotime($newDate."+".$newTotal." d
     
     }
 
-		function addStaff($db, $info) {
+	function addStaff($db, $info) {
         $util = new Utility();
 
 
@@ -616,6 +724,75 @@ $d_inbound_dept_start_loop =  date("d-m-Y", strtotime($newDate."+".$newTotal." d
         $reslut = $db->insert_for_upadte($arr);
         $last_id = $info[id];
 
+        
+        if($info[i_status] == 1){
+            $active = 0;
+            $next_active = 1;
+        }else{
+            $active = 1;
+             $next_active = 0;
+        }
+ $strSql = "";
+        $strSql .= "update tb_queue_dept ";
+        $strSql .= "set  ";
+        $strSql .= "i_active= '".$active."' ";
+        $strSql .= "where i_queue_dept = $info[id] ";
+        $arr = array(
+            array("query" => "$strSql")
+        );
+        $reslut = $db->insert_for_upadte($arr);
+
+
+
+
+        $strSql = "select* ";
+        $strSql .= " from  tb_queue_dept  ";
+        $strSql .= " where    i_queue = '".$info[i_queue]."' ";
+        $strSql .= " and    i_dept <> '".$info[id]."' ";
+        $strSql .= " and    i_status <> '1' ";
+        $strSql .= " order by i_queue_dept asc ";
+        $_data = $db->Search_Data_FormatJson($strSql);
+ 
+        foreach($_data as $data){
+            $total = $data[i_dept_date]*1;
+            if($total > 0){
+            $depart_start = $data[i_dept];
+            }
+        }
+
+if($depart_start == 1){  $s_status = "R4";  }
+elseif($depart_start == 2){  $s_status = "R5";  }
+elseif($depart_start == 3){  $s_status = "R6";  }
+elseif($depart_start == 4){  $s_status = "R7";  }
+elseif($depart_start == 5){  $s_status = "R8";  }
+elseif($depart_start == 6){  $s_status = "R9";  }
+elseif($depart_start == 7){  $s_status = "R10";  }
+else{ $s_status = "R11"; }
+
+
+ $strSql = "";
+        $strSql .= "update tb_customer_car ";
+        $strSql .= "set  ";
+        $strSql .= "s_status = '".$s_status."' ";
+        $strSql .= "where ref_no = '$info[ref_no]'  ";
+        $arr = array(
+            array("query" => "$strSql")
+        );
+        $reslut = $db->insert_for_upadte($arr);
+
+
+
+
+$strSql = "";
+        $strSql .= "update tb_queue_dept ";
+        $strSql .= "set  ";
+        $strSql .= "i_active = '".$next_active."'";
+        $strSql .= "where i_queue = '".$info[i_queue]."'  and i_dept = '".$depart_start."' ";
+        $arr = array(
+            array("query" => "$strSql")
+        );
+        $reslut = $db->insert_for_upadte($arr);
+        
         return $reslut;
     }
 

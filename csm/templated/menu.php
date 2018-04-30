@@ -57,7 +57,8 @@
                     </a>
                 </li>-->
                 <li class="nav-item  <?= $_SESSION["nav_sub_re_create"] ?>">
-                    <a href="re_create.php" class="nav-link ">
+                    <!--<a href="re_create.php" class="nav-link ">-->
+                    <a href="re_createManage.php?func=add" class="nav-link ">
                         <span class="title">1 <?= $_SESSION[re_create] ?></span>
                         <span class="selected"></span>
                         <span class="badge badge-success" ></span>

@@ -2,13 +2,14 @@
 
 class ConnectDB {
 
+    //protected $_host = "163.44.198.51:3306";
     protected $_host = "localhost";
-    protected $_user = "root";
+/*    protected $_user = "root";
     protected $_pass = "";
-    protected $_dbname = "db_csm";
-//    protected $_user = "cp625764_admin";
-//    protected $_pass = "P@ssw0rd1";
-//    protected $_dbname = "cp625764_csm";
+    protected $_dbname = "db_csm";*/
+    protected $_user = "cp625764_admin";
+    protected $_pass = "P@ssw0rd1";
+    protected $_dbname = "cp625764_csm";
 //    protected $_user = "cp724538_bet";
 //    protected $_pass = "Na12345678";
 //    protected $_dbname = "cp724538_bet";
@@ -212,6 +213,7 @@ class ConnectDB {
     //Query 
     //$res = $db->select_query('SELECT field FROM table WHERE where'); 
     function select_query($sql = "sql") {
+        $this->begin();
         if ($res = mysql_query($sql)) {
             return $res;
         } else {
@@ -233,6 +235,7 @@ class ConnectDB {
 
     //? array
     function fetch($sql = "sql") {
+        $this->begin();
         if ($res = mysql_fetch_assoc($sql)) {
             return $res;
         } else {

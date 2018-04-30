@@ -189,10 +189,14 @@ class createController {
         } else if ($util->isEmpty($info[i_customer])) {
             $return2099 = eregi_replace("field", $_SESSION['lb_re_custinfo'], $return2099);
             echo $return2099;
-        } else if ($util->isEmpty($info[status])) {
+        } 
+        
+        /*else if ($util->isEmpty($info[status])) {
             $return2099 = eregi_replace("field", $_SESSION['label_status'], $return2099);
             echo $return2099;
-        } else {
+        } 
+        //*/
+        else {
             $intReturn = TRUE;
         }
         return $intReturn;

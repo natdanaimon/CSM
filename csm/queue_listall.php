@@ -100,7 +100,7 @@ ACTIVEPAGES(5, 2);
                                         </div>
                                     </div>
                                     <div class="portlet-body">
-                                        <div class="table-toolbar">
+                                        <div class="table-toolbar" style=" display:none;"> 
                                             <div class="row">
                                                 <!--                                                <div class="col-md-6">
                                                 
@@ -137,6 +137,7 @@ ACTIVEPAGES(5, 2);
 //        $strSql .= " and    s.s_status = 'A' ";
         $_data = $db->Search_Data_FormatJson($strSql);
         $db->close_conn();
+
         ?>
                                     
                                         <?php

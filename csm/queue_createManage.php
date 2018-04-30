@@ -4,6 +4,8 @@ include './common/Permission.php';
 include './common/PermissionADM.php';
 include './common/FunctionCheckActive.php';
 include './common/ConnectDB.php';
+include './common/Utility.php';
+$util = new Utility();
 ACTIVEPAGES(5, 1);
 if ($_GET[func] != NULL) {
     $tt_header = ($_GET[func] == "add" ? $_SESSION[add_info] : $_SESSION[edit_info]);
@@ -12,13 +14,49 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
     echo header("Location: queue_createManage.php");
 }
 //$disableElement = 'disabled="disable"';
+
+ $db = new ConnectDB();
+        $strSql = " select * from tb_queue where ref_no =" .$_GET[id];
+        $arr[queue] =  $db->Search_Data_FormatJson($strSql);
+        $db->close_conn();
+
+foreach($arr[queue] as $arr[queue]){
+$d_fix_date = $util->DateSql2d_dmm_yyyy($arr[queue][d_fix_date]);
+$i_queue = $arr[queue][i_queue];
+}
+
+if($d_fix_date == ''){
+ $db = new ConnectDB();
+        $strSql = " select * from tb_customer_car where ref_no =" .$_GET[id];
+        $arr[customer] =  $db->Search_Data_FormatJson($strSql);
+        $db->close_conn();
+foreach($arr[customer] as $arr[customer]){
+$d_fix_date = $util->DateSql2d_dmm_yyyy($arr[customer][d_sendcar]);
+}
+}
+
+
+ $db = new ConnectDB();
+        $strSql = " select * from tb_queue_dept where i_queue =" .$i_queue;
+        $arr[dept] =  $db->Search_Data_FormatJson($strSql);
+        $db->close_conn();
+$total_date = 0;        
+foreach($arr[dept] as $arr[dept]){
+$i_date_dept[$arr[dept][i_dept]] = $arr[dept][i_dept_date];
+$total_date += $arr[dept][i_dept_date];
+}
+
+
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
     <!-- BEGIN HEAD -->
     <head>
         <meta charset="utf-8" />
-        <title><?= $_SESSION[title] ?></title>
+        <title><?= $_SESSION[title] ?> <?=$i_queue ;?> </title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <meta content="<?= $_SESSION[title_content] ?>"    name="description" />
@@ -101,6 +139,10 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                         <!-- END PAGE BAR -->
                         <div class="row">
                             <br/>
+                            <?php
+
+
+                            ?>
                         </div>
                         <!------------ CONTENT ------------>
                         <div class="row">
@@ -118,7 +160,7 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                                         <div class="col-md-5"></div>
                                         <div class="col-md-3">
                                             <div class="form-group form-md-line-input has-success" >
-                                                <input type="text" class="form-control bold required" id="s_queue_ref"  name="s_queue_ref" <?= $disableElement ?> onkeyup="searchRef()" >
+                                                <input type="text" class="form-control bold required" id="s_queue_ref"  name="s_queue_ref" readonly="readonly" onkeyup="searchRef()" value="<?= $_GET[id] ?>" >
                                                 <label for="form_control_1"><?= $_SESSION[lb_re_refNo] ?> <span class="required"></span></label>          
                                             </div>
                                         </div> 
@@ -424,13 +466,13 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
 </label>
                                                     </div>
                                                      <label for="form_control_1" style="color: #36c6d3;">วันที่นัดส่ง <span class="required" style="color: red;"></span></label> 
-                                                                <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy" data-date="<?= date("d-m-Y") ?>"  style="width: 100% !important;">
+                                                                <div class="input-group input-medium"  style="width: 100% !important;">
                                                                     <span class="input-group-btn">
-                                                                        <button class="btn default" type="button" <?= $disableElement ?>>
+                                                                        <button class="btn default" type="button" disabled="disabled">
                                                                             <i class="fa fa-calendar"></i>
                                                                         </button>
                                                                     </span>
-                                                                    <input type="text" class="form-control" readonly name="d_auto_end" id="d_auto_end" value="<?= date("d-m-Y") ?>"  <?= $disableElement ?>>
+                                                                    <input type="text" class="form-control" name="d_sendcar" id="d_sendcar" readonly="readonly"  <?= $disableElement ?>>
                                                                 </div>
                                                 <?php
                                                 $db = new ConnectDB();
@@ -444,17 +486,25 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
         $_data = $db->Search_Data_FormatJson($strSql);
         $db->close_conn();
         foreach($_data as $data){
+
+    if($i_date_dept[$data[i_dept]] > 0){
+        $i_dept_ok = $i_date_dept[$data[i_dept]];
+    }else{
+        $i_dept_ok = 0;
+    }
+
+
                                                 ?>
                                                  <div class="form-group form-md-line-input has-success">
-                                                                    <input type="number" class="form-control bold required i_dept_date" id="i_dept_date<?= $data[i_dept] ?>" name="i_dept_date<?= $data[i_dept] ?>"  <?= $disableElement ?> value="0" min="0" onkeyup="getDateTotal();">
+                                                                    <input type="number" class="form-control bold required i_dept_date" id="i_dept_date<?= $data[i_dept] ?>" name="i_dept_date<?= $data[i_dept] ?>"  <?= $disableElement ?> value="<?=$i_dept_ok;?>" min="0" onkeyup="getDateTotal();">
                                                                     <label for="form_control_1"><?= $data[s_dept_th] ?> <span class="required"></span></label>          
                                                                 </div>
                                                 <?php } ?>
                                                 <div class="form-group form-md-line-input has-success">
-                                                                    <input type="number" class="form-control bold required" id="total_date" name="total_date" readonly="readonly" value="0" min="0">
+                                                                    <input type="number" class="form-control bold required" id="total_date" name="total_date" readonly="readonly" value="<?=$total_date;?>" min="0">
                                                                     <label for="form_control_1">รวม <span class="required"></span></label>          
                                                                 </div>
-                                                                <div class="form-group form-md-line-input has-success">
+                                                                <div class="form-group form-md-line-input has-success" style="display:none;">
                                                                     <select class="form-control bold " id="i_dept_start" name="i_dept_start">
                                                                     <option value="0">---- กรุณาเลือก ----</option>
                                                                     	<?php
@@ -489,8 +539,8 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                                                                         <button class="btn default" type="button" <?= $disableElement ?>>
                                                                             <i class="fa fa-calendar"></i>
                                                                         </button>
-                                                                    </span>
-                                                                    <input type="text" class="form-control" readonly name="d_fix_end" id="d_fix_end" value="<?= date("d-m-Y") ?>"  <?= $disableElement ?>>
+                                                                    </span>                                                                    
+                                                                    <input type="text" class="form-control" readonly name="d_fix_date" id="d_fix_date" value="<?=$d_fix_date; ?>"  <?= $disableElement ?>>
                                                                 </div>
                                                 </div>
                                             </div>
@@ -498,7 +548,7 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                                     </div>
                                     <!-- Set Date-->
                                     <!-- Set Date-->
-                                    <div class="col-md-12">
+                                    <div class="col-md-12" style="display:none;">
                                         <div class="portlet light bordered">
                                             <div class="portlet-title">
                                                 <div class="caption font-green">
@@ -660,10 +710,17 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                 if (keyEdit == "") {
                     unloading();
                 }else{
-									edit();
-									sum_total();
+									//edit();
+                                    //sum_total();
+                                    
+                                    //unloading();
+                                    //searchRef();
+                                    setTimeout(searchRef, 2000);
+                                    
+
 								}
             });
+            
         </script>
     </body>
 </html>

@@ -45,6 +45,9 @@ switch ($info[func]) {
     case "UpdateStatus":
         echo $controller->UpdateStatus($info);
         break;
+     case "dataTableR10":
+        echo $controller->dataTableR10();
+        break;
 }
 
 class createController {
@@ -80,6 +83,31 @@ class createController {
             return NULL;
         }
     }
+    public function dataTableR10() {
+        $service = new createService();
+        $_dataTable = $service->dataTableR10();
+        $util = new Utility();
+        if ($_dataTable != NULL) {
+            foreach ($_dataTable as $key => $value) {
+                /*
+                $_dataTable[$key]['i_year'] = $service->getYear($_dataTable[$key]['s_car_code']);
+                $_dataTable[$key]['i_brand'] = $service->getBrand($_dataTable[$key]['s_car_code']);
+                $_dataTable[$key]['i_gen'] = $service->getGeneration($_dataTable[$key]['s_car_code']);
+                $_dataTable[$key]['i_sub'] = $service->getSub($_dataTable[$key]['s_car_code']);
+                $_dataTable[$key]['i_ins_comp'] = $service->getInsurance($_dataTable[$key]['i_ins_comp']);
+                $_dataTable[$key]['i_dmg'] = $service->getDamage($_dataTable[$key]['i_dmg']);
+
+                $_dataTable[$key]['d_inbound'] = $util->DateSql2d_dmm_yyyy($_dataTable[$key]['d_inbound']);
+                $_dataTable[$key]['d_outbound_confirm'] = $util->DateSql2d_dmm_yyyy($_dataTable[$key]['d_outbound_confirm']);
+                //*/
+            }
+            return json_encode($_dataTable);
+        } else {
+            return NULL;
+        }
+    }
+
+
 
     public function dataTableKey($id) {
         $service = new createService();
@@ -172,6 +200,7 @@ class createController {
     public function add($info) {
         if ($this->isValid($info)) {
 
+            //*
             $db = new ConnectDB();
             $db->conn();
             $service = new createService();
@@ -182,6 +211,8 @@ class createController {
                 $db->rollback();
                 echo $_SESSION['cd_2001'];
             }
+            //*/
+            //echo $_SESSION['cd_2001'];
         }
     }
     
@@ -239,8 +270,10 @@ class createController {
         $util = new Utility();
         if ($util->isEmpty($info[s_queue_ref])) {
             $return2099 = eregi_replace("field", $_SESSION['s_queue_ref'], $return2099);
-            echo $return2099."1";
-        } elseif($util->isEmpty($info[i_dept_start])){
+            echo $return2099."";
+        } 
+        /*
+        elseif($util->isEmpty($info[i_dept_start])){
 					$return2099 = eregi_replace("field", $_SESSION['i_dept_start'], $return2099);
             echo $return2099."2";
 				} 
@@ -249,6 +282,7 @@ class createController {
             echo $return2099."3";
 				} 
         
+        //*/
         else {
             $intReturn = TRUE;
         }

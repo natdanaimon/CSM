@@ -1,0 +1,5 @@
+ALTER TABLE `tb_customer_car` ADD `s_nameclaim` VARCHAR(100) NOT NULL AFTER `s_status`, ADD `d_sendcar` DATE NOT NULL AFTER `s_nameclaim`;
+ALTER TABLE `tb_customer_car` ADD `i_emcs` DOUBLE NOT NULL AFTER `d_sendcar`;
+ALTER TABLE `tb_customer_car` ADD `s_password` INT(4) NOT NULL AFTER `i_emcs`;
+
+ALTER TABLE `tb_queue_dept` ADD `i_active` TINYINT(1) NOT NULL AFTER `i_status`;

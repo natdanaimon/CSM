@@ -670,7 +670,8 @@ function edit() {
                 debugger;
                 initialDataTable("TRUE");
 
-                $("#status").val(item.s_status);
+                $("#status").val('R3');
+//                $("#status").val(item.s_status);
                 $("#lb_create").text(item.s_create_by + " ( " + item.d_create + " )");
                 var lb_edit = (item.s_update_by != "" ? item.s_update_by + " ( " + item.d_update + " )" : "-");
                 $("#lb_edit").text(lb_edit);
@@ -895,6 +896,10 @@ function save() {
                 if (res[0] == "0000") {
                     var errCode = "Code (" + res[0] + ") : " + res[1];
                     $.notify(errCode, "success");
+                    var id = $('#id').val();
+                    location.replace('re_checkManageStep2.php?func=edit&id='+id);
+
+
                 } else {
                     var errCode = "Code (" + res[0] + ") : " + res[1];
                     $.notify(errCode, "error");

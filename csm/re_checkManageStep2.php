@@ -556,7 +556,7 @@ $disableElement = 'disabled="disable"';
                                                 <div class="portlet-body form">
 
                                                     <div class="form-body">
-                                                        <div class="row" style="display:none;">
+                                                        <div class="row" >
                                                             <div class="col-md-4">
                                                                 <div class="form-group form-md-line-input has-success">
                                                                     <select class="form-control edited bold" id="i_dmg" name="i_dmg" style="color:black;font-weight:bold;"   >
@@ -568,42 +568,42 @@ $disableElement = 'disabled="disable"';
                                                             <div class="col-md-4"></div>
                                                             <div class="col-md-4"></div>
                                                         </div>
-                                                        <div class="row">
-                                                            <div class="col-md-3"><b><?= $_SESSION[lb_repair_list] ?></b></div>
-                                                            <div class="col-md-3"><b><?= $_SESSION[lb_repair_remark] ?></b></div>
-                                                            <!--<div class="col-md-1"></div>-->
-                                                            <div class="col-md-3"><b><?= $_SESSION[lb_repair_list] ?></b></div>
-                                                            <div class="col-md-3"><b><?= $_SESSION[lb_repair_remark] ?></b></div>
-                                                            <!--<div class="col-md-1"></div>-->
+
+                                                        <!-- Row Start D_sendcar -->
+                                                        <div class="row" >
+                                                            <div class="col-md-4">
+                                                                <label for="form_control_1" style="color: #36c6d3;"><?= $_SESSION[lb_re_sendcar] ?> <span class="required" style="color: red;">*</span></label> 
+                                                                <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy" data-date="<?= date("d-m-Y") ?>"  style="width: 100% !important;">
+                                                                    <span class="input-group-btn">
+                                                                        <button class="btn default" type="button" <?= $disableView ?>>
+                                                                            <i class="fa fa-calendar"></i>
+                                                                        </button>
+                                                                    </span>
+                                                                    <input type="text" class="form-control" readonly name="d_sendcar" id="d_sendcar" value="<?= date("d-m-Y") ?>"  <?= $disableView ?>>
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4"></div>
+                                                            <div class="col-md-4"></div>
                                                         </div>
-                                                        <div id="div_checkbox_repair"></div>
-                                                        <br/><br/> <br/><br/>
-
-                                                        <div class="row">
-                                                            <div class="col-md-12"><b><?= $_SESSION[other] ?></b></div>
-
+                                                        <!-- Row End D_sendcar -->
+                                                        <!-- Row Start EMCS -->
+                                                        <div class="row" >
+                                                            <div class="col-md-4">
+                                                                <div class="form-group form-md-line-input has-success">
+                                                                    <input type="number" min="0" class="form-control bold required" id="i_emcs" name="i_emcs" >
+                                                                    <label for="form_control_1"><?= $_SESSION[lb_re_emcs] ?> <span class="required"></span></label>          
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4"></div>
+                                                            <div class="col-md-4"></div>
                                                         </div>
-                                                        <br/>
-                                                        <div id="div_checkbox_repair_other"></div>
+                                                        <!-- Row End EMCS -->
 
 
 
-
-
-
-
-                                                        <br/>
-                                                        <!--<input type="file" accept="image/jpeg, image/png" multiple id="f1" />-->
-<!--                                                        <input type="file" accept="image/jpeg, image/png" multiple id="f2"/>
-                                                        <input type="file" accept="image/jpeg, image/png" multiple id="f3"/>-->
-
-
-
-                                                        <br/>
-
+                                                        
                                                     </div>
-
-
                                                 </div>
                                             </div>
 
@@ -833,7 +833,7 @@ $disableElement = 'disabled="disable"';
         <link href="outbound/lightbox/css/lightbox.css" rel="stylesheet" type="text/css" />
         <script src="outbound/lightbox/js/lightbox.js" type="text/javascript"></script>
         <!--<link href="css/custom_select2.css" rel="stylesheet" />-->
-        <script src="js/action/repair/re_checkManage.js" type="text/javascript"></script>
+        <script src="js/action/repair/re_checkManageStep2.js" type="text/javascript"></script>
         <script src="js/action/search/popup.js" type="text/javascript"></script>
         <script src="js/common/closeStep.js" type="text/javascript"></script>
 

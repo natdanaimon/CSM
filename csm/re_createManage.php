@@ -321,7 +321,7 @@ $disableElement = 'disabled="disable"';
                                                         </div>
 
                                                         <div class="row" >
-                                                            <div class="col-md-4">
+                                                            <div class="col-md-6">
 
                                                                 <div class="form-group form-md-line-input has-success" style="height: 80px">
                                                                     <select class="form-control edited bold" id="i_ins_comp" name="i_ins_comp" >
@@ -334,6 +334,23 @@ $disableElement = 'disabled="disable"';
 
 
                                                             </div>
+                                                            <!-- Name Claim -->
+                                                            <div class="col-md-6">
+                                                                <div class="form-group form-md-line-input has-success">
+                                                                    <input type="text" class="form-control bold required" id="s_nameclaim" name="s_nameclaim" >
+                                                                    <label for="form_control_1"><?= $_SESSION[lb_re_nameclaim] ?> <span class="required"></span></label>          
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- Name Claim -->
+                                                            
+
+                                                        </div>
+
+
+                                                        
+                                                        <div class="row">
+                                                            
                                                             <div class="col-md-4">
                                                                 <label for="form_control_1" style="color: #36c6d3;"><?= $_SESSION[lb_re_dinbound] ?> <span class="required" style="color: red;">*</span></label> 
                                                                 <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy" data-date="<?= date("d-m-Y") ?>"  style="width: 100% !important;">
@@ -347,7 +364,7 @@ $disableElement = 'disabled="disable"';
                                                                 </div>
 
                                                             </div>
-                                                            <div class="col-md-4">
+                                                            <div class="col-md-5">
                                                                 <label for="form_control_1" style="color: #36c6d3;"><?= $_SESSION[lb_re_doutbound_confirm] ?> <span class="required" style="color: red;">*</span></label> 
                                                                 <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy" data-date="<?= date("d-m-Y") ?>"  style="width: 100% !important;">
                                                                     <span class="input-group-btn">
@@ -359,9 +376,8 @@ $disableElement = 'disabled="disable"';
 
                                                                 </div>
                                                             </div>
-
                                                         </div>
-
+                                                        
 
                                                         <div class="row">
                                                             <div class="col-md-12"> 
@@ -378,6 +394,7 @@ $disableElement = 'disabled="disable"';
                                                         </div>
 
 
+                                                        
                                                         <div class="row" >
 
                                                             <div class="col-md-4">
@@ -543,7 +560,7 @@ $disableElement = 'disabled="disable"';
                                                 <div class="form-body">
 
                                                     <div class="form-group form-md-line-input has-success " style="margin-bottom: 0px !important;">
-                                                        <select class="form-control edited bold" id="status" name="status" style="color:black;font-weight:bold;">
+                                                        <select class="form-control edited bold" id="status" name="status" disabled="true" style="color:black;font-weight:bold;">
                                                             <option value="-1"></option>
                                                         </select>
                                                         <label for="form_control_1"><?= $_SESSION[label_status] ?></label>

@@ -1,3 +1,123 @@
+var $datatable1 = $('#datatable-1');
+
+function initialDataTable_1(first) {
+    $.ajax({
+        type: 'GET',
+        url: 'controller/queue/createController.php?func=dataTableR10',
+        beforeSend: function() {
+            $('#se-pre-con').fadeIn(100);
+        },
+        success: function(data) {
+            if (data == '') {
+                var datatable = $datatable1.dataTable().api();
+                $('.dataTables_empty').remove();
+                datatable.clear();
+                datatable.draw();
+                $('#se-pre-con').delay(100).fadeOut();
+                return;
+            }
+            var res = JSON.parse(data);
+            var JsonData = [];
+            $.each(res, function(i, item) {
+
+                var col_checkbox = "";
+                var col_refno = item.ref_no + ' [ '+item.s_password+' ] ';
+                var col_name = item.s_fullname;
+                var col_license = item.s_license;
+
+
+                var col_caryear = item.i_year;
+                var col_carbrand = item.i_brand;
+                var col_cargen = item.i_gen;
+//                var col_carsub = item.i_sub; $_dataTable[$key]['i_brand'] = $service - > getBrand($_dataTable[$key]['s_brand_code']);
+
+                var col_insurance = item.i_ins_comp;
+//                var col_dmg = item.i_dmg;
+                var col_inout = item.d_inbound + " - " + item.d_outbound_confirm;
+
+
+                var col_status = "";
+                var col_edit = "";
+                var col_delete = "";
+
+                col_checkbox = '<span class="md-checkbox has-success" style="padding-right: 0px;">';
+                col_checkbox += '  <input type="checkbox" id="checkbox_' + i + '" name="checkboxItem" class="md-check"';
+                col_checkbox += '  value="' + item.i_cust_car + '" onclick=remove_select_all("checkbox_' + i + '")>';
+                col_checkbox += '  <label for="checkbox_' + i + '">';
+                col_checkbox += '    <span class="inc"></span>';
+                col_checkbox += '    <span class="check"></span>';
+                col_checkbox += '    <span class="box"></span> </label>';
+                col_checkbox += '</span>';
+
+
+
+
+                col_status = '';
+                col_status += '     <span class="badge badge-' + colorStatus(item.s_status) + '">' + sortHidden(item.s_status) + (language == "th" ? item.status_th : item.status_en) + '</span>';
+                col_status += '';
+
+
+                col_edit += '<a href="queue_createManage.php?func=add&id=' + item.ref_no + '" class="btn btn-circle btn-icon-only blue" style="width:32px;height:32px">';
+                col_edit += ' <i class="fa fa-edit"></i>';
+                col_edit += '</a>';
+
+                col_delete += '<a href="' + (disable != "" ? '#' : 'javascript:Confirm(\'' + item.i_cust_car + '\',\'delete\');') + '" style="width:33px;height:33px" class="btn btn-circle btn-icon-only red" ' + disable + '>';
+                col_delete += ' <i class="fa fa-archive" ></i>';
+                col_delete += '</a>';
+
+
+                var addRow = [
+                    col_checkbox,
+                    col_refno,
+                    col_name,
+                    col_license,
+                    col_caryear,
+                    col_carbrand,
+                    col_cargen,
+//                    col_carsub,
+                    col_insurance,
+//                    col_dmg,
+                    col_inout,
+                    col_status,
+                    col_edit,
+                    col_delete
+                ]
+
+                JsonData.push(addRow);
+
+            });
+            if (first == "TRUE") {
+                $datatable1.dataTable({
+                    data: JsonData,
+                    order: [
+                        [1, 'desc'],
+                        [11, 'asc']
+                    ],
+                    columnDefs: [
+                        { "orderable": false, "targets": 0 }
+                    ]
+                });
+            } else {
+
+                var datatable = $datatable1.dataTable().api();
+                $('.dataTables_empty').remove();
+                datatable.clear();
+                datatable.rows.add(JsonData);
+                datatable.draw();
+            }
+            notification();
+            $('#se-pre-con').delay(100).fadeOut();
+
+        },
+        error: function(data) {
+
+        }
+
+    });
+}
+
+
+
 var $datatable = $('#datatable');
 var $datatable_modal = $('#datatable_modal');
 
@@ -102,8 +222,15 @@ Save Staff
 */
 $('#btn_save_staff').click(function(){
  
+        var i_staff_id =  $('#i_staff_id').val();
+        //alert(i_staff_id)
+        if(i_staff_id == null){
+        	$('#i_staff_id').notify("กรุณาเลือกช่าง", "error");
+					return false;
+				}
+				//return false;
         var formData = new FormData($('#formdate_staff')[0]);
-        alert($('#d_start_work').val())
+        //alert($('#d_start_work').val())
         $.ajax({
             type: 'POST',
             url: 'controller/queue/createController.php',
@@ -143,6 +270,8 @@ $('#btn_save_staff').click(function(){
 Update status
 */
 $(".btnstatus").click(function(){
+   var i_queue = $(this).attr("data-i_queue");
+   var ref_no = $(this).attr("data-ref");
    var id = $(this).attr("data-id");
    var app_rej = '0';
    if($(this).hasClass('approve')){
@@ -158,11 +287,13 @@ $(".btnstatus").click(function(){
   }
 
 
-$.post("controller/queue/createController.php", { func : "UpdateStatus", id : id , i_status : app_rej  }, function(data){ 
+$.post("controller/queue/createController.php", { func : "UpdateStatus", id : id , i_status : app_rej , i_queue : i_queue , ref_no : ref_no  }, function(data){ 
 var res = data.split(",");
                 if (res[0] == "0000") {
                     var errCode = "Code (" + res[0] + ") : " + res[1];
                     $.notify(errCode, "success");
+                    //location.reload();
+                    $('#'+id).delay(100).fadeOut();
                 } else {
                     var errCode = "Code (" + res[0] + ") : " + res[1];
                     $.notify(errCode, "error");
@@ -179,9 +310,10 @@ var res = data.split(",");
 tb_employee
 */
 function getDDLEmployee(i_dept) {
+    //alert(i_dept)
     $.ajax({
         type: 'GET',
-        url: 'controller/commonController.php?func=DDLEmployee&id='+i_dept,
+        url: 'controller/commonController.php?func=DDLEmployeeDept&id='+i_dept,
         beforeSend: function() {
             //$('#se-pre-con').fadeIn(100);
         },

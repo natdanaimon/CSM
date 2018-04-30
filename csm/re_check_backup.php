@@ -84,88 +84,7 @@ ACTIVEPAGES(3, 2);
                             <br/>
                         </div>
 
-                        <!------------ CONTENT R3-1  ------------>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <!-- BEGIN EXAMPLE TABLE PORTLET-->
-                                <div class="portlet light bordered">
-                                    <div class="portlet-title">
-                                        <div class="caption font-dark">
-                                            <i class="fa fa-wrench font-dark"></i>
-                                            <span class="caption-subject bold uppercase"><?= $_SESSION[tt_mg_create] ?></span>
-                                        </div>
-                                        <div class="actions">
-
-                                        </div>
-                                    </div>
-                                    <div class="portlet-body">
-                                        <div class="table-toolbar">
-                                            <div class="row">
-                                                <!--                                                <div class="col-md-6">
-                                                
-                                                                                                </div>-->
-                                                <div class="col-md-6" align="left"  <?= $hidden ?>>
-                                                    <div class="btn-group" style="display:none;">
-                                                        <a href="re_createManage.php?func=add">
-                                                            <button id="sample_editable_1_new" class="btn sbold green"> <?= $_SESSION[btn_add] ?>
-                                                            </button>
-                                                        </a>
-                                                    </div>
-                                                    <div class="btn-group">
-                                                        <button id="sample_editable_1_new" class="btn sbold red" onclick="deleteAll()"> <?= $_SESSION[btn_cancel_all] ?>
-<!--                                                            <i class="fa fa-minus"></i>-->
-                                                        </button>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                        <table class="table table-striped table-bordered table-hover table-checkable order-column dt-responsive" id="datatable-1">
-                                            <thead>
-                                                <tr>
-                                                    <th style="padding-left: 30px;width: 30px" class="no-sort">
-                                                        <!--                                                        <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-                                                                                                                    <input type="checkbox" class="group-checkable" data-set="#datatable .checkboxes" id="select_all" />
-                                                                                                                    <span></span>
-                                                                                                                </label>-->
-                                                        <span class="md-checkbox has-success">
-                                                            <input type="checkbox" id="checkbox14" name="checkbox14" class="md-check">
-                                                            <label for="checkbox14">
-                                                                <span class="inc"></span>
-                                                                <span class="check"></span>
-                                                                <span class="box"></span> </label>
-                                                        </span>
-                                                    </th>
-                                                    <th  class="all"  style="width: 80px">  <?= $_SESSION[tb_co_refno] ?> </th>
-                                                    <th  class="all">  <?= $_SESSION[tb_co_custname] ?> </th>
-                                                    <th  class="all">  <?= $_SESSION[tb_co_license] ?> </th>
-
-                                                    <th class="none"> <span style="color:red"><?= $_SESSION[tb_co_caryear] ?></span> </th>
-                                                    <th class="none"> <span style="color:red"><?= $_SESSION[tb_co_carbrand] ?></span> </th>
-                                                    <th class="none"> <span style="color:red"><?= $_SESSION[tb_co_cargeneration] ?></span> </th>
-                                                    <!--<th class="none"> <span style="color:red"><?= $_SESSION[tb_co_carsub] ?></span> </th>-->
-
-                                                    <th class="none"> <span style="color:red"><?= $_SESSION[tb_co_insurance_name] ?></span> </th>
-                                                    <!--<th class="none"> <span style="color:red"><?= $_SESSION[tb_co_dmg] ?></span> </th>-->
-                                                    <th class="none"> <span style="color:red"><?= $_SESSION[tb_co_dinbound_car] ?> - <?= $_SESSION[tb_co_doutbound_car] ?></span> </th>
-
-
-                                                    <th  class="all">  <?= $_SESSION[tb_co_status] ?> </th>
-                                                    <th style="width: 40px"> <?= $_SESSION[tb_co_edit] ?> </th>
-                                                    <th style="width: 40px"> <?= $_SESSION[tb_co_cancel] ?></th>
-                                            </thead>
-                                            <tbody>
-
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <!-- END EXAMPLE TABLE PORTLET-->
-                            </div>
-                        </div>
-                        <!------------ CONTENT R3-1 ------------>
-
-                        <!------------ CONTENT Check R3-2 ------------>
+                        <!------------ CONTENT ------------>
                         <div class="row">
                             <div class="col-md-12">
                                 <!-- BEGIN EXAMPLE TABLE PORTLET-->
@@ -305,7 +224,6 @@ ACTIVEPAGES(3, 2);
         <script src="js/action/repair/re_check.js" type="text/javascript"></script>
         <script>
                                                             $(document).ready(function () {
-                                                                initialDataTable_1("TRUE");
                                                                 initialDataTable("TRUE");
                                                                 unloading();
                                                             });

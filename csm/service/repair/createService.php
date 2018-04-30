@@ -155,6 +155,7 @@ class createService {
         $strSql .= "  tb_customer_car ( ";
         $strSql .= "    i_customer, ";
         $strSql .= "    ref_no, ";
+        $strSql .= "    s_password, ";
 //        $strSql .= "    s_car_code, ";
         $strSql .= "    i_year, ";
         $strSql .= "    s_brand_code, ";
@@ -166,6 +167,7 @@ class createService {
         $strSql .= "    s_pay_type, ";
 
         $strSql .= "    i_ins_comp, ";
+        $strSql .= "    s_nameclaim, ";
 //        $strSql .= "    i_dmg, ";
         $strSql .= "    d_inbound, ";
         $strSql .= "    d_outbound_confirm, ";
@@ -180,6 +182,7 @@ class createService {
         $strSql .= "VALUES( ";
         $strSql .= "  $info[i_customer], ";
         $strSql .= "  '" . $this->getRunning($db) . "', ";
+        $strSql .= "  '" . $this->extract_int($info[s_license]) . "', ";
 //        $strSql .= "  '$info[s_car_code]', ";
         $strSql .= "  $info[i_year], ";
         $strSql .= "  '$info[s_brand_code]', ";
@@ -191,6 +194,7 @@ class createService {
         $strSql .= "  '$info[s_pay_type]', ";
 
         $strSql .= "  $info[i_ins_comp], ";
+        $strSql .= "  '$info[s_nameclaim]', ";
 //        $strSql .= "  $info[i_dmg], ";
         $strSql .= "  '" . $util->DateSQL($info[d_inbound]) . "', ";
         $strSql .= "  '" . $util->DateSQL($info[d_outbound_confirm]) . "', ";
@@ -199,7 +203,8 @@ class createService {
         $strSql .= " " . $db->Sysdate(TRUE) . ", ";
         $strSql .= "  '$_SESSION[username]', ";
         $strSql .= "  '$_SESSION[username]', ";
-        $strSql .= "  '$info[status]' ";
+        //$strSql .= "  '$info[status]' ";
+        $strSql .= "  'R1' ";
         $strSql .= ") ";
         $arr = array(
             array("query" => "$strSql")
@@ -214,6 +219,7 @@ class createService {
         $strSql .= "update tb_customer_car ";
         $strSql .= "set  ";
         $strSql .= "i_customer = $info[i_customer], ";
+        $strSql .= "s_password = '".$this->extract_int($info[s_license])."', ";
 //        $strSql .= "s_car_code = '$info[s_car_code]', ";
         $strSql .= "i_year = $info[i_year], ";
         $strSql .= "s_brand_code = '$info[s_brand_code]', ";
@@ -239,6 +245,13 @@ class createService {
         return $reslut;
     }
 
+    //////////////////// Set Password
+    function extract_int($str){
+     $str = substr($str,-4);
+     preg_match('/[^0-9]*([0-9]+)[^0-9]*/', $str, $regs);
+     return (intval($regs[1]));
+    }
+    
     function getRunning($db) {
         $year = substr(date("Y"), 2);
         $month = str_pad("", 2 - strlen(date("m")), "0") . date("m");

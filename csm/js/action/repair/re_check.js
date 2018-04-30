@@ -1,3 +1,121 @@
+var $datatable1 = $('#datatable-1');
+
+function initialDataTable_1(first) {
+    $.ajax({
+        type: 'GET',
+        url: 'controller/repair/createController.php?func=dataTable',
+        beforeSend: function() {
+            $('#se-pre-con').fadeIn(100);
+        },
+        success: function(data) {
+            if (data == '') {
+                var datatable = $datatable1.dataTable().api();
+                $('.dataTables_empty').remove();
+                datatable.clear();
+                datatable.draw();
+                $('#se-pre-con').delay(100).fadeOut();
+                return;
+            }
+            var res = JSON.parse(data);
+            var JsonData = [];
+            $.each(res, function(i, item) {
+
+                var col_checkbox = "";
+                var col_refno = item.ref_no + ' [ '+item.s_password+' ] ';
+                var col_name = item.s_fullname;
+                var col_license = item.s_license;
+
+
+                var col_caryear = item.i_year;
+                var col_carbrand = item.i_brand;
+                var col_cargen = item.i_gen;
+//                var col_carsub = item.i_sub; $_dataTable[$key]['i_brand'] = $service - > getBrand($_dataTable[$key]['s_brand_code']);
+
+                var col_insurance = item.i_ins_comp;
+//                var col_dmg = item.i_dmg;
+                var col_inout = item.d_inbound + " - " + item.d_outbound_confirm;
+
+
+                var col_status = "";
+                var col_edit = "";
+                var col_delete = "";
+
+                col_checkbox = '<span class="md-checkbox has-success" style="padding-right: 0px;">';
+                col_checkbox += '  <input type="checkbox" id="checkbox_' + i + '" name="checkboxItem" class="md-check"';
+                col_checkbox += '  value="' + item.i_cust_car + '" onclick=remove_select_all("checkbox_' + i + '")>';
+                col_checkbox += '  <label for="checkbox_' + i + '">';
+                col_checkbox += '    <span class="inc"></span>';
+                col_checkbox += '    <span class="check"></span>';
+                col_checkbox += '    <span class="box"></span> </label>';
+                col_checkbox += '</span>';
+
+
+
+
+                col_status = '';
+                col_status += '     <span class="badge badge-' + colorStatus(item.s_status) + '">' + sortHidden(item.s_status) + (language == "th" ? item.status_th : item.status_en) + '</span>';
+                col_status += '';
+
+
+                col_edit += '<a href="re_checkManage.php?func=edit&id=' + item.i_cust_car + '" class="btn btn-circle btn-icon-only blue" style="width:32px;height:32px">';
+                col_edit += ' <i class="fa fa-edit"></i>';
+                col_edit += '</a>';
+
+                col_delete += '<a href="' + (disable != "" ? '#' : 'javascript:Confirm(\'' + item.i_cust_car + '\',\'delete\');') + '" style="width:33px;height:33px" class="btn btn-circle btn-icon-only red" ' + disable + '>';
+                col_delete += ' <i class="fa fa-archive" ></i>';
+                col_delete += '</a>';
+
+
+                var addRow = [
+                    col_checkbox,
+                    col_refno,
+                    col_name,
+                    col_license,
+                    col_caryear,
+                    col_carbrand,
+                    col_cargen,
+//                    col_carsub,
+                    col_insurance,
+//                    col_dmg,
+                    col_inout,
+                    col_status,
+                    col_edit,
+                    col_delete
+                ]
+
+                JsonData.push(addRow);
+
+            });
+            if (first == "TRUE") {
+                $datatable1.dataTable({
+                    data: JsonData,
+                    order: [
+                        [1, 'desc'],
+                        [11, 'asc']
+                    ],
+                    columnDefs: [
+                        { "orderable": false, "targets": 0 }
+                    ]
+                });
+            } else {
+
+                var datatable = $datatable1.dataTable().api();
+                $('.dataTables_empty').remove();
+                datatable.clear();
+                datatable.rows.add(JsonData);
+                datatable.draw();
+            }
+            notification();
+            $('#se-pre-con').delay(100).fadeOut();
+
+        },
+        error: function(data) {
+
+        }
+
+    });
+}
+
 var $datatable = $('#datatable');
 
 function initialDataTable(first) {
@@ -21,7 +139,7 @@ function initialDataTable(first) {
             $.each(res, function(i, item) {
 
                 var col_checkbox = "";
-                var col_refno = item.ref_no;
+                var col_refno = item.ref_no + ' [ '+item.s_password+' ] ';
                 var col_name = item.s_fullname;
                 var col_license = item.s_license;
 
@@ -56,7 +174,7 @@ function initialDataTable(first) {
                 col_status += '';
 
 
-                col_edit += '<a href="re_checkManage.php?func=edit&id=' + item.i_cust_car + '" class="btn btn-circle btn-icon-only blue" style="width:32px;height:32px">';
+                col_edit += '<a href="re_checkManageStep2.php?func=edit&id=' + item.i_cust_car + '" class="btn btn-circle btn-icon-only blue" style="width:32px;height:32px">';
                 col_edit += ' <i class="fa fa-edit"></i>';
                 col_edit += '</a>';
 
