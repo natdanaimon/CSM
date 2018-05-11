@@ -28,7 +28,7 @@ function initialCheckBox() {
 
     $.ajax({
         type: 'GET',
-        url: 'controller/commonController.php?func=CheckBoxCheckRepair',
+        url: 'controller/commonController.php?func=CheckBoxListRepair',
         beforeSend: function () {
             //$('#se-pre-con').fadeIn(100);
         },
@@ -60,9 +60,9 @@ function initialCheckBox() {
                 htmlOption += '    <span class="check"></span>';
                 htmlOption += '    <span class="box"></span> ' + item.s_repair_name + '</label>';
                 htmlOption += '</span>';
-                htmlOption += ' &nbsp;<a href="javascript:UploadMultifile(' + item.i_repair_item + ');"><span class="fa fa-cloud-upload"></span></a>';
+                htmlOption += ' &nbsp;<a style="display:none;" href="javascript:UploadMultifile(' + item.i_repair_item + ');"><span class="fa fa-cloud-upload"></span></a>';
 
-                htmlOption += '<a id="imgpopup_' + item.i_repair_item + '" title="รูปภาพประกอบ" class="example-image-link" href="" data-lightbox="example-' + item.i_repair_item + '">';
+                htmlOption += '<a style="display:none;" id="imgpopup_' + item.i_repair_item + '" title="รูปภาพประกอบ" class="example-image-link" href="" data-lightbox="example-' + item.i_repair_item + '">';
                 htmlOption += ' <span><img src="images/photos-app-icon.png" width="18px" height="18px" id="img_' + item.i_repair_item + '" name="img_' + item.i_repair_item + '"  style="display:none;" ></span>';
                 htmlOption += '</a>';
                 htmlOption += '<input type="hidden" id="ck_' + item.i_repair_item + '" name="ck_' + item.i_repair_item + '" value="" style="display:none;" >';
@@ -196,9 +196,9 @@ function initialCheckBoxOther() {
         htmlOption += '    <span class="inc"></span>';
         htmlOption += '    <span class="check"></span>';
         htmlOption += '    <span class="box"></span> ' + i + '.</label>';
-        htmlOption += ' &nbsp;<a href="javascript:UploadMultifileOther(' + i + ');"><span class="fa fa-cloud-upload"></span></a>';
+        htmlOption += ' &nbsp;<a style="display:none;" href="javascript:UploadMultifileOther(' + i + ');"><span class="fa fa-cloud-upload"></span></a>';
 
-        htmlOption += '<a id="imgpopups_' + i + '" title="รูปภาพประกอบ" class="example-image-link" href="" data-lightbox="examples-' + i + '">';
+        htmlOption += '<a style="display:none;" id="imgpopups_' + i + '" title="รูปภาพประกอบ" class="example-image-link" href="" data-lightbox="examples-' + i + '">';
         htmlOption += ' <img src="images/photos-app-icon.png" width="18px" height="18px" id="imgs_' + i + '" name="imgs_' + i + '"  style="display:none;" >';
         htmlOption += '</a>';
         htmlOption += '<input type="hidden" id="cks_' + i + '" name="cks_' + i + '" value="" style="display:none;" >';
@@ -740,7 +740,7 @@ function editCheckBoxMain(ref_no) {
 
     $.ajax({
         type: 'GET',
-        url: 'controller/repair/checkController.php?func=getCheckBoxMain&ref_no=' + ref_no,
+        url: 'controller/repair/checkstep2Controller.php?func=getCheckBoxMain&ref_no=' + ref_no,
         beforeSend: function () {
             //$('#se-pre-con').fadeIn(100);
         },
@@ -776,7 +776,7 @@ function editCheckBoxOther(ref_no) {
 
     $.ajax({
         type: 'GET',
-        url: 'controller/repair/checkController.php?func=getCheckBoxOther&ref_no=' + ref_no,
+        url: 'controller/repair/checkstep2Controller.php?func=getCheckBoxOther&ref_no=' + ref_no,
         beforeSend: function () {
             //$('#se-pre-con').fadeIn(100);
         },

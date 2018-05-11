@@ -16,10 +16,12 @@ var FormInputMask = function () {
             "mask": "(999) 999-9999"
         });
         $("#s_phone_1").inputmask("mask", {
-            "mask": "(999) 999-9999"
+            //"mask": "(999) 999-9999"
+            "mask": "999-999-9999"
         });
         $("#s_phone_2").inputmask("mask", {
-            "mask": "(999) 999-9999"
+            //"mask": "(999) 999-9999"
+            "mask": "999-999-9999"
         });
         $("#s_security").inputmask("mask", {
             "mask": "9999"

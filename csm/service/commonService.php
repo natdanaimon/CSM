@@ -22,6 +22,15 @@ class commonService {
         return $_data;
     }
 
+    function CheckBoxListRepair() {
+        require_once('../common/ConnectDB.php');
+        $db = new ConnectDB();
+        $strSql = "select * from tb_repair_item where s_status = 'A' ";
+        $_data = $db->Search_Data_FormatJson($strSql);
+        $db->close_conn();
+        return $_data;
+    }
+
     function DDLPayType() {
         $db = new ConnectDB();
         $strSql = "select * from tb_pay where s_status = 'A' ";

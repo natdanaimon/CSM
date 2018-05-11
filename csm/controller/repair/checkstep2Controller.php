@@ -177,11 +177,11 @@ class checkController {
 //        }
 //    }
 
-    public function edit($info) {
+    public function edit_ok($info) {
         if ($this->isValid($info)) {
             $db = new ConnectDB();
             $db->conn();
-            $service = new checkstep2Service();
+            $service = new checkService();
 
 
             $result = $service->edit($db, $info);
@@ -195,6 +195,148 @@ class checkController {
             
         }
     }
+    /////////////// Add Repair List
+    public function edit($info) {
+        if ($this->isValid($info)) {
+            $service = new checkService();
+            $db = new ConnectDB();
+            $db->conn();
+            $doc = new upload();
+            $doc->set_path("../../upload/step_checkrepair/");
+            $doc->setResize(TRUE);
+
+            $doc2 = new upload();
+            $doc2->set_path("../../upload/step_checkrepair_other/");
+            $doc2->setResize(TRUE);
+
+            $flgValid = TRUE;
+            $arrOld = array();
+            $arrOld2 = array();
+
+
+
+
+            $listRepairActive = $service->getListRepairActive($db);
+            if ($listRepairActive != NULL) {
+                foreach ($listRepairActive as $key => $value) {
+                    $keyDB = $listRepairActive[$key]['i_repair_item'];
+                    $keyInputCheckbox = 'i_repair_item_' . $keyDB;
+                    $keyInputFile = 'file_' . $keyDB;
+                    $keyInputRemark = 's_repair_item_' . $keyDB;
+                    $keyckOld = 'ck_' . $keyDB;
+                    $valckOld = $info[$keyckOld];
+                    if ($info[$keyInputCheckbox] != NULL && $info[$keyInputCheckbox] != '') {
+                        /*
+                        if ($_FILES[$keyInputFile]["error"] == 4 && $valckOld == '') {
+                            $flgValid = FALSE;
+                            echo $_SESSION['cd_2207'];
+                            break;
+                        } else {
+                            if ($valckOld == '') {
+                                $doc->add_FileNameCustom($_FILES[$keyInputFile], $info[ref_no] . '_' . $keyDB);
+                            } else {
+                                array_push($arrOld, $keyDB);
+                            }
+                        }
+                        //*/
+                        //array_push($arrOld, $keyDB);
+                    }
+                }
+            }
+
+
+            for ($i = 1; $i < 14; $i++) {
+                $keyDB = $i;
+                $keyInputCheckbox = 'i_repair_subitem_' . $keyDB;
+                $keyInputFile = 'files_' . $keyDB;
+                $keyInputRemark = 's_repair_subitem_' . $keyDB;
+                $keyckOld = 'cks_' . $keyDB;
+                $valckOld = $info[$keyckOld];
+                if ($info[$keyInputCheckbox] != NULL && $info[$keyInputCheckbox] != '') {
+                    /*
+                    if ($_FILES[$keyInputFile]["error"] == 4 && $valckOld == '') {
+                        $flgValid = FALSE;
+                        echo $_SESSION['cd_2207'];
+                        break;
+                    } else {
+                        if ($valckOld == '') {
+                            $doc2->add_FileNameCustom($_FILES[$keyInputFile], $info[ref_no] . '_' . $keyDB);
+                        }
+                    }
+
+                    //*/
+                }
+            }
+
+
+
+
+            if ($flgValid) {
+
+                if (count($doc->get_FilenameCustom()) > 0) {
+                    if ($doc->AddFileCustom()) {
+
+                        if (count($doc2->get_FilenameCustom()) > 0) {
+                            if ($doc2->AddFileCustom()) {
+                                if ($service->edit($db, $info, $arrOld)) {
+                                    $db->commit();
+                                    echo $_SESSION['cd_0000'].",".$info[id];
+                                } else {
+                                    $db->rollback();
+                                    $doc->clearFileAddFailCustom();
+                                    $doc2->clearFileAddFailCustom();
+                                    echo $_SESSION['cd_2001'];
+                                }
+                            } else {
+                                echo $doc2->get_errorMessage();
+                            }
+                        } else {
+                            if ($service->edit($db, $info, $arrOld)) {
+                                $db->commit();
+                                echo $_SESSION['cd_0000'].",".$info[id];
+                            } else {
+                                $db->rollback();
+                                $doc->clearFileAddFailCustom();
+                                echo $_SESSION['cd_2001'];
+                            }
+                        }
+                    } else {
+                        echo $doc->get_errorMessage();
+                    }
+                } else {
+
+
+                    if (count($doc2->get_FilenameCustom()) > 0) {
+                        if ($doc2->AddFileCustom()) {
+                            if ($service->edit($db, $info, $arrOld)) {
+                                $db->commit();
+                                echo $_SESSION['cd_0000'].",".$info[id];
+                            } else {
+                                $db->rollback();
+                                $doc2->clearFileAddFailCustom();
+                                echo $_SESSION['cd_2001'];
+                            }
+                        } else {
+                            echo $doc2->get_errorMessage();
+                        }
+                    } else {
+                        if ($service->edit($db, $info, $arrOld)) {
+                            $db->commit();
+                            echo $_SESSION['cd_0000'].",".$info[id];
+                        } else {
+                            $db->rollback();
+                            echo $_SESSION['cd_2001'];
+                        }
+                    }
+                }
+            }
+            // delete file temp
+            //$this->deleteTempFile($db);
+            // delete file temp
+        }
+    }
+    /////////////// Add Repair List
+
 
     public function isValid($info) {
         $intReturn = FALSE;

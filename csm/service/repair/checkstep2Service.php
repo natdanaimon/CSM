@@ -2,7 +2,7 @@
 
 @session_start();
 
-class checkstep2Service {
+class checkService {
 
     function dataTable() {
         $db = new ConnectDB();
@@ -52,7 +52,7 @@ class checkstep2Service {
 
     function getCheckBoxMain($ref_no) {
         $db = new ConnectDB();
-        $strSql = " select * from tb_check_repair where ref_no = '$ref_no' ";
+        $strSql = " select * from tb_list_repair where ref_no = '$ref_no' ";
         $_data = $db->Search_Data_FormatJson($strSql);
         $db->close_conn();
         return $_data;
@@ -60,7 +60,7 @@ class checkstep2Service {
 
     function getCheckBoxOther($ref_no) {
         $db = new ConnectDB();
-        $strSql = " select * from tb_check_repair_other where ref_no = '$ref_no' ";
+        $strSql = " select * from tb_list_repair_other where ref_no = '$ref_no' ";
         $_data = $db->Search_Data_FormatJson($strSql);
         $db->close_conn();
         return $_data;
@@ -248,7 +248,7 @@ class checkstep2Service {
 //        return $reslut;
     }
 
-    function edit($db, $info) {
+    function edit_ok($db, $info) {
          $util = new Utility();
         $strSql = "";
         $strSql .= "update tb_customer_car ";
@@ -278,9 +278,63 @@ class checkstep2Service {
         return $info[id];
     }
 
+
+
+    /////////////////////// Add Repair List
+    function edit($db, $info, $arrOld) {
+        $ref_no = $info[ref_no];
+        $strSqlDelete = "DELETE FROM tb_list_repair where ref_no = '$info[ref_no]'";
+//        $strSqlDelete2 = "DELETE FROM tb_list_repair_other where ref_no = '$info[ref_no]'";
+        if (count($arrOld) > 0) {
+            $util = new Utility();
+            $query = $util->arr2strQuery($arrOld, "I");
+            $strSqlDelete = $strSqlDelete . " and i_repair_item not in ($query) ";
+        }
+
+
+        $arr = array();
+        array_push($arr, array("query" => "$strSqlDelete"));
+//        array_push($arr, array("query" => "$strSqlDelete2"));
+
+        foreach ($info as $value) {
+            $key = key($info);
+            if ("i_repair_item_" == substr($key, 0, 14) && $info[$key] != '') {
+                $keyIndex = substr($key, 14);
+                $keyMain = substr($key, 1, strlen($key));
+                $i_repair = $keyIndex;
+                $remark = $info['s' . $keyMain];
+                $indexFile = 'file_' . $keyIndex;
+                $filename = '';
+                if ($_FILES[$indexFile] != NULL && $_FILES[$indexFile]['error'] == 0) {
+                    $temp = explode(".", $_FILES[$indexFile]['name']);
+                    $filename = $info[ref_no] . '_' . $keyIndex . '.' . end($temp);
+                }
+
+                $filename = 'xxxx';
+                //if ($filename != '') {
+                    $sql = $this->createStatement($db, $ref_no, $i_repair, $filename, $remark);
+                    array_push($arr, array("query" => "$sql"));
+               // }
+            }
+            next($info);
+        }
+        array_push($arr, array("query" => $this->sqlUpdateMain($db, $info)));
+
+        if ($this->checkDuppSub($db, $info)) {
+            array_push($arr, array("query" => $this->sqlUpdateCheckOther($db, $info)));
+        } else {
+
+            array_push($arr, array("query" => $this->createStatementSub($db, $info)));
+        }
+        $reslut = $db->insert_for_upadte($arr);
+        //return $reslut;
+        return $info[id];
+    }
+    /////////////////////// Add Repair List
+
     function checkDuppSub($db, $info) {
         $rtn = FALSE;
-        $strSql = " select count(*) cnt from tb_check_repair_other where ref_no = '$info[ref_no]'";
+        $strSql = " select count(*) cnt from tb_list_repair_other where ref_no = '$info[ref_no]'";
         $_data = $db->Search_Data_FormatJson($strSql);
         if ($_data != NULL) {
             if ($_data[0]['cnt'] > 0) {
@@ -296,7 +350,7 @@ class checkstep2Service {
         $strSql = "";
         $strSql .= "INSERT ";
         $strSql .= "INTO ";
-        $strSql .= "  tb_check_repair ( ";
+        $strSql .= "  tb_list_repair ( ";
         $strSql .= "    ref_no, ";
         $strSql .= "    i_repair_item, ";
         $strSql .= "    s_filename, ";
@@ -331,7 +385,7 @@ class checkstep2Service {
         $strSql = "";
         $strSql .= "INSERT ";
         $strSql .= "INTO ";
-        $strSql .= "  tb_check_repair_other ( ";
+        $strSql .= "  tb_list_repair_other ( ";
         $strSql .= "    ref_no, ";
         $strSql .= "    s_txt_1, ";
         $strSql .= "    s_txt_2, ";
@@ -467,6 +521,7 @@ class checkstep2Service {
     }
 
     function sqlUpdateMain($db, $info) {
+        $util = new Utility();
         $strSql = "";
         $strSql .= "update tb_customer_car ";
         $strSql .= "set  ";
@@ -484,8 +539,8 @@ class checkstep2Service {
 //        $strSql .= "d_outbound_confirm = '" . $util->DateSQL($info[d_outbound_confirm]) . "', ";
 
         $strSql .= "d_update = " . $db->Sysdate(TRUE) . ", ";
-        $strSql .= "s_update_by = '$_SESSION[username]' ";
-        //$strSql .= "s_status = 'R3' ";
+        $strSql .= "s_update_by = '$_SESSION[username]', ";
+        $strSql .= "s_status = 'RX' ";
 //        $strSql .= "s_status = '$info[status]' ";
         $strSql .= "where i_cust_car = $info[id] ";
 
@@ -494,7 +549,7 @@ class checkstep2Service {
 
     function sqlUpdateCheckOther($db, $info) {
         $strSql = "";
-        $strSql .= "update tb_check_repair_other ";
+        $strSql .= "update tb_list_repair_other ";
         $strSql .= "set  ";
 
 

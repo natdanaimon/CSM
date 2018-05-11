@@ -534,7 +534,7 @@ $disableElement = 'disabled="disable"';
                                     <div class="portlet box green">
                                         <div class="portlet-title" onclick="closeStep(2)" style="cursor: pointer;">
                                             <div class="caption">
-                                                <i class="fa fa-car"></i> <?= $_SESSION[tt_detail_create2] ?></div>
+                                                <i class="fa fa-car"></i> <?= $_SESSION[tt_repair_list] ?></div>
                                             <div class="tools">
                                                 <span class="fa fa-angle-down" style="color: white;text-decoration:none;"> </span>
                                                 <!--<a href="javascript:closeStep(2);" class="fa fa-angle-down" style="color: white;text-decoration:none;"> </a>-->
@@ -621,6 +621,89 @@ $disableElement = 'disabled="disable"';
 
                                     </div>
                                     <!-- END STEP2-->
+
+
+
+                                    <!-- START STEP3-->
+                                    <div class="portlet box green">
+                                        <div class="portlet-title" onclick="closeStep(3)" style="cursor: pointer;">
+                                            <div class="caption">
+                                                <i class="fa fa-car"></i> <?= $_SESSION[tt_repair_list] ?></div>
+                                            <div class="tools">
+                                                <span class="fa fa-angle-down" style="color: white;text-decoration:none;"> </span>
+                                                <!--<a href="javascript:closeStep(2);" class="fa fa-angle-down" style="color: white;text-decoration:none;"> </a>-->
+                                            </div>
+                                        </div>
+
+
+                                        <div class="portlet-body form" id="step3" style="display: block;">
+
+
+                                            <div class="portlet light bordered">
+                                                <!--                                                <div class="portlet-title">
+                                                                                                    <div class="caption font-green inline">
+                                                
+                                                                                                        <span class="caption-subject bold uppercase"> <?= $_SESSION[1] ?></span>
+                                                
+                                                                                                    </div>
+                                                                                                </div>-->
+                                                <div class="portlet-body form">
+
+                                                    <div class="form-body">
+                                                        <div class="row">
+                                                            <div class="col-md-3"><b><?= $_SESSION[lb_repair_list] ?></b></div>
+                                                            <div class="col-md-3"><b><?= $_SESSION[lb_repair_remark] ?></b></div>
+                                                            <!--<div class="col-md-1"></div>-->
+                                                            <div class="col-md-3"><b><?= $_SESSION[lb_repair_list] ?></b></div>
+                                                            <div class="col-md-3"><b><?= $_SESSION[lb_repair_remark] ?></b></div>
+                                                            <!--<div class="col-md-1"></div>-->
+                                                        </div>
+                                                        <div id="div_checkbox_repair"></div>
+                                                        <br/><br/> <br/><br/>
+
+                                                        <div class="row">
+                                                            <div class="col-md-12"><b><?= $_SESSION[other] ?></b></div>
+
+                                                        </div>
+                                                        <br/>
+                                                        <div id="div_checkbox_repair_other"></div>
+
+
+
+
+
+
+
+                                                        <br/>
+                                                        <!--<input type="file" accept="image/jpeg, image/png" multiple id="f1" />-->
+<!--                                                        <input type="file" accept="image/jpeg, image/png" multiple id="f2"/>
+                                                        <input type="file" accept="image/jpeg, image/png" multiple id="f3"/>-->
+
+
+
+                                                        <br/>
+
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+
+
+
+
+                                        </div>
+
+
+
+
+
+
+
+
+                                    </div>
+
+                                    <!-- END STEP3-->
 
 
 

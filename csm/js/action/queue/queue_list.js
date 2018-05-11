@@ -292,8 +292,8 @@ var res = data.split(",");
                 if (res[0] == "0000") {
                     var errCode = "Code (" + res[0] + ") : " + res[1];
                     $.notify(errCode, "success");
-                    //location.reload();
-                    $('#'+id).delay(100).fadeOut();
+                    location.reload();
+                    //$('#'+id).delay(100).fadeOut();
                 } else {
                     var errCode = "Code (" + res[0] + ") : " + res[1];
                     $.notify(errCode, "error");
@@ -498,6 +498,8 @@ function sortHidden(status) {
         return "<span style='display:none;'>12</span>";
     }else if (status == "R0") {
         return "<span style='display:none;'>13</span>";
+    }else if (status == "RX") {
+        return "<span style='display:none;'>X</span>";
     }
 }
 

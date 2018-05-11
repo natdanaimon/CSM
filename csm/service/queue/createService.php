@@ -358,7 +358,7 @@ $d_inbound_dept_start_loop =  $info[d_sendcar];
 					}
         	
         	
-        	$p_i_dept_date = "i_dept_date".$data[i_dept];
+$p_i_dept_date = "i_dept_date".$data[i_dept];
         	$total = $info[$p_i_dept_date]*1;
     	$d_inbound = $d_inbound_dept_start_loop;
 $newDate = date("Y-m-d", strtotime($d_inbound));
@@ -377,11 +377,14 @@ $newDate = date("Y-m-d", strtotime($d_inbound));
 $d_end_dpet_start = date("d-m-Y", strtotime($newDate."+".$newTotal." days"));
 $weekDay = date('w', strtotime($d_end_dpet_start));
 $newDate = date("Y-m-d", strtotime($d_end_dpet_start));
-					if($weekDay == 0){
-						$newTotal = 2;
-					}else{
-						$newTotal = 1;
-					}
+					$newTotal = 0;
+                    if($total > 0){
+                        if($weekDay == 0){
+                            $newTotal = 2;
+                        }else{
+                            $newTotal = 1;
+                        }
+                    }
 $d_inbound_dept_start_loop =  date("d-m-Y", strtotime($newDate."-".$newTotal." days")); 
 
 
@@ -421,7 +424,7 @@ $d_inbound_dept_start_loop =  date("d-m-Y", strtotime($newDate."-".$newTotal." d
         
         
         
-        return $reslut;
+       // return $reslut;
     
     }
     
@@ -498,7 +501,18 @@ $d_inbound_dept_start_loop =  $info[d_sendcar];
         ////////////////////////////// Start Dept
         
         
-        $strSql = "select b.*,s.s_detail_th status_th, s.s_detail_en status_en ";
+        
+
+
+
+
+    
+		
+		}
+    
+ /*******************/
+$d_inbound_dept_start_loop =  $info[d_sendcar]; 
+$strSql = "select b.*,s.s_detail_th status_th, s.s_detail_en status_en ";
         $strSql .= " from   tb_department b , tb_status s  ";
         $strSql .= " where    b.s_status =  s.s_status ";
         $strSql .= " and    s.s_type   =  'ACTIVE' ";
@@ -534,15 +548,16 @@ $newDate = date("Y-m-d", strtotime($d_inbound));
 $d_end_dpet_start = date("d-m-Y", strtotime($newDate."+".$newTotal." days"));
 $weekDay = date('w', strtotime($d_end_dpet_start));
 $newDate = date("Y-m-d", strtotime($d_end_dpet_start));
-					if($weekDay == 0){
-						$newTotal = 2;
-					}else{
-						$newTotal = 1;
-					}
+					$newTotal = 0;
+                    if($total > 0){
+                        if($weekDay == 0){
+                            $newTotal = 2;
+                        }else{
+                            $newTotal = 1;
+                        }
+                    }
 $d_inbound_dept_start_loop =  date("d-m-Y", strtotime($newDate."-".$newTotal." days")); 
 
-
-        
         $strSql = "";
         $strSql .= "update tb_queue_dept ";
         $strSql .= "set  ";
@@ -557,15 +572,8 @@ $d_inbound_dept_start_loop =  date("d-m-Y", strtotime($newDate."-".$newTotal." d
             array("query" => "$strSql")
         );
         $resluts = $db->insert_for_upadte($arr);
-        
-		
-        
 
-        
-        
         }
-
-
 
 /******************/
  
@@ -630,11 +638,8 @@ if($depart_start == 7){  $s_status = "R10";  }
         
 
         return $reslut;
-    
-		
-		}
-    
-    
+
+
     
     
     

@@ -117,11 +117,19 @@
         <th>สถานะ</th>
         <en>Status</en> 
     </detail>
-    <detail>
+	
+    <!--<detail>
         <variable>label_comment</variable>
         <th>การพูดคุย</th>
         <en>Comment</en> 
     </detail>
+	-->
+	<detail>
+        <variable>label_comment</variable>
+        <th>บันทึกข้อความ</th>
+        <en>Memos</en> 
+    </detail>
+	
     <detail>
         <variable>edit_info</variable>
         <th>แก้ไขข้อมูล</th>
@@ -492,10 +500,16 @@
         <th>ยกเลิก</th>
         <en>Cancel</en> 
     </detail>
+	<!--
     <detail>
         <variable>btn_addComment</variable>
         <th>เพิ่มบทสนทนา</th>
         <en>Add Comment</en> 
+    </detail>-->
+	<detail>
+        <variable>btn_addComment</variable>
+        <th>เพิ่มบันทึกข้อความ</th>
+        <en>Add Memos</en> 
     </detail>
     <detail>
         <variable>btn_next</variable>
@@ -1395,10 +1409,16 @@
     </detail>
     
     
-    <detail>
+    <!--<detail>
         <variable>tb_co_comment</variable>
         <th>บทสนทนา</th>
         <en>Comment</en>
+    </detail>-->
+	
+	<detail>
+        <variable>tb_co_comment</variable>
+        <th>บันทึกข้อความ</th>
+        <en>Memos</en>
     </detail>
     
     <detail>
@@ -2230,6 +2250,11 @@
         <variable>lb_re_emcs</variable>
         <th> ราคาในระบบ EMCS/ราคาตามใบเสนอราคา</th>
         <en>EMCS</en> 
+    </detail>
+	<detail>
+        <variable>tt_repair_list</variable>
+        <th> รายการซ่อม</th>
+        <en>Repair List</en> 
     </detail>
 	
 	

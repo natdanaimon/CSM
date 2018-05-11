@@ -96,8 +96,11 @@ switch ($info[func]) {
     case "DDLGenerationSelect" :
         echo $controller->DDLGenerationSelect($info);
         break;
-      case "MNGetDate" :
+    case "MNGetDate" :
         echo $controller->MNGetDate($info);
+        break;
+    case "CheckBoxListRepair" :
+        echo $controller->CheckBoxListRepair();
         break;
 }
 
@@ -130,6 +133,7 @@ class commonController {
             return NULL;
         }
     }
+    
 
     public function DDLStatusActive() {
         $service = new commonService();
@@ -486,28 +490,32 @@ class commonController {
     public function MNGetDate($info) {
     	$total = $info[total]*1;
     	$d_inbound = $info[d_inbound];
-
-$newDate = date("Y-m-d", strtotime($d_inbound));
-
+        $newDate = date("Y-m-d", strtotime($d_inbound));
         $newTotal = 0;
         $checkDate = "";
         for($i=1; $i <= $total; $i++){
-					$d_auto_end = date("d-m-Y", strtotime($newDate."+".$i." days"));
-					$weekDay = date('w', strtotime($d_auto_end));
-					$checkDate .= " ".$weekDay;
-					if($weekDay == 0){
-						$newTotal += 2;
-					}else{
-						$newTotal++;
-					}
-					
-				}
-				
-				
-$d_auto_end = date("d-m-Y", strtotime($newDate."+".$newTotal." days"));
-
-
+			$d_auto_end = date("d-m-Y", strtotime($newDate."+".$i." days"));
+			$weekDay = date('w', strtotime($d_auto_end));
+			$checkDate .= " ".$weekDay;
+			if($weekDay == 0){
+				$newTotal += 2;
+			}else{
+				$newTotal++;
+			}
+		}
+        $d_auto_end = date("d-m-Y", strtotime($newDate."+".$newTotal." days"));
         return $d_auto_end;
+    }
+
+
+    public function CheckBoxListRepair() {
+        $service = new commonService();
+        $_dataTable = $service->CheckBoxListRepair();
+        if ($_dataTable != NULL) {
+            return json_encode($_dataTable);
+        } else {
+            return NULL;
+        }
     }
 
 

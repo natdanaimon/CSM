@@ -120,7 +120,7 @@ function initialCheckBox() {
             var res = JSON.parse(data);
             var count = 1;
             $.each(res, function (i, item) {
-                if (count == 2) {
+                if (count == 1) {
                     count = 0;
                 }
 
@@ -129,18 +129,18 @@ function initialCheckBox() {
                     htmlOption += '<div class="row">';
                 }
 
-                htmlOption += '<div class="col-md-3 col-sm-12" style="padding-top: 10px;display:inline-flex;">';
+                htmlOption += '<div class="col-md-4 col-sm-12 div_listmain_'+item.i_repair_item+'" style="padding-top: 10px;display:inline-flex;display:none;"  >';
                 htmlOption += '<span class=" md-checkbox has-success" >';
-                htmlOption += '  <input type="checkbox" id="i_repair_item_' + item.i_repair_item + '" name="i_repair_item_' + item.i_repair_item + '" class="md-check"';
+                htmlOption += '  <input readonly  type="checkbox" id="i_repair_item_' + item.i_repair_item + '" name="i_repair_item_' + item.i_repair_item + '" class="md-check"';
                 htmlOption += '  value="' + item.i_repair_item + '" >';
                 htmlOption += '  <label for="i_repair_item_' + item.i_repair_item + '">';
                 htmlOption += '    <span class="inc"></span>';
                 htmlOption += '    <span class="check"></span>';
                 htmlOption += '    <span class="box"></span> ' + item.s_repair_name + '</label>';
                 htmlOption += '</span>';
-                htmlOption += ' &nbsp;<a href="javascript:UploadMultifile(' + item.i_repair_item + ');"><span class="fa fa-cloud-upload"></span></a>';
+                htmlOption += ' &nbsp;<a style="display:none;"  href="javascript:UploadMultifile(' + item.i_repair_item + ');"><span class="fa fa-cloud-upload"></span></a>';
 
-                htmlOption += '<a id="imgpopup_' + item.i_repair_item + '" title="รูปภาพประกอบ" class="example-image-link" href="" data-lightbox="example-' + item.i_repair_item + '">';
+                htmlOption += '<a style="display:none;"  id="imgpopup_' + item.i_repair_item + '" title="รูปภาพประกอบ" class="example-image-link" href="" data-lightbox="example-' + item.i_repair_item + '">';
                 htmlOption += ' <span><img src="images/photos-app-icon.png" width="18px" height="18px" id="img_' + item.i_repair_item + '" name="img_' + item.i_repair_item + '"  style="display:none;" ></span>';
                 htmlOption += '</a>';
                 htmlOption += '<input type="hidden" id="ck_' + item.i_repair_item + '" name="ck_' + item.i_repair_item + '" value="" style="display:none;" >';
@@ -153,9 +153,9 @@ function initialCheckBox() {
 
 
 
-                htmlOption += '<div class="col-md-3 col-sm-12">';
+                htmlOption += '<div class="col-md-8 col-sm-12 div_listmain_'+item.i_repair_item+'" style="display:none;">';
                 htmlOption += '<div class="form-group form-md-line-input has-success" style="padding-top:0px !important;" >';
-                htmlOption += '<input type="text" class="form-control bold required" id="s_repair_item_' + item.i_repair_item + '" name="s_repair_item_' + item.i_repair_item + '" >';
+                htmlOption += '<input type="text" class="form-control bold " readonly id="s_repair_item_' + item.i_repair_item + '" name="s_repair_item_' + item.i_repair_item + '" >';
                 htmlOption += '</div>';
                 htmlOption += '</div>';
 
@@ -257,7 +257,7 @@ function initialCheckBoxOther() {
 
     var count = 1;
     for (i = 1; i < 14; i++) {
-        if (count == 2) {
+        if (count == 1) {
             count = 0;
         }
 
@@ -266,17 +266,17 @@ function initialCheckBoxOther() {
             htmlOption += '<div class="row">';
         }
 
-        htmlOption += '<div class="col-md-3 col-sm-12" style="padding-top: 10px;display:inline-flex;">';
+        htmlOption += '<div class="col-md-4 col-sm-12 div_listother_'+i+' " style="padding-top: 10px;display:inline-flex;display:none;">';
         htmlOption += '<span class=" md-checkbox has-success" style="display: inherit;">';
-        htmlOption += '  <input type="checkbox" id="i_repair_subitem_' + i + '" name="i_repair_subitem_' + i + '" class="md-check"';
+        htmlOption += '  <input readonly type="checkbox" id="i_repair_subitem_' + i + '" name="i_repair_subitem_' + i + '" class="md-check"';
         htmlOption += '  value="' + i + '" >';
         htmlOption += '  <label for="i_repair_subitem_' + i + '">';
         htmlOption += '    <span class="inc"></span>';
         htmlOption += '    <span class="check"></span>';
         htmlOption += '    <span class="box"></span> ' + i + '.</label>';
-        htmlOption += ' &nbsp;<a href="javascript:UploadMultifileOther(' + i + ');"><span class="fa fa-cloud-upload"></span></a>';
+        htmlOption += ' &nbsp;<a style="display:none;"  href="javascript:UploadMultifileOther(' + i + ');"><span class="fa fa-cloud-upload"></span></a>';
 
-        htmlOption += '<a id="imgpopups_' + i + '" title="รูปภาพประกอบ" class="example-image-link" href="" data-lightbox="examples-' + i + '">';
+        htmlOption += '<a style="display:none;"  id="imgpopups_' + i + '" title="รูปภาพประกอบ" class="example-image-link" href="" data-lightbox="examples-' + i + '">';
         htmlOption += ' <img src="images/photos-app-icon.png" width="18px" height="18px" id="imgs_' + i + '" name="imgs_' + i + '"  style="display:none;" >';
         htmlOption += '</a>';
         htmlOption += '<input type="hidden" id="cks_' + i + '" name="cks_' + i + '" value="" style="display:none;" >';
@@ -284,9 +284,9 @@ function initialCheckBoxOther() {
 
         htmlOption += '</div>';
 
-        htmlOption += '<div class="col-md-3 col-sm-12">';
+        htmlOption += '<div class="col-md-8 col-sm-12 div_listother_'+i+' " style="display:none;" >';
         htmlOption += '<div class="form-group form-md-line-input has-success" style="padding-top:0px !important;" >';
-        htmlOption += '<input type="text" class="form-control bold required" id="s_repair_subitem_' + i + '" name="s_repair_subitem_' + i + '" >';
+        htmlOption += '<input readonly type="text" class="form-control bold required" id="s_repair_subitem_' + i + '" name="s_repair_subitem_' + i + '" >';
         htmlOption += '</div>';
         htmlOption += '</div>';
 
@@ -724,7 +724,7 @@ function edit(keyEdit) {
                 editCustomer(item.i_customer);
 
                 editCheckBoxMain(item.ref_no);
-                //editCheckBoxOther(item.ref_no);
+                editCheckBoxOther(item.ref_no);
 
                 $("#i_ins_comp").val(item.i_ins_comp).trigger('change');
                 $("#d_inbound").val(item.d_inbound);
@@ -886,7 +886,7 @@ function editCheckBoxMain(ref_no) {
 
     $.ajax({
         type: 'GET',
-        url: 'controller/repair/checkController.php?func=getCheckBoxMain&ref_no=' + ref_no,
+        url: 'controller/repair/checkstep2Controller.php?func=getCheckBoxMain&ref_no=' + ref_no,
         beforeSend: function () {
             //$('#se-pre-con').fadeIn(100);
         },
@@ -905,6 +905,9 @@ function editCheckBoxMain(ref_no) {
                 $('#imgpopup_' + item.i_repair_item).attr('href', 'upload/step_checkrepair/' + item.s_filename)
                 $('#img_' + item.i_repair_item).attr('style', 'display:block;');
                 $('#ck_' + item.i_repair_item).val(item.s_filename);
+                $('.div_listmain_'+item.i_repair_item).show();
+            
+            
             });
 
 //            $('#se-pre-con').delay(100).fadeOut();
@@ -922,7 +925,7 @@ function editCheckBoxOther(ref_no) {
 
     $.ajax({
         type: 'GET',
-        url: 'controller/repair/checkController.php?func=getCheckBoxOther&ref_no=' + ref_no,
+        url: 'controller/repair/checkstep2Controller.php?func=getCheckBoxOther&ref_no=' + ref_no,
         beforeSend: function () {
             //$('#se-pre-con').fadeIn(100);
         },
@@ -1002,6 +1005,7 @@ function editCheckBoxOther(ref_no) {
 
 
 
+            $('.div_listpther_'+item.i_repair_item).show();
             });
 
 //            $('#se-pre-con').delay(100).fadeOut();
@@ -1014,6 +1018,15 @@ function editCheckBoxOther(ref_no) {
     });
 }
 
+
+function setValSelected(index, val) {
+    var tmp = ((val != null && val != '') ? 'Y' : '')
+    if (tmp == 'Y') {
+        $('input:checkbox[id="i_repair_subitem_' + index + '"]').attr('checked', 'Y');
+        $('#imgs_' + index).attr('style', 'display:block;');
+    }
+
+}
 
 
 
@@ -1038,6 +1051,8 @@ function save() {
                 if (res[0] == "0000") {
                     var errCode = "Code (" + res[0] + ") : " + res[1];
                     $.notify(errCode, "success");
+                    //setTimeout(funcrion(){ location.replace('queue_list.php'); },1000);
+                    location.replace('queue_list.php');
                 } else {
                     var errCode = "Code (" + res[0] + ") : " + res[1];
                     $.notify(errCode, "error");
