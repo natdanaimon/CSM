@@ -58,6 +58,7 @@ function ACTIVEPAGES($page, $sub) {
     $_SESSION["nav_main_queue"] = "";
     $_SESSION["nav_sub_queue_list"] = "";
     $_SESSION["nav_sub_queue_listall"] = "";
+    $_SESSION["nav_sub_queue_all"] = "";
 
     
     //csm_repair
@@ -129,6 +130,8 @@ function ACTIVEPAGES($page, $sub) {
             $_SESSION["nav_sub_queue_list"] = " active open";
         } else if ($sub == 2) {
             $_SESSION["nav_sub_queue_listall"] = " active open";
+        }else if ($sub == 3) {
+            $_SESSION["nav_sub_queue_all"] = " active open";
         }
     }
     

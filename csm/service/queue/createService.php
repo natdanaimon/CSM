@@ -39,6 +39,29 @@ class createService {
         $db->close_conn();
         return $_data;
     }
+    
+    function dataTableAll() {
+        $db = new ConnectDB();
+        $strSql = " select *, i_year , '' as i_brand , '' as i_gen , '' as i_sub from ";
+        $strSql .= " (";
+        $strSql .= " select u.*, s.s_detail_th status_th, s.s_detail_en status_en";
+        $strSql .= " from tb_customer_car u, tb_status s";
+        $strSql .= " where u.s_status = s.s_status";
+        $strSql .= " and s.s_type = 'REPAIR'";
+        //$strSql .= " and s.s_status in ('R2','R3') ";
+        $strSql .= " ) tb_cust ,";
+        $strSql .= " (";
+        $strSql .= " select u.i_customer,concat(t.s_title_th, ' ', u.s_firstname, ' ', u.s_lastname) s_fullname,u.s_phone_1";
+        $strSql .= " from tb_customer u, tb_status s, tb_title t";
+        $strSql .= " where u.s_status = s.s_status";
+        $strSql .= " and s.s_type = 'ACTIVE' and u.i_title = t.i_title ";
+        $strSql .= " ) customer";
+        $strSql .= " WHERE tb_cust.i_customer = customer.i_customer ";
+        $strSql .= " order by tb_cust.d_create desc , tb_cust.s_status desc ";
+        $_data = $db->Search_Data_FormatJson($strSql);
+        $db->close_conn();
+        return $_data;
+    }
 
     function dataTableR10() {
         $db = new ConnectDB();
@@ -251,7 +274,7 @@ class createService {
         $strSql .= "    ref_no, ";
         $strSql .= "    d_auto_end, ";
         $strSql .= "    d_fix_date, ";
-        //$strSql .= "    i_dept_start, ";
+        $strSql .= "    i_fix_date, ";
         //$strSql .= "    i_emcs, ";
         $strSql .= "    d_create, ";
         $strSql .= "    d_update, ";
@@ -263,7 +286,7 @@ class createService {
         $strSql .= "  '$info[s_queue_ref]', ";
         $strSql .= "  '" . $util->DateSQL($info[d_sendcar]) . "', ";
         $strSql .= "  '" . $util->DateSQL($info[d_fix_date]) . "', ";
-        //$strSql .= "  '$info[i_dept_start]', ";
+        $strSql .= "  '$info[i_fix_date]', ";
         //$strSql .= "  '$info[i_emcs]', ";
         $strSql .= "  " . $db->Sysdate(TRUE) . ", ";
         $strSql .= " " . $db->Sysdate(TRUE) . ", ";
@@ -440,6 +463,7 @@ $d_inbound_dept_start_loop =  date("d-m-Y", strtotime($newDate."-".$newTotal." d
         $strSql .= "d_fix_date = '" . $util->DateSQL($info[d_fix_date]) . "', ";
         $strSql .= "i_emcs = '$info[i_emcs]', ";
         $strSql .= "i_dept_start = '$info[i_dept_start]', ";
+        $strSql .= "i_fix_date = '$info[i_fix_date]', ";
         $strSql .= "d_update = " . $db->Sysdate(TRUE) . ", ";
         $strSql .= "s_update_by = '$_SESSION[username]' ";
         $strSql .= "where ref_no = '$info[s_queue_ref]' ";
@@ -461,12 +485,12 @@ $d_inbound_dept_start_loop =  date("d-m-Y", strtotime($newDate."-".$newTotal." d
 $newDate = date("Y-m-d", strtotime($d_inbound));
         $newTotal = 0;
         $checkDate = "";
-        for($i=1; $i <= $total; $i++){
+        for($i=0; $i <= $total; $i++){
 					$d_end_dpet_start = date("d-m-Y", strtotime($newDate."-".$i." days"));
 					$weekDay = date('w', strtotime($d_end_dpet_start));
 					$checkDate .= " ".$weekDay;
 					if($weekDay == 0){
-						$newTotal -= 2;
+						$newTotal -= 1;
 					}else{
 						$newTotal--;
 					}
@@ -476,9 +500,9 @@ $d_end_dpet_start = date("d-m-Y", strtotime($newDate."-".$newTotal." days"));
 $weekDay = date('w', strtotime($d_end_dpet_start));
 $newDate = date("Y-m-d", strtotime($d_end_dpet_start));
 					if($weekDay == 0){
-						$newTotal = 2;
-					}else{
 						$newTotal = 1;
+					}else{
+						$newTotal = 0;
 					}
 //$d_inbound_dept_start_loop =  date("d-m-Y", strtotime($newDate."-".$newTotal." days")); 
 $d_inbound_dept_start_loop =  $info[d_sendcar]; 
@@ -511,7 +535,13 @@ $d_inbound_dept_start_loop =  $info[d_sendcar];
 		}
     
  /*******************/
-$d_inbound_dept_start_loop =  $info[d_sendcar]; 
+
+if($info[i_fix_date] == 1){
+	$d_inbound_dept_start_loop =  $info[d_fix_date]; 
+}else{
+	$d_inbound_dept_start_loop =  $info[d_sendcar]; 
+} 
+
 $strSql = "select b.*,s.s_detail_th status_th, s.s_detail_en status_en ";
         $strSql .= " from   tb_department b , tb_status s  ";
         $strSql .= " where    b.s_status =  s.s_status ";
@@ -535,25 +565,32 @@ $strSql = "select b.*,s.s_detail_th status_th, s.s_detail_en status_en ";
 $newDate = date("Y-m-d", strtotime($d_inbound));
         $newTotal = 0;
         $checkDate = "";
-        for($i=1; $i <= $total; $i++){
+        for($i=0; $i < $total; $i++){
 					$d_end_dpet_start = date("d-m-Y", strtotime($newDate."-".$i." days"));
 					$weekDay = date('w', strtotime($d_end_dpet_start));
 					$checkDate .= " ".$weekDay;
 					if($weekDay == 0){
-						$newTotal -= 2;
+						$newTotal += 2;
 					}else{
-						$newTotal--;
+						$newTotal ++;
 					}
 				}	
-$d_end_dpet_start = date("d-m-Y", strtotime($newDate."+".$newTotal." days"));
-$weekDay = date('w', strtotime($d_end_dpet_start));
-$newDate = date("Y-m-d", strtotime($d_end_dpet_start));
+//$newTotal = $newTotal-1;	
+if($total == 1){
+	$newTotals = 0;
+}else{
+	$newTotals = $newTotal;
+}		
+$d_end_dpet_start = date("d-m-Y", strtotime($newDate."-".$newTotals." days"));
+$d_end_dpet_starts = date("d-m-Y", strtotime($newDate."-".$newTotal." days"));
+$weekDay = date('w', strtotime($d_end_dpet_starts));
+$newDate = date("Y-m-d", strtotime($d_end_dpet_starts));
 					$newTotal = 0;
                     if($total > 0){
                         if($weekDay == 0){
-                            $newTotal = 2;
-                        }else{
                             $newTotal = 1;
+                        }else{
+                            $newTotal = 0;
                         }
                     }
 $d_inbound_dept_start_loop =  date("d-m-Y", strtotime($newDate."-".$newTotal." days")); 

@@ -2256,6 +2256,11 @@
         <th> รายการซ่อม</th>
         <en>Repair List</en> 
     </detail>
+	<detail>
+        <variable>queue_all</variable>
+        <th> งานทั้งหมด</th>
+        <en>All List</en> 
+    </detail>
 	
 	
     

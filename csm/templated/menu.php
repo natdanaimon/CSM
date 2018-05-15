@@ -159,6 +159,13 @@
                         <span class="badge badge-success" ></span>
                     </a>
                 </li>
+                <li class="nav-item  <?= $_SESSION["nav_sub_queue_all"] ?>">
+                    <a href="queue_all.php" class="nav-link ">
+                        <span class="title">3 <?= $_SESSION[queue_all] ?></span>
+                        <span class="selected"></span>
+                        <span class="badge badge-success" ></span>
+                    </a>
+                </li>
                 
             </ul>
       

@@ -13,7 +13,7 @@ if ($_GET[func] != NULL) {
 if ($_GET[id] == NULL && $_GET[func] != "add") {
     echo header("Location: queue_createManage.php");
 }
-//$disableElement = 'disabled="disable"';
+$disableElement = 'disabled="disable"';
 
  $db = new ConnectDB();
         $strSql = " select * from tb_queue where ref_no =" .$_GET[id];
@@ -23,6 +23,7 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
 foreach($arr[queue] as $arr[queue]){
 $d_fix_date = $util->DateSql2d_dmm_yyyy($arr[queue][d_fix_date]);
 $i_queue = $arr[queue][i_queue];
+$i_fix_date = $arr[queue][i_fix_date];
 }
 
 if($d_fix_date == ''){
@@ -542,7 +543,7 @@ $total_date += $arr[dept][i_dept_date];
                                             <div class="portlet-body form">
                                                 <div class="form-body">
                                                     <div class="form-group form-md-line-input has-success "  >
-                                                        <select class="form-control edited bold" id="i_dmg" name="i_dmg" style="color:black;font-weight:bold;">
+                                                        <select class="form-control edited bold" id="i_dmg" name="i_dmg" style="color:black;font-weight:bold;" <?= $disableElement ?>>
                                                             <option value="-1"></option>
                                                         </select>
                                                         <label for="form_control_1">ระดับความเสียหาย
@@ -555,7 +556,7 @@ $total_date += $arr[dept][i_dept_date];
                                                                             <i class="fa fa-calendar"></i>
                                                                         </button>
                                                                     </span>
-                                                                    <input type="text" class="form-control" name="d_sendcar" id="d_sendcar" readonly="readonly"  <?= $disableElement ?>>
+                                                                    <input type="text" class="form-control" name="d_sendcar" id="d_sendcar" readonly="readonly"   >
                                                                 </div>
                                                 <?php
                                                 $db = new ConnectDB();
@@ -579,7 +580,7 @@ $total_date += $arr[dept][i_dept_date];
 
                                                 ?>
                                                  <div class="form-group form-md-line-input has-success">
-                                                                    <input type="number" class="form-control bold required i_dept_date" id="i_dept_date<?= $data[i_dept] ?>" name="i_dept_date<?= $data[i_dept] ?>"  <?= $disableElement ?> value="<?=$i_dept_ok;?>" min="0" onkeyup="getDateTotal();">
+                                                                    <input type="number" class="form-control bold required i_dept_date" id="i_dept_date<?= $data[i_dept] ?>" name="i_dept_date<?= $data[i_dept] ?>"   value="<?=$i_dept_ok;?>" min="0" onkeyup="getDateTotal();">
                                                                     <label for="form_control_1"><?= $data[s_dept_th] ?> <span class="required"></span></label>          
                                                                 </div>
                                                 <?php } ?>
@@ -615,16 +616,26 @@ $total_date += $arr[dept][i_dept_date];
                                                 </div>
                                             </div>
                                             <div class="portlet-body form">
-                                                <div class="form-body">
+                                                <div class="form-body" >
+                                                
+                <span class="md-checkbox has-success" style="padding-right: 0px;">
+                <input type="checkbox" id="checkbox_date" name="checkbox_date" class="md-check"     value="1" onclick="remove_select_all('checkbox_date')">
+                <label for="checkbox_date">
+                <span class="inc"></span>
+                <span class="check"></span>
+                <span class="box"></span> </label>
+                </span>
                                                      <label for="form_control_1" style="color: #36c6d3;">กำหนดวันเอง <span class="required" style="color: red;"></span></label> 
-                                                                <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy" data-date="<?= date("d-m-Y") ?>"  style="width: 100% !important;">
+                                                                <div id="div_mt_date" style="display: none;" class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy" data-date="<?= date("d-m-Y") ?>"  style="width: 100% !important;">
                                                                     <span class="input-group-btn">
-                                                                        <button class="btn default" type="button" <?= $disableElement ?>>
+                                                                        <button class="btn default" type="button" >
                                                                             <i class="fa fa-calendar"></i>
                                                                         </button>
                                                                     </span>                                                                    
-                                                                    <input type="text" class="form-control" readonly name="d_fix_date" id="d_fix_date" value="<?=$d_fix_date; ?>"  <?= $disableElement ?>>
+                                                                    <input type="text" class="form-control" readonly name="d_fix_date" id="d_fix_date" value="<?=$d_fix_date; ?>"  >
+                                                                    
                                                                 </div>
+                                                                <input type="hidden" class="form-control"  name="i_fix_date" id="i_fix_date" value="<?=$i_fix_date; ?>"  >
                                                 </div>
                                             </div>
                                         </div>
@@ -802,6 +813,18 @@ $total_date += $arr[dept][i_dept_date];
                                     
 
 								}
+            });
+            
+            $('#checkbox_date').click(function(){
+            	
+            	if($("#checkbox_date").prop('checked') == true){
+							    //do something
+							    $('#div_mt_date').show();
+							    $('#i_fix_date').val('1');
+							}else{
+								$('#div_mt_date').hide();
+								$('#i_fix_date').val('0');
+							}
             });
             
         </script>

@@ -15,6 +15,9 @@ switch ($info[func]) {
     case "dataTable":
         echo $controller->dataTable();
         break;
+    case "dataTableAll":
+        echo $controller->dataTableAll();
+        break;
     case "delete":
         echo $controller->delete($info[id]);
         break;
@@ -77,6 +80,26 @@ class createController {
                 $_dataTable[$key]['d_inbound'] = $util->DateSql2d_dmm_yyyy($_dataTable[$key]['d_inbound']);
                 $_dataTable[$key]['d_outbound_confirm'] = $util->DateSql2d_dmm_yyyy($_dataTable[$key]['d_outbound_confirm']);
                 //*/
+            }
+            return json_encode($_dataTable);
+        } else {
+            return NULL;
+        }
+    }
+    
+    public function dataTableAll() {
+        $service = new createService();
+        $_dataTable = $service->dataTableAll();
+        $util = new Utility();
+        if ($_dataTable != NULL) {
+            foreach ($_dataTable as $key => $value) {
+                $_dataTable[$key]['i_brand'] = $service->getBrand($_dataTable[$key]['s_brand_code']);
+                $_dataTable[$key]['i_gen'] = $service->getGeneration($_dataTable[$key]['s_gen_code']);
+                $_dataTable[$key]['i_ins_comp'] = $service->getInsurance($_dataTable[$key]['i_ins_comp']);
+                $_dataTable[$key]['i_dmg'] = $service->getDamage($_dataTable[$key]['i_dmg']);
+
+                $_dataTable[$key]['d_inbound'] = $util->DateSql2d_dmm_yyyy($_dataTable[$key]['d_inbound']);
+                $_dataTable[$key]['d_outbound_confirm'] = $util->DateSql2d_dmm_yyyy($_dataTable[$key]['d_outbound_confirm']);
             }
             return json_encode($_dataTable);
         } else {

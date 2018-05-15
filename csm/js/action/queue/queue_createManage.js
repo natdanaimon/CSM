@@ -1052,7 +1052,7 @@ function save() {
                     var errCode = "Code (" + res[0] + ") : " + res[1];
                     $.notify(errCode, "success");
                     //setTimeout(funcrion(){ location.replace('queue_list.php'); },1000);
-                    location.replace('queue_list.php');
+                    //location.replace('queue_list.php');
                 } else {
                     var errCode = "Code (" + res[0] + ") : " + res[1];
                     $.notify(errCode, "error");
