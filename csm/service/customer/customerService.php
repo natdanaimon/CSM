@@ -26,7 +26,7 @@ class customerService {
     }
 
     function validUser($db, $info) {
-        $strSql = " select count(*) cnt from tb_customer where s_phone_1 ='" . $info[s_phone] . "' ";
+        $strSql = " select count(*) cnt from tb_customer where s_phone_1 ='" . $info[s_phone_1] . "' ";
         if ($info[func] == "edit") {
             $strSql .= " and i_customer != $info[id]  ";
         }

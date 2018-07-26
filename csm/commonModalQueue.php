@@ -24,26 +24,26 @@ and open the template in the editor.
                        	<input type="hidden" id="func" name="func" value="addStaff"/>
                        	<input type="hidden" name="i_queue_dept_staff" id="i_queue_dept_staff"/>
                        	<table cellpadding="5" cellspacing="5" style="padding: 5px !important;" >
-                       		<tr>
+                          <tr style="height: 35px;">
                        			<td>ช่าง</td>
                        			<td width="10"></td>
                        			<td>
-                       				<select name="i_staff_id" id="i_staff_id">
+                                  <select name="i_staff_id" id="i_staff_id" class="form-control">
                        					
                        				</select>
                        			</td>
                        			
                        		</tr>
-                       		<tr>
+                       		<tr style="height: 35px;">
                        			<td>วันที่เริ่มซ่อม</td>
                        			<td width="10"></td>
                        			<td>
                        			
-                       			<input type="date" id="d_start_work" name="d_start_work"   />
+                                  <input type="date" id="d_start_work" name="d_start_work"  class="form-control"  value="<?=date('Y-m-d');?>"  />
                        			
                        			</td>
                        		</tr>
-                       		<tr>
+                       		<tr style="height: 35px;">
                        			<td></td>
                        			<td></td>
                        			<td>

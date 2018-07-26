@@ -170,7 +170,7 @@ class createService {
         $strSql .= "    s_nameclaim, ";
 //        $strSql .= "    i_dmg, ";
         $strSql .= "    d_inbound, ";
-        $strSql .= "    d_outbound_confirm, ";
+        //$strSql .= "    d_outbound_confirm, ";
 
 
         $strSql .= "    d_create, ";
@@ -197,7 +197,7 @@ class createService {
         $strSql .= "  '$info[s_nameclaim]', ";
 //        $strSql .= "  $info[i_dmg], ";
         $strSql .= "  '" . $util->DateSQL($info[d_inbound]) . "', ";
-        $strSql .= "  '" . $util->DateSQL($info[d_outbound_confirm]) . "', ";
+        //$strSql .= "  '" . $util->DateSQL($info[d_outbound_confirm]) . "', ";
 
         $strSql .= "  " . $db->Sysdate(TRUE) . ", ";
         $strSql .= " " . $db->Sysdate(TRUE) . ", ";

@@ -54,6 +54,8 @@ function getDDLEmployee() {
 
     });
 }
+
+
 function getDDLStatus() {
     $.ajax({
         type: 'GET',
@@ -417,6 +419,81 @@ function getDDLZipcode() {
 }
 
 
+function refLoad() {
+    //alert(111)
+    $.ajax({
+        type: 'GET',
+        url: 'controller/repair/checkController.php?func=getInfo&id=' + keyRef,
+        beforeSend: function () {
+            //$('#se-pre-con').fadeIn(100);
+        },
+        success: function (data) {
+            var res = JSON.parse(data);
+            $.each(res, function (i, item) {
+
+                $("#i_customer").val(item.i_customer);
+                $("#ref_no").val(item.ref_no);
+                //radio
+                radio_type(item.i_ins_type);
+
+                editCustomer(item.i_customer);
+
+                /*editCheckBoxMain(item.ref_no);
+                editCheckBoxOther(item.ref_no);*/
+
+                $("#i_ins_comp").val(item.i_ins_comp).trigger('change');
+                $("#d_inbound").val(item.d_inbound);
+                $("#d_outbound_confirm").val(item.d_outbound_confirm);
+
+                $("#s_pay_type").val(item.s_pay_type);
+                $("#i_dmg").val((item.i_dmg == "0" ? "" : item.i_dmg));
+
+                $("#i_year").val(item.i_year);
+                $("#s_brand_code").val(item.s_brand_code);
+                getDDLGenSelectEdit(item.s_brand_code);
+                $("#s_gen_code").val(item.s_gen_code);
+//                $("#s_car_code").val(item.s_car_code).trigger('change');
+                $("#s_license").val(item.s_license);
+
+                $("#s_type_capital").val(item.s_type_capital);
+                $("#d_ins_exp").val(item.d_ins_exp);
+
+
+
+
+                debugger;
+                /*initialDataTable("TRUE");
+
+                $("#status").val('R3');
+                $("#d_sendcar").val(item.d_sendcar);
+                $("#i_emcs").val(item.i_emcs);
+//                $("#status").val(item.s_status);
+                $("#lb_create").text(item.s_create_by + " ( " + item.d_create + " )");
+                var lb_edit = (item.s_update_by != "" ? item.s_update_by + " ( " + item.d_update + " )" : "-");
+                $("#lb_edit").text(lb_edit);*/
+
+
+
+            });
+
+            //$('#se-pre-con').delay(100).fadeOut();
+
+        },
+        error: function (data) {
+
+        }
+
+    });
+}
+
+ 
+
+
+function setRadio(i) {
+    $("#i_ins_type").val(i);
+}
+
+
 function edit() {
     $.ajax({
         type: 'GET',
@@ -493,8 +570,29 @@ function editCustomer(id) {
     });
 }
 
+function getDDLGenSelectEdit(brandCode) {
+    $.ajax({
+        type: 'GET',
+        url: 'controller/commonController.php?func=DDLGenerationSelect&s_brand_code=' + brandCode,
+        beforeSend: function () {},
+        success: function (ddl) {
+            debugger;
+            var htmlOption = "";
+            var res = JSON.parse(ddl);
+            $.each(res, function (i, item) {
+                htmlOption += "<option value='" + item.s_gen_code + "'>" + item.s_gen_code + " : " + item.s_gen_name + "</option>";
+            });
+            $("#s_gen_code").html(htmlOption);
 
 
+        },
+        error: function (ddl) {
+
+        }
+    });
+}
+
+ 
 
 
 

@@ -821,6 +821,144 @@
     </detail>
     <!-- PO create --> 
     
+    <!-- Report --> 
+    <detail>
+        <variable>menu_report</variable>
+        <th>ออกรายงาน</th>
+        <en>Report</en>
+    </detail>
+     <detail>
+        <variable>report_repair</variable>
+        <th>ใบสั่งซ่อม</th>
+        <en>Repair Order </en>
+    </detail>
+     <detail>
+        <variable>report_receive</variable>
+        <th>ใบรับรถ</th>
+        <en>Car Receive</en>
+    </detail>
+    <!-- Report --> 
+	
+	<!-- color --> 
+    <detail>
+        <variable>color_code</variable>
+        <th>รหัสสี</th>
+        <en>Color Code</en>
+    </detail>
+	<detail>
+        <variable>purchase_code</variable>
+        <th>PART No.</th>
+        <en>PART No.</en>
+    </detail>
+    <detail>
+        <variable>purchase_volume</variable>
+        <th>ปริมาณ</th>
+        <en>Volume </en>
+    </detail>
+    <detail>
+        <variable>purchase_price</variable>
+        <th>ราคา</th>
+        <en>Price</en>
+    </detail>
+	<detail>
+        <variable>purchase_name</variable>
+        <th>ชื่อ</th>
+        <en>Name</en>
+    </detail>
+	<detail>
+        <variable>color_name</variable>
+        <th>สี</th>
+        <en>Color</en>
+    </detail>
+	<detail>
+        <variable>color_no</variable>
+        <th>เลขที่รายการสั่งสี</th>
+        <en>Color No.</en>
+    </detail>
+	<detail>
+        <variable>po_part_no</variable>
+        <th>PART No.</th>
+        <en>PART No.</en>
+    </detail>
+	
+	
+    <!-- color --> 
+    <!-- PO --> 
+	<detail>
+        <variable>po_dd_spare</variable>
+        <th>สั่งซื้ออะไหล่</th>
+        <en>PO-Spare</en>
+    </detail>
+    <detail>
+        <variable>po_dd_color</variable>
+        <th>สั่งซื้อสี</th>
+        <en>PO-Color</en>
+    </detail>
+    <detail>
+        <variable>po_dd_other</variable>
+        <th>สั่งซื้ออุปกรณ์อื่นๆ</th>
+        <en>PO-Other</en>
+    </detail>
+    <detail>
+        <variable>po_dd_store</variable>
+        <th>ที่เก็บ</th>
+        <en>Store</en>
+    </detail>
+    <!-- PO -->
+	
+	<!-- Report --> 
+	<detail>
+        <variable>rp_no</variable>
+        <th>เลขที่</th>
+        <en>NO.</en>
+    </detail>
+    <detail>
+        <variable>rp_color</variable>
+        <th>สี</th>
+        <en>Color</en>
+    </detail>
+    <detail>
+        <variable>rp_fuel</variable>
+        <th>ปริมาณน้ำมัน</th>
+        <en>Fuel</en>
+    </detail>
+	<detail>
+        <variable>rp_distance</variable>
+        <th>กม. วันที่เข้าจอด</th>
+        <en>Distance</en>
+    </detail>
+	<detail>
+        <variable>rp_general</variable>
+        <th>ข้อมูลพื้นฐาน</th>
+        <en>General</en>
+    </detail>
+	<detail>
+        <variable>rp_lighting</variable>
+        <th>อุปกรณ์ไฟฟ้าพื้นฐานและระบบไฟส่องสว่าง</th>
+        <en>Lighting</en>
+    </detail>
+	<detail>
+        <variable>rp_accessories</variable>
+        <th>อุปกรณ์เครื่องมือประจำรถ</th>
+        <en>Accessories</en>
+    </detail>
+	<detail>
+        <variable>rp_remark</variable>
+        <th>หมายเหตุ</th>
+        <en>Remark</en>
+    </detail>
+	<detail>
+        <variable>rp_btn_save</variable>
+        <th>บันทึกข้อมูล</th>
+        <en>Save Data</en>
+    </detail>
+	<detail>
+        <variable>rp_btn_print</variable>
+        <th>ปริ้นรายงาน</th>
+        <en>Report Print</en>
+    </detail>
+    <!-- Report --> 
+    
     
 
 </language>

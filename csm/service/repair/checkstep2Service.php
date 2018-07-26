@@ -536,7 +536,7 @@ class checkService {
         $strSql .= "i_dmg = $info[i_dmg], ";
         $strSql .= "d_sendcar = '" . $util->DateSQL($info[d_sendcar]) . "', ";
         $strSql .= "i_emcs = '" . $info[i_emcs] . "', ";
-//        $strSql .= "d_outbound_confirm = '" . $util->DateSQL($info[d_outbound_confirm]) . "', ";
+        $strSql .= "d_outbound_confirm = '" . $util->DateSQL($info[d_sendcar]) . "', ";
 
         $strSql .= "d_update = " . $db->Sysdate(TRUE) . ", ";
         $strSql .= "s_update_by = '$_SESSION[username]', ";

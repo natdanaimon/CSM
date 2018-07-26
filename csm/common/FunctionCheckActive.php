@@ -4,6 +4,7 @@ function ACTIVEPAGES($page, $sub) {
 
 
     //csm
+    $_SESSION["nav_main_workall"] = "";
     $_SESSION["nav_main_dashboard"] = "";
     $_SESSION["nav_main_setting"] = "";
     $_SESSION["nav_main_repair"] = "";
@@ -84,12 +85,17 @@ function ACTIVEPAGES($page, $sub) {
     $_SESSION["nav_sub_ui_portfolio"] = "";
 
 
-
+    //csm Report
+    $_SESSION["nav_main_report"] = "";
+    $_SESSION["nav_sub_report_repair"] = "";
+    $_SESSION["nav_sub_report_receive"] = "";
 
 
 
     if ($page == 0) {
         $_SESSION["nav_main_dashboard"] = " active open";
+    } else if ($page == 999) {
+       $_SESSION["nav_main_workall"] = " active open"; 
     } else if ($page == 1) {
         
     } else if ($page == 2) {
@@ -149,7 +155,17 @@ function ACTIVEPAGES($page, $sub) {
         } else if ($sub == 2) {
             $_SESSION["nav_sub_emp_employee"] = " active open";
         }
-    } else if ($page == 13) {
+    } 
+    else if ($page == 10) {
+        $_SESSION["nav_main_report"] = " active open";
+        if ($sub == 1) {
+            $_SESSION["nav_sub_report_repair"] = " active open";
+        } else if ($sub == 2) {
+            $_SESSION["nav_sub_report_receive"] = " active open";
+        }
+    } 
+    
+    else if ($page == 13) {
         $_SESSION["nav_main_insurance"] = " active open";
         if ($sub == 1) {
             $_SESSION["nav_sub_ins_prd"] = " active open";

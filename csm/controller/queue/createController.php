@@ -48,8 +48,11 @@ switch ($info[func]) {
     case "UpdateStatus":
         echo $controller->UpdateStatus($info);
         break;
-     case "dataTableR10":
+    case "dataTableR10":
         echo $controller->dataTableR10();
+        break;
+    case "getDateTest":
+        echo $controller->getDateTest();
         break;
 }
 
@@ -70,23 +73,23 @@ class createController {
         if ($_dataTable != NULL) {
             foreach ($_dataTable as $key => $value) {
                 /*
-                $_dataTable[$key]['i_year'] = $service->getYear($_dataTable[$key]['s_car_code']);
-                $_dataTable[$key]['i_brand'] = $service->getBrand($_dataTable[$key]['s_car_code']);
-                $_dataTable[$key]['i_gen'] = $service->getGeneration($_dataTable[$key]['s_car_code']);
-                $_dataTable[$key]['i_sub'] = $service->getSub($_dataTable[$key]['s_car_code']);
-                $_dataTable[$key]['i_ins_comp'] = $service->getInsurance($_dataTable[$key]['i_ins_comp']);
-                $_dataTable[$key]['i_dmg'] = $service->getDamage($_dataTable[$key]['i_dmg']);
+                  $_dataTable[$key]['i_year'] = $service->getYear($_dataTable[$key]['s_car_code']);
+                  $_dataTable[$key]['i_brand'] = $service->getBrand($_dataTable[$key]['s_car_code']);
+                  $_dataTable[$key]['i_gen'] = $service->getGeneration($_dataTable[$key]['s_car_code']);
+                  $_dataTable[$key]['i_sub'] = $service->getSub($_dataTable[$key]['s_car_code']);
+                  $_dataTable[$key]['i_ins_comp'] = $service->getInsurance($_dataTable[$key]['i_ins_comp']);
+                  $_dataTable[$key]['i_dmg'] = $service->getDamage($_dataTable[$key]['i_dmg']);
 
-                $_dataTable[$key]['d_inbound'] = $util->DateSql2d_dmm_yyyy($_dataTable[$key]['d_inbound']);
-                $_dataTable[$key]['d_outbound_confirm'] = $util->DateSql2d_dmm_yyyy($_dataTable[$key]['d_outbound_confirm']);
-                //*/
+                  $_dataTable[$key]['d_inbound'] = $util->DateSql2d_dmm_yyyy($_dataTable[$key]['d_inbound']);
+                  $_dataTable[$key]['d_outbound_confirm'] = $util->DateSql2d_dmm_yyyy($_dataTable[$key]['d_outbound_confirm']);
+                  // */
             }
             return json_encode($_dataTable);
         } else {
             return NULL;
         }
     }
-    
+
     public function dataTableAll() {
         $service = new createService();
         $_dataTable = $service->dataTableAll();
@@ -106,6 +109,7 @@ class createController {
             return NULL;
         }
     }
+
     public function dataTableR10() {
         $service = new createService();
         $_dataTable = $service->dataTableR10();
@@ -113,24 +117,22 @@ class createController {
         if ($_dataTable != NULL) {
             foreach ($_dataTable as $key => $value) {
                 /*
-                $_dataTable[$key]['i_year'] = $service->getYear($_dataTable[$key]['s_car_code']);
-                $_dataTable[$key]['i_brand'] = $service->getBrand($_dataTable[$key]['s_car_code']);
-                $_dataTable[$key]['i_gen'] = $service->getGeneration($_dataTable[$key]['s_car_code']);
-                $_dataTable[$key]['i_sub'] = $service->getSub($_dataTable[$key]['s_car_code']);
-                $_dataTable[$key]['i_ins_comp'] = $service->getInsurance($_dataTable[$key]['i_ins_comp']);
-                $_dataTable[$key]['i_dmg'] = $service->getDamage($_dataTable[$key]['i_dmg']);
+                  $_dataTable[$key]['i_year'] = $service->getYear($_dataTable[$key]['s_car_code']);
+                  $_dataTable[$key]['i_brand'] = $service->getBrand($_dataTable[$key]['s_car_code']);
+                  $_dataTable[$key]['i_gen'] = $service->getGeneration($_dataTable[$key]['s_car_code']);
+                  $_dataTable[$key]['i_sub'] = $service->getSub($_dataTable[$key]['s_car_code']);
+                  $_dataTable[$key]['i_ins_comp'] = $service->getInsurance($_dataTable[$key]['i_ins_comp']);
+                  $_dataTable[$key]['i_dmg'] = $service->getDamage($_dataTable[$key]['i_dmg']);
 
-                $_dataTable[$key]['d_inbound'] = $util->DateSql2d_dmm_yyyy($_dataTable[$key]['d_inbound']);
-                $_dataTable[$key]['d_outbound_confirm'] = $util->DateSql2d_dmm_yyyy($_dataTable[$key]['d_outbound_confirm']);
-                //*/
+                  $_dataTable[$key]['d_inbound'] = $util->DateSql2d_dmm_yyyy($_dataTable[$key]['d_inbound']);
+                  $_dataTable[$key]['d_outbound_confirm'] = $util->DateSql2d_dmm_yyyy($_dataTable[$key]['d_outbound_confirm']);
+                  // */
             }
             return json_encode($_dataTable);
         } else {
             return NULL;
         }
     }
-
-
 
     public function dataTableKey($id) {
         $service = new createService();
@@ -149,8 +151,8 @@ class createController {
             return NULL;
         }
     }
-		
-		public function dataTableStaff($id) {
+
+    public function dataTableStaff($id) {
         $service = new createService();
         $_dataTable = $service->dataTableStaff($id);
         if ($_dataTable != NULL) {
@@ -160,7 +162,6 @@ class createController {
         }
     }
 
-    
     public function delete($seq) {
         $db = new ConnectDB();
         $db->conn();
@@ -199,9 +200,9 @@ class createController {
         $_dataTable = $service->getInfo($seq);
         if ($_dataTable != NULL) {
             foreach ($_dataTable as $key => $value) {
-                /*$_dataTable[$key]['d_ins_exp'] = $util->DateSql2d_dmm_yyyy($_dataTable[$key]['d_ins_exp']);
-                $_dataTable[$key]['d_inbound'] = $util->DateSql2d_dmm_yyyy($_dataTable[$key]['d_inbound']);
-                $_dataTable[$key]['d_outbound_confirm'] = $util->DateSql2d_dmm_yyyy($_dataTable[$key]['d_outbound_confirm']);*/
+                /* $_dataTable[$key]['d_ins_exp'] = $util->DateSql2d_dmm_yyyy($_dataTable[$key]['d_ins_exp']);
+                  $_dataTable[$key]['d_inbound'] = $util->DateSql2d_dmm_yyyy($_dataTable[$key]['d_inbound']);
+                  $_dataTable[$key]['d_outbound_confirm'] = $util->DateSql2d_dmm_yyyy($_dataTable[$key]['d_outbound_confirm']); */
             }
             return json_encode($_dataTable);
         } else {
@@ -209,7 +210,7 @@ class createController {
         }
     }
 
-		public function getInfoRef($seq) {
+    public function getInfoRef($seq) {
         $service = new createService();
         $util = new Utility();
         $_dataTable = $service->getInfoRef($seq);
@@ -238,20 +239,20 @@ class createController {
             //echo $_SESSION['cd_2001'];
         }
     }
-    
+
     public function addStaff($info) {
         //if ($this->isValid($info)) {
 
-            $db = new ConnectDB();
-            $db->conn();
-            $service = new createService();
-            if ($service->addStaff($db, $info)) {
-                $db->commit();
-                echo $_SESSION['cd_0000'];
-            } else {
-                $db->rollback();
-                echo $_SESSION['cd_2001'];
-            }
+        $db = new ConnectDB();
+        $db->conn();
+        $service = new createService();
+        if ($service->addStaff($db, $info)) {
+            $db->commit();
+            echo $_SESSION['cd_0000'];
+        } else {
+            $db->rollback();
+            echo $_SESSION['cd_2001'];
+        }
         //}
     }
 
@@ -271,18 +272,18 @@ class createController {
             }
         }
     }
-    
+
     public function UpdateStatus($info) {
-            $db = new ConnectDB();
-            $db->conn();
-            $service = new createService();
-            if ($service->UpdateStatus($db, $info)) {
-                $db->commit();
-                echo $_SESSION['cd_0000'];
-            } else {
-                $db->rollback();
-                echo $_SESSION['cd_2001'];
-            }
+        $db = new ConnectDB();
+        $db->conn();
+        $service = new createService();
+        if ($service->UpdateStatus($db, $info)) {
+            $db->commit();
+            echo $_SESSION['cd_0000'];
+        } else {
+            $db->rollback();
+            echo $_SESSION['cd_2001'];
+        }
     }
 
     public function isValid($info) {
@@ -293,23 +294,53 @@ class createController {
         $util = new Utility();
         if ($util->isEmpty($info[s_queue_ref])) {
             $return2099 = eregi_replace("field", $_SESSION['s_queue_ref'], $return2099);
-            echo $return2099."";
-        } 
+            echo $return2099 . "";
+        }
         /*
-        elseif($util->isEmpty($info[i_dept_start])){
-					$return2099 = eregi_replace("field", $_SESSION['i_dept_start'], $return2099);
-            echo $return2099."2";
-				} 
-				elseif($util->isEmpty($info[i_emcs])){
-					$return2099 = eregi_replace("field", $_SESSION['i_emcs'], $return2099);
-            echo $return2099."3";
-				} 
-        
-        //*/
-        else {
+          elseif($util->isEmpty($info[i_dept_start])){
+          $return2099 = eregi_replace("field", $_SESSION['i_dept_start'], $return2099);
+          echo $return2099."2";
+          }
+          elseif($util->isEmpty($info[i_emcs])){
+          $return2099 = eregi_replace("field", $_SESSION['i_emcs'], $return2099);
+          echo $return2099."3";
+          }
+
+          // */ else {
             $intReturn = TRUE;
         }
         return $intReturn;
     }
+    
+    public function getDateTest() {
+    	$newDate = date('Y-m-d');
+    	$newTotal = 0;
+    	for($i=0; $i < 7;$i++){
+				$xx = $i;
+				$d_end_dpet_start = date("d-m-Y", strtotime($newDate . "-" . $i . " days"));
+                    $weekDay = date('w', strtotime($d_end_dpet_start));
+                    echo $d_end_dpet_start ." ** ".$weekDay ." <br />";
+                    $checkDate .= " " . $weekDay;
+                    if ($weekDay == 0) {
+                        $newTotal += 2;
+                        //echo "aa";
+                    } else {
+                        $newTotal ++;
+                    }
+			}
+    	
+    	echo $xx;
+    	echo "<br />";
+    	echo $newTotal = $newTotal-1;
+    	echo "<br />";
+    	$ok_date =  date("d-m-Y", strtotime($newDate . " -".$newTotal." days"));
+    	
+    	
+    	$weekDays = date('w', strtotime($ok_date));
+    	if($weekDays == 0){
+				//$ok_date =  date("d-m-Y", strtotime($ok_date . " -1 days"));
+			}
+			echo $ok_date;
+	}
 
 }

@@ -573,7 +573,7 @@ $disableElement = 'disabled="disable"';
                                                         <div class="row" >
                                                             <div class="col-md-4">
                                                                 <label for="form_control_1" style="color: #36c6d3;"><?= $_SESSION[lb_re_sendcar] ?> <span class="required" style="color: red;">*</span></label> 
-                                                                <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy" data-date="<?= date("d-m-Y") ?>"  style="width: 100% !important;">
+                                                                <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy" data-date="<?= date("d-m-Y") ?>"   style="width: 100% !important;">
                                                                     <span class="input-group-btn">
                                                                         <button class="btn default" type="button" <?= $disableView ?>>
                                                                             <i class="fa fa-calendar"></i>
@@ -805,7 +805,7 @@ $disableElement = 'disabled="disable"';
                                         <div class="portlet-body form">
                                             <div class="form-actions noborder">
                                                 <a href="re_check.php"> <button type="button" class="btn default"><?= $_SESSION[btn_cancel] ?></button></a>
-                                                <button type="submit"  class="btn blue" ><?= $_SESSION[btn_submit] ?></button>
+                                                <button type="button" id="btn-form-action"  class="btn blue" ><?= $_SESSION[btn_submit] ?></button>
                                             </div>
                                         </div>
                                     </div>

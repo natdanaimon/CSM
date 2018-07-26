@@ -174,14 +174,37 @@ class createService {
         return $_data;
     }
 
+    
+    
     function add($db, $info) {
+    	$strSql = " select * ";
+			$strSql .= " FROM tb_po_spare  WHERE ref_no = '".$info[s_po_spare_ref]."' ";
+			$_dataTable = $db->Search_Data_FormatJson($strSql);
+			
+			$strSql = " select ref_no ";
+			$strSql .= " FROM tb_customer_car WHERE i_cust_car = '".$info[s_po_spare_ref]."' ";
+			$customer_car = $db->Search_Data_FormatJson($strSql);
+			
+			$ref_no = $customer_car[0][ref_no];
+			//$ref_no = "aaaaa";
+			
+			if($_dataTable == NULL){
+				$this->add_new($db, $info,$ref_no);
+			}else{
+				$this->edit($db, $info,$ref_no);
+			}
+			
+			return TRUE;
+    }
+    
+    function add_new($db, $info,$ref_no) {
         $util = new Utility();
 
         $strSql = "";
         $strSql .= "INSERT ";
         $strSql .= "INTO ";
         $strSql .= "  tb_po_spare ( ";
-        //$strSql .= "    s_po_spare_order, ";
+        $strSql .= "    ref_no, ";
         $strSql .= "    s_po_spare_ref, ";
         $strSql .= "    d_spare_order, ";
         $strSql .= "    i_spare_shop, ";
@@ -196,6 +219,7 @@ class createService {
         $strSql .= "VALUES( ";
         //$strSql .= "  '$info[s_po_spare_order]', ";
         $strSql .= "  '$info[s_po_spare_ref]', ";
+        $strSql .= "  '$ref_no', ";
         $strSql .= "  '" . $util->DateSQL($info[d_spare_order]) . "', ";
         $strSql .= "  '$info[i_spare_shop]', ";
         $strSql .= "  '$info[i_spare_receive]', ";
@@ -217,13 +241,16 @@ class createService {
 				 list($key, $s_po_spare_order) = each ($_POST['s_po_spare_order'])
 				 and list($key, $i_spare_price) = each ($_POST['i_spare_price'])
 				 and list($key, $i_spare_amount) = each ($_POST['i_spare_amount'])
+				 and list($key, $s_spare_code) = each ($_POST['s_po_spare_code'])
 				 
 				 ){
-        	if($s_po_spare_order != '' and $i_spare_price != '' and $i_spare_amount != ''){
+       if($s_po_spare_order != '' and $i_spare_price != '' and $i_spare_amount != '' and $s_spare_code != ''){
         $strSql = "";
         $strSql .= "INSERT ";
         $strSql .= "INTO ";
         $strSql .= "  tb_po_spare_order ( ";
+        $strSql .= "    s_spare_code, ";
+        $strSql .= "    ref_no, ";
         $strSql .= "    i_po_spare, ";
         $strSql .= "    s_po_spare_order, ";
         $strSql .= "    i_spare_price, ";
@@ -235,6 +262,8 @@ class createService {
         $strSql .= "    s_status ";
         $strSql .= "  ) ";
         $strSql .= "VALUES( ";
+        $strSql .= "  '$s_spare_code', ";
+        $strSql .= "  '$info[s_po_spare_ref]', ";
         $strSql .= "  '$last_id', ";
         $strSql .= "  '$s_po_spare_order', ";
         $strSql .= "  '$i_spare_price', ";
@@ -257,13 +286,14 @@ class createService {
         return $reslut;
     }
 
-    function edit($db, $info) {
+    function edit($db, $info,$ref_no) {
         
         $util = new Utility();
         $strSql = "";
         $strSql .= "update tb_po_spare ";
         $strSql .= "set  ";
-        $strSql .= "s_po_spare_ref = '$info[s_po_spare_ref]', ";
+        $strSql .= "s_po_spare_ref = '$ref_no', ";
+        $strSql .= "ref_no = '$info[s_po_spare_ref]', ";
         $strSql .= "i_spare_shop = '$info[i_spare_shop]', ";
         $strSql .= "d_spare_order = '" . $util->DateSQL($info[d_spare_order]) . "', ";
         $strSql .= "d_spare_receive = '" . $util->DateSQL($info[d_spare_receive]) . "', ";
@@ -271,26 +301,29 @@ class createService {
         $strSql .= "d_update = " . $db->Sysdate(TRUE) . ", ";
         $strSql .= "s_update_by = '$_SESSION[username]', ";
         $strSql .= "s_status = '$info[status]' ";
-        $strSql .= "where i_po_spare = $info[id] ";
+        $strSql .= "where ref_no = $info[id] ";
         $arr = array(
             array("query" => "$strSql")
         );
         $reslut = $db->insert_for_upadte($arr);
         
         $last_id = $info[id];
-        mysql_query("DELETE FROM tb_po_spare_order WHERE i_po_spare=$last_id ");
+        mysql_query("DELETE FROM tb_po_spare_order WHERE ref_no='$last_id' ");
  
 				 while(
 				 list($key, $s_po_spare_order) = each ($_POST['s_po_spare_order'])
 				 and list($key, $i_spare_price) = each ($_POST['i_spare_price'])
 				 and list($key, $i_spare_amount) = each ($_POST['i_spare_amount'])
+				 and list($key, $s_spare_code) = each ($_POST['s_po_spare_code'])
 				 
 				 ){
-        	if($s_po_spare_order != '' and $i_spare_price != '' and $i_spare_amount != ''){
+       if($s_po_spare_order != '' and $i_spare_price != '' and $i_spare_amount != '' and $s_spare_code != ''){
         $strSql = "";
         $strSql .= "INSERT ";
         $strSql .= "INTO ";
         $strSql .= "  tb_po_spare_order ( ";
+        $strSql .= "    s_spare_code, ";
+        $strSql .= "    ref_no, ";
         $strSql .= "    i_po_spare, ";
         $strSql .= "    s_po_spare_order, ";
         $strSql .= "    i_spare_price, ";
@@ -302,6 +335,8 @@ class createService {
         $strSql .= "    s_status ";
         $strSql .= "  ) ";
         $strSql .= "VALUES( ";
+        $strSql .= "  '$s_spare_code', ";
+        $strSql .= "  '$info[s_po_spare_ref]', ";
         $strSql .= "  '$last_id', ";
         $strSql .= "  '$s_po_spare_order', ";
         $strSql .= "  '$i_spare_price', ";
@@ -338,5 +373,162 @@ class createService {
 
         return $year . $month . $run_new;
     }
+    
+    
+    function addOrder($db, $info) {
+    	$util = new Utility();
+
+       	$strSql = " select i_index ";
+				$strSql .= " FROM tb_po_spare_list  WHERE ref_id = '".$info[ref_id]."' ";
+				$strSql .= " ORDER BY id desc limit 1 ";
+				$_dataTable = $db->Search_Data_FormatJson($strSql);
+				
+				$strSql = " select ref_no ";
+				$strSql .= " FROM tb_customer_car WHERE i_cust_car = '".$info[ref_id]."' ";
+				$customer_car = $db->Search_Data_FormatJson($strSql);
+				
+				$ref_no = $customer_car[0][ref_no];
+				$i_index = $_dataTable[0][i_index]+1;
+				
+				
+				if($i_index == 1){
+					$strSql = "";
+	        $strSql .= "INSERT ";
+	        $strSql .= "INTO ";
+	        $strSql .= "  tb_po_spare ( ";
+	        $strSql .= "    ref_id ";
+	        $strSql .= "    ,ref_no ";
+	        $strSql .= "    ,s_po_spare_ref ";
+	        $strSql .= "    ,i_shop ";
+	        $strSql .= "    ,i_spare_shop ";
+	        $strSql .= "  ) ";
+	        $strSql .= "VALUES( ";
+	        $strSql .= "  '$info[ref_id]' ";
+	        $strSql .= "  ,'$info[ref_id]' ";
+	        $strSql .= "  ,'$ref_no' ";
+	        $strSql .= "  ,'$info[i_shop]' ";
+	        $strSql .= "  ,'$info[i_shop]' ";
+	        $strSql .= ") ";
+	        $arr = array(
+	            array("query" => "$strSql")
+	        );
+	        $reslut = $db->insert_for_upadte($arr);
+				}else{
+					$strSql = "";
+	        $strSql .= "update tb_po_spare ";
+	        $strSql .= "set  ";
+	        $strSql .= "i_shop = '$info[i_shop]' ";
+	        $strSql .= ",i_spare_shop = '$info[i_shop]' ";
+	        $strSql .= ",d_update = " . $db->Sysdate(TRUE) . " ";
+	        $strSql .= ",s_update_by = '$_SESSION[username]' ";
+	        $strSql .= "where ref_id = '$info[ref_id]' ";
+	        $arr = array(
+	            array("query" => "$strSql")
+	        );
+	        $reslut = $db->insert_for_upadte($arr);
+				}
+				
+				
+				if($i_index < 10){
+					$i_index = "0".$i_index;
+				}
+       $s_no = $ref_no."-S".$i_index;
+
+				
+        $strSql = "";
+        $strSql .= "INSERT ";
+        $strSql .= "INTO ";
+        $strSql .= "  tb_po_spare_list ( ";
+        $strSql .= "    ref_id ";
+        $strSql .= "    ,ref_no ";
+        $strSql .= "    ,s_no ";
+        $strSql .= "    ,s_code ";
+        $strSql .= "    ,s_name ";
+        $strSql .= "    ,i_amount ";
+        $strSql .= "    ,d_order ";
+        $strSql .= "    ,i_shop ";
+        $strSql .= "    ,i_index ";
+        $strSql .= "    ,d_create ";
+        $strSql .= "    ,d_update ";
+        $strSql .= "    ,s_create_by ";
+        $strSql .= "    ,s_update_by ";
+        $strSql .= "  ) ";
+        $strSql .= "VALUES( ";
+        $strSql .= "  '$info[ref_id]' ";
+        $strSql .= "  ,'$ref_no' ";
+        $strSql .= "  ,'$s_no' ";
+        $strSql .= "  ,'$info[s_code]' ";
+        $strSql .= "  ,'$info[s_name]' ";
+        $strSql .= "  ,'$info[i_amount]' ";
+        $strSql .= "  ,'" . $util->DateSQL($info[d_order]) . "' ";
+        $strSql .= "  ,'$info[i_shop]' ";
+        $strSql .= "  ,$i_index ";
+        $strSql .= "  ," . $db->Sysdate(TRUE) . " ";
+        $strSql .= " 	," . $db->Sysdate(TRUE) . " ";
+        $strSql .= "  ,'$_SESSION[username]' ";
+        $strSql .= "  ,'$_SESSION[username]' ";
+        $strSql .= ") ";
+        $arr = array(
+            array("query" => "$strSql")
+        );
+        $reslut = $db->insert_for_upadte($arr);
+        $last_id = mysql_insert_id();
+    	return $reslut;
+		}
+		
+		function recieveOrder($db, $info) {
+    	$util = new Utility();
+        $strSql = "";
+        $strSql .= "update tb_po_spare_list ";
+        $strSql .= "set  ";
+        $strSql .= "i_price = '$info[i_price]' ";
+        $strSql .= ",i_receive = '$info[i_receive]' ";
+        $strSql .= ",i_pay = '$info[i_pay]' ";
+        $strSql .= ",s_store = '$info[s_store]' ";
+        $strSql .= ",d_receive = '" . $util->DateSQL($info[d_receive]) . "' ";
+        $strSql .= ",d_update = " . $db->Sysdate(TRUE) . " ";
+        $strSql .= ",s_update_by = '$_SESSION[username]' ";
+        $strSql .= "where s_no = '$info[s_no]' ";
+        $arr = array(
+            array("query" => "$strSql")
+        );
+        $reslut = $db->insert_for_upadte($arr);
+        
+        $strSql = "";
+	        $strSql .= "update tb_po_spare ";
+	        $strSql .= "set  ";
+	        $strSql .= "i_receive = '$info[i_receive]' ";
+	        $strSql .= ",i_spare_receive = '$info[i_receive]' ";
+	        $strSql .= ",d_update = " . $db->Sysdate(TRUE) . " ";
+	        $strSql .= ",s_update_by = '$_SESSION[username]' ";
+	        $strSql .= "where ref_id = '$info[ref_id]' ";
+	        $arr = array(
+	            array("query" => "$strSql")
+	        );
+	        $reslut = $db->insert_for_upadte($arr);
+        
+    	return $reslut;
+		}
+        
+		function withdrawOrder($db, $info) {
+    	$util = new Utility();
+        $strSql = "";
+        $strSql .= "update tb_po_spare_list ";
+        $strSql .= "set  ";
+        $strSql .= "i_withdraw = '$info[i_withdraw]' ";
+        $strSql .= ",d_withdraw = '" . $util->DateSQL($info[d_withdraw]) . "' ";
+        $strSql .= ",d_update = " . $db->Sysdate(TRUE) . " ";
+        $strSql .= ",s_update_by = '$_SESSION[username]' ";
+        $strSql .= "where s_no = '$info[s_no]' ";
+        $arr = array(
+            array("query" => "$strSql")
+        );
+        $reslut = $db->insert_for_upadte($arr);
+    	return $reslut;
+		}
+        
+        
+		
+    
 
 }

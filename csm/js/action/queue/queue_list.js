@@ -38,6 +38,7 @@ function initialDataTable_1(first) {
 
                 var col_status = "";
                 var col_edit = "";
+                var col_manage = "";
                 var col_delete = "";
 
                 col_checkbox = '<span class="md-checkbox has-success" style="padding-right: 0px;">';
@@ -57,9 +58,13 @@ function initialDataTable_1(first) {
                 col_status += '';
 
 
-                col_edit += '<a href="queue_createManage.php?func=add&id=' + item.ref_no + '" class="btn btn-circle btn-icon-only blue" style="width:32px;height:32px">';
+              col_edit += '<a href="re_checkManage.php?func=edit&id=' + item.i_cust_car + '" class="btn btn-circle btn-icon-only green" style="width:32px;height:32px">';
                 col_edit += ' <i class="fa fa-edit"></i>';
-                col_edit += '</a>';
+                col_edit += '</a>';  
+              
+              col_manage += '<a href="queue_createManage.php?func=add&id=' + item.ref_no + '" class="btn btn-circle btn-icon-only blue" style="width:32px;height:32px">';
+                col_manage += ' <i class="fa fa-gears"></i>';
+                col_manage += '</a>';
 
                 col_delete += '<a href="' + (disable != "" ? '#' : 'javascript:Confirm(\'' + item.i_cust_car + '\',\'delete\');') + '" style="width:33px;height:33px" class="btn btn-circle btn-icon-only red" ' + disable + '>';
                 col_delete += ' <i class="fa fa-archive" ></i>';
@@ -80,6 +85,7 @@ function initialDataTable_1(first) {
                     col_inout,
                     col_status,
                     col_edit,
+                    col_manage,
                     col_delete
                 ]
 
@@ -136,7 +142,7 @@ $('.getInfoStaff').click(function(){
 	
 	getDDLEmployee(i_dept);
 	$('#i_queue_dept_staff').val(i_queue_dept);
-	$('#d_start_work').val(d_start_work);
+	//$('#d_start_work').val(d_start_work);
 	//alert(i_queue_dept)
 	initialDataTableStaff(i_queue_dept);
 	
@@ -313,7 +319,7 @@ function getDDLEmployee(i_dept) {
     //alert(i_dept)
     $.ajax({
         type: 'GET',
-        url: 'controller/commonController.php?func=DDLEmployeeDept&id='+i_dept,
+        url: 'controller/commonController.php?func=DDLEmployeeDeptAll&id='+i_dept,
         beforeSend: function() {
             //$('#se-pre-con').fadeIn(100);
         },

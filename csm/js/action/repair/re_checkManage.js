@@ -876,9 +876,15 @@ function setValSelected(index, val) {
 }
 
 
+$('#btn-form-action').click(function () {
+  $('#form-action').submit();
+});
 function save() {
     $('#form-action').submit(function (e) {
-        e.preventDefault();
+        
+        
+      
+      e.preventDefault();
         console.log($(this).serialize());
         var formData = new FormData($(this)[0]);
         $.ajax({
@@ -917,7 +923,7 @@ function save() {
 
             }
         });
-    });
+      });
 }
 
 

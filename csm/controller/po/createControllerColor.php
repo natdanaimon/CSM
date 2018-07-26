@@ -30,7 +30,16 @@ switch ($info[func]) {
     case "add":
         echo $controller->add($info);
         break;
-    case "dataTableKey":
+    case "addOrder":
+        echo $controller->addOrder($info);
+        break;
+    case "recieveOrder":
+        echo $controller->recieveOrder($info);
+        break;
+    case "withdrawOrder":
+        echo $controller->withdrawOrder($info);
+        break;
+      case "dataTableKey":
         echo $controller->dataTableKey($info[id]);
         break;
 }
@@ -150,6 +159,8 @@ class createController {
             }
         }
     }
+    
+   
 
     public function edit($info) {
         if ($this->isValid($info)) {
@@ -183,6 +194,132 @@ class createController {
 
         } 
         
+        else {
+            $intReturn = TRUE;
+        }
+        return $intReturn;
+    }
+    
+    
+    public function addOrder($info) {
+        if ($this->isValidOrder($info)) {
+            $db = new ConnectDB();
+            $db->conn();
+            $service = new createService();
+            if ($service->addOrder($db, $info)) {
+                $db->commit();
+                echo $_SESSION['cd_0000'];
+            } else {
+                $db->rollback();
+                echo $_SESSION['cd_2001'];
+            }
+        }
+    }
+    public function recieveOrder($info) {
+        
+        if ($this->isValidrecieveOrder($info)) {
+            $db = new ConnectDB();
+            $db->conn();
+            $service = new createService();
+            if ($service->recieveOrder($db, $info)) {
+                $db->commit();
+                echo $_SESSION['cd_0000'];
+            } else {
+                $db->rollback();
+                echo $_SESSION['cd_2001'];
+            }
+        }
+    }
+    
+    public function withdrawOrder($info) {
+        
+        if ($this->isValidwithdrawOrder($info)) {
+            $db = new ConnectDB();
+            $db->conn();
+            $service = new createService();
+            if ($service->withdrawOrder($db, $info)) {
+                $db->commit();
+                echo $_SESSION['cd_0000'];
+            } else {
+                $db->rollback();
+                echo $_SESSION['cd_2001'];
+            }
+        }
+    }
+    public function isValidOrder($info) {
+        $intReturn = FALSE;
+        $return2099 = $_SESSION['cd_2099'];
+        $return2003 = $_SESSION['cd_2003'];
+        $return2097 = $_SESSION['cd_2097'];
+        $util = new Utility();
+        if ($util->isEmpty($info[d_order])) {
+            $return2099 = eregi_replace("field", $_SESSION['tb_po_color_order'], $return2099);
+            echo $return2099."";
+        }  else if ($util->isEmpty($info[i_shop])) {
+            $return2099 = eregi_replace("field", $_SESSION['tb_po_color_orderdate'], $return2099);
+            echo $return2099."";
+
+        }  else if ($util->isEmpty($info[s_name])) {
+            $return2099 = eregi_replace("field", $_SESSION['tb_po_color_orderdate'], $return2099);
+            echo $return2099."";
+
+        } else if ($util->isEmpty($info[i_amount])) {
+            $return2099 = eregi_replace("field", $_SESSION['tb_po_color_orderdate'], $return2099);
+            echo $return2099."";
+
+        } 
+        
+        else {
+            $intReturn = TRUE;
+        }
+        return $intReturn;
+    }
+    public function isValidrecieveOrder($info) {
+        $intReturn = FALSE;
+        $return2099 = $_SESSION['cd_2099'];
+        $return2003 = $_SESSION['cd_2003'];
+        $return2097 = $_SESSION['cd_2097'];
+        $util = new Utility();
+        if ($util->isEmpty($info[d_receive])) {
+            $return2099 = eregi_replace("field", $_SESSION['tb_po_color_order'], $return2099);
+            echo $return2099."";
+        }  else if ($util->isEmpty($info[s_no])) {
+            $return2099 = eregi_replace("field", $_SESSION['tb_po_color_orderdate'], $return2099);
+            echo $return2099."";
+
+        } else if ($util->isEmpty($info[i_price])) {
+            $return2099 = eregi_replace("field", $_SESSION['tb_po_color_orderdate'], $return2099);
+            echo $return2099."";
+
+        } else if ($util->isEmpty($info[i_receive])) {
+            $return2099 = eregi_replace("field", $_SESSION['tb_po_color_orderdate'], $return2099);
+            echo $return2099."";
+
+        } 
+        
+        else {
+            $intReturn = TRUE;
+        }
+        return $intReturn;
+    }
+    
+    public function isValidwithdrawOrder($info) {
+        $intReturn = FALSE;
+        $return2099 = $_SESSION['cd_2099'];
+        $return2003 = $_SESSION['cd_2003'];
+        $return2097 = $_SESSION['cd_2097'];
+        $util = new Utility();
+        if ($util->isEmpty($info[d_withdraw])) {
+            $return2099 = eregi_replace("field", $_SESSION['tb_po_color_order'], $return2099);
+            echo $return2099."";
+        }else if ($util->isEmpty($info[s_no])) {
+            $return2099 = eregi_replace("field", $_SESSION['tb_po_color_orderdate'], $return2099);
+            echo $return2099."";
+
+        }  else if ($util->isEmpty($info[i_withdraw])) {
+            $return2099 = eregi_replace("field", $_SESSION['tb_po_color_orderdate'], $return2099);
+            echo $return2099."";
+        } 
         else {
             $intReturn = TRUE;
         }

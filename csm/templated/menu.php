@@ -20,7 +20,24 @@
 
         </a>
     </li>
+    
     <?php if ($_SESSION["perm"] == "A") { ?>
+        <!--R0 งานทั้งหมด -->
+      <li class="nav-item start <?= $_SESSION["nav_main_workall"] ?>">
+        <a href="queue_all.php"  class="nav-link nav-toggle">
+            <i class="fa fa-recycle"></i>
+            <span class="title">R0. งานทั้งหมด</span>
+
+        </a>
+    </li>
+       <!--R1 ระบบแจ้งสถานะงานซ่อม-->
+      <li class="nav-item start <?= $_SESSION["nav_main_dashboard_status"] ?>">
+        <a href="dashboard_status.php" target="_blank" class="nav-link nav-toggle">
+            <i class="fa fa-recycle"></i>
+            <span class="title">R1. ระบบแจ้งสถานะงานซ่อม</span>
+
+        </a>
+    </li>
         <!--R2 บริหารจัดการข้อมูลลูกค้า-->
         <li class="nav-item <?= $_SESSION["nav_main_cus"] ?>">
             <a href="javascript:;" class="nav-link nav-toggle">
@@ -96,52 +113,12 @@
         </li>
         <!--R3 ระบบนำซ่อม-->
 
-        <!--R4 ระบบจัดซื้อ-->
-       <li class="nav-item <?= $_SESSION["nav_main_po"] ?>">
-            <a href="javascript:;" class="nav-link nav-toggle">
-                <i class="fa fa-shopping-cart"></i>
-                <span class="title">R4. <?= $_SESSION[po] ?></span>
-                <span class="selected"></span>
-            </a>
-            <ul class="sub-menu">
-                <li class="nav-item  <?= $_SESSION["nav_sub_po_search"] ?>">
-                    <a href="po_search.php" class="nav-link ">
-                        <span class="title">1 <?= $_SESSION[po_search] ?></span>
-                        <span class="selected"></span>
-                        <span class="badge badge-success" ></span>
-                    </a>
-                </li>
-                <li class="nav-item  <?= $_SESSION["nav_sub_po_spare"] ?>">
-                    <a href="po_spare.php" class="nav-link ">
-                        <span class="title">2 <?= $_SESSION[po_create_spare] ?></span>
-                        <span class="selected"></span>
-                        <span class="badge badge-success" ></span>
-                    </a>
-                </li>
-                <li class="nav-item  <?= $_SESSION["nav_sub_po_color"] ?>">
-                    <a href="po_color.php" class="nav-link ">
-                        <span class="title">3 <?= $_SESSION[po_create_color] ?></span>
-                        <span class="selected"></span>
-                        <span class="badge badge-success" ></span>
-                    </a>
-                </li>
-                <li class="nav-item  <?= $_SESSION["nav_sub_po_other"] ?>">
-                    <a href="po_other.php" class="nav-link ">
-                        <span class="title">4 <?= $_SESSION[po_create_other] ?></span>
-                        <span class="selected"></span>
-                        <span class="badge badge-success" ></span>
-                    </a>
-                </li>
-                
-            </ul>
-        </li>
-        <!--R4 ระบบจัดซื้อ-->
-        <!--R5 ระบบจัดคิว-->
+        <!--R4 ระบบจัดคิว-->
         <li class="nav-item <?= $_SESSION["nav_main_queue"] ?>">
  
             <a href="javascript:;" class="nav-link nav-toggle">
                 <i class="fa fa-clock-o"></i>
-                <span class="title">R5. <?= $_SESSION[queue_list] ?></span>
+                <span class="title">R4. <?= $_SESSION[queue_list] ?></span>
                 <span class="selected"></span>
             </a>
             <ul class="sub-menu">
@@ -159,18 +136,60 @@
                         <span class="badge badge-success" ></span>
                     </a>
                 </li>
-                <li class="nav-item  <?= $_SESSION["nav_sub_queue_all"] ?>">
+                
+                <!--<li class="nav-item  <?= $_SESSION["nav_sub_queue_all"] ?>">
                     <a href="queue_all.php" class="nav-link ">
                         <span class="title">3 <?= $_SESSION[queue_all] ?></span>
+                        <span class="selected"></span>
+                        <span class="badge badge-success" ></span>
+                    </a>
+                </li>-->
+                
+            </ul>
+      
+        </li>
+        <!--R4 ระบบจัดคิว-->
+        <!--R5 ระบบจัดซื้อ-->
+       <li class="nav-item <?= $_SESSION["nav_main_po"] ?>">
+            <a href="javascript:;" class="nav-link nav-toggle">
+                <i class="fa fa-shopping-cart"></i>
+                <span class="title">R5. <?= $_SESSION[po] ?></span>
+                <span class="selected"></span>
+            </a>
+            <ul class="sub-menu">
+                <!--<li class="nav-item  <?= $_SESSION["nav_sub_po_search"] ?>">
+                    <a href="po_search.php" class="nav-link ">
+                        <span class="title">1 <?= $_SESSION[po_search] ?></span>
+                        <span class="selected"></span>
+                        <span class="badge badge-success" ></span>
+                    </a>
+                </li>-->
+                <li class="nav-item  <?= $_SESSION["nav_sub_po_spare"] ?>">
+                    <a href="po_spare.php" class="nav-link ">
+                        <span class="title">1 <?= $_SESSION[po_create_spare] ?></span>
+                        <span class="selected"></span>
+                        <span class="badge badge-success" ></span>
+                    </a>
+                </li>
+                <li class="nav-item  <?= $_SESSION["nav_sub_po_color"] ?>">
+                    <a href="po_color.php" class="nav-link ">
+                        <span class="title">2 <?= $_SESSION[po_create_color] ?></span>
+                        <span class="selected"></span>
+                        <span class="badge badge-success" ></span>
+                    </a>
+                </li>
+                <li class="nav-item  <?= $_SESSION["nav_sub_po_other"] ?>">
+                    <a href="po_other.php" class="nav-link ">
+                        <span class="title">3 <?= $_SESSION[po_create_other] ?></span>
                         <span class="selected"></span>
                         <span class="badge badge-success" ></span>
                     </a>
                 </li>
                 
             </ul>
-      
         </li>
-        <!--R5 ระบบจัดคิว-->
+        <!--R5 ระบบจัดซื้อ-->
+        
         <!--R7 ค่าใช้จ่ายประจำวัน-->
         <li class="nav-item <?= $_SESSION["nav_main_exp"] ?>">
             <a href="exp_daily.php" class="nav-link nav-toggle">
@@ -344,6 +363,35 @@
             </ul>
         </li>
         <!--R9 บริหารจัดการข้อมูลพนักงาน-->
+        
+        
+        <!--R10 ระบบรายงาน-->
+        <li class="nav-item <?= $_SESSION["nav_main_report"] ?>">
+            <a href="javascript:;" class="nav-link nav-toggle">
+                <i class="icon-docs"></i>
+                <span class="title">R10. <?= $_SESSION[menu_report] ?></span>
+                <span class="selected"></span>
+            </a>
+            <ul class="sub-menu">
+                <li class="nav-item  <?= $_SESSION["nav_sub_report_repair"] ?>">
+                    <a href="report_repair.php" class="nav-link ">
+
+                        <span class="title"><?= $_SESSION[report_repair] ?></span>
+                        <span class="selected"></span>
+                        <span class="badge badge-success" ></span>
+                    </a>
+                </li>
+                <li class="nav-item  <?= $_SESSION["nav_sub_report_receive"] ?>">
+                    <a href="report_receive.php" class="nav-link ">
+
+                        <span class="title"><?= $_SESSION[report_receive] ?></span>
+                        <span class="selected"></span>
+                        <span class="badge badge-success" ></span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <!--R10 ระบบรายงาน-->
 
 
 

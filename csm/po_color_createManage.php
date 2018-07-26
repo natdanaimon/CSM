@@ -120,7 +120,392 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                                 <input type="hidden" id="func" name="func" value="<?= $_GET[func] ?>"/>
                                 <input type="hidden" id="id" name="id" value="<?= $_GET[id] ?>"/>
                                  
-                                <div class="col-md-8">
+                                <div class="col-md-12">
+                                <!-- BEGIN STEP1-->
+                                    <div class="portlet box green">
+                                        <div class="portlet-title" onclick="closeStep(1)" style="cursor: pointer;">
+                                            <div class="caption">
+                                                <i class="fa fa-user"></i> <?= $_SESSION[tt_detail_create1] ?></div>
+                                            <div class="tools">
+                                                <span class="fa fa-angle-down" style="color: white;text-decoration:none;"> </span>
+                                                <!--<a href="javascript:closeStep(1);" class="fa fa-angle-down" style="color: white;text-decoration:none;"> </a>-->
+                                            </div>
+                                        </div>
+
+
+                                        <div class="portlet-body form" id="step1" style="display: none;">
+
+
+                                            <div class="portlet light bordered">
+                                                <!--                                                <div class="portlet-title">
+                                                                                                    <div class="caption font-green inline">
+                                                
+                                                                                                        <span class="caption-subject bold uppercase"> <?= $_SESSION[1] ?></span>
+                                                                                                        <a data-toggle="modal" href="#searchCust"> 
+                                                                                                            <button type="button" class="btn btn-success">
+                                                                                                                <i class="fa fa-search"></i>
+                                                <?= $_SESSION[btn_searchCustomer] ?>
+                                                                                                            </button>
+                                                                                                        </a>
+                                                                                                    </div>
+                                                                                                </div>-->
+                                                <div class="portlet-body form">
+
+                                                    <div class="form-body">
+
+                                                        <div class="row">
+                                                            <div class="col-md-2">
+                                                                <div class="form-group form-md-line-input has-success">
+                                                                    <select class="form-control edited bold" id="i_title" name="i_title" style="color:black;font-weight:bold;"  <?= $disableElement ?>    >
+                                                                        <option value="-1"></option>
+                                                                    </select>
+                                                                    <label for="form_control_1"><?= $_SESSION[lb_setCus_title] ?> <span class="required">*</span></label>          
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-5">
+                                                                <div class="form-group form-md-line-input has-success">
+                                                                    <input type="text" class="form-control bold" id="s_firstname" name="s_firstname" <?= $disableElement ?>>
+                                                                    <label for="form_control_1"><?= $_SESSION[lb_setCus_fname] ?> <span class="required">*</span></label>          
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-5">
+                                                                <div class="form-group form-md-line-input has-success">
+                                                                    <input type="text" class="form-control bold" id="s_lastname"  name="s_lastname" <?= $disableElement ?>>
+                                                                    <label  for="form_control_1"><?= $_SESSION[lb_setCus_lname] ?> <span class="required">*</span>
+                                                                        <span id="class_val_username" class="" >
+                                                                            <i id="icon_val_username" class=""></i>
+                                                                            <span id="lb_val_username"></span>
+                                                                        </span>
+                                                                    </label>          
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col-md-3">
+                                                                <div class="form-group form-md-line-input has-success">
+                                                                    <input type="text" class="form-control bold" id="s_phone_1" name="s_phone_1" <?= $disableElement ?>>
+                                                                    <label for="form_control_1"><?= $_SESSION[lb_setCus_phone1] ?> <span class="required">*</span>
+                                                                        <span id="class_val_phone" class="" >
+                                                                            <i id="icon_val_phone" class=""></i>
+                                                                            <span id="lb_val_phone"></span>
+                                                                        </span>
+                                                                    </label>          
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div class="form-group form-md-line-input has-success">
+                                                                    <input type="text" class="form-control bold" id="s_phone_2" name="s_phone_2" <?= $disableElement ?>>
+                                                                    <label for="form_control_1"><?= $_SESSION[lb_setCus_phone2] ?> <span class="required"></span>
+                                                                        <span id="class_val_phone" class="" >
+                                                                            <i id="icon_val_phone" class=""></i>
+                                                                            <span id="lb_val_phone"></span>
+                                                                        </span>
+                                                                    </label>          
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div class="form-group form-md-line-input has-success" >
+                                                                    <input type="text" class="form-control bold" id="s_email" name="s_email" <?= $disableElement ?>>
+                                                                    <label for="form_control_1"><?= $_SESSION[lb_setCus_email] ?> <span class="required"></span>
+                                                                        <span id="class_val_secu" class="" >
+                                                                            <i id="icon_val_secu" class=""></i>
+                                                                            <span id="lb_val_secu"></span>
+                                                                        </span>
+                                                                    </label>          
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div class="form-group form-md-line-input has-success">
+                                                                    <input type="text" class="form-control bold" id="s_line" name="s_line" <?= $disableElement ?>>
+                                                                    <label for="form_control_1"><?= $_SESSION[lb_setCus_line] ?> <span class="required"></span>
+                                                                        <span id="class_val_phone" class="" >
+                                                                            <i id="icon_val_phone" class=""></i>
+                                                                            <span id="lb_val_phone"></span>
+                                                                        </span>
+                                                                    </label>          
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group form-md-line-input has-success">
+                                                                    <input type="text" class="form-control bold" id="s_address" name="s_address" <?= $disableElement ?>>
+                                                                    <label for="form_control_1"><?= $_SESSION[lb_setCus_address] ?> <span class="required">*</span>
+                                                                        <span id="class_val_phone" class="" >
+                                                                            <i id="icon_val_phone" class=""></i>
+                                                                            <span id="lb_val_phone"></span>
+                                                                        </span>
+                                                                    </label>          
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group form-md-line-input has-success">
+                                                                    <select class="form-control edited bold" id="i_province" name="i_province"  <?= $disableElement ?>
+                                                                            onchange="getDDLAmphure();"
+                                                                            style="color:black;font-weight:bold;">
+                                                                        <option value=""><?= $_SESSION[lb_please_select] ?></option>
+                                                                    </select>
+                                                                    <label for="form_control_1"><?= $_SESSION[province] ?> <span class="required">*</span></label>          
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group form-md-line-input has-success">
+                                                                    <select class="form-control edited bold" id="i_amphure" name="i_amphure"  <?= $disableElement ?>
+                                                                            onchange="getDDLDistrict()"
+                                                                            style="color:black;font-weight:bold;">
+                                                                        <option value=""><?= $_SESSION[lb_please_select] ?></option>
+                                                                    </select>
+                                                                    <label for="form_control_1"><?= $_SESSION[amphure] ?> <span class="required">*</span></label>          
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group form-md-line-input has-success">
+                                                                    <select class="form-control edited bold" id="i_district" name="i_district" <?= $disableElement ?>
+                                                                            onchange="getDDLZipcode()"
+                                                                            style="color:black;font-weight:bold;">
+                                                                        <option value=""><?= $_SESSION[lb_please_select] ?></option>
+                                                                    </select>
+                                                                    <label for="form_control_1"><?= $_SESSION[district] ?> <span class="required">*</span></label>          
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group form-md-line-input has-success">
+                                                                    <select class="form-control edited bold" id="i_zipcode" name="i_zipcode" <?= $disableElement ?> 
+                                                                            style="color:black;font-weight:bold;">
+                                                                        <option value=""><?= $_SESSION[lb_please_select] ?></option>
+                                                                    </select>
+                                                                    <label for="form_control_1"><?= $_SESSION[zipcode] ?> <span class="required">*</span></label>          
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+
+
+
+
+                                                        <div class="row" id="div-refno" style="display:none">
+
+                                                            <div class="col-md-3">
+
+                                                            </div>
+                                                            <div class="col-md-5"></div>
+                                                            <div class="col-md-4"></div> 
+                                                        </div>
+
+                                                        <div class="row" >
+                                                            <div class="col-md-4">
+
+                                                                <div class="form-group form-md-line-input has-success" style="height: 80px">
+                                                                    <select class="form-control edited bold" id="i_ins_comp" name="i_ins_comp" <?= $disableElement ?>>
+                                                                        <!--<option value="-1"></option>-->
+                                                                    </select>
+                                                                    <label for="form_control_1"><?= $_SESSION[lb_re_insurance_comp] ?></label>
+                                                                </div>
+
+
+
+
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <label for="form_control_1" style="color: #36c6d3;"><?= $_SESSION[lb_re_dinbound] ?> <span class="required" style="color: red;">*</span></label> 
+                                                                <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy" data-date="<?= date("d-m-Y") ?>"  style="width: 100% !important;">
+                                                                    <span class="input-group-btn">
+                                                                        <button class="btn default" type="button" <?= $disableElement ?>>
+                                                                            <i class="fa fa-calendar"></i>
+                                                                        </button>
+                                                                    </span>
+                                                                    <input type="text" class="form-control" readonly name="d_inbound" id="d_inbound" value="<?= date("d-m-Y") ?>"  <?= $disableElement ?>>
+
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <label for="form_control_1" style="color: #36c6d3;"><?= $_SESSION[lb_re_doutbound_confirm] ?> <span class="required" style="color: red;">*</span></label> 
+                                                                <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy" data-date="<?= date("d-m-Y") ?>"  style="width: 100% !important;">
+                                                                    <span class="input-group-btn">
+                                                                        <button class="btn default" type="button" <?= $disableElement ?>>
+                                                                            <i class="fa fa-calendar"></i>
+                                                                        </button>
+                                                                    </span>
+                                                                    <input type="text" class="form-control" readonly name="d_outbound_confirm" id="d_outbound_confirm" value="<?= date("d-m-Y") ?>"  <?= $disableElement ?>>
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+
+
+                                                        <div class="row">
+                                                            <div class="col-md-12"> 
+                                                                <div class="form-group form-md-line-input has-success" >
+                                                                    <div class="md-radio-inline" <?= $disableElement ?>>
+                                                                        <div id="insurance_type"></div>
+
+                                                                    </div>
+                                                                    <input type="hidden" id="i_ins_type" name="i_ins_type" />
+                                                                </div>
+                                                            </div>
+
+
+                                                        </div>
+
+
+                                                        <div class="row" >
+
+                                                            <div class="col-md-4">
+                                                                <div class="form-group form-md-line-input has-success">
+                                                                    <input type="text" class="form-control bold required" id="s_type_capital" name="s_type_capital" <?= $disableElement ?>>
+                                                                    <label for="form_control_1"><?= $_SESSION[lb_re_type_capital] ?> <span class="required"></span></label>          
+                                                                </div>
+
+
+                                                            </div>
+                                                            <div class="col-md-5">
+
+                                                                <label for="form_control_1" style="color: #36c6d3;"><?= $_SESSION[lb_re_dexp] ?> <span class="required" style="color: red;">*</span></label> 
+                                                                <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy" data-date="<?= date("d-m-Y") ?>"  style="width: 100% !important;">
+                                                                    <span class="input-group-btn">
+                                                                        <button class="btn default" type="button" <?= $disableElement ?>>
+                                                                            <i class="fa fa-calendar"></i>
+                                                                        </button>
+                                                                    </span>
+                                                                    <input type="text" class="form-control" readonly name="d_ins_exp" id="d_ins_exp" value="<?= date("d-m-Y") ?>"  <?= $disableElement ?>>
+
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-3">
+
+                                                            </div> 
+                                                        </div>
+
+
+
+
+
+                                                        <div class="row" >
+                                                            <div class="col-md-4">
+                                                                <div class="form-group form-md-line-input has-success" >
+                                                                    <select class="form-control edited bold" id="s_pay_type" name="s_pay_type" style="color:black;font-weight:bold;"   <?= $disableElement ?>>
+                                                                        <option value="-1"></option>
+                                                                    </select>
+                                                                    <label for="form_control_1"><?= $_SESSION[lb_re_paytype] ?> <span class="required">*</span></label>          
+                                                                </div>
+
+                                                            </div>
+
+
+                                                            <div class="col-md-3">
+
+                                                            </div> 
+
+
+                                                            <div class="col-md-4">
+
+                                                            </div> 
+                                                        </div>
+
+
+
+                                                        <div class="row" >
+                                                            <div class="col-md-4">
+                                                                <div class="form-group form-md-line-input has-success" >
+                                                                    <select class="form-control edited bold" id="i_year" name="i_year" <?= $disableElement ?>>
+                                                                        <option value=""><?= $_SESSION[lb_please_select] ?></option>
+                                                                    </select>
+                                                                    <label for="form_control_1"><?= $_SESSION[lb_setYear_year] ?></label>
+                                                                </div>
+
+
+                                                            </div>
+                                                            <div class="col-md-5">
+
+                                                                <div class="form-group form-md-line-input has-success" >
+                                                                    <select class="form-control edited bold" id="s_brand_code" name="s_brand_code" onchange="getDDLGenSelect()" <?= $disableElement ?>>
+                                                                        <option value=""><?= $_SESSION[lb_please_select] ?></option>
+                                                                    </select>
+                                                                    <label for="form_control_1"><?= $_SESSION[lb_setBrand_code] ?></label>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="col-md-3"></div> 
+                                                        </div>			
+
+
+
+
+                                                        <div class="row" >
+
+                                                            <div class="col-md-4">
+                                                                <div class="form-group form-md-line-input has-success" >
+                                                                    <select class="form-control edited bold" id="s_gen_code" name="s_gen_code" <?= $disableElement ?>>
+                                                                        <option value=""><?= $_SESSION[lb_please_select] ?></option>
+                                                                    </select>
+                                                                    <label for="form_control_1"><?= $_SESSION[lb_setGen_code] ?></label>
+                                                                </div>
+
+
+                                                            </div>
+                                                            <div class="col-md-5">
+
+                                                                <div class="form-group form-md-line-input has-success">
+                                                                    <input type="text" class="form-control bold required" id="s_license" name="s_license"  <?= $disableElement ?>>
+                                                                    <label for="form_control_1"><?= $_SESSION[lb_re_carlicense] ?> <span class="required">*</span></label>          
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-3">
+
+                                                            </div> 
+                                                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+
+
+
+
+                                        </div>
+
+
+
+
+
+
+
+
+                                    </div>
+                                    <!-- END STEP1-->
+                                </div>
+                                <div class="col-md-12">
 
 
                                     <div class="row" id="div-refno" style="display:none">
@@ -232,35 +617,6 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                                             <!-- END FORM-->
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <!-- BEGIN EXAMPLE TABLE PORTLET-->
-                                    <div class="col-md-12">
-                                        <div class="portlet light bordered">
-                                            <div class="portlet-title">
-                                                <div class="caption font-green">
-                                                    <i class="fa fa-gears font-green"></i>
-                                                    <span class="caption-subject bold uppercase"> <?= $_SESSION[label_status] ?></span>
-                                                </div>
-                                            </div>
-                                            <div class="portlet-body form">
-
-                                                <div class="form-body">
-
-                                                    <div class="form-group form-md-line-input has-success " style="margin-bottom: 0px !important;">
-                                                        <select class="form-control edited bold" id="status" name="status" style="color:black;font-weight:bold;">
-                                                            <option value="-1"></option>
-                                                        </select>
-                                                        <label for="form_control_1"><?= $_SESSION[label_status] ?></label>
-                                                    </div>
-                                                </div>
-
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- END EXAMPLE TABLE PORTLET-->
                                 </div>
 
 
@@ -603,6 +959,7 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
 
 <script>
                                                                                 var keyEdit = "<?= $_GET[id] ?>";
+                                                                                var keyRef = "<?= $_GET[ref_id] ?>";
         </script>
         <script>
             $(document).ready(function () {
@@ -610,6 +967,7 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                 getDDLEmployee();
                 getDDLStatus();
                 save();
+                refLoad();
                 $('.edit_show').hide();
                 if (keyEdit == "") {
                     unloading();

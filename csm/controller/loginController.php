@@ -1,5 +1,6 @@
 <?php
-
+$garbage_timeout = 360000; // 3600 seconds = 60 minutes = 1 hour
+ini_set('session.gc_maxlifetime', $garbage_timeout);  
 @session_start();
 error_reporting(E_ERROR | E_PARSE);
 
@@ -106,7 +107,8 @@ class loginController {
             $_data = $servic->login($info);
 
             if ($_data != NULL) {
-                foreach ($_data as $key => $value) {
+
+              foreach ($_data as $key => $value) {
                     $_SESSION["i_user"] = $_data[$key]['i_user'];
                     $_SESSION["username"] = $_data[$key]['s_user'];
                     $_SESSION["user_email"] = $_data[$key]['s_email'];

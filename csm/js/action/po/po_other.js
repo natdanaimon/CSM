@@ -63,7 +63,7 @@ function initialDataTable(first) {
                 col_view += ' <i class="fa fa-eye"></i>';
                 col_view += '</a>';
                 
-                col_edit += '<a href="po_other_createManage.php?func=edit&id=' + item.i_po_other + '" class="btn btn-circle btn-icon-only blue" style="width:32px;height:32px">';
+                col_edit += '<a href="po_otherForm.php?func=add&id=' + item.ref_no + '" class="btn btn-circle btn-icon-only blue" style="width:32px;height:32px">';
                 col_edit += ' <i class="fa fa-edit"></i>';
                 col_edit += '</a>';
 
@@ -73,7 +73,7 @@ function initialDataTable(first) {
 
 
                 var addRow = [
-                    col_checkbox,
+                    //col_checkbox,
                     col_refno,
                      
                      
@@ -87,10 +87,11 @@ function initialDataTable(first) {
                     //col_insurance,
 //                    col_dmg,
                     col_inout,
-                    col_status,
-                    col_view,
-                    col_edit,
-                    col_delete
+                    //col_status,
+                   // col_view,
+                    //col_view,
+                    col_edit
+                    
                 ]
 
                 JsonData.push(addRow);
@@ -101,7 +102,7 @@ function initialDataTable(first) {
                     data: JsonData,
                     order: [
                         [1, 'desc'],
-                        [11, 'asc']
+                        [4, 'asc']
                     ],
                     columnDefs: [
                         { "orderable": false, "targets": 0 }

@@ -722,7 +722,7 @@ $disableElement = 'disabled="disable"';
                                         <div class="portlet-body form">
                                             <div class="form-actions noborder">
                                                 <a href="re_check.php"> <button type="button" class="btn default"><?= $_SESSION[btn_cancel] ?></button></a>
-                                                <button type="submit"  class="btn blue" ><?= $_SESSION[btn_submit] ?></button>
+                                                <button type="button" id="btn-form-action"  class="btn blue" ><?= $_SESSION[btn_submit] ?></button>
                                             </div>
                                         </div>
                                     </div>
@@ -833,7 +833,7 @@ $disableElement = 'disabled="disable"';
         <link href="outbound/lightbox/css/lightbox.css" rel="stylesheet" type="text/css" />
         <script src="outbound/lightbox/js/lightbox.js" type="text/javascript"></script>
         <!--<link href="css/custom_select2.css" rel="stylesheet" />-->
-        <script src="js/action/repair/re_checkManage.js" type="text/javascript"></script>
+        <script src="js/action/repair/re_checkManage.js?v=1" type="text/javascript"></script>
         <script src="js/action/search/popup.js" type="text/javascript"></script>
         <script src="js/common/closeStep.js" type="text/javascript"></script>
 

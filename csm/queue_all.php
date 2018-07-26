@@ -3,7 +3,7 @@
 include './common/Permission.php';
 include './common/PermissionADM.php';
 include './common/FunctionCheckActive.php';
-ACTIVEPAGES(5, 3);
+ACTIVEPAGES(999, 0);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,7 +37,15 @@ ACTIVEPAGES(5, 3);
         <!-- END THEME LAYOUT STYLES -->
         <link rel="shortcut icon" href="favicon.ico" /> </head>
     <!-- END HEAD -->
-
+    <script>
+        var menu_report = "<?=$_SESSION[menu_report] ?>";
+        var report_repair = "<?=$_SESSION[report_repair] ?>";
+        var report_receive = "<?=$_SESSION[report_receive] ?>";
+        var po = "<?=$_SESSION[po] ?>";
+        var po_create_spare = "<?=$_SESSION[po_dd_spare] ?>";
+        var po_create_color = "<?=$_SESSION[po_dd_color] ?>";
+        var po_create_other = "<?=$_SESSION[po_dd_other] ?>";
+    </script>
     <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
         <div class="page-wrapper">
             <!-- BEGIN HEADER -->
@@ -96,7 +104,10 @@ ACTIVEPAGES(5, 3);
                                             <span class="caption-subject bold uppercase"><?= $_SESSION[queue_all] ?></span>
                                         </div>
                                         <div class="actions">
-
+<a href="queue_all_export.php">
+                        <button id="sample_editable_1_new" class="btn sbold green"><i class="fa fa-file-excel-o"></i> Export to Excel
+                        </button>
+                      </a>
                                         </div>
                                     </div>
                                     <div class="portlet-body">
@@ -152,8 +163,11 @@ ACTIVEPAGES(5, 3);
 
 
                                                     <th  class="all">  <?= $_SESSION[tb_co_status] ?> </th>
-                                                    <th style="width: 40px"> <?= $_SESSION[tb_co_edit] ?> </th>
-                                                    <th style="width: 40px"> <?= $_SESSION[tb_co_cancel] ?></th>
+                                                    
+                                                    <th style="width: 40px"> <?= $_SESSION[po] ?></th>
+                                                    <th style="width: 40px"> <?= $_SESSION[tb_co_report] ?> </th>
+                                                    <th style="width: 40px">รายละเอียด</th>
+                                                    
                                             </thead>
                                             <tbody>
 

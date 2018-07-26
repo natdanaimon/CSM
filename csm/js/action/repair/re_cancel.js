@@ -37,6 +37,7 @@ function initialDataTable(first) {
 
                 var col_status = "";
                 var col_edit = "";
+                var col_manage = "";
                 var col_delete = "";
 
                 col_checkbox = '<span class="md-checkbox has-success" style="padding-right: 0px;">';
@@ -56,9 +57,13 @@ function initialDataTable(first) {
                 col_status += '';
 
 
-                col_edit += '<a href="re_cancelManage.php?func=edit&id=' + item.i_cust_car + '&ref_no='+item.ref_no+'" class="btn btn-circle btn-icon-only blue" style="width:32px;height:32px">';
+                col_edit += '<a href="re_checkManage.php?func=edit&id=' + item.i_cust_car + '" class="btn btn-circle btn-icon-only green" style="width:32px;height:32px">';
                 col_edit += ' <i class="fa fa-edit"></i>';
                 col_edit += '</a>';
+              
+              col_manage += '<a href="re_cancelManage.php?func=edit&id=' + item.i_cust_car + '&ref_no='+item.ref_no+'" class="btn btn-circle btn-icon-only blue" style="width:32px;height:32px">';
+                col_manage += ' <i class="fa fa-gears"></i>';
+                col_manage += '</a>';
 
                 col_delete += '<a href="' + (disable != "" ? '#' : 'javascript:Confirm(\'' + item.i_cust_car + '\',\'delete\');') + '" style="width:33px;height:33px" class="btn btn-circle btn-icon-only red" ' + disable + '>';
                 col_delete += ' <i class="fa fa-trash-o" ></i>';
@@ -79,6 +84,7 @@ function initialDataTable(first) {
                     col_inout,
                     col_status,
                     col_edit,
+                    col_manage,
                     col_delete
                 ]
 

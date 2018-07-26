@@ -102,6 +102,9 @@ switch ($info[func]) {
     case "CheckBoxListRepair" :
         echo $controller->CheckBoxListRepair();
         break;
+     case "DDLEmployeeDeptAll" :
+        echo $controller->DDLEmployeeDeptAll($info[id]);
+        break;
 }
 
 class commonController {
@@ -486,6 +489,26 @@ class commonController {
             return NULL;
         }
     }
+    public function DDLEmployeeDeptAll($id) {
+        $service = new commonService();
+        $_dataTable = $service->DDLEmployeeDeptAll($id);
+        if ($_dataTable != NULL) {
+            $tmpReturn = array();
+            foreach ($_dataTable as $key => $value) {
+                $tmp = array(
+                    'id' => $_dataTable[$key]['i_emp'],
+                    'text' => $_dataTable[$key]['s_firstname'] . " " . $_dataTable[$key]['s_lastname']
+                );
+                $tmpReturn[] = $tmp;
+            }
+
+            return json_encode(array_values($tmpReturn));
+        } else {
+            return NULL;
+        }
+    }
+    
+    
     
     public function MNGetDate($info) {
     	$total = $info[total]*1;

@@ -368,11 +368,11 @@ $disableElement = 'disabled="disable"';
                                                                 <label for="form_control_1" style="color: #36c6d3;"><?= $_SESSION[lb_re_doutbound_confirm] ?> <span class="required" style="color: red;">*</span></label> 
                                                                 <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy" data-date="<?= date("d-m-Y") ?>"  style="width: 100% !important;">
                                                                     <span class="input-group-btn">
-                                                                        <button class="btn default" type="button" <?= $disableView ?>>
+                                                                        <button class="btn default" disabled="disabled" type="button" <?= $disableView ?>>
                                                                             <i class="fa fa-calendar"></i>
                                                                         </button>
                                                                     </span>
-                                                                    <input type="text" class="form-control" readonly name="d_outbound_confirm" id="d_outbound_confirm" value="<?= date("d-m-Y") ?>"  <?= $disableView ?>>
+                                                                  <input type="text" class="form-control" disabled="disabled" name="d_outbound_confirm" id="d_outbound_confirm" value="<?= date("d-m-Y") ?>"  <?= $disableView ?>>
 
                                                                 </div>
                                                             </div>

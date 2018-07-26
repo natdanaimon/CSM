@@ -119,12 +119,12 @@
     </detail>
 	
     <!--<detail>
-        <variable>label_comment</variable>
-        <th>การพูดคุย</th>
-        <en>Comment</en> 
-    </detail>
-	-->
-	<detail>
+    <variable>label_comment</variable>
+    <th>การพูดคุย</th>
+    <en>Comment</en> 
+</detail>
+    -->
+    <detail>
         <variable>label_comment</variable>
         <th>บันทึกข้อความ</th>
         <en>Memos</en> 
@@ -500,13 +500,13 @@
         <th>ยกเลิก</th>
         <en>Cancel</en> 
     </detail>
-	<!--
+    <!--
     <detail>
         <variable>btn_addComment</variable>
         <th>เพิ่มบทสนทนา</th>
         <en>Add Comment</en> 
     </detail>-->
-	<detail>
+    <detail>
         <variable>btn_addComment</variable>
         <th>เพิ่มบันทึกข้อความ</th>
         <en>Add Memos</en> 
@@ -938,14 +938,14 @@
         <variable>re_check</variable>
         <!--<th>ตรวจสภาพรถก่อนนำซ่อม</th>
         <en>Check Repair Management</en>-->
-		<th>รอคิวเข้าซ่อม</th>
+        <th>รอคิวเข้าซ่อม</th>
         <en>Queue Repair Management</en>
     </detail>
     <detail>
         <variable>re_process</variable>
         <!--<th>ขั้นตอนกำลังดำเนินการ</th>
         <en>Process Repair Management</en>-->
-		<th>รูปภาพการดำเนินงาน</th>
+        <th>รูปภาพการดำเนินงาน</th>
         <en>Process Repair Image</en>
     </detail>
     <detail>
@@ -1104,6 +1104,11 @@
         <variable>tb_co_cancel</variable>
         <th>ยกเลิก</th>
         <en>Cancel</en>
+    </detail>
+    <detail>
+        <variable>tb_co_report</variable>
+        <th>รายงาน</th>
+        <en>Report</en>
     </detail>
     <detail>
         <variable>tb_co_name</variable>
@@ -1415,7 +1420,7 @@
         <en>Comment</en>
     </detail>-->
 	
-	<detail>
+    <detail>
         <variable>tb_co_comment</variable>
         <th>บันทึกข้อความ</th>
         <en>Memos</en>
@@ -1462,8 +1467,8 @@
     </detail>
     <detail>
         <variable>tb_po_code</variable>
-        <th>รหัส	</th>
-        <en>Code</en>
+        <th>P-CODE</th>
+        <en>P-CODE</en>
     </detail>
     <detail>
         <variable>tb_po_shop</variable>
@@ -1499,6 +1504,56 @@
         <variable>tb_po_store</variable>
         <th>ที่เก็บ	</th>
         <en>Store</en>
+    </detail>
+	<detail>
+        <variable>tb_po_list</variable>
+        <th>รายการ	</th>
+        <en>Store</en>
+    </detail>
+	<detail>
+        <variable>tb_po_no</variable>
+        <th>เลขที่</th>
+        <en>No.</en>
+    </detail>
+	<detail>
+        <variable>tb_po_history</variable>
+        <th>ประวัติการสั่งซื้อ</th>
+        <en>History</en>
+    </detail>
+	<detail>
+        <variable>tb_po_withdrawdate</variable>
+        <th>วันที่เบิก</th>
+        <en>Withdraw</en>
+    </detail>
+	<detail>
+        <variable>tb_po_withdrawby</variable>
+        <th>คนเบิก</th>
+        <en>Withdraw By</en>
+    </detail>
+	<detail>
+        <variable>tb_po_payby</variable>
+        <th>จ่ายโดย</th>
+        <en>Pay By</en>
+    </detail>
+	<detail>
+        <variable>tb_po_payby</variable>
+        <th>จ่ายโดย</th>
+        <en>Pay By</en>
+    </detail>
+	<detail>
+        <variable>tb_po_receive</variable>
+        <th>รับสินค้า</th>
+        <en>Receive</en>
+    </detail>
+	<detail>
+        <variable>tb_po_withdraw</variable>
+        <th>เบิกสินค้า</th>
+        <en>Withdraw</en>
+    </detail>
+	<detail>
+        <variable>btn_po_withdraw</variable>
+        <th>บันทึกเบิกสินค้า</th>
+        <en>Withdraw</en>
     </detail>
     
     
@@ -2251,15 +2306,33 @@
         <th> ราคาในระบบ EMCS/ราคาตามใบเสนอราคา</th>
         <en>EMCS</en> 
     </detail>
-	<detail>
+    <detail>
         <variable>tt_repair_list</variable>
         <th> รายการซ่อม</th>
         <en>Repair List</en> 
     </detail>
-	<detail>
+    <detail>
         <variable>queue_all</variable>
         <th> งานทั้งหมด</th>
         <en>All List</en> 
+    </detail>
+    <detail>
+        <variable>re_check_R32</variable>
+        <th>จัดการข้อมูลรายการซ่อม</th>
+        <en>Manage Repair List  </en> 
+    </detail>
+	
+	
+	<detail>
+        <variable>btn_add_order</variable>
+        <th>เพิ่มรายการสั่งซื้อ</th>
+        <en>Add new order list</en> 
+    </detail>
+	
+	<detail>
+        <variable>btn_recieve_order</variable>
+        <th>บันทึกรับรายการ</th>
+        <en>Recieve</en> 
     </detail>
 	
 	

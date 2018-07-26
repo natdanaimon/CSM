@@ -106,12 +106,13 @@ ACTIVEPAGES(4, 3);
                                                                                                 </div>-->
                                                 <div class="col-md-6" align="left"  <?= $hidden ?>>
                                                     <div class="btn-group">
-                                                        <a href="po_color_createManage.php?func=add">
+                                                        <!--<a href="po_color_createManage.php?func=add">-->
+                                                        <a href="po_colorForm.php?func=add">
                                                             <button id="sample_editable_1_new" class="btn sbold green"> <?= $_SESSION[btn_add] ?>
                                                             </button>
                                                         </a>
                                                     </div>
-                                                    <div class="btn-group">
+                                                    <div class="btn-group" style="display: none;">
                                                         <button id="sample_editable_1_new" class="btn sbold red" onclick="deleteAll()"> <?= $_SESSION[btn_cancel_all] ?>
 <!--                                                            <i class="fa fa-minus"></i>-->
                                                         </button>
@@ -123,20 +124,8 @@ ACTIVEPAGES(4, 3);
                                         <table class="table table-striped table-bordered table-hover table-checkable order-column dt-responsive" id="datatable">
                                             <thead>
                                                 <tr>
-                                                    <th style="padding-left: 30px;width: 30px" class="no-sort">
-                                                        <!--                                                        <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-                                                                                                                    <input type="checkbox" class="group-checkable" data-set="#datatable .checkboxes" id="select_all" />
-                                                                                                                    <span></span>
-                                                                                                                </label>-->
-                                                        <span class="md-checkbox has-success">
-                                                            <input type="checkbox" id="checkbox14" name="checkbox14" class="md-check">
-                                                            <label for="checkbox14">
-                                                                <span class="inc"></span>
-                                                                <span class="check"></span>
-                                                                <span class="box"></span> </label>
-                                                        </span>
-                                                    </th>
-                                                    <th  class="all"  style="width: 80px">  <?= $_SESSION[tb_co_refno] ?> </th>
+                                                     
+                                                    <th  class="all"  >  <?= $_SESSION[tb_co_refno] ?> </th>
                                                     <th  class="all">  <?= $_SESSION[tb_po_shop] ?> </th>
                                                     <th  class="all">  <?= $_SESSION[tb_po_receiveby] ?> </th>
 
@@ -150,10 +139,10 @@ ACTIVEPAGES(4, 3);
                                                     <th class="none"> <span style="color:red"><?= $_SESSION[tb_co_dinbound_car] ?> - <?= $_SESSION[tb_co_doutbound_car] ?></span> </th>
 
 
-                                                    <th  class="all">  <?= $_SESSION[tb_co_status] ?> </th>
+                                                     
                                                     <th style="width: 40px"> <?= $_SESSION[tb_co_edit] ?> </th>
-                                                    <th style="width: 40px"> <?= $_SESSION[tb_co_edit] ?> </th>
-                                                    <th style="width: 40px"> <?= $_SESSION[tb_co_cancel] ?></th>
+                                                     
+                                                     
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -223,7 +212,7 @@ ACTIVEPAGES(4, 3);
         <link href="css/notify.css" rel="stylesheet" type="text/css" />
         <link href="outbound/lightbox/css/lightbox.css" rel="stylesheet" type="text/css" />
         <script src="outbound/lightbox/js/lightbox.js" type="text/javascript"></script>
-        <script src="js/action/po/po_color.js?v=1" type="text/javascript"></script>
+        <script src="js/action/po/po_color.js?v=<?=JS_VERSION;?>" type="text/javascript"></script>
         <script>
                                                             $(document).ready(function () {
                                                                 initialDataTable("TRUE");

@@ -249,5 +249,12 @@ class commonService {
         $db->close_conn();
         return $_data;
     }
+    function DDLEmployeeDeptAll($id) {
+        $db = new ConnectDB();
+        $strSql = "select * from tb_employee where s_status = 'A'  order by i_emp asc ";
+        $_data = $db->Search_Data_FormatJson($strSql);
+        $db->close_conn();
+        return $_data;
+    }
 
 }

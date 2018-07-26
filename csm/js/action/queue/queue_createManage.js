@@ -1005,7 +1005,23 @@ function editCheckBoxOther(ref_no) {
 
 
 
-            $('.div_listpther_'+item.i_repair_item).show();
+            //alert(item.s_txt_1)
+            if(item.s_txt_1 != ''){	$('.div_listother_1').show();	}
+            if(item.s_txt_2 != ''){	$('.div_listother_2').show();	}
+            if(item.s_txt_3 != ''){	$('.div_listother_3').show();	}
+            if(item.s_txt_4 != ''){	$('.div_listother_4').show();	}
+            if(item.s_txt_5 != ''){	$('.div_listother_5').show();	}
+            if(item.s_txt_6 != ''){	$('.div_listother_6').show();	}
+            if(item.s_txt_7 != ''){	$('.div_listother_7').show();	}
+            if(item.s_txt_8 != ''){	$('.div_listother_8').show();	}
+            if(item.s_txt_9 != ''){	$('.div_listother_9').show();	}
+            if(item.s_txt_10 != ''){	$('.div_listother_10').show();	}
+            if(item.s_txt_11 != ''){	$('.div_listother_10').show();	}
+            if(item.s_txt_12 != ''){	$('.div_listother_12').show();	}
+            if(item.s_txt_13 != ''){	$('.div_listother_13').show();	}
+            
+            
+            
             });
 
 //            $('#se-pre-con').delay(100).fadeOut();
@@ -1029,7 +1045,9 @@ function setValSelected(index, val) {
 }
 
 
-
+$('#btn-form-action').click(function () {
+  $('#form-action').submit();
+});
 function save() {
     
     $('#form-action').submit(function(e) {
@@ -1052,7 +1070,7 @@ function save() {
                     var errCode = "Code (" + res[0] + ") : " + res[1];
                     $.notify(errCode, "success");
                     //setTimeout(funcrion(){ location.replace('queue_list.php'); },1000);
-                    //location.replace('queue_list.php');
+                    location.replace('queue_list.php');
                 } else {
                     var errCode = "Code (" + res[0] + ") : " + res[1];
                     $.notify(errCode, "error");
