@@ -294,7 +294,7 @@ ACTIVEPAGES(5, 1);
                                     ?>
                                     <tr id = "<?= $datalv2['i_queue_dept']; ?>">
                                       <td>
-                                        <?= $datalv2['ref_no']; ?>
+                                        <a href="queue_all_detail.php?id=<?= $datalv2['ref_no']; ?>" target="_blank"><?= $datalv2['ref_no']; ?></a>
                                       </td>
                                       <td><?= $datalv2['d_start']; ?> (+<?= $datalv2['i_dept_date']; ?>)</td>
                                       <td><?= $datalv2['d_end']; ?></td>
@@ -309,7 +309,7 @@ ACTIVEPAGES(5, 1);
                                         $strSql = "select s.*,e.s_firstname , e.s_lastname";
                                         $strSql .= " from   tb_queue_dept_staff s  ";
                                         $strSql .= " LEFT JOIN  tb_employee e ON  e.i_emp = s.i_staff";
-                                        $strSql .= " where  s.i_queue_dept = '" . $datalv2[i_queue_dept] . "'";
+                                        $strSql .= " where  s.i_queue_dept = '" . $datalv2[i_queue_dept] . "' and s.s_status = ''";
                                         $_datalv3 = $db->Search_Data_FormatJson($strSql);
                                         $db->close_conn();
                                         ?>

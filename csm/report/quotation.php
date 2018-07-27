@@ -24,44 +24,7 @@ $strSql .= " WHERE car.i_cust_car =" . $_GET[id];
 $_data = $db->Search_Data_FormatJson($strSql);
 
 
-$strSql = "";
-$strSql .= " SELECT ";
-$strSql .= " * ";
-$strSql .= " FROM tb_print_record  ";
-$strSql .= " WHERE i_cust_car =" . $_GET[id];
-$_record = $db->Search_Data_FormatJson($strSql);
-if($_record[0][i_receive] == NULL){
-  $chk_no = 1;
-  $strSql = "";
-        $strSql .= "INSERT ";
-        $strSql .= "INTO ";
-        $strSql .= "  tb_print_record ( ";
-        $strSql .= "    i_receive ";
-        $strSql .= "    ,i_cust_car ";
-        $strSql .= "  ) ";
-        $strSql .= "VALUES( ";
-        $strSql .= "  '$chk_no' ";
-        $strSql .= "  ,'$_GET[id]' ";
-        $strSql .= ") ";
-        $arr = array(
-            array("query" => "$strSql")
-        );
-        $reslut = $db->insert_for_upadte($arr);
-}else{
-  $chk_no = $_record[0][i_receive]+1;
-  $strSql = "";
-        $strSql .= "update tb_print_record ";
-        $strSql .= "set  ";
-        $strSql .= "i_receive = '$chk_no' ";
-        $strSql .= "where i_cust_car = '".$_GET[id]."' ";
-        $arr = array(
-            array("query" => "$strSql")
-        );
-        $reslut = $db->insert_for_upadte($arr);
-}
 
-$s_run_no = "CHK-".$chk_no;
-//$s_run_no = "";
 
 
 $db->conn();
@@ -186,7 +149,7 @@ ob_start();
           <table style="border:0px solid #000;" cellpadding="2" width="100%">
             <tr>
               <td>
-                <font style="font-size: 20px;">เลขที่ <?=$s_no;?> <?=$s_run_no;?></font>
+                <font style="font-size: 20px;">เลขที่ <?=$s_no;?> CHK-<?=$chk_no;?></font>
                 <br />
                 <font style="font-size: 20px;"><?php echo date('d/m/Y H:i'); ?></font>
               </td>

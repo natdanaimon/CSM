@@ -21,7 +21,7 @@ function initialDataTable_1(first) {
             $.each(res, function(i, item) {
 
                 var col_checkbox = "";
-                var col_refno = item.ref_no + ' [ '+item.s_password+' ] ';
+                var col_refno = '<a href="queue_all_detail.php?id='+item.ref_no + '" target="_blank">'+item.ref_no + ' [ ' + item.s_password + ' ] </a>';
                 var col_name = item.s_fullname;
                 var col_license = item.s_license;
 
@@ -143,7 +143,7 @@ function initialDataTable(first) {
             $.each(res, function(i, item) {
 
                 var col_checkbox = "";
-                var col_refno = item.ref_no + ' [ '+item.s_password+' ] ';
+                var col_refno = '<a href="queue_all_detail.php?id='+item.ref_no + '" target="_blank">'+item.ref_no + ' [ ' + item.s_password + ' ] </a>';
                 var col_name = item.s_fullname;
                 var col_license = item.s_license;
 

@@ -64,7 +64,7 @@ and open the template in the editor.
                                     <!--<th align="left">  Ref. no </th>-->
                                     <th>  ชื่อช่าง </th>
                                     <th>  วันที่เริ่มซ่อม </th>
-                                    <th>  วันที่ซ่อมเสร็จ </th>
+                                    <th width="30">  Del </th>
 
                             </thead>
                             <tbody>

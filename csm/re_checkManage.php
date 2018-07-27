@@ -127,13 +127,13 @@ $disableElement = 'disabled="disable"';
 
                                     <div class="row" id="div-refno" style="display:none">
 
-                                        <div class="col-md-4">
+                                        <div class="col-md-9">
                                             <div class="form-group form-md-line-input has-success" >
                                                 <input type="text" class="form-control bold required" id="ref_car_info" name="ref_car_info" readonly="readonly" >
                                                 <label for="form_control_1"><?= $_SESSION[lb_re_refCarInfo] ?><span class="required"></span></label>          
                                             </div>
                                         </div>
-                                        <div class="col-md-5"></div>
+                                        
                                         <div class="col-md-3">
                                             <div class="form-group form-md-line-input has-success" >
                                                 <input type="text" class="form-control bold required" id="ref_no" name="ref_no" readonly="readonly" >

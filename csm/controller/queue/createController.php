@@ -54,6 +54,12 @@ switch ($info[func]) {
     case "getDateTest":
         echo $controller->getDateTest();
         break;
+     case "DelStaff":
+        echo $controller->DelStaff($info[id]);
+        break;
+     case "saveDeliver":
+        echo $controller->saveDeliver($info);
+        break;
 }
 
 class createController {
@@ -116,13 +122,11 @@ class createController {
         $util = new Utility();
         if ($_dataTable != NULL) {
             foreach ($_dataTable as $key => $value) {
-                /*
-                  $_dataTable[$key]['i_year'] = $service->getYear($_dataTable[$key]['s_car_code']);
-                  $_dataTable[$key]['i_brand'] = $service->getBrand($_dataTable[$key]['s_car_code']);
-                  $_dataTable[$key]['i_gen'] = $service->getGeneration($_dataTable[$key]['s_car_code']);
-                  $_dataTable[$key]['i_sub'] = $service->getSub($_dataTable[$key]['s_car_code']);
-                  $_dataTable[$key]['i_ins_comp'] = $service->getInsurance($_dataTable[$key]['i_ins_comp']);
-                  $_dataTable[$key]['i_dmg'] = $service->getDamage($_dataTable[$key]['i_dmg']);
+                //*
+                  $_dataTable[$key]['i_brand'] = $service->getBrand($_dataTable[$key]['s_brand_code']);
+                $_dataTable[$key]['i_gen'] = $service->getGeneration($_dataTable[$key]['s_gen_code']);
+                $_dataTable[$key]['i_ins_comp'] = $service->getInsurance($_dataTable[$key]['i_ins_comp']);
+                $_dataTable[$key]['i_dmg'] = $service->getDamage($_dataTable[$key]['i_dmg']);
 
                   $_dataTable[$key]['d_inbound'] = $util->DateSql2d_dmm_yyyy($_dataTable[$key]['d_inbound']);
                   $_dataTable[$key]['d_outbound_confirm'] = $util->DateSql2d_dmm_yyyy($_dataTable[$key]['d_outbound_confirm']);
@@ -174,6 +178,20 @@ class createController {
             echo $_SESSION['cd_2001'];
         }
     }
+    public function DelStaff($seq) {
+        $db = new ConnectDB();
+        $db->conn();
+        $service = new createService();
+        if ($service->DelStaff($db, $seq)) {
+            $db->commit();
+            echo $_SESSION['cd_0000'];
+        } else {
+            $db->rollback();
+            echo $_SESSION['cd_2001'];
+        }
+    }
+    
+    
 
     public function deleteAll($info) {
         if ($info[data] == NULL) {
@@ -241,8 +259,6 @@ class createController {
     }
 
     public function addStaff($info) {
-        //if ($this->isValid($info)) {
-
         $db = new ConnectDB();
         $db->conn();
         $service = new createService();
@@ -253,7 +269,18 @@ class createController {
             $db->rollback();
             echo $_SESSION['cd_2001'];
         }
-        //}
+    }
+    public function saveDeliver($info) {
+        $db = new ConnectDB();
+        $db->conn();
+        $service = new createService();
+        if ($service->saveDeliver($db, $info)) {
+            $db->commit();
+            echo $_SESSION['cd_0000'];
+        } else {
+            $db->rollback();
+            echo $_SESSION['cd_2001'];
+        }
     }
 
     public function edit($info) {

@@ -51,6 +51,27 @@ $list_repair_other = $db->Search_Data_FormatJson($strSql);
 $db->close_conn();
 
 
+$db->conn();
+$strSql = "";
+$strSql .= " SELECT ";
+$strSql .= " list.i_repair_item,list.s_remark ";
+$strSql .= " ,item.s_repair_name ";
+$strSql .= " FROM tb_check_repair list ";
+$strSql .= " LEFT JOIN tb_repair_item item ON list.i_repair_item = item.i_repair_item ";
+$strSql .= " WHERE list.ref_no =" . $_data[0][ref_no];
+$check_repair = $db->Search_Data_FormatJson($strSql);
+$db->close_conn();
+
+$db->conn();
+$strSql = "";
+$strSql .= " SELECT ";
+$strSql .= " *";
+$strSql .= " FROM tb_check_repair_other list ";
+$strSql .= " WHERE list.ref_no =" . $_data[0][ref_no];
+$check_repair_other = $db->Search_Data_FormatJson($strSql);
+$db->close_conn();
+
+
 include('../barcode/src/BarcodeGenerator.php');
 include('../barcode/src/BarcodeGeneratorPNG.php');
 include('../barcode/src/BarcodeGeneratorSVG.php');

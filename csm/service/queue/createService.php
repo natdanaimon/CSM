@@ -121,7 +121,7 @@ class createService {
     $strSql = "select s.*,e.s_firstname , e.s_lastname";
     $strSql .= " from   tb_queue_dept_staff s  ";
     $strSql .= " LEFT JOIN  tb_employee e ON  e.i_emp = s.i_staff";
-    $strSql .= " where  s.i_queue_dept = '" . $id . "'";
+    $strSql .= " where  s.i_queue_dept = '" . $id . "' and s.s_status = '' ";
     $_data = $db->Search_Data_FormatJson($strSql);
     $db->close_conn();
     return $_data;
@@ -138,23 +138,17 @@ class createService {
     return $_data[0]['i_year'];
   }
 
-  function getBrand($seq) {
+  function getBrand($brandCode) {
     $db = new ConnectDB();
-    $strSql = " select * from tb_car_map where s_car_code = '" . $seq . "'";
-    $_data = $db->Search_Data_FormatJson($strSql);
-
-    $strSql = " select * from tb_car_brand where s_brand_code ='" . $_data[0]['s_brand_code'] . "'";
+    $strSql = " select * from tb_car_brand where s_brand_code ='" . $brandCode . "'";
     $_data = $db->Search_Data_FormatJson($strSql);
     $db->close_conn();
     return $_data[0]['s_brand_name'];
   }
 
-  function getGeneration($seq) {
+  function getGeneration($genCode) {
     $db = new ConnectDB();
-    $strSql = " select * from tb_car_map where s_car_code = '" . $seq . "'";
-    $_data = $db->Search_Data_FormatJson($strSql);
-
-    $strSql = " select * from tb_car_generation where s_gen_code ='" . $_data[0]['s_gen_code'] . "'";
+    $strSql = " select * from tb_car_generation where s_gen_code ='" . $genCode . "'";
     $_data = $db->Search_Data_FormatJson($strSql);
     $db->close_conn();
     return $_data[0]['s_gen_name'];
@@ -216,6 +210,15 @@ class createService {
   function delete($db, $seq) {
 //        $strSQL = "DELETE FROM tb_customer_car WHERE i_cust_car = '" . $seq . "' ";
     $strSQL = "UPDATE tb_customer_car set s_status = 'R0' WHERE i_cust_car = '" . $seq . "' ";
+    $arr = array(
+        array("query" => "$strSQL")
+    );
+    $reslut = $db->insert_for_upadte($arr);
+    return $reslut;
+  }
+  function DelStaff($db, $seq) {
+//        $strSQL = "DELETE FROM tb_customer_car WHERE i_cust_car = '" . $seq . "' ";
+    $strSQL = "UPDATE tb_queue_dept_staff set s_status = '1' WHERE i_queue_dept_staff = '" . $seq . "' ";
     $arr = array(
         array("query" => "$strSQL")
     );
@@ -476,8 +479,7 @@ class createService {
 
 
       // return $reslut;
-    } 
-    else {
+    } else {
       ///////////////////////////// Edit
 
 
@@ -697,25 +699,19 @@ class createService {
 
     if ($depart_start == 1) {
       $s_status = "R4";
-    }
-    elseif ($depart_start == 2) {
+    } elseif ($depart_start == 2) {
       $s_status = "R5";
-    }
-    elseif ($depart_start == 3) {
+    } elseif ($depart_start == 3) {
       $s_status = "R6";
-    }
-    elseif ($depart_start == 4) {
+    } elseif ($depart_start == 4) {
       $s_status = "R7";
-    }
-    elseif ($depart_start == 5) {
+    } elseif ($depart_start == 5) {
       $s_status = "R8";
-    }
-    elseif ($depart_start == 6) {
+    } elseif ($depart_start == 6) {
       $s_status = "R9";
-    }
-    elseif ($depart_start == 7) {
+    } elseif ($depart_start == 7) {
       $s_status = "R10";
-    }else{
+    } else {
       $s_status = "RX";
     }
 
@@ -1023,27 +1019,21 @@ class createService {
 
     if ($depart_start == 1) {
       $s_status = "R4";
-    }
-    elseif ($depart_start == 2) {
+    } elseif ($depart_start == 2) {
       $s_status = "R5";
-    }
-    elseif ($depart_start == 3) {
+    } elseif ($depart_start == 3) {
       $s_status = "R6";
-    }
-    elseif ($depart_start == 4) {
+    } elseif ($depart_start == 4) {
       $s_status = "R7";
-    }
-    elseif ($depart_start == 5) {
+    } elseif ($depart_start == 5) {
       $s_status = "R8";
-    }
-    elseif ($depart_start == 6) {
+    } elseif ($depart_start == 6) {
       $s_status = "R9";
-    }
-    elseif ($depart_start == 7) {
+    } elseif ($depart_start == 7) {
       $s_status = "R10";
-    }else{
-			$s_status = "RX";
-		}
+    } else {
+      $s_status = "RX";
+    }
 
 
     $strSql = "";
@@ -1174,6 +1164,28 @@ class createService {
 
     return $reslut;
   }
+  function saveDeliver($db, $info) {
+$util = new Utility();
+    if(isset($info[i_deliver])){
+      $i_deliver = 1;
+    }else{
+      $i_deliver = 0;
+    }
+    $strSql = "";
+    $strSql .= "update tb_customer_car ";
+    $strSql .= "set  ";
+    $strSql .= "t_deliver = '$info[t_deliver]', ";
+    $strSql .= "i_deliver = '$i_deliver', ";
+    $strSql .= "d_deliver = '" . $util->DateSQL($info[d_deliver]) . "' ";
+    $strSql .= "where ref_no = $info[ref_no] ";
+    $arr = array(
+        array("query" => "$strSql")
+    );
+    $reslut = $db->insert_for_upadte($arr);
+    return $reslut;
+  }
+  
+  
 
   function UpdateStatus($db, $info) {
     $util = new Utility();
