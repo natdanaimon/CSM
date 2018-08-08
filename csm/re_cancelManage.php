@@ -134,13 +134,13 @@ $disableElement = 'disabled="disable"';
 
                                 <div class="row" id="div-refno" style="display:none">
 
-                                    <div class="col-md-4">
+                                    <div class="col-md-9">
                                         <div class="form-group form-md-line-input has-success" >
                                             <input type="text" class="form-control bold required" id="ref_car_info" name="ref_car_info" readonly="readonly" >
                                             <label for="form_control_1"><?= $_SESSION[lb_re_refCarInfo] ?><span class="required"></span></label>          
                                         </div>
                                     </div>
-                                    <div class="col-md-5"></div>
+                                    
                                     <div class="col-md-3">
                                         <div class="form-group form-md-line-input has-success" >
                                             <input type="text" class="form-control bold required" id="ref_no" name="ref_no" readonly="readonly" >
@@ -1112,7 +1112,7 @@ $disableElement = 'disabled="disable"';
         <link href="outbound/lightbox/css/lightbox.css" rel="stylesheet" type="text/css" />
         <script src="outbound/lightbox/js/lightbox.js" type="text/javascript"></script>
         <!--<link href="css/custom_select2.css" rel="stylesheet" />-->
-        <script src="js/action/repair/re_cancelManage.js" type="text/javascript"></script>
+        <script src="js/action/repair/re_cancelManage.js?v=1" type="text/javascript"></script>
         <script src="js/action/search/popup.js" type="text/javascript"></script>
         <script src="js/common/closeStep.js" type="text/javascript"></script>
         <script src="js/common/form-dropzone-disable.js" type="text/javascript"></script>

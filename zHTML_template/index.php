@@ -55,16 +55,6 @@ session_start();
             <form  id="form-login" class="login-form" name="form-login"  >
                 <input type="hidden" id="mode" name="mode" value="signin" />
                 <input type="hidden" id="func" name="func" value="login" />
-                <?php
-                if($_COOKIE['remember'] == 1){
-                  $chk_remember = ' checked="checked" ';
-                  $remember = 1;
-                  $username = $_COOKIE['username'];
-                  $password = $_COOKIE['password'];
-                }else{
-                  $remember = 0;
-                }
-                ?>
                 <h3 class="form-title font-green">
                     <!--Expwebdesign.com-->
                 </h3>
@@ -75,11 +65,11 @@ session_start();
                 <div class="form-group">
                     <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
                     <label class="control-label visible-ie8 visible-ie9">Username</label>
-                    <input value="<?=$username;?>" class="form-control form-control-solid placeholder-no-fix" type="text"  placeholder="Username" id="username" name="username" /> 
+                    <input class="form-control form-control-solid placeholder-no-fix" type="text" autocomplete="off" placeholder="Username" id="username" name="username" /> 
                 </div>
                 <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">Password</label>
-                    <input value="<?=$password;?>" class="form-control form-control-solid placeholder-no-fix" type="password"  placeholder="Password" id="password"  name="password" /> 
+                    <input class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off" placeholder="Password" id="password"  name="password" /> 
                 </div>
                 <div class="form-group">
                     <img src="captcha/backgrounds/45-degree-fabric.png" id="captchas"/>
@@ -91,9 +81,8 @@ session_start();
                 <div class="form-group">
                     <input class="form-control form-control-solid placeholder-no-fix" type="hidden" placeholder="captcha" id="captcha"  name="captcha" /> 
                 </div>
-                <input type="hidden" name="remember" id="remember" value="<?=$remember;?>" />
-</form>
-            
+
+            </form>
             <div class="form-group">
                 <input class="form-control form-control-solid placeholder-no-fix" type="text" placeholder="captcha" id="tmp_captcha"  name="tmp_captcha" /> 
             </div>
@@ -101,7 +90,7 @@ session_start();
 
                 <a href="javascript:login()" class="btn green uppercase"  >Login</a>
                 <label class="rememberme check mt-checkbox mt-checkbox-outline">
-                  <input type="checkbox" name="rememberss" id="rememberss" value="1" <?=$chk_remember;?> />Remember
+                    <input type="checkbox" name="remember" value="1" />Remember
                     <span></span>
                 </label>
                 <a href="javascript:;" id="forget-password" class="forget-password">Forgot Password?</a>
@@ -127,7 +116,7 @@ session_start();
 
             <!-- END REGISTRATION FORM -->
         </div>
-        <div class="copyright"> Copyright Â© 2017 HORGARAGE All rights reserved. </div>
+        <div class="copyright"> Copyright © 2017 HORGARAGE All rights reserved. </div>
         <!--[if lt IE 9]>
 <script src="../assets/global/plugins/respond.min.js"></script>
 <script src="../assets/global/plugins/excanvas.min.js"></script> 
@@ -169,16 +158,6 @@ session_start();
                             if (e.keyCode == 13) {
                                 login();
                             }
-                        });
-                        $('#rememberss').click(function(){
-                           var chk = $('#rememberss').prop('checked');
-                           console.log(chk)
-                           console.log(1111111111)
-                           if(chk === true){
-                             $('#remember').val('1');
-                           }else{
-                             $('#remember').val('0');
-                           }
                         });
 
         </script>

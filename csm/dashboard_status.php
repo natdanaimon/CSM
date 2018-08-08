@@ -278,11 +278,13 @@ foreach ($run_deliver as $dataR){
                       <?php
                       $time = explode(" น.", $objArr[6]);
 
-                      $date_now = date('Y-m-d H:i:s', strtotime($date_now));
+                      $date_now = $date_now." ".date('H:i:s');
+                      //$date_now = date('Y-m-d H:i:s', strtotime($date_now));
                       $date_row = $objArr[d_deliver] . " " . $objArr[t_deliver] . ":00";
 
                       if($objArr[i_deliver] == 0){
 
+ 
                         if ($date_now > $date_row) {
                           $timestamp_now = strtotime($date_now);
                           $timestamp_row = strtotime($date_row);

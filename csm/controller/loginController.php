@@ -84,6 +84,7 @@ class loginController {
         $_SESSION["selected_lan_name"] = "TH";
 
 
+
         $flgUser = $util->isEmptyReg($info[username]);
 
         if ($flgUser) {
@@ -116,7 +117,13 @@ class loginController {
                     $_SESSION["img_profile"] = $_data[$key]['s_image'];
                     $_SESSION["full_name"] = $_data[$key]['s_firstname'] . " " . $_data[$key]['s_lastname'];
                     $_SESSION["perm"] = $_data[$key]['s_type'];
+                if($info['remember'] == 1){
+                  $_SESSION["remember"] = 1;
+                }else{
+                  $_SESSION["remember"] = 0;
                 }
+                    
+              }
                 $_SESSION[mode_lock] = FALSE;
                 echo $_SESSION['cd_0000'];
             } else {

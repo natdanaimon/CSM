@@ -426,5 +426,105 @@ class Utility {
         $date = new DateTime('now');
         return $date->format($formatPattern);
     }
+    
+    
+//Thai text for that number
+  function integerToThai($number) {
+    $number = ltrim($number, ' 0');
+    if ($number == '') {
+      return 'ศูนย์';
+    }
+    if ($number == '1') {
+      return 'หนึ่ง';
+    }
+    $number = strrev($number);
+    return $this->millionToThaiHelper($number, '', true);
+  }
+  function millionToThaiHelper($rnumber, $sofar, $first) {
+    if (strcmp($rnumber, '1') == 0) {
+      if ($first) {
+        return 'หนึ่ง' . $sofar;
+      } else {
+        return 'หนึ่งล้าน' . $sofar;
+      }
+    } else {
+      if (strlen($rnumber) > 6) {
+        if ($first) {
+          return $this->millionToThaiHelper(substr($rnumber, 6), $this->integerToThaiHelper($rnumber, 1, '') . $sofar, false);
+        } else {
+          return $this->millionToThaiHelper(substr($rnumber, 6), $this->integerToThaiHelper($rnumber, 1, '') . 'ล้าน' . $sofar, false);
+        }
+      } else {
+        if ($first) {
+          return $this->integerToThaiHelper($rnumber, 1, '') . $sofar;
+        } else {
+          return $this->integerToThaiHelper($rnumber, 1, '') . 'ล้าน' . $sofar;
+        }
+      }
+    }
+  }
+  function integerToThaiHelper($rnumber, $digit, $sofar) {
+    if ($digit > 6) {
+      return $sofar;
+    }
+    if ($rnumber == '') {
+      return '';
+    } else {
+      $bahttext_reading = array(
+          1 => array('', 'เอ็ด', 'สอง', 'สาม', 'สี่', 'ห้า', 'หก', 'เจ็ด', 'แปด', 'เก้า'),
+          2 => array('', 'สิบ', 'ยี่สิบ', 'สามสิบ', 'สี่สิบ', 'ห้าสิบ', 'หกสิบ', 'เจ็ดสิบ', 'แปดสิบ', 'เก้าสิบ'),
+          3 => array('', 'หนึ่งร้อย', 'สองร้อย', 'สามร้อย', 'สี่ร้อย', 'ห้าร้อย', 'หกร้อย', 'เจ็ดร้อย', 'แปดร้อย', 'เก้าร้อย'),
+          4 => array('', 'หนึ่งพัน', 'สองพัน', 'สามพัน', 'สี่พัน', 'ห้าพัน', 'หกพัน', 'เจ็ดพัน', 'แปดพัน', 'เก้าพัน'),
+          5 => array('', 'หนึ่งหมื่น', 'สองหมื่น', 'สามหมื่น', 'สี่หมื่น', 'ห้าหมื่น', 'หกหมื่น', 'เจ็ดหมื่น', 'แปดหมื่น', 'เก้าหมื่น'),
+          6 => array('', 'หนึ่งแสน', 'สองแสน', 'สามแสน', 'สี่แสน', 'ห้าแสน', 'หกแสน', 'เจ็ดแสน', 'แปดแสน', 'เก้าแสน')
+      );
+      if (strlen($rnumber) == 1) {
+        return $bahttext_reading[$digit][$rnumber] . $sofar;
+      } else {
+        return $this->integerToThaiHelper(substr($rnumber, 1), ($digit + 1), $bahttext_reading[$digit][substr($rnumber, 0, 1)] . $sofar);
+      }
+    }
+  }
+
+
+  function bahtText($number) {
+    if (!is_numeric($number) || $number < 0) {
+      die('bahtText error: the argument is not a valid positive number');
+    }
+    if (is_float($number)) {//for weird formats such as 2E5
+      echo 'float';
+      $whole = floor($number);
+      $decimal = round(($number - $whole) * 100);
+    } else {
+      $temp = explode('.', $number);
+      if (count($temp) == 1) {
+        $whole = $temp[0];
+        $decimal = 0;
+      } else {
+        $whole = $temp[0];
+        $length = strlen($temp[1]);
+        if ($length > 2) {
+          $decimal .= '0';
+          $decimal = substr($temp[1], 0, 3);
+          $decimal = round($decimal / (10.0));
+        } else if ($length == 2) {
+          $decimal = $temp[1];
+        }//0.5 ==> ห้าสิบสตางค์
+        else {
+          $decimal = $temp[1] . '0';
+        }
+      }
+    }
+    if ($decimal == 0) {
+      return $this->integerToThai($whole) . 'บาทถ้วน';
+    } else {
+      if ($whole != 0) {
+        return $this->integerToThai($whole) . 'บาท' . $this->integerToThai($decimal) . 'สตางค์';
+      } else {
+        return $this->integerToThai($decimal) . 'สตางค์';
+      }
+    }
+  }
+
 
 }

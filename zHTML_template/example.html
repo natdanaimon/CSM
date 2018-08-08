@@ -1,0 +1,33 @@
+<html>
+    <header>
+        <title>Example-01</title>
+    </header>
+    <body>
+        <div>Example-01 Random token from fix script</div>
+        <br/>
+        <a href="javascript:randonToken()">Click Link</a>
+    </body>
+
+    <script>
+        function randonToken() {
+            Array.prototype.random = function () {
+                return this[Math.floor((Math.random() * this.length))];
+            };
+            var token = [
+                '7DEE56EE93F2502CD79E3AC08145E394',
+                '3C1BE17B76A7082282101E822E5D8D38',
+                'B7AC9B6DCDCF0341D8A699D33C509256',
+                '00394071CE8D56CD6DB8564E4AB2369C',
+                'E77F1E73C0548A5BA24E48BFBC6BDBE0',
+                'A2AB692E0A4519F695860789C2D377FC',
+                '9ECE2EF1424A0DAD8D54D72860374C85',
+                'E8DABCEDB6A723D492C2D494B3F7256A',
+                'F8DE29B63EDB4D4425693BEF0FAE5F2C',
+                '6130F254C5A7E61A553106AC43430D28'
+            ];
+            var url = "https://tha.sa-api2.net/app.aspx?username=77up-bet@test&token=" + token.random() + "&lobby=A509&lang=th&returnurl=https://www.77up.bet&mobile=false";
+            window.open(url, '_blank');
+        }
+    </script>
+
+</html>

@@ -1,5 +1,18 @@
 <?php
 @session_start();
+if($_SESSION["username"] != NULL){
+@setcookie("remember", $_SESSION["remember"], 2147483647);
+@setcookie("username", $_SESSION["username"], 2147483647);
+@setcookie("password", $_SESSION["password"], 2147483647);
+@setcookie("i_user", $_SESSION["i_user"], 2147483647);
+@setcookie("user_email", $_SESSION["user_email"], 2147483647);
+@setcookie("img_profile", $_SESSION["img_profile"], 2147483647);
+@setcookie("full_name", $_SESSION["full_name"], 2147483647);
+@setcookie("perm", $_SESSION["perm"], 2147483647);
+
+
+}
+
 error_reporting(E_ERROR | E_PARSE);
 include './common/Permission.php';
 include './common/FunctionCheckActive.php';
@@ -112,7 +125,7 @@ $customer_car = $db->Search_Data_FormatJson($strSql);
 
             <!-- END PAGE HEADER-->
             <div class="row" style="margin-left: 0px; margin-right: 0px;">
-
+              <h1><?=$_COOKIE['username'];?></h1>
               <!-- ****************************  -->                            
               <!-- ****************************  --> 
               <?php

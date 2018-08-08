@@ -80,7 +80,7 @@ function initialDataTable(first) {
         col_report += '<i class="icon-docs"></i> Invoice </a>';
         col_report += '</li>';
         col_report += '<li>';
-        col_report += '<a href="report/vat.php?id=' + item.i_cust_car + '" target="_blank" >';
+        col_report += '<a href="report/withholding.php?id=' + item.i_cust_car + '" target="_blank" >';
         col_report += '<i class="icon-docs"></i> หัก ณ ที่จ่าย </a>';
         col_report += '</li>';
         col_report += '<li>';

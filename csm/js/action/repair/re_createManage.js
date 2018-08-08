@@ -396,26 +396,29 @@ function getDDLGenSelect() {
 }
 
 
-function getDDLGenSelectEdit(brandCode) {
-    $.ajax({
-        type: 'GET',
-        url: 'controller/commonController.php?func=DDLGenerationSelect&s_brand_code=' + brandCode,
-        beforeSend: function () {},
-        success: function (ddl) {
-            debugger;
-            var htmlOption = "";
-            var res = JSON.parse(ddl);
-            $.each(res, function (i, item) {
-                htmlOption += "<option value='" + item.s_gen_code + "'>" + item.s_gen_code + " : " + item.s_gen_name + "</option>";
-            });
-            $("#s_gen_code").html(htmlOption);
+function getDDLGenSelectEdit(brandCode, genCode) {
+  console.log(brandCode)
+  $.ajax({
+    type: 'GET',
+    url: 'controller/commonController.php?func=DDLGenerationSelect&s_brand_code=' + brandCode,
+    beforeSend: function () {},
+    success: function (ddl) {
+      debugger;
+      var htmlOption = "";
+      var res = JSON.parse(ddl);
+      $.each(res, function (i, item) {
+        htmlOption += "<option value='" + item.s_gen_code + "'>" + item.s_gen_code + " : " + item.s_gen_name + "</option>";
+      });
+      $("#s_gen_code").html(htmlOption);
+      $("#s_gen_code").val(genCode);
+      var carInfo = $('#s_license').val() + " : " + $("#i_year option:selected").text() + " : " + $("#s_brand_code option:selected").text() + " : " + $("#s_gen_code option:selected").text();
+      $("#ref_car_info").val(carInfo);
 
+    },
+    error: function (ddl) {
 
-        },
-        error: function (ddl) {
-
-        }
-    });
+    }
+  });
 }
 
 
@@ -447,8 +450,9 @@ function edit() {
 
                 $("#i_year").val(item.i_year);
                 $("#s_brand_code").val(item.s_brand_code);
-                getDDLGenSelectEdit(item.s_brand_code);
-                $("#s_gen_code").val(item.s_gen_code);
+                //getDDLGenSelectEdit(item.s_brand_code);
+        getDDLGenSelectEdit(item.s_brand_code, item.s_gen_code);
+        //$("#s_gen_code").val(item.s_gen_code);
 //                $("#s_car_code").val(item.s_car_code).trigger('change');
                 
                 $("#s_license").val(item.s_license);

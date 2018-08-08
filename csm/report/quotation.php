@@ -94,7 +94,7 @@ $s_fuel = $receive[0][s_fuel];
 $s_distance = $receive[0][s_distance];
 $s_remark = $receive[0][s_remark];
 
-
+$total_cost = 51231;
 
 include('../barcode/src/BarcodeGenerator.php');
 include('../barcode/src/BarcodeGeneratorPNG.php');
@@ -117,7 +117,7 @@ ob_start();
   <!-- BEGIN HEAD -->
   <head>
     <meta charset="utf-8" />
-    <title><?= $_SESSION[title] ?> <?= $i_queue; ?> </title>
+    <title><?=$_SESSION[title] ?> <?=$i_queue; ?> </title>
     <!-- END SELECT 2 SCRIPTS -->
     <link rel="shortcut icon" href="favicon.ico" /> 
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
@@ -133,436 +133,303 @@ ob_start();
   <body>
     <table width="100%">
       <tr>
-        <td width="70%" align="left">
+        <td width="110">
+          <img src="../images/logo/logo.jpg" style="width: 100px;"/>
+        </td>
+        <td  align="left" valign="top">
           <table style="border:0px solid #000; " cellpadding="0" width="100%" >
             <tr>
-              <td> 
-                <strong style="font-size: 25px;cursor: pointer;" onclick="javascript:window.print();">
+              <td valign="top"> 
+                <strong style="font-size: 23px;cursor: pointer;" onclick="javascript:window.print();">
                   บริษัท รุ่งทรัพย์ ออโตโมบิล รีแพร์ เซ็นเตอร์ จำกัด <br />
-                  RUNGSAP AUTOMOBILE REPAIR CENTRE CO.,LTD
                 </strong>
+                <font style="font-size: 20px;">
+                23/326 หมู่ที่2 ซอยสุขุมวิท35 อัศวนนท์ ถนนสุขุมวิท <br />
+                ตำบลบางเมือง อำเภอเมืองฯ จังหวัดสมุทรปราการ 10270 <br />
+                โทร. +662 388 0700, +662 388 1821  FAX.+662 702 5185
+                </font>
               </td>
             </tr>
           </table>
         </td>
-        <td width="30%" align="right">
-          <table style="border:0px solid #000;" cellpadding="2" width="100%">
+        <td width="200" align="center">
+          <table style="border:2px solid #000;" cellpadding="2" width="100%">
             <tr>
-              <td>
-                <font style="font-size: 20px;">เลขที่ <?=$s_no;?> CHK-<?=$chk_no;?></font>
-                <br />
-                <font style="font-size: 20px;"><?php echo date('d/m/Y H:i'); ?></font>
+              <td align="center">
+                <font style="font-size: 20px;">ใบเสนอราคา <br />
+                QUOTATION
+                </font>
               </td>
             </tr>
           </table>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" align="center">
+          <strong style="font-size: 20px;">
+            เลขประจำตัวผู้เสียภาษีอากร 0 1155 57000 58 4  สำนักงานใหญ่
+          </strong>
+        </td>
+        <td>
+          <div style="border:1px solid #ccc;padding:5px;">
+            วันที่: <?=date('d/m/Y'); ?>
+          </div>
+          <div style="height: 5px;"></div>
+          <div  style="border:1px solid #ccc;padding:5px;">
+            เลขที่: QA_
+          </div>
         </td>
       </tr>
     </table>
-    <div align="center"><font style="font-size: 25px;">ใบรับรถ</font></div>
-    <table width="100%">
+    <div align="center"></div>
+    <table width="100%" celpadding="0" cellspacing="0" border="0">
       <tr>
-        <td  width="50%" align="letf"><strong style="font-size: 16px;">รายละเอียดลูกค้า</strong></td>
-        <td  width="50%" align="letf"><strong style="font-size: 16px;">รายละเอียดรถยนต์</strong></td>
+        <td colspan="3" align="letf">
+          <strong style="font-size: 16px;">
+            เอกสารออกเป็นชุด	
+          </strong>
+        </td>
+        <td width="70"></td>
+        <td width="100"></td>
+        <td width="110"></td>
       </tr>
       <tr>
-        <td style="border:1px solid #000;">
-          <table cellpadding="0" width="100%">
-            <tr>
-              <td>
-                <table width="100%">
-                  <tr>
-                    <td width="100">REF.NO.</td>
-                    <td><?php echo $_data[0][ref_no]; ?></td>
-                  </tr>
-                  <tr>
-                    <td>ชื่อ-นามสกุล คุณ</td>
-                    <td><?php echo $_data[0][s_firstname]; ?> <?php echo $_data[0][s_lastname]; ?></td>
-                  </tr>
-                  <tr>
-                    <td>ที่อยุ่</td>
-                    <td><?php echo $_data[0][s_address]; ?></td>
-                  </tr>
-                  <tr>
-                    <td>เบอร์ติดต่อ</td>
-                    <td>
-                      <?php echo $_data[0][s_phone_1]; ?> <?php echo $_data[0][s_phone_2]; ?>
-                    </td>
-                  </tr>
-                </table>
-              </td>
-            </tr>
-          </table>
+        <td style="border-top:1px solid #000;border-left:1px solid #000;border-right:1px solid #000;" width="110" align="center">
+          <strong style="font-size: 16px;">
+            นามผู้ซื้อ <br />
+            SOLD TO
+          </strong>
         </td>
-        <td style="border:1px solid #000;">
-          <table  cellpadding="0" width="100%">
-            <tr>
-              <td>
-                <table width="100%">
-                  <tr>
-                    <td width="100">ยี่ห้อ/รุ่น</td>
-                    <td colspan="2"><?php echo $_data[0][s_brand_name]; ?> <?php echo $_data[0][s_gen_name]; ?></td>
-                    <td>ปี <?php echo $_data[0][i_year]; ?></td>
-                  </tr>
-                  <tr>
-                    <td>ทะเบียน</td>
-                    <td colspan="2"><?php echo $_data[0][s_license]; ?></td>
-                    <td>สี <?=$s_color;?></td>
-                  </tr>
-                  <tr>
-                    <td>ประกันภัย</td>
-                    <td colspan="3"><?php echo $_data[0][s_name_display]; ?></td>
-                  </tr>
-                  <tr>
-                    <td>ปริมาณน้ำมัน</td>
-                    <td><?=$s_fuel;?></td>
-                    <td>กม.วันที่เข้าจอด</td>
-                    <td><?=$s_distance;?></td>
-                  </tr>
-                </table>
-              </td>
-            </tr>
-          </table>
+        <td  colspan="2" style="border-top:1px solid #000;border-right:1px solid #000;padding: 5px;">
+          <?php echo $_data[0][s_firstname]; ?> <?php echo $_data[0][s_lastname]; ?>
+        </td>
+        <td colspan="2" style="border-top:1px solid #000;border-right:1px solid #000;padding: 5px;"   align="left">
+          <strong style="font-size: 16px;">
+            เลขที่ใบสั่งซื้อ <br />
+            PO.NO.
+          </strong>
+
+        </td>
+        <td style="border-top:1px solid #000;border-right:1px solid #000;"   align="center">
+          <strong style="font-size: 16px;">
+            รหัสผู้ซื้อ <br />
+            <?=$_data[0][ref_no]; ?>
+          </strong>
+
         </td>
       </tr>
-    </table>
-    <div align="letf"><strong style="font-size: 16px;">รายการตรวจสอบความเสียหาย ณ วันที่นำรถเข้าจอดซ่อม</strong></div>
-    <table width="100%">
       <tr>
-        <td width="50%" align="letf"  valign="top">
-          <strong style="font-size: 16px;">ชิ้นส่วนเสียหายที่อยุ่ในรายการซ่อม</strong>
-          <table style="border:1px solid #000;height: 186px;" cellpadding="2" width="100%">
-            <tr>
-              <td valign="top">
-                <!-- Repair in list -->
-                <table width="100%">
-                  <?php
-                  $count = 0;
-                  foreach ($list_repair as $data) {
-                    ?>
-                    <?php
-                    if ($count == 0) {
-                      ?>
-                      <tr>
-                        <?php
-                      }
-                      ?>
-                      <td><?= $data[s_repair_name]; ?> <?= $data[s_remark]; ?></td>
-                      <?php
-                      $count++;
-                      if (($count % 2) == 0) {
-                        ?>
-                      </tr>
-                      <?php
-                    }
-                    ?>
-                  <?php } ?>
-                      <?php 
-                  for($i=1;$i <=13;$i++){
-                    $s_txt_x = 's_txt_'.$i;
-                    $s_txt_ok = $list_repair_other[0][$s_txt_x];
-                    if($s_txt_ok != ''){
-                       
-                    if ($count == 0) {
-                      ?>
-                      <tr>
-                        <?php
-                      }
-                      ?>
-                      <td width="50%"><?= $s_txt_ok; ?></td>
-                      <?php
-                      $count++;
-                      if (($count % 2) == 0) {
-                        ?>
-                      </tr>
-                      <?php
-                    }
-                    }
-                  }
-                  ?>
-                </table>
-              </td>
-            </tr>
-          </table>
-          <strong style="font-size: 16px;">ชิ้นส่วนเสียหายที่ไม่อยุ่ในรายการซ่อม</strong>
-          <table style="border:1px solid #000;height: 109px;" cellpadding="2" width="100%">
-            <tr>
-              <td valign="top">
-                <!-- Repair not in list -->
-                <table width="100%">
-                   <?php
-                  $count = 0;
-                  foreach ($check_repair as $data) {
-                    ?>
-                    <?php
-                    if ($count == 0) {
-                      ?>
-                      <tr>
-                        <?php
-                      }
-                      ?>
-                      <td><?= $data[s_repair_name]; ?> <?= $data[s_remark]; ?></td>
-                      <?php
-                      $count++;
-                      if (($count % 2) == 0) {
-                        ?>
-                      </tr>
-                      <?php
-                    }
-                    ?>
-                  <?php } ?>
-                      <?php 
-                  for($i=1;$i <=13;$i++){
-                    $s_txt_x = 's_txt_'.$i;
-                    $s_txt_ok = $list_check_other[0][$s_txt_x];
-                    if($s_txt_ok != ''){
-                       
-                    if ($count == 0) {
-                      ?>
-                      <tr>
-                        <?php
-                      }
-                      ?>
-                      <td width="50%"><?= $s_txt_ok; ?></td>
-                      <?php
-                      $count++;
-                      if (($count % 2) == 0) {
-                        ?>
-                      </tr>
-                      <?php
-                    }
-                    }
-                  }
-                  ?>
-                </table>
-              </td>
-            </tr>
-          </table>
+        <td style="border:1px solid #000;border-right:1px solid #000;" align="center">
+          <strong style="font-size: 16px;" >
+            ที่อยู่
+            <br />
+            ADDRESS
+          </strong>
         </td>
-        <td width="50%" align="letf" valign="top">
-          <strong style="font-size: 16px;">อุปกรณ์ไฟฟ้าพื้นฐานและระบบไฟส่องสว่าง</strong>
-          <table style="border:1px solid #000;" cellpadding="0" width="100%">
-            <tr>
-              <td>
-                <!-- Light -->
-                <table width="100%" cellpadding="0">
-                  <?php
-                  foreach ($list_lighting as $data) {
-                    $strSql = " select * ";
-                    $strSql .= " FROM tb_report_lighting   WHERE i_lighting = '" . $data[id] . "' and ref_id = '" . $_GET[id] . "'  ";
-                    $_lighting = $db->Search_Data_FormatJson($strSql);
-                    $chk_lighting = $_lighting[0][i_status];
-                    if ($chk_lighting == 1) {
-                      $chkbox = 'ปกติ';
-                    }elseif($chk_lighting == 2){
-                      $chkbox = 'ผิดปกติ';
-                    }
-                    else {
-                      $chkbox = "ไม่มี";
-                    }
-                    ?>
-                    <tr>
-                      <td width="60" align="center"><?= $chkbox; ?></td>
-                      <td>
-                        <?= $data[s_name]; ?>
-                      </td>
-                    </tr>
-                    <?php
-                  }
-                  ?>
-                </table>
-                หมายเหตุ : <?=$s_remark;?>
-                
-
-
-
-
-
-
-
-
-
-              </td>
-            </tr>
-          </table>
-          <strong style="font-size: 16px;">อุปกรณ์เครื่องมือประจำรถ</strong>
-          <table style="border:1px solid #000;" cellpadding="0" width="100%">
-            <tr>
-              <td>
-                <!-- ** -->
-                <table width="100%" cellpadding="0">
-                  <?php
-                  foreach ($list_access as $data) {
-                    $strSql = " select * ";
-                    $strSql .= " FROM tb_report_accessories   WHERE i_accessories = '" . $data[id] . "' and ref_id = '" . $_GET[id] . "'  ";
-                    $_accessories = $db->Search_Data_FormatJson($strSql);
-                    $chk_accessories = $_accessories[0][i_status];
-                    if ($chk_accessories == 1) {
-                      $chkbox = 'มี';
-                    }elseif($chk_accessories == 2){
-                      $chkbox = 'ไม่มี';
-                    }
-                    else {
-                      $chkbox = "-";
-                    }
-                    ?>
-                    <tr>
-                      <td width="60" align="center"><?=$chkbox;?></td>
-                      <td>
-                        <?= $data[s_name]; ?>
-                      </td>
-                    </tr>
-                    <?php
-                  }
-                  ?>
-                </table>
-
-
-
-
-
-              </td>
-            </tr>
-          </table>
-          <font style="font-size: 16px;">**หากรายการไหนที่เว้นไว้หมายความว่าไม่ได้ตรวจสอบก่อนจอดซ่อม</font>
+        <td  colspan="2" style="border:1px solid #000;border-left:0px solid #000;padding: 5px;">
+          <?php echo $_data[0][s_address]; ?>
+        </td>
+        <td colspan="2" style="border:1px solid #000;border-left:0px solid #000;padding: 5px;">
+          <strong style="font-size: 16px;">
+            การชำระ
+            <br />
+            TERM
+          </strong>
+        </td>
+        <td style="border:1px solid #000;border-left:0px solid #000;" align="center">
+          <strong style="font-size: 16px;">
+            รหัสผู้ออกบิล <br />
+            -
+          </strong>
         </td>
       </tr>
-    </table>
 
-    <div align="letf"><strong style="font-size: 16px;">เงื่อนไขการนำรถเข้าซ่อม</strong></div>
-    <table style="border:1px solid #000;" cellpadding="2" width="100%">
       <tr>
-        <td align="center" colspan="2">
-          ความเสียหายดังต่อไปนี้ทางอู่จะไม่รับผิดชอบ คือ ความเสียหายนอกเหนือจากรายการซ่อม, ความเสียหายของแบตเตอรี่ เครื่องยนต์ แอร์ วิทยุ อุปกรณ์ไฟฟ้าต่างๆ ซึ่งไม่เกี่ยวกับการซ่อมในใบเคลมหรือใบเสนอราคา
-          <br />
-          <strong>
-            ข้อมูลที่ระบุในเอกสารฉบับนี้ตรงกับข้อมูลในระบบบันทึกข้อมูลของบริษัทฯ ลูกค้าได้ตรวจสอบความถูกต้องแล้วก่อนทำการพิมพ์ ฉะนั้นจึงถือว่าลูกค้ายอมรับเงื่อนไขการจัดซ่อมโดยไม่ต้องลงลายมือชื่อเป็นลายลักษณ์อักษร
+        <td colspan="3" align="letf" style="height: 5px;">
+          <strong style="font-size: 16px;">
           </strong>
         </td>
       </tr>
       <tr>
-        <td width="50%" align="center">
-          
-          <br />
-          <?php echo $_data[0][s_firstname]; ?> <?php echo $_data[0][s_lastname]; ?>
-          <br />
-          <strong>เจ้าของรถ/ผู้นำรถเข้าซ่อม</strong>
+        <td style="border-top:1px solid #000;border-left:1px solid #000;border-right:1px solid #000;"  align="center">
+          <strong style="font-size: 16px;">
+            รหัส
+            <br />
+            CODE
+          </strong>
         </td>
-        <td width="50%" align="center">
-          <br />
-          <?= $_SESSION["full_name"] ?>
-          
-          <br />
-          <strong>เจ้าหน้าที่รับรถ</strong>
+        <td  colspan="2" style="border-top:1px solid #000;border-right:1px solid #000;"   align="center">
+          <strong style="font-size: 16px;">
+            สินค้าหรือบริการ <br />
+            DESCRIPTION
+          </strong>	
+        </td>
+        <td style="border-top:1px solid #000;border-right:1px solid #000;"   align="center">
+          <strong style="font-size: 16px;">
+            จำนวน
+            <br />
+            QUANTITY
+          </strong>
+        </td>
+        <td style="border-top:1px solid #000;border-right:1px solid #000;"   align="center">
+          <strong style="font-size: 16px;">
+            ราคาต่อหน่วย
+            <br />
+            UNIT PRICE
+          </strong>
+        </td>
+        <td style="border-top:1px solid #000;border-right:1px solid #000;"   align="center">
+          <strong style="font-size: 16px;">
+            จำนวนเงิน
+            <br />
+            AMOUNT
+          </strong>
         </td>
       </tr>
-    </table>
-    <br />
-    <div align="letf" style="width: 100%; border-bottom: 1px dashed #000;"></div>
+      <tr>
+        <td style="border:1px solid #000; height: 300px;padding: 5px;" align="left" valign="top">
+          <strong style="font-size: 16px;" >
+            INS001
+          </strong>
+        </td>
+        <td colspan="2" style="border:1px solid #000;border-left:0px solid #000;padding: 5px;" valign="top">
+          ค่าบริการจัดซ่อมรถยนต์ หมายเลขทะเบียน <?php echo $_data[0][s_license]; ?>
+        </td>
+        <td style="border:1px solid #000;border-left:0px solid #000;padding: 5px;" align="right" valign="top">
+        1.0
+        </td>
+        <td style="border:1px solid #000;border-left:0px solid #000;padding: 5px;" align="right" valign="top">
+        </td>
+        <td style="border:1px solid #000;border-left:0px solid #000;padding: 5px;" align="right" valign="top">
 
-    <table cellpadding="2" width="100%">
-      <tr>
-        <td widht="50%"><strong style="font-size: 16px;">รายการจัดซ่อม/อะไหล่คงค้าง (ถ้ามี)</strong></td>
-        <td align="center">**ระบุในวันที่ลูกค้ามารับรถออก</td>
+        </td>
       </tr>
-    </table>
-    <table style="border:1px solid #000;" cellpadding="2" width="100%">
       <tr>
-        <td width="50%">
-          <table cellpadding="0" width="100%">
+        <td colspan="3" align="right" style="padding : 5px;border-right:1px solid #000;">
+          จำนวนเงิน
+        </td>
+        <td align="right" style="border-right:1px solid #000;border-bottom:1px solid #000;"></td>
+        <td align="center" style="border-right:1px solid #000;border-bottom:1px solid #000;"></td>
+        <td align="right" style="border-left:0px solid #000;border-bottom:1px solid #000;border-right:1px solid #000;"></td>
+      </tr>
+      <tr>
+        <td colspan="3" align="right" style="padding : 5px;border-right:1px solid #000;">
+          ส่วนลด (%)
+        </td>
+        <td align="right" style="border-right:1px solid #000;border-bottom:1px solid #000;"></td>
+        <td align="center" style="border-right:1px solid #000;border-bottom:1px solid #000;">%</td>
+        <td align="right" style="border-left:0px solid #000;border-bottom:1px solid #000;border-right:1px solid #000;"></td>
+      </tr>
+      <tr>
+        <td colspan="3" align="right" style="padding : 5px;border-right:1px solid #000;">
+          หลังหักส่วนลด
+        </td>
+        <td align="right" style="border-right:1px solid #000;border-bottom:1px solid #000;"></td>
+        <td align="center" style="border-right:1px solid #000;border-bottom:1px solid #000;"></td>
+        <td align="right" style="border-left:0px solid #000;border-bottom:1px solid #000;border-right:1px solid #000;"></td>
+      </tr>
+      <tr>
+        <td colspan="3"></td>
+        <td colspan="2" align="right" style="padding : 5px;border-right:1px solid #000;">
+          รวมเงิน <br />
+          TOTAL
+        </td>
+        <td align="right" valign="middle" style="border-bottom:1px solid #000;border-right:1px solid #000;"></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td colspan="2">
+          จำนวนเงินรวมทั้งสิ้น (ตัวอักษร)<br />
+          <div style="border:1px solid #000;padding:5px;">
+            <?=$util->bahtText($total_cost); ?>
+          </div>
+        </td>
+        <td colspan="2" align="right" style="padding : 5px;border-right:1px solid #000;">
+          ภาษีมูลค่าเพิ่ม
+          <br />
+          VAT
+        </td>
+        <td align="right" valign="middle" style="border-bottom:1px solid #000;border-right:1px solid #000;"></td>
+      </tr>
+      <tr>
+        <td colspan="3"></td>
+        <td colspan="2" align="right" style="padding : 5px;border-right:1px solid #000;">
+          รวมเงินทั้งสิ้น
+          <br />
+          TOTAL AMOUNT
+        </td>
+        <td align="right" valign="middle" style="border-bottom:1px solid #000;border-right:1px solid #000;">
+          <?=number_format($total_cost, 2); ?>
+        </td>
+      </tr>
+      <tr>
+        <td style="height: 10px;"></td>
+      </tr>
+      <tr>
+        <td colspan="2" style="padding : 0px;border:2px solid #000;">
+          <table width="100%" cellpadding="0" cellspacing="0" border="0" style="padding: 5px;">
             <tr>
-              <td align="center" style="border:1px solid #000;" >
-                <table  cellpadding="0" width="100%">
+              <td>
+                <table width="300" cellpadding="0" cellspacing="0" border="0">
                   <tr>
-                    <td>
-                      ref. No. <br />
-                      <?php echo $barcode; ?>
+                    <td colspan="3">
+                      ผู้สั่งซื้อ			
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="50" align="right">ลงชื่อ</td>
+                    <td style="border-bottom: 1px solid #000;" colspan="2"></td>
+                  </tr>
+                  <tr>
+                    <td width="50" align="right">วันที่</td>
+                    <td width="150" style="border-bottom: 1px solid #000;"></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td colspan="2" align="center">
+                      ประทับตรา (ถ้ามี)	
                     </td>
                   </tr>
                 </table>
               </td>
-              <td valign="top" style="border-bottom: 1px solid #000;">
-                ส่วนของลูกค้า นำมาในวันนัดแก้ไข
-                <br />
-                <strong style="font-size: 16px;">วันที่นัดเข้าทำการแก้ไข </strong>
-                <br>
-              </td>
-            </tr>
-          </table>
-          <table>
-            <tr>
-              <td>
-                ยี่ห้อ/รุ่น  
-              </td>
-              <td>
-                <?php echo $_data[0][s_brand_name]; ?> <?php echo $_data[0][s_gen_name]; ?>
-                ทะเบียน <?php echo $_data[0][s_license]; ?>
-              </td>
-            </tr>
-            <tr>
-              <td>วันที่นำรถเข้าซ่อม</td>
-              <td><?php echo date('d/m/Y H:i'); ?></td>
-            </tr>
-            <tr>
-              <td>วันที่ลูกค้ารับรถออก</td>
-              <td>
-                <?php
-                $sendcar = date('d/m/Y', strtotime($_data[0][d_sendcar]));
-                echo $sendcar;
-                ?>
 
-              </td>
             </tr>
           </table>
         </td>
-        <td valign="top">
-          <table width="100%" border="0" cellpadding="0">
-            <?php
-            for ($i = 1; $i <= 5; $i++) {
-              ?>
-              <tr>
-                <td width="50" valign="bottom"><?= $i; ?></td>
-                <td style="border-bottom: 1px solid #000;"></td>
-              </tr>
-            <?php } ?>
+        <td width="120" valign="top" style="border: 2px solid #000;border-left: 0px solid #000;padding: 5px;">
+          <strong style="font-size: 16px;">
+            REF.no
+            <br />
+            <div align="center"><?=$_data[0][ref_no]; ?></div>
+          </strong>
+        </td>
+        <td colspan="3" style="padding : 0px;border:2px solid #000;border-left: 0px solid #000;">
+          <table width="100%" style="padding: 5px;">
+            <tr>
+              <td colspan="2">
+                จึงเรียนมาเพื่อโปรพิจารณา		
+              </td>
+            </tr>
+            <tr>
+              <td width="50">ลงชื่อ</td>
+              <td style="border-bottom: 1px solid #000;"></td>
+            </tr>
             <tr>
               <td colspan="2" align="center">
-                <table align="center">
-                  <tr>
-                    <td><strong style="font-size: 16px;">รวมทั้งสิน</strong></td>
-                    <td width="100" style="border-bottom: 1px solid #000;"></td>
-                    <td><strong style="font-size: 16px;">รายการ</strong></td>
-                  </tr>
-                </table>
+                ว่าที่ รต.หญิง วิไลลักษณ์ ราศรี		
               </td>
             </tr>
-          </table>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <table width="90%">
             <tr>
-              <td width="50">ลงชื่อ</td>
-              <td style="border-bottom: 1px solid #000;"></td>
-            </tr>
-            <tr>
-              <td colspan="2" align="center"><strong>เจ้าหน้าที่บันทึกข้อมูล</strong></td>
-            </tr>
-          </table>
-        </td>
-        <td>
-          <table width="90%">
-            <tr>
-              <td width="50">ลงชื่อ</td>
-              <td style="border-bottom: 1px solid #000;"></td>
-            </tr>
-            <tr>
-              <td colspan="2" align="center"><strong>ลูกค้ารับทราบและลงลายมือชื่อ</strong></td>
+              <td colspan="2" align="center">
+                การเงิน		
+              </td>
             </tr>
           </table>
         </td>
       </tr>
     </table>
+
 
   </body>
 </html>

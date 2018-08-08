@@ -1,9 +1,18 @@
 <?php
-
-
-
 @session_start();
+if($_SESSION["username"] == NULL){
+$_SESSION["remember"] = $_COOKIE['remember'];
+$_SESSION["username"] = $_COOKIE['username'];
+$_SESSION["password"] = $_COOKIE['password'];
+$_SESSION["i_user"] = $_COOKIE['i_user'];
+$_SESSION["user_email"] = $_COOKIE['user_email'];
+$_SESSION["img_profile"] = $_COOKIE['img_profile'];
+$_SESSION["img_profile"] = $_COOKIE['img_profile'];
+$_SESSION["full_name"] = $_COOKIE['full_name'];
+$_SESSION["perm"] = $_COOKIE['perm'];
+header("location:controller/changelanguageController.php?lan=th&url=".$_SERVER[REQUEST_URI]);
 
+}
 error_reporting(E_ERROR | E_PARSE);
 
 if ($_SESSION["username"] == null || $_SESSION["username"] == "") {

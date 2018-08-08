@@ -833,7 +833,7 @@ $disableElement = 'disabled="disable"';
         <link href="outbound/lightbox/css/lightbox.css" rel="stylesheet" type="text/css" />
         <script src="outbound/lightbox/js/lightbox.js" type="text/javascript"></script>
         <!--<link href="css/custom_select2.css" rel="stylesheet" />-->
-        <script src="js/action/repair/re_checkManage.js?v=1" type="text/javascript"></script>
+        <script src="js/action/repair/re_checkManage.js?v=2" type="text/javascript"></script>
         <script src="js/action/search/popup.js" type="text/javascript"></script>
         <script src="js/common/closeStep.js" type="text/javascript"></script>
 
