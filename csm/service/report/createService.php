@@ -4,12 +4,12 @@
 
 class createService {
 
-  function add($db, $info) {
+  function add($db,$info) {
     $util = new Utility();
     $ref_no = $info[s_po_spare_ref];
 
     $strSql = " select * ";
-    $strSql .= " FROM tb_report_receive  WHERE ref_id = '" . $info[ref_id] . "' ";
+    $strSql .= " FROM tb_report_receive  WHERE ref_id = '".$info[ref_id]."' ";
     $_dataTable = $db->Search_Data_FormatJson($strSql);
 
     if ($_dataTable[0][id] > 0) {
@@ -21,7 +21,7 @@ class createService {
       $strSql .= ",s_fuel = '$info[s_fuel]' ";
       $strSql .= ",s_distance = '$info[s_distance]' ";
       $strSql .= ",s_remark = '$info[s_remark]' ";
-      $strSql .= ",d_update = " . $db->Sysdate(TRUE) . " ";
+      $strSql .= ",d_update = ".$db->Sysdate(TRUE)." ";
       $strSql .= ",s_update_by = '$_SESSION[username]' ";
       $strSql .= "where ref_id = '$info[ref_id]' ";
       $arr = array(
@@ -51,8 +51,8 @@ class createService {
       $strSql .= "  ,'$info[s_fuel]' ";
       $strSql .= "  ,'$info[s_distance]' ";
       $strSql .= "  ,'$info[s_remark]' ";
-      $strSql .= "  ," . $db->Sysdate(TRUE) . " ";
-      $strSql .= "  ," . $db->Sysdate(TRUE) . " ";
+      $strSql .= "  ,".$db->Sysdate(TRUE)." ";
+      $strSql .= "  ,".$db->Sysdate(TRUE)." ";
       $strSql .= "  ,'$_SESSION[username]' ";
       $strSql .= "  ,'$_SESSION[username]' ";
       $strSql .= ") ";
@@ -66,16 +66,16 @@ class createService {
     $strSql = " select * ";
     $strSql .= " FROM 	tb_car_accessories  order by id  ";
     $car_accessories = $db->Search_Data_FormatJson($strSql);
-    foreach($car_accessories as $data){
+    foreach ($car_accessories as $data) {
       $i_accessories_val = "i_accessories_".$data[id];
       $i_accessories = $info[$i_accessories_val];
-      if($i_accessories > 0){
+      if ($i_accessories > 0) {
         $i_status = 1;
-      }else{
+      } else {
         $i_status = 0;
       }
       $i_status = $i_accessories;
-      
+
       $strSql = "";
       $strSql .= "INSERT ";
       $strSql .= "INTO ";
@@ -92,8 +92,8 @@ class createService {
       $strSql .= "  '$info[ref_id]' ";
       $strSql .= "  ,'$data[id]' ";
       $strSql .= "  ,'$i_status' ";
-      $strSql .= "  ," . $db->Sysdate(TRUE) . " ";
-      $strSql .= " ," . $db->Sysdate(TRUE) . " ";
+      $strSql .= "  ,".$db->Sysdate(TRUE)." ";
+      $strSql .= " ,".$db->Sysdate(TRUE)." ";
       $strSql .= "  ,'$_SESSION[username]' ";
       $strSql .= "  ,'$_SESSION[username]' ";
       $strSql .= ") ";
@@ -107,12 +107,12 @@ class createService {
     $strSql = " select * ";
     $strSql .= " FROM 	tb_car_lighting  order by id  ";
     $car_lighting = $db->Search_Data_FormatJson($strSql);
-    foreach($car_lighting as $data){
+    foreach ($car_lighting as $data) {
       $i_lighting_val = "i_lighting_".$data[id];
       $i_lighting = $info[$i_lighting_val];
-      if($i_lighting > 0){
+      if ($i_lighting > 0) {
         $i_status = 1;
-      }else{
+      } else {
         $i_status = 0;
       }
       $i_status = $i_lighting;
@@ -132,8 +132,8 @@ class createService {
       $strSql .= "  '$info[ref_id]' ";
       $strSql .= "  ,'$data[id]' ";
       $strSql .= "  ,'$i_status' ";
-      $strSql .= "  ," . $db->Sysdate(TRUE) . " ";
-      $strSql .= " ," . $db->Sysdate(TRUE) . " ";
+      $strSql .= "  ,".$db->Sysdate(TRUE)." ";
+      $strSql .= " ,".$db->Sysdate(TRUE)." ";
       $strSql .= "  ,'$_SESSION[username]' ";
       $strSql .= "  ,'$_SESSION[username]' ";
       $strSql .= ") ";
@@ -144,6 +144,173 @@ class createService {
     }
 
     return $reslut;
+  }
+
+  function addWithholding($db,$info) {
+    $util = new Utility();
+    $s_detail = json_encode($info);
+    $strSql = " select * ";
+    $strSql .= " FROM tb_report_withholding  WHERE ref_id = '".$info[ref_id]."' ";
+    $_dataTable = $db->Search_Data_FormatJson($strSql);
+    if ($_dataTable[0][id] > 0) {
+      $strSql = "";
+      $strSql .= "update tb_report_withholding ";
+      $strSql .= "set  ";
+      $strSql .= "s_detail = '".$s_detail."' ";
+      $strSql .= ",d_update = ".$db->Sysdate(TRUE)." ";
+      $strSql .= ",s_update_by = '$_SESSION[username]' ";
+      $strSql .= "where ref_id = '$info[ref_id]' ";
+      $arr = array(
+          array("query" => "$strSql")
+      );
+      $reslut = $db->insert_for_upadte($arr);
+    } else {
+      $strSql = "";
+      $strSql .= "INSERT ";
+      $strSql .= "INTO ";
+      $strSql .= "  tb_report_withholding ( ";
+      $strSql .= "    ref_id ";
+      $strSql .= "    ,s_detail ";
+      $strSql .= "    ,d_create ";
+      $strSql .= "    ,d_update ";
+      $strSql .= "    ,s_create_by ";
+      $strSql .= "    ,s_update_by ";
+      $strSql .= "  ) ";
+      $strSql .= "VALUES( ";
+      $strSql .= "  '$info[ref_id]' ";
+      $strSql .= "  ,'".$s_detail."' ";
+      $strSql .= "  ,".$db->Sysdate(TRUE)." ";
+      $strSql .= "  ,".$db->Sysdate(TRUE)." ";
+      $strSql .= "  ,'$_SESSION[username]' ";
+      $strSql .= "  ,'$_SESSION[username]' ";
+      $strSql .= ") ";
+      $arr = array(
+          array("query" => "$strSql")
+      );
+      $reslut = $db->insert_for_upadte($arr);
+    }
+    return $reslut;
+  }
+
+  function addInvoice($db,$info) {
+    $util = new Utility();
+    $s_detail = json_encode($info);
+    $strSql = " select * ";
+    $strSql .= " FROM tb_report_withholding  WHERE ref_id = '".$info[ref_id]."' ";
+    $_dataTable = $db->Search_Data_FormatJson($strSql);
+    if ($_dataTable[0][id] > 0) {
+      $strSql = "";
+      $strSql .= "update tb_report_withholding ";
+      $strSql .= "set  ";
+      $strSql .= "s_detail = '".$s_detail."' ";
+      $strSql .= ",d_update = ".$db->Sysdate(TRUE)." ";
+      $strSql .= ",s_update_by = '$_SESSION[username]' ";
+      $strSql .= "where ref_id = '$info[ref_id]' ";
+      $arr = array(
+          array("query" => "$strSql")
+      );
+      $reslut = $db->insert_for_upadte($arr);
+    } else {
+      $strSql = "";
+      $strSql .= "INSERT ";
+      $strSql .= "INTO ";
+      $strSql .= "  tb_report_withholding ( ";
+      $strSql .= "    ref_id ";
+      $strSql .= "    ,s_detail ";
+      $strSql .= "    ,d_create ";
+      $strSql .= "    ,d_update ";
+      $strSql .= "    ,s_create_by ";
+      $strSql .= "    ,s_update_by ";
+      $strSql .= "  ) ";
+      $strSql .= "VALUES( ";
+      $strSql .= "  '$info[ref_id]' ";
+      $strSql .= "  ,'".$s_detail."' ";
+      $strSql .= "  ,".$db->Sysdate(TRUE)." ";
+      $strSql .= "  ,".$db->Sysdate(TRUE)." ";
+      $strSql .= "  ,'$_SESSION[username]' ";
+      $strSql .= "  ,'$_SESSION[username]' ";
+      $strSql .= ") ";
+      $arr = array(
+          array("query" => "$strSql")
+      );
+      $reslut = $db->insert_for_upadte($arr);
+    }
+    return $reslut;
+  }
+
+  function addQuatation($db,$info) {
+    $util = new Utility();
+    $s_detail = json_encode($info);
+    $strSql = " select * ";
+    $strSql .= " FROM tb_report_withholding  WHERE ref_id = '".$info[ref_id]."' ";
+    $_dataTable = $db->Search_Data_FormatJson($strSql);
+    if ($_dataTable[0][id] > 0) {
+      $strSql = "";
+      $strSql .= "update tb_report_withholding ";
+      $strSql .= "set  ";
+      $strSql .= "s_detail = '".$s_detail."' ";
+      $strSql .= ",d_update = ".$db->Sysdate(TRUE)." ";
+      $strSql .= ",s_update_by = '$_SESSION[username]' ";
+      $strSql .= "where ref_id = '$info[ref_id]' ";
+      $arr = array(
+          array("query" => "$strSql")
+      );
+      $reslut = $db->insert_for_upadte($arr);
+    } else {
+      $strSql = "";
+      $strSql .= "INSERT ";
+      $strSql .= "INTO ";
+      $strSql .= "  tb_report_withholding ( ";
+      $strSql .= "    ref_id ";
+      $strSql .= "    ,s_detail ";
+      $strSql .= "    ,d_create ";
+      $strSql .= "    ,d_update ";
+      $strSql .= "    ,s_create_by ";
+      $strSql .= "    ,s_update_by ";
+      $strSql .= "  ) ";
+      $strSql .= "VALUES( ";
+      $strSql .= "  '$info[ref_id]' ";
+      $strSql .= "  ,'".$s_detail."' ";
+      $strSql .= "  ,".$db->Sysdate(TRUE)." ";
+      $strSql .= "  ,".$db->Sysdate(TRUE)." ";
+      $strSql .= "  ,'$_SESSION[username]' ";
+      $strSql .= "  ,'$_SESSION[username]' ";
+      $strSql .= ") ";
+      $arr = array(
+          array("query" => "$strSql")
+      );
+      $reslut = $db->insert_for_upadte($arr);
+    }
+    return $reslut;
+  }
+
+  function addReceipt($db,$info) {
+    $util = new Utility();
+    $s_detail = json_encode($info);
+    $strSql = "";
+    $strSql .= "INSERT ";
+    $strSql .= "INTO ";
+    $strSql .= "  tb_report_withholding ( ";
+    $strSql .= "    ref_id ";
+    $strSql .= "    ,s_detail ";
+    $strSql .= "    ,d_create ";
+    $strSql .= "    ,d_update ";
+    $strSql .= "    ,s_create_by ";
+    $strSql .= "    ,s_update_by ";
+    $strSql .= "  ) ";
+    $strSql .= "VALUES( ";
+    $strSql .= "  '$info[ref_id]' ";
+    $strSql .= "  ,'".$s_detail."' ";
+    $strSql .= "  ,".$db->Sysdate(TRUE)." ";
+    $strSql .= "  ,".$db->Sysdate(TRUE)." ";
+    $strSql .= "  ,'$_SESSION[username]' ";
+    $strSql .= "  ,'$_SESSION[username]' ";
+    $strSql .= ") ";
+    $arr = array(
+        array("query" => "$strSql")
+    );
+    $reslut = $db->insert_for_upadte($arr);
+    return mysql_insert_id();
   }
 
 ///////////////////// End Class

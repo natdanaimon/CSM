@@ -8,6 +8,15 @@ include './../common/Utility.php';
 $util = new Utility();
 
 $db = new ConnectDB();
+$strSql = " select * ";
+$strSql .= " FROM tb_report_withholding   WHERE id = '".$_GET[id]."' ";
+$data = $db->Search_Data_FormatJson($strSql);
+$ref_id = $data[0][ref_id];
+
+$json = json_decode($data[0][s_detail]);
+
+
+
 $strSql = "";
 $strSql .= " SELECT ";
 $strSql .= " car.* ";
@@ -20,95 +29,10 @@ $strSql .= " LEFT JOIN tb_customer cus ON car.i_customer = cus.i_customer ";
 $strSql .= " LEFT JOIN tb_insurance_comp ins ON car.i_ins_comp = ins.i_ins_comp ";
 $strSql .= " LEFT JOIN tb_car_brand brand ON car.s_brand_code = brand.s_brand_code ";
 $strSql .= " LEFT JOIN tb_car_generation gen ON car.s_gen_code = gen.s_gen_code ";
-$strSql .= " WHERE car.i_cust_car =" . $_GET[id];
+$strSql .= " WHERE car.i_cust_car =".$ref_id;
 $_data = $db->Search_Data_FormatJson($strSql);
 
 
-
-
-
-$db->conn();
-$strSql = "";
-$strSql .= " SELECT ";
-$strSql .= " list.i_repair_item,list.s_remark ";
-$strSql .= " ,item.s_repair_name ";
-$strSql .= " FROM tb_list_repair list ";
-$strSql .= " LEFT JOIN tb_repair_item item ON list.i_repair_item = item.i_repair_item ";
-$strSql .= " WHERE list.ref_no =" . $_data[0][ref_no];
-$list_repair = $db->Search_Data_FormatJson($strSql);
-$db->close_conn();
-
-$db->conn();
-$strSql = "";
-$strSql .= " SELECT ";
-$strSql .= " list.i_repair_item,list.s_remark ";
-$strSql .= " ,item.s_repair_name ";
-$strSql .= " FROM tb_check_repair list ";
-$strSql .= " LEFT JOIN tb_repair_item item ON list.i_repair_item = item.i_repair_item ";
-$strSql .= " WHERE list.ref_no =" . $_data[0][ref_no];
-$check_repair = $db->Search_Data_FormatJson($strSql);
-$db->close_conn();
-
-$db->conn();
-$strSql = "";
-$strSql .= " SELECT ";
-$strSql .= " *";
-$strSql .= " FROM tb_check_repair_other list ";
-$strSql .= " WHERE list.ref_no =" . $_data[0][ref_no];
-$check_repair_other = $db->Search_Data_FormatJson($strSql);
-$db->close_conn();
-
-
-$db->conn();
-$strSql = "";
-$strSql .= " SELECT ";
-$strSql .= " *";
-$strSql .= " FROM tb_list_repair_other list ";
-$strSql .= " WHERE list.ref_no =" . $_data[0][ref_no];
-$list_repair_other = $db->Search_Data_FormatJson($strSql);
-$db->close_conn();
-
-$db->conn();
-$strSql = "";
-$strSql .= " SELECT ";
-$strSql .= " * ";
-$strSql .= " FROM tb_car_accessories  ";
-$list_access = $db->Search_Data_FormatJson($strSql);
-$db->close_conn();
-
-$db->conn();
-$strSql = "";
-$strSql .= " SELECT ";
-$strSql .= " * ";
-$strSql .= " FROM tb_car_lighting  ";
-$list_lighting = $db->Search_Data_FormatJson($strSql);
-$db->close_conn();
-
-$strSql = " select * ";
-$strSql .= " FROM tb_report_receive   WHERE ref_id = '" . $_GET[id] . "' ";
-$receive = $db->Search_Data_FormatJson($strSql);
-
-$s_no = $receive[0][s_no];
-$s_color = $receive[0][s_color];
-$s_fuel = $receive[0][s_fuel];
-$s_distance = $receive[0][s_distance];
-$s_remark = $receive[0][s_remark];
-
-$total_cost = 51231;
-
-include('../barcode/src/BarcodeGenerator.php');
-include('../barcode/src/BarcodeGeneratorPNG.php');
-include('../barcode/src/BarcodeGeneratorSVG.php');
-include('../barcode/src/BarcodeGeneratorJPG.php');
-include('../barcode/src/BarcodeGeneratorHTML.php');
-
-
-//$generator = new Picqer\Barcode\BarcodeGeneratorPNG();
-//$barcode =  $generator->getBarcode($_data[0][ref_no], $generator::TYPE_CODE_128);
-
-$generator = new \Picqer\Barcode\BarcodeGeneratorPNG();
-$barcode = '<img  src="data:image/png;base64,' . base64_encode($generator->getBarcode($_data[0][ref_no], $generator::TYPE_CODE_128)) . '">';
-$title_name = date('ymdHis') . '_' . $_GET[id] . '_receive';
 
 ob_start();
 ?>
@@ -117,7 +41,7 @@ ob_start();
   <!-- BEGIN HEAD -->
   <head>
     <meta charset="utf-8" />
-    <title><?=$_SESSION[title] ?> <?=$i_queue; ?> </title>
+    <title><?=$_SESSION[title]?> <?=$i_queue;?> </title>
     <!-- END SELECT 2 SCRIPTS -->
     <link rel="shortcut icon" href="favicon.ico" /> 
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
@@ -170,7 +94,7 @@ ob_start();
                     <td align="right">เลขที่ <br />No.</td>
                     <td align="center" style="border:1px solid #000;">
                       <font style="font-size: 20px;">
-                      1
+                      <?=$_GET[id];?>
                       </font>
                     </td>
                   </tr>
@@ -208,9 +132,9 @@ ob_start();
             </tr>
             <tr>
               <td rowspan="3" valign="top" style="border-left:1px solid #000;border-top:1px solid #000;border-right:1px solid #000;padding: 5px;">
-                <?php echo $_data[0][s_firstname]; ?> <?php echo $_data[0][s_lastname]; ?>
+                <?php echo $json->s_name;?>
                 <br />
-                <?php echo $_data[0][s_address]; ?>
+                <?php echo $_data[0][s_address];?>
               </td>
               <td colspan="2" style="border-top:1px solid #000;border-right:1px solid #000;padding: 2px;"   align="right">
                 <strong style="font-size: 15px;">
@@ -219,7 +143,7 @@ ob_start();
               </td>
               <td colspan="2" style="border-top:1px solid #000;border-right:1px solid #000;"   align="center">
                 <strong style="font-size: 15px;">
-                  <?php echo $_data[0][ref_no]; ?>
+                  <?php echo $_data[0][ref_no];?>
                 </strong>
               </td>
             </tr>
@@ -476,7 +400,7 @@ ob_start();
                   <tr>
                     <td>
                       <strong style="font-size: 15px;" >
-                        <?=$util->bahtText($total_cost); ?>
+                        <?=$util->bahtText($total_cost);?>
                       </strong>
                     </td>
                   </tr>
@@ -605,7 +529,7 @@ ob_start();
                   </tr>
                   <tr>
                     <td valign="top">
-                      <?=date('d/m/Y'); ?>	    (วัน เดือน ปี ที่ออกหนังสือรับรองฯ)
+                      <?=date('d/m/Y');?>	    (วัน เดือน ปี ที่ออกหนังสือรับรองฯ)
                     </td>
                   </tr>
                 </table>
