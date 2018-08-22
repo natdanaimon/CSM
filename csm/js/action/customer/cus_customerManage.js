@@ -200,6 +200,7 @@ function edit() {
                 $("#s_email").val(item.s_email);
                 $("#s_line").val(item.s_line);
 
+                $("#s_tax_no").val(item.s_tax_no);
                 $("#s_address").val(item.s_address);
                 $("#i_province").val(item.i_province);
                 //getDDLAmphure();

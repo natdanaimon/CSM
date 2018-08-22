@@ -194,6 +194,15 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
 
                                                     </div>
                                                 </div>
+                                              <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group form-md-line-input has-success">
+                                                            <input type="text" class="form-control bold" id="s_tax_no" name="s_tax_no">
+                                                            <label for="s_tax_no">เลขที่บัตรประจำตัวประชาชาหรือเลขที่ประจำตัวผู้เสียภาษีอากร <span class="required"></span>
+                                                            </label>          
+                                                        </div>
+                                                    </div>
+                                                </div>
 
 
                                                 <div class="row">

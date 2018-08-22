@@ -12,8 +12,9 @@ $strSql = " select * ";
 $strSql .= " FROM tb_report_withholding   WHERE id = '".$_GET[id]."' ";
 $data = $db->Search_Data_FormatJson($strSql);
 $ref_id = $data[0][ref_id];
+$no = $data[0][id];
 
-$json = json_decode($data[0][s_detail]);
+$json = $data[0];
 
 
 
@@ -33,7 +34,8 @@ $strSql .= " WHERE car.i_cust_car =".$ref_id;
 $_data = $db->Search_Data_FormatJson($strSql);
 
 
-
+$total_cost = 0;
+$total_vat = 0;
 ob_start();
 ?>
 <!DOCTYPE html>
@@ -94,7 +96,7 @@ ob_start();
                     <td align="right">เลขที่ <br />No.</td>
                     <td align="center" style="border:1px solid #000;">
                       <font style="font-size: 20px;">
-                      <?=$_GET[id];?>
+                      <?=$no;?>
                       </font>
                     </td>
                   </tr>
@@ -119,7 +121,7 @@ ob_start();
           <div align="center" style="height: 10px;"></div>
           <table width="100%" celpadding="0" cellspacing="0" border="0">
             <tr>
-              <td align="letf">
+              <td align="letf" colspan="5">
                 <font style="font-size: 15px;">
                 <strong>ชื่อ ที่อยู่ ของผู้ถูกหักภาษี ณ ที่จ่าย </strong><br />
                 Name and Address of Recipient	
@@ -131,10 +133,9 @@ ob_start();
               <td width="100"></td>
             </tr>
             <tr>
-              <td rowspan="3" valign="top" style="border-left:1px solid #000;border-top:1px solid #000;border-right:1px solid #000;padding: 5px;">
-                <?php echo $json->s_name;?>
-                <br />
-                <?php echo $_data[0][s_address];?>
+              <td rowspan="3" colspan="5" valign="top" style="border-left:1px solid #000;border-top:1px solid #000;border-right:1px solid #000;padding: 5px;">
+                <?php echo $json[s_name];?><br />
+                <?php echo $json[s_address];?>
               </td>
               <td colspan="2" style="border-top:1px solid #000;border-right:1px solid #000;padding: 2px;"   align="right">
                 <strong style="font-size: 15px;">
@@ -143,7 +144,7 @@ ob_start();
               </td>
               <td colspan="2" style="border-top:1px solid #000;border-right:1px solid #000;"   align="center">
                 <strong style="font-size: 15px;">
-                  <?php echo $_data[0][ref_no];?>
+                  <?php echo $json[s_code];?>
                 </strong>
               </td>
             </tr>
@@ -154,7 +155,7 @@ ob_start();
                 </strong>
               </td>
               <td colspan="2" style="border-top:1px solid #000;border-right:1px solid #000;"   align="center">
-
+                <?php echo $json[s_identi];?>
               </td>
             </tr>
             <tr>
@@ -165,14 +166,14 @@ ob_start();
               </td>
               <td colspan="2" style="border-top:1px solid #000;border-right:1px solid #000;"   align="center">
                 <strong style="font-size: 15px;">
-
+                  <?php echo $json[s_tax];?>
                 </strong>
               </td>
             </tr>
 
 
             <tr>
-              <td style="border:1px solid #000;border-right:1px solid #000;" align="center">
+              <td colspan="5"  style="border:1px solid #000;border-right:1px solid #000;" align="center">
                 <strong style="font-size: 15px;" >
                   ประเภทเงินได้พึงประเมินที่จ่าย
                 </strong>
@@ -196,172 +197,330 @@ ob_start();
               </td>
             </tr>
             <tr>
-              <td style="border-left:1px solid #000;border-right:1px solid #000;">
-                <table cellpadding="1" border="0" cellspacing="1">
-                  <tr>
-                    <td width="10">1.</td>
-                    <td colspan="4">
-                      เงินเดือน ค่าจ้าง เบี้ยเลี้ยง โบนัส ฯลฯ ตามมาตรา 40 (1)
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>2.</td>
-                    <td colspan="4">
-                      ค่าธรรมเนียม ค่านายหน้า ฯลฯ ตามมาตรา 40 (2)
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>3.</td>
-                    <td colspan="4">
-                      ค่าแห่งลิขสิทธิ์ ฯลฯ ตามมาตรา 40 (3)
-                    </td>
-                  </tr>
-                  <tr>
-                    <td valign="top">4.</td>
-                    <td>(ก)</td>
-                    <td  colspan="3">ค่าดอกเบี้ย ฯลฯ ตามมาตรา 40 (4) (ก)</td>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                    <td>(ข)</td>
-                    <td colspan="3">เงินปันผล เงินส่วนแบ่งกำไร ฯลฯ ตามมาตรา 40</td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                    <td></td>
-                    <td valign="top">(1)</td>
-                    <td colspan="2">
-                      กรณีผู้ได้รับเงินปันผลได้รับเครดิต โดยจ่ายจาก กำไรสุทธิ<br />
-                      ของกิจการที่ต้องเสียภาษีเงินได้นิติบุคคล ในอัตราดังนี้
-                    </td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>(1.1)</td>
-                    <td>อัตราร้อยละ 30 ของกำไรสุทธิ</td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>(1.2)</td>
-                    <td>อัตราร้อยละ 25 ของกำไรสุทธิ</td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>(1.3)</td>
-                    <td>อัตราร้อยละ 20 ของกำไรสุทธิ</td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>(1.4)</td>
-                    <td>อัตราอื่นๆ (ระบุ)..............ของกำไรสุทธิ</td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                    <td></td>
-                    <td valign="top">(2)</td>
-                    <td colspan="2">
-                      กรณีผู้ได้รับเงินปันผลได้รับเครดิตภาษีเนื่องจากจ่ายจาก
-                    </td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>(2.1)</td>
-                    <td>กำไรสุทธิของกิจการที่ได้รับยกเว้นภาษีเงินได้นิติบุคคล</td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td  valign="top">(2.2)</td>
-                    <td>
-                      เงินปันผลหรือเงินส่วนแบ่งกำไรที่ได้รับยกเว้นไม่ต้อง<br />
-                      นำมารวมคำนวณเป็นรายได้เพื่อเสียภาษีเงินได้นิติบุคคล
-                    </td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td valign="top">(2.3)</td>
-                    <td>
-                      กำไรสุทธิส่วนที่ได้หักผลขาดทุนสุทธิยกมาไม่เกิน 5 ปี<br />
-                      ก่อนรอบระยะเวลาบัญชีปีปัจจุบัน
-                    </td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>(2.4)</td>
-                    <td>กำไรที่รับรู้ทางบัญชีโดยวิธีส่วนได้เสีย</td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>(2.5)</td>
-                    <td>อื่นๆ (ระบุ).....................................................</td>
-                  </tr>
-                  <tr>
-                    <td  valign="top">5.</td>
-                    <td colspan="4">
-                      การจ่ายเงินได้ที่ต้องหักภาษี ณ ที่จ่าย ตามคำสั่งกรมสรรพากรที่ออก <br />
-                      ตามมาตรา 3 เตรส เช่น รางวัล ส่วนลดหรือประโยชน์ใดๆ เนื่องจากการ<br />
-                      ส่งเสริมการขาย รางวัลในการประกวด การแข่งขัน การชิงโชค ค่าแสดง<br />
-                      ของนักแสดงสาธารณะ ค่าจ้างทำของ ค่าโฆษณา ค่าเช่า ค่าขนส่ง<br />
-                      ค่าบริการ ค่าเบี้ยประกันวินาศภัย ฯลฯ
-                    </td>
-                  </tr>
-                  <tr>
-                    <td  valign="top">6.</td>
-                    <td colspan="4">
-                      เงินได้จากวิชาชีพอิสระ
-                    </td>
-                  </tr>
-                  <tr>
-                    <td  valign="top">7.</td>
-                    <td colspan="4">
-                      เงินได้จากการรับเหมา
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>8.</td>
-                    <td colspan="4">
-                      เงินได้อื่นๆ นอกจากที่ระบุไว้ในประเภทที่ 1 ถึงประเภทที่ 7
-                    </td>
-                  </tr>
-                </table>
+              <td width="10">1.</td>
+              <td colspan="4" style="border-right:1px solid #000;">
+                เงินเดือน ค่าจ้าง เบี้ยเลี้ยง โบนัส ฯลฯ ตามมาตรา 40 (1)
               </td>
-              <td valign="top" style="border:1px solid #000;border-left:0px solid #000;padding: 2px;border-top:0px solid #000;" align="center">
-                <strong style="font-size: 15px;">
-
-                </strong>
-              </td>
-              <td valign="top" colspan="2" style="border:1px solid #000;border-left:0px solid #000;padding: 2px;border-top:0px solid #000;" align="center">
-                <strong style="font-size: 15px;">
-
-                </strong>
-              </td>
-              <td valign="top" style="border:1px solid #000;border-left:0px solid #000;border-top:0px solid #000;" align="center">
-                <strong style="font-size: 15px;">
-
-                </strong>
+              <td style="border-right:1px solid #000;text-align: center;"><?php echo ($json[s_tax1] > 0) ? $json[d_date] : "";?></td>
+              <td colspan="2" style="border-right:1px solid #000;text-align: right;"><?php echo ($json[s_tax1] > 0) ? number_format($json[s_tax1],2) : "";?></td>
+              <td style="border-right:1px solid #000;text-align: right;">
+                <?php
+                $s_tax = ($json[s_tax1] * 3) / 100;
+                echo ($s_tax>0)?number_format($s_tax,2):"";
+                $total_vat += $s_tax;
+                $total_cost += $json[s_tax1];
+                ?>
               </td>
             </tr>
-
             <tr>
-              <td colspan="2" style="border:1px solid #000;border-right:1px solid #000;border-bottom:0px solid #000;" align="center">
+              <td>2.</td>
+              <td colspan="4" style="border-right:1px solid #000;">
+                ค่าธรรมเนียม ค่านายหน้า ฯลฯ ตามมาตรา 40 (2)
+              </td>
+              <td style="border-right:1px solid #000;text-align: center;"><?php echo ($json[s_tax2] > 0) ? $json[d_date] : "";?></td>
+              <td colspan="2" style="border-right:1px solid #000;text-align: right;"><?php echo ($json[s_tax2] > 0) ? number_format($json[s_tax2],2) : "";?></td>
+              <td style="border-right:1px solid #000;text-align: right;">
+                <?php
+                $s_tax = ($json[s_tax2] * 3) / 100;
+                echo ($s_tax>0)?number_format($s_tax,2):"";
+                $total_vat += $s_tax;
+                $total_cost += $json[s_tax2];
+                ?>
+              </td>
+            </tr>
+            <tr>
+              <td>3.</td>
+              <td colspan="4" style="border-right:1px solid #000;">
+                ค่าแห่งลิขสิทธิ์ ฯลฯ ตามมาตรา 40 (3)
+              </td>
+              <td style="border-right:1px solid #000;text-align: center;"><?php echo ($json[s_tax3] > 0) ? $json[d_date] : "";?></td>
+              <td colspan="2" style="border-right:1px solid #000;text-align: right;"><?php echo ($json[s_tax3] > 0) ? number_format($json[s_tax3],2) : "";?></td>
+              <td style="border-right:1px solid #000;text-align: right;">
+                <?php
+                $s_tax = ($json[s_tax3] * 3) / 100;
+                echo ($s_tax>0)?number_format($s_tax,2):"";
+                $total_vat += $s_tax;
+                $total_cost += $json[s_tax3];
+                ?>
+              </td>
+            </tr>
+            <tr>
+              <td valign="top">4.</td>
+              <td width="10">(ก)</td>
+              <td  colspan="3" style="border-right:1px solid #000;">ค่าดอกเบี้ย ฯลฯ ตามมาตรา 40 (4) (ก)</td>
+              <td style="border-right:1px solid #000;text-align: center;"><?php echo ($json[s_tax4] > 0) ? $json[d_date] : "";?></td>
+              <td colspan="2" style="border-right:1px solid #000;text-align: right;"><?php echo ($json[s_tax4] > 0) ? number_format($json[s_tax4],2) : "";?></td>
+              <td style="border-right:1px solid #000;text-align: right;">
+                <?php
+                $s_tax = ($json[s_tax4] * 3) / 100;
+                echo ($s_tax>0)?number_format($s_tax,2):"";
+                $total_vat += $s_tax;
+                $total_cost += $json[s_tax4];
+                ?>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>(ข)</td>
+              <td colspan="3" style="border-right:1px solid #000;">เงินปันผล เงินส่วนแบ่งกำไร ฯลฯ ตามมาตรา 40</td>
+              <td style="border-right:1px solid #000;"></td>
+              <td colspan="2" style="border-right:1px solid #000;"></td>
+              <td style="border-right:1px solid #000;"></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td valign="top" width="10">(1)</td>
+              <td colspan="2" style="border-right:1px solid #000;">
+                กรณีผู้ได้รับเงินปันผลได้รับเครดิต โดยจ่ายจาก กำไรสุทธิ<br />
+                ของกิจการที่ต้องเสียภาษีเงินได้นิติบุคคล ในอัตราดังนี้
+              </td>
+              <td style="border-right:1px solid #000;"></td>
+              <td colspan="2" style="border-right:1px solid #000;"></td>
+              <td style="border-right:1px solid #000;"></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td width="20">(1.1)</td>
+              <td style="border-right:1px solid #000;">อัตราร้อยละ 30 ของกำไรสุทธิ</td>
+              <td style="border-right:1px solid #000;text-align: center;"><?php echo ($json[s_tax411] > 0) ? $json[d_date] : "";?></td>
+              <td colspan="2" style="border-right:1px solid #000;text-align: right;"><?php echo ($json[s_tax411] > 0) ? number_format($json[s_tax411],2) : "";?></td>
+              <td style="border-right:1px solid #000;text-align: right;">
+                <?php
+                $s_tax = ($json[s_tax411] * 3) / 100;
+                echo ($s_tax>0)?number_format($s_tax,2):"";
+                $total_vat += $s_tax;
+                $total_cost += $json[s_tax411];
+                ?>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>(1.2)</td>
+              <td style="border-right:1px solid #000;">อัตราร้อยละ 25 ของกำไรสุทธิ</td>
+              <td style="border-right:1px solid #000;text-align: center;"><?php echo ($json[s_tax412] > 0) ? $json[d_date] : "";?></td>
+              <td colspan="2" style="border-right:1px solid #000;text-align: right;"><?php echo ($json[s_tax412] > 0) ? number_format($json[s_tax412],2) : "";?></td>
+              <td style="border-right:1px solid #000;text-align: right;">
+                <?php
+                $s_tax = ($json[s_tax412] * 3) / 100;
+                echo ($s_tax>0)?number_format($s_tax,2):"";
+                $total_vat += $s_tax;
+                $total_cost += $json[s_tax412];
+                ?>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>(1.3)</td>
+              <td style="border-right:1px solid #000;">อัตราร้อยละ 20 ของกำไรสุทธิ</td>
+              <td style="border-right:1px solid #000;text-align: center;"><?php echo ($json[s_tax413] > 0) ? $json[d_date] : "";?></td>
+              <td colspan="2" style="border-right:1px solid #000;text-align: right;"><?php echo ($json[s_tax413] > 0) ? number_format($json[s_tax413],2) : "";?></td>
+              <td style="border-right:1px solid #000;text-align: right;">
+                <?php
+                $s_tax = ($json[s_tax413] * 3) / 100;
+                echo ($s_tax>0)?number_format($s_tax,2):"";
+                $total_vat += $s_tax;
+                $total_cost += $json[s_tax413];
+                ?>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>(1.4)</td>
+              <td style="border-right:1px solid #000;">อัตราอื่นๆ (ระบุ)..............ของกำไรสุทธิ</td>
+              <td style="border-right:1px solid #000;text-align: center;"><?php echo ($json[s_tax414] > 0) ? $json[d_date] : "";?></td>
+              <td colspan="2" style="border-right:1px solid #000;text-align: right;"><?php echo ($json[s_tax414] > 0) ? number_format($json[s_tax414],2) : "";?></td>
+              <td style="border-right:1px solid #000;text-align: right;">
+                <?php
+                $s_tax = ($json[s_tax414] * 3) / 100;
+                echo ($s_tax>0)?number_format($s_tax,2):"";
+                $total_vat += $s_tax;
+                $total_cost += $json[s_tax414];
+                ?>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td valign="top">(2)</td>
+              <td colspan="2" style="border-right:1px solid #000;">
+                กรณีผู้ได้รับเงินปันผลได้รับเครดิตภาษีเนื่องจากจ่ายจาก
+              </td>
+              <td style="border-right:1px solid #000;"></td>
+              <td colspan="2" style="border-right:1px solid #000;"></td>
+              <td style="border-right:1px solid #000;"></td>
+             
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>(2.1)</td>
+              <td style="border-right:1px solid #000;">กำไรสุทธิของกิจการที่ได้รับยกเว้นภาษีเงินได้นิติบุคคล</td>
+               <td style="border-right:1px solid #000;text-align: center;"><?php echo ($json[s_tax421] > 0) ? $json[d_date] : "";?></td>
+              <td colspan="2" style="border-right:1px solid #000;text-align: right;"><?php echo ($json[s_tax421] > 0) ? number_format($json[s_tax421],2) : "";?></td>
+              <td style="border-right:1px solid #000;text-align: right;">
+                <?php
+                $s_tax = ($json[s_tax421] * 3) / 100;
+                echo ($s_tax>0)?number_format($s_tax,2):"";
+                $total_vat += $s_tax;
+                $total_cost += $json[s_tax421];
+                ?>
+              </td>
+              
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td  valign="top">(2.2)</td>
+              <td style="border-right:1px solid #000;">
+                เงินปันผลหรือเงินส่วนแบ่งกำไรที่ได้รับยกเว้นไม่ต้อง<br />
+                นำมารวมคำนวณเป็นรายได้เพื่อเสียภาษีเงินได้นิติบุคคล
+              </td>
+              <td style="border-right:1px solid #000;text-align: center;"><?php echo ($json[s_tax422] > 0) ? $json[d_date] : "";?></td>
+              <td colspan="2" style="border-right:1px solid #000;text-align: right;"><?php echo ($json[s_tax422] > 0) ? number_format($json[s_tax422],2) : "";?></td>
+              <td style="border-right:1px solid #000;text-align: right;">
+                <?php
+                $s_tax = ($json[s_tax422] * 3) / 100;
+                echo ($s_tax>0)?number_format($s_tax,2):"";
+                $total_vat += $s_tax;
+                $total_cost += $json[s_tax422];
+                ?>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td valign="top">(2.3)</td>
+              <td style="border-right:1px solid #000;">
+                กำไรสุทธิส่วนที่ได้หักผลขาดทุนสุทธิยกมาไม่เกิน 5 ปี<br />
+                ก่อนรอบระยะเวลาบัญชีปีปัจจุบัน
+              </td>
+              <td style="border-right:1px solid #000;text-align: center;"><?php echo ($json[s_tax423] > 0) ? $json[d_date] : "";?></td>
+              <td colspan="2" style="border-right:1px solid #000;text-align: right;"><?php echo ($json[s_tax423] > 0) ? number_format($json[s_tax423],2) : "";?></td>
+              <td style="border-right:1px solid #000;text-align: right;">
+                <?php
+                $s_tax = ($json[s_tax423] * 3) / 100;
+                echo ($s_tax>0)?number_format($s_tax,2):"";
+                $total_vat += $s_tax;
+                $total_cost += $json[s_tax423];
+                ?>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>(2.4)</td>
+              <td style="border-right:1px solid #000;">กำไรที่รับรู้ทางบัญชีโดยวิธีส่วนได้เสีย</td>
+              <td style="border-right:1px solid #000;text-align: center;"><?php echo ($json[s_tax424] > 0) ? $json[d_date] : "";?></td>
+              <td colspan="2" style="border-right:1px solid #000;text-align: right;"><?php echo ($json[s_tax424] > 0) ? number_format($json[s_tax424],2) : "";?></td>
+              <td style="border-right:1px solid #000;text-align: right;">
+                <?php
+                $s_tax = ($json[s_tax424] * 3) / 100;
+                echo ($s_tax>0)?number_format($s_tax,2):"";
+                $total_vat += $s_tax;
+                $total_cost += $json[s_tax424];
+                ?>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>(2.5)</td>
+              <td style="border-right:1px solid #000;">อื่นๆ (ระบุ).....................................................</td>
+              <td style="border-right:1px solid #000;text-align: center;"><?php echo ($json[s_tax425] > 0) ? $json[d_date] : "";?></td>
+              <td colspan="2" style="border-right:1px solid #000;text-align: right;"><?php echo ($json[s_tax425] > 0) ? number_format($json[s_tax425],2) : "";?></td>
+              <td style="border-right:1px solid #000;text-align: right;">
+                <?php
+                $s_tax = ($json[s_tax425] * 3) / 100;
+                echo ($s_tax>0)?number_format($s_tax,2):"";
+                $total_vat += $s_tax;
+                $total_cost += $json[s_tax425];
+                ?>
+              </td>
+            </tr>
+            <tr>
+              <td  valign="top">5.</td>
+              <td colspan="4" style="border-right:1px solid #000;">
+                การจ่ายเงินได้ที่ต้องหักภาษี ณ ที่จ่าย ตามคำสั่งกรมสรรพากรที่ออก <br />
+                ตามมาตรา 3 เตรส เช่น รางวัล ส่วนลดหรือประโยชน์ใดๆ เนื่องจากการ<br />
+                ส่งเสริมการขาย รางวัลในการประกวด การแข่งขัน การชิงโชค ค่าแสดง<br />
+                ของนักแสดงสาธารณะ ค่าจ้างทำของ ค่าโฆษณา ค่าเช่า ค่าขนส่ง<br />
+                ค่าบริการ ค่าเบี้ยประกันวินาศภัย ฯลฯ
+              </td>
+              <td style="border-right:1px solid #000;text-align: center;"><?php echo ($json[s_tax5] > 0) ? $json[d_date] : "";?></td>
+              <td colspan="2" style="border-right:1px solid #000;text-align: right;"><?php echo ($json[s_tax5] > 0) ? number_format($json[s_tax5],2) : "";?></td>
+              <td style="border-right:1px solid #000;text-align: right;">
+                <?php
+                $s_tax = ($json[s_tax5] * 3) / 100;
+                echo ($s_tax>0)?number_format($s_tax,2):"";
+                $total_vat += $s_tax;
+                $total_cost += $json[s_tax5];
+                ?>
+              </td>
+            </tr>
+            <tr>
+              <td  valign="top">6.</td>
+              <td colspan="4" style="border-right:1px solid #000;">
+                เงินได้จากวิชาชีพอิสระ
+              </td>
+              <td style="border-right:1px solid #000;text-align: center;"><?php echo ($json[s_tax6] > 0) ? $json[d_date] : "";?></td>
+              <td colspan="2" style="border-right:1px solid #000;text-align: right;"><?php echo ($json[s_tax6] > 0) ? number_format($json[s_tax6],2) : "";?></td>
+              <td style="border-right:1px solid #000;text-align: right;">
+                <?php
+                $s_tax = ($json[s_tax6] * 3) / 100;
+                echo ($s_tax>0)?number_format($s_tax,2):"";
+                $total_vat += $s_tax;
+                $total_cost += $json[s_tax6];
+                ?>
+              </td>
+            </tr>
+            <tr>
+              <td  valign="top">7.</td>
+              <td colspan="4" style="border-right:1px solid #000;">
+                เงินได้จากการรับเหมา
+              </td>
+              <td style="border-right:1px solid #000;text-align: center;"><?php echo ($json[s_tax7] > 0) ? $json[d_date] : "";?></td>
+              <td colspan="2" style="border-right:1px solid #000;text-align: right;"><?php echo ($json[s_tax7] > 0) ? number_format($json[s_tax7],2) : "";?></td>
+              <td style="border-right:1px solid #000;text-align: right;">
+                <?php
+                $s_tax = ($json[s_tax7] * 3) / 100;
+                echo ($s_tax>0)?number_format($s_tax,2):"";
+                $total_vat += $s_tax;
+                $total_cost += $json[s_tax7];
+                ?>
+              </td>
+            </tr>
+            <tr>
+              <td>8.</td>
+              <td colspan="4" style="border-right:1px solid #000;">
+                เงินได้อื่นๆ นอกจากที่ระบุไว้ในประเภทที่ 1 ถึงประเภทที่ 7
+              </td>
+              <td style="border-right:1px solid #000;text-align: center;"><?php echo ($json[s_tax8] > 0) ? $json[d_date] : "";?></td>
+              <td colspan="2" style="border-right:1px solid #000;text-align: right;"><?php echo ($json[s_tax8] > 0) ? number_format($json[s_tax8],2) : "";?></td>
+              <td style="border-right:1px solid #000;text-align: right;">
+                <?php
+                $s_tax = ($json[s_tax8] * 3) / 100;
+                echo ($s_tax>0)?number_format($s_tax,2):"";
+                $total_vat += $s_tax;
+                $total_cost += $json[s_tax8];
+                ?>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="6" style="border:1px solid #000;border-right:1px solid #000;border-bottom:0px solid #000;" align="center">
                 <table width="100%">
                   <tr>
                     <td>
@@ -378,14 +537,14 @@ ob_start();
                 </table>
               </td>
               <td colspan="2" style="border:1px solid #000;border-left:0px solid #000;padding: 2px;border-bottom:0px solid #000;" align="right">
-
+                <?=number_format($total_cost,2);?>
               </td>
               <td style="border:1px solid #000;border-left:0px solid #000;border-bottom:0px solid #000;" align="right">
-
+                <?=number_format($total_vat,2);?>
               </td>
             </tr>
             <tr>
-              <td colspan="2" style="border:0px solid #000;border-right:1px solid #000;height: 2px;border-left:1px solid #000;" align="center">
+              <td colspan="6" style="border:0px solid #000;border-right:1px solid #000;height: 2px;border-left:1px solid #000;" align="center">
               </td>
               <td colspan="2" style="border:1px solid #000;border-left:0px solid #000;" align="right">
 
@@ -395,12 +554,12 @@ ob_start();
               </td>
             </tr>
             <tr>
-              <td colspan="5" style="border-bottom:1px solid #000;border-right:1px solid #000;border-left:1px solid #000;" align="center">
+              <td colspan="9" style="border-bottom:1px solid #000;border-right:1px solid #000;border-left:1px solid #000;" align="center">
                 <table width="100%">
                   <tr>
                     <td>
                       <strong style="font-size: 15px;" >
-                        <?=$util->bahtText($total_cost);?>
+                        <?=$util->bahtText($total_vat);?>
                       </strong>
                     </td>
                   </tr>
@@ -408,7 +567,7 @@ ob_start();
               </td>
             </tr>
             <tr>
-              <td colspan="5" style="border-bottom:1px solid #000;border-right:1px solid #000;border-left:1px solid #000;" align="center">
+              <td colspan="9" style="border-bottom:1px solid #000;border-right:1px solid #000;border-left:1px solid #000;" align="center">
                 <table width="100%">
                   <tr>
                     <td>
@@ -456,7 +615,7 @@ ob_start();
               </td>
             </tr>
             <tr>
-              <td colspan="5" style="padding:5px;border-bottom:1px solid #000;border-right:1px solid #000;border-left:1px solid #000;" align="left">
+              <td colspan="9" style="padding:5px;border-bottom:1px solid #000;border-right:1px solid #000;border-left:1px solid #000;" align="left">
                 <strong style="font-size: 15px;" >
                   ผู้จ่ายเงิน :
                 </strong>
@@ -485,7 +644,7 @@ ob_start();
         </td>
       </tr>
       <tr>
-        <td colspan="5" style="border-bottom:1px solid #000;border-right:1px solid #000;border-left:1px solid #000;" align="center">
+        <td colspan="9" style="border-bottom:1px solid #000;border-right:1px solid #000;border-left:1px solid #000;" align="center">
           <table width="100%">
             <tr>
               <td style="border-right:1px solid #000;" width="200">

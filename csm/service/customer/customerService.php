@@ -81,6 +81,7 @@ class customerService {
         $strSql .= "    s_email, ";
         $strSql .= "    s_line, ";
 
+        $strSql .= "    s_tax_no, ";
         $strSql .= "    s_address, ";
         $strSql .= "    i_province, ";
         $strSql .= "    i_amphure, ";
@@ -108,6 +109,7 @@ class customerService {
         $strSql .= "  '$info[s_email]', ";
         $strSql .= "  '$info[s_line]', ";
 
+        $strSql .= "  '$info[s_tax_no]', ";
         $strSql .= "  '$info[s_address]', ";
         $strSql .= "  $info[i_province], ";
         $strSql .= "  $info[i_amphure], ";
@@ -144,6 +146,7 @@ class customerService {
         $strSql .= "s_email = '$info[s_email]', ";
         $strSql .= "s_line = '$info[s_line]', ";
 
+        $strSql .= "s_tax_no = '$info[s_tax_no]', ";
         $strSql .= "s_address = '$info[s_address]', ";
         $strSql .= "i_province = $info[i_province], ";
         $strSql .= "i_amphure = $info[i_amphure], ";

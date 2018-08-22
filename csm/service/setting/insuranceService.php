@@ -71,6 +71,9 @@ class insuranceService {
         $strSql .= "update tb_insurance_comp ";
         $strSql .= "set  ";
         $strSql .= "    s_comp_th='$info[s_comp_th]', ";
+        $strSql .= "    s_name_display='$info[s_name_display]', ";
+        $strSql .= "    s_tax_no='$info[s_tax_no]', ";
+        $strSql .= "    s_address='$info[s_address]', ";
         $strSql .= "    s_image='$img1', ";
         $strSql .= "d_update = " . $db->Sysdate(TRUE) . ", ";
         $strSql .= "s_update_by = '$_SESSION[username]', ";
@@ -94,6 +97,9 @@ class insuranceService {
         $strSql .= "INTO ";
         $strSql .= "  tb_insurance_comp( ";
         $strSql .= "    s_comp_th, ";
+        $strSql .= "    s_name_display, ";
+        $strSql .= "    s_address, ";
+        $strSql .= "    s_tax_no, ";
         $strSql .= "    s_image, ";
 
         $strSql .= "    d_create, ";
@@ -105,6 +111,9 @@ class insuranceService {
         $strSql .= "VALUES( ";
 
         $strSql .= "  '$info[s_comp_th]', ";
+        $strSql .= "  '$info[s_name_display]', ";
+        $strSql .= "  '$info[s_address]', ";
+        $strSql .= "  '$info[s_tax_no]', ";
         $strSql .= "  '$img1', ";
 
         $strSql .= "  " . $db->Sysdate(TRUE) . ", ";

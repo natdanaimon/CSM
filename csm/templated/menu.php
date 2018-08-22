@@ -373,18 +373,34 @@
                 <span class="selected"></span>
             </a>
             <ul class="sub-menu">
-                <li class="nav-item  <?= $_SESSION["nav_sub_report_repair"] ?>">
-                    <a href="report_repair.php" class="nav-link ">
+                <li class="nav-item  <?= $_SESSION["nav_sub_report_quotation"] ?>">
+                    <a href="report_quotation_list.php" class="nav-link ">
 
-                        <span class="title"><?= $_SESSION[report_repair] ?></span>
+                        <span class="title">Quotation</span>
                         <span class="selected"></span>
                         <span class="badge badge-success" ></span>
                     </a>
                 </li>
-                <li class="nav-item  <?= $_SESSION["nav_sub_report_receive"] ?>">
-                    <a href="report_receive.php" class="nav-link ">
+                <li class="nav-item  <?= $_SESSION["nav_sub_report_invoice"] ?>">
+                    <a href="report_invoice_list.php" class="nav-link ">
 
-                        <span class="title"><?= $_SESSION[report_receive] ?></span>
+                        <span class="title">Invoice</span>
+                        <span class="selected"></span>
+                        <span class="badge badge-success" ></span>
+                    </a>
+                </li>
+                <li class="nav-item  <?= $_SESSION["nav_sub_report_withholding"] ?>">
+                    <a href="report_withholding_list.php" class="nav-link ">
+
+                        <span class="title">Withholding</span>
+                        <span class="selected"></span>
+                        <span class="badge badge-success" ></span>
+                    </a>
+                </li>
+                <li class="nav-item  <?= $_SESSION["nav_sub_report_receipt"] ?>">
+                    <a href="report_receipt_list.php" class="nav-link ">
+
+                        <span class="title">Receipt</span>
                         <span class="selected"></span>
                         <span class="badge badge-success" ></span>
                     </a>

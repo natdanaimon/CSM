@@ -350,7 +350,7 @@ ob_start();
                       <?php 
                   for($i=1;$i <=13;$i++){
                     $s_txt_x = 's_txt_'.$i;
-                    $s_txt_ok = $list_check_other[0][$s_txt_x];
+                    $s_txt_ok = $check_repair_other[0][$s_txt_x];
                     if($s_txt_ok != ''){
                        
                     if ($count == 0) {

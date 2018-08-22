@@ -76,25 +76,25 @@ function initialDataTable(first) {
         col_report += '<i class="icon-docs"></i> ' + report_receive + ' </a>';
         col_report += '</li>';
         col_report += '<li>';
-        col_report += '<a href="report/invoice.php?id=' + item.i_cust_car + '" target="_blank" >';
-        col_report += '<i class="icon-docs"></i> Invoice </a>';
-        col_report += '</li>';
-        col_report += '<li>';
-        col_report += '<a href="report/withholding.php?id=' + item.i_cust_car + '" target="_blank" >';
-        col_report += '<i class="icon-docs"></i> หัก ณ ที่จ่าย </a>';
-        col_report += '</li>';
-        col_report += '<li>';
-        col_report += '<a href="report/cash.php?id=' + item.i_cust_car + '" target="_blank" >';
-        col_report += '<i class="icon-docs"></i> Bill เงินสด </a>';
-        col_report += '</li>';
-        col_report += '<li>';
-        col_report += '<a href="report/quotation.php?id=' + item.i_cust_car + '" target="_blank" >';
-        col_report += '<i class="icon-docs"></i> ใบเสนอราคา </a>';
-        col_report += '</li>';
-        col_report += '<li>';
-        col_report += '<a href="report/warning.php?id=' + item.i_cust_car + '" target="_blank" >';
-        col_report += '<i class="icon-docs"></i> ใบแจ้งหนี้ </a>';
-        col_report += '</li>';
+//        col_report += '<a href="report_invoice.php?id=' + item.i_cust_car + '" target="_blank" >';
+//        col_report += '<i class="icon-docs"></i> Invoice </a>';
+//        col_report += '</li>';
+//        col_report += '<li>';
+//        col_report += '<a href="report_withholding.php?id=' + item.i_cust_car + '"  >';
+//        col_report += '<i class="icon-docs"></i> หัก ณ ที่จ่าย </a>';
+//        col_report += '</li>';
+//        col_report += '<li>';
+//        col_report += '<a href="report_receipt.php?id=' + item.i_cust_car + '" target="_blank" >';
+//        col_report += '<i class="icon-docs"></i> Bill เงินสด </a>';
+//        col_report += '</li>';
+//        col_report += '<li>';
+//        col_report += '<a href="report_quotation.php?id=' + item.i_cust_car + '" target="_blank" >';
+//        col_report += '<i class="icon-docs"></i> ใบเสนอราคา </a>';
+//        col_report += '</li>';
+//        col_report += '<li>';
+//        col_report += '<a href="report/warning.php?id=' + item.i_cust_car + '" target="_blank" >';
+//        col_report += '<i class="icon-docs"></i> ใบแจ้งหนี้ </a>';
+//        col_report += '</li>';
         col_report += '</ul>';
         col_report += '</div>';
 
@@ -135,7 +135,7 @@ function initialDataTable(first) {
 //                    col_dmg,
           col_inout,
           col_status,
-          
+
           col_po,
           col_report,
           col_detail
@@ -153,7 +153,7 @@ function initialDataTable(first) {
           ],
           columnDefs: [
             {"orderable": false, "targets": 0}
-            ,{"className": "center", "targets": 12}
+            , {"className": "center", "targets": 12}
           ]
         });
       } else {

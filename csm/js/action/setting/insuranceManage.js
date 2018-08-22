@@ -47,6 +47,9 @@ function edit() {
 
  
                 $("#s_comp_th").val(item.s_comp_th);
+                $("#s_name_display").val(item.s_name_display);
+                $("#s_address").val(item.s_address);
+                $("#s_tax_no").val(item.s_tax_no);
 
 
 

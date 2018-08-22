@@ -87,8 +87,10 @@ function ACTIVEPAGES($page, $sub) {
 
     //csm Report
     $_SESSION["nav_main_report"] = "";
-    $_SESSION["nav_sub_report_repair"] = "";
-    $_SESSION["nav_sub_report_receive"] = "";
+    $_SESSION["nav_sub_report_quotation"] = "";
+    $_SESSION["nav_sub_report_invoice"] = "";
+    $_SESSION["nav_sub_report_withholding"] = "";
+    $_SESSION["nav_sub_report_receipt"] = "";
 
 
 
@@ -159,9 +161,15 @@ function ACTIVEPAGES($page, $sub) {
     else if ($page == 10) {
         $_SESSION["nav_main_report"] = " active open";
         if ($sub == 1) {
-            $_SESSION["nav_sub_report_repair"] = " active open";
+            $_SESSION["nav_sub_report_quotation"] = " active open";
         } else if ($sub == 2) {
-            $_SESSION["nav_sub_report_receive"] = " active open";
+            $_SESSION["nav_sub_report_invoice"] = " active open";
+        }
+         else if ($sub == 3) {
+            $_SESSION["nav_sub_report_withholding"] = " active open";
+        }
+         else if ($sub == 4) {
+            $_SESSION["nav_sub_report_receipt"] = " active open";
         }
     } 
     
