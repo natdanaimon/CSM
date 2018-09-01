@@ -22,7 +22,7 @@ function initialDataTable(first) {
             $.each(res, function (i, item) {
 
                 var col_checkbox = "";
-                var col_dmg = item.s_comp_th;
+                var col_dmg = "["+item.s_code+"] "+item.s_comp_th;
                 var col_index = item.i_index;
                 var col_status = "";
                 var col_edit = "";

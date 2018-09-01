@@ -126,6 +126,24 @@ class insuranceService {
             array("query" => "$strSql")
         );
         $reslut = $db->insert_for_upadte($arr);
+        $last_id = mysql_insert_id();
+        if($last_id < 10){
+          $s_code = "C00".$last_id;
+        }elseif($last_id < 100){
+          $s_code = "C0".$last_id;
+        }else{
+          $s_code = "C".$last_id;
+        }
+        $strSql = "";
+        $strSql .= "update tb_insurance_comp ";
+        $strSql .= "set  ";
+        $strSql .= "s_code  = '$s_code' ";
+        $strSql .= "where i_ins_comp = $last_id ";
+        $arr = array(
+            array("query" => "$strSql")
+        );
+        $reslut = $db->insert_for_upadte($arr);
+        
         return $reslut;
     }
 

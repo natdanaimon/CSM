@@ -31,7 +31,7 @@ function initialDataTable(first) {
         var col_cargen = item.i_gen;
 //                var col_carsub = item.i_sub;
         var col_insurance = item.i_ins_comp;
-//                var col_dmg = item.i_dmg;
+                var col_dmg = item.i_dmg;
         var col_inout = item.d_inbound + " - " + item.d_outbound_confirm;
 
 
@@ -40,7 +40,7 @@ function initialDataTable(first) {
         var col_report = "";
         var col_po = "";
 
-        col_checkbox = '<span class="md-checkbox has-success" style="padding-right: 0px;">';
+        col_checkbox = '<span class="md-checkbox has-success" style="padding-right: 0px;display: none;">';
         col_checkbox += '  <input type="checkbox" id="checkbox_' + i + '" name="checkboxItem" class="md-check"';
         col_checkbox += '  value="' + item.i_cust_car + '" onclick=remove_select_all("checkbox_' + i + '")>';
         col_checkbox += '  <label for="checkbox_' + i + '">';
@@ -132,7 +132,7 @@ function initialDataTable(first) {
           col_cargen,
 //                    col_carsub,
           col_insurance,
-//                    col_dmg,
+                    col_dmg,
           col_inout,
           col_status,
 

@@ -32,7 +32,7 @@ function initialDataTable_1(first) {
 //                var col_carsub = item.i_sub; $_dataTable[$key]['i_brand'] = $service - > getBrand($_dataTable[$key]['s_brand_code']);
 
         var col_insurance = item.i_ins_comp;
-//                var col_dmg = item.i_dmg;
+                var col_dmg = item.i_dmg;
         var col_inout = item.d_inbound + " - " + item.d_outbound_confirm;
 
 
@@ -41,7 +41,7 @@ function initialDataTable_1(first) {
         var col_manage = "";
         var col_delete = "";
 
-        col_checkbox = '<span class="md-checkbox has-success" style="padding-right: 0px;">';
+        col_checkbox = '<span class="md-checkbox has-success" style="padding-right: 0px;display: none;">';
         col_checkbox += '  <input type="checkbox" id="checkbox_' + i + '" name="checkboxItem" class="md-check"';
         col_checkbox += '  value="' + item.i_cust_car + '" onclick=remove_select_all("checkbox_' + i + '")>';
         col_checkbox += '  <label for="checkbox_' + i + '">';
@@ -81,7 +81,7 @@ function initialDataTable_1(first) {
           col_cargen,
 //                    col_carsub,
           col_insurance,
-//                    col_dmg,
+                    col_dmg,
           col_inout,
           col_status,
           col_edit,

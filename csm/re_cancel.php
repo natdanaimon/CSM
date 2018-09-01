@@ -136,17 +136,17 @@ ACTIVEPAGES(3, 5);
                                                                 <span class="box"></span> </label>
                                                         </span>
                                                     </th>
-                                                    <th  class="all"  style="width: 80px">  <?= $_SESSION[tb_co_refno] ?> </th>
-                                                    <th  class="all">  <?= $_SESSION[tb_co_custname] ?> </th>
+                                                    <th  class="all"  style="width: 120px">  Ref no. </th>
+                                                    <th  class="none">  <?= $_SESSION[tb_co_custname] ?> </th>
                                                     <th  class="all">  <?= $_SESSION[tb_co_license] ?> </th>
 
                                                     <th class="none"> <span style="color:red"><?= $_SESSION[tb_co_caryear] ?></span> </th>
-                                                    <th class="none"> <span style="color:red"><?= $_SESSION[tb_co_carbrand] ?></span> </th>
-                                                    <th class="none"> <span style="color:red"><?= $_SESSION[tb_co_cargeneration] ?></span> </th>
+                                                    <th class="all"> <span style="color:red"><?= $_SESSION[tb_co_carbrand] ?></span> </th>
+                                                    <th class="all"> <span style="color:red"><?= $_SESSION[tb_co_cargeneration] ?></span> </th>
                                                     <!--<th class="none"> <span style="color:red"><?= $_SESSION[tb_co_carsub] ?></span> </th>-->
 
                                                     <th class="none"> <span style="color:red"><?= $_SESSION[tb_co_insurance_name] ?></span> </th>
-                                                    <!--<th class="none"> <span style="color:red"><?= $_SESSION[tb_co_dmg] ?></span> </th>-->
+                                                    <th class="all"> <span style="color:red">ความเสียหาย</span> </th>
                                                     <th class="none"> <span style="color:red"><?= $_SESSION[tb_co_dinbound_car] ?> - <?= $_SESSION[tb_co_doutbound_car] ?></span> </th>
 
 
@@ -222,7 +222,7 @@ ACTIVEPAGES(3, 5);
         <link href="css/notify.css" rel="stylesheet" type="text/css" />
         <link href="outbound/lightbox/css/lightbox.css" rel="stylesheet" type="text/css" />
         <script src="outbound/lightbox/js/lightbox.js" type="text/javascript"></script>
-        <script src="js/action/repair/re_cancel.js?v=1" type="text/javascript"></script>
+        <script src="js/action/repair/re_cancel.js?v=2" type="text/javascript"></script>
         <script>
                                                             $(document).ready(function () {
                                                                 initialDataTable("TRUE");

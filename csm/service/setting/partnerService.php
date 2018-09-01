@@ -59,6 +59,8 @@ class partnerService {
         $strSql .= "update tb_partner_comp ";
         $strSql .= "set  ";
         $strSql .= "s_comp_th  = '$info[s_comp_th]', ";
+        $strSql .= "s_address  = '$info[s_address]', ";
+        $strSql .= "s_tax_no  = '$info[s_tax_no]', ";
         $strSql .= "i_index= $info[i_index], ";
         $strSql .= "d_update = " . $db->Sysdate(TRUE) . ", ";
         $strSql .= "s_update_by = '$_SESSION[username]', ";
@@ -77,6 +79,8 @@ class partnerService {
         $strSql .= "INTO ";
         $strSql .= "  tb_partner_comp( ";
         $strSql .= "    s_comp_th, ";
+        $strSql .= "    s_address, ";
+        $strSql .= "    s_tax_no, ";
         $strSql .= "    i_index, ";
         $strSql .= "    d_create, ";
         $strSql .= "    d_update, ";
@@ -86,6 +90,8 @@ class partnerService {
         $strSql .= "  ) ";
         $strSql .= "VALUES( ";
         $strSql .= "  '$info[s_comp_th]', ";
+        $strSql .= "  '$info[s_address]', ";
+        $strSql .= "  '$info[s_tax_no]', ";
         $strSql .= "  $info[i_index], ";
         $strSql .= "  " . $db->Sysdate(TRUE) . ", ";
         $strSql .= " " . $db->Sysdate(TRUE) . ", ";
@@ -93,6 +99,23 @@ class partnerService {
         $strSql .= "  '$_SESSION[username]', ";
         $strSql .= "  '$info[status]' ";
         $strSql .= ") ";
+        $arr = array(
+            array("query" => "$strSql")
+        );
+        $reslut = $db->insert_for_upadte($arr);
+        $last_id = mysql_insert_id();
+        if($last_id < 10){
+          $s_code = "C00".$last_id;
+        }elseif($last_id < 100){
+          $s_code = "C0".$last_id;
+        }else{
+          $s_code = "C".$last_id;
+        }
+        $strSql = "";
+        $strSql .= "update tb_partner_comp ";
+        $strSql .= "set  ";
+        $strSql .= "s_code  = '$s_code' ";
+        $strSql .= "where i_part_comp = $last_id ";
         $arr = array(
             array("query" => "$strSql")
         );

@@ -91,6 +91,7 @@ function ACTIVEPAGES($page, $sub) {
     $_SESSION["nav_sub_report_invoice"] = "";
     $_SESSION["nav_sub_report_withholding"] = "";
     $_SESSION["nav_sub_report_receipt"] = "";
+    $_SESSION["nav_sub_report_bill"] = "";
 
 
 
@@ -170,6 +171,9 @@ function ACTIVEPAGES($page, $sub) {
         }
          else if ($sub == 4) {
             $_SESSION["nav_sub_report_receipt"] = " active open";
+        }
+         else if ($sub == 5) {
+            $_SESSION["nav_sub_report_bill"] = " active open";
         }
     } 
     

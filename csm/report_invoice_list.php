@@ -78,7 +78,7 @@ ACTIVEPAGES(10,2);
             <div class="page-bar">
               <ul class="page-breadcrumb">
                 <li>
-                  <span><?=$_SESSION[queue_list]?></span>
+                  <span>ออกรายงาน</span>
                   <i class="fa fa-circle" style="color:  #00FF00;"></i>
                 </li>
                 <li>
@@ -105,25 +105,32 @@ ACTIVEPAGES(10,2);
                     </div>
                     <div class="actions">
                       <a href="report_invoice.php">
-                        <button id="sample_editable_1_new" class="btn sbold green"><i class="fa fa-plus"></i> Create Invoice
+                        <button id="sample_editable_1_new" class="btn sbold green"><i class="fa fa-plus"></i> สร้าง Invoice
                         </button>
                       </a>
+
+                      <button onclick="submit_form();" id="sample_editable_1_new" class="btn sbold btn-warning"><i class="fa fa-money"></i> สร้างใบวางบิล
+                      </button>
+
                     </div>
                   </div>
                   <div class="portlet-body">
-                    <table class="table table-striped table-bordered table-hover table-checkable order-column dt-responsive" id="datatable">
-                      <thead>
-                        <tr>
-                          <th  class="all"  style="width: 80px">  เลขที่ </th>
-                          <th style="width: 80px"> Ref no.</th>
-                          <th > ชื่อ-นามสกุล</th>
-                          <th style="width: 80px"> เลขทะเบียน </th>
-                          <th style="width: 80px">Print</th>
-                      </thead>
-                      <tbody>
+                    <form id="dataInvoice" method="POST" action="report_bill.php">
+                      <table class="table table-striped table-bordered table-hover table-checkable order-column dt-responsive" id="datatable">
+                        <thead>
+                          <tr>
+                            <th  class="all"  style="width: 80px">  เลขที่ </th>
+                            <th style="width: 80px"> Ref no.</th>
+                            <th > ชื่อ-นามสกุล</th>
+                            <th > ประกันภัย</th>
+                            <th style="width: 80px"> เลขทะเบียน </th>
+                            <th style="width: 80px">Print</th>
+                        </thead>
+                        <tbody>
 
-                      </tbody>
-                    </table>
+                        </tbody>
+                      </table>
+                    </form>
                   </div>
                 </div>
                 <!-- END EXAMPLE TABLE PORTLET-->
@@ -189,11 +196,16 @@ ACTIVEPAGES(10,2);
     <script src="outbound/lightbox/js/lightbox.js" type="text/javascript"></script>
     <script src="js/action/report/invoice_list.js" type="text/javascript"></script>
     <script>
-                                                      $(document).ready(function () {
+                        function submit_form() {
+                          var dataInvoice = $('#dataInvoice').serialize();
+                          console.log(dataInvoice);
+                          $('#dataInvoice').submit();
+                        }
+                        $(document).ready(function () {
 
-                                                        initialDataTable("TRUE");
-                                                        unloading();
-                                                      });
+                          initialDataTable("TRUE");
+                          unloading();
+                        });
     </script>
   </body>
 

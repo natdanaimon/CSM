@@ -31,7 +31,7 @@ function initialDataTable(first) {
                 var col_cargen = item.i_gen;
 //                var col_carsub = item.i_sub;
                 var col_insurance = item.i_ins_comp;
-//                var col_dmg = item.i_dmg;
+                var col_dmg = item.i_dmg;
                 var col_inout = item.d_inbound + " - " + item.d_outbound_confirm;
 
 
@@ -79,7 +79,7 @@ col_edit += '<a href="re_checkManage.php?func=edit&id=' + item.i_cust_car + '" c
                     col_cargen,
 //                    col_carsub,
                     col_insurance,
-//                    col_dmg,
+                    col_dmg,
                     col_inout,
                     col_status,
                     col_edit,

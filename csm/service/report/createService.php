@@ -13,6 +13,7 @@ class createService {
     $db->close_conn();
     return $_data;
   }
+
   function dataTableInvoice() {
     $db = new ConnectDB();
     $strSql = " SELECT * ";
@@ -22,6 +23,7 @@ class createService {
     $db->close_conn();
     return $_data;
   }
+
   function dataTableWithholding() {
     $db = new ConnectDB();
     $strSql = " SELECT * ";
@@ -31,10 +33,20 @@ class createService {
     $db->close_conn();
     return $_data;
   }
+
   function dataTableReceipt() {
     $db = new ConnectDB();
     $strSql = " SELECT * ";
     $strSql .= " FROM tb_report_receipt  ";
+    $strSql .= " order by id desc ";
+    $_data = $db->Search_Data_FormatJson($strSql);
+    $db->close_conn();
+    return $_data;
+  }
+  function dataTableBill() {
+    $db = new ConnectDB();
+    $strSql = " SELECT * ";
+    $strSql .= " FROM tb_report_bill  ";
     $strSql .= " order by id desc ";
     $_data = $db->Search_Data_FormatJson($strSql);
     $db->close_conn();
@@ -380,7 +392,7 @@ class createService {
         array("query" => "$strSql")
     );
     $reslut = $db->insert_for_upadte($arr);
-    
+
     //}
     return mysql_insert_id();
   }
@@ -536,7 +548,78 @@ class createService {
     }
     return $id;
   }
+
   
+  function addBill($db,$info) {
+    $util = new Utility();
+    $strSql = "";
+    $strSql .= "INSERT ";
+    $strSql .= "INTO ";
+    $strSql .= "  tb_report_bill ( ";
+    $strSql .= "    s_code_by ";
+    $strSql .= "    ,s_code_buy ";
+    $strSql .= "    ,d_create ";
+    $strSql .= "    ,d_update ";
+    $strSql .= "    ,s_create_by ";
+    $strSql .= "    ,s_update_by ";
+    $strSql .= "  ) ";
+    $strSql .= "VALUES( ";
+    $strSql .= "  '".$info[s_code_by]."' ";
+    $strSql .= "  ,'".$info[s_code_buy]."' ";
+    $strSql .= "  ,".$db->Sysdate(TRUE)." ";
+    $strSql .= "  ,".$db->Sysdate(TRUE)." ";
+    $strSql .= "  ,'$_SESSION[username]' ";
+    $strSql .= "  ,'$_SESSION[username]' ";
+    $strSql .= ") ";
+    $arr = array(
+        array("query" => "$strSql")
+    );
+    $reslut = $db->insert_for_upadte($arr);
+    $id = mysql_insert_id();
+//////////// List
+    while (
+    list($key,$i_invoice) = each($_POST['id'])
+    and list($key,$s_no_claim) = each($_POST['s_no_claim'])
+    and list($key,$s_ins) = each($_POST['s_ins'])
+    and list($key,$s_remark) = each($_POST['s_remark'])
+    ) {
+      $strSql = "";
+      $strSql .= "INSERT ";
+      $strSql .= "INTO ";
+      $strSql .= "  tb_report_bill_list ( ";
+      $strSql .= "    i_report_bill ";
+      $strSql .= "    ,i_invoice ";
+      $strSql .= "    ,s_no_claim ";
+      $strSql .= "    ,s_ins ";
+      $strSql .= "    ,s_remark ";
+      $strSql .= "  ) ";
+      $strSql .= "VALUES( ";
+      $strSql .= "  '$id' ";
+      $strSql .= "  ,'".$i_invoice."' ";
+      $strSql .= "  ,'".$s_no_claim."' ";
+      $strSql .= "  ,'".$s_ins."' ";
+      $strSql .= "  ,'".$s_remark."' ";
+      $strSql .= ") ";
+      $arr = array(
+          array("query" => "$strSql")
+      );
+      $reslut = $db->insert_for_upadte($arr);
+    }
+    return $id;
+  }
+  function getInsurance($seq) {
+    $db = new ConnectDB();
+    $strSql = " select i_ins_comp from tb_customer_car where ref_no =".$seq;
+    $_data = $db->Search_Data_FormatJson($strSql);
+    $db->close_conn();
+    $db = new ConnectDB();
+    $strSql = " select s_name_display from tb_insurance_comp where i_ins_comp =".$_data[0][i_ins_comp];
+    $_data = $db->Search_Data_FormatJson($strSql);
+    $db->close_conn();
+    
+    
+    return $_data[0]['s_name_display'];
+  }
 
 ///////////////////// End Class
 }

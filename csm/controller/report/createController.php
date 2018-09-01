@@ -30,6 +30,9 @@ switch ($info[func]) {
   case "addReceipt":
     echo $controller->addReceipt($info);
     break;
+  case "addBill":
+    echo $controller->addBill($info);
+    break;
   case "dataTableQuotation":
     echo $controller->dataTableQuotation($info);
     break;
@@ -41,6 +44,9 @@ switch ($info[func]) {
     break;
   case "dataTableReceipt":
     echo $controller->dataTableReceipt($info);
+    break;
+  case "dataTableBill":
+    echo $controller->dataTableBill($info);
     break;
 }
 
@@ -57,7 +63,7 @@ class createController {
   public function getDetail($info) {
     $service = new createService();
     $db = new ConnectDB();
-      $db->conn();
+    $db->conn();
     $_dataTable = $service->getDetail($db,$info);
     $util = new Utility();
     if ($_dataTable != NULL) {
@@ -66,6 +72,7 @@ class createController {
       return NULL;
     }
   }
+
   public function dataTableQuotation() {
     $service = new createService();
     $_dataTable = $service->dataTableQuotation();
@@ -76,16 +83,22 @@ class createController {
       return NULL;
     }
   }
+
   public function dataTableInvoice() {
     $service = new createService();
     $_dataTable = $service->dataTableInvoice();
     $util = new Utility();
     if ($_dataTable != NULL) {
+      foreach ($_dataTable as $key => $value) {
+        $_dataTable[$key]['i_ins_comp'] = $service->getInsurance($_dataTable[$key]['ref_no']);
+
+      }
       return json_encode($_dataTable);
     } else {
       return NULL;
     }
   }
+
   public function dataTableWithholding() {
     $service = new createService();
     $_dataTable = $service->dataTableWithholding();
@@ -96,9 +109,20 @@ class createController {
       return NULL;
     }
   }
+
   public function dataTableReceipt() {
     $service = new createService();
     $_dataTable = $service->dataTablereceipt();
+    $util = new Utility();
+    if ($_dataTable != NULL) {
+      return json_encode($_dataTable);
+    } else {
+      return NULL;
+    }
+  }
+  public function dataTableBill() {
+    $service = new createService();
+    $_dataTable = $service->dataTableBill();
     $util = new Utility();
     if ($_dataTable != NULL) {
       return json_encode($_dataTable);
@@ -268,6 +292,23 @@ class createController {
       $intReturn = TRUE;
     }
     return $intReturn;
+  }
+  
+  public function addBill($info) {
+    if (1>0) {
+      $db = new ConnectDB();
+      $db->conn();
+      $service = new createService();
+      $resAdd = $service->addBill($db,$info);
+      if ($resAdd > 0) {
+        $db->commit();
+        //echo $_SESSION['cd_0000'].",".$resAdd;
+        echo header("Location: ../../report/bill.php?id=".$resAdd);
+      } else {
+        $db->rollback();
+        echo $_SESSION['cd_2001'];
+      }
+    }
   }
 
 ///////////////////// End Class

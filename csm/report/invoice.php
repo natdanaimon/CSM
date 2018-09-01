@@ -17,7 +17,9 @@ $d_create = date('d/m/Y',strtotime($data[0][d_create]));
 $strSql = " select * ";
 $strSql .= " FROM tb_report_invoice_list   WHERE i_report_invoice = '".$_GET[id]."' ";
 $dataList = $db->Search_Data_FormatJson($strSql);
-
+$strSql = " select * ";
+$strSql .= " FROM tb_user   WHERE s_user = '".$_SESSION[username]."' ";
+$adminNow = $db->Search_Data_FormatJson($strSql);
 $strSql = "";
 $strSql .= " SELECT ";
 $strSql .= " car.* ";
@@ -439,7 +441,7 @@ ob_start();
             </tr>
             <tr>
               <td colspan="2" align="center">
-                ว่าที่ รต.หญิง วิไลลักษณ์ ราศรี		
+                <?=$adminNow[0][s_firstname];?>	<?=$adminNow[0][s_lastname];?>		
               </td>
             </tr>
             <tr>

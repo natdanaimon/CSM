@@ -23,7 +23,7 @@ function initialDataTable(first) {
 
                 var col_checkbox = "";
                 var col_picture = "";
-                var col_comp = (language == "th" ? item.s_comp_th : item.s_comp_th);
+                var col_comp = "["+item.s_code+"] "+(language == "th" ? item.s_comp_th : item.s_comp_th);
 
 
 

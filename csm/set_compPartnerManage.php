@@ -121,6 +121,14 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
 
 
                                             </div>
+                                          <div class="form-group form-md-line-input has-success">
+                          <textarea  class="form-control bold" id="s_address" name="s_address" ></textarea>
+                          <label for="s_address">ที่อยู่ <span class="required">*</span></label>          
+                        </div>
+                        <div class="form-group form-md-line-input has-success">
+                          <input type="text" class="form-control bold" id="s_tax_no" name="s_tax_no" >
+                          <label for="s_tax_no">เลขประจำตัวผู้เสียภาษีอากร <span class="required">*</span></label>          
+                        </div>
 
 
                                         </div>

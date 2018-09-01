@@ -39,6 +39,8 @@ function edit() {
             $.each(res, function (i, item) {
                 debugger;
                 $("#s_comp_th").val(item.s_comp_th);
+                $("#s_address").val(item.s_address);
+                $("#s_tax_no").val(item.s_tax_no);
                 $("#i_index").val(item.i_index);
                 $("#status").val(item.s_status);
                 $("#lb_create").text(item.s_create_by + " ( " + item.d_create + " )");

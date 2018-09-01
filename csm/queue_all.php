@@ -135,12 +135,12 @@ ACTIVEPAGES(999, 0);
                                         <table class="table table-striped table-bordered table-hover table-checkable order-column dt-responsive" id="datatable">
                                             <thead>
                                                 <tr>
-                                                    <th style="padding-left: 30px;width: 30px" class="no-sort">
+                                                    <th style="padding-left: 0px;width: 0px" class="no-sort">
                                                         <!--                                                        <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
                                                                                                                     <input type="checkbox" class="group-checkable" data-set="#datatable .checkboxes" id="select_all" />
                                                                                                                     <span></span>
                                                                                                                 </label>-->
-                                                        <span class="md-checkbox has-success">
+                                                        <span class="md-checkbox has-success" style="display: none;">
                                                             <input type="checkbox" id="checkbox14" name="checkbox14" class="md-check">
                                                             <label for="checkbox14">
                                                                 <span class="inc"></span>
@@ -148,17 +148,17 @@ ACTIVEPAGES(999, 0);
                                                                 <span class="box"></span> </label>
                                                         </span>
                                                     </th>
-                                                    <th  class="all"  style="width: 80px">  <?= $_SESSION[tb_co_refno] ?> </th>
-                                                    <th  class="all">  <?= $_SESSION[tb_co_custname] ?> </th>
+                                                    <th  class="all"  style="width: 120px">  Ref no. </th>
+                                                    <th  class="none">  <?= $_SESSION[tb_co_custname] ?> </th>
                                                     <th  class="all">  <?= $_SESSION[tb_co_license] ?> </th>
 
                                                     <th class="none"> <span style="color:red"><?= $_SESSION[tb_co_caryear] ?></span> </th>
-                                                    <th class="none"> <span style="color:red"><?= $_SESSION[tb_co_carbrand] ?></span> </th>
-                                                    <th class="none"> <span style="color:red"><?= $_SESSION[tb_co_cargeneration] ?></span> </th>
+                                                    <th class="all"> <span style="color:red"><?= $_SESSION[tb_co_carbrand] ?></span> </th>
+                                                    <th class="all"> <span style="color:red"><?= $_SESSION[tb_co_cargeneration] ?></span> </th>
                                                     <!--<th class="none"> <span style="color:red"><?= $_SESSION[tb_co_carsub] ?></span> </th>-->
 
                                                     <th class="none"> <span style="color:red"><?= $_SESSION[tb_co_insurance_name] ?></span> </th>
-                                                    <!--<th class="none"> <span style="color:red"><?= $_SESSION[tb_co_dmg] ?></span> </th>-->
+                                                    <th > <span style="color:red">ความเสียหาย</span> </th>
                                                     <th class="none"> <span style="color:red"><?= $_SESSION[tb_co_dinbound_car] ?> - <?= $_SESSION[tb_co_doutbound_car] ?></span> </th>
 
 
@@ -166,7 +166,7 @@ ACTIVEPAGES(999, 0);
                                                     
                                                     <th style="width: 40px"> <?= $_SESSION[po] ?></th>
                                                     <th style="width: 40px"> <?= $_SESSION[tb_co_report] ?> </th>
-                                                    <th style="width: 40px">รายละเอียด</th>
+                                                    <th style="width: 40px">ดู</th>
                                                     
                                             </thead>
                                             <tbody>
@@ -236,7 +236,7 @@ ACTIVEPAGES(999, 0);
         <link href="css/notify.css" rel="stylesheet" type="text/css" />
         <link href="outbound/lightbox/css/lightbox.css" rel="stylesheet" type="text/css" />
         <script src="outbound/lightbox/js/lightbox.js" type="text/javascript"></script>
-        <script src="js/action/queue/queue_all.js" type="text/javascript"></script>
+        <script src="js/action/queue/queue_all.js?v=1" type="text/javascript"></script>
         <script>
                                                             $(document).ready(function () {
                                                                 

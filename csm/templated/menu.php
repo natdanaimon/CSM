@@ -376,7 +376,7 @@
                 <li class="nav-item  <?= $_SESSION["nav_sub_report_quotation"] ?>">
                     <a href="report_quotation_list.php" class="nav-link ">
 
-                        <span class="title">Quotation</span>
+                        <span class="title">ใบเสนอราคา</span>
                         <span class="selected"></span>
                         <span class="badge badge-success" ></span>
                     </a>
@@ -389,10 +389,18 @@
                         <span class="badge badge-success" ></span>
                     </a>
                 </li>
+                <li class="nav-item  <?= $_SESSION["nav_sub_report_bill"] ?>">
+                    <a href="report_bill_list.php" class="nav-link ">
+
+                        <span class="title">ใบวางบิล</span>
+                        <span class="selected"></span>
+                        <span class="badge badge-success" ></span>
+                    </a>
+                </li>
                 <li class="nav-item  <?= $_SESSION["nav_sub_report_withholding"] ?>">
                     <a href="report_withholding_list.php" class="nav-link ">
 
-                        <span class="title">Withholding</span>
+                        <span class="title">หักภาษี ณ ที่จ่าย</span>
                         <span class="selected"></span>
                         <span class="badge badge-success" ></span>
                     </a>
@@ -400,7 +408,7 @@
                 <li class="nav-item  <?= $_SESSION["nav_sub_report_receipt"] ?>">
                     <a href="report_receipt_list.php" class="nav-link ">
 
-                        <span class="title">Receipt</span>
+                        <span class="title">บิลเงินสด</span>
                         <span class="selected"></span>
                         <span class="badge badge-success" ></span>
                     </a>

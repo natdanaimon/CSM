@@ -78,7 +78,7 @@ ACTIVEPAGES(10,1);
             <div class="page-bar">
               <ul class="page-breadcrumb">
                 <li>
-                  <span><?=$_SESSION[queue_list]?></span>
+                  <span>ออกรายงาน</span>
                   <i class="fa fa-circle" style="color:  #00FF00;"></i>
                 </li>
                 <li>

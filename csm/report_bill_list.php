@@ -3,7 +3,7 @@
 include './common/Permission.php';
 include './common/PermissionADM.php';
 include './common/FunctionCheckActive.php';
-ACTIVEPAGES(10,4);
+ACTIVEPAGES(10,5);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -82,7 +82,7 @@ ACTIVEPAGES(10,4);
                   <i class="fa fa-circle" style="color:  #00FF00;"></i>
                 </li>
                 <li>
-                  <a href="report_quotation_list.php">บิลเงินสด</a>
+                  <a href="report_bill_list.php">ใบวางบิล</a>
                 </li>
               </ul>
 
@@ -97,35 +97,43 @@ ACTIVEPAGES(10,4);
             <div class="row">
               <div class="col-md-12">
                 <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                <form id="dataInvoice" method="POST" action="report_bill.php">
                 <div class="portlet light bordered">
                   <div class="portlet-title">
                     <div class="caption font-dark">
                       <i class="fa fa-eye font-dark"></i>
-                      <span class="caption-subject bold uppercase">บิลเงินสด</span>
+                      <span class="caption-subject bold uppercase">ใบวางบิล</span>
                     </div>
-                    <div class="actions">
-                      <a href="report_receipt.php">
-                        <button id="sample_editable_1_new" class="btn sbold green"><i class="fa fa-plus"></i> สร้างบิลเงินสด
+                    <div class="actions" style="display: none;">
+                      <a href="report_invoice.php">
+                        <button id="sample_editable_1_new" class="btn sbold green"><i class="fa fa-plus"></i> สร้าง Invoice
                         </button>
                       </a>
+
+                      <button type="submit" id="sample_editable_1_new" class="btn sbold btn-warning"><i class="fa fa-money"></i> สร้างใบวางบิล
+                      </button>
+
                     </div>
                   </div>
                   <div class="portlet-body">
-                    <table class="table table-striped table-bordered table-hover table-checkable order-column dt-responsive" id="datatable">
-                      <thead>
-                        <tr>
-                          <th  class="all"  style="width: 80px">  เลขที่ </th>
-                          <th style="width: 80px"> Ref no.</th>
-                          <th > ชื่อ-นามสกุล</th>
-                          <th style="width: 80px"> เลขทะเบียน </th>
-                          <th style="width: 80px">Print</th>
-                      </thead>
-                      <tbody>
+                    
+                      <table class="table table-striped table-bordered table-hover table-checkable order-column dt-responsive" id="datatable">
+                        <thead>
+                          <tr>
+                            <th  class="all"  style="width: 80px">  เลขที่ </th>
 
-                      </tbody>
-                    </table>
+                            <th > รหัสผู้ออกบิล</th>
+                            <th > รหัสผู้ซื้อ</th>
+                            <th style="width: 80px">Print</th>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                      </table>
+                    
                   </div>
                 </div>
+                  </form>
                 <!-- END EXAMPLE TABLE PORTLET-->
               </div>
             </div>
@@ -187,13 +195,18 @@ ACTIVEPAGES(10,4);
     <link href="css/notify.css" rel="stylesheet" type="text/css" />
     <link href="outbound/lightbox/css/lightbox.css" rel="stylesheet" type="text/css" />
     <script src="outbound/lightbox/js/lightbox.js" type="text/javascript"></script>
-    <script src="js/action/report/receipt_list.js" type="text/javascript"></script>
+    <script src="js/action/report/bill_list.js" type="text/javascript"></script>
     <script>
-                                                      $(document).ready(function () {
+                        function submit_form() {
+                          var dataInvoice = $('#dataInvoice').serialize();
+                          console.log(dataInvoice);
+                          $('#dataInvoice').submit();
+                        }
+                        $(document).ready(function () {
 
-                                                        initialDataTable("TRUE");
-                                                        unloading();
-                                                      });
+                          initialDataTable("TRUE");
+                          unloading();
+                        });
     </script>
   </body>
 

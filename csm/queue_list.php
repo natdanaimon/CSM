@@ -113,7 +113,7 @@ ACTIVEPAGES(5, 1);
                               </button>
                             </a>
                           </div>
-                          <div class="btn-group">
+                          <div class="btn-group" style="display: none;">
                             <button id="sample_editable_1_new" class="btn sbold red" onclick="deleteAll()"> <?= $_SESSION[btn_cancel_all] ?>
 
                             </button>
@@ -124,12 +124,12 @@ ACTIVEPAGES(5, 1);
                     <table class="table table-striped table-bordered table-hover table-checkable order-column dt-responsive" id="datatable-1">
                       <thead>
                         <tr>
-                          <th style="padding-left: 30px;width: 30px" class="no-sort">
+                          <th style="padding-left: 0px;width: 0px" class="no-sort">
                             <!--                                                        <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
                                                                                         <input type="checkbox" class="group-checkable" data-set="#datatable .checkboxes" id="select_all" />
                                                                                         <span></span>
                                                                                     </label>-->
-                            <span class="md-checkbox has-success">
+                            <span class="md-checkbox has-success" style="display: none;">
                               <input type="checkbox" id="checkbox14" name="checkbox14" class="md-check">
                               <label for="checkbox14">
                                 <span class="inc"></span>
@@ -137,17 +137,17 @@ ACTIVEPAGES(5, 1);
                                 <span class="box"></span> </label>
                             </span>
                           </th>
-                          <th  class="all"  style="width: 80px">  <?= $_SESSION[tb_co_refno] ?> </th>
-                          <th  class="all">  <?= $_SESSION[tb_co_custname] ?> </th>
+                          <th  class="all"  style="width: 80px"> Ref no. </th>
+                          <th  class="none">  <?= $_SESSION[tb_co_custname] ?> </th>
                           <th  class="all">  <?= $_SESSION[tb_co_license] ?> </th>
 
                           <th class="none"> <span style="color:red"><?= $_SESSION[tb_co_caryear] ?></span> </th>
-                          <th class="none"> <span style="color:red"><?= $_SESSION[tb_co_carbrand] ?></span> </th>
-                          <th class="none"> <span style="color:red"><?= $_SESSION[tb_co_cargeneration] ?></span> </th>
+                          <th class="all"> <span style="color:red"><?= $_SESSION[tb_co_carbrand] ?></span> </th>
+                          <th class="all"> <span style="color:red"><?= $_SESSION[tb_co_cargeneration] ?></span> </th>
                           <!--<th class="none"> <span style="color:red"><?= $_SESSION[tb_co_carsub] ?></span> </th>-->
 
                           <th class="none"> <span style="color:red"><?= $_SESSION[tb_co_insurance_name] ?></span> </th>
-                          <!--<th class="none"> <span style="color:red"><?= $_SESSION[tb_co_dmg] ?></span> </th>-->
+                          <th class="all"> <span style="color:red">ความเสียหาย</span> </th>
                           <th class="none"> <span style="color:red"><?= $_SESSION[tb_co_dinbound_car] ?> - <?= $_SESSION[tb_co_doutbound_car] ?></span> </th>
 
 
@@ -423,7 +423,7 @@ ACTIVEPAGES(5, 1);
     <link href="outbound/lightbox/css/lightbox.css" rel="stylesheet" type="text/css" />
     <script src="outbound/lightbox/js/lightbox.js" type="text/javascript"></script>
     <script src="js/common/closeStep.js" type="text/javascript"></script>
-    <script src="js/action/queue/queue_list.js?v=4" type="text/javascript"></script>
+    <script src="js/action/queue/queue_list.js?v=5" type="text/javascript"></script>
     <script>
                             $(document).ready(function () {
                               initialDataTable_1("TRUE");
