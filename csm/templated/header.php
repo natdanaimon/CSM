@@ -179,6 +179,10 @@ $actual_link = "$_SERVER[REQUEST_URI]";
                             <a href="profile.php">
                                 <i class="icon-user"></i> <?= $_SESSION[myprofile] ?> </a>
                         </li>
+                        <li>
+                          <a href="https://cpanel06wh.bkk1.cloud.z.com:2096" target="_blank">
+                                <i class="icon-envelope-open"></i>  Login E-mail </a>
+                        </li>
                         <li class="divider"> </li>
                         <li>
                             <a href="lock_screen.php">

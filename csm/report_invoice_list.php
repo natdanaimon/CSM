@@ -109,7 +109,11 @@ ACTIVEPAGES(10,2);
                         </button>
                       </a>
 
-                      <button onclick="submit_form();" id="sample_editable_1_new" class="btn sbold btn-warning"><i class="fa fa-money"></i> สร้างใบวางบิล
+                      <button onclick="submit_form();" id="sample_editable_1_new" class="btn sbold btn-warning">
+                        <i class="fa fa-money"></i> สร้างใบวางบิล
+                      </button>
+                      <button onclick="submit_print();" id="sample_editable_1_new" class="btn sbold btn-warning">
+                        <i class="fa fa-print"></i> ปริ้นต่อเนื่อง
                       </button>
 
                     </div>
@@ -197,6 +201,12 @@ ACTIVEPAGES(10,2);
     <script src="js/action/report/invoice_list.js" type="text/javascript"></script>
     <script>
                         function submit_form() {
+                          var dataInvoice = $('#dataInvoice').serialize();
+                          console.log(dataInvoice);
+                          $('#dataInvoice').submit();
+                          //$('#dataInvoice').submit();
+                        }
+                        function submit_print() {
                           var dataInvoice = $('#dataInvoice').serialize();
                           console.log(dataInvoice);
                           $('#dataInvoice').submit();

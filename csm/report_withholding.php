@@ -184,10 +184,10 @@ $disableElement = 'disabled="disable"';
                                 <tr>
                                   <td rowspan="3" valign="top" style="border-left:1px solid #000;border-top:1px solid #000;border-right:1px solid #000;padding: 5px;">
                                     <div class=" has-success">
-                                      <input type="text" class="form-control bold" id="s_name" name="s_name" value="<?=$_data[0][s_firstname];?> <?=$_data[0][s_lastname];?>" >
+                                      <input readonly="readonly" type="text" class="form-control bold" id="s_name" name="s_name" value="<?=$_data[0][s_firstname];?> <?=$_data[0][s_lastname];?>" >
                                     </div>
                                     <div class=" has-success">
-                                      <textarea rows="4" class="form-control bold" id="s_address" name="s_address"><?=$_data[0][s_address];?></textarea>
+                                      <textarea  readonly="readonly" rows="4" class="form-control bold" id="s_address" name="s_address"><?=$_data[0][s_address];?></textarea>
                                     </div>
                                   </td>
                                   <td colspan="2" style="border-top:1px solid #000;border-right:1px solid #000;padding: 2px;"   align="right">
@@ -197,7 +197,7 @@ $disableElement = 'disabled="disable"';
                                   </td>
                                   <td colspan="2" style="border-top:1px solid #000;border-right:1px solid #000;"   align="center">
                                     <div class=" has-success">
-                                      <input type="text" class="form-control bold" id="s_code" name="s_code" value="" >      
+                                      <input onkeyup="check_code(this.value);" type="text" class="form-control bold" id="s_code" name="s_code" value="" >      
                                     </div>
                                   </td>
                                 </tr>
@@ -209,7 +209,7 @@ $disableElement = 'disabled="disable"';
                                   </td>
                                   <td colspan="2" style="border-top:1px solid #000;border-right:1px solid #000;"   align="center">
                                     <div class=" has-success">
-                                      <input type="text" class="form-control bold" id="s_identi" name="s_identi" value="" >      
+                                      <input readonly="readonly" type="text" class="form-control bold" id="s_identi" name="s_identi" value="" >      
                                     </div>
                                   </td>
                                 </tr>
@@ -221,7 +221,7 @@ $disableElement = 'disabled="disable"';
                                   </td>
                                   <td colspan="2" style="border-top:1px solid #000;border-right:1px solid #000;"   align="center">
                                     <div class=" has-success">
-                                      <input type="text" class="form-control bold" id="s_tax" name="s_tax" value="" >      
+                                      <input readonly="readonly" type="text" class="form-control bold" id="s_tax" name="s_tax" value="" >      
                                     </div>
                                   </td>
                                 </tr>
@@ -714,7 +714,27 @@ $disableElement = 'disabled="disable"';
               var keyEdit = "<?=$i_cust_car?>";
     </script>
     <script>
-      $(document).ready(function () {
+      
+  function check_code(code) {
+        $.ajax({
+          type: 'POST',
+          url: 'controller/report/createController.php',
+          data: {code: code, func: "getDetailPartner"},
+          success: function (data) {
+              var obj = JSON.parse(data);
+              $('#s_name').val(obj.s_name);
+              $('#s_address').val(obj.s_address);
+              $('#s_tax').val(obj.s_tax);
+              $('#s_identi').val(obj.s_identi);
+              console.log(obj);
+
+
+          },
+          error: function (data) {
+          }
+        });
+      }
+  $(document).ready(function () {
 
         getDDLStatus();
         //save_report();

@@ -21,7 +21,7 @@ function initialDataTable(first) {
       $.each(res, function (i, item) {
 
         var col_checkbox = "";
-        var col_refno = item.ref_no + ' [ ' + item.s_password + ' ] ';
+        var col_refno = "";
         var col_name = item.s_fullname;
         var col_license = item.s_license;
 
@@ -39,6 +39,12 @@ function initialDataTable(first) {
         var col_detail = "";
         var col_report = "";
         var col_po = "";
+        
+        col_refno += '<a target="_blank" href="dashboard_customer.php?id=' + item.i_cust_car + '" class="text-info"  >';
+        col_refno += ' <i class="fa fa-eye"></i>';
+        col_refno += '</a> ';
+        col_refno += item.ref_no + ' [ ' + item.s_password + ' ] ';
+        
 
         col_checkbox = '<span class="md-checkbox has-success" style="padding-right: 0px;display: none;">';
         col_checkbox += '  <input type="checkbox" id="checkbox_' + i + '" name="checkboxItem" class="md-check"';
@@ -59,6 +65,8 @@ function initialDataTable(first) {
         col_detail += '<a href="queue_all_detail.php?id=' + item.ref_no + '" class="btn btn-circle btn-icon-only blue" style="width:32px;height:32px">';
         col_detail += ' <i class="fa fa-eye"></i>';
         col_detail += '</a>';
+        
+        
 
 
 
@@ -400,68 +408,171 @@ function edit() {
 
 
 
+function addComment() {
+    var ref_no = $('#ref_no').val();
+    var s_comment = $('#s_comment').val();
+    $.ajax({
+        type: 'GET',
+        url: 'controller/repair/commentController.php?func=comment&ref_no=' + ref_no + "&s_comment=" + s_comment,
+        cache: false,
+        contentType: false,
+        processData: false,
+        beforeSend: function () {
+            $('#se-pre-con').fadeIn(100);
+        },
+        success: function (data) {
+            var res = data.split(",");
+            if (res[0] == "0000") {
+                var errCode = "Code (" + res[0] + ") : " + res[1];
+                $.notify(errCode, "success");
+                $('#s_comment').val('');
+                initialDataTableComment("FALSE");
+            } else {
+                var errCode = "Code (" + res[0] + ") : " + res[1];
+                $.notify(errCode, "error");
+            }
+            $('#se-pre-con').delay(100).fadeOut();
+
+            return;
+        },
+        error: function (data) {
+
+        }
+    });
+}
+var $datatableComment = $('#datatable-comment');
+function initialDataTableComment(first) {
+    var ref_no = $('#ref_no').val();
+    $.ajax({
+        type: 'GET',
+        url: 'controller/repair/commentController.php?func=dataTable&ref_no=' + ref_no,
+        beforeSend: function () {
+            $('#se-pre-con').fadeIn(100);
+        },
+        success: function (data) {
+            debugger;
+            if (data == '') {
+                var datatable = $datatableComment.dataTable().api();
+                $('.dataTables_empty').remove();
+                datatable.clear();
+                datatable.draw();
+                return;
+            }
+            var res = JSON.parse(data);
+            var JsonData = [];
+            $.each(res, function (i, item) {
+
+
+                var refno = item.ref_no;
+                var col_comment = item.s_comment + " : " + item.d_create;
+
+                var col_delete = "";
+                col_delete += '<a href="' + (disable != "" ? '#' : 'javascript:Confirm(\'' + item.i_comment + '\',\'delete\');') + '" style="width:30px;height:30px" class="btn btn-circle btn-icon-only red" ' + disable + '>';
+                col_delete += ' <i class="fa fa-archive" ></i>';
+                col_delete += '</a>';
+
+
+                var addRow = [
+                    col_delete,
+                    col_comment
+                ]
+
+                JsonData.push(addRow);
+
+            });
+            if (first == "TRUE") {
+                $datatableComment.dataTable({
+                    data: JsonData,
+                    order: [
+//                        [1, 'desc'],
+//                        [11, 'asc']
+                    ],
+                    columnDefs: [
+                        {"orderable": false, "targets": 0},
+                        {"orderable": false, "targets": 1}
+                    ]
+                });
+            } else {
+
+                var datatable = $datatableComment.dataTable().api();
+                $('.dataTables_empty').remove();
+                datatable.clear();
+                datatable.rows.add(JsonData);
+                datatable.draw();
+            }
+
+        },
+        error: function (data) {
+
+        }
+
+    });
+}
+
+
 
 
 
 function Confirm(txt, func) {
-  $('#se-pre-con').fadeIn(100);
-  $.notify.addStyle('foo', {
-    html: "<div>" +
-            "<div class='clearfix'>" +
-            "<div class='title' data-notify-html='title'/>" +
-            "<div class='buttons'>" +
-            "<input type='hidden' id='id' value='" + txt + "' />" +
-            "<input type='hidden' id='func' value='" + func + "' />" +
-            "<button class='notify-no btn red'>" + cancel + "</button>" +
-            "<button class='notify-yes btn green'>" + yes + "</button>" +
-            "</div>" +
-            "</div>" +
-            "</div>"
-  });
+    $('#se-pre-con').fadeIn(100);
+    $.notify.addStyle('foo', {
+        html: "<div>" +
+                "<div class='clearfix'>" +
+                "<div class='title' data-notify-html='title'/>" +
+                "<div class='buttons'>" +
+                "<input type='hidden' id='id_comment' value='" + txt + "' />" +
+                "<input type='hidden' id='func' value='" + func + "' />" +
+                "<button class='notify-no btn red'>" + cancel + "</button>" +
+                "<button class='notify-yes btn green'>" + yes + "</button>" +
+                "</div>" +
+                "</div>" +
+                "</div>"
+    });
 
-  $.notify({
-    title: titleCancel,
-    button: 'Confirm'
-  }, {
-    style: 'foo',
-    autoHide: false,
-    clickToHide: false
-  });
+    $.notify({
+        title: titleCancel,
+        button: 'Confirm'
+    }, {
+        style: 'foo',
+        autoHide: false,
+        clickToHide: false
+    });
 
 }
 $(document).on('click', '.notifyjs-foo-base .notify-no', function () {
-  $('#se-pre-con').delay(100).fadeOut();
-  $(this).trigger('notify-hide');
+    $('#se-pre-con').delay(100).fadeOut();
+    $(this).trigger('notify-hide');
 });
 $(document).on('click', '.notifyjs-foo-base .notify-yes', function () {
-  $(this).trigger('notify-hide');
-  var id = $("#id").val();
-  var func = $("#func").val();
+    $(this).trigger('notify-hide');
+    var id = $("#id_comment").val();
 
-  $.ajax({
-    type: 'GET',
-    url: 'controller/repair/checkController.php?func=' + func + '&id=' + id,
-    beforeSend: function () {
-      $('#se-pre-con').fadeIn(100);
-    },
-    success: function (data) {
+    $.ajax({
+        type: 'GET',
+        url: 'controller/repair/commentController.php?func=delete&id=' + id,
+        beforeSend: function () {
+            $('#se-pre-con').fadeIn(100);
+        },
+        success: function (data) {
 
-      var res = data.split(",");
-      if (res[0] == "0000") {
-        var errCode = "Code (" + res[0] + ") : " + res[1];
-        $.notify(errCode, "success");
-      } else {
-        var errCode = "Code (" + res[0] + ") : " + res[1];
-        $.notify(errCode, "error");
+            var res = data.split(",");
+            if (res[0] == "0000") {
+                var errCode = "Code (" + res[0] + ") : " + res[1];
+                $.notify(errCode, "success");
 
-      }
-      $('#se-pre-con').delay(100).fadeOut();
-      initialDataTable("FALSE");
-    },
-    error: function (data) {
+            } else {
+                var errCode = "Code (" + res[0] + ") : " + res[1];
+                $.notify(errCode, "error");
 
-    }
+            }
+            initialDataTableComment("FALSE");
+            $('#se-pre-con').delay(100).fadeOut();
 
-  });
+        },
+        error: function (data) {
+
+        }
+
+    });
 
 });

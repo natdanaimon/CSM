@@ -840,6 +840,7 @@ class successController {
         $_dataTable = $service->getInfo($seq);
         if ($_dataTable != NULL) {
             foreach ($_dataTable as $key => $value) {
+                $_dataTable[$key]['d_carin'] = $util->DateSql2d_dmm_yyyy($_dataTable[$key]['d_carin']);
                 $_dataTable[$key]['d_ins_exp'] = $util->DateSql2d_dmm_yyyy($_dataTable[$key]['d_ins_exp']);
                 $_dataTable[$key]['d_inbound'] = $util->DateSql2d_dmm_yyyy($_dataTable[$key]['d_inbound']);
                 $_dataTable[$key]['d_outbound_confirm'] = $util->DateSql2d_dmm_yyyy($_dataTable[$key]['d_outbound_confirm']);

@@ -492,7 +492,7 @@ class Utility {
       die('bahtText error: the argument is not a valid positive number');
     }
     if (is_float($number)) {//for weird formats such as 2E5
-      echo 'float';
+      //echo 'float';
       $whole = floor($number);
       $decimal = round(($number - $whole) * 100);
     } else {

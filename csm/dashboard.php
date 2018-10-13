@@ -125,7 +125,7 @@ $customer_car = $db->Search_Data_FormatJson($strSql);
 
             <!-- END PAGE HEADER-->
             <div class="row" style="margin-left: 0px; margin-right: 0px;">
-              <h1><?=$_COOKIE['username'];?></h1>
+              <!--<h1><?=$_COOKIE['username'];?></h1>-->
               <!-- ****************************  -->                            
               <!-- ****************************  --> 
               <?php

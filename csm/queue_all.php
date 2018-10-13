@@ -236,7 +236,7 @@ ACTIVEPAGES(999, 0);
         <link href="css/notify.css" rel="stylesheet" type="text/css" />
         <link href="outbound/lightbox/css/lightbox.css" rel="stylesheet" type="text/css" />
         <script src="outbound/lightbox/js/lightbox.js" type="text/javascript"></script>
-        <script src="js/action/queue/queue_all.js?v=1" type="text/javascript"></script>
+        <script src="js/action/queue/queue_all.js?v=5" type="text/javascript"></script>
         <script>
                                                             $(document).ready(function () {
                                                                 

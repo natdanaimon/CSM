@@ -17,19 +17,16 @@ if ($_GET[id] == NULL) {
   //echo header("Location: re_check.php");
   //echo header("Location: queue_all.php");
 }
-
 function getInsuranceDisplay($seq,$db) {
   $strSql = " select s_name_display from tb_insurance_comp where i_ins_comp =".$seq;
   $_data = $db->Search_Data_FormatJson($strSql);
   return $_data[0]['s_name_display'];
 }
-
 function getRowDisplay($val,$col,$res,$tb,$db) {
   $strSql = " select $res from $tb where $col ='".$val."'";
   $_data = $db->Search_Data_FormatJson($strSql);
   return $_data[0][$res];
 }
-
 $i_cust_car = $_GET[id];
 
 $strSql = " select * ";
@@ -196,61 +193,53 @@ $disableElement = 'disabled="disable"';
                                 <div class="row">
                                   <div class="col-md-6">
                                     <div class="form-group form-md-line-input has-success">
-                                      <input type="text" class="form-control bold" id="s_no_bill" name="s_no_bill" value="<?=$s_no;?>" >
-                                      <label for="s_no_bill">รหัสผู้ออกบิล </label>          
-                                    </div>
-                                  </div>
-                                  <div class="col-md-6">
-                                    <div class="form-group form-md-line-input has-success">
-                                      <input type="numner" class="form-control bold" id="i_amount" name="i_amount"  >
-                                      <label for="s_no_bill">**กรอกในกรณีรถประกัน จำนวนเงิน </label>          
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="row">
-                                  <div class="col-md-6">
-                                    <div class="form-group form-md-line-input has-success">
                                       <input onkeyup="check_refno(this.value);" type="text" class="form-control bold" id="ref_no" name="ref_no" value="<?=$arr[customer][0][ref_no];?>" >
                                       <label for="ref_no">Ref no. </label>          
                                     </div>
                                   </div>
-                                  <div class="col-md-3">
-                                    <div class="form-group form-md-line-input has-success">
-                                      <input type="text" class="form-control bold" id="s_license" name="s_license" value="<?=$arr[customer][0][s_license];?>" >
-                                      <label for="s_license">หมายเลขทะเบียนรถ</label>          
-                                    </div>
-                                  </div>
-                                  <div class="col-md-3">
-                                    <div class="form-group form-md-line-input has-success">
-                                      <input type="text" class="form-control bold" id="s_province" name="s_province" value="" >
-                                      <label for="s_province">จังหวัด</label>          
-                                    </div>
-                                  </div>
                                 </div>
                                 <div class="row">
-                                  <h3>ลูกค้าทั่วไป</h3>
+                                  <h3>กรอกข้อมูลลูกค้าด้วยตนเอง</h3>
                                 </div>
                                 <div class="row">
-                                  <div class="col-md-10">
+                                  <div class="col-md-6">
                                     <div class="form-group form-md-line-input has-success">
                                       <input type="text" class="form-control bold" id="s_name" name="s_name" value="" >
-                                      <label for="s_name">ชื่อ-นามสกุล หรือชื่อบริษัท </label>          
+                                      <label for="s_name">ชื่อ-นามสกุล </label>          
+                                    </div>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <div class="form-group form-md-line-input has-success">
+                                      <input type="text" class="form-control bold" id="s_brand" name="s_brand" value="" >
+                                      <label for="s_brand">ยี่ห้อ/รุ่น: </label>          
                                     </div>
                                   </div>
                                 </div>
                                 <div class="row">
-                                  <div class="col-md-10">
+                                  <div class="col-md-6">
                                     <div class="form-group form-md-line-input has-success">
                                       <input type="text" class="form-control bold" id="s_address" name="s_address" value="" >
                                       <label for="s_address">ที่อยุ่ </label>          
                                     </div>
                                   </div>
+                                  <div class="col-md-6">
+                                    <div class="form-group form-md-line-input has-success">
+                                      <input type="text" class="form-control bold" id="s_license" name="s_license" value="" >
+                                      <label for="s_license">ทะเบียนรถ </label>          
+                                    </div>
+                                  </div>
                                 </div>
                                 <div class="row">
-                                  <div class="col-md-10">
+                                  <div class="col-md-6">
                                     <div class="form-group form-md-line-input has-success">
-                                      <input type="text" class="form-control bold" id="s_tax_no" name="s_tax_no" value="" >
-                                      <label for="s_tax_no">เลขที่ประจำตัวผู้เสียภาษีหรือเลขบัตรประชาชน</label>          
+                                      <input type="text" class="form-control bold" id="s_phonexx" name="s_phone" value="" >
+                                      <label for="s_phone">เบอร์โทร</label>          
+                                    </div>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <div class="form-group form-md-line-input has-success">
+                                      <input type="text" class="form-control bold" id="s_ins" name="s_ins" value="" >
+                                      <label for="s_ins">ประกันภัย</label>          
                                     </div>
                                   </div>
                                 </div>
@@ -259,7 +248,7 @@ $disableElement = 'disabled="disable"';
                                   <h3>ข้อมูลสินค้า-บริการ</h3>
                                 </div>
                                 <div class="row">
-                                  กรอกรหัส-รายละเอียด-จำนวน-ราคา <br />
+                                  กรอกรายการสินค้า/บริการ <br />
                                   <table class="table">
                                     <tr>
                                       <td width="100">รหัส</td>
@@ -268,53 +257,57 @@ $disableElement = 'disabled="disable"';
                                       <td width="100">จำนวน</td>
                                       <td width="100">ราคาต่อหน่วย</td>
                                     </tr>
-<?php
-for ($i = 1; $i <= 6; $i++) {
-  ?>
+                                    <?php
+                                    for ($i = 1; $i <= 5; $i++) {
+                                      ?>
                                       <tr>
                                         <td><input type="text" name="s_list_code[]" id="s_list_code<?=$i;?>" class="form-control bold" /></td>
                                         <td><input type="text" name="s_list_name[]" id="s_list_name<?=$i;?>" class="form-control bold" /></td>
                                         <td><input type="text" name="s_list_detail[]" id="s_list_detail<?=$i;?>" class="form-control bold" /></td>
-                                        <td><input type="text" name="s_list_amount[]" id="s_list_amount<?=$i;?>" class="form-control bold" /></td>
-                                        <td><input type="text" name="s_list_price[]" id="s_list_price<?=$i;?>" class="form-control bold" /></td>
+                                        <td><input type="number" name="s_list_amount[]" id="s_list_amount<?=$i;?>" class="form-control bold" /></td>
+                                        <td><input type="number" name="s_list_price[]" id="s_list_price<?=$i;?>" class="form-control bold" /></td>
                                       </tr>
-<?php }?>
+                                    <?php }?>
+                                      <tr>
+                                        <td colspan="3"></td>
+                                        <td>ส่วนลด %</td>
+                                        <td><input type="number" name="i_discount" id="s_list_price<?=$i;?>" class="form-control bold" /></td>
+                                        
+                                      </tr>
                                   </table>
                                 </div>
                               </div>
                               <div class="col-md-4">
                                 <div class="row">
-                                  <h3>ข้อมูล Ref no</h3>
+                                  <h3>ข้อมูลค้นหา</h3>
                                 </div>
                                 <table class="table">
                                   <tr>
-                                    <td>ประเภท</td>
-                                    <td id="td_pay_type"><?=$s_pay_type;?></td>
+                                    <td>ชื่อ ลูกค้า</td>
+                                    <td  id="td_name"></td>
                                   </tr>
                                   <tr>
-                                    <td>ประกันภัย</td>
-                                    <td id="td_ins_comp"><?=getInsuranceDisplay($arr[customer][0][i_ins_comp],$db);?></td>
+                                    <td>ที่อยุ่</td>
+                                    <td  id="td_address"></td>
                                   </tr>
                                   <tr>
-                                    <td>รหัสผู้ซื้อ</td>
-                                    <td  id="td_ref_nox"><?=$arr[customer][0][ref_no];?></td>
+                                    <td>เบอร์โทร</td>
+                                    <td  id="td_phone"></td>
                                   </tr>
+
                                   <tr>
                                     <td>ทะเบียนรถ</td>
                                     <td id="td_license"><?=$arr[customer][0][s_license];?></td>
                                   </tr>
                                   <tr>
-                                    <td>ยี่ห้อ</td>
+                                    <td>ยี่ห้อ/รุ่น</td>
                                     <td id="td_band"><?=$service->getBrand($arr[customer][0][s_brand_code]);?></td>
                                   </tr>
                                   <tr>
-                                    <td>รุ่น</td>
-                                    <td id="td_gen"><?=$service->getGeneration($arr[customer][0][s_gen_code]);?></td>
+                                    <td>ประกันภัย</td>
+                                    <td id="td_ins_comp"><?=getInsuranceDisplay($arr[customer][0][i_ins_comp],$db);?></td>
                                   </tr>
-                                  <tr>
-                                    <td>ชื่อ ลูกค้า</td>
-                                    <td  id="td_name"><?=$arr[customer][0][s_firstname];?> <?=$arr[customer][0][s_lastname];?></td>
-                                  </tr>
+
                                 </table>
                               </div>
                             </div>
@@ -482,7 +475,7 @@ for ($i = 1; $i <= 6; $i++) {
     <script src="js/action/search/popup.js" type="text/javascript"></script>
     <script src="js/common/closeStep.js" type="text/javascript"></script>
     <script>
-                      var keyEdit = "<?=$i_cust_car?>";
+                                        var keyEdit = "<?=$i_cust_car?>";
     </script>
     <script>
       function check_refno(ref) {
@@ -492,17 +485,19 @@ for ($i = 1; $i <= 6; $i++) {
           data: {ref: ref, func: "getDetail"},
           success: function (data) {
 
-              var obj = JSON.parse(data);
-              $('#td_pay_type').html(obj.td_pay_type);
-              $('#td_ins_comp').html(obj.td_ins_comp);
-              $('#td_license').html(obj.td_license);
-              $('#td_band').html(obj.td_band);
-              $('#td_gen').html(obj.td_gen);
-              $('#td_name').html(obj.td_name);
-              $('#s_name').val(obj.td_name);
-              $('#s_address').val(obj.s_address);
-              $('#s_license').val(obj.td_license);
-              console.log(obj);
+            var obj = JSON.parse(data);
+
+            $('#td_ins_comp').html(obj.td_ins_comp);
+            $('#td_license').html(obj.td_license);
+            $('#td_band').html(obj.td_band + ' / ' + obj.td_gen);
+            $('#td_address').html(obj.s_address);
+
+            $('#td_name').html(obj.td_name);
+            $('#td_phone').html(obj.s_phone);
+
+
+            $('#td_license').html(obj.td_license);
+            console.log(obj);
 
 
           },

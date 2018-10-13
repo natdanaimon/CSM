@@ -274,6 +274,7 @@ function edit() {
                 debugger;
                 $("#s_username").val(item.s_username);
                 $("#s_firstname").val(item.s_firstname);
+                $("#i_salary_minute").val(item.i_salary_minute);
                 $("#s_phone").val(item.s_phone);
                 $("#f_amount").val(item.f_amount);
 

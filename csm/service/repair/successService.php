@@ -486,7 +486,8 @@ class successService {
     }
 
     function sqlUpdateMain($db, $info) {
-        $strSql = "";
+      $util = new Utility();  
+      $strSql = "";
         $strSql .= "update tb_customer_car ";
         $strSql .= "set  ";
 //        $strSql .= "i_customer = $info[i_customer], ";
@@ -503,7 +504,8 @@ class successService {
 
         $strSql .= "d_update = " . $db->Sysdate(TRUE) . ", ";
         $strSql .= "s_update_by = '$_SESSION[username]', ";
-        $strSql .= "s_status = '$info[status]' ";
+        $strSql .= "s_status = '$info[status]', ";
+        $strSql .= "d_carin = '" . $util->DateSQL($info[d_carin]) . "' ";
         $strSql .= "where i_cust_car = $info[id] ";
 
         return $strSql;

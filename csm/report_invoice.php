@@ -197,7 +197,7 @@ $disableElement = 'disabled="disable"';
                                 <div class="row">
                                   <div class="col-md-6">
                                     <div class="form-group form-md-line-input has-success">
-                                      <input type="text" class="form-control bold" id="s_no_bill" name="s_no_bill" value="<?=$s_no;?>" >
+                                      <input readonly="readonly" type="text" class="form-control bold" id="s_no_bill" name="s_no_bill" value="<?=$_SESSION[username];?>" >
                                       <label for="s_no_bill">รหัสผู้ออกบิล </label>          
                                     </div>
                                   </div>
@@ -298,7 +298,7 @@ for ($i = 1; $i <= 6; $i++) {
                                   </tr>
                                   <tr>
                                     <td>รหัสผู้ซื้อ</td>
-                                    <td  id="td_ref_nox"><?=$arr[customer][0][ref_no];?></td>
+                                    <td  id="td_tax_nox"><?=$arr[customer][0][ref_no];?></td>
                                   </tr>
                                   <tr>
                                     <td>ทะเบียนรถ</td>
@@ -500,10 +500,11 @@ for ($i = 1; $i <= 6; $i++) {
               $('#td_band').html(obj.td_band);
               $('#td_gen').html(obj.td_gen);
               $('#td_name').html(obj.td_name);
-              $('#s_name').val(obj.td_name);
-              $('#s_address').val(obj.s_address);
+              $('#td_tax_nox').html(obj.td_tax_nox);
+              //$('#s_name').val(obj.td_name);
+              //$('#s_address').val(obj.s_address);
               $('#s_license').val(obj.td_license);
-              $('#s_tax_no').val(obj.s_tax_no);
+              //$('#s_tax_no').val(obj.s_tax_no);
               console.log(obj);
 
 

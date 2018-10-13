@@ -129,6 +129,24 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                                                     <label for="form_control_1"><?= $_SESSION[lb_setEmployee_fname] ?> <span class="required">*</span></label>          
                                                 </div>
                                                 <div class="form-group form-md-line-input has-success">
+                                                  <input type="number" class="form-control bold" min="0" value="0" id="i_salary_minute"  name="i_salary_minute">
+                                                    <label  for="i_salary_minute">ค่าแรงปกติต่อนาที <span class="required">*</span>
+                                                        <span id="class_val_username" class="" >
+                                                            <i id="icon_val_username" class=""></i>
+                                                            <span id="lb_val_username"></span>
+                                                        </span>
+                                                    </label>          
+                                                </div>
+                                                <div class="form-group form-md-line-input has-success">
+                                                  <input type="number" class="form-control bold" min="0" value="0" id="i_ot_minute"  name="i_ot_minute">
+                                                    <label  for="i_ot_minute">ค่าแรงโอทีต่อนาที <span class="required">*</span>
+                                                        <span id="class_val_username" class="" >
+                                                            <i id="icon_val_username" class=""></i>
+                                                            <span id="lb_val_username"></span>
+                                                        </span>
+                                                    </label>          
+                                                </div>
+                                              <div class="form-group form-md-line-input has-success">
                                                     <input type="text" class="form-control bold" id="s_lastname"  name="s_lastname">
                                                     <label  for="form_control_1"><?= $_SESSION[lb_setEmployee_lname] ?> <span class="required">*</span>
                                                         <span id="class_val_username" class="" >
@@ -136,7 +154,7 @@ if ($_GET[id] == NULL && $_GET[func] != "add") {
                                                             <span id="lb_val_username"></span>
                                                         </span>
                                                     </label>          
-                                                </div>
+                                                </div>s
                                                 <div class="form-group form-md-line-input has-success">
                                                     <input type="text" class="form-control bold" id="s_phone" name="s_phone">
                                                     <label for="form_control_1"><?= $_SESSION[lb_setEmployee_phone] ?> <span class="required">*</span>

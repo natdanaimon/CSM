@@ -3,7 +3,6 @@
 @session_start();
 
 class createService {
-
   function dataTableQuotation() {
     $db = new ConnectDB();
     $strSql = " SELECT * ";
@@ -13,7 +12,6 @@ class createService {
     $db->close_conn();
     return $_data;
   }
-
   function dataTableInvoice() {
     $db = new ConnectDB();
     $strSql = " SELECT * ";
@@ -23,7 +21,6 @@ class createService {
     $db->close_conn();
     return $_data;
   }
-
   function dataTableWithholding() {
     $db = new ConnectDB();
     $strSql = " SELECT * ";
@@ -33,7 +30,6 @@ class createService {
     $db->close_conn();
     return $_data;
   }
-
   function dataTableReceipt() {
     $db = new ConnectDB();
     $strSql = " SELECT * ";
@@ -52,14 +48,13 @@ class createService {
     $db->close_conn();
     return $_data;
   }
-
   function getDetail($db,$info) {
 
     $strSql = "";
     $strSql .= " SELECT ";
     $strSql .= " car.* ";
     $strSql .= " ,cus.s_firstname , cus.s_lastname , cus.s_address ,cus.s_phone_1 , cus.s_phone_2,cus.s_tax_no";
-    $strSql .= " ,ins.s_name_display ";
+    $strSql .= " ,ins.s_name_display ,ins.s_code";
     $strSql .= " ,brand.s_brand_name ";
     $strSql .= " ,gen.s_gen_name ";
     $strSql .= " ,pay.s_detail ";
@@ -70,7 +65,6 @@ class createService {
     $strSql .= " LEFT JOIN tb_car_generation gen ON car.s_gen_code = gen.s_gen_code ";
     $strSql .= " LEFT JOIN tb_pay pay ON car.s_pay_type = pay.s_pay_type ";
     $strSql .= " WHERE car.ref_no =".$info[ref];
-
     $_data = $db->Search_Data_FormatJson($strSql);
     $db->close_conn();
 
@@ -84,9 +78,27 @@ class createService {
     $response[td_pay_type] = $_data[0][s_detail];
     $response[td_license] = $_data[0][s_license];
     $response[s_tax_no] = $_data[0][s_tax_no];
+    $response[td_tax_nox] = $_data[0][s_code];
+    $response[s_phone] = $_data[0][s_phone_1];
     return $response;
   }
+  function getDetailPartner($db,$info) {
 
+    $strSql = "";
+    $strSql .= " SELECT * ";
+    $strSql .= " FROM tb_partner_comp  ";
+    $strSql .= " WHERE s_code ='".$info[code]."'";
+
+    $_data = $db->Search_Data_FormatJson($strSql);
+    $db->close_conn();
+
+
+    $response[s_name] = $_data[0][s_comp_th];
+    $response[s_identi] = "-";
+    $response[s_address] = $_data[0][s_address];
+    $response[s_tax] = $_data[0][s_tax_no];
+    return $response;
+  }
   function addQuatation($db,$info) {
     $util = new Utility();
     $strSql = "";
@@ -161,7 +173,6 @@ class createService {
     }
     return $id;
   }
-
   function add($db,$info) {
     $util = new Utility();
     $ref_no = $info[s_po_spare_ref];
@@ -186,7 +197,8 @@ class createService {
           array("query" => "$strSql")
       );
       $reslut = $db->insert_for_upadte($arr);
-    } else {
+    }
+    else {
       $strSql = "";
       $strSql .= "INSERT ";
       $strSql .= "INTO ";
@@ -229,7 +241,8 @@ class createService {
       $i_accessories = $info[$i_accessories_val];
       if ($i_accessories > 0) {
         $i_status = 1;
-      } else {
+      }
+      else {
         $i_status = 0;
       }
       $i_status = $i_accessories;
@@ -270,7 +283,8 @@ class createService {
       $i_lighting = $info[$i_lighting_val];
       if ($i_lighting > 0) {
         $i_status = 1;
-      } else {
+      }
+      else {
         $i_status = 0;
       }
       $i_status = $i_lighting;
@@ -303,7 +317,6 @@ class createService {
 
     return $reslut;
   }
-
   function addWithholding($db,$info) {
     $util = new Utility();
     $s_detail = json_encode($info);
@@ -396,7 +409,6 @@ class createService {
     //}
     return mysql_insert_id();
   }
-
   function addInvoice($db,$info) {
     $util = new Utility();
     $strSql = "";
@@ -473,37 +485,61 @@ class createService {
     }
     return $id;
   }
-
   function addReceipt($db,$info) {
+
+    $strSql = "";
+    $strSql .= " SELECT ";
+    $strSql .= " car.* ";
+    $strSql .= " ,cus.s_firstname , cus.s_lastname , cus.s_address ,cus.s_phone_1 , cus.s_phone_2,cus.s_tax_no";
+    $strSql .= " ,ins.s_name_display ,ins.s_code";
+    $strSql .= " ,brand.s_brand_name ";
+    $strSql .= " ,gen.s_gen_name ";
+    $strSql .= " ,pay.s_detail ";
+    $strSql .= " FROM tb_customer_car car ";
+    $strSql .= " LEFT JOIN tb_customer cus ON car.i_customer = cus.i_customer ";
+    $strSql .= " LEFT JOIN tb_insurance_comp ins ON car.i_ins_comp = ins.i_ins_comp ";
+    $strSql .= " LEFT JOIN tb_car_brand brand ON car.s_brand_code = brand.s_brand_code ";
+    $strSql .= " LEFT JOIN tb_car_generation gen ON car.s_gen_code = gen.s_gen_code ";
+    $strSql .= " LEFT JOIN tb_pay pay ON car.s_pay_type = pay.s_pay_type ";
+    $strSql .= " WHERE car.ref_no =".$info[ref_no];
+    $_data = $db->Search_Data_FormatJson($strSql);
+    //$db->close_conn();
+    if ($info[ref_no] != '') {
+      $info[s_name] = $_data[0][s_firstname]." ".$_data[0][s_lastname];
+      $info[s_brand] = $_data[0][s_brand_name]." / ".$_data[0][s_gen_name];
+      $info[s_address] = $_data[0][s_address];
+      $info[s_license] = $_data[0][s_license];
+      $info[s_phone] = $_data[0][s_phone_1];
+      $info[s_ins] = $_data[0][s_name_display];
+    }
+
     $util = new Utility();
     $strSql = "";
     $strSql .= "INSERT ";
     $strSql .= "INTO ";
     $strSql .= "  tb_report_receipt ( ";
-    $strSql .= "    ref_id ";
-    $strSql .= "    ,s_no ";
-    $strSql .= "    ,s_no_bill ";
-    $strSql .= "    ,ref_no ";
-    $strSql .= "    ,s_license ";
-    $strSql .= "    ,s_province ";
+    $strSql .= "    ref_no ";
     $strSql .= "    ,s_name ";
+    $strSql .= "    ,s_brand ";
     $strSql .= "    ,s_address ";
-    $strSql .= "    ,s_tax_no ";
+    $strSql .= "    ,s_license ";
+    $strSql .= "    ,s_phone ";
+    $strSql .= "    ,s_ins ";
+    $strSql .= "    ,i_discount ";
     $strSql .= "    ,d_create ";
     $strSql .= "    ,d_update ";
     $strSql .= "    ,s_create_by ";
     $strSql .= "    ,s_update_by ";
     $strSql .= "  ) ";
     $strSql .= "VALUES( ";
-    $strSql .= "  '$info[id]' ";
-    $strSql .= "  ,'".$info[s_no]."' ";
-    $strSql .= "  ,'".$info[s_no_bill]."' ";
-    $strSql .= "  ,'".$info[ref_no]."' ";
-    $strSql .= "  ,'".$info[s_license]."' ";
-    $strSql .= "  ,'".$info[s_province]."' ";
+    $strSql .= "  '".$info[ref_no]."' ";
     $strSql .= "  ,'".$info[s_name]."' ";
+    $strSql .= "  ,'".$info[s_brand]."' ";
     $strSql .= "  ,'".$info[s_address]."' ";
-    $strSql .= "  ,'".$info[s_tax_no]."' ";
+    $strSql .= "  ,'".$info[s_license]."' ";
+    $strSql .= "  ,'".$info[s_phone]."' ";
+    $strSql .= "  ,'".$info[s_ins]."' ";
+    $strSql .= "  ,'".$info[i_discount]."' ";
     $strSql .= "  ,".$db->Sysdate(TRUE)." ";
     $strSql .= "  ,".$db->Sysdate(TRUE)." ";
     $strSql .= "  ,'$_SESSION[username]' ";
@@ -548,8 +584,6 @@ class createService {
     }
     return $id;
   }
-
-  
   function addBill($db,$info) {
     $util = new Utility();
     $strSql = "";
@@ -616,10 +650,9 @@ class createService {
     $strSql = " select s_name_display from tb_insurance_comp where i_ins_comp =".$_data[0][i_ins_comp];
     $_data = $db->Search_Data_FormatJson($strSql);
     $db->close_conn();
-    
-    
+
+
     return $_data[0]['s_name_display'];
   }
-
 ///////////////////// End Class
 }

@@ -73,6 +73,8 @@ function edit() {
 
                 $("#s_firstname").val(item.s_firstname);
                 $("#s_lastname").val(item.s_lastname);
+                $("#i_salary_minute").val(item.i_salary_minute);
+                $("#i_ot_minute").val(item.i_ot_minute);
                 $("#s_email").val(item.s_email);
                 $("#s_phone").val(item.s_phone);
                 $("#s_line").val(item.s_line);

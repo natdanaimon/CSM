@@ -24,7 +24,7 @@ $strSql = "";
 $strSql .= " SELECT ";
 $strSql .= " car.* ";
 $strSql .= " ,cus.s_firstname , cus.s_lastname , cus.s_address ,cus.s_phone_1 , cus.s_phone_2";
-$strSql .= " ,ins.s_comp_th,ins.s_address as ins_address  ,ins.s_tax_no as ins_tax_no";
+$strSql .= " ,ins.s_comp_th,ins.s_address as ins_address  ,ins.s_tax_no as ins_tax_no,ins.s_code";
 $strSql .= " ,brand.s_brand_name ";
 $strSql .= " ,gen.s_gen_name ";
 $strSql .= " FROM tb_customer_car car ";
@@ -37,6 +37,7 @@ $_data = $db->Search_Data_FormatJson($strSql);
 
 $s_name = ($data[0][ref_no] != '') ? $_data[0][s_comp_th]."<br />เลขประจำตัวผู้เสียภาษีอากร ".$_data[0][ins_tax_no] : $data[0][s_name]."<br />เลขประจำตัวผู้เสียภาษีอากร ".$data[0][s_tax_no];
 $s_address = ($data[0][ref_no] != '') ? $_data[0][ins_address] : $data[0][s_address];
+$s_code = ($data[0][ref_no] != '') ? $_data[0][s_code] : '';
 
 $total_cost = 0;
 
@@ -147,7 +148,7 @@ ob_start();
         <td style="border-top:1px solid #000;border-right:1px solid #000;"   align="center">
           <strong style="font-size: 16px;">
             รหัสผู้ซื้อ <br />
-            <?=$_data[0][ref_no];?>
+            <?=$s_code;?>
           </strong>
 
         </td>
@@ -173,7 +174,7 @@ ob_start();
         <td style="border:1px solid #000;border-left:0px solid #000;" align="center">
           <strong style="font-size: 16px;">
             รหัสผู้ออกบิล <br />
-            -
+            <?=$data[0][s_no_bill];?>
           </strong>
         </td>
       </tr>
@@ -185,34 +186,34 @@ ob_start();
         </td>
       </tr>
       <tr>
-        <td style="border-top:1px solid #000;border-left:1px solid #000;border-right:1px solid #000;"  align="center">
+        <td style="border-top:1px solid #000;border-left:1px solid #000;border-right:1px solid #000;border-bottom:1px solid #000;"  align="center">
           <strong style="font-size: 16px;">
             รหัส
             <br />
             CODE
           </strong>
         </td>
-        <td  colspan="2" style="border-top:1px solid #000;border-right:1px solid #000;"   align="center">
+        <td  colspan="2" style="border-top:1px solid #000;border-right:1px solid #000;border-bottom:1px solid #000;"   align="center">
           <strong style="font-size: 16px;">
             สินค้าหรือบริการ <br />
             DESCRIPTION
           </strong>	
         </td>
-        <td style="border-top:1px solid #000;border-right:1px solid #000;"   align="center">
+        <td style="border-top:1px solid #000;border-right:1px solid #000;border-bottom:1px solid #000;"   align="center">
           <strong style="font-size: 16px;">
             จำนวน
             <br />
             QUANTITY
           </strong>
         </td>
-        <td style="border-top:1px solid #000;border-right:1px solid #000;"   align="center">
+        <td style="border-top:1px solid #000;border-right:1px solid #000;border-bottom:1px solid #000;"   align="center">
           <strong style="font-size: 16px;">
             ราคาต่อหน่วย
             <br />
             UNIT PRICE
           </strong>
         </td>
-        <td style="border-top:1px solid #000;border-right:1px solid #000;"   align="center">
+        <td style="border-top:1px solid #000;border-right:1px solid #000;border-bottom:1px solid #000;"   align="center">
           <strong style="font-size: 16px;">
             จำนวนเงิน
             <br />
@@ -220,22 +221,25 @@ ob_start();
           </strong>
         </td>
       </tr>
+      <?php
+      if($data[0][ref_no] != ''){
+      ?>
       <tr>
-        <td style="border-right:1px solid #000;border-left:1px solid #000;border-top:1px solid #000;padding: 5px;" align="center" valign="top">
+        <td style="border-right:1px solid #000;border-left:1px solid #000;border-top:0px solid #000;padding: 5px;" align="center" valign="top">
           <strong style="font-size: 16px;" >
             INS001
           </strong>
         </td>
-        <td colspan="2" style="border-right:1px solid #000;border-left:0px solid #000;border-top:1px solid #000;padding: 5px;" valign="top">
+        <td colspan="2" style="border-right:1px solid #000;border-left:0px solid #000;border-top:0px solid #000;padding: 5px;" valign="top">
           ค่าบริการจัดซ่อมรถยนต์ หมายเลขทะเบียน <?php echo $data[0][s_license];?> <?php echo $data[0][s_province];?>
         </td>
-        <td style="border-right:1px solid #000;border-left:0px solid #000;border-top:1px solid #000;padding: 5px;" align="right" valign="top">
+        <td style="border-right:1px solid #000;border-left:0px solid #000;border-top:0px solid #000;padding: 5px;" align="right" valign="top">
           <?php echo($data[0][i_amount] > 0) ? "1.0" : "";?>
         </td>
-        <td style="border-right:1px solid #000;border-left:0px solid #000;border-top:1px solid #000;padding: 5px;" align="right" valign="top">
+        <td style="border-right:1px solid #000;border-left:0px solid #000;border-top:0px solid #000;padding: 5px;" align="right" valign="top">
           <?php echo($data[0][i_amount] > 0) ? number_format($data[0][i_amount],2) : "";?>
         </td>
-        <td style="border-right:1px solid #000;border-left:0px solid #000;border-top:1px solid #000;padding: 5px;" align="right" valign="top">
+        <td style="border-right:1px solid #000;border-left:0px solid #000;border-top:0px solid #000;padding: 5px;" align="right" valign="top">
           <?php 
           $total_cost += $data[0][i_amount];
           echo($data[0][i_amount] > 0) ? number_format($data[0][i_amount],2) : "";
@@ -243,7 +247,8 @@ ob_start();
           ?>
         </td>
       </tr>
-      <?php
+      <?php } ?>
+        <?php
       foreach($dataList as $dataL){
         ?>
       <tr style="height: 28px;">
@@ -273,7 +278,7 @@ ob_start();
       }
       ?>
       <?php
-      for($i=0;$i<=2;$i++){
+      for($i=0;$i<=1;$i++){
       ?>
       <tr style="height: 28px;">
         <td style="border-right:1px solid #000;border-left:1px solid #000;border-top:0px solid #000;padding: 5px;" align="center" valign="top">

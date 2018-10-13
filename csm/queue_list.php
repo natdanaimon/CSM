@@ -321,20 +321,33 @@ ACTIVEPAGES(5, 1);
                                           <?php $sss++;
                                         }
                                         ?>
-
+                                          
+<?php
+                                        if($_SESSION["perm"] == 'A'){
+                                        ?>
                                         <button data-toggle="modal" href="#staffManage" data-id="<?= $datalv2['i_queue_dept']; ?>" data-i_dept="<?= $datalv2['i_dept']; ?>" data-d_start_work="<?= $datalv2['d_start']; ?>" class="btn btn-primary btn-xs getInfoStaff">เพิ่มช่าง</button>
+                                        <?php } ?>
                                       </td>
                                       <td>
                                         <?php
                                         if ($datalv2['i_status'] == 1) {
                                           $txt_status = '<i class="fa fa-check"></i> สำเร็จ';
-                                          $btn_style = "btn-success  btn-block btnstatus approve";
+                                          $btn_style = "btn-success  btn-block btnstatusxx approve";
+                                          $span_class = "text-success";
                                         } else {
                                           $txt_status = '<i class="fa fa-times"></i> กำลังดำเนินการ ';
-                                          $btn_style = "btn-warning  btn-block btnstatus reject";
+                                          $btn_style = "btn-warning  btn-block btnstatusxx reject";
+                                          $span_class = "text-warning";
                                         }
                                         ?>
-                                        <button class="btn <?= $btn_style; ?> btn-xs" data-id="<?= $datalv2['i_queue_dept']; ?>" data-i_queue = "<?= $datalv2['i_queue']; ?>" data-ref="<?= $datalv2['ref_no']; ?>" ><?= $txt_status; ?></button>
+                                        <?php
+                                        if($_SESSION["perm"] == 'A'){
+                                        ?>
+                                        <!--<button class="btn <?= $btn_style; ?> btn-xs" data-id="<?= $datalv2['i_queue_dept']; ?>" data-i_queue = "<?= $datalv2['i_queue']; ?>" data-ref="<?= $datalv2['ref_no']; ?>" ><?= $txt_status; ?></button>-->
+                                        <button data-toggle="modal" href="#statusManage" id="info_btn_<?= $datalv2['i_queue_dept']; ?>" class="btn <?= $btn_style; ?> btn-xs" data-id="<?= $datalv2['i_queue_dept']; ?>" data-i_queue = "<?= $datalv2['i_queue']; ?>" data-ref="<?= $datalv2['ref_no']; ?>" data-i_dept="<?= $datalv2['i_dept']; ?>" data-d_start_work="<?= $datalv2['d_start']; ?>" ><?= $txt_status; ?></button>
+                                        <?php }else{ ?>
+                                        <span class="<?=$span_class;?>"><?=$txt_status;?></span>
+                                        <?php } ?>
                                       </td>
                                     </tr>
     <?php } ?>
@@ -380,6 +393,7 @@ ACTIVEPAGES(5, 1);
       <!-- BEGIN MODAL -->
 
       <?php include './commonModalQueue.php'; ?>
+      <?php include './commonModalQueueStatus.php'; ?>
       <!-- BEGIN FOOTER -->
 <?php include './templated/footer.php'; ?>
       <!-- END FOOTER -->
@@ -423,7 +437,7 @@ ACTIVEPAGES(5, 1);
     <link href="outbound/lightbox/css/lightbox.css" rel="stylesheet" type="text/css" />
     <script src="outbound/lightbox/js/lightbox.js" type="text/javascript"></script>
     <script src="js/common/closeStep.js" type="text/javascript"></script>
-    <script src="js/action/queue/queue_list.js?v=5" type="text/javascript"></script>
+    <script src="js/action/queue/queue_list.js?v=102" type="text/javascript"></script>
     <script>
                             $(document).ready(function () {
                               initialDataTable_1("TRUE");

@@ -15,6 +15,9 @@ switch ($info[func]) {
   case "getDetail":
     echo $controller->getDetail($info);
     break;
+  case "getDetailPartner":
+    echo $controller->getDetailPartner($info);
+    break;
   case "add":
     echo $controller->add($info);
     break;
@@ -65,6 +68,18 @@ class createController {
     $db = new ConnectDB();
     $db->conn();
     $_dataTable = $service->getDetail($db,$info);
+    $util = new Utility();
+    if ($_dataTable != NULL) {
+      return json_encode($_dataTable);
+    } else {
+      return NULL;
+    }
+  }
+  public function getDetailPartner($info) {
+    $service = new createService();
+    $db = new ConnectDB();
+    $db->conn();
+    $_dataTable = $service->getDetailPartner($db,$info);
     $util = new Utility();
     if ($_dataTable != NULL) {
       return json_encode($_dataTable);

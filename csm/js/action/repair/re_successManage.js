@@ -677,6 +677,7 @@ function edit() {
 
 
                 $("#status").val(item.s_status);
+                $("#d_carin").val(item.d_carin);
                 activeStep(item.s_status)
                 $("#lb_create").text(item.s_create_by + " ( " + item.d_create + " )");
                 var lb_edit = (item.s_update_by != "" ? item.s_update_by + " ( " + item.d_update + " )" : "-");
@@ -952,7 +953,7 @@ function saveCustomChangeStatus() {
 
     $.ajax({
         type: 'GET',
-        url: 'controller/repair/successController.php?func=edit&status=' + $('#status').val() + '&id=' + $('#id').val(),
+        url: 'controller/repair/successController.php?func=edit&status=' + $('#status').val() + '&id=' + $('#id').val()+ '&d_carin=' + $('#d_carin').val(),
         // data: formData,
         cache: false,
         contentType: false,

@@ -75,6 +75,8 @@ class employeeService {
         $strSql .= "  tb_employee ( ";
         $strSql .= "    s_firstname, ";
         $strSql .= "    s_lastname, ";
+        $strSql .= "    i_salary_minute, ";
+        $strSql .= "    i_ot_minute, ";
         $strSql .= "    s_phone, ";
         $strSql .= "    s_email, ";
         $strSql .= "    s_line, ";
@@ -94,6 +96,8 @@ class employeeService {
         $strSql .= "VALUES( ";
         $strSql .= "  '$info[s_firstname]', ";
         $strSql .= "  '$info[s_lastname]', ";
+        $strSql .= "  '$info[i_salary_minute]', ";
+        $strSql .= "  '$info[i_ot_minute]', ";
         $strSql .= "  '$info[s_phone]', ";
         $strSql .= "  '$info[s_email]', ";
         $strSql .= "  '$info[s_line]', ";
@@ -121,6 +125,8 @@ class employeeService {
         $strSql .= "set  ";
         $strSql .= "s_firstname = '$info[s_firstname]', ";
         $strSql .= "s_lastname = '$info[s_lastname]', ";
+        $strSql .= "i_salary_minute = '$info[i_salary_minute]', ";
+        $strSql .= "i_ot_minute = '$info[i_ot_minute]', ";
         $strSql .= "s_phone = '$info[s_phone]', ";
         $strSql .= "s_email = '$info[s_email]', ";
         $strSql .= "s_line = '$info[s_line]', ";

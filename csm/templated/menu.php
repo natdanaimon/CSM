@@ -21,7 +21,7 @@
         </a>
     </li>
     
-    <?php if ($_SESSION["perm"] == "A") { ?>
+    
         <!--R0 งานทั้งหมด -->
       <li class="nav-item start <?= $_SESSION["nav_main_workall"] ?>">
         <a href="queue_all.php"  class="nav-link nav-toggle">
@@ -199,11 +199,6 @@
       
         </li>
         <!--R7 ค่าใช้จ่ายประจำวัน-->
-
-
-
-
-
         <!--R8 ตั้งค่า-->
         <li class="nav-item <?= $_SESSION["nav_main_setting"] ?>">
             <a href="javascript:;" class="nav-link nav-toggle">
@@ -342,7 +337,8 @@
                 <span class="selected"></span>
             </a>
             <ul class="sub-menu">
-                <li class="nav-item  <?= $_SESSION["nav_sub_emp_user"] ?>">
+              <?php if ($_SESSION["perm"] == "A") { ?>  
+              <li class="nav-item  <?= $_SESSION["nav_sub_emp_user"] ?>">
                     <a href="emp_user.php" class="nav-link ">
 
                         <span class="title"><?= $_SESSION[emp_user] ?></span>
@@ -350,6 +346,7 @@
                         <span class="badge badge-success" ></span>
                     </a>
                 </li>
+                <?php } ?>
                 <li class="nav-item  <?= $_SESSION["nav_sub_emp_employee"] ?>">
                     <a href="emp_employee.php" class="nav-link ">
 
@@ -363,7 +360,6 @@
             </ul>
         </li>
         <!--R9 บริหารจัดการข้อมูลพนักงาน-->
-        
         
         <!--R10 ระบบรายงาน-->
         <li class="nav-item <?= $_SESSION["nav_main_report"] ?>">
@@ -416,21 +412,7 @@
             </ul>
         </li>
         <!--R10 ระบบรายงาน-->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
         <!--R13 บริหารจัดการข้อมูลพนักงาน-->
         <li class="nav-item <?= $_SESSION["nav_main_insurance"] ?>">
             <a href="javascript:;" class="nav-link nav-toggle">
@@ -466,9 +448,6 @@
             </ul>
         </li>
         <!--R13 บริหารจัดการข้อมูลพนักงาน-->
-
-
-
         <!--R14 บริหารจัดการหน้าจอเว็บไซต์-->
         <li class="nav-item <?= $_SESSION["nav_main_ui"] ?>">
             <a href="javascript:;" class="nav-link nav-toggle">
@@ -526,10 +505,7 @@
             </ul>
         </li>
         <!--R14 บริหารจัดการหน้าจอเว็บไซต์-->
-
-
-
-    <?php } ?>
+    
 
 
 

@@ -8,48 +8,15 @@ include './../common/Utility.php';
 $util = new Utility();
 
 $db = new ConnectDB();
-$strSql = " select * ";
-$strSql .= " FROM tb_report_quotation   WHERE id = '".$_GET[id]."' ";
-$data = $db->Search_Data_FormatJson($strSql);
-$ref_no = $data[0][ref_no];
-$no = $data[0][id];
-$d_create = date('d/m/Y',strtotime($data[0][d_create]));
-$strSql = " select * ";
-$strSql .= " FROM tb_report_quotation_list   WHERE i_report_quotation = '".$_GET[id]."' ";
-$dataList = $db->Search_Data_FormatJson($strSql);
-$strSql = " select * ";
-$strSql .= " FROM tb_user   WHERE s_user = '".$_SESSION[username]."' ";
-$adminNow = $db->Search_Data_FormatJson($strSql);
-
-$strSql = "";
-$strSql .= " SELECT ";
-$strSql .= " car.* ";
-$strSql .= " ,cus.s_firstname , cus.s_lastname , cus.s_address ,cus.s_phone_1 , cus.s_phone_2";
-$strSql .= " ,ins.s_comp_th,ins.s_address as ins_address  ,ins.s_tax_no as ins_tax_no";
-$strSql .= " ,brand.s_brand_name ";
-$strSql .= " ,gen.s_gen_name ";
-$strSql .= " FROM tb_customer_car car ";
-$strSql .= " LEFT JOIN tb_customer cus ON car.i_customer = cus.i_customer ";
-$strSql .= " LEFT JOIN tb_insurance_comp ins ON car.i_ins_comp = ins.i_ins_comp ";
-$strSql .= " LEFT JOIN tb_car_brand brand ON car.s_brand_code = brand.s_brand_code ";
-$strSql .= " LEFT JOIN tb_car_generation gen ON car.s_gen_code = gen.s_gen_code ";
-$strSql .= " WHERE car.ref_no =".$ref_no;
-$_data = $db->Search_Data_FormatJson($strSql);
-
-$s_name = ($data[0][ref_no] != '') ? $_data[0][s_comp_th]."<br />เลขประจำตัวผู้เสียภาษีอากร ".$_data[0][ins_tax_no] : $data[0][s_name]."<br />เลขประจำตัวผู้เสียภาษีอากร ".$data[0][s_tax_no];
-$s_address = ($data[0][ref_no] != '') ? $_data[0][ins_address] : $data[0][s_address];
-
-$total_cost = 0;
 
 
-ob_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
   <!-- BEGIN HEAD -->
   <head>
     <meta charset="utf-8" />
-    <title><?=$_SESSION[title]?> <?=$i_queue;?> </title>
+    <title><?=$_SESSION[title] ?> <?=$i_queue; ?> </title>
     <!-- END SELECT 2 SCRIPTS -->
     <link rel="shortcut icon" href="favicon.ico" /> 
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
@@ -63,6 +30,42 @@ ob_start();
   </head>
   <!-- END HEAD -->
   <body>
+    <?php
+    while (list($key,$id) = each($_POST['checkboxItem'])) {
+      $_GET[id] = $id;
+      $strSql = " select * ";
+$strSql .= " FROM tb_report_invoice   WHERE id = '".$_GET[id]."' ";
+$data = $db->Search_Data_FormatJson($strSql);
+$ref_no = $data[0][ref_no];
+$no = $data[0][id];
+$d_create = date('d/m/Y',strtotime($data[0][d_create]));
+$strSql = " select * ";
+$strSql .= " FROM tb_report_invoice_list   WHERE i_report_invoice = '".$_GET[id]."' ";
+$dataList = $db->Search_Data_FormatJson($strSql);
+$strSql = " select * ";
+$strSql .= " FROM tb_user   WHERE s_user = '".$_SESSION[username]."' ";
+$adminNow = $db->Search_Data_FormatJson($strSql);
+$strSql = "";
+$strSql .= " SELECT ";
+$strSql .= " car.* ";
+$strSql .= " ,cus.s_firstname , cus.s_lastname , cus.s_address ,cus.s_phone_1 , cus.s_phone_2";
+$strSql .= " ,ins.s_comp_th,ins.s_address as ins_address  ,ins.s_tax_no as ins_tax_no,ins.s_code";
+$strSql .= " ,brand.s_brand_name ";
+$strSql .= " ,gen.s_gen_name ";
+$strSql .= " FROM tb_customer_car car ";
+$strSql .= " LEFT JOIN tb_customer cus ON car.i_customer = cus.i_customer ";
+$strSql .= " LEFT JOIN tb_insurance_comp ins ON car.i_ins_comp = ins.i_ins_comp ";
+$strSql .= " LEFT JOIN tb_car_brand brand ON car.s_brand_code = brand.s_brand_code ";
+$strSql .= " LEFT JOIN tb_car_generation gen ON car.s_gen_code = gen.s_gen_code ";
+$strSql .= " WHERE car.ref_no =".$ref_no;
+$_data = $db->Search_Data_FormatJson($strSql);
+
+$s_name = ($data[0][ref_no] != '') ? $_data[0][s_comp_th]."<br />เลขประจำตัวผู้เสียภาษีอากร ".$_data[0][ins_tax_no] : $data[0][s_name]."<br />เลขประจำตัวผู้เสียภาษีอากร ".$data[0][s_tax_no];
+$s_address = ($data[0][ref_no] != '') ? $_data[0][ins_address] : $data[0][s_address];
+$s_code = ($data[0][ref_no] != '') ? $_data[0][s_code] : '';
+
+$total_cost = 0;
+    ?>
     <table width="100%">
       <tr>
         <td width="110">
@@ -72,7 +75,7 @@ ob_start();
           <table style="border:0px solid #000; " cellpadding="0" width="100%" >
             <tr>
               <td valign="top"> 
-                <strong style="font-size: 23px;cursor: pointer;" onclick="javascript:window.print();">
+                <strong style="font-size: 22px;cursor: pointer;" onclick="javascript:window.print();">
                   บริษัท รุ่งทรัพย์ ออโตโมบิล รีแพร์ เซ็นเตอร์ จำกัด <br />
                 </strong>
                 <font style="font-size: 20px;">
@@ -88,8 +91,10 @@ ob_start();
           <table style="border:2px solid #000;" cellpadding="2" width="100%">
             <tr>
               <td align="center">
-                <font style="font-size: 20px;">ใบเสนอราคา <br />
-                QUOTATION
+                <font style="font-size: 20px;">ใบเสร็จรับเงิน/ใบกำกับภาษี
+
+ <br />
+                RECEIPT/TAX INVOICE
                 </font>
               </td>
             </tr>
@@ -108,7 +113,7 @@ ob_start();
           </div>
           <div style="height: 5px;"></div>
           <div  style="border:1px solid #ccc;padding:5px;">
-            เลขที่: QA_<?=$no;?>
+            เลขที่: <?=$no;?>
           </div>
         </td>
       </tr>
@@ -145,7 +150,7 @@ ob_start();
         <td style="border-top:1px solid #000;border-right:1px solid #000;"   align="center">
           <strong style="font-size: 16px;">
             รหัสผู้ซื้อ <br />
-            <?=$_data[0][ref_no];?>
+            <?=$s_code;?>
           </strong>
 
         </td>
@@ -245,7 +250,7 @@ ob_start();
         </td>
       </tr>
       <?php } ?>
-      <?php
+        <?php
       foreach($dataList as $dataL){
         ?>
       <tr style="height: 28px;">
@@ -275,7 +280,7 @@ ob_start();
       }
       ?>
       <?php
-      for($i=0;$i<=2;$i++){
+      for($i=0;$i<=1;$i++){
       ?>
       <tr style="height: 28px;">
         <td style="border-right:1px solid #000;border-left:1px solid #000;border-top:0px solid #000;padding: 5px;" align="center" valign="top">
@@ -403,11 +408,11 @@ ob_start();
                     </td>
                   </tr>
                   <tr>
-                    <td width="50" height="35" align="right">ลงชื่อ</td>
+                    <td width="50" align="right">ลงชื่อ</td>
                     <td style="border-bottom: 1px solid #000;" colspan="2"></td>
                   </tr>
                   <tr>
-                    <td width="50" height="35" align="right">วันที่</td>
+                    <td width="50" align="right">วันที่</td>
                     <td width="150" style="border-bottom: 1px solid #000;"></td>
                     <td></td>
                   </tr>
@@ -443,7 +448,7 @@ ob_start();
             </tr>
             <tr>
               <td colspan="2" align="center">
-                <?=$adminNow[0][s_firstname];?>	<?=$adminNow[0][s_lastname];?>	
+                <?=$adminNow[0][s_firstname];?>	<?=$adminNow[0][s_lastname];?>		
               </td>
             </tr>
             <tr>
@@ -455,28 +460,7 @@ ob_start();
         </td>
       </tr>
     </table>
-
+    <?php } ?>
 
   </body>
 </html>
-<?php
-/*
-  $output = ob_get_contents();
-  ob_end_clean();
-  require_once '../vendorPdf/autoload.php';
-
-  $mpdf = new \Mpdf\Mpdf([
-  'mode' => 'utf-8',
-  //'default_font_size' => 15,
-  'default_font' => 'thsarabunnew'
-  ]);
-
-
-  $mpdf->SetWatermarkText('');
-  $mpdf->showWatermarkText = false;
-  //$mpdf->showImageErrors = true;
-  $mpdf->WriteHTML($output);
-  $mpdf->Output($title_name.'.pdf','I');
-
-  // */
-?>

@@ -21,7 +21,7 @@ function initialDataTable_1(first) {
       $.each(res, function (i, item) {
 
         var col_checkbox = "";
-        var col_refno = '<a href="queue_all_detail.php?id='+item.ref_no + '" target="_blank">'+item.ref_no + ' [ ' + item.s_password + ' ] </a>';
+        var col_refno = '<a href="queue_all_detail.php?id=' + item.ref_no + '" target="_blank">' + item.ref_no + ' [ ' + item.s_password + ' ] </a>';
         var col_name = item.s_fullname;
         var col_license = item.s_license;
 
@@ -32,7 +32,7 @@ function initialDataTable_1(first) {
 //                var col_carsub = item.i_sub; $_dataTable[$key]['i_brand'] = $service - > getBrand($_dataTable[$key]['s_brand_code']);
 
         var col_insurance = item.i_ins_comp;
-                var col_dmg = item.i_dmg;
+        var col_dmg = item.i_dmg;
         var col_inout = item.d_inbound + " - " + item.d_outbound_confirm;
 
 
@@ -81,7 +81,7 @@ function initialDataTable_1(first) {
           col_cargen,
 //                    col_carsub,
           col_insurance,
-                    col_dmg,
+          col_dmg,
           col_inout,
           col_status,
           col_edit,
@@ -126,6 +126,7 @@ function initialDataTable_1(first) {
 
 var $datatable = $('#datatable');
 var $datatable_modal = $('#datatable_modal');
+var $datatable_modalstatus = $('#datatable_modalstatus');
 
 
 $('.find_ref').click(function () {
@@ -145,6 +146,7 @@ $('.getInfoStaff').click(function () {
   //$('#d_start_work').val(d_start_work);
   //alert(i_queue_dept)
   initialDataTableStaff(i_queue_dept);
+  console.log(i_queue_dept);
 
 
 });
@@ -177,7 +179,10 @@ function initialDataTableStaff(i_queue_dept) {
       $.each(res, function (i, item) {
 
         var col_name = item.s_firstname + " " + item.s_lastname;
-        var col_start = item.d_start_work;
+        var col_start = item.d_start_work + " / " + item.t_start_work;
+        var col_end = item.d_end_work + " / " + item.t_end_work;
+        var col_work = item.i_work;
+        var col_ot = item.i_ot;
         var col_del = '<a href="' + (disable != "" ? '#' : 'javascript:ConfirmDelQueryStaff(\'' + item.i_queue_dept_staff + '\',\'' + i_queue_dept + '\');') + '" style="width:33px;height:33px" class="btn btn-circle btn-icon-only red" ' + disable + '>';
         col_del += ' <i class="fa fa-trash-o" ></i>';
         col_del += '</a>';
@@ -188,6 +193,9 @@ function initialDataTableStaff(i_queue_dept) {
         var addRow = [
           col_name,
           col_start,
+          col_end,
+          col_work,
+          col_ot,
           col_del
         ]
 
@@ -279,6 +287,40 @@ $('#btn_save_staff').click(function () {
 /*
  Update status
  */
+//////////// Back Up
+$(".btnstatus_back").click(function () {
+  var i_queue = $(this).attr("data-i_queue");
+  var ref_no = $(this).attr("data-ref");
+  var id = $(this).attr("data-id");
+  var app_rej = '0';
+  if ($(this).hasClass('approve')) {
+    $(this).addClass('reject btn-warning');
+    $(this).removeClass('approve btn-success');
+    $(this).html('<i class="fa fa-times"></i> กำลังดำเนินการ');
+    app_rej = '0';
+  } else if ($(this).hasClass('reject')) {
+    $(this).removeClass('reject btn-warning');
+    $(this).addClass('approve btn-success');
+    $(this).html('<i class="fa fa-check"></i> สำเร็จ');
+    app_rej = '1';
+  }
+  $.post("controller/queue/createController.php", {func: "UpdateStatus", id: id, i_status: app_rej, i_queue: i_queue, ref_no: ref_no}, function (data) {
+    var res = data.split(",");
+    if (res[0] == "0000") {
+      var errCode = "Code (" + res[0] + ") : " + res[1];
+      $.notify(errCode, "success");
+      location.reload();
+      //$('#'+id).delay(100).fadeOut();
+    } else {
+      var errCode = "Code (" + res[0] + ") : " + res[1];
+      $.notify(errCode, "error");
+      //fix
+      //$('#se-pre-con').delay(100).fadeOut();
+      return;
+    }
+  });
+});
+
 $(".btnstatus").click(function () {
   var i_queue = $(this).attr("data-i_queue");
   var ref_no = $(this).attr("data-ref");
@@ -295,8 +337,6 @@ $(".btnstatus").click(function () {
     $(this).html('<i class="fa fa-check"></i> สำเร็จ');
     app_rej = '1';
   }
-
-
   $.post("controller/queue/createController.php", {func: "UpdateStatus", id: id, i_status: app_rej, i_queue: i_queue, ref_no: ref_no}, function (data) {
     var res = data.split(",");
     if (res[0] == "0000") {
@@ -312,19 +352,163 @@ $(".btnstatus").click(function () {
       return;
     }
   });
-
-
-
 });
 
+//////////////////////  Form Update
+$("#btn_save_status").click(function () {
+  var formData = $('#form_updatestatus').serialize();
+  console.log(formData);
+  //*
+  $.post("controller/queue/createController.php", formData, function (data) {
+    console.log(data);
+    var res = data.split(",");
+    if (res[0] == "0000") {
+      var errCode = "Code (" + res[0] + ") : " + res[1];
+      $.notify(errCode, "success");
+      location.reload();
+    } else {
+      var errCode = "Code (" + res[0] + ") : " + res[1];
+      $.notify(errCode, "error");
+      return;
+    }
+  });
+  //*/
+});
 
+$(".btnstatusxx").click(function () {
+  var id = $(this).attr("data-id");
+  var i_queue = $(this).attr("data-i_queue");
+  var ref_no = $(this).attr("data-ref");
+  var app_rej = 0;
+  if ($(this).hasClass('approve')) {
+    //$(this).addClass('reject btn-warning');
+    //$(this).removeClass('approve btn-success');
+    //$(this).html('<i class="fa fa-times"></i> กำลังดำเนินการ');
+    app_rej = '0';
+  } else if ($(this).hasClass('reject')) {
+    //$(this).removeClass('reject btn-warning');
+    //$(this).addClass('approve btn-success');
+    //$(this).html('<i class="fa fa-check"></i> สำเร็จ');
+    app_rej = '1';
+  }
+
+  initialDataTableStaffForm(id,i_queue,ref_no,app_rej);
+  console.log(id);
+
+//  $.post("controller/queue/createController.php", {func: "UpdateStatus", id: id, i_status: app_rej, i_queue: i_queue, ref_no: ref_no}, function (data) {
+//    var res = data.split(",");
+//    if (res[0] == "0000") {
+//      var errCode = "Code (" + res[0] + ") : " + res[1];
+//      $.notify(errCode, "success");
+//      location.reload();
+//    } else {
+//      var errCode = "Code (" + res[0] + ") : " + res[1];
+//      $.notify(errCode, "error");
+//      return;
+//    }
+//  });
+});
+function initialDataTableStaffForm(i_queue_dept,i_queue,ref_no,app_rej) {
+  
+  
+  $.ajax({
+    type: 'GET',
+    url: 'controller/queue/createController.php?func=dataTableStaff&id=+' + i_queue_dept,
+    beforeSend: function () {
+      $('#se-pre-con').fadeIn(100);
+    },
+    success: function (data) {
+      $('#md_i_queue_dept').val(i_queue_dept);
+      $('#md_i_status').val(app_rej);
+      $('#md_i_queue').val(i_queue);
+      $('#md_ref_no').val(ref_no);
+
+
+
+
+      if (data == '') {
+        var datatable = $datatable_modalstatus.dataTable().api();
+        $('.dataTables_empty').remove();
+        datatable.clear();
+
+        datatable.draw();
+        $('#se-pre-con').delay(100).fadeOut();
+        return;
+      }
+
+      var res = JSON.parse(data);
+      var JsonData = [];
+      $.each(res, function (i, item) {
+
+        var col_name = '<input type="hidden" name="id[]" value="'+item.i_queue_dept_staff+'" />'+item.s_firstname + " " + item.s_lastname;
+        var col_start = item.d_start_work + " / " + item.t_start_work;
+        //var col_end = item.d_end_work + " / " + item.t_end_work;
+        var col_end = '<input  type="date" name="d_end_work[]" id="d_end_work'+item.i_queue_dept_staff+'" value="'+item.d_end_work+'" />';
+        var col_tend = '<input  type="time" name="t_end_work[]" id="t_end_work'+item.i_queue_dept_staff+'" value="'+item.t_end_work+'" />';
+        var col_work = '<input style="width:60px;" readonly type="number" name="i_work[]" id="i_work'+item.i_queue_dept_staff+'" value="'+item.i_work+'" />';
+        var col_ot = '<input style="width:60px;" type="number" name="i_ot[]" value="'+item.i_ot+'" />';
+        var col_del = '<a href="' + (disable != "" ? '#' : 'javascript:ConfirmDelQueryStaff(\'' + item.i_queue_dept_staff + '\',\'' + i_queue_dept + '\');') + '" style="width:33px;height:33px" class="btn btn-circle btn-icon-only red" ' + disable + '>';
+        col_del += ' <i class="fa fa-trash-o" ></i>';
+        col_del += '</a>';
+
+
+
+        var addRow = [
+          col_name,
+          col_start,
+          col_end,
+          col_tend,
+          col_work,
+          col_ot
+        ]
+
+        JsonData.push(addRow);
+
+      });
+
+      if (i_queue_dept > 0) {
+        $datatable_modalstatus.dataTable({
+          data: JsonData,
+          destroy: true
+          , paging: false
+          , lengthMenu: [
+            [-1],
+            ["All"]
+          ]
+          , order: [
+            [0, 'asc'],
+            [1, 'asc'],
+            [2, 'asc']
+          ],
+          columnDefs: [
+            {"orderable": false, "targets": 0}
+          ]
+        });
+      } else {
+
+        var datatable = $datatable_modalstatus.dataTable().api();
+        $('.dataTables_empty').remove();
+        datatable.clear();
+        datatable.rows.add(JsonData);
+        datatable.draw();
+      }
+      $('#se-pre-con').delay(100).fadeOut();
+
+
+    },
+    error: function (data) {
+
+    }
+
+  });
+}
 /**
  Delete Staff
  */
 function ConfirmDelQueryStaff(id, i_queue_dept) {
   if (confirm('Are you sure to Delete') == true) {
-    
-    $.post("controller/queue/createController.php", {func: "DelStaff",id:id}, function (data) {
+
+    $.post("controller/queue/createController.php", {func: "DelStaff", id: id}, function (data) {
       var res = data.split(",");
       if (res[0] == "0000") {
         var errCode = "Code (" + res[0] + ") : " + res[1];
@@ -339,7 +523,7 @@ function ConfirmDelQueryStaff(id, i_queue_dept) {
         return;
       }
     });
-    
+
   }
 }
 

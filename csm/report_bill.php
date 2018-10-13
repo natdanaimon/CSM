@@ -200,7 +200,7 @@ $disableElement = 'disabled="disable"';
                                       $strSql .= " LEFT JOIN tb_insurance_comp ins ON car.i_ins_comp = ins.i_ins_comp ";
                                       $strSql .= " LEFT JOIN tb_car_brand brand ON car.s_brand_code = brand.s_brand_code ";
                                       $strSql .= " LEFT JOIN tb_car_generation gen ON car.s_gen_code = gen.s_gen_code ";
-                                      $strSql .= " WHERE car.i_cust_car =".$_GET[id];
+                                      $strSql .= " WHERE car.ref_no =".$report[0][ref_no];
                                       $arr[customer] = $db->Search_Data_FormatJson($strSql);
 
 

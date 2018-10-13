@@ -660,8 +660,14 @@ foreach ($_data as $data) {
                   <div class="col-md-12">
                     <div class="portlet-body form">
                       <div class="form-actions noborder">
+                        <?php
+                        if($_SESSION["perm"] == 'A'){
+                        ?>
                         <a href="po_daily.php"> <button type="button" class="btn default"><?=$_SESSION[btn_cancel] ?></button></a>
                         <button type="button" id="btn-form-action" class="btn blue" id="btn_save"  ><?=$_SESSION[btn_submit] ?></button>
+                        <?php } else{ ?>
+                        <h4 class="text-danger">You not have permission </h4>
+                        <?php } ?>
                       </div>
                     </div>
                   </div>
