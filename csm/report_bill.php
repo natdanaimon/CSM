@@ -17,19 +17,16 @@ if ($_GET[id] == NULL) {
   //echo header("Location: re_check.php");
   //echo header("Location: queue_all.php");
 }
-
 function getInsuranceDisplay($seq,$db) {
   $strSql = " select s_name_display from tb_insurance_comp where i_ins_comp =".$seq;
   $_data = $db->Search_Data_FormatJson($strSql);
   return $_data[0]['s_name_display'];
 }
-
 function getRowDisplay($val,$col,$res,$tb,$db) {
   $strSql = " select $res from $tb where $col ='".$val."'";
   $_data = $db->Search_Data_FormatJson($strSql);
   return $_data[0][$res];
 }
-
 $i_cust_car = $_GET[id];
 
 
@@ -172,6 +169,7 @@ $disableElement = 'disabled="disable"';
                                   <table class="table">
                                     <tr>
                                       <td width="50">ลำดับที่</td>
+                                      <td width="100">Invoice</td>
                                       <td width="100">ref.no</td>
                                       <td>ประกันภัย</td>
                                       <td width="100">ทะเบียนรถ</td>
@@ -182,8 +180,13 @@ $disableElement = 'disabled="disable"';
                                     </tr>
                                     <?php
                                     $i = 1;
+                                    //$_POST['checkboxItem'] = sort($_POST['checkboxItem']);
                                     while (list($key,$id) = each($_POST['checkboxItem'])) {
-                                      $_GET['id'] = $id;
+                                      $dataxx[] = $id;
+                                    }
+                                    sort($dataxx);
+                                    foreach($dataxx as $datax){
+                                      $_GET['id'] = $datax;
                                       $strSql = " select * ";
                                       $strSql .= " FROM tb_report_invoice   WHERE id = '".$_GET[id]."' ";
                                       $report = $db->Search_Data_FormatJson($strSql);
@@ -207,13 +210,18 @@ $disableElement = 'disabled="disable"';
 
                                       $i_ins_comp = getRowDisplay($arr[customer][0][i_ins_comp],'i_ins_comp','s_name_display','tb_insurance_comp',$db);
                                       $s_code = getRowDisplay($arr[customer][0][i_ins_comp],'i_ins_comp','s_code','tb_insurance_comp',$db);
+
+                                      $total_cost_invoice = $report[0][i_amount];
+                                      $total_vat = $report[0][i_amount] * 7 / 100;
+                                      $total_cost_invoice += $total_vat;
                                       ?>
                                       <tr>
                                         <td><?=$i;?></td>
+                                        <td><?=$report[0][id];?></td>
                                         <td><?=$arr[customer][0][ref_no];?></td>
                                         <td><?=$i_ins_comp;?></td>
                                         <td><?=$arr[customer][0][s_license];?></td>
-                                        <td><?=number_format($report[0][i_amount]);?></td>
+                                        <td><?=number_format($total_cost_invoice,2);?></td>
                                         <td><input type="text" name="s_no_claim[]"  class="form-control bold" /></td>
                                         <td><input type="text" name="s_ins[]"  class="form-control bold" /></td>
                                         <td>
@@ -221,7 +229,8 @@ $disableElement = 'disabled="disable"';
                                           <input type="text" name="s_remark[]"  class="form-control bold" />
                                         </td>
                                       </tr>
-                                      <?php $i++;
+                                      <?php
+                                      $i++;
                                     }
                                     ?>
                                   </table>
@@ -280,11 +289,11 @@ $disableElement = 'disabled="disable"';
       <span class="badge bg-primary"></span>
       <?php include './commonModal.php';?>
       <!-- BEGIN FOOTER -->
-<?php include './templated/footer.php';?>
+      <?php include './templated/footer.php';?>
       <!-- END FOOTER -->
     </div>
     <!-- BEGIN QUICK NAV -->
-<?php include './templated/quick_nav.php';?>
+    <?php include './templated/quick_nav.php';?>
     <!-- END QUICK NAV -->
     <!-- BEGIN CORE PLUGINS -->
     <script src="../assets/global/plugins/jquery.min.js" type="text/javascript"></script>
@@ -364,9 +373,9 @@ $disableElement = 'disabled="disable"';
         });
       }
       function save_report() {
-    $('#form-action').submit();    
-    location.replace('report_bill_list.php');
-        
+        $('#form-action').submit();
+        location.replace('report_bill_list.php');
+
       }
       $(document).ready(function () {
 

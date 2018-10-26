@@ -31,7 +31,11 @@ function initialDataTable(first) {
 
         var col_no = item.id;
         var col_refno = col_checkbox+""+item.ref_no;
-        var col_name = item.s_name;
+        var s_code = '';
+        if(item.s_code != ''){
+          s_code = " "+item.s_code;
+        }
+        var col_name = item.s_name+s_code;
         var col_ins = item.i_ins_comp;
         var col_license = item.s_license;
         var col_print = "";
@@ -58,10 +62,10 @@ function initialDataTable(first) {
         $datatable.dataTable({
           data: JsonData,
           order: [
-            [1, 'desc']
+            [0, 'desc']
           ],
           columnDefs: [
-            {"orderable": false, "targets": 0}
+//            {"orderable": false, "targets": 0}
 
           ]
         });

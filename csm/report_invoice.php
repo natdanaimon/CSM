@@ -17,19 +17,16 @@ if ($_GET[id] == NULL) {
   //echo header("Location: re_check.php");
   //echo header("Location: queue_all.php");
 }
-
 function getInsuranceDisplay($seq,$db) {
   $strSql = " select s_name_display from tb_insurance_comp where i_ins_comp =".$seq;
   $_data = $db->Search_Data_FormatJson($strSql);
   return $_data[0]['s_name_display'];
 }
-
 function getRowDisplay($val,$col,$res,$tb,$db) {
   $strSql = " select $res from $tb where $col ='".$val."'";
   $_data = $db->Search_Data_FormatJson($strSql);
   return $_data[0][$res];
 }
-
 $i_cust_car = $_GET[id];
 
 $strSql = " select * ";
@@ -175,7 +172,7 @@ $disableElement = 'disabled="disable"';
                     </div> 
                   </div>
                   <!-- BEGIN STEP1-->
- 
+
                   <!-- END STEP1-->
                   <!-- BEGIN STEP2 General -->
                   <div class="portlet box green">
@@ -202,10 +199,7 @@ $disableElement = 'disabled="disable"';
                                     </div>
                                   </div>
                                   <div class="col-md-6">
-                                    <div class="form-group form-md-line-input has-success">
-                                      <input type="numner" class="form-control bold" id="i_amount" name="i_amount"  >
-                                      <label for="s_no_bill">**กรอกในกรณีรถประกัน จำนวนเงิน </label>          
-                                    </div>
+                                    
                                   </div>
                                 </div>
                                 <div class="row">
@@ -213,6 +207,20 @@ $disableElement = 'disabled="disable"';
                                     <div class="form-group form-md-line-input has-success">
                                       <input onkeyup="check_refno(this.value);" type="text" class="form-control bold" id="ref_no" name="ref_no" value="<?=$arr[customer][0][ref_no];?>" >
                                       <label for="ref_no">Ref no. </label>          
+                                    </div>
+                                  </div>
+                                  <div class="col-md-3">
+                                    <div class="form-group form-md-line-input has-success">
+                                      <input type="text" class="form-control bold" id="s_code" name="s_code" value="<?=$arr[customer][0][s_code];?>" >
+                                      <label for="s_code">รหัสผู้ซื้อ</label>          
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-md-6">
+                                    <div class="form-group form-md-line-input has-success">
+                                      <input type="numner" class="form-control bold" id="i_amount" name="i_amount"  >
+                                      <label for="s_no_bill">**กรอกในกรณีรถประกัน จำนวนเงิน </label>          
                                     </div>
                                   </div>
                                   <div class="col-md-3">
@@ -269,9 +277,9 @@ $disableElement = 'disabled="disable"';
                                       <td width="100">จำนวน</td>
                                       <td width="100">ราคาต่อหน่วย</td>
                                     </tr>
-<?php
-for ($i = 1; $i <= 6; $i++) {
-  ?>
+                                    <?php
+                                    for ($i = 1; $i <= 6; $i++) {
+                                      ?>
                                       <tr>
                                         <td><input type="text" name="s_list_code[]" id="s_list_code<?=$i;?>" class="form-control bold" /></td>
                                         <td><input type="text" name="s_list_name[]" id="s_list_name<?=$i;?>" class="form-control bold" /></td>
@@ -279,7 +287,7 @@ for ($i = 1; $i <= 6; $i++) {
                                         <td><input type="text" name="s_list_amount[]" id="s_list_amount<?=$i;?>" class="form-control bold" /></td>
                                         <td><input type="text" name="s_list_price[]" id="s_list_price<?=$i;?>" class="form-control bold" /></td>
                                       </tr>
-<?php }?>
+                                    <?php }?>
                                   </table>
                                 </div>
                               </div>
@@ -483,7 +491,7 @@ for ($i = 1; $i <= 6; $i++) {
     <script src="js/action/search/popup.js" type="text/javascript"></script>
     <script src="js/common/closeStep.js" type="text/javascript"></script>
     <script>
-                      var keyEdit = "<?=$i_cust_car?>";
+                                        var keyEdit = "<?=$i_cust_car?>";
     </script>
     <script>
       function check_refno(ref) {
@@ -493,19 +501,19 @@ for ($i = 1; $i <= 6; $i++) {
           data: {ref: ref, func: "getDetail"},
           success: function (data) {
 
-              var obj = JSON.parse(data);
-              $('#td_pay_type').html(obj.td_pay_type);
-              $('#td_ins_comp').html(obj.td_ins_comp);
-              $('#td_license').html(obj.td_license);
-              $('#td_band').html(obj.td_band);
-              $('#td_gen').html(obj.td_gen);
-              $('#td_name').html(obj.td_name);
-              $('#td_tax_nox').html(obj.td_tax_nox);
-              //$('#s_name').val(obj.td_name);
-              //$('#s_address').val(obj.s_address);
-              $('#s_license').val(obj.td_license);
-              //$('#s_tax_no').val(obj.s_tax_no);
-              console.log(obj);
+            var obj = JSON.parse(data);
+            $('#td_pay_type').html(obj.td_pay_type);
+            $('#td_ins_comp').html(obj.td_ins_comp);
+            $('#td_license').html(obj.td_license);
+            $('#td_band').html(obj.td_band);
+            $('#td_gen').html(obj.td_gen);
+            $('#td_name').html(obj.td_name);
+            $('#td_tax_nox').html(obj.td_tax_nox);
+            //$('#s_name').val(obj.td_name);
+            //$('#s_address').val(obj.s_address);
+            $('#s_license').val(obj.td_license);
+            //$('#s_tax_no').val(obj.s_tax_no);
+            console.log(obj);
 
 
           },

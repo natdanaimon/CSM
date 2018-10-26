@@ -16,7 +16,7 @@ $s_code_buy = $data[0][s_code_buy];
 $no = $data[0][id];
 $d_create = date('d/m/Y',strtotime($data[0][d_create]));
 $strSql = " select * ";
-$strSql .= " FROM tb_report_bill_list   WHERE i_report_bill = '".$_GET[id]."' ";
+$strSql .= " FROM tb_report_bill_list   WHERE i_report_bill = '".$_GET[id]."' order by i_invoice asc ";
 $dataList = $db->Search_Data_FormatJson($strSql);
 
 $strSql = " select * ";
@@ -199,6 +199,14 @@ ob_start();
       <?php
       $i = 1;
       foreach ($dataList as $dataL) {
+
+        $strSql = " select * ";
+        $strSql .= " FROM tb_report_invoice   WHERE id = '".$dataL[i_invoice]."' ";
+        $sss_invoice = $db->Search_Data_FormatJson($strSql);
+        
+       $total_cost_invoice = $sss_invoice[0][i_amount];
+        $total_vat = $sss_invoice[0][i_amount]*7/100;
+          $total_cost_invoice += $total_vat;
         ?>
         <tr>
           <td style="border-top:0px solid #000;border-left:1px solid #000;border-right:1px solid #000;border-bottom:0px solid #000;"  align="center">
@@ -211,13 +219,13 @@ ob_start();
             <?=$dataL[s_ins];?>
           </td>
           <td style="border-top:0px solid #000;border-right:1px solid #000;border-bottom:0px solid #000;padding-right:10px;"   align="right">
-            <?=number_format($i_invoice[0][i_amount],2);?>
+            <?=number_format($total_cost_invoice,2);?>
             <?php
-            $total_cost += $i_invoice[0][i_amount];
+            $total_cost += $total_cost_invoice;
             ?>
           </td>
           <td colspan="2" style="border-top:0px solid #000;border-right:1px solid #000;border-bottom:0px solid #000;"   align="left">
-            <?=$dataL[s_remark];?>
+            <?=$sss_invoice[0][s_license]." ".$dataL[s_remark];?>
           </td>
         </tr>
         <?php

@@ -198,7 +198,7 @@ ACTIVEPAGES(10,2);
     <link href="css/notify.css" rel="stylesheet" type="text/css" />
     <link href="outbound/lightbox/css/lightbox.css" rel="stylesheet" type="text/css" />
     <script src="outbound/lightbox/js/lightbox.js" type="text/javascript"></script>
-    <script src="js/action/report/invoice_list.js" type="text/javascript"></script>
+    <script src="js/action/report/invoice_list.js?v=2" type="text/javascript"></script>
     <script>
                         function submit_form() {
                           var dataInvoice = $('#dataInvoice').serialize();

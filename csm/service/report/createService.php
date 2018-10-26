@@ -420,6 +420,7 @@ class createService {
     $strSql .= "    ,i_amount ";
     $strSql .= "    ,s_no_bill ";
     $strSql .= "    ,ref_no ";
+    $strSql .= "    ,s_code ";
     $strSql .= "    ,s_license ";
     $strSql .= "    ,s_province ";
     $strSql .= "    ,s_name ";
@@ -436,6 +437,7 @@ class createService {
     $strSql .= "  ,'".$info[i_amount]."' ";
     $strSql .= "  ,'".$info[s_no_bill]."' ";
     $strSql .= "  ,'".$info[ref_no]."' ";
+    $strSql .= "  ,'".$info[s_code]."' ";
     $strSql .= "  ,'".$info[s_license]."' ";
     $strSql .= "  ,'".$info[s_province]."' ";
     $strSql .= "  ,'".$info[s_name]."' ";

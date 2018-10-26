@@ -144,6 +144,9 @@ $s_remark = $receive[0][s_remark];
 $strSql = " select * ";
 $strSql .= " FROM tb_comment   WHERE ref_no = '".$_data[0][ref_no]."' order by d_create desc ";
 $comment = $db->Search_Data_FormatJson($strSql);
+$strSql = " select * ";
+$strSql .= " FROM tb_check_repair   WHERE ref_no = '".$_data[0][ref_no]."' order by RAND() limit 6 ";
+$img_check = $db->Search_Data_FormatJson($strSql);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -516,23 +519,45 @@ $comment = $db->Search_Data_FormatJson($strSql);
                       <div class="portlet-body form">
                         <div class="portlet light bordered">
                           <div class="portlet-body form">
+                            <?php
+                            //print_r($img_check);
+                            $img_step_r0 = ($img_check[0][s_filename] == '')?'noimage.jpg':$img_check[0][s_filename];
+                            $img_step_r1 = ($img_check[1][s_filename] == '')?'noimage.jpg':$img_check[1][s_filename];
+                            $img_step_r2 = ($img_check[2][s_filename] == '')?'noimage.jpg':$img_check[2][s_filename];
+                            $img_step_r3 = ($img_check[3][s_filename] == '')?'noimage.jpg':$img_check[3][s_filename];
+                            $img_step_r4 = ($img_check[4][s_filename] == '')?'noimage.jpg':$img_check[4][s_filename];
+                            $img_step_r5 = ($img_check[5][s_filename] == '')?'noimage.jpg':$img_check[5][s_filename];
+                            ?>
+
                             <table width="100%"  style="">
                               <tr>
-                                <td width="30%" valign="top" style="border:2px solid #32c5d2;padding: 5px;height: 150px;"> </td>
+                                <td width="30%" valign="top" style="border:2px solid #32c5d2;padding: 5px;height: 150px;">
+                                  <img src="upload/step_checkrepair/<?=$img_step_r0;?>" height="150" />
+                                </td>
                                 <td width="5%"></td>
-                                <td width="30%" valign="top" style="border:2px solid #32c5d2;padding: 5px;"> </td>
+                                <td width="30%" valign="top" style="border:2px solid #32c5d2;padding: 5px;">
+                                <img src="upload/step_checkrepair/<?=$img_step_r1;?>" height="150" />
+                                </td>
                                 <td width="5%"></td>
-                                <td width="30%" valign="top" style="border:2px solid #32c5d2;padding: 5px;"> </td>
+                                <td width="30%" valign="top" style="border:2px solid #32c5d2;padding: 5px;">
+                                <img src="upload/step_checkrepair/<?=$img_step_r2;?>" height="150" />
+                                </td>
                               </tr>
                               <tr>
                                 <td style="height: 20px;"></td>
                               </tr>
                               <tr>
-                                <td width="30%" valign="top" style="border:2px solid #32c5d2;padding: 5px;height: 150px;"> </td>
+                                <td width="30%" valign="top" style="border:2px solid #32c5d2;padding: 5px;height: 150px;">
+                                <img src="upload/step_checkrepair/<?=$img_step_r3;?>" height="150" />
+                                </td>
                                 <td width="5%"></td>
-                                <td width="30%" valign="top" style="border:2px solid #32c5d2;padding: 5px;"> </td>
+                                <td width="30%" valign="top" style="border:2px solid #32c5d2;padding: 5px;">
+                                <img src="upload/step_checkrepair/<?=$img_step_r4;?>" height="150" />
+                                </td>
                                 <td width="5%"></td>
-                                <td width="30%" valign="top" style="border:2px solid #32c5d2;padding: 5px;"> </td>
+                                <td width="30%" valign="top" style="border:2px solid #32c5d2;padding: 5px;">
+                                <img src="upload/step_checkrepair/<?=$img_step_r5;?>" height="150" />
+                                </td>
                               </tr>
                             </table>
                             <span class="caption-subject bold uppercase text-danger">**หากรูปภาพที่แสดงไม่ครบตามรายการสามารถขอดูเพิ่มเติมได้ที่เจ้าหน้าที่ที่บริการท่านอยู่</span>
@@ -554,7 +579,7 @@ $comment = $db->Search_Data_FormatJson($strSql);
                             <table width="100%"  style="min-height: 90px;">
                               <tr>
                                 <td widht="100%" valign="top">
-                                  
+
                                   <?php
                                   if ($comment) {
                                     ?>      
@@ -576,7 +601,7 @@ $comment = $db->Search_Data_FormatJson($strSql);
                                 </td>
                               </tr>
                             </table>
-                           
+
                           </div>
                         </div>
                       </div>
@@ -584,7 +609,7 @@ $comment = $db->Search_Data_FormatJson($strSql);
                   </div>
                 </td>
               </tr>
-              
+
             </table>                 
             <!-- =========================================================================================== -->
             <div align="center">
@@ -592,7 +617,7 @@ $comment = $db->Search_Data_FormatJson($strSql);
                 ความเสียหายดังต่อไปนี้ทางอู่จะไม่รับผิดชอบ คือ ความเสียหายนอกเหนือจากงานซ่อม, ความเสียหายของแบตเตอรี่ เครื่องยนต์ แอร์ วิทยุ อุปกรณ์ไฟฟ้าต่าง ๆ ซึ่งไม่เกี่ยวกับการซ่อมในใบเคลมหรือใบเสนอราคา
               </h4>
               <h3 class="caption-subject bold uppercase">
-                 ลูกค้ายอมรับเงื่อนไขการนำรถเข้าซ่อม และตรวจสอบความถูกต้องของข้อมูลแล้วจึงแจ้งให้เจ้าหน้าทีสั่งพิมพ์ เมื่อจัดพิมพ์แล้วข้อมูลตรวจสภาพก่อนนำซ่อมจะไม่สามารถแก้ไขได้
+                ลูกค้ายอมรับเงื่อนไขการนำรถเข้าซ่อม และตรวจสอบความถูกต้องของข้อมูลแล้วจึงแจ้งให้เจ้าหน้าทีสั่งพิมพ์ เมื่อจัดพิมพ์แล้วข้อมูลตรวจสภาพก่อนนำซ่อมจะไม่สามารถแก้ไขได้
               </h3>
             </div>
             <hr  />
@@ -603,7 +628,7 @@ $comment = $db->Search_Data_FormatJson($strSql);
                 </td>
               </tr>
             </table>
-            
+
 
           </div>
 

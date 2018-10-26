@@ -39,9 +39,19 @@ $s_name = ($data[0][ref_no] != '') ? $_data[0][s_comp_th]."<br />เลขปร
 $s_address = ($data[0][ref_no] != '') ? $_data[0][ins_address] : $data[0][s_address];
 $s_code = ($data[0][ref_no] != '') ? $_data[0][s_code] : '';
 
+if ($data[0][s_code] != '') {
+  $strSql = " select * ";
+  $strSql .= " FROM tb_insurance_comp   WHERE s_code = '".$data[0][s_code]."' ";
+  $dataIns = $db->Search_Data_FormatJson($strSql);
+  $s_name = $dataIns[0][s_comp_th]."<br />เลขประจำตัวผู้เสียภาษีอากร ".$dataIns[0][s_tax_no];
+  $s_address = $dataIns[0][s_address];
+  $s_code = $data[0][s_code];
+  $data[0][ref_no] = '11';
+}
+
 $total_cost = 0;
 
- 
+
 
 ob_start();
 ?>
@@ -50,7 +60,7 @@ ob_start();
   <!-- BEGIN HEAD -->
   <head>
     <meta charset="utf-8" />
-    <title><?=$_SESSION[title] ?> <?=$i_queue; ?> </title>
+    <title><?=$_SESSION[title]?> <?=$i_queue;?> </title>
     <!-- END SELECT 2 SCRIPTS -->
     <link rel="shortcut icon" href="favicon.ico" /> 
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
@@ -63,7 +73,7 @@ ob_start();
     <!-- END THEME LAYOUT STYLES -->
   </head>
   <!-- END HEAD -->
-  <body>
+  <body style="padding-right: 15px;">
     <table width="100%">
       <tr>
         <td width="110">
@@ -91,7 +101,7 @@ ob_start();
               <td align="center">
                 <font style="font-size: 20px;">ใบเสร็จรับเงิน/ใบกำกับภาษี
 
- <br />
+                <br />
                 RECEIPT/TAX INVOICE
                 </font>
               </td>
@@ -222,101 +232,100 @@ ob_start();
         </td>
       </tr>
       <?php
-      if($data[0][ref_no] != ''){
-      ?>
-      <tr>
-        <td style="border-right:1px solid #000;border-left:1px solid #000;border-top:0px solid #000;padding: 5px;" align="center" valign="top">
-          <strong style="font-size: 16px;" >
-            INS001
-          </strong>
-        </td>
-        <td colspan="2" style="border-right:1px solid #000;border-left:0px solid #000;border-top:0px solid #000;padding: 5px;" valign="top">
-          ค่าบริการจัดซ่อมรถยนต์ หมายเลขทะเบียน <?php echo $data[0][s_license];?> <?php echo $data[0][s_province];?>
-        </td>
-        <td style="border-right:1px solid #000;border-left:0px solid #000;border-top:0px solid #000;padding: 5px;" align="right" valign="top">
-          <?php echo($data[0][i_amount] > 0) ? "1.0" : "";?>
-        </td>
-        <td style="border-right:1px solid #000;border-left:0px solid #000;border-top:0px solid #000;padding: 5px;" align="right" valign="top">
-          <?php echo($data[0][i_amount] > 0) ? number_format($data[0][i_amount],2) : "";?>
-        </td>
-        <td style="border-right:1px solid #000;border-left:0px solid #000;border-top:0px solid #000;padding: 5px;" align="right" valign="top">
-          <?php 
-          $total_cost += $data[0][i_amount];
-          echo($data[0][i_amount] > 0) ? number_format($data[0][i_amount],2) : "";
-          
-          ?>
-        </td>
-      </tr>
-      <?php } ?>
-        <?php
-      foreach($dataList as $dataL){
+      if ($data[0][ref_no] != '') {
         ?>
-      <tr style="height: 28px;">
-        <td style="border-right:1px solid #000;border-left:1px solid #000;border-top:0px solid #000;padding: 5px;" align="center" valign="top">
-          <strong style="font-size: 16px;" >
-            <?=$dataL[s_list_code];?>
-          </strong>
-        </td>
-        <td colspan="2" style="border-right:1px solid #000;border-left:0px solid #000;border-top:0px solid #000;padding: 5px;" valign="top">
-          <?=$dataL[s_list_name];?> <?=$dataL[s_list_detail];?>
-        </td>
-        <td style="border-right:1px solid #000;border-left:0px solid #000;border-top:0px solid #000;padding: 5px;" align="right" valign="top">
-          <?php echo($dataL[s_list_amount] > 0) ? number_format($dataL[s_list_amount],1) : "";?>
-        </td>
-        <td style="border-right:1px solid #000;border-left:0px solid #000;border-top:0px solid #000;padding: 5px;" align="right" valign="top">
-          <?php echo($dataL[s_list_price] > 0) ? number_format($dataL[s_list_price],2) : "";?>
-        </td>
-        <td style="border-right:1px solid #000;border-left:0px solid #000;border-top:0px solid #000;padding: 5px;" align="right" valign="top">
-          <?php 
-          $sumList = $dataL[s_list_amount]*$dataL[s_list_price];
-          $total_cost += $sumList;
-          echo($sumList > 0) ? number_format($sumList,2) : "";
-          ?>
-        </td>
-      </tr>
+        <tr>
+          <td style="border-right:1px solid #000;border-left:1px solid #000;border-top:0px solid #000;padding: 5px;" align="center" valign="top">
+            <strong style="font-size: 16px;" >
+              INS001
+            </strong>
+          </td>
+          <td colspan="2" style="border-right:1px solid #000;border-left:0px solid #000;border-top:0px solid #000;padding: 5px;" valign="top">
+            ค่าบริการจัดซ่อมรถยนต์ หมายเลขทะเบียน <?php echo $data[0][s_license];?> <?php echo $data[0][s_province];?>
+          </td>
+          <td style="border-right:1px solid #000;border-left:0px solid #000;border-top:0px solid #000;padding: 5px;" align="right" valign="top">
+            <?php echo($data[0][i_amount] > 0) ? "1.0" : "";?>
+          </td>
+          <td style="border-right:1px solid #000;border-left:0px solid #000;border-top:0px solid #000;padding: 5px;" align="right" valign="top">
+            <?php echo($data[0][i_amount] > 0) ? number_format($data[0][i_amount],2) : "";?>
+          </td>
+          <td style="border-right:1px solid #000;border-left:0px solid #000;border-top:0px solid #000;padding: 5px;" align="right" valign="top">
+            <?php
+            $total_cost += $data[0][i_amount];
+            echo($data[0][i_amount] > 0) ? number_format($data[0][i_amount],2) : "";
+            ?>
+          </td>
+        </tr>
+      <?php }?>
       <?php
+      foreach ($dataList as $dataL) {
+        ?>
+        <tr style="height: 28px;">
+          <td style="border-right:1px solid #000;border-left:1px solid #000;border-top:0px solid #000;padding: 5px;" align="center" valign="top">
+            <strong style="font-size: 16px;" >
+              <?=$dataL[s_list_code];?>
+            </strong>
+          </td>
+          <td colspan="2" style="border-right:1px solid #000;border-left:0px solid #000;border-top:0px solid #000;padding: 5px;" valign="top">
+            <?=$dataL[s_list_name];?> <?=$dataL[s_list_detail];?>
+          </td>
+          <td style="border-right:1px solid #000;border-left:0px solid #000;border-top:0px solid #000;padding: 5px;" align="right" valign="top">
+            <?php echo($dataL[s_list_amount] > 0) ? number_format($dataL[s_list_amount],1) : "";?>
+          </td>
+          <td style="border-right:1px solid #000;border-left:0px solid #000;border-top:0px solid #000;padding: 5px;" align="right" valign="top">
+            <?php echo($dataL[s_list_price] > 0) ? number_format($dataL[s_list_price],2) : "";?>
+          </td>
+          <td style="border-right:1px solid #000;border-left:0px solid #000;border-top:0px solid #000;padding: 5px;" align="right" valign="top">
+            <?php
+            $sumList = $dataL[s_list_amount] * $dataL[s_list_price];
+            $total_cost += $sumList;
+            echo($sumList > 0) ? number_format($sumList,2) : "";
+            ?>
+          </td>
+        </tr>
+        <?php
       }
       ?>
       <?php
-      for($i=0;$i<=1;$i++){
-      ?>
-      <tr style="height: 28px;">
-        <td style="border-right:1px solid #000;border-left:1px solid #000;border-top:0px solid #000;padding: 5px;" align="center" valign="top">
-          <strong style="font-size: 16px;" >
-            
-          </strong>
-        </td>
-        <td colspan="2" style="border-right:1px solid #000;border-left:0px solid #000;border-top:0px solid #000;padding: 5px;" valign="top">
-          
-        </td>
-        <td style="border-right:1px solid #000;border-left:0px solid #000;border-top:0px solid #000;padding: 5px;" align="right" valign="top">
-          
-        </td>
-        <td style="border-right:1px solid #000;border-left:0px solid #000;border-top:0px solid #000;padding: 5px;" align="right" valign="top">
-          
-        </td>
-        <td style="border-right:1px solid #000;border-left:0px solid #000;border-top:0px solid #000;padding: 5px;" align="right" valign="top">
-          
-        </td>
-      </tr>
-      <?php } ?>
+      for ($i = 0; $i <= 1; $i++) {
+        ?>
+        <tr style="height: 28px;">
+          <td style="border-right:1px solid #000;border-left:1px solid #000;border-top:0px solid #000;padding: 5px;" align="center" valign="top">
+            <strong style="font-size: 16px;" >
+
+            </strong>
+          </td>
+          <td colspan="2" style="border-right:1px solid #000;border-left:0px solid #000;border-top:0px solid #000;padding: 5px;" valign="top">
+
+          </td>
+          <td style="border-right:1px solid #000;border-left:0px solid #000;border-top:0px solid #000;padding: 5px;" align="right" valign="top">
+
+          </td>
+          <td style="border-right:1px solid #000;border-left:0px solid #000;border-top:0px solid #000;padding: 5px;" align="right" valign="top">
+
+          </td>
+          <td style="border-right:1px solid #000;border-left:0px solid #000;border-top:0px solid #000;padding: 5px;" align="right" valign="top">
+
+          </td>
+        </tr>
+      <?php }?>
       <tr>
         <td style="border-right:1px solid #000;border-left:1px solid #000;border-bottom :1px solid #000;padding: 5px;" align="center" valign="top">
           <strong style="font-size: 16px;" >
-            
+
           </strong>
         </td>
         <td colspan="2" style="border-right:1px solid #000;border-left:0px solid #000;border-bottom:1px solid #000;padding: 5px;" valign="top">
-          
+
         </td>
         <td style="border-right:1px solid #000;border-left:0px solid #000;border-bottom:1px solid #000;padding: 5px;" align="right" valign="top">
-          
+
         </td>
         <td style="border-right:1px solid #000;border-left:0px solid #000;border-bottom:1px solid #000;padding: 5px;" align="right" valign="top">
-          
+
         </td>
         <td style="border-right:1px solid #000;border-left:0px solid #000;border-bottom:1px solid #000;padding: 5px;" align="right" valign="top">
-          
+
         </td>
       </tr>
       <tr>
@@ -363,8 +372,8 @@ ob_start();
           จำนวนเงินรวมทั้งสิ้น (ตัวอักษร)<br />
           <div style="border:1px solid #000;padding:5px;">
             <?php
-             $total_vat = $total_cost*7/100;
-          $total_cost+= $total_vat;
+            $total_vat = $total_cost * 7 / 100;
+            $total_cost += $total_vat;
             ?>
             <?=$util->bahtText($total_cost);?>
           </div>
@@ -437,7 +446,8 @@ ob_start();
           <table width="100%" style="padding: 5px;">
             <tr>
               <td colspan="2">
-                จึงเรียนมาเพื่อโปรพิจารณา		
+                <!--                จึงเรียนมาเพื่อโปรพิจารณา		-->
+                ในนามสำนักงานใหญ่
               </td>
             </tr>
             <tr>
